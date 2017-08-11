@@ -2512,7 +2512,7 @@
                                             <textarea name="decisions" id="decisions4" rows="4" class="form-control"></textarea>
                                         </div>
                                         <div class="form-group">
-                                            <label>Agenda Items :</label>
+                                            <label>Agenda Itemsssssssssssssssss :</label>
                                             <div class="c-inputs-stacked">
                                                 <label class="inline custom-control custom-checkbox block">
                                                     <input type="checkbox" class="custom-control-input">
