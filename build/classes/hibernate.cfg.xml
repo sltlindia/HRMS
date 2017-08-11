@@ -1,0 +1,377 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+	<session-factory>
+		<property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+
+		<!-- <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+		<property name="hibernate.connection.url">jdbc:mysql://192.168.182.105:3306/hrms</property>
+		<property name="hibernate.connection.username">chirag</property>
+		<property name="hibernate.connection.password">chirag</property> -->
+		
+		
+		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+		<property name="hibernate.connection.url">jdbc:mysql://192.168.182.94:3306/hrms</property>
+		<property name="hibernate.connection.username">shruti</property>
+		<property name="hibernate.connection.password">shruti</property>
+		 
+		
+		<!-- <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+		<property name="hibernate.connection.url">jdbc:mysql://192.168.182.58:3306/hrms</property>
+		<property name="hibernate.connection.username">hrmsserver</property>
+		<property name="hibernate.connection.password">hostserver</property> -->
+		
+	
+
+	 	<!-- <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+		<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/hrms</property>
+		<property name="hibernate.connection.username">root</property>
+		<property name="hibernate.connection.password">root</property>  -->    
+
+	    <property name="show_sql">true</property>
+		<property name="hbm2ddl.auto">create/update</property>
+		
+		<!-- performance bean -->
+		
+		<mapping class="com.hrms.pms.bean.EmployeeBean" />
+        <mapping class="com.hrms.pms.bean.SoftskillBean" />
+        <mapping class="com.hrms.pms.bean.TechnicalBean" /> 
+        <mapping class="com.hrms.pms.bean.GradeMasterBean" />
+        <mapping class="com.hrms.pms.bean.ProjectMasterBean" />
+        <mapping class="com.hrms.pms.bean.CriteriaPerBean" />
+        <mapping class="com.hrms.pms.bean.MonthBean" />
+        <mapping class="com.hrms.pms.bean.YearBean" />
+        <mapping class="com.hrms.pms.bean.ReviewBean" />
+        <mapping class="com.hrms.pms.bean.ReviewCriteriaBean" />
+        <mapping class="com.hrms.pms.bean.ReviewSoftskillBean" />
+        <mapping class="com.hrms.pms.bean.SpecificCriteriaAllocationBean" />
+        <mapping class="com.hrms.pms.bean.ManagerBean" />
+        <mapping class="com.hrms.pms.bean.RoleBean" />
+        <mapping class="com.hrms.pms.bean.DepartmentBean" />
+        <mapping class="com.hrms.pms.bean.ManagerGradeMasterBean"/>
+        <mapping class="com.hrms.pms.bean.ProjectStatusBean"/>
+        <mapping class="com.hrms.pms.bean.RecommendationOptionsBean"/>
+        <mapping class="com.hrms.pms.bean.RecommendationBean"/>
+        <mapping class="com.hrms.pms.bean.ClientMasterBean"/>
+        <mapping class="com.hrms.pms.bean.PriorityBean"/>
+        <mapping class="com.hrms.pms.bean.MilestoneBean"/>
+        <mapping class="com.hrms.pms.bean.TaskMasterBean"/>
+        <mapping class="com.hrms.pms.bean.StatusBean"/>
+        <mapping class="com.hrms.pms.bean.DependencyBean"/>
+        <mapping class="com.hrms.pms.bean.ChangePriorityNotificationBean"/>
+        <mapping class="com.hrms.pms.bean.ProjectAllocationPercentageBean"/>
+        <mapping class="com.hrms.pms.bean.ProjectUpdateNotificationBean"/>
+        <mapping class="com.hrms.pms.bean.AllocationNotificationBean"/>
+        <mapping class="com.hrms.pms.bean.SpecificCriteriaBean"/>
+        <mapping class="com.hrms.pms.bean.SpecificCriteriaMonthBean"/>
+        <mapping class="com.hrms.pms.bean.SpecificCriteriaSoftskillBean"/>
+        <mapping class="com.hrms.pms.bean.SpecificCriteriaTechnicalBean"/>
+        <mapping class="com.hrms.pms.bean.CurrencyBean"/>
+       	<mapping class="com.hrms.pms.bean.GoalDefinitionBean"/>
+        <mapping class="com.hrms.pms.bean.AppraisalCriteriaBean" />
+		<mapping class="com.hrms.pms.bean.AppraisalGradeBean" />
+		<mapping class="com.hrms.pms.bean.AppraisalCriteriaDescriptionBean" />
+		<mapping class="com.hrms.pms.bean.AppraisalBean" />
+		<mapping class="com.hrms.pms.bean.QuterlyMonthBean" />
+		<mapping class="com.hrms.pms.bean.AppraisalLeaveBean" />
+		<mapping class="com.hrms.pms.bean.AppraisalKizenBean" />
+		<mapping class="com.hrms.pms.bean.Appraisal5sBean" />
+		<mapping class="com.hrms.pms.bean.AppraisalTrainingBean" />
+		<mapping class="com.hrms.pms.bean.AppraisalCriteriaGradeBean" />
+		<mapping class="com.hrms.pms.bean.AppraisalWhiteSection1Bean" />
+		<mapping class="com.hrms.pms.bean.AppraisalWhiteCollarGradeBean" />
+		<mapping class="com.hrms.pms.bean.AppraisalWhiteCollarSection2Bean" />
+		<mapping class="com.hrms.pms.bean.WorkBehaviourBean" />
+		<mapping class="com.hrms.pms.bean.WorkGradeBean" />
+		<mapping class="com.hrms.pms.bean.AppraisalCriteriaManagerBean" />
+		<mapping class="com.hrms.pms.bean.AppraisalUpdateScoreBean" />
+		<mapping class="com.hrms.pms.bean.AppraisalUpdateManagerScoreBean" />
+        <mapping class="com.hrms.pms.bean.ScoreAreaBean" /> 
+        <mapping class="com.hrms.pms.bean.UnitOfMeasurementBean" />
+       	<mapping class="com.hrms.pms.bean.GoalAllocationBean" />
+        <mapping class="com.hrms.pms.bean.YearlyGoalBean" />
+        <mapping class="com.hrms.pms.bean.GoalEmployeeAllocationBean" />
+        <mapping class="com.hrms.pms.bean.MonthlyGoalDetailBean" />
+        <mapping class="com.hrms.pms.bean.SubGoalAllocationBean" />
+        <mapping class="com.hrms.pms.bean.EmployeeStatusBean" />
+        <mapping class="com.hrms.pms.bean.OTPBean"/>
+        <mapping class="com.hrms.pms.bean.EmployeeCSVUploadBean"/>
+        <mapping class="com.hrms.pms.bean.FamilyDetailBean"/>
+        <mapping class="com.hrms.pms.bean.FamilyRelationBean"/>
+        
+	  	<mapping class="com.hrms.pms.bean.BasicQualificationBean" />
+	    <mapping class="com.hrms.pms.bean.GraduateDegreeBean" />
+	    <mapping class="com.hrms.pms.bean.MasterDegreeBean" />
+	    <mapping class="com.hrms.pms.bean.ITICourseBean"/>
+	    <mapping class="com.hrms.pms.bean.DiplomaCourseBean"/>
+	    <mapping class="com.hrms.pms.bean.SpecialQualificationBean"/>
+        
+        
+        
+        <!-- Akash Ramani Date:28-03-2017 -->
+        <mapping class="com.hrms.pms.bean.ProjectManagerListBean"/>
+        <mapping class="com.hrms.pms.bean.CommentTaskBean"/>
+        <mapping class="com.hrms.pms.bean.CommentMilestoneBean"/>
+        <mapping class="com.hrms.pms.bean.DesignInputsBean"/>
+        <mapping class="com.hrms.pms.bean.ProjectDesignInputsBean"/>
+        <mapping class="com.hrms.pms.bean.ProjectDesignHeadBean"/>
+        <mapping class="com.hrms.pms.bean.EngineeringFeasibilityBean"/>
+        <mapping class="com.hrms.pms.bean.FixtureFeasibiltyBean"/>
+        <mapping class="com.hrms.pms.bean.ManufacturingFeasibilityBean"/>
+        <mapping class="com.hrms.pms.bean.QualityFeasibilityBean"/>
+        <mapping class="com.hrms.pms.bean.CostFeasibilityBean"/>
+        <mapping class="com.hrms.pms.bean.TaskDefaultListBean"/>
+        <mapping class="com.hrms.pms.bean.ProjectAdminTaskBean"/>
+        <mapping class="com.hrms.pms.bean.ProjectDepartmentTaskBean"/>
+        <mapping class="com.hrms.pms.bean.TaskDateHistoryBean"/>
+        <mapping class="com.hrms.pms.bean.ProjectAssignToManagerBean"/>
+        <mapping class="com.hrms.pms.bean.ProjectDocumentBean"/>
+        <mapping class="com.hrms.pms.bean.TaskRemarkBean"/>
+        <mapping class="com.hrms.pms.bean.ProjectHoldHistoryBean"/>
+	
+	
+	
+	
+	
+		<!-- timesheet bean -->
+		<mapping class="com.hrms.timesheet.bean.TimeSheetBean" />
+		<mapping class="com.hrms.timesheet.bean.DayBean" />
+		<mapping class="com.hrms.timesheet.bean.HolidayBean" />
+		<mapping class="com.hrms.timesheet.bean.ProjectAllocationBean" />
+		<mapping class="com.hrms.timesheet.bean.UnplanProjectBean" />
+		
+		
+		
+		
+		
+		<!-- <mapping class="com.hrms.recruitement.bean.VacancyFormBean" />
+        <mapping class="com.hrms.recruitement.bean.BenefitsBean" />
+        <mapping class="com.hrms.recruitement.bean.VacancyBenefitsBean" />
+  		<mapping class="com.hrms.recruitement.bean.VacancyBenefitsBean" />
+  		<mapping class="com.hrms.recruitement.bean.JobLocationBean" />
+        <mapping class="com.hrms.recruitement.bean.VacancyApprovalBean" />
+        <mapping class="com.hrms.recruitement.bean.ResumeDataBean" />
+        <mapping class="com.hrms.recruitement.bean.InterviewedByBean" />
+        <mapping class="com.hrms.recruitement.bean.InterviewFeedbackBean" />
+        <mapping class="com.hrms.recruitement.bean.InterviewerPanelBean" />
+        <mapping class="com.hrms.recruitement.bean.CandidateExamInfoBean" />
+        <mapping class="com.hrms.recruitement.bean.TechnicalCriteriaBean" />
+        <mapping class="com.hrms.recruitement.bean.SubTechnicalCriteriaBean" />
+        <mapping class="com.hrms.recruitement.bean.SoftskillCriteriaBean" />
+        <mapping class="com.hrms.recruitement.bean.SubSoftskillCriteriaBean" />
+        <mapping class="com.hrms.recruitement.bean.CompanyListBean" />
+        <mapping class="com.hrms.recruitement.bean.OfferLetterBean" />
+        <mapping class="com.hrms.recruitement.bean.PreEmploymentArrangementBean" />
+        <mapping class="com.hrms.recruitement.bean.CandidateExamScoreBean"/>
+        <mapping class="com.hrms.recruitement.bean.InductionFeedbackBean"/>
+		<mapping class="com.hrms.recruitement.bean.InductionQABean"/>
+		<mapping class="com.hrms.recruitement.bean.NotifyToCandidateBean"/>
+		<mapping class="com.hrms.recruitement.bean.VacancyAllocationBean"/>
+		<mapping class="com.hrms.recruitement.bean.SourceOfResumeBean"/>
+		<mapping class="com.hrms.recruitement.bean.InterviewTimingBean"/>
+		<mapping class="com.hrms.recruitement.bean.DepartmentDesignationBean"/>
+		<mapping class="com.hrms.recruitement.bean.DesignationTemplateBean"/>
+		<mapping class="com.hrms.recruitement.bean.AppointmentLetterBean"/>
+		<mapping class="com.hrms.recruitement.bean.InterviewQuestionBean" />
+		<mapping class="com.hrms.recruitement.bean.InterviewQuestiontypeBean" />
+		<mapping class="com.hrms.recruitement.bean.InterviewQaWithResumeidBean"/> -->
+		
+		
+		
+<!-- recruitment bean -->
+
+		<mapping class="com.hrms.recruitement.bean.VacancyFormBean" />
+		<mapping class="com.hrms.recruitement.bean.BenefitsBean" />
+		<mapping class="com.hrms.recruitement.bean.VacancyBenefitsBean" />
+		<mapping class="com.hrms.recruitement.bean.VacancyBenefitsBean" />
+		<mapping class="com.hrms.recruitement.bean.JobLocationBean" />
+		<mapping class="com.hrms.recruitement.bean.VacancyApprovalBean" />
+		<mapping class="com.hrms.recruitement.bean.ResumeDataBean" />
+		<mapping class="com.hrms.recruitement.bean.InterviewedByBean" />
+		<mapping class="com.hrms.recruitement.bean.InterviewFeedbackBean" />
+		<mapping class="com.hrms.recruitement.bean.InterviewerPanelBean" />
+		<mapping class="com.hrms.recruitement.bean.CandidateExamInfoBean" />
+		<mapping class="com.hrms.recruitement.bean.TechnicalCriteriaBean" />
+		<mapping class="com.hrms.recruitement.bean.SubTechnicalCriteriaBean" />
+		<mapping class="com.hrms.recruitement.bean.SoftskillCriteriaBean" />
+		<mapping class="com.hrms.recruitement.bean.SubSoftskillCriteriaBean" />
+		<mapping class="com.hrms.recruitement.bean.CompanyListBean" />
+		<mapping class="com.hrms.recruitement.bean.OfferLetterBean" />
+		<mapping class="com.hrms.recruitement.bean.PreEmploymentArrangementBean" />
+		<mapping class="com.hrms.recruitement.bean.CandidateExamScoreBean" />
+		<mapping class="com.hrms.recruitement.bean.InductionFeedbackBean" />
+		<mapping class="com.hrms.recruitement.bean.InductionQABean" />
+		<mapping class="com.hrms.recruitement.bean.NotifyToCandidateBean" />
+		<mapping class="com.hrms.recruitement.bean.VacancyAllocationBean" />
+		<mapping class="com.hrms.recruitement.bean.SourceOfResumeBean" />
+		<mapping class="com.hrms.recruitement.bean.InterviewTimingBean" />
+		<mapping class="com.hrms.recruitement.bean.DepartmentDesignationBean" />
+		<mapping class="com.hrms.recruitement.bean.DesignationTemplateBean" />
+		<mapping class="com.hrms.recruitement.bean.AppointmentLetterBean" />
+		<mapping class="com.hrms.recruitement.bean.InterviewQuestionBean" />
+		<mapping class="com.hrms.recruitement.bean.InterviewQuestiontypeBean" />
+		<mapping class="com.hrms.recruitement.bean.InterviewQaWithResumeidBean" />
+		<mapping class="com.hrms.recruitement.bean.EducationalQualificationBean" />
+		<mapping class="com.hrms.recruitement.bean.PersonalDetailCheckBean" />
+		<mapping class="com.hrms.recruitement.bean.AcademicDetailCheckBean"/>
+		<mapping class="com.hrms.recruitement.bean.LastEmploymentDetailCheckBean"/>
+		<mapping class="com.hrms.recruitement.bean.PriorEmploymentDetailCheckBean"/>
+		<mapping class="com.hrms.recruitement.bean.ReferenceDetailCheckBean"/>
+		<mapping class="com.hrms.recruitement.bean.ResumeDataCSVBean"/>
+		<mapping class="com.hrms.recruitement.bean.PhilTestBean"/>
+		<mapping class="com.hrms.recruitement.bean.VacancyAllocationBean"/>
+		<mapping class="com.hrms.recruitement.bean.ManagerForVacancyBean"/>
+		<mapping class="com.hrms.recruitement.bean.VacancyApprovalBean"/>
+		<mapping class="com.hrms.recruitement.bean.StateBean"/>
+		<mapping class="com.hrms.recruitement.bean.CityBean"/>
+		<mapping class="com.hrms.recruitement.bean.UnderGraduateQualificationBean"/>
+		<mapping class="com.hrms.recruitement.bean.UnderGraduateSpecificationBean"/>
+		<mapping class="com.hrms.recruitement.bean.PostGraduateQualificationBean"/>
+		<mapping class="com.hrms.recruitement.bean.PostGraduateSpecificationBean"/>
+		<mapping class="com.hrms.recruitement.bean.VacancyLevelBean"/>
+		<mapping class="com.hrms.recruitement.bean.VacancyGradeLevelBean"/>
+		<mapping class="com.hrms.recruitement.bean.VacancyPayrollHrInfoBean"/>
+		<mapping class="com.hrms.recruitement.bean.DailyCallingDataBean"/>
+		<mapping class="com.hrms.recruitement.bean.ResumeShareBean"/>
+		
+		
+		 <!--  Leave bean -->
+		 
+        <mapping class="com.hrms.lms.bean.LeaveBean"/>
+		<mapping class="com.hrms.lms.bean.LeaveTypeBean"/>
+		<mapping class="com.hrms.lms.bean.LeaveBalanceBean"/>
+		<mapping class="com.hrms.lms.bean.LeavecutBalance"/>
+		<mapping class="com.hrms.lms.bean.LeaveCOBean"/>
+		<mapping class="com.hrms.lms.bean.LeaveODBean"/>
+		<mapping class="com.hrms.lms.bean.LeaveAfterAddBean"/>
+		<mapping class="com.hrms.lms.bean.LeaveHRBean"/>
+		<mapping class="com.hrms.lms.bean.LeaveAdjustBalanceBean"/>
+		<mapping class="com.hrms.lms.bean.LeaveCancelRequestBean"/>
+		<mapping class="com.hrms.lms.bean.LeaveBalanceCSVUploadBean"/>
+		<mapping class="com.hrms.lms.bean.GatePassBean"/>
+		<mapping class="com.hrms.lms.bean.GatePassAuthorityBean"/>
+        <mapping class="com.hrms.lms.bean.GateLoationBean"/>
+		<mapping class="com.hrms.lms.bean.IntervieweeBean"/>
+
+
+
+		<!-- riskmanagement bean -->
+		
+		<mapping class="com.hrms.riskmanagement.bean.RiskRepositoryBean" />
+		<mapping class="com.hrms.riskmanagement.bean.RiskStatusBean" />
+		<mapping class="com.hrms.riskmanagement.bean.MonitoringFrequencyBean" />
+		<mapping class="com.hrms.riskmanagement.bean.RiskPriorityBean" />
+		<mapping class="com.hrms.riskmanagement.bean.ProbabilityBean" />
+		<mapping class="com.hrms.riskmanagement.bean.SeverityBean" />
+		<mapping class="com.hrms.riskmanagement.bean.StakHoldersDetailsBean" />
+		<mapping class="com.hrms.riskmanagement.bean.ConcernPersonBean" />
+		<mapping class="com.hrms.riskmanagement.bean.SuggestionBean" />
+		
+		
+		
+		
+		<!-- Grievance bean -->
+		
+		<mapping class="com.hrms.grievancemanagement.bean.GrievanceQueryBean" />
+		<mapping class="com.hrms.grievancemanagement.bean.GrievanceEmailBean" />
+		<mapping class="com.hrms.grievancemanagement.bean.GrievanceQueryTypeBean" />
+		<mapping class="com.hrms.grievancemanagement.bean.HrmsMailBean" />
+		
+		
+		<!-- Self Service HR-->
+		
+		<mapping class="com.hrms.selfservice.bean.SelfServiceQuerybean" />
+		<mapping class="com.hrms.selfservice.bean.SelfServiceTypeBean" />
+		<mapping class="com.hrms.selfservice.bean.MarqueeBean"/>
+		<mapping class="com.hrms.selfservice.bean.ProblemNatureBean"/>
+		<mapping class="com.hrms.selfservice.bean.ComplaintBean"/>
+		<mapping class="com.hrms.selfservice.bean.RoleCategoryBean" />
+		<mapping class="com.hrms.selfservice.bean.AnnouncementBean" />
+		<mapping class="com.hrms.selfservice.bean.AnnouncementCategoryBean" />
+		<mapping class="com.hrms.selfservice.bean.AnnouncementDepartmentBean" />
+		<mapping class="com.hrms.selfservice.bean.AnnouncementCompanyBean" />
+		<mapping class="com.hrms.selfservice.bean.DownloadBean"/>
+		<mapping class="com.hrms.selfservice.bean.ProblemNatureBean"/>
+		<mapping class="com.hrms.selfservice.bean.ProblemNatureReplyBean"/>
+		<mapping class="com.hrms.selfservice.bean.ComplaintVerifiedByBean"/>
+		<mapping class="com.hrms.corehr.bean.InterviewTrackerDesignationBean"/>
+		
+		<!-- Exit Interview Formality bean -->
+		
+		<mapping class="com.hrms.exitformality.bean.ExitInterviewFormAttributeBean" />
+		<mapping class="com.hrms.exitformality.bean.ExitInterviewEmployeeBean" />
+		<mapping class="com.hrms.exitformality.bean.ExitInterviewScoreBean" />
+		<mapping class="com.hrms.exitformality.bean.ExitInterviewManagerCommentsBean" />
+		<mapping class="com.hrms.exitformality.bean.DetailsOfMaterialBean" />
+		<mapping class="com.hrms.exitformality.bean.DetailsOfPendingMattersBean" />
+		<mapping class="com.hrms.exitformality.bean.DetailsOfResponsibilitiesBean" />
+		<mapping class="com.hrms.exitformality.bean.DetailsOfHandOverFormBean" />
+		<mapping class="com.hrms.exitformality.bean.HandOverApprovalBean" />
+		
+		
+		<!-- CoreHR -->
+		<mapping class="com.hrms.corehr.bean.SubDepartmentBean" />
+		<mapping class="com.hrms.corehr.bean.SubDepartmentBean" />
+		<mapping class="com.hrms.corehr.bean.CompanyAdressBean" />
+		<mapping class="com.hrms.corehr.bean.CUGBean" />
+		<mapping class="com.hrms.corehr.bean.ExtentionNumberBean" />
+		
+		
+		<!-- Incentive-->
+		
+		<mapping class="com.hrms.incentive.bean.SalespersonBean"/>
+		<mapping class="com.hrms.incentive.bean.ZoneBean"/>
+		<mapping class="com.hrms.incentive.bean.ProductMasterBean"/>
+		<mapping class="com.hrms.incentive.bean.ClassificationBean"/>
+		<mapping class="com.hrms.incentive.bean.LaserMasterBean"/>
+		<mapping class="com.hrms.incentive.bean.IncentiveBean"/>
+		<mapping class="com.hrms.incentive.bean.TargetBean"/>
+		<mapping class="com.hrms.incentive.bean.AksharNewBean"/>
+		<mapping class="com.hrms.incentive.bean.AksharRepeatBean"/>
+		<mapping class="com.hrms.incentive.bean.BrahmastraNewBean"/>
+		<mapping class="com.hrms.incentive.bean.BrahmastraRepeatBean"/>
+		<mapping class="com.hrms.incentive.bean.IncentiveCriteriaBean"/>
+		<mapping class="com.hrms.incentive.bean.AmountHistoryBean"/>
+		
+		<mapping class="com.hrms.incentive.bean.AksharNewHistoryBean"/>
+		<mapping class="com.hrms.incentive.bean.AksharRepeatHistoryBean"/>
+		<mapping class="com.hrms.incentive.bean.BrahmastraNewHistoryBean"/>
+		<mapping class="com.hrms.incentive.bean.BrahmastraRepeatHistoryBean"/>
+		<mapping class="com.hrms.incentive.bean.IncentiveCriteriaHistoryBean"/>
+		<mapping class="com.hrms.incentive.bean.IncentiveDesignationBean"/>
+		<mapping class="com.hrms.incentive.bean.IncentiveSalesPersonListBean"/>
+		
+		
+		
+		
+		
+		
+		
+		<!-- Asset Management -->
+		<mapping class="com.hrms.assetmanagement.bean.AssetMasterBean"/>
+		<mapping class="com.hrms.assetmanagement.bean.AssetConfigurationBean"/>
+		<mapping class="com.hrms.assetmanagement.bean.StockMasterBean"/>
+		<mapping class="com.hrms.assetmanagement.bean.StockConfigurationBean"/>
+		<mapping class="com.hrms.assetmanagement.bean.AssetAllocationBean"/>
+		<mapping class="com.hrms.assetmanagement.bean.AssetTransferHistoryBean"/>
+		<mapping class="com.hrms.assetmanagement.bean.SupplierSrNoBean"/>
+		<mapping class="com.hrms.assetmanagement.bean.AssetRepairHistoryBean"/>
+		<mapping class="com.hrms.assetmanagement.bean.MachineDetailBean"/>
+		<mapping class="com.hrms.assetmanagement.bean.MachineCheckPointsBean"/>
+		<mapping class="com.hrms.assetmanagement.bean.MachineSystemReportBean"/>
+		<mapping class="com.hrms.assetmanagement.bean.MachineCheckPointsDefaultBean"/>
+		<mapping class="com.hrms.assetmanagement.bean.MachineSystemDefaultBean"/>
+		
+		
+		
+		<!-- Kaizen Management -->
+		<mapping class="com.hrms.kaizen.bean.KaizenBean"/>
+		<mapping class="com.hrms.kaizen.bean.KaizenManagerBean"/>
+		<mapping class="com.hrms.kaizen.bean.KaizenMemberBean"/>
+		<mapping class="com.hrms.kaizen.bean.KaizenBeforeUploadAttachmentBean"/>
+		<mapping class="com.hrms.kaizen.bean.KaizenAfterUploadAttachmentBean"/>
+		<mapping class="com.hrms.kaizen.bean.KaizenManagementApprovalBean"/>
+		
+	</session-factory>
+
+</hibernate-configuration>

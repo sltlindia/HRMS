@@ -1,0 +1,28 @@
+<!DOCTYPE dwr PUBLIC "-//GetAhead Limited//DTD Direct Web Remoting 3.0//EN" "http://getahead.org/dwr//dwr30.dtd">
+<dwr>
+  <allow>
+   
+    <create creator="new" javascript="AjaxDataDAO">
+        <param name="class" value="com.hrms.timesheet.dao.AjaxDataDAO" />
+    </create>
+     <create creator="new" javascript="PMSAjaxDataDAO">
+     	 <param name="class" value="com.hrms.pms.dao.PMSAjaxDataDAO" />
+    </create>
+    <create creator="new" javascript="IncentiveAjaxDataDAO">
+     	 <param name="class" value="com.hrms.incentive.dao.IncentiveAjaxDataDAO" />
+    </create>
+    
+    <convert converter="bean" match="com.hrms.pms.bean.ProjectMasterBean" />
+    <convert converter="bean" match="com.hrms.pms.bean.ClientMasterBean" />
+    <convert converter="bean" match="com.hrms.pms.bean.TaskMasterBean" />
+    <convert converter="bean" match="com.hrms.pms.bean.EmployeeBean" />
+    <convert converter="bean" match="com.hrms.pms.bean.TaskRemarkBean" />
+    <convert converter="bean" match="com.hrms.incentive.bean.SalespersonBean" />
+    <convert converter="bean" match="com.hrms.incentive.bean.ProductMasterBean" />
+    <convert converter="bean" match="com.hrms.incentive.bean.ClassificationBean" />
+    <convert converter="bean" match="com.hrms.incentive.bean.LaserMasterBean" />
+    <convert converter="bean" match="com.hrms.incentive.bean.IncentiveDesignationBean" />
+    
+    
+  </allow>
+</dwr>
