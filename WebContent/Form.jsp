@@ -9,7 +9,12 @@
     <meta name="description" content="Robust admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
     <meta name="keywords" content="admin template, robust admin template, dashboard template, flat admin template, responsive admin template, web app">
     <meta name="author" content="PIXINVENT">
+<<<<<<< HEAD
     <title>Circle Style</title>
+=======
+    <title>Circle Style - Robust Bootstrap Admin Template</title>
+    AKash
+>>>>>>> 88435c8d6663b24c5b11b959dccd1fd556b34ce0
     <link rel="apple-touch-icon" sizes="60x60" href="app-assets/images/ico/apple-icon-60.png">
     <link rel="apple-touch-icon" sizes="76x76" href="app-assets/images/ico/apple-icon-76.png">
     <link rel="apple-touch-icon" sizes="120x120" href="app-assets/images/ico/apple-icon-120.png">
@@ -2512,7 +2517,7 @@
                                             <textarea name="decisions" id="decisions4" rows="4" class="form-control"></textarea>
                                         </div>
                                         <div class="form-group">
-                                            <label>Agenda Itemsssssssssssssssss :</label>
+                                            <label>Agenda</label>
                                             <div class="c-inputs-stacked">
                                                 <label class="inline custom-control custom-checkbox block">
                                                     <input type="checkbox" class="custom-control-input">
