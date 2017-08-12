@@ -537,19 +537,19 @@
                     <ul class="mega-menu-sub">
                       <li><a href="ornogram.jsp" class="dropdown-item"><i></i>Organigram</a>
                       </li>
-                      <li><a href="newEmployee.jsp" class="dropdown-item"><i></i>Add New Employee</a>
+                      <li><a href="newEmployee.jsp" class="dropdown-item"><i class="icon-user-plus"></i>Add New Employee</a>
                       </li>
-                      <li><a href="employeeList.jsp" class="dropdown-item"><i></i>View All Employee</a>
+                      <li><a href="employeeList.jsp" class="dropdown-item"><i class="icon-users3"></i>View All Employee</a>
                       </li>
-                      <li><a href="employeeListCompanyWise.jsp" class="dropdown-item"><i></i>Employee By Company</a>
+                      <li><a href="employeeListCompanyWise.jsp" class="dropdown-item"><i class="icon-users2"></i>Employee By Company</a>
                       </li>
-                      <li><a href="addDesignation.jsp" class="dropdown-item"><i></i>Add Designation</a>
+                      <li><a href="addDesignation.jsp" class="dropdown-item"><i class="icon-user-tie"></i>Add Designation</a>
                       </li>
-                      <li><a href="addSubDepartment.jsp" class="dropdown-item"><i></i>Add Sub Department</a>
+                      <li><a href="addSubDepartment.jsp" class="dropdown-item"><i class="icon-plus-square"></i>Add Sub Department</a>
                       </li>
-                      <li><a href="employeeCSV.jsp" class="dropdown-item"><i></i>Employee CSV Upload</a>
+                      <li><a href="employeeCSV.jsp" class="dropdown-item"><i class="icon-upload22"></i>Employee CSV Upload</a>
                       </li>
-                      <li><a href="selfServiceAllEmployee.jsp" class="dropdown-item"><i></i>View Documents</a>
+                      <li><a href="selfServiceAllEmployee.jsp" class="dropdown-item"><i class="icon-files-o"></i>View Documents</a>
                       </li>
                       
                     </ul>
