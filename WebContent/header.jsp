@@ -113,7 +113,7 @@
         <div class="navbar-header">
           <ul class="nav navbar-nav">
             <li class="nav-item mobile-menu hidden-md-up float-xs-left"><a class="nav-link nav-menu-main menu-toggle hidden-xs"><i class="icon-menu5 font-large-1"></i></a></li>
-            <li class="nav-item"><a href="index-2.html" class="navbar-brand nav-link"><img alt="branding logo" src="app-assets/images/logo/hrms.png" data-expand="app-assets/images/logo/robust-logo-dark.png" data-collapse="app-assets/images/logo/robust-logo-small.png" class="brand-logo" height="45px" width="120px" style="padding-bottom:inherit;padding-top:0px;"></a></li>
+            <li class="nav-item"><a href="index-2.html" class="navbar-brand nav-link"><img alt="branding logo" src="app-assets/images/logo/robust-logo-dark.png" data-expand="app-assets/images/logo/robust-logo-dark.png" data-collapse="app-assets/images/logo/robust-logo-small.png" class="brand-logo"></a></li>
             <li class="nav-item hidden-md-up float-xs-right"><a data-toggle="collapse" data-target="#navbar-mobile" class="nav-link open-navbar-container"><i class="icon-ellipsis pe-2x icon-icon-rotate-right-right"></i></a></li> 
           </ul>
         </div>
@@ -233,56 +233,287 @@
       <div data-menu="menu-container" class="navbar-container main-menu-content container center-layout">
         <!-- include includes/mixins-->
         <ul id="main-menu-navigation" data-menu="menu-navigation" class="nav navbar-nav">
-          <li data-menu="dropdown" class="dropdown nav-item"><a href="index-2.html" data-toggle="dropdown" class="dropdown-toggle nav-link"><i class="icon-home3"></i><span data-i18n="nav.dash.main">Dashboard</span></a></li>
-          <li data-menu="dropdown" class="dropdown nav-item"><a href="#" data-toggle="dropdown" class="dropdown-toggle nav-link"><i class="icon-paper-stack"></i><span data-i18n="nav.templates.main">Company Details</span></a>
-            <ul class="dropdown-menu">
-              <li data-menu=""><a href="changelog.html" data-toggle="dropdown" class="dropdown-item">Company Address</a></li>
-               <li data-menu=""><a href="changelog.html" data-toggle="dropdown" class="dropdown-item">CUG No</a></li>
-               <li data-menu=""><a href="changelog.html" data-toggle="dropdown" class="dropdown-item">Extension No.</a></li>
-            </ul>
-          </li>
           
-          <li data-menu="dropdown" class="dropdown nav-item"><a href="#" data-toggle="dropdown" class="dropdown-toggle nav-link"><i class="icon-paper-stack"></i><span data-i18n="nav.templates.main">Employee Master</span></a>
+          	<li data-menu="dropdown" class="dropdown nav-item"><a href="index-2.html" data-toggle="dropdown" class="dropdown-toggle nav-link"><i class="icon-home3"></i><span data-i18n="nav.dash.main">Dashboard</span></a>
             <ul class="dropdown-menu">
-              <li data-menu=""><a href="changelog.html" data-toggle="dropdown" class="dropdown-item">Add New Employee</a></li>
-               <li data-menu=""><a href="changelog.html" data-toggle="dropdown" class="dropdown-item">View All Employee</a></li>
-               <li data-menu=""><a href="changelog.html" data-toggle="dropdown" class="dropdown-item">CompanyWxise Employee</a></li>
-               <li data-menu=""><a href="changelog.html" data-toggle="dropdown" class="dropdown-item">Add Designation</a></li>
-               <li data-menu=""><a href="changelog.html" data-toggle="dropdown" class="dropdown-item">Add Sub Department</a></li>
-               <li data-menu=""><a href="changelog.html" data-toggle="dropdown" class="dropdown-item">Employee CSV upload</a></li>
-               <li data-menu=""><a href="changelog.html" data-toggle="dropdown" class="dropdown-item">View Documents</a></li>
+              <li data-menu="" class="active"><a href="dashboard-ecommerce.html" data-toggle="dropdown" class="dropdown-item">eCommerce</a>
+              </li>
+              <li data-menu=""><a href="dashboard-project.html" data-toggle="dropdown" class="dropdown-item">Project</a>
+              </li>
+              <li data-menu=""><a href="dashboard-analytics.html" data-toggle="dropdown" class="dropdown-item">Analytics</a>
+              </li>
+              <li data-menu=""><a href="dashboard-crm.html" data-toggle="dropdown" class="dropdown-item">CRM</a>
+              </li>
+              <li data-menu=""><a href="dashboard-fitness.html" data-toggle="dropdown" class="dropdown-item">Fitness</a>
+              </li>
             </ul>
           </li>
           
           
-           <li data-menu="dropdown" class="dropdown nav-item"><a href="#" data-toggle="dropdown" class="dropdown-toggle nav-link"><i class="icon-paper-stack"></i><span data-i18n="nav.templates.main">Self Service HR</span></a>
+          
+          <li data-menu="dropdown" class="dropdown nav-item"><a href="#" data-toggle="dropdown" class="dropdown-toggle nav-link"><i class="icon-paper-stack"></i><span data-i18n="nav.templates.main">Templates</span></a>
             <ul class="dropdown-menu">
-              <li data-menu=""><a href="changelog.html" data-toggle="dropdown" class="dropdown-item">Upload Attachment</a></li>
-               <li data-menu=""><a href="changelog.html" data-toggle="dropdown" class="dropdown-item">My Documents</a></li>
-               <li data-menu=""><a href="changelog.html" data-toggle="dropdown" class="dropdown-item">Update Profile</a></li>
-               <li data-menu=""><a href="changelog.html" data-toggle="dropdown" class="dropdown-item">View Employee</a></li>
+              <li data-menu="dropdown-submenu" class="dropdown dropdown-submenu"><a href="#" data-toggle="dropdown" class="dropdown-item dropdown-toggle">Vertical</a>
+                <ul class="dropdown-menu">
+                  <li data-menu=""><a href="https://pixinvent.com/bootstrap-admin-template/robust/html/ltr/vertical-menu-template" data-toggle="dropdown" class="dropdown-item">Classic Menu</a>
+                  </li>
+                  <li data-menu=""><a href="https://pixinvent.com/bootstrap-admin-template/robust/html/ltr/vertical-compact-menu-template" data-toggle="dropdown" class="dropdown-item">Compact Menu</a>
+                  </li>
+                  <li data-menu=""><a href="https://pixinvent.com/bootstrap-admin-template/robust/html/ltr/vertical-content-menu-template" data-toggle="dropdown" class="dropdown-item">Content Menu</a>
+                  </li>
+                  <li data-menu=""><a href="https://pixinvent.com/bootstrap-admin-template/robust/html/ltr/vertical-overlay-menu-template" data-toggle="dropdown" class="dropdown-item">Overlay Menu</a>
+                  </li>
+                  <li data-menu=""><a href="https://pixinvent.com/bootstrap-admin-template/robust/html/ltr/vertical-multi-level-menu-template" data-toggle="dropdown" class="dropdown-item">Multi-level Menu</a>
+                  </li>
+                </ul>
+              </li>
+              <li data-menu="dropdown-submenu" class="dropdown dropdown-submenu"><a href="#" data-toggle="dropdown" class="dropdown-item dropdown-toggle">Horizontal</a>
+                <ul class="dropdown-menu">
+                  <li data-menu=""><a href="https://pixinvent.com/bootstrap-admin-template/robust/html/ltr/horizontal-menu-template" data-toggle="dropdown" class="dropdown-item">Classic</a>
+                  </li>
+                  <li data-menu=""><a href="https://pixinvent.com/bootstrap-admin-template/robust/html/ltr/horizontal-top-icon-menu-template" data-toggle="dropdown" class="dropdown-item">Top Icon</a>
+                  </li>
+                </ul>
+              </li>
             </ul>
           </li>
           
           
-           <li data-menu="dropdown" class="dropdown nav-item"><a href="#" data-toggle="dropdown" class="dropdown-toggle nav-link"><i class="icon-paper-stack"></i><span data-i18n="nav.templates.main">Project Master</span></a>
-            <ul class="dropdown-menu">
-              <li data-menu=""><a href="changelog.html" data-toggle="dropdown" class="dropdown-item">Add New Project</a></li>
-               <li data-menu=""><a href="changelog.html" data-toggle="dropdown" class="dropdown-item">Project List</a></li>
-               <li data-menu=""><a href="changelog.html" data-toggle="dropdown" class="dropdown-item">My Project Allocations</a></li>
-               <li data-menu=""><a href="changelog.html" data-toggle="dropdown" class="dropdown-item">Employee Allocation</a></li>
+          <li data-menu="megamenu" class="dropdown mega-dropdown nav-item"><a href="#" data-toggle="dropdown" class="dropdown-toggle nav-link"><i class="icon-square-plus"></i><span data-i18n="nav.category.addons">Self Service</span></a>
+            <ul class="mega-dropdown-menu dropdown-menu row">
+              <li data-mega-col="col-md-3" class="col-md-3">
+                <h6 data-toggle="dropdown" class="dropdown-menu-header text-uppercase"><i class="icon-edit2"></i>Self Service HR
+                </h6>
+                <ul class="drilldown-menu">
+                  <li class="menu-list">
+                    <ul class="mega-menu-sub">
+                      <li><a href="editor-quill.html" class="dropdown-item"><i></i>Upload Document</a>
+                      </li>
+                      <li><a href="editor-ckeditor.html" class="dropdown-item"><i></i>My Document</a>
+                      </li>
+                      <li><a href="editor-summernote.html" class="dropdown-item"><i></i>Update Profile</a>
+                      </li>
+                      <li><a href="editor-tinymce.html" class="dropdown-item"><i></i>View Employee</a>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li data-mega-col="col-md-3" class="col-md-3">
+                <h6 data-toggle="dropdown" class="dropdown-menu-header text-uppercase"><i class="icon-air-play"></i>TDS Calculation
+                </h6>
+                <ul class="drilldown-menu">
+                  <li class="menu-list">
+                    <ul class="mega-menu-sub">
+                      <li><a href="jquery-ui-interactions.html" class="dropdown-item"><i class="undefined"></i>Rules</a>
+                      </li>
+                      <li><a href="jquery-ui-navigations.html" class="dropdown-item"><i class="undefined"></i>Declaration Form</a>
+                      </li>
+                      <li><a href="jquery-ui-date-pickers.html" class="dropdown-item"><i class="undefined"></i>Upload Investment Proofs</a>
+                      </li>
+                      <li><a href="jquery-ui-autocomplete.html" class="dropdown-item"><i class="undefined"></i>List Of Declaration Form</a>
+                      </li>
+                      <li><a href="jquery-ui-buttons-select.html" class="dropdown-item"><i class="undefined"></i>List Of Investment Proofs</a>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li data-mega-col="col-md-3" class="col-md-3">
+                <h6 data-toggle="dropdown" class="dropdown-menu-header text-uppercase"><i class="icon-tune"></i>Exit Formality
+                </h6>
+                <ul class="drilldown-menu">
+                  <li class="menu-list">
+                    <ul class="mega-menu-sub">
+                      <li><a href="#" class="dropdown-item"><i class="icon-calendar5"></i>Exit Interview</a>
+                      <ul class="mega-menu-sub">
+                          <li><a href="code-editor-codemirror.html" class="dropdown-item"><i></i>Exit Interview Form</a>
+                          </li>
+                          <li><a href="code-editor-ace.html" class="dropdown-item"><i></i>Exit Interview List</a>
+                          </li>
+                          <li><a href="code-editor-ace.html" class="dropdown-item"><i></i>Exit Interview Final List</a>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><a href="add-on-block-ui.html" class="dropdown-item"><i class="icon-security"></i>Hand Over</a>
+                      <ul class="mega-menu-sub">
+                          <li><a href="code-editor-codemirror.html" class="dropdown-item"><i></i>Hand Over Form</a>
+                          </li>
+                          <li><a href="code-editor-ace.html" class="dropdown-item"><i></i>Hand Over Form List</a>
+                          </li>
+                          <li><a href="code-editor-ace.html" class="dropdown-item"><i></i>Hand Over Form HR List</a>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li data-mega-col="col-md-3" class="col-md-3">
+                <h6 data-toggle="dropdown" class="dropdown-menu-header text-uppercase"><i class="icon-table2"></i>Internationalization
+                </h6>
+                <ul class="drilldown-menu">
+                  <li class="menu-list">
+                    <ul class="mega-menu-sub">
+                      <li><a href="i18n-resources.html" class="dropdown-item"><i class="undefined"></i>Resources</a>
+                      </li>
+                      <li><a href="i18n-xhr-backend.html" class="dropdown-item"><i class="undefined"></i>XHR Backend</a>
+                      </li>
+                      <li><a href="i18n-query-string.html" class="dropdown-item"><i class="undefined"></i>Query String</a>
+                      </li>
+                      <li><a href="i18n-on-init.html" class="dropdown-item"><i class="undefined"></i>On Init</a>
+                      </li>
+                      <li><a href="i18n-after-init.html" class="dropdown-item"><i class="undefined"></i>After Init</a>
+                      </li>
+                      <li><a href="i18n-fallback.html" class="dropdown-item"><i class="undefined"></i>Fallback</a>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
             </ul>
           </li>
           
           
-          <li data-menu="dropdown" class="dropdown nav-item"><a href="#" data-toggle="dropdown" class="dropdown-toggle nav-link"><i class="icon-paper-stack"></i><span data-i18n="nav.templates.main">Time-Sheet Management</span></a>
-            <ul class="dropdown-menu">
-              <li data-menu=""><a href="changelog.html" data-toggle="dropdown" class="dropdown-item">My Time-sheet</a></li>
-               <li data-menu=""><a href="changelog.html" data-toggle="dropdown" class="dropdown-item"> Timesheet Status</a></li>
-               <li data-menu=""><a href="changelog.html" data-toggle="dropdown" class="dropdown-item">My Project Allocations</a></li>
-               <li data-menu=""><a href="changelog.html" data-toggle="dropdown" class="dropdown-item">Employee Allocation</a></li>
+          <li data-menu="megamenu" class="dropdown mega-dropdown nav-item"><a href="#" data-toggle="dropdown" class="dropdown-toggle nav-link"><i class="icon-square-plus"></i><span data-i18n="nav.category.addons">Project & Timesheet</span></a>
+            <ul class="mega-dropdown-menu dropdown-menu row">
+              <li data-mega-col="col-md-3" class="col-md-3">
+                <h6 data-toggle="dropdown" class="dropdown-menu-header text-uppercase"><i class="icon-edit2"></i>Project Management
+                </h6>
+                <ul class="drilldown-menu">
+                  <li class="menu-list">
+                    <ul class="mega-menu-sub">
+                      <li><a href="editor-quill.html" class="dropdown-item"><i></i>Add New Project</a>
+                      </li>
+                      <li><a href="editor-ckeditor.html" class="dropdown-item"><i></i>Project List</a>
+                      </li>
+                      <li><a href="editor-summernote.html" class="dropdown-item"><i></i>My Project Allocation</a>
+                      </li>
+                      <li><a href="editor-tinymce.html" class="dropdown-item"><i></i>Employee Allocation</a>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li data-mega-col="col-md-3" class="col-md-3">
+                <h6 data-toggle="dropdown" class="dropdown-menu-header text-uppercase"><i class="icon-air-play"></i>Timesheet Management
+                </h6>
+                <ul class="drilldown-menu">
+                  <li class="menu-list">
+                    <ul class="mega-menu-sub">
+                      <li><a href="jquery-ui-interactions.html" class="dropdown-item"><i class="undefined"></i>My Timesheet</a>
+                      </li>
+                      <li><a href="jquery-ui-navigations.html" class="dropdown-item"><i class="undefined"></i>Timesheet Status</a>
+                      	<ul class="mega-menu-sub">
+                          <li><a href="code-editor-codemirror.html" class="dropdown-item"><i></i>Pending Timesheet</a>
+                          </li>
+                          <li><a href="code-editor-ace.html" class="dropdown-item"><i></i>Approved Timesheet</a>
+                          </li>
+                          <li><a href="code-editor-ace.html" class="dropdown-item"><i></i>Rejected Timesheet</a>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              
+              <li data-mega-col="col-md-3" class="col-md-3">
+                <h6 data-toggle="dropdown" class="dropdown-menu-header text-uppercase"><i class="icon-table2"></i>Appraisal Management
+                </h6>
+                <ul class="drilldown-menu">
+                  <li class="menu-list">
+                    <ul class="mega-menu-sub">
+                      <li><a href="i18n-resources.html" class="dropdown-item"><i class="undefined"></i>Self Appraisal</a>
+                      </li>
+                      <li><a href="i18n-xhr-backend.html" class="dropdown-item"><i class="undefined"></i>My Appraisal History</a>
+                      </li>
+                      <li><a href="i18n-query-string.html" class="dropdown-item"><i class="undefined"></i>Indirect Employee</a>
+                      	<ul class="mega-menu-sub">
+                          <li><a href="code-editor-codemirror.html" class="dropdown-item"><i></i>Self Appraisal</a>
+                          </li>
+                          <li><a href="code-editor-ace.html" class="dropdown-item"><i></i>My Appraisal History</a>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><a href="i18n-on-init.html" class="dropdown-item"><i class="undefined"></i>Direct Employee</a>
+                      	<ul class="mega-menu-sub">
+                          <li><a href="code-editor-codemirror.html" class="dropdown-item"><i></i>Blue Collar Appraisal</a>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><a href="i18n-after-init.html" class="dropdown-item"><i class="undefined"></i>Appraisal History</a>
+                      	<ul class="mega-menu-sub">
+                          <li><a href="code-editor-codemirror.html" class="dropdown-item"><i></i>Team Appraisal</a>
+                          </li>
+                          <li><a href="code-editor-ace.html" class="dropdown-item"><i></i>All Appraisal</a>
+                          </li>
+                        </ul>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              
+              <li data-mega-col="col-md-3" class="col-md-3">
+                <h6 data-toggle="dropdown" class="dropdown-menu-header text-uppercase"><i class="icon-tune"></i>Reports
+                </h6>
+                <ul class="drilldown-menu">
+                  <li class="menu-list">
+                    <ul class="mega-menu-sub">
+                      <li><a href="#" class="dropdown-item"><i class="icon-calendar5"></i>Project Report</a>
+                        <ul class="mega-menu-sub">
+                          <li><a href="pickers-date-%26-time-picker.html" class="dropdown-item"><i></i>Cash-flow Report</a>
+                          </li>
+                          <li><a href="pickers-color-picker.html" class="dropdown-item"><i></i>Resource usage</a>
+                          </li>
+                          <li><a href="pickers-color-picker.html" class="dropdown-item"><i></i>Weekly-Hours Report</a>
+                          </li>
+                          <li><a href="pickers-color-picker.html" class="dropdown-item"><i></i>Effort Variance Report</a>
+                          </li>
+                          <li><a href="pickers-color-picker.html" class="dropdown-item"><i></i>Schedule Variance Report</a>
+                          </li>
+                          <li><a href="pickers-color-picker.html" class="dropdown-item"><i></i>Over-Time Report</a>
+                          </li>
+                          <li><a href="pickers-color-picker.html" class="dropdown-item"><i></i>Status Report</a>
+                          </li>
+                          <li><a href="pickers-color-picker.html" class="dropdown-item"><i></i>Weekly Task Report</a>
+                          </li>
+                          <li><a href="pickers-color-picker.html" class="dropdown-item"><i></i>Cost Variance</a>
+                          </li>
+                          <li><a href="pickers-color-picker.html" class="dropdown-item"><i></i>Delayed Task Report</a>
+                          </li>
+                        </ul>
+                      </li>
+                      
+                      <li><a href="#" class="dropdown-item"><i class="icon-cloud-upload3"></i>Timesheet Report</a>
+                        <ul class="mega-menu-sub">
+                          <li><a href="file-uploader-dropzone.html" class="dropdown-item"><i class="undefined"></i>Project Wise Report</a>
+                          </li>
+                          <li><a href="file-uploader-jquery.html" class="dropdown-item"><i class="undefined"></i>Employee Wise Report</a>
+                          </li>
+                          <li><a href="file-uploader-dropzone.html" class="dropdown-item"><i class="undefined"></i>Defaulters Report</a>
+                          </li>
+                          <li><a href="file-uploader-jquery.html" class="dropdown-item"><i class="undefined"></i>Status Report</a>
+                          </li>
+                        </ul>
+                      </li>
+                      
+                       <li><a href="#" class="dropdown-item"><i class="icon-cloud-upload3"></i>Appraisal Report</a>
+                        <ul class="mega-menu-sub">
+                          <li><a href="file-uploader-dropzone.html" class="dropdown-item"><i class="undefined"></i>White Collar Excel Report</a>
+                          </li>
+                          <li><a href="file-uploader-jquery.html" class="dropdown-item"><i class="undefined"></i>Blue Collar Excel Report</a>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
             </ul>
           </li>
+          
+          
           
           
           
