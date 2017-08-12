@@ -3,6 +3,7 @@ package com.hrms.pms.dao;
 import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.Query;
+import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -207,6 +208,33 @@ public class LoginDAO {
 			tx.begin();
 			Query query = session.createQuery("from EmployeeBean where employee_master_id=" + employee_master_id + "");
 			employeeBean = (EmployeeBean) query.uniqueResult();
+			tx.commit();
+		} catch (Exception e) {
+			if (tx != null) {
+				tx.rollback();
+			}
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return employeeBean;
+	}
+	
+	
+	public EmployeeBean getEmailIdEmployeeByCallProcedure(int code) {
+		Session session = HibernateUtil.openSession();
+		Transaction tx = null;
+		EmployeeBean employeeBean = null;
+		try {
+			tx = session.getTransaction();
+			tx.begin();
+			
+			SQLQuery query = (SQLQuery) session.createSQLQuery("CALL employeeData(:empCode)")
+                    .addEntity(EmployeeBean.class)
+                    .setParameter("empCode",code);
+			employeeBean = (EmployeeBean) query.uniqueResult();
+			
+			
 			tx.commit();
 		} catch (Exception e) {
 			if (tx != null) {

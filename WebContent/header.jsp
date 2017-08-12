@@ -13,11 +13,11 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>SLTL</title>
 <link rel="apple-touch-icon" sizes="60x60" href="app-assets/images/ico/apple-icon-60.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="app-assets/images/ico/apple-icon-76.png">
+   <!--  <link rel="apple-touch-icon" sizes="76x76" href="app-assets/images/ico/apple-icon-76.png">
     <link rel="apple-touch-icon" sizes="120x120" href="app-assets/images/ico/apple-icon-120.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="app-assets/images/ico/apple-icon-152.png">
-    <link rel="shortcut icon" type="image/x-icon" href="https://pixinvent.com/bootstrap-admin-template/robust/app-assets/images/ico/favicon.ico">
-    <link rel="shortcut icon" type="image/png" href="app-assets/images/ico/favicon-32.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="app-assets/images/ico/apple-icon-152.png"> -->
+	   <!--  <link rel="shortcut icon" type="image/x-icon" href="https://pixinvent.com/bootstrap-admin-template/robust/app-assets/images/ico/favicon.ico">
+	    <link rel="shortcut icon" type="image/png" href="app-assets/images/ico/favicon-32.png"> -->
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-touch-fullscreen" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
@@ -65,12 +65,12 @@
 		EmployeeBean user = (EmployeeBean) session.getAttribute("user");
 		LoginDAO loginDAO1 = new LoginDAO();
 
-		if (user != null) {
+		if (user == null) {
 			request.setAttribute("loginError", "You need to login first with your Id and Password");
 			request.getRequestDispatcher("login.jsp").forward(request, response);
 		} else {
 			
-			/* int role_id = user.getRoleBean().getRole_id();
+			int role_id = user.getRoleBean().getRole_id();
 			String authority = user.getRoleBean().getRole_authority();
 			int id = user.getEmployee_master_id();
 			int manager_id = user.getManagerBean().getManager_id();
@@ -78,6 +78,11 @@
 			int under_manager_id = Integer.parseInt(user.getUnder_manager_id());
 
 			EmployeeBean employeeBean = loginDAO1.getEmailIdEmployee(id);
+			/* System.out.println("-----------------");
+			EmployeeBean employeeBean1 = loginDAO1.getEmailIdEmployeeByCallProcedure(342); */  // Store Procedure Demo
+			
+			
+			
 			String photo = employeeBean.getPhoto();
 			DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 			Date date = new Date();
@@ -105,7 +110,7 @@
 			}
 
 			AllLMSListDAO allLMSListDAO = new AllLMSListDAO();
-			GatePassAuthorityBean gatePassAuthorityBean = allLMSListDAO.authorityOfGatePass(emp_id); */
+			GatePassAuthorityBean gatePassAuthorityBean = allLMSListDAO.authorityOfGatePass(emp_id);
 	%>
     <!-- navbar-fixed-top-->
     <nav class="header-navbar navbar navbar-with-menu undefined navbar-light navbar-border navbar-brand-center">
@@ -205,7 +210,7 @@
                       <div class="media">
                         <div class="media-left"><span class="avatar avatar-sm avatar-away rounded-circle"><img src="app-assets/images/portrait/small/avatar-s-6.png" alt="avatar"><i></i></span></div>
                         <div class="media-body">
-                          <h6 class="media-heading">Eric Alsobrook</h6>
+                          <h6 class="media-heading">john </h6>
                           <p class="notification-text font-small-3 text-muted">We have project party this saturday night.</p><small>
                             <time datetime="2015-06-11T18:29:20+08:00" class="media-meta text-muted">last month</time></small>
                         </div>
@@ -213,8 +218,8 @@
                   <li class="dropdown-menu-footer"><a href="javascript:void(0)" class="dropdown-item text-muted text-xs-center">Read all messages</a></li>
                 </ul>
               </li>
-              <li class="dropdown dropdown-user nav-item"><a href="#" data-toggle="dropdown" class="dropdown-toggle nav-link dropdown-user-link"><span class="avatar avatar-online"><img src="app-assets/images/portrait/small/avatar-s-1.png" alt="avatar"><i></i></span><span class="user-name">John Doe</span></a>
-                <div class="dropdown-menu dropdown-menu-right"><a href="#" class="dropdown-item"><i class="icon-head"></i> Edit Profile</a><a href="#" class="dropdown-item"><i class="icon-mail6"></i> My Inbox</a><a href="#" class="dropdown-item"><i class="icon-clipboard2"></i> Task</a><a href="#" class="dropdown-item"><i class="icon-calendar5"></i> Calender</a>
+              <li class="dropdown dropdown-user nav-item"><a href="#" data-toggle="dropdown" class="dropdown-toggle nav-link dropdown-user-link"><span class="avatar avatar-online"><img src="FileServlet?path=D:\hrms\upload\profilePic\<%=company_name%>\<%=user.getEmployee_code()%>.bmp" alt="avatar"><i></i></span><span class="user-name"><%=user.getFirstname()+" "+user.getLastname()%></span></a>
+                <div class="dropdown-menu dropdown-menu-right"><a href="#" class="dropdown-item"><i class="icon-head"></i> Edit Profile</a>
                   <div class="dropdown-divider"></div><a href="#" class="dropdown-item"><i class="icon-power3"></i> Logout</a>
                 </div>
               </li>
@@ -233,50 +238,53 @@
       <div data-menu="menu-container" class="navbar-container main-menu-content container center-layout">
         <!-- include includes/mixins-->
         <ul id="main-menu-navigation" data-menu="menu-navigation" class="nav navbar-nav">
-          
-          	<li data-menu="dropdown" class="dropdown nav-item"><a href="index-2.html" data-toggle="dropdown" class="dropdown-toggle nav-link"><i class="icon-home3"></i><span data-i18n="nav.dash.main">Dashboard</span></a>
-            <ul class="dropdown-menu">
-              <li data-menu="" class="active"><a href="dashboard-ecommerce.html" data-toggle="dropdown" class="dropdown-item">eCommerce</a>
-              </li>
-              <li data-menu=""><a href="dashboard-project.html" data-toggle="dropdown" class="dropdown-item">Project</a>
-              </li>
-              <li data-menu=""><a href="dashboard-analytics.html" data-toggle="dropdown" class="dropdown-item">Analytics</a>
-              </li>
-              <li data-menu=""><a href="dashboard-crm.html" data-toggle="dropdown" class="dropdown-item">CRM</a>
-              </li>
-              <li data-menu=""><a href="dashboard-fitness.html" data-toggle="dropdown" class="dropdown-item">Fitness</a>
-              </li>
-            </ul>
-          </li>
-          
-          
-          
-          <li data-menu="dropdown" class="dropdown nav-item"><a href="#" data-toggle="dropdown" class="dropdown-toggle nav-link"><i class="icon-paper-stack"></i><span data-i18n="nav.templates.main">Templates</span></a>
-            <ul class="dropdown-menu">
-              <li data-menu="dropdown-submenu" class="dropdown dropdown-submenu"><a href="#" data-toggle="dropdown" class="dropdown-item dropdown-toggle">Vertical</a>
+          <li data-menu="dropdown" class="dropdown nav-item"><a href="hrHome.jsp" data-toggle="dropdown" class="dropdown-toggle nav-link"><i class="icon-home3"></i><span data-i18n="nav.dash.main">Dashboard</span></a>
+          	<ul class="dropdown-menu">
+          	<%if(manager_id != 99){ 
+          		if(manager_id == 1 || manager_id == 2 || manager_id == 3){ %>
+              		<li data-menu="" class="active"><a href="sltlAdmin.jsp" data-toggle="dropdown" class="dropdown-item">Home</a></li>
+          	<%}else if(manager_id == 4 || manager_id == 117 || under_manager_id == 4 || under_manager_id == 117){ %>
+              		<li data-menu="" class="active"><a href="hrHome.jsp" data-toggle="dropdown" class="dropdown-item">Home</a></li>
+          	<%}else{ %>
+              		<li data-menu="" class="active"><a href="managerHome.jsp" data-toggle="dropdown" class="dropdown-item">Home</a></li>
+          	<%}%>
+          	<%}else{
+			if(under_manager_id == 4 || under_manager_id == 117){ %>
+              				<li data-menu="" class="active"><a href="hrHome.jsp" data-toggle="dropdown" class="dropdown-item">Home</a></li>
+					<%}else{%>
+              				<li data-menu="" class="active"><a href="empHome.jsp" data-toggle="dropdown" class="dropdown-item">Home</a></li>
+				<%} }%>	
+				
+				<li data-menu="dropdown-submenu" class="dropdown dropdown-submenu"><a href="#" data-toggle="dropdown" class="dropdown-item dropdown-toggle">Company Details</a>
                 <ul class="dropdown-menu">
-                  <li data-menu=""><a href="https://pixinvent.com/bootstrap-admin-template/robust/html/ltr/vertical-menu-template" data-toggle="dropdown" class="dropdown-item">Classic Menu</a>
+                  <li data-menu=""><a href="companyAddresses.jsp" data-toggle="dropdown" class="dropdown-item">Company Address</a>
                   </li>
-                  <li data-menu=""><a href="https://pixinvent.com/bootstrap-admin-template/robust/html/ltr/vertical-compact-menu-template" data-toggle="dropdown" class="dropdown-item">Compact Menu</a>
+                  <li data-menu=""><a href="cugList.jsp" data-toggle="dropdown" class="dropdown-item">CUG No</a>
                   </li>
-                  <li data-menu=""><a href="https://pixinvent.com/bootstrap-admin-template/robust/html/ltr/vertical-content-menu-template" data-toggle="dropdown" class="dropdown-item">Content Menu</a>
-                  </li>
-                  <li data-menu=""><a href="https://pixinvent.com/bootstrap-admin-template/robust/html/ltr/vertical-overlay-menu-template" data-toggle="dropdown" class="dropdown-item">Overlay Menu</a>
-                  </li>
-                  <li data-menu=""><a href="https://pixinvent.com/bootstrap-admin-template/robust/html/ltr/vertical-multi-level-menu-template" data-toggle="dropdown" class="dropdown-item">Multi-level Menu</a>
+                  <li data-menu=""><a href="extentionNumber.jsp" data-toggle="dropdown" class="dropdown-item">Extension No</a>
                   </li>
                 </ul>
               </li>
-              <li data-menu="dropdown-submenu" class="dropdown dropdown-submenu"><a href="#" data-toggle="dropdown" class="dropdown-item dropdown-toggle">Horizontal</a>
-                <ul class="dropdown-menu">
-                  <li data-menu=""><a href="https://pixinvent.com/bootstrap-admin-template/robust/html/ltr/horizontal-menu-template" data-toggle="dropdown" class="dropdown-item">Classic</a>
-                  </li>
-                  <li data-menu=""><a href="https://pixinvent.com/bootstrap-admin-template/robust/html/ltr/horizontal-top-icon-menu-template" data-toggle="dropdown" class="dropdown-item">Top Icon</a>
-                  </li>
-                </ul>
+				
+          		</ul>
+          </li>
+          
+          <%if(manager_id == 26 || manager_id == 11 || manager_id == 53){ %>
+          <li data-menu="dropdown" class="dropdown nav-item"><a href="index-2.html" data-toggle="dropdown" class="dropdown-toggle nav-link"><i class="icon-home3"></i><span data-i18n="nav.dash.main">Incentive</span></a>
+            <ul class="dropdown-menu">
+              <li data-menu=""><a href="targetSales.jsp" data-toggle="dropdown" class="dropdown-item">Add Target</a>
+              </li>
+              <li data-menu=""><a href="incentive.jsp" data-toggle="dropdown" class="dropdown-item">Incentive Form</a>
+              </li>
+              <li data-menu=""><a href="incentiveListByYear.jsp" data-toggle="dropdown" class="dropdown-item">Incentive List</a>
+              </li>
+              <li data-menu=""><a href="incentiveMaster.jsp" data-toggle="dropdown" class="dropdown-item">Incentive Policy</a>
+              </li>
+              <li data-menu=""><a href="incentiveMaster1.jsp" data-toggle="dropdown" class="dropdown-item">Incentive Master</a>
               </li>
             </ul>
           </li>
+          <%} %>
           
           
           <li data-menu="megamenu" class="dropdown mega-dropdown nav-item"><a href="#" data-toggle="dropdown" class="dropdown-toggle nav-link"><i class="icon-square-plus"></i><span data-i18n="nav.category.addons">Self Service</span></a>
@@ -287,13 +295,13 @@
                 <ul class="drilldown-menu">
                   <li class="menu-list">
                     <ul class="mega-menu-sub">
-                      <li><a href="editor-quill.html" class="dropdown-item"><i></i>Upload Document</a>
+                      <li><a href="selfService.jsp" class="dropdown-item"><i></i>Upload Document</a>
                       </li>
-                      <li><a href="editor-ckeditor.html" class="dropdown-item"><i></i>My Document</a>
+                      <li><a href="selfServiceList.jsp" class="dropdown-item"><i></i>My Document</a>
                       </li>
-                      <li><a href="editor-summernote.html" class="dropdown-item"><i></i>Update Profile</a>
+                      <li><a href="employeeSelfUpdate.jsp" class="dropdown-item"><i></i>Update Profile</a>
                       </li>
-                      <li><a href="editor-tinymce.html" class="dropdown-item"><i></i>View Employee</a>
+                      <li><a href="employeeList.jsp" class="dropdown-item"><i></i>View Employee</a>
                       </li>
                     </ul>
                   </li>
@@ -311,10 +319,7 @@
                       </li>
                       <li><a href="jquery-ui-date-pickers.html" class="dropdown-item"><i class="undefined"></i>Upload Investment Proofs</a>
                       </li>
-                      <li><a href="jquery-ui-autocomplete.html" class="dropdown-item"><i class="undefined"></i>List Of Declaration Form</a>
-                      </li>
-                      <li><a href="jquery-ui-buttons-select.html" class="dropdown-item"><i class="undefined"></i>List Of Investment Proofs</a>
-                      </li>
+                      
                     </ul>
                   </li>
                 </ul>
@@ -327,21 +332,17 @@
                     <ul class="mega-menu-sub">
                       <li><a href="#" class="dropdown-item"><i class="icon-calendar5"></i>Exit Interview</a>
                       <ul class="mega-menu-sub">
-                          <li><a href="code-editor-codemirror.html" class="dropdown-item"><i></i>Exit Interview Form</a>
+                          <li><a href="exitInterviewForm.jsp" class="dropdown-item"><i></i>Exit Interview Form</a>
                           </li>
-                          <li><a href="code-editor-ace.html" class="dropdown-item"><i></i>Exit Interview List</a>
-                          </li>
-                          <li><a href="code-editor-ace.html" class="dropdown-item"><i></i>Exit Interview Final List</a>
+                          <li><a href="exitInterviewManagerList.jsp" class="dropdown-item"><i></i>Exit Interview List</a>
                           </li>
                         </ul>
                       </li>
                       <li><a href="add-on-block-ui.html" class="dropdown-item"><i class="icon-security"></i>Hand Over</a>
                       <ul class="mega-menu-sub">
-                          <li><a href="code-editor-codemirror.html" class="dropdown-item"><i></i>Hand Over Form</a>
+                          <li><a href="handOverForm.jsp" class="dropdown-item"><i></i>Hand Over Form</a>
                           </li>
-                          <li><a href="code-editor-ace.html" class="dropdown-item"><i></i>Hand Over Form List</a>
-                          </li>
-                          <li><a href="code-editor-ace.html" class="dropdown-item"><i></i>Hand Over Form HR List</a>
+                          <li><a href="handOverFormList.jsp" class="dropdown-item"><i></i>Hand Over Form List</a>
                           </li>
                         </ul>
                       </li>
@@ -349,28 +350,24 @@
                   </li>
                 </ul>
               </li>
+              <%if(manager_id != 99){%>
               <li data-mega-col="col-md-3" class="col-md-3">
-                <h6 data-toggle="dropdown" class="dropdown-menu-header text-uppercase"><i class="icon-table2"></i>Internationalization
+                <h6 data-toggle="dropdown" class="dropdown-menu-header text-uppercase"><i class="icon-table2"></i>Broadcast
                 </h6>
                 <ul class="drilldown-menu">
                   <li class="menu-list">
                     <ul class="mega-menu-sub">
-                      <li><a href="i18n-resources.html" class="dropdown-item"><i class="undefined"></i>Resources</a>
+                      <li><a href="announcementForm.jsp" class="dropdown-item"><i class="undefined"></i>Add Broadcast</a>
                       </li>
-                      <li><a href="i18n-xhr-backend.html" class="dropdown-item"><i class="undefined"></i>XHR Backend</a>
+                      <li><a href="announcementList.jsp" class="dropdown-item"><i class="undefined"></i>Send Broadcast History</a>
                       </li>
-                      <li><a href="i18n-query-string.html" class="dropdown-item"><i class="undefined"></i>Query String</a>
-                      </li>
-                      <li><a href="i18n-on-init.html" class="dropdown-item"><i class="undefined"></i>On Init</a>
-                      </li>
-                      <li><a href="i18n-after-init.html" class="dropdown-item"><i class="undefined"></i>After Init</a>
-                      </li>
-                      <li><a href="i18n-fallback.html" class="dropdown-item"><i class="undefined"></i>Fallback</a>
+                      <li><a href="announcementEmployeeSide.jsp" class="dropdown-item"><i class="undefined"></i>Receive Broadcast History</a>
                       </li>
                     </ul>
                   </li>
                 </ul>
               </li>
+              <%} %>
             </ul>
           </li>
           
@@ -383,14 +380,18 @@
                 <ul class="drilldown-menu">
                   <li class="menu-list">
                     <ul class="mega-menu-sub">
-                      <li><a href="editor-quill.html" class="dropdown-item"><i></i>Add New Project</a>
+                    <%if (manager_id != 99) { %>
+                      <li><a href="addProject.jsp" class="dropdown-item"><i></i>Add New Project</a>
                       </li>
-                      <li><a href="editor-ckeditor.html" class="dropdown-item"><i></i>Project List</a>
+                      <li><a href="projectList.jsp" class="dropdown-item"><i></i>Project List</a>
                       </li>
-                      <li><a href="editor-summernote.html" class="dropdown-item"><i></i>My Project Allocation</a>
+                      <%}%>
+                      <li><a href="myProjectAllocations.jsp" class="dropdown-item"><i></i>My Project Allocation</a>
                       </li>
-                      <li><a href="editor-tinymce.html" class="dropdown-item"><i></i>Employee Allocation</a>
+                      <%if (manager_id != 99) { %>
+                      <li><a href="employeeAllocationStatus.jsp" class="dropdown-item"><i></i>Employee Allocation</a>
                       </li>
+                      <%} %>
                     </ul>
                   </li>
                 </ul>
@@ -401,18 +402,20 @@
                 <ul class="drilldown-menu">
                   <li class="menu-list">
                     <ul class="mega-menu-sub">
-                      <li><a href="jquery-ui-interactions.html" class="dropdown-item"><i class="undefined"></i>My Timesheet</a>
+                      <li><a href="timesheet.jsp" class="dropdown-item"><i class="undefined"></i>My Timesheet</a>
                       </li>
+                      <%if (manager_id != 99) { %>
                       <li><a href="jquery-ui-navigations.html" class="dropdown-item"><i class="undefined"></i>Timesheet Status</a>
                       	<ul class="mega-menu-sub">
-                          <li><a href="code-editor-codemirror.html" class="dropdown-item"><i></i>Pending Timesheet</a>
+                          <li><a href="pendingTimeSheetList" class="dropdown-item"><i></i>Pending Timesheet</a>
                           </li>
-                          <li><a href="code-editor-ace.html" class="dropdown-item"><i></i>Approved Timesheet</a>
+                          <li><a href="approvedTimeSheet" class="dropdown-item"><i></i>Approved Timesheet</a>
                           </li>
-                          <li><a href="code-editor-ace.html" class="dropdown-item"><i></i>Rejected Timesheet</a>
+                          <li><a href="rejectedTimeSheet" class="dropdown-item"><i></i>Rejected Timesheet</a>
                           </li>
                         </ul>
                       </li>
+                      <%} %>
                     </ul>
                   </li>
                 </ul>
@@ -424,31 +427,36 @@
                 <ul class="drilldown-menu">
                   <li class="menu-list">
                     <ul class="mega-menu-sub">
-                      <li><a href="i18n-resources.html" class="dropdown-item"><i class="undefined"></i>Self Appraisal</a>
+                    <%if (manager_id == 99) { %>
+                      <li><a href="whiteCollarAppraisal.jsp" class="dropdown-item"><i class="undefined"></i>Self Appraisal</a>
                       </li>
-                      <li><a href="i18n-xhr-backend.html" class="dropdown-item"><i class="undefined"></i>My Appraisal History</a>
+                      <li><a href="appraisalHistory.jsp" class="dropdown-item"><i class="undefined"></i>My Appraisal History</a>
                       </li>
+                      <%} %>
+                      <%if (manager_id != 99) { %>
                       <li><a href="i18n-query-string.html" class="dropdown-item"><i class="undefined"></i>Indirect Employee</a>
                       	<ul class="mega-menu-sub">
-                          <li><a href="code-editor-codemirror.html" class="dropdown-item"><i></i>Self Appraisal</a>
+                          <li><a href="whiteCollarAppraisal.jsp" class="dropdown-item"><i></i>Self Appraisal</a>
                           </li>
-                          <li><a href="code-editor-ace.html" class="dropdown-item"><i></i>My Appraisal History</a>
+                          <li><a href="appraisalHistory.jsp" class="dropdown-item"><i></i>My Appraisal History</a>
                           </li>
                         </ul>
                       </li>
                       <li><a href="i18n-on-init.html" class="dropdown-item"><i class="undefined"></i>Direct Employee</a>
                       	<ul class="mega-menu-sub">
-                          <li><a href="code-editor-codemirror.html" class="dropdown-item"><i></i>Blue Collar Appraisal</a>
+                          <li><a href="appraisalFormManager.jsp" class="dropdown-item"><i></i>Blue Collar Appraisal</a>
                           </li>
                         </ul>
                       </li>
                       <li><a href="i18n-after-init.html" class="dropdown-item"><i class="undefined"></i>Appraisal History</a>
                       	<ul class="mega-menu-sub">
-                          <li><a href="code-editor-codemirror.html" class="dropdown-item"><i></i>Team Appraisal</a>
+                          <li><a href="allWhiteCollarAppraisal.jsp" class="dropdown-item"><i></i>Team Appraisal</a>
                           </li>
-                          <li><a href="code-editor-ace.html" class="dropdown-item"><i></i>All Appraisal</a>
+                          <li><a href="allAppraisal.jsp" class="dropdown-item"><i></i>All Appraisal</a>
                           </li>
                         </ul>
+                       </li>
+                       <%} %>
                     </ul>
                   </li>
                 </ul>
@@ -457,55 +465,259 @@
               <li data-mega-col="col-md-3" class="col-md-3">
                 <h6 data-toggle="dropdown" class="dropdown-menu-header text-uppercase"><i class="icon-tune"></i>Reports
                 </h6>
+                <%if (manager_id != 99) { %>
                 <ul class="drilldown-menu">
                   <li class="menu-list">
                     <ul class="mega-menu-sub">
                       <li><a href="#" class="dropdown-item"><i class="icon-calendar5"></i>Project Report</a>
                         <ul class="mega-menu-sub">
-                          <li><a href="pickers-date-%26-time-picker.html" class="dropdown-item"><i></i>Cash-flow Report</a>
+                          <li><a href="weeklyCostReport.jsp" class="dropdown-item"><i></i>Cash-flow Report</a>
                           </li>
-                          <li><a href="pickers-color-picker.html" class="dropdown-item"><i></i>Resource usage</a>
+                          <li><a href="resourceUsageReport.jsp" class="dropdown-item"><i></i>Resource usage</a>
                           </li>
-                          <li><a href="pickers-color-picker.html" class="dropdown-item"><i></i>Weekly-Hours Report</a>
+                          <li><a href="weeklyHourReport.jsp" class="dropdown-item"><i></i>Weekly-Hours Report</a>
                           </li>
-                          <li><a href="pickers-color-picker.html" class="dropdown-item"><i></i>Effort Variance Report</a>
+                          <li><a href="effortReport.jsp" class="dropdown-item"><i></i>Effort Variance Report</a>
                           </li>
-                          <li><a href="pickers-color-picker.html" class="dropdown-item"><i></i>Schedule Variance Report</a>
+                          <li><a href="scheduleReport.jsp" class="dropdown-item"><i></i>Schedule Variance Report</a>
                           </li>
-                          <li><a href="pickers-color-picker.html" class="dropdown-item"><i></i>Over-Time Report</a>
+                          <li><a href="overTimeReport.jsp" class="dropdown-item"><i></i>Over-Time Report</a>
                           </li>
-                          <li><a href="pickers-color-picker.html" class="dropdown-item"><i></i>Status Report</a>
+                          <li><a href="managerStatusReport.jsp" class="dropdown-item"><i></i>Status Report</a>
                           </li>
-                          <li><a href="pickers-color-picker.html" class="dropdown-item"><i></i>Weekly Task Report</a>
+                          <li><a href="weeklyTaskReport.jsp" class="dropdown-item"><i></i>Weekly Task Report</a>
                           </li>
-                          <li><a href="pickers-color-picker.html" class="dropdown-item"><i></i>Cost Variance</a>
+                          <li><a href="costVariance.jsp" class="dropdown-item"><i></i>Cost Variance</a>
                           </li>
-                          <li><a href="pickers-color-picker.html" class="dropdown-item"><i></i>Delayed Task Report</a>
+                          <li><a href="delayedTaskReport.jsp" class="dropdown-item"><i></i>Delayed Task Report</a>
                           </li>
                         </ul>
                       </li>
                       
                       <li><a href="#" class="dropdown-item"><i class="icon-cloud-upload3"></i>Timesheet Report</a>
                         <ul class="mega-menu-sub">
-                          <li><a href="file-uploader-dropzone.html" class="dropdown-item"><i class="undefined"></i>Project Wise Report</a>
+                          <li><a href="projectReport.jsp" class="dropdown-item"><i class="undefined"></i>Project Wise Report</a>
                           </li>
-                          <li><a href="file-uploader-jquery.html" class="dropdown-item"><i class="undefined"></i>Employee Wise Report</a>
+                          <li><a href="employeeReport.jsp" class="dropdown-item"><i class="undefined"></i>Employee Wise Report</a>
                           </li>
-                          <li><a href="file-uploader-dropzone.html" class="dropdown-item"><i class="undefined"></i>Defaulters Report</a>
+                          <li><a href="defaultersReport.jsp" class="dropdown-item"><i class="undefined"></i>Defaulters Report</a>
                           </li>
-                          <li><a href="file-uploader-jquery.html" class="dropdown-item"><i class="undefined"></i>Status Report</a>
+                          <li><a href="statusReport.jsp" class="dropdown-item"><i class="undefined"></i>Status Report</a>
                           </li>
                         </ul>
                       </li>
                       
-                       <li><a href="#" class="dropdown-item"><i class="icon-cloud-upload3"></i>Appraisal Report</a>
+                       <!-- <li><a href="#" class="dropdown-item"><i class="icon-cloud-upload3"></i>Appraisal Report</a>
                         <ul class="mega-menu-sub">
                           <li><a href="file-uploader-dropzone.html" class="dropdown-item"><i class="undefined"></i>White Collar Excel Report</a>
                           </li>
                           <li><a href="file-uploader-jquery.html" class="dropdown-item"><i class="undefined"></i>Blue Collar Excel Report</a>
                           </li>
                         </ul>
+                      </li> -->
+                      
+                      
+                    </ul>
+                  </li>
+                </ul>
+                <%} %>
+              </li>
+            </ul>
+          </li>
+          
+          <%if(manager_id == 4 || manager_id == 117 || under_manager_id == 4 || under_manager_id == 117){ %>
+          <li data-menu="megamenu" class="dropdown mega-dropdown nav-item"><a href="#" data-toggle="dropdown" class="dropdown-toggle nav-link"><i class="icon-square-plus"></i><span data-i18n="nav.category.addons">HR Management</span></a>
+            <ul class="mega-dropdown-menu dropdown-menu row">
+              <li data-mega-col="col-md-2" class="col-md-2">
+                <h6 data-toggle="dropdown" class="dropdown-menu-header text-uppercase"><i class="icon-edit2"></i>Employee Master
+                </h6>
+                <ul class="drilldown-menu">
+                  <li class="menu-list">
+                    <ul class="mega-menu-sub">
+                      <li><a href="ornogram.jsp" class="dropdown-item"><i></i>Organigram</a>
                       </li>
+                      <li><a href="newEmployee.jsp" class="dropdown-item"><i></i>Add New Employee</a>
+                      </li>
+                      <li><a href="employeeList.jsp" class="dropdown-item"><i></i>View All Employee</a>
+                      </li>
+                      <li><a href="employeeListCompanyWise.jsp" class="dropdown-item"><i></i>Employee By Company</a>
+                      </li>
+                      <li><a href="addDesignation.jsp" class="dropdown-item"><i></i>Add Designation</a>
+                      </li>
+                      <li><a href="addSubDepartment.jsp" class="dropdown-item"><i></i>Add Sub Department</a>
+                      </li>
+                      <li><a href="employeeCSV.jsp" class="dropdown-item"><i></i>Employee CSV Upload</a>
+                      </li>
+                      <li><a href="selfServiceAllEmployee.jsp" class="dropdown-item"><i></i>View Documents</a>
+                      </li>
+                      
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li data-mega-col="col-md-2" class="col-md-2">
+                <h6 data-toggle="dropdown" class="dropdown-menu-header text-uppercase"><i class="icon-air-play"></i>Leave
+                
+                </h6>
+                <ul class="drilldown-menu">
+                  <li class="menu-list">
+                    <ul class="mega-menu-sub">
+                      <li><a href="leaveadjustHR.jsp" class="dropdown-item"><i class="undefined"></i>Leave Adjust Form</a>
+                      </li>
+                      <li><a href="leaveHolidayAddHR.jsp" class="dropdown-item"><i class="undefined"></i>Holiday Update</a>
+                      </li>
+                      <li><a href="pendingLeaveHrSide.jsp" class="dropdown-item"><i class="undefined"></i>All Leave / CO / OD</a>
+                      </li>
+                      <li><a href="leaveReportByDate?date=<%=date1%>" class="dropdown-item"><i class="undefined"></i>Leave Report By Date</a>
+                      </li>
+                      <li><a href="specialHRLeavep.jsp" class="dropdown-item"><i class="undefined"></i>Special Leave Taken</a>
+                      </li>
+                      <li><a href="gatePassHistoryHRSide.jsp" class="dropdown-item"><i class="undefined"></i>Gate Pass Status</a>
+                      </li>
+                      <li><a href="hrShowAttendance.jsp" class="dropdown-item"><i class="undefined"></i>In / Out Report</a>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              
+              <li data-mega-col="col-md-2" class="col-md-2">
+                <h6 data-toggle="dropdown" class="dropdown-menu-header text-uppercase"><i class="icon-table2"></i>Grievance 
+                </h6>
+                <ul class="drilldown-menu">
+                  <li class="menu-list">
+                    <ul class="mega-menu-sub">
+                    <li><a href="allGrievanceList.jsp" class="dropdown-item"><i class="undefined"></i>All Query</a>
+                      </li>
+                      <li><a href="grievanceQueryType.jsp" class="dropdown-item"><i class="undefined"></i>Add Query Type</a>
+                      </li>
+                      <li><a href="grievanceDashboard.jsp" class="dropdown-item"><i class="undefined"></i>Grievance Report</a>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              
+              <li data-mega-col="col-md-2" class="col-md-2">
+                <h6 data-toggle="dropdown" class="dropdown-menu-header text-uppercase"><i class="icon-tune"></i>Appraisal 
+                </h6>
+                <ul class="drilldown-menu">
+                  <li class="menu-list">
+                    <ul class="mega-menu-sub">
+                          <li><a href="allAppraisal.jsp" class="dropdown-item"><i></i>All Appraisal</a>
+                          </li>
+                          <li><a href="HRWhiteAppraisalExcel.jsp" class="dropdown-item"><i></i>White Collar Excel</a>
+                          </li>
+                          <li><a href="HRBlueAppraisalExcel.jsp" class="dropdown-item"><i></i>Blue Collar Excel</a>
+                          </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              
+              <li data-mega-col="col-md-2" class="col-md-2">
+                <h6 data-toggle="dropdown" class="dropdown-menu-header text-uppercase"><i class="icon-tune"></i>Exit Interview 
+                </h6>
+                <ul class="drilldown-menu">
+                  <li class="menu-list">
+                    <ul class="mega-menu-sub">
+                          <li><a href="exitInterviewHRList.jsp" class="dropdown-item"><i></i>Exit Interview Form List</a>
+                          </li>
+						  <li><a href="exitInterviewFinalReviewList.jsp" class="dropdown-item"><i></i>Exit Interview Final List</a>
+                          </li>                          
+                          <li><a href="handOverFormHRList.jsp" class="dropdown-item"><i></i>Hand Over Form List</a>
+                          </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              
+              <li data-mega-col="col-md-2" class="col-md-2">
+                <h6 data-toggle="dropdown" class="dropdown-menu-header text-uppercase"><i class="icon-tune"></i>TDS Calculation 
+                </h6>
+                <ul class="drilldown-menu">
+                  <li class="menu-list">
+                    <ul class="mega-menu-sub">
+                          <li><a href="jquery-ui-autocomplete.html" class="dropdown-item"><i class="undefined"></i>Declaration Form List</a>
+                      </li>
+                      <li><a href="jquery-ui-buttons-select.html" class="dropdown-item"><i class="undefined"></i>Investment Proof List</a>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+
+              <li data-mega-col="col-md-2" class="col-md-2">
+                <h6 data-toggle="dropdown" class="dropdown-menu-header text-uppercase"><i class="icon-tune"></i>Broadcast
+                </h6>
+                <ul class="drilldown-menu">
+                  <li class="menu-list">
+                    <ul class="mega-menu-sub">
+                          <li><a href="announcementList.jsp" class="dropdown-item"><i></i>All Broadcast</a>
+                          </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              
+            </ul>
+          </li>
+          <%} %>
+          
+          
+          <li data-menu="megamenu" class="dropdown mega-dropdown nav-item"><a href="#" data-toggle="dropdown" class="dropdown-toggle nav-link"><i class="icon-square-plus"></i><span data-i18n="nav.category.addons">Leave & Gate Pass</span></a>
+            <ul class="mega-dropdown-menu dropdown-menu row">
+              <li data-mega-col="col-md-6" class="col-md-6">
+                <h6 data-toggle="dropdown" class="dropdown-menu-header text-uppercase"><i class="icon-edit2"></i>Leave Management
+                </h6>
+                <ul class="drilldown-menu">
+                  <li class="menu-list">
+                    <ul class="mega-menu-sub">
+                      <li><a href="leaveholidayList.jsp" class="dropdown-item"><i></i>Holiday List</a>
+                      </li>
+                      <li><a href="leavebalance.jsp" class="dropdown-item"><i></i>Leave Balance</a>
+                      </li>
+                      <li><a href="applyLeaveODCOForm.jsp" class="dropdown-item"><i></i>Apply Leave / CO / OD</a>
+                      </li>
+                      <li><a href="leavesuccess.jsp" class="dropdown-item"><i></i>Leave / CO / OD Status</a>
+                      </li>
+                      <li><a href="ShowAttendance.jsp" class="dropdown-item"><i></i>Self IN / OUT</a>
+                      </li>
+                      <li><a href="leaveRules.jsp" class="dropdown-item"><i></i>Leave Rules</a>
+                      </li>
+                      <%if(manager_id != 99){%>
+                      <li><a href="editor-quill.html" class="dropdown-item"><i></i>Team Member Status</a>
+                      	<ul class="mega-menu-sub">
+                          <li><a href="leaveListManager.jsp" class="dropdown-item"><i></i>Leave / CO / OD Status</a>
+                          </li>
+                          <li><a href="gatePassListManager.jsp" class="dropdown-item"><i></i>IN / OUT Status</a>
+                          </li>
+                    	</ul>
+                      </li>
+                      <%} %>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              
+              <li data-mega-col="col-md-6" class="col-md-6">
+                <h6 data-toggle="dropdown" class="dropdown-menu-header text-uppercase"><i class="icon-edit2"></i>Gate Pass
+                </h6>
+                <ul class="drilldown-menu">
+                  <li class="menu-list">
+                    <ul class="mega-menu-sub">
+                      <li><a href="leave_gatepassEmployee.jsp" class="dropdown-item"><i></i>Gate Pass Form</a>
+                      </li>
+                      <li><a href="gatePassListEmployee.jsp" class="dropdown-item"><i></i>Gate Pass List</a>
+                      </li>
+                       <%if(manager_id != 99){%>
+                      <li><a href="editor-quill.html" class="dropdown-item"><i></i>Team Member Status</a>
+                      	<ul class="mega-menu-sub">
+                          <li><a href="gatePassListManager.jsp" class="dropdown-item"><i></i>Gate Pass Status</a>
+                          </li>
+                    	</ul>
+                      </li>
+                      <%} %>
                     </ul>
                   </li>
                 </ul>
@@ -514,6 +726,95 @@
           </li>
           
           
+          <li data-menu="megamenu" class="dropdown mega-dropdown nav-item"><a href="#" data-toggle="dropdown" class="dropdown-toggle nav-link"><i class="icon-square-plus"></i><span data-i18n="nav.category.addons">Complaint Management</span></a>
+            <ul class="mega-dropdown-menu dropdown-menu row">
+              <li data-mega-col="col-md-6" class="col-md-6">
+                <h6 data-toggle="dropdown" class="dropdown-menu-header text-uppercase"><i class="icon-edit2"></i>Grievance Management
+                </h6>
+                <ul class="drilldown-menu">
+                  <li class="menu-list">
+                    <ul class="mega-menu-sub">
+                      <li><a href="grievance.jsp" class="dropdown-item"><i></i>Add Query</a>
+                      </li>
+                      <li><a href="allGrievanceList.jsp" class="dropdown-item"><i></i>My All Queries</a>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              
+              <li data-mega-col="col-md-6" class="col-md-6">
+                <h6 data-toggle="dropdown" class="dropdown-menu-header text-uppercase"><i class="icon-edit2"></i>IT Complaint
+                </h6>
+                <ul class="drilldown-menu">
+                  <li class="menu-list">
+                    <ul class="mega-menu-sub">
+                      <li><a href="complaint.jsp" class="dropdown-item"><i></i>Add Complaint</a>
+                      </li>
+                      <li><a href="complaintList.jsp" class="dropdown-item"><i></i>My All Complaints</a>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          
+          <%if(manager_id == 65 || manager_id == 5 || under_manager_id == 65) {%>
+          <li data-menu="megamenu" class="dropdown mega-dropdown nav-item"><a href="#" data-toggle="dropdown" class="dropdown-toggle nav-link"><i class="icon-square-plus"></i><span data-i18n="nav.category.addons">IT</span></a>
+            <ul class="mega-dropdown-menu dropdown-menu row">
+              <li data-mega-col="col-md-6" class="col-md-6">
+                <h6 data-toggle="dropdown" class="dropdown-menu-header text-uppercase"><i class="icon-edit2"></i>Complaint Register
+                </h6>
+                <ul class="drilldown-menu">
+                  <li class="menu-list">
+                    <ul class="mega-menu-sub">
+                      <li><a href="ProblemNature.jsp" class="dropdown-item"><i></i>Add Problem Nature</a>
+                      </li>
+                      <li><a href="itComplaint.jsp" class="dropdown-item"><i></i>All Complaints</a>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              
+              <li data-mega-col="col-md-6" class="col-md-6">
+                <h6 data-toggle="dropdown" class="dropdown-menu-header text-uppercase"><i class="icon-edit2"></i>Asset Management
+                </h6>
+                <ul class="drilldown-menu">
+                  <li class="menu-list">
+                    <ul class="mega-menu-sub">
+                      <li><a href="editor-quill.html" class="dropdown-item"><i></i>Machine Detail</a>
+                      		<ul class="mega-menu-sub">
+		                      <li><a href="machineDetail.jsp" class="dropdown-item"><i></i>Fill Machine Detail</a>
+		                      </li>
+		                      <li><a href="machineDetailList.jsp" class="dropdown-item"><i></i>Machine Report</a>
+		                      </li>
+		                    </ul>
+                      </li>
+                      <li><a href="editor-quill.html" class="dropdown-item"><i></i>Asset Detail</a>
+                      		<ul class="mega-menu-sub">
+		                      <li><a href="stockDetail.jsp" class="dropdown-item"><i></i>Add Stock</a>
+		                      </li>
+		                      <li><a href="addAsset.jsp" class="dropdown-item"><i></i>Asset Master</a>
+		                      </li>
+		                      <li><a href="stockList.jsp" class="dropdown-item"><i></i>IT Asset</a>
+		                      </li>
+		                      <li><a href="assetAllocation.jsp" class="dropdown-item"><i></i>Asset List</a>
+		                      </li>
+		                      <li><a href="scrapList.jsp" class="dropdown-item"><i></i>All Scrap List</a>
+		                      </li>
+		                      <li><a href="assetTransfer.jsp" class="dropdown-item"><i></i>Allocated Asset List</a>
+		                      </li>
+		                    </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <%} %>
           
           
           
