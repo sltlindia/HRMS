@@ -350,24 +350,25 @@
                   </li>
                 </ul>
               </li>
-              <%if(manager_id != 99){%>
+              
               <li data-mega-col="col-md-3" class="col-md-3">
                 <h6 data-toggle="dropdown" class="dropdown-menu-header text-uppercase"><i class="icon-table2"></i>Broadcast
                 </h6>
                 <ul class="drilldown-menu">
                   <li class="menu-list">
                     <ul class="mega-menu-sub">
+                    <%if(manager_id != 99){%>
                       <li><a href="announcementForm.jsp" class="dropdown-item"><i class="undefined"></i>Add Broadcast</a>
                       </li>
                       <li><a href="announcementList.jsp" class="dropdown-item"><i class="undefined"></i>Send Broadcast History</a>
                       </li>
+                      <%} %>
                       <li><a href="announcementEmployeeSide.jsp" class="dropdown-item"><i class="undefined"></i>Receive Broadcast History</a>
                       </li>
                     </ul>
                   </li>
                 </ul>
               </li>
-              <%} %>
             </ul>
           </li>
           
