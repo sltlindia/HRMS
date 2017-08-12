@@ -537,23 +537,24 @@
                 <ul class="drilldown-menu">
                   <li class="menu-list">
                     <ul class="mega-menu-sub">
-                      <li><a href="ornogram.jsp" class="dropdown-item"><i></i>Organigram</a>
+                      <li><a href="ornogram.jsp" class="dropdown-item"><i class="icon-sitemap"></i>Organigram</a>
                       </li>
-<<<<<<< HEAD
-                      <li><a href="newEmployee.jsp" class="dropdown-item"><i class="icon-android-person-add"></i>Add New Employee</a>
-=======
+                      <li><a href="newEmployee.jsp" class="dropdown-item"><i class="icon-android-person-add"></i>Add New Employee</a></li>
                       <li><a href="newEmployee.jsp" class="dropdown-item"><i class="icon-user-plus"></i>Add New Employee</a>
->>>>>>> 1c54a8029ff0549a6e2f678d03dfc5b3778eb96c
                       </li>
-                      <li><a href="employeeList.jsp" class="dropdown-item"><i class="icon-users3"></i>View All Employee</a>
-                      </li>
-                      <li><a href="employeeListCompanyWise.jsp" class="dropdown-item"><i class="icon-users2"></i>Employee By Company</a>
+                       <li><a href="newEmployee.jsp" class="dropdown-item"><i class="icon-users3"></i>Employee List</a>
+                       		<ul class="mega-menu-sub">
+		                     <li><a href="employeeList.jsp" class="dropdown-item"><i class="icon-users3"></i>All Employees</a>
+		                      </li>
+		                      <li><a href="employeeListCompanyWise.jsp" class="dropdown-item"><i class="icon-office"></i>Company Wise</a>
+		                      </li>
+		                    </ul>
                       </li>
                       <li><a href="addDesignation.jsp" class="dropdown-item"><i class="icon-user-tie"></i>Add Designation</a>
                       </li>
                       <li><a href="addSubDepartment.jsp" class="dropdown-item"><i class="icon-plus-square"></i>Add Sub Department</a>
                       </li>
-                      <li><a href="employeeCSV.jsp" class="dropdown-item"><i class="icon-upload22"></i>Employee CSV Upload</a>
+                      <li><a href="employeeCSV.jsp" class="dropdown-item"><i class="icon-upload22"></i>CSV Upload</a>
                       </li>
                       <li><a href="selfServiceAllEmployee.jsp" class="dropdown-item"><i class="icon-files-o"></i>View Documents</a>
                       </li>
