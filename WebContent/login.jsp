@@ -71,22 +71,22 @@
 	<center>
 	<%if(request.getAttribute("loginError") !=null || request.getAttribute("error") !=null || request.getAttribute("sessionExpired") !=null) {%>
 	
-			 		<div class="panel-body" style="width: 400px">
-	                            <div class="alert alert-dismissable alert-danger ">
-	                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-	                                 ${loginError}${error}${sessionExpired}
-	                            </div>
-	          		</div> 
+	          		<div class="alert alert-danger round alert-icon-left alert-arrow-left alert-dismissible fade in mb-2" style="width: 450px; margin-top: 20px" role="alert">
+									<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
+									<strong>${loginError}${error}${sessionExpired}</strong>
+								</div>
 	          		
 	          		<%} %>
 	          		
 	          		<%if(request.getAttribute("success") !=null) {%>
-			 		<div class="panel-body">
-	                            <div class="alert alert-dismissable alert-success " style="width: 400px">
-	                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-	                                 ${success}
-	                            </div>
-	          		</div>  
+	          		<div class="alert alert-success round alert-icon-left alert-arrow-left alert-dismissible fade in mb-2" style="width: 450px; margin-top: 20px" role="alert">
+									<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
+									<strong>${success}</strong>
+								</div>
 	          		<%} %>
     <div class="app-content container center-layout mt-2">
       <div class="content-wrapper">
