@@ -500,8 +500,10 @@
                         <ul class="mega-menu-sub">
                           <li><a href="projectReport.jsp" class="dropdown-item"><i class="undefined"></i>Project Wise Report</a>
                           </li>
+                           <%if (manager_id != 99) { %>
                           <li><a href="employeeReport.jsp" class="dropdown-item"><i class="undefined"></i>Employee Wise Report</a>
                           </li>
+                          <%} %>
                           <li><a href="defaultersReport.jsp" class="dropdown-item"><i class="undefined"></i>Defaulters Report</a>
                           </li>
                           <li><a href="statusReport.jsp" class="dropdown-item"><i class="undefined"></i>Status Report</a>
@@ -537,7 +539,7 @@
                     <ul class="mega-menu-sub">
                       <li><a href="ornogram.jsp" class="dropdown-item"><i></i>Organigram</a>
                       </li>
-                      <li><a href="newEmployee.jsp" class="dropdown-item"><i></i>Add New Employee</a>
+                      <li><a href="newEmployee.jsp" class="dropdown-item"><i class="icon-android-person-add"></i>Add New Employee</a>
                       </li>
                       <li><a href="employeeList.jsp" class="dropdown-item"><i></i>View All Employee</a>
                       </li>
