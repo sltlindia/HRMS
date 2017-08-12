@@ -466,10 +466,11 @@
               <li data-mega-col="col-md-3" class="col-md-3">
                 <h6 data-toggle="dropdown" class="dropdown-menu-header text-uppercase"><i class="icon-tune"></i>Reports
                 </h6>
-                <%if (manager_id != 99) { %>
+                
                 <ul class="drilldown-menu">
                   <li class="menu-list">
                     <ul class="mega-menu-sub">
+                    <%if (manager_id != 99) { %>
                       <li><a href="#" class="dropdown-item"><i class="icon-calendar5"></i>Project Report</a>
                         <ul class="mega-menu-sub">
                           <li><a href="weeklyCostReport.jsp" class="dropdown-item"><i></i>Cash-flow Report</a>
@@ -494,7 +495,7 @@
                           </li>
                         </ul>
                       </li>
-                      
+                      <%} %>
                       <li><a href="#" class="dropdown-item"><i class="icon-cloud-upload3"></i>Timesheet Report</a>
                         <ul class="mega-menu-sub">
                           <li><a href="projectReport.jsp" class="dropdown-item"><i class="undefined"></i>Project Wise Report</a>
@@ -521,7 +522,6 @@
                     </ul>
                   </li>
                 </ul>
-                <%} %>
               </li>
             </ul>
           </li>
