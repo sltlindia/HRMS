@@ -38,6 +38,7 @@
     <!-- END Page Level CSS-->
     <!-- BEGIN Custom CSS-->
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
     <!-- END Custom CSS-->
 </head>
  <body data-open="hover" data-menu="horizontal-menu" data-col="1-column" class="horizontal-layout horizontal-menu 1-column  blank-page blank-page">
@@ -70,7 +71,45 @@
         <div class="card border-grey border-lighten-3 px-2 py-2 m-0">
             <div class="card-header no-border pb-0">
                 <div class="card-title text-xs-center">
-                    <img src="app-assets/images/logo/robust-logo-dark.png" alt="branding logo">
+                    <div class="BODY">                
+ <svg viewBox="0 0 1000 400">
+  <symbol id="s-text">
+  
+    
+    <!-- 
+     <text text-anchor="middle"
+          x="50%"
+          y="35%"
+          class="text--line"
+          >
+      HRMS
+    </text> -->
+    <text text-anchor="middle"
+          x="50%"
+          y="68%"
+          class="text--line2"
+          >
+      HRMS
+    </text>
+    
+  </symbol>
+  
+  <g class="g-ants">
+    <use xlink:href="#s-text"
+      class="text-copy"></use>     
+    <use xlink:href="#s-text"
+      class="text-copy"></use>     
+    <use xlink:href="#s-text"
+      class="text-copy"></use>     
+    <use xlink:href="#s-text"
+      class="text-copy"></use>     
+    <use xlink:href="#s-text"
+      class="text-copy"></use>     
+  </g>
+  
+  
+</svg>
+</div>
                 </div>
                 <h6 class="card-subtitle line-on-side text-muted text-xs-center font-small-3 pt-2"><span>Enter OTP</span></h6>
             </div>

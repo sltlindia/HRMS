@@ -105,9 +105,9 @@
     <div class="app-content container center-layout mt-2">
       <div class="content-wrapper">
         <div class="content-header row">
-        	<img src="img/sltllogo.png" alt="sltlLogo" class="animated zoomIn">
         </div>
         <div class="content-body">
+        <img src="img/sltllogo.png" alt="sltlLogo" class="animated zoomIn">
         <section class="flexbox-container">
     <div class="col-md-4 offset-md-4 col-xs-10 offset-xs-1 box-shadow-3 p-0">
         <div class="card border-grey border-lighten-3 px-1 py-1 m-0">

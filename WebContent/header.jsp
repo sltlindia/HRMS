@@ -50,6 +50,7 @@
     <!-- END Page Level CSS-->
     <!-- BEGIN Custom CSS-->
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
     <!-- END Custom CSS-->
 	
 	
@@ -121,7 +122,47 @@
         <div class="navbar-header">
           <ul class="nav navbar-nav">
             <li class="nav-item mobile-menu hidden-md-up float-xs-left"><a class="nav-link nav-menu-main menu-toggle hidden-xs"><i class="icon-menu5 font-large-1"></i></a></li>
-            <li class="nav-item"><a href="index-2.html" class="navbar-brand nav-link"><img alt="branding logo" src="app-assets/images/logo/robust-logo-dark.png" data-expand="app-assets/images/logo/robust-logo-dark.png" data-collapse="app-assets/images/logo/robust-logo-small.png" class="brand-logo"></a></li>
+            <li class="nav-item">
+            	<div class="BODY">                
+ <svg viewBox="0 0 1000 400">
+  <symbol id="s-text">
+  
+    
+    <!-- 
+     <text text-anchor="middle"
+          x="50%"
+          y="35%"
+          class="text--line"
+          >
+      HRMS
+    </text> -->
+    <text text-anchor="middle"
+          x="50%"
+          y="68%"
+          class="text--line2"
+          >
+      HRMS
+    </text>
+    
+  </symbol>
+  
+  <g class="g-ants">
+    <use xlink:href="#s-text"
+      class="text-copy"></use>     
+    <use xlink:href="#s-text"
+      class="text-copy"></use>     
+    <use xlink:href="#s-text"
+      class="text-copy"></use>     
+    <use xlink:href="#s-text"
+      class="text-copy"></use>     
+    <use xlink:href="#s-text"
+      class="text-copy"></use>     
+  </g>
+  
+  
+</svg>
+</div>
+            </li>
             <li class="nav-item hidden-md-up float-xs-right"><a data-toggle="collapse" data-target="#navbar-mobile" class="nav-link open-navbar-container"><i class="icon-ellipsis pe-2x icon-icon-rotate-right-right"></i></a></li> 
           </ul>
         </div>
