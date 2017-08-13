@@ -46,6 +46,7 @@
     <!-- BEGIN Custom CSS-->
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
      <link rel="stylesheet" type="text/css" href="css/animate.css">
+     <link rel="stylesheet" type="text/css" href="css/style.css">
     <!-- END Custom CSS-->
     <script language="Javascript">
 	function capLock(e)
@@ -61,9 +62,21 @@
 	 			document.getElementById('divMayus').style.visibility = 'hidden';
 	 		}
 	}
+	
+	
+	function hideMessage()
+	{
+		//document.getElementById("panelbody").style.display="none"; 
+		 $('.alert').fadeOut('slow');
+	}
+
+		function startTimer()
+		 {
+				var tim = window.setTimeout("hideMessage()", 5000);  // 5000 milliseconds = 5 seconds
+		 }
 </script>
 </head>
- <body data-open="hover" data-menu="horizontal-menu" data-col="1-column" class="horizontal-layout horizontal-menu 1-column bg-full-screen-image blank-page blank-page">
+ <body data-open="hover" data-menu="horizontal-menu" data-col="1-column" class="horizontal-layout horizontal-menu 1-column bg-full-screen-image blank-page blank-page" onload="startTimer()">
     <!-- ////////////////////////////////////////////////////////////////////////////-->
     <%
 	HttpSession session1 = request.getSession();
@@ -92,14 +105,53 @@
     <div class="app-content container center-layout mt-2">
       <div class="content-wrapper">
         <div class="content-header row">
+        	<img src="img/sltllogo.png" alt="sltlLogo" class="animated zoomIn">
         </div>
-        <div class="content-body"><section class="flexbox-container">
+        <div class="content-body">
+        <section class="flexbox-container">
     <div class="col-md-4 offset-md-4 col-xs-10 offset-xs-1 box-shadow-3 p-0">
-        <div class="animated zoomInDown">
         <div class="card border-grey border-lighten-3 px-1 py-1 m-0">
             <div class="card-header no-border">
                 <div class="card-title text-xs-center">
-                    <img src="app-assets/images/logo/robust-logo-dark.png" alt="branding logo" class="animated zoomInDown">
+  <div class="BODY">                
+ <svg viewBox="0 0 1000 400">
+  <symbol id="s-text">
+  
+    
+    <!-- 
+     <text text-anchor="middle"
+          x="50%"
+          y="35%"
+          class="text--line"
+          >
+      HRMS
+    </text> -->
+    <text text-anchor="middle"
+          x="50%"
+          y="68%"
+          class="text--line2"
+          >
+      HRMS
+    </text>
+    
+  </symbol>
+  
+  <g class="g-ants">
+    <use xlink:href="#s-text"
+      class="text-copy"></use>     
+    <use xlink:href="#s-text"
+      class="text-copy"></use>     
+    <use xlink:href="#s-text"
+      class="text-copy"></use>     
+    <use xlink:href="#s-text"
+      class="text-copy"></use>     
+    <use xlink:href="#s-text"
+      class="text-copy"></use>     
+  </g>
+  
+  
+</svg>
+</div>
                 </div>
                 <!-- <h6 class="card-subtitle line-on-side text-muted text-xs-center font-small-3 pt-2"><span>Easily Using</span></h6> -->
             </div>
@@ -141,10 +193,6 @@
                         </fieldset>
                         <fieldset class="form-group row">
                             <div class="col-md-6 col-xs-12 text-xs-center">
-                                <fieldset>
-                                    <input type="checkbox" id="remember-me" class="chk-remember">
-                                    <label for="remember-me"> Remember Me</label>
-                                </fieldset>
                             </div>
                             <div class="col-md-6 col-xs-12 float-sm-left text-xs-center"><a href="forgotPassword.jsp" class="card-link">Forgot Password?</a></div>
                         </fieldset>
@@ -164,7 +212,6 @@
 
         </div>
       </div>
-    </div>
     <!-- ////////////////////////////////////////////////////////////////////////////-->
 
     <!-- BEGIN VENDOR JS-->

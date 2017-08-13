@@ -223,7 +223,7 @@
               </li>
               <li class="dropdown dropdown-user nav-item"><a href="#" data-toggle="dropdown" class="dropdown-toggle nav-link dropdown-user-link"><span class="avatar avatar-online"><img src="FileServlet?path=D:\hrms\upload\profilePic\<%=company_name%>\<%=user.getEmployee_code()%>.bmp" alt="avatar"><i></i></span><span class="user-name"><%=user.getFirstname()+" "+user.getLastname()%></span></a>
                 <div class="dropdown-menu dropdown-menu-right"><a href="#" class="dropdown-item"><i class="icon-head"></i> Edit Profile</a>
-                  <div class="dropdown-divider"></div><a href="#" class="dropdown-item"><i class="icon-power3"></i> Logout</a>
+                  <div class="dropdown-divider"></div><a href="logout" class="dropdown-item"><i class="icon-power3"></i> Logout</a>
                 </div>
               </li>
             </ul>
