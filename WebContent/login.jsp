@@ -45,6 +45,7 @@
     <!-- END Page Level CSS-->
     <!-- BEGIN Custom CSS-->
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+     <link rel="stylesheet" type="text/css" href="css/animate.css">
     <!-- END Custom CSS-->
     <script language="Javascript">
 	function capLock(e)
@@ -94,10 +95,11 @@
         </div>
         <div class="content-body"><section class="flexbox-container">
     <div class="col-md-4 offset-md-4 col-xs-10 offset-xs-1 box-shadow-3 p-0">
+        <div class="animated zoomInDown">
         <div class="card border-grey border-lighten-3 px-1 py-1 m-0">
             <div class="card-header no-border">
                 <div class="card-title text-xs-center">
-                    <img src="app-assets/images/logo/robust-logo-dark.png" alt="branding logo">
+                    <img src="app-assets/images/logo/robust-logo-dark.png" alt="branding logo" class="animated zoomInDown">
                 </div>
                 <!-- <h6 class="card-subtitle line-on-side text-muted text-xs-center font-small-3 pt-2"><span>Easily Using</span></h6> -->
             </div>
@@ -155,6 +157,8 @@
                 </div> -->
             </div>
         </div>
+        </div>
+        
     </div>
 </section>
 
