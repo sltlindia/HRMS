@@ -107,25 +107,25 @@
         <div class="content-header row">
         </div>
         <div class="content-body">
-        <img src="img/sltllogo.png" alt="sltlLogo" class="animated zoomIn">
+        <!-- <img src="img/sltllogo.png" alt="sltlLogo" class="animated zoomIn"> -->
         <section class="flexbox-container">
     <div class="col-md-4 offset-md-4 col-xs-10 offset-xs-1 box-shadow-3 p-0">
         <div class="card border-grey border-lighten-3 px-1 py-1 m-0">
-            <div class="card-header no-border">
+            <div class="card-header no-border" style="height: 120px;">
                 <div class="card-title text-xs-center">
   <div class="BODY">                
- <svg viewBox="0 0 1000 400">
+ <svg viewBox="0 0 1000 600">
   <symbol id="s-text">
   
     
-    <!-- 
+    
      <text text-anchor="middle"
           x="50%"
           y="35%"
           class="text--line"
           >
-      HRMS
-    </text> -->
+      SLTL
+    </text>
     <text text-anchor="middle"
           x="50%"
           y="68%"

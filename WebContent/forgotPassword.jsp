@@ -65,19 +65,19 @@
         <div class="card border-grey border-lighten-3 px-2 py-2 m-0">
             <div class="card-header no-border pb-0">
                 <div class="card-title text-xs-center">
-                   <div class="BODY">                
- <svg viewBox="0 0 1000 400">
+                 <div class="BODY">                
+ <svg viewBox="0 0 1000 600">
   <symbol id="s-text">
   
     
-    <!-- 
+    
      <text text-anchor="middle"
           x="50%"
           y="35%"
           class="text--line"
           >
-      HRMS
-    </text> -->
+      SLTL
+    </text>
     <text text-anchor="middle"
           x="50%"
           y="68%"
