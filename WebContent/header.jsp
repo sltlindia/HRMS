@@ -50,7 +50,7 @@
     <!-- END Page Level CSS-->
     <!-- BEGIN Custom CSS-->
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/logocss.css">
     <!-- END Custom CSS-->
 	
 	
@@ -124,18 +124,17 @@
             <li class="nav-item mobile-menu hidden-md-up float-xs-left"><a class="nav-link nav-menu-main menu-toggle hidden-xs"><i class="icon-menu5 font-large-1"></i></a></li>
             <li class="nav-item">
             	<div class="BODY">                
- <svg viewBox="0 0 1000 400">
+ <svg viewBox="0 0 800 600">
   <symbol id="s-text">
   
     
-    <!-- 
-     <text text-anchor="middle"
+    <text text-anchor="middle"
           x="50%"
           y="35%"
           class="text--line"
           >
-      HRMS
-    </text> -->
+      SLTL
+    </text>
     <text text-anchor="middle"
           x="50%"
           y="68%"
@@ -331,10 +330,10 @@
           <%} %>
           
           
-          <li data-menu="megamenu" class="dropdown mega-dropdown nav-item"><a href="#" data-toggle="dropdown" class="dropdown-toggle nav-link"><i class="icon-square-plus"></i><span data-i18n="nav.category.addons">Self Service</span></a>
+          <li data-menu="megamenu" class="dropdown mega-dropdown nav-item"><a href="#" data-toggle="dropdown" class="dropdown-toggle nav-link"><i class="icon-android-hand"></i><span data-i18n="nav.category.addons">Self Service</span></a>
             <ul class="mega-dropdown-menu dropdown-menu row">
               <li data-mega-col="col-md-3" class="col-md-3">
-                <h6 data-toggle="dropdown" class="dropdown-menu-header text-uppercase"><i class="icon-edit2"></i>Self Service HR
+                <h6 data-toggle="dropdown" class="dropdown-menu-header text-uppercase"><i class="icon-android-hand"></i>Self Service HR
                 </h6>
                 <ul class="drilldown-menu">
                   <li class="menu-list">
@@ -352,7 +351,7 @@
                 </ul>
               </li>
               <li data-mega-col="col-md-3" class="col-md-3">
-                <h6 data-toggle="dropdown" class="dropdown-menu-header text-uppercase"><i class="icon-air-play"></i>TDS Calculation
+                <h6 data-toggle="dropdown" class="dropdown-menu-header text-uppercase"><i class="icon-inr"></i>TDS Calculation
                 </h6>
                 <ul class="drilldown-menu">
                   <li class="menu-list">
@@ -369,12 +368,12 @@
                 </ul>
               </li>
               <li data-mega-col="col-md-3" class="col-md-3">
-                <h6 data-toggle="dropdown" class="dropdown-menu-header text-uppercase"><i class="icon-tune"></i>Exit Formality
+                <h6 data-toggle="dropdown" class="dropdown-menu-header text-uppercase"><i class="icon-exit"></i>Exit Formality
                 </h6>
                 <ul class="drilldown-menu">
                   <li class="menu-list">
                     <ul class="mega-menu-sub">
-                      <li><a href="#" class="dropdown-item"><i class="icon-calendar5"></i>Exit Interview</a>
+                      <li><a href="#" class="dropdown-item"><i></i>Exit Interview</a>
                       <ul class="mega-menu-sub">
                           <li><a href="exitInterviewForm.jsp" class="dropdown-item"><i></i>Exit Interview Form</a>
                           </li>
@@ -382,7 +381,7 @@
                           </li>
                         </ul>
                       </li>
-                      <li><a href="add-on-block-ui.html" class="dropdown-item"><i class="icon-security"></i>Hand Over</a>
+                      <li><a href="add-on-block-ui.html" class="dropdown-item"><i></i>Hand Over</a>
                       <ul class="mega-menu-sub">
                           <li><a href="handOverForm.jsp" class="dropdown-item"><i></i>Hand Over Form</a>
                           </li>
@@ -396,7 +395,7 @@
               </li>
               
               <li data-mega-col="col-md-3" class="col-md-3">
-                <h6 data-toggle="dropdown" class="dropdown-menu-header text-uppercase"><i class="icon-table2"></i>Broadcast
+                <h6 data-toggle="dropdown" class="dropdown-menu-header text-uppercase"><i class="icon-bullhorn"></i>Broadcast
                 </h6>
                 <ul class="drilldown-menu">
                   <li class="menu-list">
@@ -417,10 +416,10 @@
           </li>
           
           
-          <li data-menu="megamenu" class="dropdown mega-dropdown nav-item"><a href="#" data-toggle="dropdown" class="dropdown-toggle nav-link"><i class="icon-square-plus"></i><span data-i18n="nav.category.addons">Project & Timesheet</span></a>
+          <li data-menu="megamenu" class="dropdown mega-dropdown nav-item"><a href="#" data-toggle="dropdown" class="dropdown-toggle nav-link"><i class="icon-calendar3"></i><span data-i18n="nav.category.addons">Project & Timesheet</span></a>
             <ul class="mega-dropdown-menu dropdown-menu row">
               <li data-mega-col="col-md-3" class="col-md-3">
-                <h6 data-toggle="dropdown" class="dropdown-menu-header text-uppercase"><i class="icon-edit2"></i>Project Management
+                <h6 data-toggle="dropdown" class="dropdown-menu-header text-uppercase"><i class="icon-book2"></i>Project Management
                 </h6>
                 <ul class="drilldown-menu">
                   <li class="menu-list">
@@ -442,7 +441,7 @@
                 </ul>
               </li>
               <li data-mega-col="col-md-3" class="col-md-3">
-                <h6 data-toggle="dropdown" class="dropdown-menu-header text-uppercase"><i class="icon-air-play"></i>Timesheet Management
+                <h6 data-toggle="dropdown" class="dropdown-menu-header text-uppercase"><i class="icon-calendar4"></i>Timesheet Management
                 </h6>
                 <ul class="drilldown-menu">
                   <li class="menu-list">
@@ -467,7 +466,7 @@
               </li>
               
               <li data-mega-col="col-md-3" class="col-md-3">
-                <h6 data-toggle="dropdown" class="dropdown-menu-header text-uppercase"><i class="icon-table2"></i>Appraisal Management
+                <h6 data-toggle="dropdown" class="dropdown-menu-header text-uppercase"><i class="icon-wpforms"></i>Appraisal Management
                 </h6>
                 <ul class="drilldown-menu">
                   <li class="menu-list">
@@ -508,7 +507,7 @@
               </li>
               
               <li data-mega-col="col-md-3" class="col-md-3">
-                <h6 data-toggle="dropdown" class="dropdown-menu-header text-uppercase"><i class="icon-tune"></i>Reports
+                <h6 data-toggle="dropdown" class="dropdown-menu-header text-uppercase"><i class="icon-books"></i>Reports
                 </h6>
                 
                 <ul class="drilldown-menu">
@@ -573,34 +572,34 @@
           </li>
           
           <%if(manager_id == 4 || manager_id == 117 || under_manager_id == 4 || under_manager_id == 117){ %>
-          <li data-menu="megamenu" class="dropdown mega-dropdown nav-item"><a href="#" data-toggle="dropdown" class="dropdown-toggle nav-link"><i class="icon-square-plus"></i><span data-i18n="nav.category.addons">HR Management</span></a>
+          <li data-menu="megamenu" class="dropdown mega-dropdown nav-item"><a href="#" data-toggle="dropdown" class="dropdown-toggle nav-link"><i class="icon-user-tie"></i><span data-i18n="nav.category.addons">HR Management</span></a>
             <ul class="mega-dropdown-menu dropdown-menu row">
               <li data-mega-col="col-md-2" class="col-md-2">
-                <h6 data-toggle="dropdown" class="dropdown-menu-header text-uppercase"><i class="icon-edit2"></i>Employee Master
+                <h6 data-toggle="dropdown" class="dropdown-menu-header text-uppercase"><i class="icon-users3"></i>Employee Master
                 </h6>
                 <ul class="drilldown-menu">
                   <li class="menu-list">
                     <ul class="mega-menu-sub">
-                      <li><a href="ornogram.jsp" class="dropdown-item"><i class="icon-sitemap"></i>Organigram</a>
+                      <li><a href="ornogram.jsp" class="dropdown-item"><i></i>Organigram</a>
                       </li>
-                      <li><a href="newEmployee.jsp" class="dropdown-item"><i class="icon-android-person-add"></i>Add New Employee</a></li>
-                      <li><a href="newEmployee.jsp" class="dropdown-item"><i class="icon-user-plus"></i>Add New Employee</a>
+                      <li><a href="newEmployee.jsp" class="dropdown-item"><i></i>Add New Employee</a></li>
+                      <li><a href="newEmployee.jsp" class="dropdown-item"><i></i>Add New Employee</a>
                       </li>
-                       <li><a href="newEmployee.jsp" class="dropdown-item"><i class="icon-users3"></i>Employee List</a>
+                       <li><a href="newEmployee.jsp" class="dropdown-item"><i></i>Employee List</a>
                        		<ul class="mega-menu-sub">
-		                     <li><a href="employeeList.jsp" class="dropdown-item"><i class="icon-users3"></i>All Employees</a>
+		                     <li><a href="employeeList.jsp" class="dropdown-item"><i></i>All Employees</a>
 		                      </li>
-		                      <li><a href="employeeListCompanyWise.jsp" class="dropdown-item"><i class="icon-office"></i>Company Wise</a>
+		                      <li><a href="employeeListCompanyWise.jsp" class="dropdown-item"><i></i>Company Wise</a>
 		                      </li>
 		                    </ul>
                       </li>
-                      <li><a href="addDesignation.jsp" class="dropdown-item"><i class="icon-user-tie"></i>Add Designation</a>
+                      <li><a href="addDesignation.jsp" class="dropdown-item"><i></i>Add Designation</a>
                       </li>
-                      <li><a href="addSubDepartment.jsp" class="dropdown-item"><i class="icon-plus-square"></i>Add Sub Department</a>
+                      <li><a href="addSubDepartment.jsp" class="dropdown-item"><i></i>Add Sub Department</a>
                       </li>
-                      <li><a href="employeeCSV.jsp" class="dropdown-item"><i class="icon-upload22"></i>CSV Upload</a>
+                      <li><a href="employeeCSV.jsp" class="dropdown-item"><i></i>CSV Upload</a>
                       </li>
-                      <li><a href="selfServiceAllEmployee.jsp" class="dropdown-item"><i class="icon-files-o"></i>View Documents</a>
+                      <li><a href="selfServiceAllEmployee.jsp" class="dropdown-item"><i></i>View Documents</a>
                       </li>
                       
                     </ul>
@@ -717,7 +716,7 @@
           <%} %>
           
           
-          <li data-menu="megamenu" class="dropdown mega-dropdown nav-item"><a href="#" data-toggle="dropdown" class="dropdown-toggle nav-link"><i class="icon-square-plus"></i><span data-i18n="nav.category.addons">Leave & Gate Pass</span></a>
+          <li data-menu="megamenu" class="dropdown mega-dropdown nav-item"><a href="#" data-toggle="dropdown" class="dropdown-toggle nav-link"><i class="icon-paper-airplane"></i><span data-i18n="nav.category.addons">Leave & Gate Pass</span></a>
             <ul class="mega-dropdown-menu dropdown-menu row">
               <li data-mega-col="col-md-6" class="col-md-6">
                 <h6 data-toggle="dropdown" class="dropdown-menu-header text-uppercase"><i class="icon-edit2"></i>Leave Management
@@ -778,7 +777,7 @@
           </li>
           
           
-          <li data-menu="megamenu" class="dropdown mega-dropdown nav-item"><a href="#" data-toggle="dropdown" class="dropdown-toggle nav-link"><i class="icon-square-plus"></i><span data-i18n="nav.category.addons">Complaint Management</span></a>
+          <li data-menu="megamenu" class="dropdown mega-dropdown nav-item"><a href="#" data-toggle="dropdown" class="dropdown-toggle nav-link"><i class="icon-birdpen"></i><span data-i18n="nav.category.addons">Complaint Management</span></a>
             <ul class="mega-dropdown-menu dropdown-menu row">
               <li data-mega-col="col-md-6" class="col-md-6">
                 <h6 data-toggle="dropdown" class="dropdown-menu-header text-uppercase"><i class="icon-edit2"></i>Grievance Management

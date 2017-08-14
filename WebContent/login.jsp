@@ -42,6 +42,7 @@
     <link rel="stylesheet" type="text/css" href="app-assets/css/core/menu/menu-types/horizontal-menu.min.css">
     <link rel="stylesheet" type="text/css" href="app-assets/css/core/menu/menu-types/vertical-overlay-menu.min.css">
     <link rel="stylesheet" type="text/css" href="app-assets/css/pages/login-register.min.css">
+        <link rel="stylesheet" type="text/css" href="app-assets/vendors/css/forms/selects/select2.min.css">
     <!-- END Page Level CSS-->
     <!-- BEGIN Custom CSS-->
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
@@ -166,8 +167,8 @@
                 <div class="card-block">
                     <form class="form-horizontal" action="login" method="post">
                          <fieldset class="form-group">
-                            <select class="custom-select block" id="companyId" name="companyId" placeholder="Your Company Name">
-                                <option selected>Select Company Name</i></option>
+                         
+                         							<select class="select2-theme form-control" id="select2-theme" name="companyId" required>
 												<%
 													CompanyListDAO companyListDAO = new CompanyListDAO();
 														List<CompanyListBean> listOfCompanyList = (ArrayList) companyListDAO.getListOfCompanyList();
@@ -177,7 +178,11 @@
 												<%
 													}
 												%>
-											</select>
+								
+							</select>
+                         
+                         
+                         
                         </fieldset>
                         <fieldset class="form-group position-relative has-icon-left">
                             <input type="text" class="form-control" id="employee_code" name="employee_code" placeholder="Your Employee Code" required>
@@ -239,10 +244,12 @@
     <script src="app-assets/js/core/app-menu.min.js" type="text/javascript"></script>
     <script src="app-assets/js/core/app.min.js" type="text/javascript"></script>
     <script src="app-assets/js/scripts/ui/fullscreenSearch.min.js" type="text/javascript"></script>
+      <script src="app-assets/vendors/js/forms/select/select2.full.min.js" type="text/javascript"></script>
     <!-- /build-->
     <!-- END ROBUST JS-->
     <!-- BEGIN PAGE LEVEL JS-->
     <script src="app-assets/js/scripts/forms/form-login-register.min.js" type="text/javascript"></script>
+    <script src="app-assets/js/scripts/forms/select/form-select2.min.js" type="text/javascript"></script>
     <!-- END PAGE LEVEL JS-->
   	<script>
 	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
