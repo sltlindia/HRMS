@@ -17,11 +17,11 @@
 
 		<!-- BEGIN STYLESHEETS  -->
 		<!-- <link href='http://fonts.googleapis.com/css?family=Roboto:300italic,400italic,300,400,500,700,900' rel='stylesheet' type='text/css'/>  -->
-		 <!--  <link type="text/css" rel="stylesheet" href="assets/css/bootstrap.css" />   -->
+		  <link type="text/css" rel="stylesheet" href="assets/css/bootstrap.css" />   
 		 <link type="text/css" rel="stylesheet" href="assets/css/materialadmin.css" />  
 		
 </head>
-<%@include file="header.jsp" %> 
+<%-- <%@include file="header.jsp" %>  --%>
 <body>
 <!-- BEGIN HEADER-->
 		
@@ -70,7 +70,7 @@
 											<div class="row">
 												<div class="col-sm-6">
 													<div class="form-group">
-														<input type="text" class="form-control" id="Firstname2">
+														 <input type="text" class="form-control" id="Firstname2">
 														<label for="Firstname2">Firstname</label>
 													</div>
 												</div>
