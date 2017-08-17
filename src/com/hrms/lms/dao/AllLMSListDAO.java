@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Query;
+import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -317,6 +318,35 @@ public class AllLMSListDAO {
 			tx.begin();
 			Query query = session.createQuery(
 					"from LeaveBean WHERE employeeBean='" + emp_id + "' AND show_view= 0 AND status != 'Cancelled'");
+			listOfLeave = query.list();
+			tx.commit();
+		} catch (Exception e) {
+			if (tx != null) {
+				tx.rollback();
+			}
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return listOfLeave;
+	}
+	
+	
+	@SuppressWarnings("unchecked")
+	public List<LeaveBean> SPgetLeaveByEmpId(int emp_id) {
+
+		List<LeaveBean> listOfLeave = new ArrayList<LeaveBean>();
+		Session session = HibernateUtil.openSession();
+		Transaction tx = null;
+
+		try {
+			tx = session.getTransaction();
+			tx.begin();
+			
+			SQLQuery query = (SQLQuery) session.createSQLQuery("CALL leaveByEmpId(:empId)")
+                    .addEntity(LeaveBean.class)
+                    .setParameter("empId",emp_id);
+			
 			listOfLeave = query.list();
 			tx.commit();
 		} catch (Exception e) {
@@ -724,6 +754,34 @@ public class AllLMSListDAO {
 		}
 		return listOfLeave;
 	}
+	
+	
+	
+	@SuppressWarnings("unchecked")
+	public List<LeaveCOBean> SPgetCOByEmpId(int emp_id) {
+
+		List<LeaveCOBean> listOfLeave = new ArrayList<LeaveCOBean>();
+		Session session = HibernateUtil.openSession();
+		Transaction tx = null;
+
+		try {
+			tx = session.getTransaction();
+			tx.begin();
+			SQLQuery query = (SQLQuery) session.createSQLQuery("CALL coByEmpId(:empId)")
+                    .addEntity(LeaveCOBean.class)
+                    .setParameter("empId",emp_id);
+			listOfLeave = query.list();
+			tx.commit();
+		} catch (Exception e) {
+			if (tx != null) {
+				tx.rollback();
+			}
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return listOfLeave;
+	}
 
 	public List<LeaveCOBean> getCOByEmpId1(int emp_id, String from_date, String to_date) {
 
@@ -797,7 +855,7 @@ public class AllLMSListDAO {
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<LeaveODBean> getODByEmpId(int emp_id) {
+	public List<LeaveODBean> SPgetODByEmpId(int emp_id) {
 
 		List<LeaveODBean> listOfLeave = new ArrayList<LeaveODBean>();
 		Session session = HibernateUtil.openSession();
@@ -805,8 +863,11 @@ public class AllLMSListDAO {
 		try {
 			tx = session.getTransaction();
 			tx.begin();
-			Query query = session.createQuery("from LeaveODBean WHERE employeeBean='" + emp_id
-					+ "' AND show_view = '0' AND status != 'cancelled'");
+			
+			SQLQuery query = (SQLQuery) session.createSQLQuery("CALL odByEmpId(:empId)")
+                    .addEntity(LeaveODBean.class)
+                    .setParameter("empId",emp_id);
+			
 			listOfLeave = query.list();
 			tx.commit();
 		} catch (Exception e) {
