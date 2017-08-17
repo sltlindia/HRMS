@@ -170,7 +170,11 @@
 </div>
 
 
-<%  List<LeaveBean> getLeaveByEmpId = allLMSListDAO.SPgetLeaveByEmpId(emp_id);
+<% 
+SimpleDateFormat yyyyMMdd = new SimpleDateFormat("yyyy-MM-dd");
+SimpleDateFormat ddMMyyyy= new SimpleDateFormat("dd-MM-yyyy");
+
+List<LeaveBean> getLeaveByEmpId = allLMSListDAO.SPgetLeaveByEmpId(emp_id);
 	List<LeaveCOBean> getCOByEmpid = allLMSListDAO.SPgetCOByEmpId(emp_id);
 	List<LeaveODBean> getODByEmpid = allLMSListDAO.SPgetODByEmpId(emp_id); 
 	
@@ -200,21 +204,24 @@
                   String color = null;
                   for(LeaveBean leaveBean : getLeaveByEmpId){
                   	 String status = leaveBean.getStatus();
-                	  if(status.equalsIgnoreCase("pending")){
-                		  color = "orange";
-                	  }else if(status.equalsIgnoreCase("rejected")){
-                		  color = "red";
-                	  }else if(status.equalsIgnoreCase("approved")){
-                		  color = "green";
-                	  }
+                	 
                 	  
                   %>
                   	<a href="javascript:void(0)" class="list-group-item">
                       <div class="media">
-                        <div class="media-left"></div>
+                        <div class="media-left" style="color: black;"><i class="ficon icon-paper-airplane"></i></div>
                         <div class="media-body">
-                          <h6 class="media-heading" style="color: <%=color %>" >Leave (<%=leaveBean.getLeave_From()+" - "+leaveBean.getLeave_To()%>)</h6>
-                          <p class="notification-text font-small-3 text-muted">Your Leave is <%=leaveBean.getStatus().toUpperCase()%></p>
+                          
+                          <% if(status.equalsIgnoreCase("pending")){%>
+                    		 <h6 class="media-heading" style="color: #3BAFDA">
+                    	  <%}else if(status.equalsIgnoreCase("rejected")){%>
+                    		  <h6 class="media-heading red darken-1" >
+                    		  <%}else if(status.equalsIgnoreCase("approved")){%>
+                    		   <h6 class="media-heading green darken-1" >
+                    	  <%} %>
+                          
+                          Leave <b><%=leaveBean.getStatus().toUpperCase()%></b> </h6>
+                          <p class="notification-text font-small-3 text-muted">Your Leave from <%=ddMMyyyy.format(yyyyMMdd.parse(leaveBean.getLeave_From()))%> to <%=ddMMyyyy.format(yyyyMMdd.parse(leaveBean.getLeave_To()))%></p>
                         </div>
                       </div>
                     </a>
@@ -222,21 +229,24 @@
                     
                      <%for(LeaveCOBean leaveCOBean : getCOByEmpid){
                     	 String status = leaveCOBean.getStatus();
-                    	 if(status.equalsIgnoreCase("pending")){
-                   		  color = "orange";
-	                   	  }else if(status.equalsIgnoreCase("rejected")){
-	                   		  color = "red";
-	                   	  }else if(status.equalsIgnoreCase("approved")){
-	                   		  color = "green";
-	                   	  }
+                    	
                     	 
                      %>
                   	<a href="javascript:void(0)" class="list-group-item">
                       <div class="media">
                         <div class="media-left"></div>
                         <div class="media-body">
-                          <h6 class="media-heading" style="color: <%=color %>">CO (<%=leaveCOBean.getCO_date() %>)</h6>
-                          <p class="notification-text font-small-3 text-muted">Your CO is <%=leaveCOBean.getStatus().toUpperCase()%></p>
+                        
+                           <% if(status.equalsIgnoreCase("pending")){%>
+                    		 <h6 class="media-heading" style="color: #3BAFDA">
+                    	  <%}else if(status.equalsIgnoreCase("rejected")){%>
+                    		  <h6 class="media-heading red darken-1" >
+                    		  <%}else if(status.equalsIgnoreCase("approved")){%>
+                    		   <h6 class="media-heading green darken-1" >
+                    	  <%} %>
+                          
+                          CO <b><%=leaveCOBean.getStatus().toUpperCase()%></b></h6>
+                          <p class="notification-text font-small-3 text-muted">Your CO date is  <%=ddMMyyyy.format(yyyyMMdd.parse(leaveCOBean.getCO_date()))%></p>
                         </div>
                       </div>
                     </a>
@@ -244,20 +254,23 @@
                     
                     <%for(LeaveODBean leaveODBean : getODByEmpid){
                     	String status = leaveODBean.getStatus();
-                    	 if(status.equalsIgnoreCase("pending")){
-                   		  color = "orange";
-	                   	  }else if(status.equalsIgnoreCase("rejected")){
-	                   		  color = "red";
-	                   	  }else if(status.equalsIgnoreCase("approved")){
-	                   		  color = "green";
-	                   	  }
+                    	 
                     %>
                   	<a href="javascript:void(0)" class="list-group-item">
                       <div class="media">
                         <div class="media-left"></div>
                         <div class="media-body">
-                          <h6 class="media-heading" style="color: <%=color %>">Margaret Govan</h6>
-                          <p class="notification-text font-small-3 text-muted">Your OD is <%=leaveODBean.getStatus().toUpperCase()%></p>
+                          
+                           <% if(status.equalsIgnoreCase("pending")){%>
+                    		 <h6 class="media-heading" style="color: #3BAFDA">
+                    	  <%}else if(status.equalsIgnoreCase("rejected")){%>
+                    		  <h6 class="media-heading red darken-1" >
+                    		  <%}else if(status.equalsIgnoreCase("approved")){%>
+                    		   <h6 class="media-heading green darken-1" >
+                    	  <%} %>
+                          
+                          OD <b><%=leaveODBean.getStatus().toUpperCase()%></b> </h6>
+                          <p class="notification-text font-small-3 text-muted">Your OD from <%=ddMMyyyy.format(yyyyMMdd.parse(leaveODBean.getOD_StartDate()))%> to <%=ddMMyyyy.format(yyyyMMdd.parse(leaveODBean.getOD_EndDate()))%></p>
                         </div>
                       </div>
                     </a>
