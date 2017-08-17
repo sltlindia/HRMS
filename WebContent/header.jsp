@@ -689,7 +689,13 @@
                 <ul class="drilldown-menu">
                   <li class="menu-list">
                     <ul class="mega-menu-sub">
-                          <li><a href="jquery-ui-autocomplete.html" class="dropdown-item"><i class="undefined"></i>Declaration Form List</a>
+                    <li><a href="jquery-ui-interactions.html" class="dropdown-item"><i class="undefined"></i>Rules</a>
+                      </li>
+                      <li><a href="jquery-ui-navigations.html" class="dropdown-item"><i class="undefined"></i>Declaration Form</a>
+                      </li>
+                      <li><a href="jquery-ui-date-pickers.html" class="dropdown-item"><i class="undefined"></i>Upload Investment Proofs</a>
+                      </li>
+                      <li><a href="jquery-ui-autocomplete.html" class="dropdown-item"><i class="undefined"></i>Declaration Form List</a>
                       </li>
                       <li><a href="jquery-ui-buttons-select.html" class="dropdown-item"><i class="undefined"></i>Investment Proof List</a>
                       </li>

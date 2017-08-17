@@ -9,14 +9,13 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Forgot Password</title>
-   <!--  <link rel="apple-touch-icon" sizes="60x60" href="app-assets/images/ico/apple-icon-60.png">
+    <!--  <link rel="apple-touch-icon" sizes="60x60" href="app-assets/images/ico/apple-icon-60.png">
     <link rel="apple-touch-icon" sizes="76x76" href="app-assets/images/ico/apple-icon-76.png">
     <link rel="apple-touch-icon" sizes="120x120" href="app-assets/images/ico/apple-icon-120.png">
     <link rel="apple-touch-icon" sizes="152x152" href="app-assets/images/ico/apple-icon-152.png">
-    <link rel="shortcut icon" type="image/x-icon" href="https://pixinvent.com/bootstrap-admin-template/robust/app-assets/images/ico/favicon.ico">
-    <link rel="shortcut icon" type="image/png" href="app-assets/images/ico/favicon-32.png"> -->
+    <link rel="shortcut icon" type="image/x-icon" href="https://pixinvent.com/bootstrap-admin-template/robust/app-assets/images/ico/favicon.ico"> -->
+    <link rel="shortcut icon" sizes="152x152" href="app-assets/images/ico/titleIcon.png" >
     
-     <link rel="shortcut icon" sizes="152x152" href="app-assets/images/ico/titleIcon.png" >
     
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-touch-fullscreen" content="yes">
@@ -28,6 +27,8 @@
     <link rel="stylesheet" type="text/css" href="app-assets/fonts/flag-icon-css/css/flag-icon.min.css">
     <link rel="stylesheet" type="text/css" href="app-assets/vendors/css/sliders/slick/slick.css">
     <link rel="stylesheet" type="text/css" href="app-assets/vendors/css/extensions/pace.css">
+    <link rel="stylesheet" type="text/css" href="app-assets/vendors/css/forms/icheck/icheck.css">
+    <link rel="stylesheet" type="text/css" href="app-assets/vendors/css/forms/icheck/custom.css">
     <!-- END VENDOR CSS-->
     <!-- BEGIN ROBUST CSS-->
     <link rel="stylesheet" type="text/css" href="app-assets/css/bootstrap-extended.min.css">
@@ -38,10 +39,13 @@
     <!-- BEGIN Page Level CSS-->
     <link rel="stylesheet" type="text/css" href="app-assets/css/core/menu/menu-types/horizontal-menu.min.css">
     <link rel="stylesheet" type="text/css" href="app-assets/css/core/menu/menu-types/vertical-overlay-menu.min.css">
+    <link rel="stylesheet" type="text/css" href="app-assets/css/pages/login-register.min.css">
+        <link rel="stylesheet" type="text/css" href="app-assets/vendors/css/forms/selects/select2.min.css">
     <!-- END Page Level CSS-->
     <!-- BEGIN Custom CSS-->
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-    <link rel="stylesheet" type="text/css" href="css/style.css">
+     <link rel="stylesheet" type="text/css" href="css/animate.css">
+     <link rel="stylesheet" type="text/css" href="css/style.css">
     <!-- END Custom CSS-->
 </head>
  <body data-open="hover" data-menu="horizontal-menu" data-col="1-column" class="horizontal-layout horizontal-menu 1-column  blank-page blank-page">
@@ -111,8 +115,8 @@
                 <div class="card-block">
                     <form class="form-horizontal" action="forgotPasswordAuthentication" method="post">
                         <fieldset class="form-group">
-                            <select class="custom-select block" id="companyId" name="companyId" placeholder="Your Company Name">
-                                <option selected>Select Company Name</i></option>
+                         
+                         							<select class="select2-theme form-control" id="select2-theme" name="companyId" required>
 												<%
 													CompanyListDAO companyListDAO = new CompanyListDAO();
 														List<CompanyListBean> listOfCompanyList = (ArrayList) companyListDAO.getListOfCompanyList();
@@ -122,7 +126,11 @@
 												<%
 													}
 												%>
-											</select>
+								
+							</select>
+                         
+                         
+                         
                         </fieldset>
                         <fieldset class="form-group position-relative has-icon-left">
                             <input type="text" class="form-control" id="employee_code" name="employee_code" placeholder="Your Employee Code" required>
@@ -153,7 +161,7 @@
     </div>
     <!-- ////////////////////////////////////////////////////////////////////////////-->
 
-    <!-- BEGIN VENDOR JS-->
+     <!-- BEGIN VENDOR JS-->
     <!-- build:js app-assets/js/vendors.min.js-->
     <script src="app-assets/js/core/libraries/jquery.min.js" type="text/javascript"></script>
     <script src="app-assets/vendors/js/ui/tether.min.js" type="text/javascript"></script>
@@ -171,16 +179,19 @@
     <!-- BEGIN PAGE VENDOR JS-->
     <script type="text/javascript" src="app-assets/vendors/js/ui/jquery.sticky.js"></script>
     <script src="app-assets/vendors/js/forms/validation/jqBootstrapValidation.js" type="text/javascript"></script>
+    <script src="app-assets/vendors/js/forms/icheck/icheck.min.js" type="text/javascript"></script>
     <!-- END PAGE VENDOR JS-->
     <!-- BEGIN ROBUST JS-->
     <!-- build:js app-assets/js/app.min.js-->
     <script src="app-assets/js/core/app-menu.min.js" type="text/javascript"></script>
     <script src="app-assets/js/core/app.min.js" type="text/javascript"></script>
     <script src="app-assets/js/scripts/ui/fullscreenSearch.min.js" type="text/javascript"></script>
+      <script src="app-assets/vendors/js/forms/select/select2.full.min.js" type="text/javascript"></script>
     <!-- /build-->
     <!-- END ROBUST JS-->
     <!-- BEGIN PAGE LEVEL JS-->
     <script src="app-assets/js/scripts/forms/form-login-register.min.js" type="text/javascript"></script>
+    <script src="app-assets/js/scripts/forms/select/form-select2.min.js" type="text/javascript"></script>
     <!-- END PAGE LEVEL JS-->
   	<script>
 	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
