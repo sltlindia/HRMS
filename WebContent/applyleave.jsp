@@ -17,26 +17,31 @@
 
 		<!-- BEGIN STYLESHEETS  -->
 		<!-- <link href='http://fonts.googleapis.com/css?family=Roboto:300italic,400italic,300,400,500,700,900' rel='stylesheet' type='text/css'/>  -->
-		  <link type="text/css" rel="stylesheet" href="assets/css/bootstrap.css" />   
-		 <link type="text/css" rel="stylesheet" href="assets/css/materialadmin.css" />  
+	<!-- 	 <link type="text/css" rel="stylesheet" href="assets/css/card/bootstrap.css" />   -->
+		  <link type="text/css" rel="stylesheet" href="assets/css/card/materialadmin.css?1425466319" />  
+		 	<link type="text/css" rel="stylesheet" href="assets/css/card/font-awesome.min.css?1422529194" /> 
+		
+	
+		
+		
 		
 </head>
-<%-- <%@include file="header.jsp" %>  --%>
+  <%@include file="header.jsp" %>   
 <body>
 <!-- BEGIN HEADER-->
 		
 		<div id="base">
 
 			<!-- BEGIN OFFCANVAS LEFT -->
-			<div class="offcanvas">
-			</div><!--end .offcanvas-->
+			<!-- <div class="offcanvas">
+			</div> --><!--end .offcanvas-->
 			<!-- END OFFCANVAS LEFT -->
 
 			<!-- BEGIN CONTENT-->
-			<div id="content">
+			<!-- <div id="content">
 				
 				
-					</div>
+					</div> -->
 					<div class="section-body contain-lg">
 
 						<!-- BEGIN VERTICAL FORM -->
@@ -81,6 +86,16 @@
 													</div>
 												</div>
 											</div>
+											<br/>		
+											<div class="row">
+												<div class="col-sm-6">
+													<div class="form-group">
+														<input type="text" class="form-control" id="Lastname2">
+														<label for="Lastname2">Lastname</label>
+													</div>
+												</div>
+													
+											</div>
 											<div class="form-group">
 												<input type="text" class="form-control" id="Username2">
 												<label for="Username2">Username</label>
@@ -112,14 +127,24 @@
 
 					</div>
 			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
 			</div><!--end #content-->
 			<!-- END CONTENT -->
 
 			<!-- BEGIN MENUBAR-->
 			<!--end #menubar-->
 			
-		</div><!--end #base-->
-</body>
+	</body>
 </html>
 
 

@@ -25,7 +25,7 @@
     <meta name="apple-touch-fullscreen" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <!-- BEGIN VENDOR CSS-->
-    <link rel="stylesheet" type="text/css" href="app-assets/css/bootstrap.min.css">
+  	 <link rel="stylesheet" type="text/css" href="app-assets/css/bootstrap.min.css">
     <!-- font icons-->
     <link rel="stylesheet" type="text/css" href="app-assets/fonts/icomoon.css">
     <link rel="stylesheet" type="text/css" href="app-assets/fonts/flag-icon-css/css/flag-icon.min.css">
@@ -46,12 +46,15 @@
     <link rel="stylesheet" type="text/css" href="app-assets/css/core/menu/menu-types/horizontal-menu.min.css">
     <link rel="stylesheet" type="text/css" href="app-assets/css/core/menu/menu-types/vertical-overlay-menu.min.css">
     <link rel="stylesheet" type="text/css" href="app-assets/css/core/colors/palette-gradient.min.css">
-    <link rel="stylesheet" type="text/css" href="app-assets/css/plugins/calendars/clndr.min.css">
+  <!--   <link rel="stylesheet" type="text/css" href="app-assets/css/plugins/calendars/clndr.min.css"> -->
     <!-- END Page Level CSS-->
     <!-- BEGIN Custom CSS-->
-    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+   <!--  <link rel="stylesheet" type="text/css" href="assets/css/style.css"> -->
     <link rel="stylesheet" type="text/css" href="css/logocss.css">
     <!-- END Custom CSS-->
+	
+	<!-- Card Box CSS -->
+	   
 	
 	
 	<style>
