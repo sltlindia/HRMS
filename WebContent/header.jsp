@@ -1,3 +1,6 @@
+<%@page import="com.hrms.timesheet.bean.UnplanProjectBean"%>
+<%@page import="com.hrms.pms.dao.AllListDAO"%>
+<%@page import="com.hrms.timesheet.bean.TimeSheetBean"%>
 <%@page import="com.hrms.lms.bean.LeaveODBean"%>
 <%@page import="com.hrms.lms.bean.LeaveCOBean"%>
 <%@page import="com.hrms.lms.bean.LeaveBean"%>
@@ -122,6 +125,8 @@
 
 			AllLMSListDAO allLMSListDAO = new AllLMSListDAO();
 			GatePassAuthorityBean gatePassAuthorityBean = allLMSListDAO.authorityOfGatePass(emp_id);
+			
+			AllListDAO allListDAO = new AllListDAO();
 	%>
     <!-- navbar-fixed-top-->
     <nav class="header-navbar navbar navbar-with-menu undefined navbar-light navbar-border navbar-brand-center">
@@ -277,6 +282,50 @@ List<LeaveBean> getLeaveByEmpId = allLMSListDAO.SPgetLeaveByEmpId(emp_id);
                     <%} %>
                       
                       </li>
+                  <li class="dropdown-menu-footer"><a href="javascript:void(0)" class="dropdown-item text-muted text-xs-center">Read all messages</a></li>
+                </ul>
+              </li>
+             
+              <%	
+              		List<TimeSheetBean> listOftimesheet = allListDAO.SPgetRejectedTimesheet(emp_id);
+              		List<UnplanProjectBean> listOfUnplanProject = allListDAO.SPgetUnplanRejectedTimesheet(emp_id);
+              		int totalTimesheet = listOftimesheet.size() + listOfUnplanProject.size();
+              %>
+               <li class="dropdown dropdown-notification nav-item"><a href="#" data-toggle="dropdown" class="nav-link nav-link-label"><i class="icon-calendar3"></i><span class="tag tag-pill tag-default tag-info tag-default tag-up"><%=totalTimesheet %></span></a>
+                <ul class="dropdown-menu dropdown-menu-media dropdown-menu-right">
+                  <li class="dropdown-menu-header">
+                    <h6 class="dropdown-header m-0"><span class="grey darken-2">Notification</span><span class="notification-tag tag tag-default tag-info float-xs-right m-0"><%=totalTimesheet %> NEW</span></h6>
+                  </li>
+                  <li class="list-group scrollable-container">
+                  	<%
+                  		for(TimeSheetBean timeSheetBean : listOftimesheet){
+                  	%>
+                  	<a href="javascript:void(0)" class="list-group-item">
+                      <div class="media">
+                        <div class="media-left"></div>
+                        <div class="media-body">
+                          <h6 class="media-heading">Timesheet <b> <%=timeSheetBean.getApproval_status()%></b></h6>
+                          <p class="notification-text font-small-3 text-muted"><%=ddMMyyyy.format(yyyyMMdd.parse(timeSheetBean.getDate()))%></p><small>
+                        </div>
+                      </div>
+                     </a>
+                     <%} %>
+                     
+                     <%
+                  		for(UnplanProjectBean unplanProjectBean : listOfUnplanProject){
+                  	%>
+                  	<a href="javascript:void(0)" class="list-group-item">
+                      <div class="media">
+                        <div class="media-left"></div>
+                        <div class="media-body">
+                          <h6 class="media-heading">Margaret Govan</h6>
+                          <p class="notification-text font-small-3 text-muted">I like your portfolio, let's start the project.</p><small>
+                            <time datetime="2015-06-11T18:29:20+08:00" class="media-meta text-muted">Today</time></small>
+                        </div>
+                      </div>
+                     </a>
+                     <%} %>
+                   </li>
                   <li class="dropdown-menu-footer"><a href="javascript:void(0)" class="dropdown-item text-muted text-xs-center">Read all messages</a></li>
                 </ul>
               </li>

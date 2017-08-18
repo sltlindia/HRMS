@@ -4,9 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Query;
+import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import com.hrms.lms.bean.LeaveBean;
 import com.hrms.pms.bean.AllocationNotificationBean;
 import com.hrms.pms.bean.Appraisal5sBean;
 import com.hrms.pms.bean.AppraisalBean;
@@ -2874,6 +2876,32 @@ public class AllListDAO {
 			String hql = "from TimeSheetBean where employeeBean = '" + employee_master_id
 					+ "' and approval_status = 'rejected' group by date";
 			Query query = session.createQuery(hql);
+			listOfTimeSheet = query.list();
+			tx.commit();
+		} catch (Exception e) {
+			if (tx != null) {
+				tx.rollback();
+			}
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return listOfTimeSheet;
+	}
+	
+	/* Stored Procedure for rejected timesheet*/
+	public List<TimeSheetBean> SPgetRejectedTimesheet(int employee_master_id) {
+		List<TimeSheetBean> listOfTimeSheet = new ArrayList<TimeSheetBean>();
+		Session session = HibernateUtil.openSession();
+		Transaction tx = null;
+		try {
+			tx = session.getTransaction();
+			tx.begin();
+			
+			SQLQuery query = (SQLQuery) session.createSQLQuery("CALL rejectedTimesheetByEmpId(:empId)")
+                    .addEntity(TimeSheetBean.class)
+                    .setParameter("empId",employee_master_id);
+			
 			listOfTimeSheet = query.list();
 			tx.commit();
 		} catch (Exception e) {
@@ -5834,6 +5862,32 @@ public class AllListDAO {
 			String hql = "from UnplanProjectBean u where not exists(from TimeSheetBean t where t.date=u.date) and approval_status = 'rejected' and employeeBean='"
 					+ employee_master_id + "' group by date";
 			Query query = session.createQuery(hql);
+			listOfTimeSheet = query.list();
+			tx.commit();
+		} catch (Exception e) {
+			if (tx != null) {
+				tx.rollback();
+			}
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return listOfTimeSheet;
+	}
+	
+	/* Store Procedure For Unplan Rejected Timesheet*/
+	public List<UnplanProjectBean> SPgetUnplanRejectedTimesheet(int employee_master_id) {
+		List<UnplanProjectBean> listOfTimeSheet = new ArrayList<UnplanProjectBean>();
+		Session session = HibernateUtil.openSession();
+		Transaction tx = null;
+		try {
+			tx = session.getTransaction();
+			tx.begin();
+			
+			SQLQuery query = (SQLQuery) session.createSQLQuery("CALL unplanRejectedTimesheetById(:empId)")
+                    .addEntity(UnplanProjectBean.class)
+                    .setParameter("empId",employee_master_id);
+			
 			listOfTimeSheet = query.list();
 			tx.commit();
 		} catch (Exception e) {
