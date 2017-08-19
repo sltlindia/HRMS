@@ -1,3 +1,11 @@
+<%@page import="com.hrms.selfservice.bean.AnnouncementDepartmentBean"%>
+<%@page import="com.hrms.selfservice.bean.AnnouncementCompanyBean"%>
+<%@page import="com.hrms.selfservice.bean.AnnouncementCategoryBean"%>
+<%@page import="com.hrms.selfservice.bean.AnnouncementBean"%>
+<%@page import="com.hrms.selfservice.dao.AllListSelfServiceDAO"%>
+<%@page import="com.hrms.timesheet.bean.UnplanProjectBean"%>
+<%@page import="com.hrms.timesheet.bean.TimeSheetBean"%>
+<%@page import="com.hrms.pms.dao.AllListDAO"%>
 <%@page import="com.hrms.lms.bean.LeaveODBean"%>
 <%@page import="com.hrms.lms.bean.LeaveCOBean"%>
 <%@page import="com.hrms.lms.bean.LeaveBean"%>
@@ -87,6 +95,9 @@
 			int manager_id = user.getManagerBean().getManager_id();
 			int emp_id = user.getEmployee_master_id();
 			int under_manager_id = Integer.parseInt(user.getUnder_manager_id());
+			
+			String role_authority = user.getRoleBean().getRole_authority();
+			int department_id = user.getDepartmentBean().getDepartment_id();
 
 			EmployeeBean employeeBean = loginDAO1.getEmailIdEmployee(id);
 			System.out.println("-----------------");
@@ -122,6 +133,8 @@
 
 			AllLMSListDAO allLMSListDAO = new AllLMSListDAO();
 			GatePassAuthorityBean gatePassAuthorityBean = allLMSListDAO.authorityOfGatePass(emp_id);
+			
+			AllListDAO allListDAO = new AllListDAO();
 	%>
     <!-- navbar-fixed-top-->
     <nav class="header-navbar navbar navbar-with-menu undefined navbar-light navbar-border navbar-brand-center">
@@ -173,6 +186,7 @@
 <% 
 SimpleDateFormat yyyyMMdd = new SimpleDateFormat("yyyy-MM-dd");
 SimpleDateFormat ddMMyyyy= new SimpleDateFormat("dd-MM-yyyy");
+Date current_date = new Date();
 
 List<LeaveBean> getLeaveByEmpId = allLMSListDAO.SPgetLeaveByEmpId(emp_id);
 	List<LeaveCOBean> getCOByEmpid = allLMSListDAO.SPgetCOByEmpId(emp_id);
@@ -209,7 +223,7 @@ List<LeaveBean> getLeaveByEmpId = allLMSListDAO.SPgetLeaveByEmpId(emp_id);
                   %>
                   	<a href="javascript:void(0)" class="list-group-item">
                       <div class="media">
-                        <div class="media-left" style="color: black;"><i class="ficon icon-paper-airplane"></i></div>
+                        <div class="media-left valign-middle" style="color: black;"><i class="ficon icon-paper-airplane"></i></div>
                         <div class="media-body">
                           
                           <% if(status.equalsIgnoreCase("pending")){%>
@@ -280,7 +294,179 @@ List<LeaveBean> getLeaveByEmpId = allLMSListDAO.SPgetLeaveByEmpId(emp_id);
                   <li class="dropdown-menu-footer"><a href="javascript:void(0)" class="dropdown-item text-muted text-xs-center">Read all messages</a></li>
                 </ul>
               </li>
-            
+              
+              <%	
+              		List<TimeSheetBean> listOftimesheet = allListDAO.SPgetRejectedTimesheet(emp_id);
+              		List<UnplanProjectBean> listOfUnplanProject = allListDAO.SPgetUnplanRejectedTimesheet(emp_id);
+              		int totalTimesheet = listOftimesheet.size() + listOfUnplanProject.size();
+              %>
+               <li class="dropdown dropdown-notification nav-item"><a href="#" data-toggle="dropdown" class="nav-link nav-link-label"><i class="icon-calendar3"></i><span class="tag tag-pill tag-default tag-info tag-default tag-up"><%=totalTimesheet %></span></a>
+                <ul class="dropdown-menu dropdown-menu-media dropdown-menu-right">
+                  <li class="dropdown-menu-header">
+                    <h6 class="dropdown-header m-0"><span class="grey darken-2">Notification</span><span class="notification-tag tag tag-default tag-info float-xs-right m-0"><%=totalTimesheet %> NEW</span></h6>
+                  </li>
+                  <li class="list-group scrollable-container">
+                  	<%
+                  		for(TimeSheetBean timeSheetBean : listOftimesheet){
+                  	%>
+                  	<a href="javascript:void(0)" class="list-group-item">
+                      <div class="media">
+                        <div class="media-left"></div>
+                        <div class="media-body">
+                          <h6 class="media-heading red darken-1">Timesheet <b> <%=timeSheetBean.getApproval_status()%></b></h6>
+                          <p class="notification-text font-small-3 text-muted"><%=ddMMyyyy.format(yyyyMMdd.parse(timeSheetBean.getDate()))%></p><small>
+                        </div>
+                      </div>
+                     </a>
+                     <%} %>
+                     
+                     <%
+                  		for(UnplanProjectBean unplanProjectBean : listOfUnplanProject){
+                  	%>
+                  	<a href="javascript:void(0)" class="list-group-item">
+                      <div class="media">
+                        <div class="media-left"></div>
+                        <div class="media-body">
+                          <h6 class="media-heading"> Project <%=unplanProjectBean.getApproval_status() %></h6>
+                          <p class="notification-text font-small-3 text-muted"><%=ddMMyyyy.format(yyyyMMdd.parse(unplanProjectBean.getDate()))%></p><small>
+                        </div>
+                      </div>
+                     </a>
+                     <%} %>
+                   </li>
+                  <li class="dropdown-menu-footer"><a href="javascript:void(0)" class="dropdown-item text-muted text-xs-center">Read all messages</a></li>
+                </ul>
+              </li>
+              
+              <%
+              		String curr_date = yyyyMMdd.format(current_date);
+              		AllListSelfServiceDAO allListSelfServiceDAO = new AllListSelfServiceDAO();
+              		List<AnnouncementBean> listOfAnnouncement = allListSelfServiceDAO.SPgetListOfAnnouncement();
+              		List<AnnouncementBean> listOfNewAnnouncment = allListSelfServiceDAO.SPgetListOfAnnouncementByDate(curr_date);
+					List<AnnouncementBean> listOfAnnouncementEndDate = allListSelfServiceDAO.SPgetListOfAnnouncementEndDate(curr_date);
+					
+					int announcement_count = 0;
+					
+					for(AnnouncementBean a : listOfAnnouncementEndDate){
+					int announcement_id = a.getAnnouncement_id();
+					boolean result1 = false;
+					List<AnnouncementCategoryBean> listOfCategory = allListSelfServiceDAO.SPgetListOfAnnouncementCategoryDetail(announcement_id);
+					for(AnnouncementCategoryBean a1 : listOfCategory){
+						String role_category_name = a1.getRoleCategoryBean().getRole_category_name();
+						int announcementId = a1.getRoleCategoryBean().getRole_category_id();
+						if(role_category_name.equalsIgnoreCase(role_authority)){
+							result1 = true;
+							List<AnnouncementCategoryBean> listOfCategoryByRole = allListSelfServiceDAO.SPgetListOfAnnouncementCategoryByRole(announcementId, role_category_name);
+							for (AnnouncementCategoryBean a2 : listOfCategoryByRole) {
+								announcement_count++;
+							}
+						}
+					}
+					
+					List<AnnouncementCompanyBean> listOfCompany  = allListSelfServiceDAO.SPgetListOfAnnouncementCompanyDetail(announcement_id);
+					if(result1 == false){
+					for(AnnouncementCompanyBean a2 : listOfCompany){
+						System.out.println("result1" + result1);
+						int companyId = a2.getCompanyListBean().getCompany_list_id();
+						int announcementId1 = a2.getAnnouncementBean().getAnnouncement_id();
+						if(companyId == company_id){
+							announcement_count++;
+						}
+					}
+					}
+					
+					List<AnnouncementDepartmentBean> listOfDepartment = allListSelfServiceDAO.SPgetListOfAnnouncementDepartmentDetail(announcement_id);
+					if(result1 == false){
+						for(AnnouncementDepartmentBean a3 : listOfDepartment){
+						int departmentId = a3.getDepartmentBean().getDepartment_id();
+						int announcementId2 = a3.getAnnouncementBean().getAnnouncement_id();
+						if(departmentId == department_id){
+							announcement_count++;
+						}
+						}
+					}
+				}
+					
+					
+              %>
+              <li class="dropdown dropdown-notification nav-item"><a href="#" data-toggle="dropdown" class="nav-link nav-link-label"><i class="icon-android-hand"></i><span class="tag tag-pill tag-default tag-info tag-default tag-up"><%=announcement_count %></span></a>
+                <ul class="dropdown-menu dropdown-menu-media dropdown-menu-right">
+                  <li class="dropdown-menu-header">
+                    <h6 class="dropdown-header m-0"><span class="grey darken-2">Notification</span><span class="notification-tag tag tag-default tag-info float-xs-right m-0"><%=announcement_count %> NEW</span></h6>
+                  </li>
+                  <li class="list-group scrollable-container">
+                  	<%
+										
+							for (AnnouncementBean a : listOfAnnouncementEndDate) {
+							int announcement_id = a.getAnnouncement_id();
+							boolean result1 = false;
+							List<AnnouncementCategoryBean> listOfCategory = allListSelfServiceDAO.SPgetListOfAnnouncementCategoryDetail(announcement_id);
+							for (AnnouncementCategoryBean a1 : listOfCategory) {
+								String role_category_name = a1.getRoleCategoryBean().getRole_category_name();
+								int announcementId = a1.getAnnouncementBean().getAnnouncement_id();
+								if (role_category_name.equalsIgnoreCase(role_authority)) {
+									result1 = true;
+								List<AnnouncementCategoryBean> listOfCategoryByRole = allListSelfServiceDAO.SPgetListOfAnnouncementCategoryByRole(announcementId, role_category_name);
+								for (AnnouncementCategoryBean a2 : listOfCategoryByRole) {
+					%>
+                  	<a href="javascript:void(0)" class="list-group-item">
+                      <div class="media">
+                        <div class="media-left"></div>
+                        <div class="media-body">
+                          <h6 class="media-heading">Broadcast For <b> <%=a2.getAnnouncementBean().getAnnouncement_title()%></b></h6>
+                          <p class="notification-text font-small-3 text-muted">By <%=a2.getAnnouncementBean().getEmployeeBean().getFirstname()+" "+a2.getAnnouncementBean().getEmployeeBean().getLastname()%></p><small>
+                        </div>
+                      </div>
+                     </a>
+                     <%
+							}
+						}
+						}
+							List<AnnouncementCompanyBean> listOfCompany  = allListSelfServiceDAO.SPgetListOfAnnouncementCompanyDetail(announcement_id);
+							if(result1 == false){
+							for(AnnouncementCompanyBean a2 : listOfCompany){
+								System.out.println("result1" + result1);
+								int companyId = a2.getCompanyListBean().getCompany_list_id();
+								int announcementId1 = a2.getAnnouncementBean().getAnnouncement_id();
+								if(companyId == company_id){
+						%>
+					 <a href="javascript:void(0)" class="list-group-item">
+                      	<div class="media">
+                        <div class="media-left"></div>
+                        <div class="media-body">
+                          <h6 class="media-heading">Broadcast For <b> <%=a2.getAnnouncementBean().getAnnouncement_title()%></b></h6>
+                          <p class="notification-text font-small-3 text-muted">By <%=a2.getAnnouncementBean().getEmployeeBean().getFirstname()+" "+a2.getAnnouncementBean().getEmployeeBean().getLastname()%></p><small>
+                        </div>
+                      	</div>
+                     </a>
+                     <%	}
+							}
+							}				
+							List<AnnouncementDepartmentBean> listOfDepartment = allListSelfServiceDAO.SPgetListOfAnnouncementDepartmentDetail(announcement_id);
+							if(result1 == false){
+							for(AnnouncementDepartmentBean a3 : listOfDepartment){
+								int departmentId = a3.getDepartmentBean().getDepartment_id();
+								int announcementId2 = a3.getAnnouncementBean().getAnnouncement_id();
+								if(departmentId == department_id){
+						%>
+					<a href="javascript:void(0)" class="list-group-item">
+                      	<div class="media">
+                        <div class="media-left"></div>
+                        <div class="media-body">
+                          <h6 class="media-heading">Broadcast For <b> <%=a3.getAnnouncementBean().getAnnouncement_title()%></b></h6>
+                          <p class="notification-text font-small-3 text-muted">By <%=a3.getAnnouncementBean().getEmployeeBean().getFirstname()+" "+a3.getAnnouncementBean().getEmployeeBean().getLastname()%></p><small>
+                        </div>
+                      	</div>
+                     </a>
+                     <%	}
+												}
+											}}
+									%>
+                   </li>
+                  <li class="dropdown-menu-footer"><a href="javascript:void(0)" class="dropdown-item text-muted text-xs-center">Read all messages</a></li>
+                </ul>
+              </li>
+              
             
               <li class="dropdown dropdown-user nav-item"><a href="#" data-toggle="dropdown" class="dropdown-toggle nav-link dropdown-user-link"><span class="avatar avatar-online"><img src="FileServlet?path=D:\hrms\upload\profilePic\<%=company_name%>\<%=user.getEmployee_code()%>.bmp" alt="avatar"><i></i></span><span class="user-name"><%=user.getFirstname()+" "+user.getLastname()%></span></a>
                 <div class="dropdown-menu dropdown-menu-right"><a href="#" class="dropdown-item"><i class="icon-head"></i> Edit Profile</a>
