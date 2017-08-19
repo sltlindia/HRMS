@@ -1,3 +1,8 @@
+<%@page import="com.hrms.selfservice.bean.AnnouncementDepartmentBean"%>
+<%@page import="com.hrms.selfservice.bean.AnnouncementCompanyBean"%>
+<%@page import="com.hrms.selfservice.bean.AnnouncementCategoryBean"%>
+<%@page import="com.hrms.selfservice.bean.AnnouncementBean"%>
+<%@page import="com.hrms.selfservice.dao.AllListSelfServiceDAO"%>
 <%@page import="com.hrms.timesheet.bean.UnplanProjectBean"%>
 <%@page import="com.hrms.timesheet.bean.TimeSheetBean"%>
 <%@page import="com.hrms.pms.dao.AllListDAO"%>
@@ -90,6 +95,9 @@
 			int manager_id = user.getManagerBean().getManager_id();
 			int emp_id = user.getEmployee_master_id();
 			int under_manager_id = Integer.parseInt(user.getUnder_manager_id());
+			
+			String role_authority = user.getRoleBean().getRole_authority();
+			int department_id = user.getDepartmentBean().getDepartment_id();
 
 			EmployeeBean employeeBean = loginDAO1.getEmailIdEmployee(id);
 			System.out.println("-----------------");
@@ -178,6 +186,7 @@
 <% 
 SimpleDateFormat yyyyMMdd = new SimpleDateFormat("yyyy-MM-dd");
 SimpleDateFormat ddMMyyyy= new SimpleDateFormat("dd-MM-yyyy");
+Date current_date = new Date();
 
 List<LeaveBean> getLeaveByEmpId = allLMSListDAO.SPgetLeaveByEmpId(emp_id);
 	List<LeaveCOBean> getCOByEmpid = allLMSListDAO.SPgetCOByEmpId(emp_id);
@@ -198,6 +207,163 @@ List<LeaveBean> getLeaveByEmpId = allLMSListDAO.SPgetLeaveByEmpId(emp_id);
               <li class="nav-item hidden-sm-down"><a href="#" class="nav-link nav-link-expand"><i class="ficon icon-expand2"></i></a></li>
             </ul>
             <ul class="nav navbar-nav float-xs-right">
+            
+            
+            <%-- <li class="dropdown dropdown-notification nav-item"><a href="#" data-toggle="dropdown" class="nav-link nav-link-label"><i class="ficon icon-paper-airplane"></i><span class="tag tag-pill tag-default tag-danger tag-default tag-up"><%=totalOfLeave_CO_OD%></span></a>
+                <ul class="dropdown-menu dropdown-menu-media dropdown-menu-right">
+                  <li class="dropdown-menu-header">
+                    <h6 class="dropdown-header m-0"><span class="grey darken-2">Notifications</span><span class="notification-tag tag tag-default tag-danger float-xs-right m-0"><%=totalOfLeave_CO_OD%> New</span></h6>
+                  </li>
+                  <li class="list-group scrollable-container">
+                  
+                  <%
+                  String color = null;
+                  for(LeaveBean leaveBean : getLeaveByEmpId){
+                  	 String status = leaveBean.getStatus();
+                	 
+                	  
+                  %>
+                  	<a href="javascript:void(0)" class="list-group-item">
+                      <div class="media">
+                        <div class="media-left valign-middle" style="color: black;"><i class="ficon icon-paper-airplane"></i></div>
+                        <div class="media-body">
+                          
+                          <% if(status.equalsIgnoreCase("pending")){%>
+                    		 <h6 class="media-heading" style="color: #3BAFDA">
+                    	  <%}else if(status.equalsIgnoreCase("rejected")){%>
+                    		  <h6 class="media-heading red darken-1" >
+                    		  <%}else if(status.equalsIgnoreCase("approved")){%>
+                    		   <h6 class="media-heading green darken-1" >
+                    	  <%} %>
+                          
+                          Leave <b><%=leaveBean.getStatus().toUpperCase()%></b> </h6>
+                          <p class="notification-text font-small-3 text-muted">Your Leave from <%=ddMMyyyy.format(yyyyMMdd.parse(leaveBean.getLeave_From()))%> to <%=ddMMyyyy.format(yyyyMMdd.parse(leaveBean.getLeave_To()))%></p>
+                        </div>
+                      </div>
+                    </a>
+                    <%} %>
+                    
+                     <%for(LeaveCOBean leaveCOBean : getCOByEmpid){
+                    	 String status = leaveCOBean.getStatus();
+                    	
+                    	 
+                     %>
+                  	<a href="javascript:void(0)" class="list-group-item">
+                      <div class="media">
+                        <div class="media-left"></div>
+                        <div class="media-body">
+                        
+                           <% if(status.equalsIgnoreCase("pending")){%>
+                    		 <h6 class="media-heading" style="color: #3BAFDA">
+                    	  <%}else if(status.equalsIgnoreCase("rejected")){%>
+                    		  <h6 class="media-heading red darken-1" >
+                    		  <%}else if(status.equalsIgnoreCase("approved")){%>
+                    		   <h6 class="media-heading green darken-1" >
+                    	  <%} %>
+                          
+                          CO <b><%=leaveCOBean.getStatus().toUpperCase()%></b></h6>
+                          <p class="notification-text font-small-3 text-muted">Your CO date is  <%=ddMMyyyy.format(yyyyMMdd.parse(leaveCOBean.getCO_date()))%></p>
+                        </div>
+                      </div>
+                    </a>
+                    <%} %>
+                    
+                    <%for(LeaveODBean leaveODBean : getODByEmpid){
+                    	String status = leaveODBean.getStatus();
+                    	 
+                    %>
+                  	<a href="javascript:void(0)" class="list-group-item">
+                      <div class="media">
+                        <div class="media-left"></div>
+                        <div class="media-body">
+                          
+                           <% if(status.equalsIgnoreCase("pending")){%>
+                    		 <h6 class="media-heading" style="color: #3BAFDA">
+                    	  <%}else if(status.equalsIgnoreCase("rejected")){%>
+                    		  <h6 class="media-heading red darken-1" >
+                    		  <%}else if(status.equalsIgnoreCase("approved")){%>
+                    		   <h6 class="media-heading green darken-1" >
+                    	  <%} %>
+                          
+                          OD <b><%=leaveODBean.getStatus().toUpperCase()%></b> </h6>
+                          <p class="notification-text font-small-3 text-muted">Your OD from <%=ddMMyyyy.format(yyyyMMdd.parse(leaveODBean.getOD_StartDate()))%> to <%=ddMMyyyy.format(yyyyMMdd.parse(leaveODBean.getOD_EndDate()))%></p>
+                        </div>
+                      </div>
+                    </a>
+                    <%} %>
+                      
+                      </li>
+                  <li class="dropdown-menu-footer"><a href="javascript:void(0)" class="dropdown-item text-muted text-xs-center">Read all notifications</a></li>
+                </ul>
+              </li>
+              
+              
+              <%	
+              		List<TimeSheetBean> listOftimesheet = allListDAO.SPgetRejectedTimesheet(emp_id);
+              		List<UnplanProjectBean> listOfUnplanProject = allListDAO.SPgetUnplanRejectedTimesheet(emp_id);
+              		int totalTimesheet = listOftimesheet.size() + listOfUnplanProject.size();
+              %>
+              <li class="dropdown dropdown-notification nav-item"><a href="#" data-toggle="dropdown" class="nav-link nav-link-label"><i class="ficon icon-calendar3"></i><span class="tag tag-pill tag-default tag-info tag-default tag-up"><%=totalTimesheet %></span></a>
+                <ul class="dropdown-menu dropdown-menu-media dropdown-menu-right">
+                  <li class="dropdown-menu-header">
+                    <h6 class="dropdown-header m-0"><span class="grey darken-2">Messages</span><span class="notification-tag tag tag-default tag-info float-xs-right m-0"><%=totalTimesheet %> New</span></h6>
+                  </li>
+                  
+                  
+                  <li class="list-group scrollable-container">
+                  	<%
+                  		for(TimeSheetBean timeSheetBean : listOftimesheet){
+                  	%>
+                  	<a href="javascript:void(0)" class="list-group-item">
+                      <div class="media">
+                        <div class="media-body">
+                          <h6 class="media-heading">Timesheet <%=timeSheetBean.getApproval_status()%></h6>
+                          <p class="notification-text font-small-3 text-muted"><%=ddMMyyyy.format(yyyyMMdd.parse(timeSheetBean.getDate()))%></p>
+                        </div>
+                      </div>
+                     </a>
+                     <%} %>
+                     
+                     <%
+                  		for(UnplanProjectBean unplanProjectBean : listOfUnplanProject){
+                  	%>
+                  	<a href="javascript:void(0)" class="list-group-item">
+                      <div class="media">
+                        <div class="media-body">
+                          <h6 class="media-heading"> Project <%=unplanProjectBean.getApproval_status() %></h6>
+                          <p class="notification-text font-small-3 text-muted"><%=ddMMyyyy.format(yyyyMMdd.parse(unplanProjectBean.getDate()))%></p>
+                        </div>
+                      </div>
+                     </a>
+                     <%} %>
+                   </li> 
+                   
+                  <li class="dropdown-menu-footer"><a href="javascript:void(0)" class="dropdown-item text-muted text-xs-center">Read all messages</a></li>
+                </ul>
+              </li>
+              
+              <li class="dropdown dropdown-notification nav-item"><a href="#" data-toggle="dropdown" class="nav-link nav-link-label"><i class="ficon icon-bell4"></i><span class="tag tag-pill tag-default tag-danger tag-default tag-up">5</span></a>
+                <ul class="dropdown-menu dropdown-menu-media dropdown-menu-right">
+                  <li class="dropdown-menu-header">
+                    <h6 class="dropdown-header m-0"><span class="grey darken-2">Notifications</span><span class="notification-tag tag tag-default tag-danger float-xs-right m-0">5 New</span></h6>
+                  </li>
+                  
+                  <li class="dropdown-menu-footer"><a href="javascript:void(0)" class="dropdown-item text-muted text-xs-center">Read all notifications</a></li>
+                </ul>
+              </li>
+              <li class="dropdown dropdown-notification nav-item"><a href="#" data-toggle="dropdown" class="nav-link nav-link-label"><i class="ficon icon-mail6"></i><span class="tag tag-pill tag-default tag-info tag-default tag-up">8</span></a>
+                <ul class="dropdown-menu dropdown-menu-media dropdown-menu-right">
+                  <li class="dropdown-menu-header">
+                    <h6 class="dropdown-header m-0"><span class="grey darken-2">Messages</span><span class="notification-tag tag tag-default tag-info float-xs-right m-0">4 New</span></h6>
+                  </li>
+                  
+                  <li class="dropdown-menu-footer"><a href="javascript:void(0)" class="dropdown-item text-muted text-xs-center">Read all messages</a></li>
+                </ul>
+              </li> --%>
+            
+            
+            
+            
               <li class="dropdown dropdown-notification nav-item"><a href="#" data-toggle="dropdown" class="nav-link nav-link-label"><i class="ficon icon-paper-airplane"></i><span class="tag tag-pill tag-default tag-info tag-default tag-up"><%=totalOfLeave_CO_OD%></span></a>
                 <ul class="dropdown-menu dropdown-menu-media dropdown-menu-right">
                   <li class="dropdown-menu-header">
@@ -291,7 +457,7 @@ List<LeaveBean> getLeaveByEmpId = allLMSListDAO.SPgetLeaveByEmpId(emp_id);
               		List<UnplanProjectBean> listOfUnplanProject = allListDAO.SPgetUnplanRejectedTimesheet(emp_id);
               		int totalTimesheet = listOftimesheet.size() + listOfUnplanProject.size();
               %>
-               <li class="dropdown dropdown-notification nav-item"><a href="#" data-toggle="dropdown" class="nav-link nav-link-label"><i class="icon-calendar3"></i><span class="tag tag-pill tag-default tag-info tag-default tag-up"><%=totalTimesheet %></span></a>
+               <li class="dropdown dropdown-notification nav-item"><a href="#" data-toggle="dropdown" class="nav-link nav-link-label"><i class="ficon icon-calendar3"></i><span class="tag tag-pill tag-default tag-info tag-default tag-up"><%=totalTimesheet %></span></a>
                 <ul class="dropdown-menu dropdown-menu-media dropdown-menu-right">
                   <li class="dropdown-menu-header">
                     <h6 class="dropdown-header m-0"><span class="grey darken-2">Notification</span><span class="notification-tag tag tag-default tag-info float-xs-right m-0"><%=totalTimesheet %> NEW</span></h6>
@@ -302,10 +468,9 @@ List<LeaveBean> getLeaveByEmpId = allLMSListDAO.SPgetLeaveByEmpId(emp_id);
                   	%>
                   	<a href="javascript:void(0)" class="list-group-item">
                       <div class="media">
-                        <div class="media-left"></div>
                         <div class="media-body">
                           <h6 class="media-heading red darken-1">Timesheet <b> <%=timeSheetBean.getApproval_status()%></b></h6>
-                          <p class="notification-text font-small-3 text-muted"><%=ddMMyyyy.format(yyyyMMdd.parse(timeSheetBean.getDate()))%></p><small>
+                          <p class="notification-text font-small-3 text-muted"><%=ddMMyyyy.format(yyyyMMdd.parse(timeSheetBean.getDate()))%></p>
                         </div>
                       </div>
                      </a>
@@ -316,15 +481,9 @@ List<LeaveBean> getLeaveByEmpId = allLMSListDAO.SPgetLeaveByEmpId(emp_id);
                   	%>
                   	<a href="javascript:void(0)" class="list-group-item">
                       <div class="media">
-                        <div class="media-left"></div>
                         <div class="media-body">
-<<<<<<< HEAD
-                          <h6 class="media-heading">Margaret Govan</h6>
-                          <p class="notification-text font-small-3 text-muted">I like your portfolio, let's start the project.</p><small>
-                            <time datetime="2015-06-11T18:29:20+08:00" class="media-meta text-muted">Today</time></small>
-=======
-                          <h6 class="media-heading"> Project <%=unplanProjectBean.getApproval_status() %></h6>
-                          <p class="notification-text font-small-3 text-muted"><%=ddMMyyyy.format(yyyyMMdd.parse(unplanProjectBean.getDate()))%></p><small>
+                          <h6 class="media-heading red darken-1"> Project <%=unplanProjectBean.getApproval_status() %></h6>
+                          <p class="notification-text font-small-3 text-muted"><%=ddMMyyyy.format(yyyyMMdd.parse(unplanProjectBean.getDate()))%></p>
                         </div>
                       </div>
                      </a>
@@ -385,7 +544,7 @@ List<LeaveBean> getLeaveByEmpId = allLMSListDAO.SPgetLeaveByEmpId(emp_id);
 					
 					
               %>
-              <li class="dropdown dropdown-notification nav-item"><a href="#" data-toggle="dropdown" class="nav-link nav-link-label"><i class="icon-android-hand"></i><span class="tag tag-pill tag-default tag-info tag-default tag-up"><%=announcement_count %></span></a>
+              <li class="dropdown dropdown-notification nav-item"><a href="#" data-toggle="dropdown" class="nav-link nav-link-label"><i class="ficon icon-android-hand"></i><span class="tag tag-pill tag-default tag-info tag-default tag-up"><%=announcement_count %></span></a>
                 <ul class="dropdown-menu dropdown-menu-media dropdown-menu-right">
                   <li class="dropdown-menu-header">
                     <h6 class="dropdown-header m-0"><span class="grey darken-2">Notification</span><span class="notification-tag tag tag-default tag-info float-xs-right m-0"><%=announcement_count %> NEW</span></h6>
@@ -410,8 +569,8 @@ List<LeaveBean> getLeaveByEmpId = allLMSListDAO.SPgetLeaveByEmpId(emp_id);
                         <div class="media-left"></div>
                         <div class="media-body">
                           <h6 class="media-heading">Broadcast For <b> <%=a2.getAnnouncementBean().getAnnouncement_title()%></b></h6>
-                          <p class="notification-text font-small-3 text-muted">By <%=a2.getAnnouncementBean().getEmployeeBean().getFirstname()+" "+a2.getAnnouncementBean().getEmployeeBean().getLastname()%></p><small>
->>>>>>> 5645cb1d5b34e123bf4bbd301ed9a18ca4dc3688
+                          <p class="notification-text font-small-3 text-muted">By <%=a2.getAnnouncementBean().getEmployeeBean().getFirstname()+" "+a2.getAnnouncementBean().getEmployeeBean().getLastname()%></p>
+
                         </div>
                       </div>
                      </a>
@@ -432,7 +591,7 @@ List<LeaveBean> getLeaveByEmpId = allLMSListDAO.SPgetLeaveByEmpId(emp_id);
                         <div class="media-left"></div>
                         <div class="media-body">
                           <h6 class="media-heading">Broadcast For <b> <%=a2.getAnnouncementBean().getAnnouncement_title()%></b></h6>
-                          <p class="notification-text font-small-3 text-muted">By <%=a2.getAnnouncementBean().getEmployeeBean().getFirstname()+" "+a2.getAnnouncementBean().getEmployeeBean().getLastname()%></p><small>
+                          <p class="notification-text font-small-3 text-muted">By <%=a2.getAnnouncementBean().getEmployeeBean().getFirstname()+" "+a2.getAnnouncementBean().getEmployeeBean().getLastname()%></p>
                         </div>
                       	</div>
                      </a>
@@ -451,7 +610,7 @@ List<LeaveBean> getLeaveByEmpId = allLMSListDAO.SPgetLeaveByEmpId(emp_id);
                         <div class="media-left"></div>
                         <div class="media-body">
                           <h6 class="media-heading">Broadcast For <b> <%=a3.getAnnouncementBean().getAnnouncement_title()%></b></h6>
-                          <p class="notification-text font-small-3 text-muted">By <%=a3.getAnnouncementBean().getEmployeeBean().getFirstname()+" "+a3.getAnnouncementBean().getEmployeeBean().getLastname()%></p><small>
+                          <p class="notification-text font-small-3 text-muted">By <%=a3.getAnnouncementBean().getEmployeeBean().getFirstname()+" "+a3.getAnnouncementBean().getEmployeeBean().getLastname()%></p>
                         </div>
                       	</div>
                      </a>
@@ -462,7 +621,7 @@ List<LeaveBean> getLeaveByEmpId = allLMSListDAO.SPgetLeaveByEmpId(emp_id);
                    </li>
                   <li class="dropdown-menu-footer"><a href="javascript:void(0)" class="dropdown-item text-muted text-xs-center">Read all messages</a></li>
                 </ul>
-              </li>
+              </li> 
               
             
               <li class="dropdown dropdown-user nav-item"><a href="#" data-toggle="dropdown" class="dropdown-toggle nav-link dropdown-user-link"><span class="avatar avatar-online"><img src="FileServlet?path=D:\hrms\upload\profilePic\<%=company_name%>\<%=user.getEmployee_code()%>.bmp" alt="avatar"><i></i></span><span class="user-name"><%=user.getFirstname()+" "+user.getLastname()%></span></a>
