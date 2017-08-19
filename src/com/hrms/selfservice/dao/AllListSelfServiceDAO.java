@@ -183,6 +183,30 @@ public class AllListSelfServiceDAO {
 		return listOfAnnouncement;
 
 	}
+	
+	
+	public List<AnnouncementBean> SPgetListOfAnnouncement() {
+		List<AnnouncementBean> listOfAnnouncement = new ArrayList<AnnouncementBean>();
+		Session session = HibernateUtil.openSession();
+		Transaction tx = null;
+		try {
+			tx = session.getTransaction();
+			tx.begin();
+			SQLQuery query = (SQLQuery) session.createSQLQuery("CALL announcementList()")
+                    .addEntity(AnnouncementBean.class);
+			listOfAnnouncement = query.list();
+			tx.commit();
+		} catch (Exception e) {
+			if (tx != null) {
+				tx.rollback();
+			}
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return listOfAnnouncement;
+
+	}
 
 	public List<AnnouncementBean> getListOfAnnouncementEndDate(String date) {
 		List<AnnouncementBean> listOfAnnouncement = new ArrayList<AnnouncementBean>();
