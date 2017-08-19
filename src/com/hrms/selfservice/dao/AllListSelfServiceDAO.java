@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Query;
+import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -25,6 +26,7 @@ import com.hrms.selfservice.bean.ProblemNatureReplyBean;
 import com.hrms.selfservice.bean.RoleCategoryBean;
 import com.hrms.selfservice.bean.SelfServiceQuerybean;
 import com.hrms.selfservice.bean.SelfServiceTypeBean;
+import com.hrms.timesheet.bean.UnplanProjectBean;
 
 public class AllListSelfServiceDAO {
 
@@ -203,6 +205,31 @@ public class AllListSelfServiceDAO {
 		return listOfAnnouncement;
 
 	}
+	
+	/*Store Procedure For Announcement End Date*/
+	public List<AnnouncementBean> SPgetListOfAnnouncementEndDate(String date) {
+		List<AnnouncementBean> listOfAnnouncement = new ArrayList<AnnouncementBean>();
+		Session session = HibernateUtil.openSession();
+		Transaction tx = null;
+		try {
+			tx = session.getTransaction();
+			tx.begin();
+			SQLQuery query = (SQLQuery) session.createSQLQuery("CALL announcementByEndDate(:date)")
+                    .addEntity(AnnouncementBean.class)
+                    .setParameter("date",date);
+			listOfAnnouncement = query.list();
+			tx.commit();
+		} catch (Exception e) {
+			if (tx != null) {
+				tx.rollback();
+			}
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return listOfAnnouncement;
+
+	}
 
 	public List<AnnouncementBean> getListOfAnnouncementEndDatePast(String date) {
 		List<AnnouncementBean> listOfAnnouncement = new ArrayList<AnnouncementBean>();
@@ -235,6 +262,31 @@ public class AllListSelfServiceDAO {
 			tx.begin();
 			listOfAnnouncement = session.createQuery("FROM AnnouncementBean where announcement_submission_date = '"
 					+ date + "' and announcement_enddate >= '" + date + "'").list();
+			tx.commit();
+		} catch (Exception e) {
+			if (tx != null) {
+				tx.rollback();
+			}
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return listOfAnnouncement;
+
+	}
+	
+	/*Store Procedure For Announcement*/
+	public List<AnnouncementBean> SPgetListOfAnnouncementByDate(String date) {
+		List<AnnouncementBean> listOfAnnouncement = new ArrayList<AnnouncementBean>();
+		Session session = HibernateUtil.openSession();
+		Transaction tx = null;
+		try {
+			tx = session.getTransaction();
+			tx.begin();
+			SQLQuery query = (SQLQuery) session.createSQLQuery("CALL newAnnouncementByDate(:date)")
+                    .addEntity(AnnouncementBean.class)
+                    .setParameter("date",date);
+			listOfAnnouncement = query.list();
 			tx.commit();
 		} catch (Exception e) {
 			if (tx != null) {
@@ -336,6 +388,32 @@ public class AllListSelfServiceDAO {
 		return listOfAnnouncement;
 
 	}
+	
+	/*Store Procedure For Announcement Category By Role*/
+	public List<AnnouncementCategoryBean> SPgetListOfAnnouncementCategoryByRole(int announcement_id,String role_category_name) {
+		List<AnnouncementCategoryBean> listOfAnnouncement = new ArrayList<AnnouncementCategoryBean>();
+		Session session = HibernateUtil.openSession();
+		Transaction tx = null;
+		try {
+			tx = session.getTransaction();
+			tx.begin();
+			SQLQuery query = (SQLQuery) session.createSQLQuery("CALL announcementCategoryByRole(:announcementId,:roleCategoryName)")
+                    .addEntity(AnnouncementCategoryBean.class)
+                    .setParameter("announcementId",announcement_id)
+                    .setParameter("roleCategoryName",role_category_name);
+			listOfAnnouncement = query.list();
+			tx.commit();
+		} catch (Exception e) {
+			if (tx != null) {
+				tx.rollback();
+			}
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return listOfAnnouncement;
+
+	}
 
 	public List<AnnouncementCategoryBean> getListOfAnnouncementCategoryDetail(int announcement_id) {
 		List<AnnouncementCategoryBean> listOfAnnouncement = new ArrayList<AnnouncementCategoryBean>();
@@ -347,6 +425,31 @@ public class AllListSelfServiceDAO {
 			listOfAnnouncement = session
 					.createQuery("FROM AnnouncementCategoryBean where announcementBean = " + announcement_id + "")
 					.list();
+			tx.commit();
+		} catch (Exception e) {
+			if (tx != null) {
+				tx.rollback();
+			}
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return listOfAnnouncement;
+
+	}
+	
+	/*Store Procedure For Announcement Category*/
+	public List<AnnouncementCategoryBean> SPgetListOfAnnouncementCategoryDetail(int announcement_id) {
+		List<AnnouncementCategoryBean> listOfAnnouncement = new ArrayList<AnnouncementCategoryBean>();
+		Session session = HibernateUtil.openSession();
+		Transaction tx = null;
+		try {
+			tx = session.getTransaction();
+			tx.begin();
+			SQLQuery query = (SQLQuery) session.createSQLQuery("CALL announcementCategoryByAnnouncementId(:announcementId)")
+                    .addEntity(AnnouncementCategoryBean.class)
+                    .setParameter("announcementId",announcement_id);
+			listOfAnnouncement = query.list();
 			tx.commit();
 		} catch (Exception e) {
 			if (tx != null) {
@@ -405,6 +508,31 @@ public class AllListSelfServiceDAO {
 		return listOfAnnouncement;
 
 	}
+	
+	/*Store Procedure For Announcement Department Detail*/
+	public List<AnnouncementDepartmentBean> SPgetListOfAnnouncementDepartmentDetail(int announcement_id) {
+		List<AnnouncementDepartmentBean> listOfAnnouncement = new ArrayList<AnnouncementDepartmentBean>();
+		Session session = HibernateUtil.openSession();
+		Transaction tx = null;
+		try {
+			tx = session.getTransaction();
+			tx.begin();
+			SQLQuery query = (SQLQuery) session.createSQLQuery("CALL announcementDepartmentDetail(:announcementId)")
+                    .addEntity(AnnouncementDepartmentBean.class)
+                    .setParameter("announcementId",announcement_id);
+			listOfAnnouncement = query.list();
+			tx.commit();
+		} catch (Exception e) {
+			if (tx != null) {
+				tx.rollback();
+			}
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return listOfAnnouncement;
+
+	}
 
 	public List<AnnouncementCompanyBean> getListOfAnnouncementCompanyDetail(int announcement_id) {
 		List<AnnouncementCompanyBean> listOfAnnouncement = new ArrayList<AnnouncementCompanyBean>();
@@ -416,6 +544,31 @@ public class AllListSelfServiceDAO {
 			listOfAnnouncement = session
 					.createQuery("FROM AnnouncementCompanyBean where announcementBean = " + announcement_id + "")
 					.list();
+			tx.commit();
+		} catch (Exception e) {
+			if (tx != null) {
+				tx.rollback();
+			}
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return listOfAnnouncement;
+
+	}
+	
+	/*Store Procedure For Announcement Company Detail*/
+	public List<AnnouncementCompanyBean> SPgetListOfAnnouncementCompanyDetail(int announcement_id) {
+		List<AnnouncementCompanyBean> listOfAnnouncement = new ArrayList<AnnouncementCompanyBean>();
+		Session session = HibernateUtil.openSession();
+		Transaction tx = null;
+		try {
+			tx = session.getTransaction();
+			tx.begin();
+			SQLQuery query = (SQLQuery) session.createSQLQuery("CALL announcementCompanyDetail(:announcementId)")
+                    .addEntity(AnnouncementCompanyBean.class)
+                    .setParameter("announcementId",announcement_id);
+			listOfAnnouncement = query.list();
 			tx.commit();
 		} catch (Exception e) {
 			if (tx != null) {
