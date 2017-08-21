@@ -5029,6 +5029,32 @@ public class AllListDAO {
 		}
 		return listOfTimeSheet;
 	}
+	
+	// Store Procedure For Pending Timesheet
+	public List<TimeSheetBean> SPgetPendingTimeSheet(int manager_id) {
+		List<TimeSheetBean> listOfTimeSheet = new ArrayList<TimeSheetBean>();
+		Session session = HibernateUtil.openSession();
+		Transaction tx = null;
+		try {
+			tx = session.getTransaction();
+			tx.begin();
+			
+			SQLQuery query = (SQLQuery) session.createSQLQuery("CALL pendingTimesheet(:managerId)")
+            .addEntity(TimeSheetBean.class)
+            .setParameter("managerId",manager_id);
+			
+			listOfTimeSheet = query.list();
+			tx.commit();
+		} catch (Exception e) {
+			if (tx != null) {
+				tx.rollback();
+			}
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return listOfTimeSheet;
+	}
 
 	public List<Object[]> pendingTimeSheetHome(int manager_id) {
 		List<Object[]> listOfTimeSheet = new ArrayList<Object[]>();
@@ -5948,6 +5974,34 @@ public class AllListDAO {
 		}
 		return listOfPendingAndUpdatedTimeSheet;
 	}
+	
+	// Store Procedure For Unplan Time sheet
+	public List<UnplanProjectBean> SPUnplanTimeSheet(int manager_id) {
+		List<UnplanProjectBean> listOfPendingAndUpdatedTimeSheet = new ArrayList<UnplanProjectBean>();
+		Session session = HibernateUtil.openSession();
+		Transaction tx = null;
+		try {
+			tx = session.getTransaction();
+			tx.begin();
+			
+			
+			
+			SQLQuery query = (SQLQuery) session.createSQLQuery("CALL unplanTimesheetByManagerId(:managerId)")
+            .addEntity(UnplanProjectBean.class)
+            .setParameter("managerId",manager_id);
+			
+			listOfPendingAndUpdatedTimeSheet = query.list();
+			tx.commit();
+		} catch (Exception e) {
+			if (tx != null) {
+				tx.rollback();
+			}
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return listOfPendingAndUpdatedTimeSheet;
+	}
 
 	public List<UnplanProjectBean> getdayUnplanTimeSheetList(int employee_master_id, String date) {
 		List<UnplanProjectBean> listOfTimeSheet = new ArrayList<UnplanProjectBean>();
@@ -6018,6 +6072,36 @@ public class AllListDAO {
 		return listOfAppraisal;
 	}
 
+	
+	//Store procedure for appraisal by manager_id and status
+	public List<AppraisalBean> SPgetAllappraisalByEmployeeIDStatus(int manager_id) {
+		List<AppraisalBean> listOfAppraisal = new ArrayList<AppraisalBean>();
+		Session session = HibernateUtil.openSession();
+		Transaction tx = null;
+		try {
+			tx = session.getTransaction();
+			tx.begin();
+			
+			
+			SQLQuery query = (SQLQuery) session.createSQLQuery("CALL appraisalByManagerIdStatus(:managerId)")
+            .addEntity(AppraisalBean.class)
+            .setParameter("managerId",manager_id);
+			
+			listOfAppraisal = query.list();
+			tx.commit();
+		} catch (Exception e) {
+			if (tx != null) {
+				tx.rollback();
+			}
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return listOfAppraisal;
+	}
+
+	
+	
 	public List<EmployeeBean> getListOfEmployeeM1() {
 		List<EmployeeBean> listOfEmployee = new ArrayList<EmployeeBean>();
 		Session session = HibernateUtil.openSession();

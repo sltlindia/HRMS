@@ -186,6 +186,33 @@ public class AllLMSListDAO {
 		}
 		return listOfLeave;
 	}
+	
+	//Store Procedure For Levae By Manager 
+	@SuppressWarnings("unchecked")
+	public List<LeaveBean> SPgetLeaveByManagerId(int manager_id) {
+
+		List<LeaveBean> listOfLeave = new ArrayList<LeaveBean>();
+		Session session = HibernateUtil.openSession();
+		Transaction tx = null;
+		try {
+			tx = session.getTransaction();
+			tx.begin();
+			
+			SQLQuery query = (SQLQuery) session.createSQLQuery("CALL leaveByManagerId(:managerId)")
+                    .addEntity(LeaveBean.class)
+                    .setParameter("managerId",manager_id);
+			listOfLeave = query.list();
+			tx.commit();
+		} catch (Exception e) {
+			if (tx != null) {
+				tx.rollback();
+			}
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return listOfLeave;
+	}
 
 	@SuppressWarnings("unchecked")
 	public List<LeaveBean> getLeaveByLeaveId(int leave_id) {
@@ -705,6 +732,35 @@ public class AllLMSListDAO {
 		}
 		return listOfLeave;
 	}
+	
+	// Store Procedure For Co By Manager coByManager
+	@SuppressWarnings("unchecked")
+	public List<LeaveCOBean> SPgetCOByManagerId(int manager_id) {
+
+		List<LeaveCOBean> listOfLeave = new ArrayList<LeaveCOBean>();
+		Session session = HibernateUtil.openSession();
+		Transaction tx = null;
+		@SuppressWarnings("unused")
+		LeaveBean leaveBean = null;
+		;
+		try {
+			tx = session.getTransaction();
+			tx.begin();
+			SQLQuery query = (SQLQuery) session.createSQLQuery("CALL coByManagerId(:managerId)")
+                    .addEntity(LeaveCOBean.class)
+                    .setParameter("managerId",manager_id);
+			listOfLeave = query.list();
+			tx.commit();
+		} catch (Exception e) {
+			if (tx != null) {
+				tx.rollback();
+			}
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return listOfLeave;
+	}
 
 	@SuppressWarnings("unchecked")
 	public List<LeaveBean> getShowViewLeaveByEmpId(int emp_id) {
@@ -940,6 +996,33 @@ public class AllLMSListDAO {
 			tx.begin();
 			Query query = session.createQuery("from LeaveODBean WHERE employeeBean.under_manager_id ='" + manager_id
 					+ "' and status = 'Pending'");
+			listOfLeave = query.list();
+			tx.commit();
+		} catch (Exception e) {
+			if (tx != null) {
+				tx.rollback();
+			}
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return listOfLeave;
+	}
+	
+	// Store Procedure For OD By Manager 
+	@SuppressWarnings("unchecked")
+	public List<LeaveODBean> SPgetODByManagerId(int manager_id) {
+
+		List<LeaveODBean> listOfLeave = new ArrayList<LeaveODBean>();
+		Session session = HibernateUtil.openSession();
+		Transaction tx = null;
+
+		try {
+			tx = session.getTransaction();
+			tx.begin();
+			SQLQuery query = (SQLQuery) session.createSQLQuery("CALL odByManagerId(:managerId)")
+                    .addEntity(LeaveODBean.class)
+                    .setParameter("managerId",manager_id);
 			listOfLeave = query.list();
 			tx.commit();
 		} catch (Exception e) {
@@ -1749,6 +1832,7 @@ public class AllLMSListDAO {
 		return listOfLeave;
 	}
 
+		
 	public List<LeaveCancelRequestBean> getLeaveForCancelByManagerId(int manager_id) {
 
 		List<LeaveCancelRequestBean> listOfLeave = new ArrayList<LeaveCancelRequestBean>();
@@ -1773,7 +1857,38 @@ public class AllLMSListDAO {
 		}
 		return listOfLeave;
 	}
+	
+	
+	//Store Procedure for cancel leave list for manager
+	public List<LeaveCancelRequestBean> SPgetLeaveForCancelByManagerId(int manager_id) {
 
+		List<LeaveCancelRequestBean> listOfLeave = new ArrayList<LeaveCancelRequestBean>();
+		Session session = HibernateUtil.openSession();
+		Transaction tx = null;
+
+		try {
+			tx = session.getTransaction();
+			tx.begin();
+			
+			
+			SQLQuery query = (SQLQuery) session.createSQLQuery("CALL leaveForCancelByManagerId(:managerId)")
+                    .addEntity(LeaveCancelRequestBean.class)
+                    .setParameter("managerId",manager_id);
+			
+			listOfLeave = query.list();
+			tx.commit();
+		} catch (Exception e) {
+			if (tx != null) {
+				tx.rollback();
+			}
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return listOfLeave;
+	}
+	
+	
 	public LeaveCancelRequestBean getCancelLeaveById(int Leave_ID) {
 		Session session = HibernateUtil.openSession();
 		Transaction tx = null;
@@ -1993,6 +2108,38 @@ public class AllLMSListDAO {
 		}
 		return listOfGatePass;
 	}
+	
+	
+	
+	//Store procedure Gate pass List
+	public List<GatePassBean> SPgetListOfPendingGatePassManagerWithOtherId(int manager_id) {
+
+		List<GatePassBean> listOfGatePass = new ArrayList<GatePassBean>();
+		Session session = HibernateUtil.openSession();
+		Transaction tx = null;
+		try {
+			tx = session.getTransaction();
+			tx.begin();
+			
+			SQLQuery query = (SQLQuery) session.createSQLQuery("CALL listOfPendingGatePassManagerWithOtherId(:managerId)")
+                    .addEntity(GatePassBean.class)
+                    .setParameter("managerId",manager_id);
+			
+			listOfGatePass = query.list();
+			tx.commit();
+		} catch (Exception e) {
+			if (tx != null) {
+				tx.rollback();
+			}
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return listOfGatePass;
+	}
+	
+	
+	
 
 	public List<GrievanceQueryBean> getListOfGrievanceQuery() {
 
@@ -2003,6 +2150,29 @@ public class AllLMSListDAO {
 			tx = session.getTransaction();
 			tx.begin();
 			Query query = session.createQuery("FROM GrievanceQueryBean where status = 'pending'");
+			listOfGrienvance = query.list();
+			tx.commit();
+		} catch (Exception e) {
+			if (tx != null) {
+				tx.rollback();
+			}
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return listOfGrienvance;
+	}
+	
+	public List<GrievanceQueryBean> SPgetListOfGrievanceQuery() {
+
+		List<GrievanceQueryBean> listOfGrienvance = new ArrayList<GrievanceQueryBean>();
+		Session session = HibernateUtil.openSession();
+		Transaction tx = null;
+		try {
+			tx = session.getTransaction();
+			tx.begin();
+			SQLQuery query = (SQLQuery) session.createSQLQuery("CALL listOfGrievanceQuery()")
+                    .addEntity(GrievanceQueryBean.class);
 			listOfGrienvance = query.list();
 			tx.commit();
 		} catch (Exception e) {
