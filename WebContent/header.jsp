@@ -108,6 +108,15 @@
 	<%
 		EmployeeBean user = (EmployeeBean) session.getAttribute("user");
 		LoginDAO loginDAO1 = new LoginDAO();
+		String company_name = null;
+		String manager_name  = null;
+		int employee_master_id = 0;
+		
+		
+		SimpleDateFormat yyyyMMdd = new SimpleDateFormat("yyyy-MM-dd");
+		SimpleDateFormat ddMMyyyy= new SimpleDateFormat("dd-MM-yyyy");
+		SimpleDateFormat ddMMMyyyy= new SimpleDateFormat("dd-MMM-yyyy");
+		Date current_date = new Date();
 
 		if (user == null) {
 			request.setAttribute("loginError", "You need to login first with your Id and Password");
@@ -118,15 +127,18 @@
 			String authority = user.getRoleBean().getRole_authority();
 			int id = user.getEmployee_master_id();
 			int manager_id = user.getManagerBean().getManager_id();
-			int emp_id = user.getEmployee_master_id();
+			employee_master_id = user.getEmployee_master_id();
 			int under_manager_id = Integer.parseInt(user.getUnder_manager_id());
+			
+			LoginDAO loginDAO = new LoginDAO();
+			
+			EmployeeBean employeeBean1 = loginDAO.getEmailId(under_manager_id);
+			manager_name = employeeBean1.getSalutation()+" "+employeeBean1.getFirstname()+" "+employeeBean1.getLastname();
 			
 			String role_authority = user.getRoleBean().getRole_authority();
 			int department_id = user.getDepartmentBean().getDepartment_id();
 
 			EmployeeBean employeeBean = loginDAO1.getEmailIdEmployee(id);
-			System.out.println("-----------------");
-			EmployeeBean employeeBean1 = loginDAO1.getEmailIdEmployeeByCallProcedure(342);   // Store Procedure Demo
 			
 			
 			
@@ -136,7 +148,7 @@
 			String date1 = dateFormat.format(date);
 
 			int company_id = user.getCompanyListBean().getCompany_list_id();
-			String company_name = null;
+			
 			if (company_id == 1) {
 				company_name = "SLTL";
 			} else if (company_id == 2) {
@@ -157,7 +169,7 @@
 			}
 
 			AllLMSListDAO allLMSListDAO = new AllLMSListDAO();
-			GatePassAuthorityBean gatePassAuthorityBean = allLMSListDAO.authorityOfGatePass(emp_id);
+			GatePassAuthorityBean gatePassAuthorityBean = allLMSListDAO.authorityOfGatePass(employee_master_id);
 			
 			AllListDAO allListDAO = new AllListDAO();
 	%>
@@ -171,13 +183,7 @@
 					class="nav-link nav-menu-main menu-toggle hidden-xs"><i
 						class="icon-menu5 font-large-1"></i></a></li>
 				<li class="nav-item">
-					<% 
-SimpleDateFormat yyyyMMdd = new SimpleDateFormat("yyyy-MM-dd");
-SimpleDateFormat ddMMyyyy= new SimpleDateFormat("dd-MM-yyyy");
-Date current_date = new Date();
-
-	
-	%>
+					
 				</li>
 				<li class="nav-item hidden-md-up float-xs-right"><a
 					data-toggle="collapse" data-target="#navbar-mobile"
@@ -202,9 +208,9 @@ Date current_date = new Date();
 				
 				<%
 				
-				List<LeaveBean> getLeaveByEmpId = allLMSListDAO.SPgetLeaveByEmpId(emp_id);
-				List<LeaveCOBean> getCOByEmpid = allLMSListDAO.SPgetCOByEmpId(emp_id);
-				List<LeaveODBean> getODByEmpid = allLMSListDAO.SPgetODByEmpId(emp_id); 
+				List<LeaveBean> getLeaveByEmpId = allLMSListDAO.SPgetLeaveByEmpId(employee_master_id);
+				List<LeaveCOBean> getCOByEmpid = allLMSListDAO.SPgetCOByEmpId(employee_master_id);
+				List<LeaveODBean> getODByEmpid = allLMSListDAO.SPgetODByEmpId(employee_master_id); 
 				
 				List<LeaveCancelRequestBean> getLeaveForCancelByManager = null;
 			 	List<LeaveBean> getLeaveByManager = null;
@@ -489,8 +495,8 @@ Date current_date = new Date();
 				
 					<%	
 					
-              		List<TimeSheetBean> listOftimesheet = allListDAO.SPgetRejectedTimesheet(emp_id);
-              		List<UnplanProjectBean> listOfUnplanProject = allListDAO.SPgetUnplanRejectedTimesheet(emp_id);
+              		List<TimeSheetBean> listOftimesheet = allListDAO.SPgetRejectedTimesheet(employee_master_id);
+              		List<UnplanProjectBean> listOfUnplanProject = allListDAO.SPgetUnplanRejectedTimesheet(employee_master_id);
               		int totalTimesheet = listOftimesheet.size() + listOfUnplanProject.size();
               		
               		List<AppraisalBean> listOfAppraisal = null;
@@ -834,8 +840,8 @@ Date current_date = new Date();
 								src="FileServlet?path=D:\hrms\upload\profilePic\<%=company_name%>\<%=user.getEmployee_code()%>.bmp"
 								alt="avatar"><i></i></span><span class="user-name"><%=user.getFirstname()+" "+user.getLastname()%></span></a>
 						<div class="dropdown-menu dropdown-menu-right">
-							<a href="#" class="dropdown-item"><i class="icon-head"></i>
-								Edit Profile</a>
+							<a href="employeeSelfUpdate.jsp" class="dropdown-item"><i class="icon-head"></i>
+								User Profile</a>
 							<div class="dropdown-divider"></div>
 							<a href="logout" class="dropdown-item"><i class="icon-power3"></i>
 								Logout</a>
@@ -1337,9 +1343,6 @@ Date current_date = new Date();
 										<li><a href="jquery-ui-navigations.html"
 											class="dropdown-item"><i class="undefined"></i>Declaration
 												Form</a></li>
-										<li><a href="jquery-ui-date-pickers.html"
-											class="dropdown-item"><i class="undefined"></i>Upload
-												Investment Proofs</a></li>
 										<li><a href="jquery-ui-autocomplete.html"
 											class="dropdown-item"><i class="undefined"></i>Declaration
 												Form List</a></li>
