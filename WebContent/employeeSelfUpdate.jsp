@@ -56,15 +56,45 @@
   calJoiningDate.setTime(yyyyMMdd.parse(user.getJoining_date()));
   calCurrDate.setTime(current_date);
   int numberOfDays = 0;
+  
+  int month_id = calJoiningDate.get(Calendar.MONTH) + 1;
+  
 while (calJoiningDate.before(calCurrDate)) {
       numberOfDays++;
       calJoiningDate.add(Calendar.DATE,1);
 }
 
+System.err.println(month_id);
+
 int year = numberOfDays / 365;
 numberOfDays = numberOfDays % 365;
-int week = numberOfDays / 7;
-numberOfDays = numberOfDays % 7;
+
+int month = 0;
+
+for(int i = month_id ;i<=12;i++){
+	
+	if(i==1 ||i==3 || i==5 ||i==7 ||i==8 ||i==10 ||i==12){
+		if(numberOfDays>31){
+			numberOfDays = numberOfDays - 31;
+			month++;
+		}
+	}
+	
+	if(i==2){
+		if(numberOfDays>28){
+			numberOfDays = numberOfDays - 28;
+			month++;	
+		}
+	}
+	
+	if(i==4 ||i==6 || i==9 ||i==11){
+		if(numberOfDays>30){
+			numberOfDays = numberOfDays - 30;
+			month++;
+		}
+	}
+}
+
 int day = numberOfDays;
 
 
@@ -137,7 +167,7 @@ int day = numberOfDays;
         <ul class="timeline">
             <li class="timeline-line"></li>
             <li class="timeline-group">
-                <a href="#" class="btn btn-primary"><i class="icon-calendar3"></i> <%=year%> year(s), <%=week%> week(s), <%=day%> Day(s)</a>
+                <a href="#" class="btn btn-primary"><i class="icon-calendar3"></i> <%=year%> year(s), <%=month%> month(s), <%=day%> Day(s)</a>
             </li>
         </ul>
         <ul class="timeline">
@@ -159,67 +189,67 @@ int day = numberOfDays;
             </div>
             <div class="card-body">
                 <div class="table-responsive">
-                    <table id="recent-orders" class="table table-hover mb-0">
+                    <table id="recent-orders" class="table table-hover mb-0"> 
                         <tbody>
                      	   <tr>
-                            			<td class="text-truncate"><p class="card-text" style="font-weight: bold;">Name</p></td>
-                            			<td class="text-truncate"> <p class="card-text"><%=user.getSalutation()+" "+user.getFirstname()+" "+user.getMiddlename()+" "+user.getLastname()%></p></td>
+                            			<td style="padding: .25rem 1rem"><p class="card-text" style="font-weight: bold;">Name</p></td>
+                            			<td style="padding: .25rem 1rem"> <p class="card-text"><%=user.getSalutation()+" "+user.getFirstname()+" "+user.getMiddlename()+" "+user.getLastname()%></p></td>
                             		</tr>
                             		
                             		<tr>
-                            			<td class="text-truncate"><p class="card-text" style="font-weight: bold;">Address</p></td>
-                            			<td class="text-truncate"> <p class="card-text"><%=user.getAdress()%></p></td>
+                            			<td style="padding: .25rem 1rem"><p class="card-text" style="font-weight: bold;">Address</p></td>
+                            			<td style="padding: .25rem 1rem"> <p class="card-text"><%=user.getAdress()%></p></td>
                             		</tr>
                             		
                             		
                             		<tr>
-                            			<td class="text-truncate"><p class="card-text" style="font-weight: bold;">Gender</p></td>
-                            			<td class="text-truncate"> <p class="card-text"><%=user.getGender()%></p></td>
+                            			<td style="padding: .25rem 1rem"><p class="card-text" style="font-weight: bold;">Gender</p></td>
+                            			<td style="padding: .25rem 1rem"> <p class="card-text"><%=user.getGender()%></p></td>
                             		</tr>
                             		
                             		<tr>
-                            			<td class="text-truncate"><p class="card-text" style="font-weight: bold;">Birthdate</p></td>
-                            			<td class="text-truncate"> <p class="card-text" ><%=ddMMMyyyy.format(yyyyMMdd.parse(user.getBirth_date()))%></p></td>
+                            			<td style="padding: .25rem 1rem"><p class="card-text" style="font-weight: bold;">Birthdate</p></td>
+                            			<td style="padding: .25rem 1rem"> <p class="card-text" ><%=ddMMMyyyy.format(yyyyMMdd.parse(user.getBirth_date()))%></p></td>
                             		</tr>
                             		
                             		<tr>
-                            			<td class="text-truncate"><p class="card-text" style="font-weight: bold;">Height</p></td>
-                            			<td class="text-truncate"> <p class="card-text" ><%=user.getHeight()%></p></td>
+                            			<td style="padding: .25rem 1rem"><p class="card-text" style="font-weight: bold;">Height</p></td>
+                            			<td style="padding: .25rem 1rem"> <p class="card-text" ><%=user.getHeight()%></p></td>
                             		</tr>
                             		
                             		<tr>
-                            			<td class="text-truncate"><p class="card-text" style="font-weight: bold;">Weight</p></td>
-                            			<td class="text-truncate"> <p class="card-text" ><%=user.getWeight()%></p></td>
+                            			<td style="padding: .25rem 1rem"><p class="card-text" style="font-weight: bold;">Weight</p></td>
+                            			<td style="padding: .25rem 1rem"> <p class="card-text" ><%=user.getWeight()%></p></td>
                             		</tr>
                             		
                             		<tr>
-                            			<td class="text-truncate"><p class="card-text" style="font-weight: bold;">Identification Marks</p></td>
-                            			<td class="text-truncate"> <p class="card-text" ><%=user.getIdentification_marks()%></p></td>
+                            			<td style="padding: .25rem 1rem"><p class="card-text" style="font-weight: bold;">Identification Marks</p></td>
+                            			<td style="padding: .25rem 1rem"> <p class="card-text" ><%=user.getIdentification_marks()%></p></td>
                             		</tr>
                             		
                             		<tr>
-                            			<td class="text-truncate"><p class="card-text" style="font-weight: bold;">Language</p></td>
-                            			<td class="text-truncate"> <p class="card-text" ><%=user.getLanguages()%></p></td>
+                            			<td style="padding: .25rem 1rem"><p class="card-text" style="font-weight: bold;">Language</p></td>
+                            			<td style="padding: .25rem 1rem"> <p class="card-text" ><%=user.getLanguages()%></p></td>
                             		</tr>
                             		
                             		<tr>
-                            			<td class="text-truncate"><p class="card-text" style="font-weight: bold;">Blood Group</p></td>
-                            			<td class="text-truncate"> <p class="card-text" ><%=user.getBlood_group()%></p></td>
+                            			<td style="padding: .25rem 1rem"><p class="card-text" style="font-weight: bold;">Blood Group</p></td>
+                            			<td style="padding: .25rem 1rem"> <p class="card-text" ><%=user.getBlood_group()%></p></td>
                             		</tr>
                             		
                             		<tr>
-                            			<td class="text-truncate"><p class="card-text" style="font-weight: bold;">Email ID</p></td>
-                            			<td class="text-truncate"> <p class="card-text" ><%=user.getPer_emailid()%></p></td>
+                            			<td style="padding: .25rem 1rem"><p class="card-text" style="font-weight: bold;">Email ID</p></td>
+                            			<td style="padding: .25rem 1rem"> <p class="card-text" ><%=user.getPer_emailid()%></p></td>
                             		</tr>
                             		
                             		<tr>
-                            			<td class="text-truncate"><p class="card-text" style="font-weight: bold;">Mobile No</p></td>
-                            			<td class="text-truncate"> <p class="card-text"><%=user.getMob_num()%></p></td>
+                            			<td style="padding: .25rem 1rem"><p class="card-text" style="font-weight: bold;">Mobile No</p></td>
+                            			<td style="padding: .25rem 1rem"> <p class="card-text"><%=user.getMob_num()%></p></td>
                             		</tr>
                             		
                             		<tr>
-                            			<td class="text-truncate"><p class="card-text" style="font-weight: bold;">Nationality</p></td>
-                            			<td class="text-truncate"> <p class="card-text"><%=user.getNationality()%></p></td>
+                            			<td style="padding: .25rem 1rem"><p class="card-text" style="font-weight: bold;">Nationality</p></td>
+                            			<td style="padding: .25rem 1rem"> <p class="card-text"><%=user.getNationality()%></p></td>
                             		</tr>
                         
                         </tbody>
@@ -249,39 +279,39 @@ int day = numberOfDays;
                     <table id="recent-orders" class="table table-hover mb-0">
                         <tbody>
                      	   <tr>
-                            			<td class="text-truncate"><p class="card-text" style="font-weight: bold;">Basic Qualification</p></td>
-                            			<td class="text-truncate"> <p class="card-text"><%=user.getBasic_qualification()%></p></td>
+                            			<td style="padding: .25rem 1rem"><p class="card-text" style="font-weight: bold;">Basic Qualification</p></td>
+                            			<td style="padding: .25rem 1rem"> <p class="card-text"><%=user.getBasic_qualification()%></p></td>
                             		</tr>
                             		
                             		<tr>
-                            			<td class="text-truncate"><p class="card-text" style="font-weight: bold;">Graduate Degree</p></td>
-                            			<td class="text-truncate"> <p class="card-text"><%=user.getGraduate_degree()%></p></td>
+                            			<td style="padding: .25rem 1rem"><p class="card-text" style="font-weight: bold;">Graduate Degree</p></td>
+                            			<td style="padding: .25rem 1rem"> <p class="card-text"><%=user.getGraduate_degree()%></p></td>
                             		</tr>
                             		
                             		
                             		<tr>
-                            			<td class="text-truncate"><p class="card-text" style="font-weight: bold;">Master Degree</p></td>
-                            			<td class="text-truncate"> <p class="card-text"><%=user.getMaster_degree()%></p></td>
+                            			<td style="padding: .25rem 1rem"><p class="card-text" style="font-weight: bold;">Master Degree</p></td>
+                            			<td style="padding: .25rem 1rem"> <p class="card-text"><%=user.getMaster_degree()%></p></td>
                             		</tr>
                             		
                             		<tr>
-                            			<td class="text-truncate"><p class="card-text" style="font-weight: bold;">Special Qualification</p></td>
-                            			<td class="text-truncate"> <p class="card-text"><%=user.getSpecial_qualification()%></p></td>
+                            			<td style="padding: .25rem 1rem"><p class="card-text" style="font-weight: bold;">Special Qualification</p></td>
+                            			<td style="padding: .25rem 1rem"> <p class="card-text"><%=user.getSpecial_qualification()%></p></td>
                             		</tr>
                             		
                             		<tr>
-                            			<td class="text-truncate"><p class="card-text" style="font-weight: bold;">ITI</p></td>
-                            			<td class="text-truncate"> <p class="card-text"><%=user.getIti_course()%></p></td>
+                            			<td style="padding: .25rem 1rem"><p class="card-text" style="font-weight: bold;">ITI</p></td>
+                            			<td style="padding: .25rem 1rem"> <p class="card-text"><%=user.getIti_course()%></p></td>
                             		</tr>
                             		
                             		<tr>
-                            			<td class="text-truncate"><p class="card-text" style="font-weight: bold;">Diploma</p></td>
-                            			<td class="text-truncate"> <p class="card-text"><%=user.getDiploma_course()%></p></td>
+                            			<td style="padding: .25rem 1rem"><p class="card-text" style="font-weight: bold;">Diploma</p></td>
+                            			<td style="padding: .25rem 1rem"> <p class="card-text"><%=user.getDiploma_course()%></p></td>
                             		</tr>
                             		
                             		<tr>
-                            			<td class="text-truncate"><p class="card-text" style="font-weight: bold;">Special Interest</p></td>
-                            			<td class="text-truncate"> <p class="card-text"><%=user.getSpecial_interest()%></p></td>
+                            			<td style="padding: .25rem 1rem"><p class="card-text" style="font-weight: bold;">Special Interest</p></td>
+                            			<td style="padding: .25rem 1rem"> <p class="card-text"><%=user.getSpecial_interest()%></p></td>
                             		</tr>
                         </tbody>
                     </table>
@@ -292,7 +322,7 @@ int day = numberOfDays;
             
             
             
-                 <li class="timeline-item mt-3" style="margin-top: -3rem!important;">
+                 <li class="timeline-item mt-3" style="margin-top: -4rem!important;">
                 <div class="timeline-badge">
                     <span class="bg-pink bg-lighten-1" data-toggle="tooltip" data-placement="left" title="Account Details"><i class="icon-inr"></i></span>
                 </div>
@@ -312,39 +342,39 @@ int day = numberOfDays;
                     <table id="recent-orders" class="table table-hover mb-0">
                         <tbody>
                      	   <tr>
-                            			<td class="text-truncate"><p class="card-text" style="font-weight: bold;">PAN Card No.</p></td>
-                            			<td class="text-truncate"> <p class="card-text"><%=user.getPan_no()%></p></td>
+                            			<td style="padding: .25rem 1rem"><p class="card-text" style="font-weight: bold;">PAN Card No.</p></td>
+                            			<td style="padding: .25rem 1rem"> <p class="card-text"><%=user.getPan_no()%></p></td>
                             		</tr>
                             		
                             		<tr>
-                            			<td class="text-truncate"><p class="card-text" style="font-weight: bold;">Adhaar Card No.</p></td>
-                            			<td class="text-truncate"> <p class="card-text"><%=user.getAdhar_no()%></p></td>
+                            			<td style="padding: .25rem 1rem"><p class="card-text" style="font-weight: bold;">Adhaar Card No.</p></td>
+                            			<td style="padding: .25rem 1rem"> <p class="card-text"><%=user.getAdhar_no()%></p></td>
                             		</tr>
                             		
                             		
                             		<tr>
-                            			<td class="text-truncate"><p class="card-text" style="font-weight: bold;">PF UAN No.</p></td>
-                            			<td class="text-truncate"> <p class="card-text"><%=user.getPf_uan_no()%></p></td>
+                            			<td style="padding: .25rem 1rem"><p class="card-text" style="font-weight: bold;">PF UAN No.</p></td>
+                            			<td style="padding: .25rem 1rem"> <p class="card-text"><%=user.getPf_uan_no()%></p></td>
                             		</tr>
                             		
                             		<tr>
-                            			<td class="text-truncate"><p class="card-text" style="font-weight: bold;">ESIC No.</p></td>
-                            			<td class="text-truncate"> <p class="card-text"><%=user.getEsic_no()%></p></td>
+                            			<td style="padding: .25rem 1rem"><p class="card-text" style="font-weight: bold;">ESIC No.</p></td>
+                            			<td style="padding: .25rem 1rem"> <p class="card-text"><%=user.getEsic_no()%></p></td>
                             		</tr>
                             		
                             		<tr>
-                            			<td class="text-truncate"><p class="card-text" style="font-weight: bold;">Bank Account No.</p></td>
-                            			<td class="text-truncate"> <p class="card-text"><%=user.getBank_acount_no()%></p></td>
+                            			<td style="padding: .25rem 1rem"><p class="card-text" style="font-weight: bold;">Bank Account No.</p></td>
+                            			<td style="padding: .25rem 1rem"> <p class="card-text"><%=user.getBank_acount_no()%></p></td>
                             		</tr>
                             		
                             		<tr>
-                            			<td class="text-truncate"><p class="card-text" style="font-weight: bold;">Bank Name	</p></td>
-                            			<td class="text-truncate"> <p class="card-text"><%=user.getBank_name()%></p></td>
+                            			<td style="padding: .25rem 1rem"><p class="card-text" style="font-weight: bold;">Bank Name	</p></td>
+                            			<td style="padding: .25rem 1rem"> <p class="card-text"><%=user.getBank_name()%></p></td>
                             		</tr>
                             		
                             		<tr>
-                            			<td class="text-truncate"><p class="card-text" style="font-weight: bold;">Grade Code</p></td>
-                            			<td class="text-truncate"> <p class="card-text"><%=user.getGrade_code()%></p></td>
+                            			<td style="padding: .25rem 1rem"><p class="card-text" style="font-weight: bold;">Grade Code</p></td>
+                            			<td style="padding: .25rem 1rem"> <p class="card-text"><%=user.getGrade_code()%></p></td>
                             		</tr>
                         </tbody>
                     </table>
@@ -354,7 +384,7 @@ int day = numberOfDays;
             </li>
             
             
-            <li class="timeline-item mt-3" style="margin-top: -15rem!important;">
+            <li class="timeline-item mt-3" style="margin-top: -11rem!important;">
                 <div class="timeline-badge">
                     <span class="bg-green bg-lighten-1" data-toggle="tooltip" data-placement="right" title="Company Details"><i class="icon-briefcase"></i></span>
                 </div>
@@ -374,54 +404,54 @@ int day = numberOfDays;
                     <table id="recent-orders" class="table table-hover mb-0">
                         <tbody>
                      	   <tr>
-                            			<td class="text-truncate"><p class="card-text" style="font-weight: bold;">Company</p></td>
-                            			<td class="text-truncate"> <p class="card-text"><%=user.getCompanyListBean().getCompany_name()%></p></td>
+                            			<td style="padding: .25rem 1rem"><p class="card-text" style="font-weight: bold;">Company</p></td>
+                            			<td style="padding: .25rem 1rem"> <p class="card-text"><%=user.getCompanyListBean().getCompany_name()%></p></td>
                             		</tr>
                             		
                             		<tr>
-                            			<td class="text-truncate"><p class="card-text" style="font-weight: bold;">Location</p></td>
-                            			<td class="text-truncate"> <p class="card-text"><%=user.getLocation()%></p></td>
+                            			<td style="padding: .25rem 1rem"><p class="card-text" style="font-weight: bold;">Location</p></td>
+                            			<td style="padding: .25rem 1rem"> <p class="card-text"><%=user.getLocation()%></p></td>
                             		</tr>
                             		
                             		
                             		<tr>
-                            			<td class="text-truncate"><p class="card-text" style="font-weight: bold;">Department</p></td>
-                            			<td class="text-truncate"> <p class="card-text"><%=user.getDepartmentBean().getDepartment_name()%></p></td>
+                            			<td style="padding: .25rem 1rem"><p class="card-text" style="font-weight: bold;">Department</p></td>
+                            			<td style="padding: .25rem 1rem"> <p class="card-text"><%=user.getDepartmentBean().getDepartment_name()%></p></td>
                             		</tr>
                             		
                             		<tr>
-                            			<td class="text-truncate"><p class="card-text" style="font-weight: bold;">Sub Department</p></td>
-                            			<td class="text-truncate"> <p class="card-text"><%=user.getSub_department()%></p></td>
+                            			<td style="padding: .25rem 1rem"><p class="card-text" style="font-weight: bold;">Sub Department</p></td>
+                            			<td style="padding: .25rem 1rem"> <p class="card-text"><%=user.getSub_department()%></p></td>
                             		</tr>
                             		
                             		<tr>
-                            			<td class="text-truncate"><p class="card-text" style="font-weight: bold;">Designation</p></td>
-                            			<td class="text-truncate"> <p class="card-text"><%=user.getRoleBean().getRole_type()%></p></td>
+                            			<td style="padding: .25rem 1rem"><p class="card-text" style="font-weight: bold;">Designation</p></td>
+                            			<td style="padding: .25rem 1rem"> <p class="card-text"><%=user.getRoleBean().getRole_type()%></p></td>
                             		</tr>
                             		
                             		<tr>
-                            			<td class="text-truncate"><p class="card-text" style="font-weight: bold;">Reporting Manager</p></td>
-                            			<td class="text-truncate"> <p class="card-text"><%=manager_name%></p></td>
+                            			<td style="padding: .25rem 1rem"><p class="card-text" style="font-weight: bold;">Reporting Manager</p></td>
+                            			<td style="padding: .25rem 1rem"> <p class="card-text"><%=manager_name%></p></td>
                             		</tr>
                             		
                             		<tr>
-                            			<td class="text-truncate"><p class="card-text" style="font-weight: bold;">Joining Date</p></td>
-                            			<td class="text-truncate"> <p class="card-text"><%=ddMMMyyyy.format(yyyyMMdd.parse(user.getJoining_date()))%></p></td>
+                            			<td style="padding: .25rem 1rem"><p class="card-text" style="font-weight: bold;">Joining Date</p></td>
+                            			<td style="padding: .25rem 1rem"> <p class="card-text"><%=ddMMMyyyy.format(yyyyMMdd.parse(user.getJoining_date()))%></p></td>
                             		</tr>
                             		
                             		<tr>
-                            			<td class="text-truncate"><p class="card-text" style="font-weight: bold;">Resource Cost</p></td>
-                            			<td class="text-truncate"> <p class="card-text"><%=user.getResource_cost()%></p></td>
+                            			<td style="padding: .25rem 1rem"><p class="card-text" style="font-weight: bold;">Resource Cost</p></td>
+                            			<td style="padding: .25rem 1rem"> <p class="card-text"><%=user.getResource_cost()%></p></td>
                             		</tr>
                             		
                             		<tr>
-                            			<td class="text-truncate"><p class="card-text" style="font-weight: bold;">Gross Salary</p></td>
-                            			<td class="text-truncate"> <p class="card-text"><%=user.getGross_salary()%></p></td>
+                            			<td style="padding: .25rem 1rem"><p class="card-text" style="font-weight: bold;">Gross Salary</p></td>
+                            			<td style="padding: .25rem 1rem"> <p class="card-text"><%=user.getGross_salary()%></p></td>
                             		</tr>
                             		
                             		<tr>
-                            			<td class="text-truncate"><p class="card-text" style="font-weight: bold;">Employee Status</p></td>
-                            			<td class="text-truncate"> <p class="card-text"><%=user.getEmployeeStatusBean().getEmployee_status_name()%></p></td>
+                            			<td style="padding: .25rem 1rem"><p class="card-text" style="font-weight: bold;">Employee Status</p></td>
+                            			<td style="padding: .25rem 1rem"> <p class="card-text"><%=user.getEmployeeStatusBean().getEmployee_status_name()%></p></td>
                             		</tr>
                         </tbody>
                     </table>
