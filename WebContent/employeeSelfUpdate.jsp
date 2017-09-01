@@ -48,7 +48,7 @@
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
     <!-- END Custom CSS-->
 </head>
-<body>
+<body style="font-family: Calibri">
 
 <%
   Calendar calJoiningDate = Calendar.getInstance();
@@ -56,6 +56,8 @@
   calJoiningDate.setTime(yyyyMMdd.parse(user.getJoining_date()));
   calCurrDate.setTime(current_date);
   int numberOfDays = 0;
+  int joiningYear = calJoiningDate.get(Calendar.YEAR);
+  int curYear = calCurrDate.get(Calendar.YEAR);
   
   int month_id = calJoiningDate.get(Calendar.MONTH) + 1;
   
@@ -64,14 +66,23 @@ while (calJoiningDate.before(calCurrDate)) {
       calJoiningDate.add(Calendar.DATE,1);
 }
 
-System.err.println(month_id);
+
+for(int i = joiningYear;i<=curYear;i++){
+	System.err.println(i);
+	 if((i % 400 == 0) || ((i % 4 == 0) && (i % 100 != 0))){
+		 numberOfDays--;
+	 }
+}
+
+System.err.println(numberOfDays);
 
 int year = numberOfDays / 365;
+
 numberOfDays = numberOfDays % 365;
 
 int month = 0;
 
-for(int i = month_id ;i<=12;i++){
+for(int i = month_id;i<=12;i++){
 	
 	if(i==1 ||i==3 || i==5 ||i==7 ||i==8 ||i==10 ||i==12){
 		if(numberOfDays>31){
@@ -94,6 +105,32 @@ for(int i = month_id ;i<=12;i++){
 		}
 	}
 }
+
+
+	for(int i = 1;i<=month_id;i++){
+	
+	if(i==1 ||i==3 || i==5 ||i==7 ||i==8 ||i==10 ||i==12){
+		if(numberOfDays>31){
+			numberOfDays = numberOfDays - 31;
+			month++;
+		}
+	}
+	
+	if(i==2){
+		if(numberOfDays>28){
+			numberOfDays = numberOfDays - 28;
+			month++;	
+		}
+	}
+	
+	if(i==4 ||i==6 || i==9 ||i==11){
+		if(numberOfDays>30){
+			numberOfDays = numberOfDays - 30;
+			month++;
+		}
+	}
+}
+
 
 int day = numberOfDays;
 
