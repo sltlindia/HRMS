@@ -259,132 +259,7 @@ int day = numberOfDays;
                 </div>
             </li>
             
-            <li class="timeline-item mt-3">
-                <div class="timeline-badge">
-                    <span class="bg-blue bg-lighten-1" data-toggle="tooltip" data-placement="left" title="Education Qualification"><i class="icon-graduation-cap"></i></span>
-                </div>
-                <div class="timeline-card card border-grey border-lighten-2">
-               <div class="card-header">
-                <h4 class="card-title" style="color: blue;">Education Qualification</h4>
-                <a class="heading-elements-toggle"><i class="icon-ellipsis font-medium-3"></i></a>
-                <div class="heading-elements">
-                    <ul class="list-inline mb-0">
-                        <li><a data-action="reload"><i class="icon-reload"></i></a></li>
-                        <li><a data-action="expand"><i class="icon-expand2"></i></a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="card-body">
-                <div class="table-responsive">
-                    <table id="recent-orders" class="table table-hover mb-0">
-                        <tbody>
-                     	   <tr>
-                            			<td style="padding: .25rem 1rem"><p class="card-text" style="font-weight: bold;">Basic Qualification</p></td>
-                            			<td style="padding: .25rem 1rem"> <p class="card-text"><%=user.getBasic_qualification()%></p></td>
-                            		</tr>
-                            		
-                            		<tr>
-                            			<td style="padding: .25rem 1rem"><p class="card-text" style="font-weight: bold;">Graduate Degree</p></td>
-                            			<td style="padding: .25rem 1rem"> <p class="card-text"><%=user.getGraduate_degree()%></p></td>
-                            		</tr>
-                            		
-                            		
-                            		<tr>
-                            			<td style="padding: .25rem 1rem"><p class="card-text" style="font-weight: bold;">Master Degree</p></td>
-                            			<td style="padding: .25rem 1rem"> <p class="card-text"><%=user.getMaster_degree()%></p></td>
-                            		</tr>
-                            		
-                            		<tr>
-                            			<td style="padding: .25rem 1rem"><p class="card-text" style="font-weight: bold;">Special Qualification</p></td>
-                            			<td style="padding: .25rem 1rem"> <p class="card-text"><%=user.getSpecial_qualification()%></p></td>
-                            		</tr>
-                            		
-                            		<tr>
-                            			<td style="padding: .25rem 1rem"><p class="card-text" style="font-weight: bold;">ITI</p></td>
-                            			<td style="padding: .25rem 1rem"> <p class="card-text"><%=user.getIti_course()%></p></td>
-                            		</tr>
-                            		
-                            		<tr>
-                            			<td style="padding: .25rem 1rem"><p class="card-text" style="font-weight: bold;">Diploma</p></td>
-                            			<td style="padding: .25rem 1rem"> <p class="card-text"><%=user.getDiploma_course()%></p></td>
-                            		</tr>
-                            		
-                            		<tr>
-                            			<td style="padding: .25rem 1rem"><p class="card-text" style="font-weight: bold;">Special Interest</p></td>
-                            			<td style="padding: .25rem 1rem"> <p class="card-text"><%=user.getSpecial_interest()%></p></td>
-                            		</tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-                </div>
-            </li>
-            
-            
-            
-                 <li class="timeline-item mt-3" style="margin-top: -4rem!important;">
-                <div class="timeline-badge">
-                    <span class="bg-pink bg-lighten-1" data-toggle="tooltip" data-placement="left" title="Account Details"><i class="icon-inr"></i></span>
-                </div>
-                <div class="timeline-card card border-grey border-lighten-2">
-                    <div class="card-header">
-                <h4 class="card-title" style="color: #FF1493;">Account Details</h4>
-                <a class="heading-elements-toggle"><i class="icon-ellipsis font-medium-3"></i></a>
-                <div class="heading-elements">
-                    <ul class="list-inline mb-0">
-                        <li><a data-action="reload"><i class="icon-reload"></i></a></li>
-                        <li><a data-action="expand"><i class="icon-expand2"></i></a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="card-body">
-                <div class="table-responsive">
-                    <table id="recent-orders" class="table table-hover mb-0">
-                        <tbody>
-                     	   <tr>
-                            			<td style="padding: .25rem 1rem"><p class="card-text" style="font-weight: bold;">PAN Card No.</p></td>
-                            			<td style="padding: .25rem 1rem"> <p class="card-text"><%=user.getPan_no()%></p></td>
-                            		</tr>
-                            		
-                            		<tr>
-                            			<td style="padding: .25rem 1rem"><p class="card-text" style="font-weight: bold;">Adhaar Card No.</p></td>
-                            			<td style="padding: .25rem 1rem"> <p class="card-text"><%=user.getAdhar_no()%></p></td>
-                            		</tr>
-                            		
-                            		
-                            		<tr>
-                            			<td style="padding: .25rem 1rem"><p class="card-text" style="font-weight: bold;">PF UAN No.</p></td>
-                            			<td style="padding: .25rem 1rem"> <p class="card-text"><%=user.getPf_uan_no()%></p></td>
-                            		</tr>
-                            		
-                            		<tr>
-                            			<td style="padding: .25rem 1rem"><p class="card-text" style="font-weight: bold;">ESIC No.</p></td>
-                            			<td style="padding: .25rem 1rem"> <p class="card-text"><%=user.getEsic_no()%></p></td>
-                            		</tr>
-                            		
-                            		<tr>
-                            			<td style="padding: .25rem 1rem"><p class="card-text" style="font-weight: bold;">Bank Account No.</p></td>
-                            			<td style="padding: .25rem 1rem"> <p class="card-text"><%=user.getBank_acount_no()%></p></td>
-                            		</tr>
-                            		
-                            		<tr>
-                            			<td style="padding: .25rem 1rem"><p class="card-text" style="font-weight: bold;">Bank Name	</p></td>
-                            			<td style="padding: .25rem 1rem"> <p class="card-text"><%=user.getBank_name()%></p></td>
-                            		</tr>
-                            		
-                            		<tr>
-                            			<td style="padding: .25rem 1rem"><p class="card-text" style="font-weight: bold;">Grade Code</p></td>
-                            			<td style="padding: .25rem 1rem"> <p class="card-text"><%=user.getGrade_code()%></p></td>
-                            		</tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-                </div>
-            </li>
-            
-            
-            <li class="timeline-item mt-3" style="margin-top: -11rem!important;">
+            <li class="timeline-item mt-3" >   <!-- style="margin-top: -11rem!important;" --> 
                 <div class="timeline-badge">
                     <span class="bg-green bg-lighten-1" data-toggle="tooltip" data-placement="right" title="Company Details"><i class="icon-briefcase"></i></span>
                 </div>
@@ -459,6 +334,130 @@ int day = numberOfDays;
             </div>
                 </div>
             </li>
+            
+            
+            <li class="timeline-item" >               <!-- style="margin-top: -2rem!important; -->
+                <div class="timeline-badge">
+                    <span class="bg-pink bg-lighten-1" data-toggle="tooltip" data-placement="left" title="Account Details"><i class="icon-inr"></i></span>
+                </div>
+                <div class="timeline-card card border-grey border-lighten-2">
+                    <div class="card-header">
+                <h4 class="card-title" style="color: #FF1493;">Account Details</h4>
+                <a class="heading-elements-toggle"><i class="icon-ellipsis font-medium-3"></i></a>
+                <div class="heading-elements">
+                    <ul class="list-inline mb-0">
+                        <li><a data-action="reload"><i class="icon-reload"></i></a></li>
+                        <li><a data-action="expand"><i class="icon-expand2"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table id="recent-orders" class="table table-hover mb-0">
+                        <tbody>
+                     	   <tr>
+                            			<td style="padding: .25rem 1rem"><p class="card-text" style="font-weight: bold;">PAN Card No.</p></td>
+                            			<td style="padding: .25rem 1rem"> <p class="card-text"><%=user.getPan_no()%></p></td>
+                            		</tr>
+                            		
+                            		<tr>
+                            			<td style="padding: .25rem 1rem"><p class="card-text" style="font-weight: bold;">Adhaar Card No.</p></td>
+                            			<td style="padding: .25rem 1rem"> <p class="card-text"><%=user.getAdhar_no()%></p></td>
+                            		</tr>
+                            		
+                            		
+                            		<tr>
+                            			<td style="padding: .25rem 1rem"><p class="card-text" style="font-weight: bold;">PF UAN No.</p></td>
+                            			<td style="padding: .25rem 1rem"> <p class="card-text"><%=user.getPf_uan_no()%></p></td>
+                            		</tr>
+                            		
+                            		<tr>
+                            			<td style="padding: .25rem 1rem"><p class="card-text" style="font-weight: bold;">ESIC No.</p></td>
+                            			<td style="padding: .25rem 1rem"> <p class="card-text"><%=user.getEsic_no()%></p></td>
+                            		</tr>
+                            		
+                            		<tr>
+                            			<td style="padding: .25rem 1rem"><p class="card-text" style="font-weight: bold;">Bank Account No.</p></td>
+                            			<td style="padding: .25rem 1rem"> <p class="card-text"><%=user.getBank_acount_no()%></p></td>
+                            		</tr>
+                            		
+                            		<tr>
+                            			<td style="padding: .25rem 1rem"><p class="card-text" style="font-weight: bold;">Bank Name	</p></td>
+                            			<td style="padding: .25rem 1rem"> <p class="card-text"><%=user.getBank_name()%></p></td>
+                            		</tr>
+                            		
+                            		<tr>
+                            			<td style="padding: .25rem 1rem"><p class="card-text" style="font-weight: bold;">Grade Code</p></td>
+                            			<td style="padding: .25rem 1rem"> <p class="card-text"><%=user.getGrade_code()%></p></td>
+                            		</tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+                </div>
+            </li>
+            
+            <li class="timeline-item" style="margin-top: -4rem!important;">
+                <div class="timeline-badge">
+                    <span class="bg-blue bg-lighten-1" data-toggle="tooltip" data-placement="left" title="Education Qualification"><i class="icon-graduation-cap"></i></span>
+                </div>
+                <div class="timeline-card card border-grey border-lighten-2">
+               <div class="card-header">
+                <h4 class="card-title" style="color: blue;">Education Qualification</h4>
+                <a class="heading-elements-toggle"><i class="icon-ellipsis font-medium-3"></i></a>
+                <div class="heading-elements">
+                    <ul class="list-inline mb-0">
+                        <li><a data-action="reload"><i class="icon-reload"></i></a></li>
+                        <li><a data-action="expand"><i class="icon-expand2"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table id="recent-orders" class="table table-hover mb-0">
+                        <tbody>
+                     	   <tr>
+                            			<td style="padding: .25rem 1rem"><p class="card-text" style="font-weight: bold;">Basic Qualification</p></td>
+                            			<td style="padding: .25rem 1rem"> <p class="card-text"><%=user.getBasic_qualification()%></p></td>
+                            		</tr>
+                            		
+                            		<tr>
+                            			<td style="padding: .25rem 1rem"><p class="card-text" style="font-weight: bold;">Graduate Degree</p></td>
+                            			<td style="padding: .25rem 1rem"> <p class="card-text"><%=user.getGraduate_degree()%></p></td>
+                            		</tr>
+                            		
+                            		
+                            		<tr>
+                            			<td style="padding: .25rem 1rem"><p class="card-text" style="font-weight: bold;">Master Degree</p></td>
+                            			<td style="padding: .25rem 1rem"> <p class="card-text"><%=user.getMaster_degree()%></p></td>
+                            		</tr>
+                            		
+                            		<tr>
+                            			<td style="padding: .25rem 1rem"><p class="card-text" style="font-weight: bold;">Special Qualification</p></td>
+                            			<td style="padding: .25rem 1rem"> <p class="card-text"><%=user.getSpecial_qualification()%></p></td>
+                            		</tr>
+                            		
+                            		<tr>
+                            			<td style="padding: .25rem 1rem"><p class="card-text" style="font-weight: bold;">ITI</p></td>
+                            			<td style="padding: .25rem 1rem"> <p class="card-text"><%=user.getIti_course()%></p></td>
+                            		</tr>
+                            		
+                            		<tr>
+                            			<td style="padding: .25rem 1rem"><p class="card-text" style="font-weight: bold;">Diploma</p></td>
+                            			<td style="padding: .25rem 1rem"> <p class="card-text"><%=user.getDiploma_course()%></p></td>
+                            		</tr>
+                            		
+                            		<tr>
+                            			<td style="padding: .25rem 1rem"><p class="card-text" style="font-weight: bold;">Special Interest</p></td>
+                            			<td style="padding: .25rem 1rem"> <p class="card-text"><%=user.getSpecial_interest()%></p></td>
+                            		</tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+                </div>
+            </li>
+            
             
               <li class="timeline-item block">
                 <div class="timeline-badge">
