@@ -10,16 +10,16 @@
 		<property name="hibernate.connection.password">chirag</property> -->
 		
 		
-		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+		<!-- <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
 		<property name="hibernate.connection.url">jdbc:mysql://192.168.182.94:3306/hrms</property>
 		<property name="hibernate.connection.username">shruti</property>
-		<property name="hibernate.connection.password">shruti</property>
+		<property name="hibernate.connection.password">shruti</property> -->
 		 
 		
-		<!-- <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
 		<property name="hibernate.connection.url">jdbc:mysql://192.168.182.58:3306/hrms</property>
 		<property name="hibernate.connection.username">hrmsserver</property>
-		<property name="hibernate.connection.password">hostserver</property> -->
+		<property name="hibernate.connection.password">hostserver</property>
 		
 	
 
