@@ -1,3 +1,6 @@
+<%@page import="org.apache.commons.io.FilenameUtils"%>
+<%@page import="com.sun.org.apache.xerces.internal.impl.xpath.regex.ParseException"%>
+<%@page import="com.hrms.selfservice.bean.SelfServiceQuerybean"%>
 <%@page import="com.hrms.pms.bean.FamilyDetailBean"%>
 <%@page import="java.util.Calendar"%>
 <%@page import="org.joda.time.DateTime"%>
@@ -134,7 +137,7 @@ for(int i = month_id;i<=12;i++){
 
 int day = numberOfDays;
 
-
+int employee_id = user.getEmployee_master_id();
 %>
 
     <div class="app-content container center-layout mt-2">
@@ -154,7 +157,7 @@ int day = numberOfDays;
     <div class="row">
         <div class="col-xs-12">
             <div class="card profile-with-cover">
-                <div class="card-img-top img-fluid bg-cover height-300" style="background: url('app-assets/images/carousel/22.jpg') 50%;"></div>
+                <div class="card-img-top img-fluid bg-cover height-300" style="background: url('app-assets/images/carousel/employee-screening.jpg');height: auto;"></div>
                 <div class="media profil-cover-details">
                     <div class="media-left pl-2 pt-2">
                         <a href="#" class="profile-image">
@@ -554,7 +557,7 @@ int day = numberOfDays;
         <ul class="timeline">
             <li class="timeline-line"></li>
             <li class="timeline-group">
-                <a href="#" class="btn btn-primary"><i class="icon-calendar3"></i> 2015</a>
+                <a href="#" class="btn btn-primary"><i class="icon-calendar3"></i> Documents</a>
             </li>
         </ul>
         <ul class="timeline">
@@ -568,129 +571,32 @@ int day = numberOfDays;
                     <div class="card-header">
                         <div class="text-xs-center">
                             <p class="mt-1"><i class="icon-image4  font-medium-4"></i></p>
-                            <h4>Media Gallery</h4>
-                            <p class="timeline-date">July 1, 2015</p>
-                            <p>Eu pid nunc urna integer, sed, cras tortor scelerisque penatibus facilisis a pulvinar, rhoncus sagittis ut nunc elit! Sociis in et?</p>
+                            <h4>Identify, Leave, Profile, Salary Documents</h4>
                         </div>
                     </div>
                     <!-- Image grid -->
                     <div class="card-body collapse in">
                         <div class="card-block my-gallery" itemscope itemtype="http://schema.org/ImageGallery">
                             <div class="row">
+                            	<%
+								AllListSelfServiceDAO allListSelfServiceDAO = new AllListSelfServiceDAO();
+								List<SelfServiceQuerybean> listOfSelfServiceQuery = null;
+							
+							
+								listOfSelfServiceQuery = allListSelfServiceDAO.SPgetListOfSelfServiceQueryByEmployeeId(employee_id);
+								for (SelfServiceQuerybean s : listOfSelfServiceQuery) {
+
+									String ext2 = FilenameUtils.getExtension(s.getAttachment());
+							%>
                                 <figure class="col-md-3 col-sm-6 col-xs-12" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
-                                    <a href="app-assets/images/gallery/1.jpg" itemprop="contentUrl" data-size="480x360">
-                                        <img class="img-thumbnail img-fluid" src="app-assets/images/gallery/1.jpg" itemprop="thumbnail" alt="Image description" />
+                                    <a href="#">
+                                        <img class="img-thumbnail img-fluid" src="FileServlet?path=D:\hrms\upload\selfService\<%=s.getAttachment() %>" itemprop="thumbnail" alt="Image description" style="height: 200px;width: 250px;" />
                                     </a>
                                 </figure>
-                                <figure class="col-md-3 col-sm-6 col-xs-12" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
-                                    <a href="app-assets/images/gallery/2.jpg" itemprop="contentUrl" data-size="480x360">
-                                        <img class="img-thumbnail img-fluid" src="app-assets/images/gallery/2.jpg" itemprop="thumbnail" alt="Image description" />
-                                    </a>
-                                </figure>
-                                <figure class="col-md-3 col-sm-6 col-xs-12" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
-                                    <a href="app-assets/images/gallery/3.jpg" itemprop="contentUrl" data-size="480x360">
-                                        <img class="img-thumbnail img-fluid" src="app-assets/images/gallery/3.jpg" itemprop="thumbnail" alt="Image description" />
-                                    </a>
-                                </figure>
-                                <figure class="col-md-3 col-sm-6 col-xs-12" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
-                                    <a href="app-assets/images/gallery/4.jpg" itemprop="contentUrl" data-size="480x360">
-                                        <img class="img-thumbnail img-fluid" src="app-assets/images/gallery/4.jpg" itemprop="thumbnail" alt="Image description" />
-                                    </a>
-                                </figure>
-                            </div>
-                            <div class="row">
-                                <figure class="col-md-3 col-sm-6 col-xs-12" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
-                                    <a href="app-assets/images/gallery/5.jpg" itemprop="contentUrl" data-size="480x360">
-                                        <img class="img-thumbnail img-fluid" src="app-assets/images/gallery/5.jpg" itemprop="thumbnail" alt="Image description" />
-                                    </a>
-                                </figure>
-                                <figure class="col-md-3 col-sm-6 col-xs-12" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
-                                    <a href="app-assets/images/gallery/6.jpg" itemprop="contentUrl" data-size="480x360">
-                                        <img class="img-thumbnail img-fluid" src="app-assets/images/gallery/6.jpg" itemprop="thumbnail" alt="Image description" />
-                                    </a>
-                                </figure>
-                                <figure class="col-md-3 col-sm-6 col-xs-12" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
-                                    <a href="app-assets/images/gallery/7.jpg" itemprop="contentUrl" data-size="480x360">
-                                        <img class="img-thumbnail img-fluid" src="app-assets/images/gallery/7.jpg" itemprop="thumbnail" alt="Image description" />
-                                    </a>
-                                </figure>
-                                <figure class="col-md-3 col-sm-6 col-xs-12" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
-                                    <a href="app-assets/images/gallery/8.jpg" itemprop="contentUrl" data-size="480x360">
-                                        <img class="img-thumbnail img-fluid" src="app-assets/images/gallery/8.jpg" itemprop="thumbnail" alt="Image description" />
-                                    </a>
-                                </figure>
-                            </div>
-                            <div class="row">
-                                <figure class="col-md-3 col-sm-6 col-xs-12" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
-                                    <a href="app-assets/images/gallery/9.jpg" itemprop="contentUrl" data-size="480x360">
-                                        <img class="img-thumbnail img-fluid" src="app-assets/images/gallery/9.jpg" itemprop="thumbnail" alt="Image description" />
-                                    </a>
-                                </figure>
-                                <figure class="col-md-3 col-sm-6 col-xs-12" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
-                                    <a href="app-assets/images/gallery/10.jpg" itemprop="contentUrl" data-size="480x360">
-                                        <img class="img-thumbnail img-fluid" src="app-assets/images/gallery/10.jpg" itemprop="thumbnail" alt="Image description" />
-                                    </a>
-                                </figure>
-                                <figure class="col-md-3 col-sm-6 col-xs-12" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
-                                    <a href="app-assets/images/gallery/11.jpg" itemprop="contentUrl" data-size="480x360">
-                                        <img class="img-thumbnail img-fluid" src="app-assets/images/gallery/11.jpg" itemprop="thumbnail" alt="Image description" />
-                                    </a>
-                                </figure>
-                                <figure class="col-md-3 col-sm-6 col-xs-12" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
-                                    <a href="app-assets/images/gallery/12.jpg" itemprop="contentUrl" data-size="480x360">
-                                        <img class="img-thumbnail img-fluid" src="app-assets/images/gallery/12.jpg" itemprop="thumbnail" alt="Image description" />
-                                    </a>
-                                </figure>
+                                <%} %>
                             </div>
                         </div>
                         <!--/ Image grid -->
-                        <!-- Root element of PhotoSwipe. Must have class pswp. -->
-                        <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
-                            <!-- Background of PhotoSwipe. 
-                     It's a separate element as animating opacity is faster than rgba(). -->
-                            <div class="pswp__bg"></div>
-                            <!-- Slides wrapper with overflow:hidden. -->
-                            <div class="pswp__scroll-wrap">
-                                <!-- Container that holds slides. 
-                        PhotoSwipe keeps only 3 of them in the DOM to save memory.
-                        Don't modify these 3 pswp__item elements, data is added later on. -->
-                                <div class="pswp__container">
-                                    <div class="pswp__item"></div>
-                                    <div class="pswp__item"></div>
-                                    <div class="pswp__item"></div>
-                                </div>
-                                <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
-                                <div class="pswp__ui pswp__ui--hidden">
-                                    <div class="pswp__top-bar">
-                                        <!--  Controls are self-explanatory. Order can be changed. -->
-                                        <div class="pswp__counter"></div>
-                                        <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
-                                        <button class="pswp__button pswp__button--share" title="Share"></button>
-                                        <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
-                                        <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
-                                        <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
-                                        <!-- element will get class pswp__preloader-active when preloader is running -->
-                                        <div class="pswp__preloader">
-                                            <div class="pswp__preloader__icn">
-                                                <div class="pswp__preloader__cut">
-                                                    <div class="pswp__preloader__donut"></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
-                                        <div class="pswp__share-tooltip"></div>
-                                    </div>
-                                    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
-                                    </button>
-                                    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
-                                    </button>
-                                    <div class="pswp__caption">
-                                        <div class="pswp__caption__center"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                     <!--/ PhotoSwipe -->
                 </div>
@@ -709,6 +615,7 @@ int day = numberOfDays;
       </div>
     </div>
     
+    <%@include file="footer.jsp"%>
     
     <script src="app-assets/vendors/js/ui/tether.min.js" type="text/javascript"></script>
     <script src="app-assets/js/core/libraries/bootstrap.min.js" type="text/javascript"></script>
@@ -725,7 +632,6 @@ int day = numberOfDays;
     <!-- BEGIN PAGE VENDOR JS-->
     <script type="text/javascript" src="app-assets/vendors/js/ui/jquery.sticky.js"></script>
     <script src="app-assets/vendors/js/forms/icheck/icheck.min.js" type="text/javascript"></script>
-    <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBDkKetQwosod2SZ7ZGCpxuJdxY3kxo5Po" type="text/javascript"></script>
     <script src="app-assets/vendors/js/charts/gmaps.min.js" type="text/javascript"></script>
     <script src="app-assets/vendors/js/gallery/masonry/masonry.pkgd.min.js" type="text/javascript"></script>
     <script src="app-assets/vendors/js/gallery/photo-swipe/photoswipe.min.js" type="text/javascript"></script>

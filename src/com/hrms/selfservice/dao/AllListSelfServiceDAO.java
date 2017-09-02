@@ -10,6 +10,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import com.hrms.incentive.bean.ProductMasterBean;
+import com.hrms.lms.bean.LeaveBean;
 import com.hrms.pms.bean.AppraisalBean;
 import com.hrms.pms.bean.EmployeeBean;
 import com.hrms.pms.util.HibernateUtil;
@@ -82,6 +83,32 @@ public class AllListSelfServiceDAO {
 	        tx = session.getTransaction();
 	        tx.begin();
 	        listOfSelfServiceQuery = session.createQuery("FROM SelfServiceQuerybean where employeeBean ='"+employee_id+"'").list();
+	        tx.commit();
+	    } catch (Exception e) {
+	        if (tx != null) {
+	            tx.rollback();
+	        }
+	        e.printStackTrace();
+	    } finally {
+	        session.close();
+	    }
+	    return listOfSelfServiceQuery;
+	    
+	}
+	
+	/* Store Procedure For List Of Self Service Query By Employee Id*/
+	public List<SelfServiceQuerybean> SPgetListOfSelfServiceQueryByEmployeeId(int employee_id){
+	    List<SelfServiceQuerybean> listOfSelfServiceQuery = new ArrayList<SelfServiceQuerybean>();
+	    Session session = HibernateUtil.openSession();
+	    Transaction tx = null;        
+	    try {
+	        tx = session.getTransaction();
+	        tx.begin();
+	        SQLQuery query = (SQLQuery) session.createSQLQuery("CALL ListOfSelfServiceQueryByEmployeeId(:empId)")
+                    .addEntity(SelfServiceQuerybean.class)
+                    .setParameter("empId",employee_id);
+			
+	        listOfSelfServiceQuery = query.list();
 	        tx.commit();
 	    } catch (Exception e) {
 	        if (tx != null) {
