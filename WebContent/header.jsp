@@ -950,8 +950,10 @@
 												Document</a></li>
 										<li><a href="employeeSelfUpdate.jsp"
 											class="dropdown-item"><i></i>Update Profile</a></li>
+										<% if(manager_id != 99){ %>
 										<li><a href="employeeList.jsp" class="dropdown-item"><i></i>View
 												Employee</a></li>
+											<%} %>
 									</ul>
 								</li>
 							</ul>
