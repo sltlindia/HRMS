@@ -82,7 +82,7 @@ public class AllListSelfServiceDAO {
 	    try {
 	        tx = session.getTransaction();
 	        tx.begin();
-	        listOfSelfServiceQuery = session.createQuery("FROM SelfServiceQuerybean where employeeBean ='"+employee_id+"'").list();
+	        listOfSelfServiceQuery = session.createQuery("FROM SelfServiceQuerybean where employeeBean ='"+employee_id+"' order by selfservice_query_id desc").list();
 	        tx.commit();
 	    } catch (Exception e) {
 	        if (tx != null) {
@@ -104,7 +104,7 @@ public class AllListSelfServiceDAO {
 	    try {
 	        tx = session.getTransaction();
 	        tx.begin();
-	        SQLQuery query = (SQLQuery) session.createSQLQuery("CALL ListOfSelfServiceQueryByEmployeeId(:empId)")
+	        SQLQuery query = (SQLQuery) session.createSQLQuery("CALL listOfSelfServiceQueryByEmployeeId(:empId)")
                     .addEntity(SelfServiceQuerybean.class)
                     .setParameter("empId",employee_id);
 			
@@ -1067,6 +1067,29 @@ public class AllListSelfServiceDAO {
 		    return listOfDown;
 		}
 		
+		public SelfServiceQuerybean getLastAddedData(int employee_master_id) {
+	        Session session = HibernateUtil.openSession();
+	        Transaction tx = null;
+	        SelfServiceQuerybean selfServiceQuerybean = null;
+	        try {
+	            tx = session.getTransaction();
+	            tx.begin();
+		        SQLQuery query = (SQLQuery) session.createSQLQuery("CALL lastAddedDocumentByEmpId(:empId)")
+	                    .addEntity(SelfServiceQuerybean.class)
+	                    .setParameter("empId",employee_master_id);
+				
+		        selfServiceQuerybean = (SelfServiceQuerybean) query.uniqueResult();
+	            tx.commit();
+	        } catch (Exception e) {
+	            if (tx != null) {
+	                tx.rollback();
+	            }
+	            e.printStackTrace();
+	        } finally {
+	            session.close();
+	        }
+	        return selfServiceQuerybean;
+	    }
 		
 		
 		

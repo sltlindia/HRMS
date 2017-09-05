@@ -13,13 +13,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Employee Self Update</title>
-<%@include file="header.jsp"%>
-<link rel="apple-touch-icon" sizes="60x60" href="app-assets/images/ico/apple-icon-60.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="app-assets/images/ico/apple-icon-76.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="app-assets/images/ico/apple-icon-120.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="app-assets/images/ico/apple-icon-152.png">
-    <link rel="shortcut icon" type="image/x-icon" href="https://pixinvent.com/bootstrap-admin-template/robust/app-assets/images/ico/favicon.ico">
-    <link rel="shortcut icon" type="image/png" href="app-assets/images/ico/favicon-32.png">
+	<link rel="shortcut icon" sizes="152x152" href="app-assets/images/ico/titleIcon.png">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-touch-fullscreen" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
@@ -50,6 +44,14 @@
     <!-- BEGIN Custom CSS-->
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
     <!-- END Custom CSS-->
+    <style type="text/css">
+    	@media screen and (max-width: 768px) {
+		  .icon-plus2 { 
+		    font-size: 18px; // or whatever size you want 
+		  }
+		}
+    </style>
+    <%@include file="header.jsp"%>
 </head>
 <body style="font-family: Calibri">
 
@@ -572,6 +574,12 @@ int employee_id = user.getEmployee_master_id();
                         <div class="text-xs-center">
                             <p class="mt-1"><i class="icon-image4  font-medium-4"></i></p>
                             <h4>Identify, Leave, Profile, Salary Documents</h4>
+                            
+                             <div align="right">
+                             <a href="selfService.jsp">
+                                   <i class="icon-square-plus" style="font-size: 25px;" title="Upload Document"></i>
+                             </a>
+                             </div>
                         </div>
                     </div>
                     <!-- Image grid -->
@@ -586,17 +594,66 @@ int employee_id = user.getEmployee_master_id();
 								listOfSelfServiceQuery = allListSelfServiceDAO.SPgetListOfSelfServiceQueryByEmployeeId(employee_id);
 								for (SelfServiceQuerybean s : listOfSelfServiceQuery) {
 
-									String ext2 = FilenameUtils.getExtension(s.getAttachment());
 							%>
-                                <figure class="col-md-3 col-sm-6 col-xs-12" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
-                                    <a href="#">
-                                        <img class="img-thumbnail img-fluid" src="FileServlet?path=D:\hrms\upload\selfService\<%=s.getAttachment() %>" itemprop="thumbnail" alt="Image description" style="height: 200px;width: 250px;" />
+                                <figure class="col-md-2 col-sm-3 col-xs-6" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
+                                    <a href="FileServlet?path=D:\hrms\upload\selfService\<%=s.getAttachment() %>" itemprop="contentUrl" data-size="480x360">
+                                        <img class="img-thumbnail img-fluid" src="FileServlet?path=D:\hrms\upload\selfService\<%=s.getAttachment() %>" itemprop="thumbnail" alt="Image description" style="height: 120px;width: 150px;" />
                                     </a>
                                 </figure>
                                 <%} %>
+                                
+                                
+                                
                             </div>
                         </div>
-                        <!--/ Image grid -->
+                         <!--/ Image grid -->
+                        <!-- Root element of PhotoSwipe. Must have class pswp. -->
+                        <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+                            <!-- Background of PhotoSwipe. 
+                     It's a separate element as animating opacity is faster than rgba(). -->
+                            <div class="pswp__bg"></div>
+                            <!-- Slides wrapper with overflow:hidden. -->
+                            <div class="pswp__scroll-wrap">
+                                <!-- Container that holds slides. 
+                        PhotoSwipe keeps only 3 of them in the DOM to save memory.
+                        Don't modify these 3 pswp__item elements, data is added later on. -->
+                                <div class="pswp__container">
+                                    <div class="pswp__item"></div>
+                                    <div class="pswp__item"></div>
+                                    <div class="pswp__item"></div>
+                                </div>
+                                <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+                                <div class="pswp__ui pswp__ui--hidden">
+                                    <div class="pswp__top-bar">
+                                        <!--  Controls are self-explanatory. Order can be changed. -->
+                                        <div class="pswp__counter"></div>
+                                        <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                                        <button class="pswp__button pswp__button--share" title="Share"></button>
+                                        <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                                        <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                                        <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                                        <!-- element will get class pswp__preloader-active when preloader is running -->
+                                        <div class="pswp__preloader">
+                                            <div class="pswp__preloader__icn">
+                                                <div class="pswp__preloader__cut">
+                                                    <div class="pswp__preloader__donut"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                                        <div class="pswp__share-tooltip"></div>
+                                    </div>
+                                    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+                                    </button>
+                                    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+                                    </button>
+                                    <div class="pswp__caption">
+                                        <div class="pswp__caption__center"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <!--/ PhotoSwipe -->
                 </div>
@@ -617,6 +674,7 @@ int employee_id = user.getEmployee_master_id();
     
     <%@include file="footer.jsp"%>
     
+    <script src="app-assets/js/core/libraries/jquery.min.js" type="text/javascript"></script>
     <script src="app-assets/vendors/js/ui/tether.min.js" type="text/javascript"></script>
     <script src="app-assets/js/core/libraries/bootstrap.min.js" type="text/javascript"></script>
     <script src="app-assets/vendors/js/ui/perfect-scrollbar.jquery.min.js" type="text/javascript"></script>
@@ -632,22 +690,18 @@ int employee_id = user.getEmployee_master_id();
     <!-- BEGIN PAGE VENDOR JS-->
     <script type="text/javascript" src="app-assets/vendors/js/ui/jquery.sticky.js"></script>
     <script src="app-assets/vendors/js/forms/icheck/icheck.min.js" type="text/javascript"></script>
-    <script src="app-assets/vendors/js/charts/gmaps.min.js" type="text/javascript"></script>
+    <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBDkKetQwosod2SZ7ZGCpxuJdxY3kxo5Po" type="text/javascript"></script>
     <script src="app-assets/vendors/js/gallery/masonry/masonry.pkgd.min.js" type="text/javascript"></script>
     <script src="app-assets/vendors/js/gallery/photo-swipe/photoswipe.min.js" type="text/javascript"></script>
     <script src="app-assets/vendors/js/gallery/photo-swipe/photoswipe-ui-default.min.js" type="text/javascript"></script>
-    <script src="app-assets/vendors/js/charts/echarts/echarts.js" type="text/javascript"></script>
     <!-- END PAGE VENDOR JS-->
     <!-- BEGIN ROBUST JS-->
     <!-- build:js app-assets/js/app.min.js-->
     <script src="app-assets/js/core/app-menu.min.js" type="text/javascript"></script>
-    <script src="app-assets/js/core/app.min.js" type="text/javascript"></script>
     <script src="app-assets/js/scripts/ui/fullscreenSearch.min.js" type="text/javascript"></script>
     <!-- /build-->
     <!-- END ROBUST JS-->
     <!-- BEGIN PAGE LEVEL JS-->
-    <script src="app-assets/js/scripts/charts/echarts/bar-column/stacked-column.min.js" type="text/javascript"></script>
-    <script src="app-assets/js/scripts/charts/echarts/radar-chord/non-ribbon-chord.min.js" type="text/javascript"></script>
     <script src="app-assets/js/scripts/gallery/photo-swipe/photoswipe-script.min.js" type="text/javascript"></script>
     <script src="app-assets/js/scripts/pages/timeline.min.js" type="text/javascript"></script>
     <!-- END PAGE LEVEL JS-->

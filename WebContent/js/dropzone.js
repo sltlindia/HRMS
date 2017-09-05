@@ -142,7 +142,7 @@
       acceptedMimeTypes: null,
       autoProcessQueue: true,
       autoQueue: true,
-      addRemoveLinks: true,
+      addRemoveLinks: false,
       previewsContainer: null,
       hiddenInputContainer: "body",
       capture: null,
@@ -404,6 +404,21 @@
       sending: noop,
       sendingmultiple: noop,
       success: function(file) {
+    	  alert("Document Uploaded Successfully!!!");
+    	  $.ajax({
+  	        type: "GET",
+  	        url: "documentDataList",
+  	        success: function(data){
+  	        	var json = JSON.parse(data);
+  	        	var html = " <tr><td style=\"width: 10px; height: 10px;\">"+json.date_of_submission+"</td>" +
+								"<td>"+json.description+"</td>"+
+								"<td><a href=\"#\"><img class=\"img-thumbnail img-fluid\" src=\"FileServlet?path=D:\\hrms\\upload\\selfService\\"+json.attachment+"\" itemprop=\"thumbnail\" alt=\"Image description\" style=\"height: 30px;width: 30px;\" /></a></td></tr>";
+  	        	
+  	        	$("#example").prepend(html);
+  	        	
+  	        }
+  	    })
+    	  
         if (file.previewElement) {
           return file.previewElement.classList.add("dz-success");
         }
