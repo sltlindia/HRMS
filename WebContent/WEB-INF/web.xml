@@ -3949,4 +3949,14 @@
     <servlet-name>KaizenStatusChangeServlet</servlet-name>
     <url-pattern>/kaizenStatusChange</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DocumentDataListServlet</display-name>
+    <servlet-name>DocumentDataListServlet</servlet-name>
+    <servlet-class>com.hrms.selfservice.controller.DocumentDataListServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DocumentDataListServlet</servlet-name>
+    <url-pattern>/documentDataList</url-pattern>
+  </servlet-mapping>
 </web-app>
