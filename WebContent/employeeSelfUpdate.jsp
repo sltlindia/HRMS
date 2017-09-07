@@ -77,7 +77,6 @@ for(int i = joiningYear;i<=curYear;i++){
 	 }
 }
 
-System.err.println(numberOfDays);
 
 int year = numberOfDays / 365;
 
@@ -617,34 +616,7 @@ int employee_id = user.getEmployee_master_id();
     
     <%@include file="footer.jsp"%>
     
-    <script src="app-assets/vendors/js/ui/tether.min.js" type="text/javascript"></script>
-    <script src="app-assets/js/core/libraries/bootstrap.min.js" type="text/javascript"></script>
-    <script src="app-assets/vendors/js/ui/perfect-scrollbar.jquery.min.js" type="text/javascript"></script>
-    <script src="app-assets/vendors/js/ui/unison.min.js" type="text/javascript"></script>
-    <script src="app-assets/vendors/js/ui/blockUI.min.js" type="text/javascript"></script>
-    <script src="app-assets/vendors/js/ui/jquery.matchHeight-min.js" type="text/javascript"></script>
-    <script src="app-assets/vendors/js/ui/jquery-sliding-menu.js" type="text/javascript"></script>
-    <script src="app-assets/vendors/js/sliders/slick/slick.min.js" type="text/javascript"></script>
-    <script src="app-assets/vendors/js/ui/screenfull.min.js" type="text/javascript"></script>
-    <script src="app-assets/vendors/js/extensions/pace.min.js" type="text/javascript"></script>
-    <!-- /build-->
-    <!-- BEGIN VENDOR JS-->
-    <!-- BEGIN PAGE VENDOR JS-->
-    <script type="text/javascript" src="app-assets/vendors/js/ui/jquery.sticky.js"></script>
-    <script src="app-assets/vendors/js/forms/icheck/icheck.min.js" type="text/javascript"></script>
-    <script src="app-assets/vendors/js/charts/gmaps.min.js" type="text/javascript"></script>
-    <script src="app-assets/vendors/js/gallery/masonry/masonry.pkgd.min.js" type="text/javascript"></script>
-    <script src="app-assets/vendors/js/gallery/photo-swipe/photoswipe.min.js" type="text/javascript"></script>
-    <script src="app-assets/vendors/js/gallery/photo-swipe/photoswipe-ui-default.min.js" type="text/javascript"></script>
-    <script src="app-assets/vendors/js/charts/echarts/echarts.js" type="text/javascript"></script>
-    <!-- END PAGE VENDOR JS-->
-    <!-- BEGIN ROBUST JS-->
-    <!-- build:js app-assets/js/app.min.js-->
-    <script src="app-assets/js/core/app-menu.min.js" type="text/javascript"></script>
-    <script src="app-assets/js/core/app.min.js" type="text/javascript"></script>
-    <script src="app-assets/js/scripts/ui/fullscreenSearch.min.js" type="text/javascript"></script>
-    <!-- /build-->
-    <!-- END ROBUST JS-->
+    
     <!-- BEGIN PAGE LEVEL JS-->
     <script src="app-assets/js/scripts/charts/echarts/bar-column/stacked-column.min.js" type="text/javascript"></script>
     <script src="app-assets/js/scripts/charts/echarts/radar-chord/non-ribbon-chord.min.js" type="text/javascript"></script>
