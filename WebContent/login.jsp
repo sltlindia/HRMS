@@ -167,7 +167,7 @@
                 <p class="card-subtitle line-on-side text-muted text-xs-center font-small-3 mx-2 my-1"><span>Using Account Details</span></p>
                 <div class="card-block">
                     <form class="form-horizontal" action="login" method="post">
-                         <fieldset class="form-group">
+                         <fieldset class="form-group position-relative has-icon-left">
                          
                          							<select class="select2-theme form-control" id="select2-theme" name="companyId" required>
 												<%
