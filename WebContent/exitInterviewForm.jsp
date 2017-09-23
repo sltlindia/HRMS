@@ -25,8 +25,9 @@
     <link rel="stylesheet" type="text/css" href="app-assets/fonts/flag-icon-css/css/flag-icon.min.css">
     <link rel="stylesheet" type="text/css" href="app-assets/vendors/css/sliders/slick/slick.css">
     <link rel="stylesheet" type="text/css" href="app-assets/vendors/css/extensions/pace.css">
-    <link rel="stylesheet" type="text/css" href="app-assets/vendors/css/forms/icheck/icheck.css">
-    <link rel="stylesheet" type="text/css" href="app-assets/vendors/css/forms/icheck/custom.css">
+    <link rel="stylesheet" type="text/css" href="app-assets/vendors/css/pickers/daterange/daterangepicker.css">
+    <link rel="stylesheet" type="text/css" href="app-assets/vendors/css/pickers/datetime/bootstrap-datetimepicker.css">
+    <link rel="stylesheet" type="text/css" href="app-assets/vendors/css/pickers/pickadate/pickadate.css">
     <!-- END VENDOR CSS-->
     <!-- BEGIN ROBUST CSS-->
     <link rel="stylesheet" type="text/css" href="app-assets/css/bootstrap-extended.min.css">
@@ -37,29 +38,12 @@
     <!-- BEGIN Page Level CSS-->
     <link rel="stylesheet" type="text/css" href="app-assets/css/core/menu/menu-types/horizontal-menu.min.css">
     <link rel="stylesheet" type="text/css" href="app-assets/css/core/menu/menu-types/vertical-overlay-menu.min.css">
-    <link rel="stylesheet" type="text/css" href="app-assets/css/pages/users.min.css">
-    <link rel="stylesheet" type="text/css" href="app-assets/css/pages/timeline.min.css">
+    <link rel="stylesheet" type="text/css" href="app-assets/css/plugins/pickers/daterange/daterange.min.css">
     <!-- END Page Level CSS-->
     <!-- BEGIN Custom CSS-->
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-    <style type="text/css">
-    .form-control {
-	    padding: .5rem .75rem;
-	    font-size: 1rem;
-	    line-height: 1.25;
-	    color: #55595C;
-	    border: 1px solid #D4D4D4;
-	    background-color: #FFF;
-	    background-image: none;
-	    -webkit-background-clip: padding-box;
-	    background-clip: padding-box;
-	    border-radius: .18rem;
-	    -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
-	    -moz-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
-	    -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
-	    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
-	}
-	</style>
+    <!-- END Custom CSS-->
+    
     <!-- END Custom CSS-->
     <%@include file="header.jsp"%>
   </head>
@@ -87,10 +71,10 @@
 									<div class="form-body">
 										
 										<div class="row">
-											<div class="col-md-10 col-sm-10 col-xs-6">
+											<div class="col-md-9 col-sm-6 col-xs-6">
 												<h3 class="page-header" align="Center" style="margin-top: 0px;">Exit Interview Form<br> F-HRD-19</h3>
 											</div>
-											<div class="col-md-2 col-sm-2 col-xs-6">
+											<div class="col-md-3 col-sm-6 col-xs-6">
 												<%
 												int company_id = user.getCompanyListBean().getCompany_list_id();
 												if (company_id == 1) {%>
@@ -175,7 +159,15 @@
 					                        	<label>6) Termination Date : </label>
 					                        </div>
 					                       <div class="form-group col-md-4 col-xs-6">
-					                            <input type="date" class="form-control" id="termination_date" name="termination_date">
+					                            <div class="form-group">
+									<div class="input-group">
+										<span class="input-group-addon">
+											<span class="icon-calendar5"></span>
+										</span>
+										<input type='text' name="termination_date" class="form-control pickadate" placeholder="Select Date" />
+										<input type="hidden" name="terminate">
+									</div>
+								</div>
 					                       </div>
 		                      		</div>
 		                      		<hr>
@@ -205,7 +197,7 @@
 										<div class="row">
 											<div class="form-group col-md-12 col-xs-12">
 		 									 <div class="table-responsive">
-							                    <table class="table table-hover table-bordered">
+							                    <table class="table table-bordered">
 							                        <thead>
 							                           <tr>
 					                                    	<th>Sr No.</th>
@@ -251,7 +243,7 @@
 													</div>
 														<br>
 													<div class="form-group col-md-12 col-xs-12">
-													<center><input type="submit" class="btn btn-success btn-min-width mr-1 mb-1" id="subm"  name="submit" value="SAVE"></center>
+													<center><input type="submit" class="btn btn-success btn-min-width mr-1 mb-1" id="subm"  name="submit" value="SAVE" onclick="insertData();"></center>
 													</div>
 												</div>
 												</form>
@@ -267,6 +259,9 @@
 
 	<%@include file="footer.jsp"%>
 
+    <!-- BEGIN VENDOR JS-->
+    <!-- build:js app-assets/js/vendors.min.js-->
+    <script src="app-assets/js/core/libraries/jquery.min.js" type="text/javascript"></script>
     <script src="app-assets/vendors/js/ui/tether.min.js" type="text/javascript"></script>
     <script src="app-assets/js/core/libraries/bootstrap.min.js" type="text/javascript"></script>
     <script src="app-assets/vendors/js/ui/perfect-scrollbar.jquery.min.js" type="text/javascript"></script>
@@ -281,17 +276,24 @@
     <!-- BEGIN VENDOR JS-->
     <!-- BEGIN PAGE VENDOR JS-->
     <script type="text/javascript" src="app-assets/vendors/js/ui/jquery.sticky.js"></script>
-    <script src="app-assets/vendors/js/forms/icheck/icheck.min.js" type="text/javascript"></script>
-    <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBDkKetQwosod2SZ7ZGCpxuJdxY3kxo5Po" type="text/javascript"></script>
-    <script src="app-assets/vendors/js/gallery/masonry/masonry.pkgd.min.js" type="text/javascript"></script>
+    <script src="app-assets/vendors/js/pickers/dateTime/moment-with-locales.min.js" type="text/javascript"></script>
+    <script src="app-assets/vendors/js/pickers/dateTime/bootstrap-datetimepicker.min.js" type="text/javascript"></script>
+    <script src="app-assets/vendors/js/pickers/pickadate/picker.js" type="text/javascript"></script>
+    <script src="app-assets/vendors/js/pickers/pickadate/picker.date.js" type="text/javascript"></script>
+    <script src="app-assets/vendors/js/pickers/pickadate/picker.time.js" type="text/javascript"></script>
+    <script src="app-assets/vendors/js/pickers/pickadate/legacy.js" type="text/javascript"></script>
+    <script src="app-assets/vendors/js/pickers/daterange/daterangepicker.js" type="text/javascript"></script>
     <!-- END PAGE VENDOR JS-->
     <!-- BEGIN ROBUST JS-->
     <!-- build:js app-assets/js/app.min.js-->
     <script src="app-assets/js/core/app-menu.min.js" type="text/javascript"></script>
+    <script src="app-assets/js/core/app.min.js" type="text/javascript"></script>
+    <script src="app-assets/js/scripts/ui/fullscreenSearch.min.js" type="text/javascript"></script>
     <!-- /build-->
     <!-- END ROBUST JS-->
     <!-- BEGIN PAGE LEVEL JS-->
-    <script src="app-assets/js/scripts/pages/timeline.min.js" type="text/javascript"></script>
+    <script src="app-assets/js/scripts/pickers/dateTime/picker-date-time.min.js" type="text/javascript"></script>
+    
  <!-- BEGIN VENDOR JS-->
     <!-- BEGIN PAGE VENDOR JS-->
     <!-- END PAGE LEVEL JS-->
@@ -305,6 +307,8 @@
 	  ga('send', 'pageview');
 
 	</script>
+	
+	
 
 </body>
 </html>

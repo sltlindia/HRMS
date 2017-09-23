@@ -62,7 +62,7 @@ public class ExitInterviewFormInsertServlet extends HttpServlet {
 				String exit_attribute_name = null;
 				String score = null;
 				String comments = "null";
-				SimpleDateFormat formater = new SimpleDateFormat("dd-MM-yyyy");
+				SimpleDateFormat formater = new SimpleDateFormat("dd MMMM,YYYY");
 				SimpleDateFormat formater1 = new SimpleDateFormat("yyyy-MM-dd");
 				
 				

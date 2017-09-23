@@ -514,6 +514,7 @@ int employee_id = user.getEmployee_master_id();
                     <div class="card-body collapse in">
                         <div class="card-block">
                             <div class="chart-container">
+                            <div class="table-responsive">
                               <table class="table table-bordered" id="mtable">
 											<thead>
 												<tr>
@@ -546,6 +547,7 @@ int employee_id = user.getEmployee_master_id();
 											<%} %>
 											</tbody>
 										</table>
+									</div>	
                             </div>
                         </div>
                     </div>

@@ -227,7 +227,8 @@ public class LeaveCoServlet extends HttpServlet {
 										System.out.println("CO Insert Successfully");
 										request.setAttribute("openStatus", "co");
 										request.setAttribute("success", "CO Applied Successfully");
-										request.getRequestDispatcher("leavesuccess.jsp").forward(request, response);
+										response.sendRedirect("leavesuccess.jsp");
+										//request.getRequestDispatcher("leavesuccess.jsp").forward(request, response);
 									}
 								}	
 							}

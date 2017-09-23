@@ -213,7 +213,7 @@ SimpleDateFormat AppDateFormat = new SimpleDateFormat("dd-MM-yyyy");
 												<td><%=employeeBean.getManagerBean().getManager_name()%></td>
 												<td><%=jd1 %></td>
 												<td><%=td1 %></td>
-												<td><a href="exitInterviewHRComment.jsp?exit_employee_id=<%=e.getExit_interview_employee_id()%>&action=reviewed"><i class="glyphicon glyphicon-eye-open"></i></a></td>
+												<td><a href="exitInterviewHRComment.jsp?exit_employee_id=<%=e.getExit_interview_employee_id()%>&action=reviewed"><button class="btn btn-default btn-xs"><i class="icon icon-eye4"></i> View</button></a></td>
 											</tr>
 											<%} %>
 											</tbody>
@@ -261,6 +261,7 @@ SimpleDateFormat AppDateFormat = new SimpleDateFormat("dd-MM-yyyy");
     <!-- BEGIN ROBUST JS-->
     <!-- build:js app-assets/js/app.min.js-->
     <script src="app-assets/js/core/app-menu.min.js" type="text/javascript"></script>
+    <script src="app-assets/js/core/app.min.js" type="text/javascript"></script>
     <script src="app-assets/js/scripts/ui/fullscreenSearch.min.js" type="text/javascript"></script>
     <!-- /build-->
     <!-- END ROBUST JS-->
@@ -277,6 +278,13 @@ SimpleDateFormat AppDateFormat = new SimpleDateFormat("dd-MM-yyyy");
     <!-- BEGIN PAGE LEVEL JS-->
     <script src="app-assets/js/scripts/tables/datatables/datatable-basic.min.js" type="text/javascript"></script>
     <!-- END PAGE LEVEL JS-->
+    
+    
+     
+  
+   
+    <!-- BEGIN PAGE LEVEL JS-->
+    <script src="app-assets/js/scripts/pickers/dateTime/picker-date-time.min.js" type="text/javascript"></script>
   	<script>
 	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),

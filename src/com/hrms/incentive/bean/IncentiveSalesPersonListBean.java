@@ -18,6 +18,10 @@ public class IncentiveSalesPersonListBean implements Serializable{
 	private double slab_value;
 	private double incentive_amount;
 	private String designation;
+	private Double eligible_incentive_percentage;
+	private String incentive_status;
+	private String paid_date;
+	private String release_date;
 	
 	private SalespersonBean salespersonBean;
 	private IncentiveBean incentiveBean;
@@ -34,13 +38,15 @@ public class IncentiveSalesPersonListBean implements Serializable{
 	 * @param incentive_value
 	 * @param salespersonBean
 	 */
-	public IncentiveSalesPersonListBean(double slab_value, double incentive_amount, SalespersonBean salespersonBean,String designation,IncentiveBean incentiveBean) {
+	public IncentiveSalesPersonListBean(double slab_value, double incentive_amount, SalespersonBean salespersonBean,String designation,IncentiveBean incentiveBean,
+			String incentive_status) {
 		super();
 		this.slab_value = slab_value;
 		this.incentive_amount = incentive_amount;
 		this.salespersonBean = salespersonBean;
 		this.designation = designation;
 		this.incentiveBean = incentiveBean;
+		this.incentive_status = incentive_status;
 	}
 	
 	
@@ -58,7 +64,7 @@ public class IncentiveSalesPersonListBean implements Serializable{
 	 * @param incentiveBean
 	 */
 	public IncentiveSalesPersonListBean(int incentive_sales_person_list_id, double slab_value, double incentive_amount,
-			String designation, SalespersonBean salespersonBean, IncentiveBean incentiveBean) {
+			String designation, SalespersonBean salespersonBean, IncentiveBean incentiveBean,String incentive_status) {
 		super();
 		this.incentive_sales_person_list_id = incentive_sales_person_list_id;
 		this.slab_value = slab_value;
@@ -66,6 +72,7 @@ public class IncentiveSalesPersonListBean implements Serializable{
 		this.designation = designation;
 		this.salespersonBean = salespersonBean;
 		this.incentiveBean = incentiveBean;
+		this.incentive_status = incentive_status;
 	}
 	
 	
@@ -137,6 +144,46 @@ public class IncentiveSalesPersonListBean implements Serializable{
 
 	public void setIncentiveBean(IncentiveBean incentiveBean) {
 		this.incentiveBean = incentiveBean;
+	}
+
+
+	public Double getEligible_incentive_percentage() {
+		return eligible_incentive_percentage;
+	}
+
+
+	public void setEligible_incentive_percentage(Double eligible_incentive_percentage) {
+		this.eligible_incentive_percentage = eligible_incentive_percentage;
+	}
+
+
+	public String getIncentive_status() {
+		return incentive_status;
+	}
+
+
+	public void setIncentive_status(String incentive_status) {
+		this.incentive_status = incentive_status;
+	}
+
+
+	public String getPaid_date() {
+		return paid_date;
+	}
+
+
+	public void setPaid_date(String paid_date) {
+		this.paid_date = paid_date;
+	}
+
+
+	public String getRelease_date() {
+		return release_date;
+	}
+
+
+	public void setRelease_date(String release_date) {
+		this.release_date = release_date;
 	}
 	
 	
