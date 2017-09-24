@@ -12,7 +12,7 @@
     <meta name="description" content="Robust admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
     <meta name="keywords" content="admin template, robust admin template, dashboard template, flat admin template, responsive admin template, web app">
     <meta name="author" content="PIXINVENT">
-    <title>Upload Document</title>
+    <title>Exit Interview Form List</title>
     <link rel="shortcut icon" sizes="152x152"
 	href="app-assets/images/ico/titleIcon.png">
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -82,6 +82,7 @@ SimpleDateFormat AppDateFormat = new SimpleDateFormat("dd-MM-yyyy");
 				            </div>
 				            <div class="card-body collapse in">
 	               				 <div class="card-block card-dashboard">
+	               				 	<div class="table-responsive">
 				                        <table class="table table-striped table-bordered zero-configuration" width="100%">
 				                            <thead>
 				                                <tr>
@@ -134,11 +135,12 @@ SimpleDateFormat AppDateFormat = new SimpleDateFormat("dd-MM-yyyy");
 										<td><%=employeeBean.getManagerBean().getManager_name() %></td>
 										<td><%=jd %></td>
 										<td><%=td %></td>
-										<td><a href="exitInterviewHRComment.jsp?exit_employee_id=<%=e.getExit_interview_employee_id()%>"><i class="icon-edit"></i></a></td>
+										<td><a href="exitInterviewHRComment.jsp?exit_employee_id=<%=e.getExit_interview_employee_id()%>"><button class="btn btn-xs" style="background-color: #3BAFDA"><i class="ficon icon-edit"></i> Review</button></a></i></a></td>
 									</tr>
 									<%} %>
 									</tbody>
 				                        </table>
+				                        </div>
 	               				 </div>
 	               			</div>
 				        </div>
@@ -162,6 +164,7 @@ SimpleDateFormat AppDateFormat = new SimpleDateFormat("dd-MM-yyyy");
 				            <div class="card-body collapse in">
 	               				 <div class="card-body collapse in">
 	               				 <div class="card-block card-dashboard">
+				                        <div class="table-responsive">
 				                        <table class="table table-striped table-bordered zero-configuration" width="100%">
 				                            <thead>
 				                                <tr>
@@ -213,11 +216,12 @@ SimpleDateFormat AppDateFormat = new SimpleDateFormat("dd-MM-yyyy");
 												<td><%=employeeBean.getManagerBean().getManager_name()%></td>
 												<td><%=jd1 %></td>
 												<td><%=td1 %></td>
-												<td><a href="exitInterviewHRComment.jsp?exit_employee_id=<%=e.getExit_interview_employee_id()%>&action=reviewed"><button class="btn btn-default btn-xs"><i class="icon icon-eye4"></i> View</button></a></td>
+												<td><a href="exitInterviewHRComment.jsp?exit_employee_id=<%=e.getExit_interview_employee_id()%>&action=reviewed"><button class="btn btn-xs" style="background-color: #3BAFDA"><i class="icon icon-eye4"></i> View</button></a></td>
 											</tr>
 											<%} %>
 											</tbody>
 				                        </table>
+				                        </div>
 	               				 </div>
 	               			</div>
 	               			</div>

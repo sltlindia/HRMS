@@ -926,9 +926,8 @@
 									
 												<a href="handOverApprovalForm.jsp?hand_over_form_detail_id=<%=detailsOfHandOverFormBean.getDetails_of_hand_over_form_id()%>" class="list-group-item">
 							                      <div class="media">
-							                        <div class="media-left"><i class="ficon icon-table2"></i></div>
+							                        <div class="media-left" style="color: black;"><i class="ficon icon-stack3"></i></div>
 							                        <div class="media-body">
-							                          <h6 class="media-heading"><b></b> Grievance query(s).</h6>
 							                          <p class="notification-text font-small-3 text-muted"><b><%=detailsOfHandOverFormBean.getEmployeeBean().getFirstname()+" "+detailsOfHandOverFormBean.getEmployeeBean().getLastname()%>'s</b> Hand Over taken by <b><%=bean.getFirstname()+" "+bean.getLastname()%>.Please Give Your Approval.</b>.</p>
 							                        </div>
 							                      </div>
@@ -945,9 +944,8 @@
 									
 									<a href="exitInterviewHRComment.jsp?exit_employee_id=<%=exitInterviewEmployeeBean.getExit_interview_employee_id()%>" class="list-group-item">
 							                      <div class="media">
-							                        <div class="media-left"><i class="ficon icon-table2"></i></div>
+							                        <div class="media-left" style="color: black;"><i class="ficon icon-exit"></i></div>
 							                        <div class="media-body">
-							                          <h6 class="media-heading"><b></b> Grievance query(s).</h6>
 							                          <p class="notification-text font-small-3 text-muted"><%=exitInterviewEmployeeBean.getEmployeeBean().getFirstname()+" "+exitInterviewEmployeeBean.getEmployeeBean().getLastname()%> send you Exit Formality Form For Approval.</p>
 							                        </div>
 							                      </div>
@@ -963,9 +961,8 @@
 										
 										<a href="exitInterviewHRComment.jsp?exit_employee_id=<%=exitInterviewEmployeeBean.getExit_interview_employee_id()%>" class="list-group-item">
 							                      <div class="media">
-							                        <div class="media-left"><i class="ficon icon-table2"></i></div>
+							                        <div class="media-left" style="color: black;"><i class="ficon icon-exit"></i></div>
 							                        <div class="media-body">
-							                          <h6 class="media-heading"><b></b> Grievance query(s).</h6>
 							                          <p class="notification-text font-small-3 text-muted"><%=exitInterviewEmployeeBean.getEmployeeBean().getFirstname()+" "+exitInterviewEmployeeBean.getEmployeeBean().getLastname()%>'s</b> Exit Formality form Approved by Department Head.Please Give Your Approval.</p>
 							                        </div>
 							                      </div>
@@ -991,10 +988,9 @@
 									
 									<a href="handOverApprovalForm.jsp?hand_over_form_detail_id=<%=d.getDetails_of_hand_over_form_id()%>" class="list-group-item">
 							                      <div class="media">
-							                        <div class="media-left"><i class="ficon icon-table2"></i></div>
+							                        <div class="media-left" style="color: black;"><i class="ficon icon-stack3"></i></div>
 							                        <div class="media-body">
-							                          <h6 class="media-heading"><b></b> Grievance query(s).</h6>
-							                          <p class="notification-text font-small-3 text-muted"><%=d.getEmployeeBean().getFirstname()+" "+d.getEmployeeBean().getLastname()%>'s Hand Over proccess finish.Please Give Your Approval.</p>
+							                          <p class="notification-text font-small-3 text-muted"><%=d.getEmployeeBean().getFirstname()+" "+d.getEmployeeBean().getLastname()%>'s Hand Over process finish.Please Give Your Approval.</p>
 							                        </div>
 							                      </div>
 							                   </a>

@@ -554,7 +554,7 @@ AllListExitFormalityDAO allListExitFormalityDAO = new AllListExitFormalityDAO();
 								<div class="col-md-8" style="padding-left: 0px;">
 		                         <select class="select2-language form-control" id="select2-language" name="handOverToName"> 
 		                       
-										<option value="">---Select Designation---</option>
+										<option value="">---Select Name---</option>
 											  <%
 			  				 		AllListDAO allListDAO = new AllListDAO();
 			  				 		List<EmployeeBean> listOfEmployee = allListDAO.getFullListOfEmployee();
