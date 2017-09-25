@@ -82,6 +82,7 @@
     <%
 	HttpSession session1 = request.getSession();
 	EmployeeBean user = (EmployeeBean)session1.getAttribute("user");
+	
 	if(user==null){%>
 	<center>
 	<%if(request.getAttribute("loginError") !=null || request.getAttribute("error") !=null || request.getAttribute("sessionExpired") !=null) {%>
@@ -163,12 +164,12 @@
                     <a href="#" class="btn btn-social-icon mr-1 mb-1 btn-outline-linkedin"><span class="icon-linkedin3 font-medium-4"></span></a>
                     <a href="#" class="btn btn-social-icon mr-1 mb-1 btn-outline-github"><span class="icon-github font-medium-4"></span></a>
                 </div> -->
-                <p class="card-subtitle line-on-side text-muted text-xs-center font-small-3 mx-2 my-1"><span>Using Account Details</span></p>
+                <p class="card-subtitle line-on-side text-muted text-xs-center font-small-3 mx-2 my-1"><span></span></p>
                 <div class="card-block">
                     <form class="form-horizontal" action="login" method="post">
-                         <fieldset class="form-group">
+                         <fieldset class="form-group position-relative has-icon-left">
                          
-                         							<select class="select2-theme form-control" id="select2-theme" name="companyId" required>
+                         							<select class="select2-diacritics form-control" id="select2-diacritics" name="companyId" required>
 												<%
 													CompanyListDAO companyListDAO = new CompanyListDAO();
 														List<CompanyListBean> listOfCompanyList = (ArrayList) companyListDAO.getListOfCompanyList();
@@ -262,21 +263,32 @@
 
 	</script>
 	<%}else{ 
-    	 String authority = user.getRoleBean().getRole_authority();
-    	 int manager_id = user.getManagerBean().getManager_id();
-    	 if(authority.equals("M2") || authority.equals("M1")){
-    		 if(manager_id == 99){
-    			 response.sendRedirect("empHome.jsp");
-    				 }else{
-    					 response.sendRedirect("managerHome.jsp");
-    				 }
-   }else if(authority.equals("M3") || authority.equals("M4")){
-	   response.sendRedirect("managerHome.jsp");
-   }else if(authority.equals("M5")){
-	   response.sendRedirect("hrHome.jsp");
-   }else if(authority.equals("M6")){
-	   response.sendRedirect("sltlAdmin.jsp");
-   }
+		
+		int manager_id = user.getManagerBean().getManager_id();
+		int under_manager_id = Integer.parseInt(user.getUnder_manager_id());
+		int code = user.getEmployee_code();
+		int companyId = user.getCompanyListBean().getCompany_list_id();
+		
+if(manager_id != 99){
+			
+			if(manager_id == 1 || manager_id == 2 || manager_id == 3){
+					 response.sendRedirect("sltlAdmin.jsp");
+			}else if(manager_id == 4 || manager_id == 117 || under_manager_id == 4 || under_manager_id == 117){
+					 response.sendRedirect("hrHome.jsp");
+			}else{
+					 response.sendRedirect("managerHome.jsp");
+			}	
+			}else{ 
+				
+				if((code == 30 || code == 2 || code == 8 ||code == 15) && companyId == 1){
+						 response.sendRedirect("gatePassListSecurity.jsp");
+				}else if(manager_id == 4 || manager_id == 117 || under_manager_id == 4 || under_manager_id == 117){
+						 response.sendRedirect("hrHome.jsp");
+				}else{
+				
+					 response.sendRedirect("empHome.jsp");
+				}
+			} 
 	   %> 
     <%} %>
 </body>

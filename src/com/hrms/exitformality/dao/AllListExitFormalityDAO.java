@@ -78,7 +78,7 @@ public class AllListExitFormalityDAO {
 	try {
 	    tx = session.getTransaction();
 	    tx.begin();
-	    listOfExitInterviewEmployees = session.createQuery("FROM ExitInterviewEmployeeBean e where not exists ( FROM ExitInterviewManagerCommentsBean e1 where e.exit_interview_employee_id = e1.exitInterviewEmployeeBean and e1.employeeBean='"+employee_master_id+"') ").list();                        
+	    listOfExitInterviewEmployees = session.createQuery("FROM ExitInterviewEmployeeBean e where exists ( FROM ExitInterviewManagerCommentsBean e2 where e.reporting_manager = e2.employeeBean.managerBean and e.exit_interview_employee_id = e2.exitInterviewEmployeeBean) and not exists ( FROM ExitInterviewManagerCommentsBean e1 where e.exit_interview_employee_id = e1.exitInterviewEmployeeBean and e1.employeeBean.departmentBean = 4)").list();                        
 	    tx.commit();
 	} catch (Exception e) {
 	    if (tx != null) {

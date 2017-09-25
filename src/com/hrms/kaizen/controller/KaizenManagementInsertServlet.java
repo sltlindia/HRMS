@@ -1,6 +1,8 @@
 package com.hrms.kaizen.controller;
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -8,7 +10,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.hrms.kaizen.bean.KaizenBean;
 import com.hrms.kaizen.bean.KaizenManagementApprovalBean;
+import com.hrms.kaizen.bean.KaizenManagerBean;
 import com.hrms.kaizen.dao.AllKaizenInsertDAO;
+import com.hrms.kaizen.dao.AllKaizenListDAO;
+import com.hrms.kaizen.dao.AllKaizenUpdateDAO;
 import com.hrms.pms.bean.EmployeeBean;
 
 /**
@@ -23,7 +28,7 @@ public class KaizenManagementInsertServlet extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		
-		int kaizen_id = Integer.parseInt(request.getParameter("id"));
+		int kaizen_id = Integer.parseInt(request.getParameter("kaizen_id"));
 		int employee_id = Integer.parseInt(request.getParameter("employee_id"));
 		String management_approval_status = "pending";
 		String management_rejection_reason = "-";
@@ -36,9 +41,12 @@ public class KaizenManagementInsertServlet extends HttpServlet {
 		
 		AllKaizenInsertDAO allKaizenInsertDAO = new AllKaizenInsertDAO();
 		
+		
 		KaizenManagementApprovalBean kaizenManagementApprovalBean = new KaizenManagementApprovalBean(management_approval_status, management_rejection_reason, employeeBean, kaizenBean);
 		boolean result = allKaizenInsertDAO.kaizenManagementInsert(kaizenManagementApprovalBean);
-	
+		
+		request.getRequestDispatcher("kaizenView.jsp").forward(request, response);
+		
 	
 	}
 

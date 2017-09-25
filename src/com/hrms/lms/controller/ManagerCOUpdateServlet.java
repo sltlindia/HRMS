@@ -259,8 +259,12 @@ public class ManagerCOUpdateServlet extends HttpServlet {
 											request.getRequestDispatcher("pendingLeaveHrSide.jsp").forward(request, response);
 										}else{
 											request.setAttribute("LeaveapprovedSuccessfully", "CO approved Successfully");
-											if(user.getManagerBean().getManager_id() != 99){
-												request.getRequestDispatcher("empHome.jsp").forward(request, response);
+											if(user.getManagerBean().getManager_id() == 99){
+												if(under_manager_id == 4 || under_manager_id == 117){
+													request.getRequestDispatcher("hrHome.jsp").forward(request, response);
+												}else{
+													request.getRequestDispatcher("empHome.jsp").forward(request, response);
+															}
 											}
 											else{
 												request.getRequestDispatcher("leaveListManager.jsp").forward(request, response);

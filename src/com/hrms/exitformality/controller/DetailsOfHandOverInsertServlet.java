@@ -26,6 +26,7 @@ import com.hrms.exitformality.bean.ExitInterviewScoreBean;
 import com.hrms.exitformality.dao.AllInsertExitFormalityDAO;
 import com.hrms.exitformality.dao.AllUpdateExitFormalityDAO;
 import com.hrms.pms.bean.EmployeeBean;
+import com.hrms.pms.dao.LoginDAO;
 
 public class DetailsOfHandOverInsertServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -121,8 +122,9 @@ public class DetailsOfHandOverInsertServlet extends HttpServlet {
 							
 							
 							if (fieldName.equalsIgnoreCase("handOverToName")) {
-								String value = fieldValue;
-								handOverToName = Integer.parseInt(value);
+								handOverToName = Integer.parseInt(fieldValue);
+								
+								
 								System.out.println("handOverToName:"+handOverToName);
 								
 							}

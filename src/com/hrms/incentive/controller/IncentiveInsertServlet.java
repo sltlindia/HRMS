@@ -2,6 +2,7 @@ package com.hrms.incentive.controller;
 
 import java.io.IOException;
 import java.net.Inet4Address;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -15,10 +16,12 @@ import com.hrms.incentive.bean.BrahmastraNewBean;
 import com.hrms.incentive.bean.BrahmastraRepeatBean;
 import com.hrms.incentive.bean.ClassificationBean;
 import com.hrms.incentive.bean.IncentiveBean;
+import com.hrms.incentive.bean.IncentiveCriteriaBean;
 import com.hrms.incentive.bean.IncentiveSalesPersonListBean;
 import com.hrms.incentive.bean.LaserMasterBean;
 import com.hrms.incentive.bean.ProductMasterBean;
 import com.hrms.incentive.bean.SalespersonBean;
+import com.hrms.incentive.bean.TargetBean;
 import com.hrms.incentive.bean.ZoneBean;
 import com.hrms.incentive.dao.AllIncentiveDeleteDAO;
 import com.hrms.incentive.dao.AllIncentiveInsertDAO;
@@ -55,6 +58,12 @@ public class IncentiveInsertServlet extends HttpServlet {
 			int year = Integer.parseInt(split[0]);
 			int month = Integer.parseInt(split[1]);
 			String date = split[2];
+			
+			
+			String[] splitPO = poDate.split("-");
+			int yearPO = Integer.parseInt(splitPO[0]);
+			int monthPO = Integer.parseInt(splitPO[1]);
+			String datePO = splitPO[2];
 
 			YearBean yearBean = allListDAO.detailsOfYear(year);
 			monthBean.setMonth_id(month);
@@ -112,7 +121,26 @@ public class IncentiveInsertServlet extends HttpServlet {
 			int incentive_id = 0;
 			IncentiveBean incentiveBean = null;
 			double incentive_eligible_percentage = 0;
-			String eligible_incentive_save = "no";
+			String eligible_incentive_save = "yes";
+			String newRepeatFlag = newRepeat;
+			boolean flag = false;
+			
+			if(newRepeat.equalsIgnoreCase("repeat")) {
+				
+			for (int i = 0; i < sales_idList.length; i++) {
+				String designation = designationList[i];
+					if(designation.equalsIgnoreCase("SERVICE")) {
+						flag = true;
+					}
+			}
+			
+			if(flag == false) {
+				newRepeatFlag = "new";
+			}
+			
+			}
+			
+			System.out.println(newRepeatFlag);
 
 			if(request.getParameter("inc_id") == null){
 				
@@ -127,9 +155,10 @@ public class IncentiveInsertServlet extends HttpServlet {
 					System.out.println("salesId:" + sales_id);
 					System.out.println("designation:" + designation);
 
-					if (newRepeat.equalsIgnoreCase("new")) {
+					if (newRepeatFlag.equalsIgnoreCase("new")) {
 
 						if (machine_category.equalsIgnoreCase("AKSHAR")) {
+							System.out.println("akshar");
 
 							AksharNewBean aksharNewBean = allIncentiveListDAO.getDetailOfNewAkshar(discount);
 
@@ -157,7 +186,7 @@ public class IncentiveInsertServlet extends HttpServlet {
 
 						}
 
-					} else if (newRepeat.equalsIgnoreCase("repeat")) {
+					} else if (newRepeatFlag.equalsIgnoreCase("repeat")) {
 
 						if (machine_category.equalsIgnoreCase("AKSHAR")) {
 
@@ -202,6 +231,12 @@ public class IncentiveInsertServlet extends HttpServlet {
 
 					AllIncentiveUpdateDAO allIncentiveUpdateDAO = new AllIncentiveUpdateDAO();
 					AllIncentiveInsertDAO allInsertDAO = new AllIncentiveInsertDAO();
+					
+					
+					
+					
+					
+					
 
 					if (i == 0) {
 
@@ -213,7 +248,7 @@ public class IncentiveInsertServlet extends HttpServlet {
 							request.setAttribute("incentive_id", incentive_id);
 
 						} else if (request.getParameter("inc_id") != null) {
-
+							
 							incentive_id = Integer.parseInt(request.getParameter("inc_id"));
 							incentiveBean = new IncentiveBean(incentive_id, poDate, sjoDate, invDate, customer, scope,
 									remarks, basicPrice, discount, qut_price, product_code, newRepeat, deductions,
@@ -223,7 +258,7 @@ public class IncentiveInsertServlet extends HttpServlet {
 							boolean result = allIncentiveUpdateDAO.incentiveUpdate(incentiveBean);
 							request.setAttribute("incentive_id", incentive_id);
 						} else {
-
+							
 							incentiveBean = new IncentiveBean(poDate, sjoDate, invDate, customer, scope, remarks,
 									basicPrice, discount, qut_price, product_code, monthBean, yearBean, salespersonBean,
 									zoneBean, productMasterBean, classificationBean, laserMasterBean, newRepeat,
@@ -236,13 +271,105 @@ public class IncentiveInsertServlet extends HttpServlet {
 							request.setAttribute("incentive_id", incentive_id);
 
 							IncentiveSalesPersonListBean incentiveSalesPersonListBean = new IncentiveSalesPersonListBean(
-									valueOfSlab, amount, salespersonBean, designation, incentiveBean);
+									valueOfSlab, amount, salespersonBean, designation, incentiveBean,incentive_status);
 							boolean reslut1 = allInsertDAO.incentiveSalesPersonInsert(incentiveSalesPersonListBean);
+							
+							
+							String count = allIncentiveListDAO.getCountOfTargetBySalesIdAndYearAndProductId(sales_id, yearPO,product_id,monthPO);
+							List<IncentiveBean> listOfIncentive = allIncentiveListDAO.getListOfIncentiveBySalesId(sales_id, monthPO , yearPO, product_id);
+							List<IncentiveSalesPersonListBean> listOfIncentiveAsHigherDesignation = allIncentiveListDAO.getListOfIncentiveBySalesIdForHigherDesignation(sales_id, monthPO, yearPO, product_id);
+							
+							
+							
+							int achived = listOfIncentive.size()+listOfIncentiveAsHigherDesignation.size();
+							
+							double achived_per = 0;
+							int target = 0;
+							if(count != null) {
+								target = Integer.parseInt(count);
+							}
+							
+							
+							if(target != 0){
+							 achived_per = (achived * 100)/target;
+							}else if(achived != 0){
+								achived_per = 50;
+							}
+							
+							
+							System.out.println("achieved:"+achived);
+							System.out.println("target:"+target);
+							
+							String w = String.format("%.2f", achived_per);
+							System.out.println(w);
+								
+								if(achived_per != 0){
+								IncentiveCriteriaBean incentiveCriteriaBean = allIncentiveListDAO.getListOfIncentiveByCriteria(achived_per);
+								incentive_eligible_percentage = incentiveCriteriaBean.getEligible_incentive();																	
+								}
+								
+								System.out.println("incentive_eligible_percentage"+incentive_eligible_percentage);
+								
+								for(IncentiveSalesPersonListBean incentiveSalesPersonListBean1 : listOfIncentiveAsHigherDesignation) {
+								boolean result2 = allIncentiveUpdateDAO.incentiveEligibleStatusUpdateSalesPersoWise(sales_id,incentive_eligible_percentage,incentiveSalesPersonListBean1.getIncentiveBean().getIncentive_id());
+								}
+								
+								
+								for(IncentiveBean incentiveBean1 : listOfIncentive) {
+								boolean result2 = allIncentiveUpdateDAO.incentiveEligibleStatusUpdateSalesPersoWise(sales_id,incentive_eligible_percentage,incentiveBean1.getIncentive_id());
+								}
+								
+							
 						}
 					} else {
+						
 						IncentiveSalesPersonListBean incentiveSalesPersonListBean = new IncentiveSalesPersonListBean(
-								valueOfSlab, amount, salespersonBean, designation, incentiveBean);
+								valueOfSlab, amount, salespersonBean, designation, incentiveBean,incentive_status);
 						boolean reslut1 = allInsertDAO.incentiveSalesPersonInsert(incentiveSalesPersonListBean);
+						
+						String count = allIncentiveListDAO.getCountOfTargetBySalesIdAndYearAndProductId(sales_id, yearPO,product_id,monthPO);
+						List<IncentiveBean> listOfIncentive = allIncentiveListDAO.getListOfIncentiveBySalesId(sales_id, monthPO , yearPO, product_id);
+						List<IncentiveSalesPersonListBean> listOfIncentiveAsHigherDesignation = allIncentiveListDAO.getListOfIncentiveBySalesIdForHigherDesignation(sales_id, monthPO, yearPO, product_id);
+						
+						
+						
+						int achived = listOfIncentive.size()+listOfIncentiveAsHigherDesignation.size();
+						
+						double achived_per = 0;
+						int target = 0;
+						if(count != null) {
+							target = Integer.parseInt(count);
+						}
+						
+						if(target != 0){
+						 achived_per = (achived * 100)/target;
+						}
+						else if(achived != 0){
+							achived_per = 50;
+						}
+						
+						String w = String.format("%.2f", achived_per);
+						System.out.println("achieved:"+achived);
+						System.out.println("target:"+target);	
+							if(achived_per != 0){
+							IncentiveCriteriaBean incentiveCriteriaBean = allIncentiveListDAO.getListOfIncentiveByCriteria(achived_per);
+							incentive_eligible_percentage = incentiveCriteriaBean.getEligible_incentive();																	
+							}
+							
+							
+							System.out.println("incentive_eligible_percentage"+incentive_eligible_percentage);
+							
+					
+							for(IncentiveSalesPersonListBean incentiveSalesPersonListBean1 : listOfIncentiveAsHigherDesignation) {
+								boolean result2 = allIncentiveUpdateDAO.incentiveEligibleStatusUpdateSalesPersoWise(sales_id,incentive_eligible_percentage,incentiveSalesPersonListBean1.getIncentiveBean().getIncentive_id());
+								}
+								
+								
+								for(IncentiveBean incentiveBean1 : listOfIncentive) {
+								boolean result2 = allIncentiveUpdateDAO.incentiveEligibleStatusUpdateSalesPersoWise(sales_id,incentive_eligible_percentage,incentiveBean1.getIncentive_id());
+								}
+						
+						
 					}
 
 				}
@@ -266,7 +393,7 @@ public class IncentiveInsertServlet extends HttpServlet {
 					System.out.println("designation:" + designation);
 					System.out.println("incentivePersonListId:" + incentivePersonListId);
 
-					if (newRepeat.equalsIgnoreCase("new")) {
+					if (newRepeatFlag.equalsIgnoreCase("new")) {
 
 						if (machine_category.equalsIgnoreCase("AKSHAR")) {
 
@@ -296,7 +423,7 @@ public class IncentiveInsertServlet extends HttpServlet {
 
 						}
 
-					} else if (newRepeat.equalsIgnoreCase("repeat")) {
+					} else if (newRepeatFlag.equalsIgnoreCase("repeat")) {
 
 						if (machine_category.equalsIgnoreCase("AKSHAR")) {
 
@@ -330,6 +457,8 @@ public class IncentiveInsertServlet extends HttpServlet {
 						}
 
 					}
+					
+					
 
 					System.out.println("slabe:" + valueOfSlab);
 
@@ -341,6 +470,12 @@ public class IncentiveInsertServlet extends HttpServlet {
 
 					AllIncentiveUpdateDAO allIncentiveUpdateDAO = new AllIncentiveUpdateDAO();
 					AllIncentiveInsertDAO allInsertDAO = new AllIncentiveInsertDAO();
+					
+					
+					
+					
+						
+					
 
 					if (i == 0) {
 							incentive_id = Integer.parseInt(request.getParameter("inc_id"));
@@ -352,20 +487,158 @@ public class IncentiveInsertServlet extends HttpServlet {
 							boolean result = allIncentiveUpdateDAO.incentiveUpdate(incentiveBean);
 							request.setAttribute("incentive_id", incentive_id);
 							
-							IncentiveSalesPersonListBean  incentiveSalesPersonListBean = new IncentiveSalesPersonListBean(incentivePersonListId, valueOfSlab, amount, designation, salespersonBean, incentiveBean);
+							IncentiveSalesPersonListBean  incentiveSalesPersonListBean = new IncentiveSalesPersonListBean(incentivePersonListId, valueOfSlab, amount, designation, salespersonBean, incentiveBean,incentive_status);
 							boolean result1 = allIncentiveUpdateDAO.incentiveListSaPersonUpdate(incentiveSalesPersonListBean);
+							
+							String count = allIncentiveListDAO.getCountOfTargetBySalesIdAndYearAndProductId(sales_id, yearPO,product_id,monthPO);
+							List<IncentiveBean> listOfIncentive = allIncentiveListDAO.getListOfIncentiveBySalesId(sales_id, monthPO , yearPO, product_id);
+							List<IncentiveSalesPersonListBean> listOfIncentiveAsHigherDesignation = allIncentiveListDAO.getListOfIncentiveBySalesIdForHigherDesignation(sales_id, monthPO, yearPO, product_id);
+							
+							
+							
+							int achived = listOfIncentive.size()+listOfIncentiveAsHigherDesignation.size();
+							
+							double achived_per = 0;
+							int target = 0;
+							if(count != null) {
+								target = Integer.parseInt(count);
+							}
+							
+							if(target != 0){
+							 achived_per = (achived * 100)/target;
+							}
+							else if(achived != 0){
+								achived_per = 50;
+							}
+							
+							System.out.println("achieved:"+achived);
+							System.out.println("target:"+target);
+							
+							String w = String.format("%.2f", achived_per);
+							System.out.println(w);
+								
+								if(achived_per != 0){
+								IncentiveCriteriaBean incentiveCriteriaBean = allIncentiveListDAO.getListOfIncentiveByCriteria(achived_per);
+								incentive_eligible_percentage = incentiveCriteriaBean.getEligible_incentive();																	
+								}
+								
+								
+								System.out.println("incentive_eligible_percentage"+incentive_eligible_percentage);
+								
+								
+								for(IncentiveSalesPersonListBean incentiveSalesPersonListBean1 : listOfIncentiveAsHigherDesignation) {
+								boolean result2 = allIncentiveUpdateDAO.incentiveEligibleStatusUpdateSalesPersoWise(sales_id,incentive_eligible_percentage,incentiveSalesPersonListBean1.getIncentiveBean().getIncentive_id());
+								}
+								
+								
+								for(IncentiveBean incentiveBean1 : listOfIncentive) {
+								boolean result2 = allIncentiveUpdateDAO.incentiveEligibleStatusUpdateSalesPersoWise(sales_id,incentive_eligible_percentage,incentiveBean1.getIncentive_id());
+								}
+								
+							
 							
 					} else {
 						
 						if(incentivePersonListId !=0){
-							IncentiveSalesPersonListBean  incentiveSalesPersonListBean = new IncentiveSalesPersonListBean(incentivePersonListId, valueOfSlab, amount, designation, salespersonBean, incentiveBean);
+							IncentiveSalesPersonListBean  incentiveSalesPersonListBean = new IncentiveSalesPersonListBean(incentivePersonListId, valueOfSlab, amount, designation, salespersonBean, incentiveBean,incentive_status);
 							boolean result1 = allIncentiveUpdateDAO.incentiveListSaPersonUpdate(incentiveSalesPersonListBean);
+							
+							String count = allIncentiveListDAO.getCountOfTargetBySalesIdAndYearAndProductId(sales_id, yearPO,product_id,monthPO);
+							List<IncentiveBean> listOfIncentive = allIncentiveListDAO.getListOfIncentiveBySalesId(sales_id, monthPO , yearPO, product_id);
+							List<IncentiveSalesPersonListBean> listOfIncentiveAsHigherDesignation = allIncentiveListDAO.getListOfIncentiveBySalesIdForHigherDesignation(sales_id, monthPO, yearPO, product_id);
+							
+							
+							
+							int achived = listOfIncentive.size()+listOfIncentiveAsHigherDesignation.size();
+							
+							double achived_per = 0;
+							int target = 0;
+							if(count != null) {
+								target = Integer.parseInt(count);
+							}
+							
+							if(target != 0){
+							 achived_per = (achived * 100)/target;
+							}
+							else if(achived != 0){
+								achived_per = 50;
+							}
+							
+							System.out.println("achieved:"+achived);
+							System.out.println("target:"+target);
+							
+							String w = String.format("%.2f", achived_per);
+							System.out.println(w);
+								
+								if(achived_per != 0){
+								IncentiveCriteriaBean incentiveCriteriaBean = allIncentiveListDAO.getListOfIncentiveByCriteria(achived_per);
+								incentive_eligible_percentage = incentiveCriteriaBean.getEligible_incentive();																	
+								}
+								
+								
+								System.out.println("incentive_eligible_percentage"+incentive_eligible_percentage);
+								
+								
+								for(IncentiveSalesPersonListBean incentiveSalesPersonListBean1 : listOfIncentiveAsHigherDesignation) {
+								boolean result2 = allIncentiveUpdateDAO.incentiveEligibleStatusUpdateSalesPersoWise(sales_id,incentive_eligible_percentage,incentiveSalesPersonListBean1.getIncentiveBean().getIncentive_id());
+								}
+								
+								
+								for(IncentiveBean incentiveBean1 : listOfIncentive) {
+								boolean result2 = allIncentiveUpdateDAO.incentiveEligibleStatusUpdateSalesPersoWise(sales_id,incentive_eligible_percentage,incentiveBean1.getIncentive_id());
+								}
+								
+							
 						}else{
 						IncentiveSalesPersonListBean incentiveSalesPersonListBean = new IncentiveSalesPersonListBean(
-								valueOfSlab, amount, salespersonBean, designation, incentiveBean);
+								valueOfSlab, amount, salespersonBean, designation, incentiveBean,incentive_status);
 						boolean reslut1 = allInsertDAO.incentiveSalesPersonInsert(incentiveSalesPersonListBean);
+						
+						String count = allIncentiveListDAO.getCountOfTargetBySalesIdAndYearAndProductId(sales_id, yearPO,product_id,monthPO);
+						List<IncentiveBean> listOfIncentive = allIncentiveListDAO.getListOfIncentiveBySalesId(sales_id, monthPO , yearPO, product_id);
+						List<IncentiveSalesPersonListBean> listOfIncentiveAsHigherDesignation = allIncentiveListDAO.getListOfIncentiveBySalesIdForHigherDesignation(sales_id, monthPO, yearPO, product_id);
+						
+						
+						
+						int achived = listOfIncentive.size()+listOfIncentiveAsHigherDesignation.size();
+						
+						double achived_per = 0;
+						int target = 0;
+						if(count != null) {
+							target = Integer.parseInt(count);
+						}
+						
+						if(target != 0){
+						 achived_per = (achived * 100)/target;
+						}
+						else if(achived != 0){
+							achived_per = 50;
+						}
+						
+						String w = String.format("%.2f", achived_per);
+						System.out.println(w);
+							
+							if(achived_per != 0){
+							IncentiveCriteriaBean incentiveCriteriaBean = allIncentiveListDAO.getListOfIncentiveByCriteria(achived_per);
+							incentive_eligible_percentage = incentiveCriteriaBean.getEligible_incentive();																	
+							}
+							
+							System.out.println("incentive_eligible_percentage"+incentive_eligible_percentage);
+							
+							for(IncentiveSalesPersonListBean incentiveSalesPersonListBean1 : listOfIncentiveAsHigherDesignation) {
+							   boolean result2 = allIncentiveUpdateDAO.incentiveEligibleStatusUpdateSalesPersoWise(sales_id,incentive_eligible_percentage,incentiveSalesPersonListBean1.getIncentiveBean().getIncentive_id());
+							}
+							
+							
+							for(IncentiveBean incentiveBean1 : listOfIncentive) {
+							boolean result2 = allIncentiveUpdateDAO.incentiveEligibleStatusUpdateSalesPersoWise(sales_id,incentive_eligible_percentage,incentiveBean1.getIncentive_id());
+							}
+							
+						
 						}
 					}
+						
+						
 
 				}else if(incentivePersonListId != 0){
 					

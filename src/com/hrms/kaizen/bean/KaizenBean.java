@@ -37,6 +37,7 @@ public class KaizenBean implements Serializable{
 	private String completion_status;
 	private String completion_date;
 	private String horizontal_deployment;
+	private String category_id;
 	
 	private EmployeeBean employeeBean;
 	
@@ -47,7 +48,8 @@ public class KaizenBean implements Serializable{
 	
 	
 	public KaizenBean(String kaizen_name, String kaizen_desc, String existing_problem, String safety_features, String implementation_cost,int manager_id,
-			String status, String date,String delivery,String cost,String quality,String safety,String productivity, EmployeeBean employeeBean,String completion_status) {
+			String status, String date,String delivery,String cost,String quality,String safety,String productivity, EmployeeBean employeeBean,String completion_status,
+			String category_id) {
 		super();
 		this.kaizen_name = kaizen_name;
 		this.kaizen_desc = kaizen_desc;
@@ -64,6 +66,7 @@ public class KaizenBean implements Serializable{
 		this.productivity = productivity;
 		this.employeeBean = employeeBean;
 		this.completion_status = completion_status;
+		this.category_id = category_id;
 	}
 
 
@@ -75,7 +78,7 @@ public class KaizenBean implements Serializable{
 	public KaizenBean(int kaizen_id, String kaizen_name, String kaizen_desc, String existing_problem, String safety_features,
 			String implementation_cost, int manager_id, String status, String date, EmployeeBean employeeBean,
 			String before_description, String after_description, String rejection_reason,String delivery,String cost,String quality,String safety,String productivity,
-			String completion_status) {
+			String completion_status,String category_id) {
 		super();
 		this.kaizen_id = kaizen_id;
 		this.kaizen_name = kaizen_name;
@@ -96,6 +99,7 @@ public class KaizenBean implements Serializable{
 		this.safety = safety;
 		this.productivity = productivity;
 		this.completion_status = completion_status;
+		this.category_id = category_id;
 	}
 
 
@@ -352,6 +356,16 @@ public class KaizenBean implements Serializable{
 
 	public void setHorizontal_deployment(String horizontal_deployment) {
 		this.horizontal_deployment = horizontal_deployment;
+	}
+
+
+	public String getCategory_id() {
+		return category_id;
+	}
+
+
+	public void setCategory_id(String category_id) {
+		this.category_id = category_id;
 	}
 
 	

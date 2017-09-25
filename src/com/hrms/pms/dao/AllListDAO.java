@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Query;
+import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -1583,6 +1584,29 @@ public class AllListDAO {
 
 	}
 
+	public List<EmployeeBean> getListOfAllNewEmployee() {
+		List<EmployeeBean> listOfEmployee = new ArrayList<EmployeeBean>();
+		Session session = HibernateUtil.openSession();
+		Transaction tx = null;
+		try {
+			tx = session.getTransaction();
+			tx.begin();
+			listOfEmployee = session
+					.createQuery("FROM EmployeeBean WHERE employee_code = password and employeeStatusBean != 3").list();
+			System.out.println(listOfEmployee.size());
+			tx.commit();
+		} catch (Exception e) {
+			if (tx != null) {
+				tx.rollback();
+			}
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return listOfEmployee;
+
+	}
+
 	// New Joini Data For HR(All Employee Data)
 	public List<EmployeeBean> getListOfNewEmployeeForHr(String startDate, String endDate) {
 		List<EmployeeBean> listOfEmployee = new ArrayList<EmployeeBean>();
@@ -1685,6 +1709,53 @@ public class AllListDAO {
 			tx = session.getTransaction();
 			tx.begin();
 			listOfEmployee = session.createQuery("FROM EmployeeBean WHERE employeeStatusBean != 3").list();
+			System.out.println(listOfEmployee.size());
+			tx.commit();
+		} catch (Exception e) {
+			if (tx != null) {
+				tx.rollback();
+			}
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return listOfEmployee;
+
+	}
+
+	public List<EmployeeBean> getListOfAllEmployeeForLeaveSurat() {
+		List<EmployeeBean> listOfEmployee = new ArrayList<EmployeeBean>();
+		Session session = HibernateUtil.openSession();
+		Transaction tx = null;
+		try {
+			tx = session.getTransaction();
+			tx.begin();
+			listOfEmployee = session
+					.createQuery("FROM EmployeeBean WHERE employeeStatusBean != 3 and location = 'surat' ").list();
+			System.out.println(listOfEmployee.size());
+			tx.commit();
+		} catch (Exception e) {
+			if (tx != null) {
+				tx.rollback();
+			}
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return listOfEmployee;
+
+	}
+
+	public List<EmployeeBean> getListOfAllEmployeeForLeaveA8DeptWise() {
+		List<EmployeeBean> listOfEmployee = new ArrayList<EmployeeBean>();
+		Session session = HibernateUtil.openSession();
+		Transaction tx = null;
+		try {
+			tx = session.getTransaction();
+			tx.begin();
+			listOfEmployee = session
+					.createQuery("FROM EmployeeBean WHERE employeeStatusBean != 3 and departmentBean In (41,42,43) ")
+					.list();
 			System.out.println(listOfEmployee.size());
 			tx.commit();
 		} catch (Exception e) {
@@ -3223,7 +3294,8 @@ public class AllListDAO {
 			tx = session.getTransaction();
 			tx.begin();
 			listOfProject = session.createQuery("from ProjectManagerListBean where projectMasterBean = '" + project_id
-					+ "' and employeeBean.managerBean = '" + manager_id + "' and employeeBean.employeeStatusBean != 3").list();
+					+ "' and employeeBean.managerBean = '" + manager_id + "' and employeeBean.employeeStatusBean != 3")
+					.list();
 			tx.commit();
 		} catch (Exception e) {
 			if (tx != null) {
@@ -4331,7 +4403,7 @@ public class AllListDAO {
 		try {
 			tx = session.getTransaction();
 			tx.begin();
-			listofyear = session.createQuery("from YearBean").list();
+			listofyear = session.createQuery("from YearBean order by year DESC").list();
 			tx.commit();
 		} catch (Exception e) {
 			if (tx != null) {
@@ -6054,9 +6126,6 @@ public class AllListDAO {
 		}
 		return yearBean;
 	}
-	
-	
-	
 
 	public List<EmployeeBean> getAllManager() {
 
@@ -6496,20 +6565,170 @@ public class AllListDAO {
 		}
 		return listOfDiplomaCourse;
 	}
-	
-	
-	// List Of Birth Days
-		// Date : 22-06-2017
 
-		public List<EmployeeBean> getListOfBirthDays() {
-			List<EmployeeBean> listOfDiplomaCourse = new ArrayList<EmployeeBean>();
+	// List Of Birth Days
+	// Date : 22-06-2017
+
+	public List<EmployeeBean> getListOfBirthDays() {
+		List<EmployeeBean> listOfDiplomaCourse = new ArrayList<EmployeeBean>();
+		Session session = HibernateUtil.openSession();
+		Transaction tx = null;
+		try {
+			tx = session.getTransaction();
+			tx.begin();
+			listOfDiplomaCourse = session.createQuery(
+					"FROM EmployeeBean where (DAY(birth_date)=DAY(NOW()) AND MONTH(birth_date)=MONTH(NOW())) AND employeeStatusBean != 3")
+					.list();
+			System.out.println(listOfDiplomaCourse.size());
+			tx.commit();
+		} catch (Exception e) {
+			if (tx != null) {
+				tx.rollback();
+			}
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return listOfDiplomaCourse;
+	}
+
+	// List Of Work Anniversary
+	// Date : 23-08-2017
+
+	public List<EmployeeBean> getListOfWorkAnniversary() {
+		List<EmployeeBean> listOfDiplomaCourse = new ArrayList<EmployeeBean>();
+		Session session = HibernateUtil.openSession();
+		Transaction tx = null;
+		try {
+			tx = session.getTransaction();
+			tx.begin();
+			listOfDiplomaCourse = session.createQuery(
+					"FROM EmployeeBean where (DAY(joining_date)=DAY(NOW()) AND MONTH(joining_date)=MONTH(NOW())) AND employeeStatusBean != 3")
+					.list();
+			System.out.println(listOfDiplomaCourse.size());
+			tx.commit();
+		} catch (Exception e) {
+			if (tx != null) {
+				tx.rollback();
+			}
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return listOfDiplomaCourse;
+	}
+
+	public List<EmployeeBean> getProbatioEmployeeList(int manager_id) {
+		List<EmployeeBean> listOfEmployee = new ArrayList<EmployeeBean>();
+		Session session = HibernateUtil.openSession();
+		Transaction tx = null;
+		try {
+			tx = session.getTransaction();
+			tx.begin();
+			String hql = "from EmployeeBean where under_manager_id='" + manager_id
+					+ "' and employeeStatusBean.employee_status_id = 2 and company_list_id != 8";
+
+			Query query = session.createQuery(hql);
+			listOfEmployee = query.list();
+			tx.commit();
+		} catch (Exception e) {
+			if (tx != null) {
+				tx.rollback();
+			}
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return listOfEmployee;
+	}
+
+	public MonthBean getListOfMonthById(int month_id) {
+		List<MonthBean> listofMonth = new ArrayList<MonthBean>();
+		Session session = HibernateUtil.openSession();
+		Transaction tx = null;
+		MonthBean monthBean = null;
+		try {
+			tx = session.getTransaction();
+			tx.begin();
+			Query query = session.createQuery("from MonthBean where month_id !=13 and month_id = " + month_id + "");
+			monthBean = (MonthBean) query.uniqueResult();
+			tx.commit();
+		} catch (Exception e) {
+			if (tx != null) {
+				tx.rollback();
+			}
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return monthBean;
+	}
+
+	public List<EmployeeBean> getEmployeeDetail(int employee_master_id) {
+		List<EmployeeBean> listOfEmployee = new ArrayList<EmployeeBean>();
+		Session session = HibernateUtil.openSession();
+		Transaction tx = null;
+		try {
+			tx = session.getTransaction();
+			tx.begin();
+			String hql = "from EmployeeBean where employee_master_id = '" + employee_master_id + "'";
+
+			Query query = session.createQuery(hql);
+			listOfEmployee = query.list();
+			tx.commit();
+		} catch (Exception e) {
+			if (tx != null) {
+				tx.rollback();
+			}
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return listOfEmployee;
+	}
+
+	
+	/* Stored Procedure for rejected timesheet*/
+	public List<TimeSheetBean> SPgetRejectedTimesheet(int employee_master_id) {
+		List<TimeSheetBean> listOfTimeSheet = new ArrayList<TimeSheetBean>();
+		Session session = HibernateUtil.openSession();
+		Transaction tx = null;
+		try {
+			tx = session.getTransaction();
+			tx.begin();
+			
+			SQLQuery query = (SQLQuery) session.createSQLQuery("CALL rejectedTimesheetByEmpId(:empId)")
+                    .addEntity(TimeSheetBean.class)
+                    .setParameter("empId",employee_master_id);
+			
+			listOfTimeSheet = query.list();
+			tx.commit();
+		} catch (Exception e) {
+			if (tx != null) {
+				tx.rollback();
+			}
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return listOfTimeSheet;
+	}
+	
+	
+	// Store Procedure For Pending Timesheet
+		public List<TimeSheetBean> SPgetPendingTimeSheet(int manager_id) {
+			List<TimeSheetBean> listOfTimeSheet = new ArrayList<TimeSheetBean>();
 			Session session = HibernateUtil.openSession();
 			Transaction tx = null;
 			try {
 				tx = session.getTransaction();
 				tx.begin();
-				listOfDiplomaCourse = session.createQuery("FROM EmployeeBean where DAY(birth_date)=DAY(NOW()) AND MONTH(birth_date)=MONTH(NOW())").list();
-				System.out.println(listOfDiplomaCourse.size());
+				
+				SQLQuery query = (SQLQuery) session.createSQLQuery("CALL pendingTimesheet(:managerId)")
+	            .addEntity(TimeSheetBean.class)
+	            .setParameter("managerId",manager_id);
+				
+				listOfTimeSheet = query.list();
 				tx.commit();
 			} catch (Exception e) {
 				if (tx != null) {
@@ -6519,8 +6738,93 @@ public class AllListDAO {
 			} finally {
 				session.close();
 			}
-			return listOfDiplomaCourse;
+			return listOfTimeSheet;
+		}
+		
+		
+		
+		/* Store Procedure For Unplan Rejected Timesheet*/
+		public List<UnplanProjectBean> SPgetUnplanRejectedTimesheet(int employee_master_id) {
+			List<UnplanProjectBean> listOfTimeSheet = new ArrayList<UnplanProjectBean>();
+			Session session = HibernateUtil.openSession();
+			Transaction tx = null;
+			try {
+				tx = session.getTransaction();
+				tx.begin();
+				
+				SQLQuery query = (SQLQuery) session.createSQLQuery("CALL unplanRejectedTimesheetById(:empId)")
+	                    .addEntity(UnplanProjectBean.class)
+	                    .setParameter("empId",employee_master_id);
+				
+				listOfTimeSheet = query.list();
+				tx.commit();
+			} catch (Exception e) {
+				if (tx != null) {
+					tx.rollback();
+				}
+				e.printStackTrace();
+			} finally {
+				session.close();
+			}
+			return listOfTimeSheet;
+		}
+		
+		
+		
+		// Store Procedure For Unplan Time sheet
+		public List<UnplanProjectBean> SPUnplanTimeSheet(int manager_id) {
+			List<UnplanProjectBean> listOfPendingAndUpdatedTimeSheet = new ArrayList<UnplanProjectBean>();
+			Session session = HibernateUtil.openSession();
+			Transaction tx = null;
+			try {
+				tx = session.getTransaction();
+				tx.begin();
+				
+				
+				
+				SQLQuery query = (SQLQuery) session.createSQLQuery("CALL unplanTimesheetByManagerId(:managerId)")
+	            .addEntity(UnplanProjectBean.class)
+	            .setParameter("managerId",manager_id);
+				
+				listOfPendingAndUpdatedTimeSheet = query.list();
+				tx.commit();
+			} catch (Exception e) {
+				if (tx != null) {
+					tx.rollback();
+				}
+				e.printStackTrace();
+			} finally {
+				session.close();
+			}
+			return listOfPendingAndUpdatedTimeSheet;
+		}
+		
+		
+		//Store procedure for appraisal by manager_id and status
+		public List<AppraisalBean> SPgetAllappraisalByEmployeeIDStatus(int manager_id) {
+			List<AppraisalBean> listOfAppraisal = new ArrayList<AppraisalBean>();
+			Session session = HibernateUtil.openSession();
+			Transaction tx = null;
+			try {
+				tx = session.getTransaction();
+				tx.begin();
+				
+				
+				SQLQuery query = (SQLQuery) session.createSQLQuery("CALL appraisalByManagerIdStatus(:managerId)")
+	            .addEntity(AppraisalBean.class)
+	            .setParameter("managerId",manager_id);
+				
+				listOfAppraisal = query.list();
+				tx.commit();
+			} catch (Exception e) {
+				if (tx != null) {
+					tx.rollback();
+				}
+				e.printStackTrace();
+			} finally {
+				session.close();
+			}
+			return listOfAppraisal;
 		}
 	
-
 }

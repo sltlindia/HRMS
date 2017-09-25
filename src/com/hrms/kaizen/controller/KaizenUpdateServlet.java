@@ -62,13 +62,14 @@ public class KaizenUpdateServlet extends HttpServlet {
 				String safety_saving = "null";
 				String productivity_saving = "null";
 				String existing_problem = "null";
-				String safety_features = "null";
+				String safety_features = "-";
 				String status = "pending";
 				String completion_status = "";
 				String before_desc = "-";
 				String after_desc = "-";
 				String reason = "-";
 				String affecting_department = null;
+				String category = null;
 				int memberCount = 0;
 				int kaizen_id = 0;
 				String date = null;
@@ -108,6 +109,11 @@ public class KaizenUpdateServlet extends HttpServlet {
 							if (fieldName.equalsIgnoreCase("kaizen_name")) {
 								kaizen_name = fieldValue;
 								System.out.println("kaizen_name:"+kaizen_name);
+							}
+							
+							if (fieldName.equalsIgnoreCase("category")) {
+								category = fieldValue;
+								System.out.println("category:"+category);
 							}
 							
 							if (fieldName.equalsIgnoreCase("status")) {
@@ -200,7 +206,9 @@ public class KaizenUpdateServlet extends HttpServlet {
 								EmployeeBean bean = new EmployeeBean();
 								bean.setEmployee_master_id(user.getEmployee_master_id());
 								
-								kaizenBean = new KaizenBean(kaizen_id, kaizen_name, description, existing_problem, safety_features, implementation_cost, under_manager_id, status, date,bean,before_desc,after_desc,reason, time_saving,money_saving, effort_saving,safety_saving,productivity_saving,completion_status);
+								kaizenBean = new KaizenBean(kaizen_id, kaizen_name, description, existing_problem, safety_features, implementation_cost, 
+										under_manager_id, status, date,bean,before_desc,after_desc,reason, time_saving,money_saving, effort_saving,
+										safety_saving,productivity_saving,completion_status,category);
 								boolean result = allKaizenInsertDAO.kaizenInsert(kaizenBean);
 							}	
 							
