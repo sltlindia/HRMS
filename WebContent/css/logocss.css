@@ -29,7 +29,7 @@ svg {
   stroke: #3f51b5;
   stroke-dashoffset: 14%;
 }
-.text-copy:nth-child(3) {
+/* .text-copy:nth-child(3) {
   stroke: #808040;
   stroke-dashoffset: 21%;
 }
@@ -40,7 +40,7 @@ svg {
 .text-copy:nth-child(5) {
   stroke: #D61C59;
   stroke-dashoffset: 35%;
-}
+} */
 
  
  

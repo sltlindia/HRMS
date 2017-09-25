@@ -164,7 +164,7 @@
                     <a href="#" class="btn btn-social-icon mr-1 mb-1 btn-outline-linkedin"><span class="icon-linkedin3 font-medium-4"></span></a>
                     <a href="#" class="btn btn-social-icon mr-1 mb-1 btn-outline-github"><span class="icon-github font-medium-4"></span></a>
                 </div> -->
-                <p class="card-subtitle line-on-side text-muted text-xs-center font-small-3 mx-2 my-1"><span>Using Account Details</span></p>
+                <p class="card-subtitle line-on-side text-muted text-xs-center font-small-3 mx-2 my-1"><span></span></p>
                 <div class="card-block">
                     <form class="form-horizontal" action="login" method="post">
                          <fieldset class="form-group position-relative has-icon-left">
