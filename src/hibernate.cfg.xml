@@ -32,13 +32,9 @@
 
 		<!-- <property name="hibernate.connection.password">root</property>    
  -->
-=======
-		<property name="hibernate.connection.password">root</property>       -->
->>>>>>> d8c140713177547f39b307b818efe06a30e36591
-
+		<property name="hibernate.connection.password">root</property>      
 	    <property name="show_sql">true</property>
 		<property name="hbm2ddl.auto">create/update</property>
-		
 		<!-- performance bean -->
 		
 		<mapping class="com.hrms.pms.bean.EmployeeBean" />
