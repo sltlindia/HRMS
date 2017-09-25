@@ -906,7 +906,7 @@
                 	<%for(DetailsOfHandOverFormBean detailsOfHandOverFormBean : listOfExitFormalityFormByEmpId){%>
 										<a
 										href="handOverApprovalForm.jsp?hand_over_form_detail_id=<%=detailsOfHandOverFormBean.getDetails_of_hand_over_form_id()%>"
-										class="list-group-item"> <i class="fa fa-sign-out"></i>
+										class="list-group-item" style=""> <i class="ficon icon-stack3"></i>
 										<b><%=detailsOfHandOverFormBean.getEmployeeBean().getFirstname()+" "+detailsOfHandOverFormBean.getEmployeeBean().getLastname()%></b> Handed Over you.
 									</a>
 									<%} %>
@@ -1497,8 +1497,6 @@
 									<ul class="mega-menu-sub">
 										<li><a href="exitInterviewHRList.jsp"
 											class="dropdown-item"><i></i>Exit Interview Form List</a></li>
-										<li><a href="exitInterviewFinalReviewList.jsp"
-											class="dropdown-item"><i></i>Exit Interview Final List</a></li>
 										<li><a href="handOverFormHRList.jsp"
 											class="dropdown-item"><i></i>Hand Over Form List</a></li>
 									</ul>
