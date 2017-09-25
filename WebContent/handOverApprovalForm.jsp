@@ -761,7 +761,7 @@ AllListExitFormalityDAO allListExitFormalityDAO = new AllListExitFormalityDAO();
 </div>
 </div>
 
-<%@include file="footer.jsp"%>
+<%@include file="footer.html"%>
 				
 					
 	
