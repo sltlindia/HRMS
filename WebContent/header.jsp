@@ -1,3 +1,7 @@
+<%@page import="com.hrms.exitformality.bean.HandOverApprovalBean"%>
+<%@page import="com.hrms.exitformality.bean.ExitInterviewEmployeeBean"%>
+<%@page import="com.hrms.exitformality.bean.DetailsOfHandOverFormBean"%>
+<%@page import="com.hrms.exitformality.dao.AllListExitFormalityDAO"%>
 <%@page import="com.hrms.grievancemanagement.bean.GrievanceQueryBean"%>
 <%@page import="com.hrms.pms.bean.AppraisalBean"%>
 <%@page import="com.hrms.lms.bean.GatePassBean"%>
@@ -832,6 +836,179 @@
                 </ul>
               </li>
 				<%} %>
+				
+				
+				
+				
+				
+							<%
+							 AllListExitFormalityDAO allListExitFormalityDAO = new AllListExitFormalityDAO();
+							 List<DetailsOfHandOverFormBean> listOfExitFormalityFormByEmpId = allListExitFormalityDAO.getListOfExitFormalityFormByHandOverId(employee_master_id); 
+							 int secondHandOver = 0;
+							 
+							 if(manager_id != 99){
+							List<ExitInterviewEmployeeBean> listOfExitInterviewEmployees  = allListExitFormalityDAO.getListOfExitInterviewEmployeesByManager(employee_master_id, manager_id);
+							 List<DetailsOfHandOverFormBean> listOfExitFormalityFormByHandOverIdAfterSecondApproval = allListExitFormalityDAO.getListOfExitFormalityFormByHandOverIdAfterSecondApproval(manager_id);
+							 
+							 
+							 for(DetailsOfHandOverFormBean d : listOfExitFormalityFormByHandOverIdAfterSecondApproval){ 
+									
+									int details_of_hand_over_form_id = d.getDetails_of_hand_over_form_id();
+									
+									HandOverApprovalBean handOverApprovalBean = allListExitFormalityDAO.getHandOverDetailIdByEmpId(employee_master_id, details_of_hand_over_form_id);
+									if(handOverApprovalBean != null){
+										secondHandOver++;
+										
+									}
+								 }
+							 
+							 secondHandOver = secondHandOver + listOfExitInterviewEmployees.size();
+							 }
+							 
+							 
+							 int hrListOfexitfromality = 0;
+							 if(employee_master_id == 1474 || employee_master_id == 8){
+							 List<ExitInterviewEmployeeBean> listOfExitInterviewEmployeesForHR = allListExitFormalityDAO.getListOfExitInterviewEmployees(employee_master_id);
+							 hrListOfexitfromality = listOfExitInterviewEmployeesForHR.size();
+							 }
+							 List<DetailsOfHandOverFormBean> listOfExitFormalityFormByHandOverIdAfterSecondApproval = allListExitFormalityDAO.getListOfExitFormalityFormByHandOverIdAfterSecondApproval(manager_id);
+							 
+							 
+							 int hrHandOver = 0;
+							 if(employee_master_id == 1474 || employee_master_id == 8){
+									
+									List<DetailsOfHandOverFormBean> listOfExitFormalityForHrApproval = allListExitFormalityDAO.getListOfExitFormalityFormForHRApproval();
+									for(DetailsOfHandOverFormBean d : listOfExitFormalityForHrApproval){ 
+									
+									int details_of_hand_over_form_id = d.getDetails_of_hand_over_form_id();
+									
+									Long count = allListExitFormalityDAO.getCountOfApprovalHandOver(details_of_hand_over_form_id);
+									if(count == 3){
+										hrHandOver++;
+									}
+								}
+							 }		
+							 int exitTotal = listOfExitFormalityFormByEmpId.size() + hrListOfexitfromality + secondHandOver + hrHandOver;
+							 
+							 
+							 %>	
+							 
+							 
+				
+				<li class="dropdown dropdown-notification nav-item"><a href="#" data-toggle="dropdown" class="nav-link nav-link-label"><i class="ficon icon-exit"></i><span class="tag tag-pill tag-default tag-info tag-default tag-up"><%=exitTotal%></span></a>
+                <ul class="dropdown-menu dropdown-menu-media dropdown-menu-right">
+                  <li class="dropdown-menu-header">
+                    <h6 class="dropdown-header m-0"><span class="grey darken-2">Notification</span><span class="notification-tag tag tag-default tag-info float-xs-right m-0"><%=exitTotal %> New</span></h6>
+                  </li>
+                  <li class="list-group scrollable-container">
+                
+                
+                	<%for(DetailsOfHandOverFormBean detailsOfHandOverFormBean : listOfExitFormalityFormByEmpId){%>
+										<a
+										href="handOverApprovalForm.jsp?hand_over_form_detail_id=<%=detailsOfHandOverFormBean.getDetails_of_hand_over_form_id()%>"
+										class="list-group-item"> <i class="fa fa-sign-out"></i>
+										<b><%=detailsOfHandOverFormBean.getEmployeeBean().getFirstname()+" "+detailsOfHandOverFormBean.getEmployeeBean().getLastname()%></b> Handed Over you.
+									</a>
+									<%} %>
+									
+									
+									<%for(DetailsOfHandOverFormBean detailsOfHandOverFormBean : listOfExitFormalityFormByHandOverIdAfterSecondApproval){
+									int handedOverEmployee = detailsOfHandOverFormBean.getHand_over_to_name();
+									
+									EmployeeBean bean = loginDAO.getEmailIdEmployee(handedOverEmployee);
+										int details_of_hand_over_form_id = detailsOfHandOverFormBean.getDetails_of_hand_over_form_id();
+									
+									HandOverApprovalBean handOverApprovalBean = allListExitFormalityDAO.getHandOverDetailIdByEmpId(employee_master_id, details_of_hand_over_form_id);
+									if(handOverApprovalBean != null){
+									
+									%>
+									
+									
+												<a href="handOverApprovalForm.jsp?hand_over_form_detail_id=<%=detailsOfHandOverFormBean.getDetails_of_hand_over_form_id()%>" class="list-group-item">
+							                      <div class="media">
+							                        <div class="media-left" style="color: black;"><i class="ficon icon-stack3"></i></div>
+							                        <div class="media-body">
+							                          <p class="notification-text font-small-3 text-muted"><b><%=detailsOfHandOverFormBean.getEmployeeBean().getFirstname()+" "+detailsOfHandOverFormBean.getEmployeeBean().getLastname()%>'s</b> Hand Over taken by <b><%=bean.getFirstname()+" "+bean.getLastname()%>.Please Give Your Approval.</b>.</p>
+							                        </div>
+							                      </div>
+							                   </a>
+									
+									<%} }%>
+									
+									
+									
+									<%
+									List<ExitInterviewEmployeeBean> listOfExitInterviewEmployees  = allListExitFormalityDAO.getListOfExitInterviewEmployeesByManager(employee_master_id, manager_id);
+									for(ExitInterviewEmployeeBean exitInterviewEmployeeBean : listOfExitInterviewEmployees){%>
+									
+									
+									<a href="exitInterviewHRComment.jsp?exit_employee_id=<%=exitInterviewEmployeeBean.getExit_interview_employee_id()%>" class="list-group-item">
+							                      <div class="media">
+							                        <div class="media-left" style="color: black;"><i class="ficon icon-exit"></i></div>
+							                        <div class="media-body">
+							                          <p class="notification-text font-small-3 text-muted"><%=exitInterviewEmployeeBean.getEmployeeBean().getFirstname()+" "+exitInterviewEmployeeBean.getEmployeeBean().getLastname()%> send you Exit Formality Form For Approval.</p>
+							                        </div>
+							                      </div>
+							            </a>
+									
+									<%} %>
+									
+									<%if(employee_master_id == 1474 || employee_master_id == 8){
+										List<ExitInterviewEmployeeBean> listOfExitInterviewEmployeesForHR = allListExitFormalityDAO.getListOfExitInterviewEmployees(employee_master_id);
+									
+									%>
+									<%for(ExitInterviewEmployeeBean exitInterviewEmployeeBean : listOfExitInterviewEmployeesForHR){%>
+										
+										<a href="exitInterviewHRComment.jsp?exit_employee_id=<%=exitInterviewEmployeeBean.getExit_interview_employee_id()%>" class="list-group-item">
+							                      <div class="media">
+							                        <div class="media-left" style="color: black;"><i class="ficon icon-exit"></i></div>
+							                        <div class="media-body">
+							                          <p class="notification-text font-small-3 text-muted"><%=exitInterviewEmployeeBean.getEmployeeBean().getFirstname()+" "+exitInterviewEmployeeBean.getEmployeeBean().getLastname()%>'s</b> Exit Formality form Approved by Department Head.Please Give Your Approval.</p>
+							                        </div>
+							                      </div>
+							                   </a>
+									
+										
+										
+									<%} %>
+									<%} %>
+									
+									
+									
+									<%if(employee_master_id == 1474 || employee_master_id == 8){
+									
+									List<DetailsOfHandOverFormBean> listOfExitFormalityForHrApproval = allListExitFormalityDAO.getListOfExitFormalityFormForHRApproval();
+									for(DetailsOfHandOverFormBean d : listOfExitFormalityForHrApproval){ 
+									
+									int details_of_hand_over_form_id = d.getDetails_of_hand_over_form_id();
+									
+									Long count = allListExitFormalityDAO.getCountOfApprovalHandOver(details_of_hand_over_form_id);
+									if(count == 3){%>
+									
+									
+									<a href="handOverApprovalForm.jsp?hand_over_form_detail_id=<%=d.getDetails_of_hand_over_form_id()%>" class="list-group-item">
+							                      <div class="media">
+							                        <div class="media-left" style="color: black;"><i class="ficon icon-stack3"></i></div>
+							                        <div class="media-body">
+							                          <p class="notification-text font-small-3 text-muted"><%=d.getEmployeeBean().getFirstname()+" "+d.getEmployeeBean().getLastname()%>'s Hand Over process finish.Please Give Your Approval.</p>
+							                        </div>
+							                      </div>
+							                   </a>
+									
+									<% }}} %>
+                
+                
+                
+                  
+                   
+                   </li>
+                  <li class="dropdown-menu-footer"><a href="javascript:void(0)" class="dropdown-item text-muted text-xs-center">Read all messages</a></li>
+                </ul>
+              </li>
+              
+              
+              
+              
 
 					<li class="dropdown dropdown-user nav-item"><a href="#"
 						data-toggle="dropdown"
@@ -1553,52 +1730,7 @@
 
 	<%} %>
 
-	<!-- BEGIN VENDOR JS-->
-	<!-- build:js app-assets/js/vendors.min.js-->
-	<script src="app-assets/js/core/libraries/jquery.min.js"
-		type="text/javascript"></script>
-	<script src="app-assets/vendors/js/ui/tether.min.js"
-		type="text/javascript"></script>
-	<script src="app-assets/js/core/libraries/bootstrap.min.js"
-		type="text/javascript"></script>
-	<script src="app-assets/vendors/js/ui/perfect-scrollbar.jquery.min.js"
-		type="text/javascript"></script>
-	<script src="app-assets/vendors/js/ui/unison.min.js"
-		type="text/javascript"></script>
-	<script src="app-assets/vendors/js/ui/blockUI.min.js"
-		type="text/javascript"></script>
-	<script src="app-assets/vendors/js/ui/jquery.matchHeight-min.js"
-		type="text/javascript"></script>
-	<script src="app-assets/vendors/js/ui/jquery-sliding-menu.js"
-		type="text/javascript"></script>
-	<script src="app-assets/vendors/js/sliders/slick/slick.min.js"
-		type="text/javascript"></script>
-	<script src="app-assets/vendors/js/ui/screenfull.min.js"
-		type="text/javascript"></script>
-	<script src="app-assets/vendors/js/extensions/pace.min.js"
-		type="text/javascript"></script>
-	<!-- /build-->
-	<!-- BEGIN VENDOR JS-->
-	<!-- BEGIN PAGE VENDOR JS-->
-	<script type="text/javascript"
-		src="app-assets/vendors/js/ui/jquery.sticky.js"></script>
-	<script src="app-assets/vendors/js/extensions/moment.min.js"
-		type="text/javascript"></script>
-	<script src="app-assets/vendors/js/extensions/underscore-min.js"
-		type="text/javascript"></script>
-	<script src="app-assets/vendors/js/extensions/clndr.min.js"
-		type="text/javascript"></script>
-	<script src="app-assets/vendors/js/extensions/unslider-min.js"
-		type="text/javascript"></script>
-	<!-- END PAGE VENDOR JS-->
-	<!-- BEGIN ROBUST JS-->
-	<!-- build:js app-assets/js/app.min.js-->
-	<script src="app-assets/js/core/app-menu.min.js" type="text/javascript"></script>
-	<script src="app-assets/js/core/app.min.js" type="text/javascript"></script>
-	<script src="app-assets/js/scripts/ui/fullscreenSearch.min.js"
-		type="text/javascript"></script>
-	<!-- /build-->
-	<!-- END ROBUST JS-->
+	
 	
 </body>
 

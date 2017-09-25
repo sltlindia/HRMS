@@ -53,15 +53,18 @@ public class GatePassInsertServlet extends HttpServlet {
 			employeeBean.setEmployee_master_id(emp_id);
 			
 			GatePassBean gatePassBean = new GatePassBean(employeeBean, purpose_of_leave, reason, Returnable, out_time, status, date1 , Fromdec , Todec,gate_entry,other_manager_id);
+			boolean result = allInsertDAO.gatePassInsert(gatePassBean);
+			int gate_pass_id = gatePassBean.getGate_pass_id();
 			
 			LoginDAO loginDAO = new LoginDAO();
 			EmployeeBean employeeBean2 = loginDAO.getEmailId(manager_id);
 			String EmailId = employeeBean2.getEmail_id();
+			int approvedId = employeeBean2.getEmployee_master_id();
 			
-			boolean result = allInsertDAO.gatePassInsert(gatePassBean);
+			
 			if(result == true){
 				
-				/*new Thread(new Runnable() {
+				new Thread(new Runnable() {
 				    @Override
 				    public void run() {
 				    	
@@ -69,13 +72,13 @@ public class GatePassInsertServlet extends HttpServlet {
 				    	String sub = name + " apply for Gate Pass";
 				    	int emp_code = user.getEmployee_code();
 				    	
-				    	Mailer.applyGatePass(to, sub, emp_code,name,out_time, Fromdec, Todec,mailDate,reason);
+				    	Mailer.applyGatePass(to, sub, emp_code,name,out_time, Fromdec, Todec,mailDate,reason,gate_pass_id,approvedId);
 				    	
 				    }
-				}).start();*/
+				}).start();
 				
 				request.setAttribute("success", "Gate Pass Successfully Applied....");
-				request.getRequestDispatcher("gatePassListEmployee.jsp").forward(request, response);
+				response.sendRedirect("gatePassListEmployee.jsp");
 			}
 			
 		}else

@@ -167,9 +167,9 @@
                 <p class="card-subtitle line-on-side text-muted text-xs-center font-small-3 mx-2 my-1"><span></span></p>
                 <div class="card-block">
                     <form class="form-horizontal" action="login" method="post">
-                         <fieldset class="form-group">
+                         <fieldset class="form-group position-relative has-icon-left">
                          
-                         							<select class="select2-theme form-control" id="select2-theme" name="companyId" required>
+                         							<select class="select2-diacritics form-control" id="select2-diacritics" name="companyId" required>
 												<%
 													CompanyListDAO companyListDAO = new CompanyListDAO();
 														List<CompanyListBean> listOfCompanyList = (ArrayList) companyListDAO.getListOfCompanyList();

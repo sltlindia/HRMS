@@ -333,6 +333,84 @@ public class AllIncentiveUpdateDAO {
 			 }	
 			 return true;
 		}
+		
+		
+		
+				//IncentiveSalesPersonList Pecentage and Incentive Status update
+				public boolean incentiveEligibleStatusUpdateSalesPersoWise(int sales_id,double percentage,int incentive_id){
+					Session session = HibernateUtil.openSession();
+					 Transaction tx = null;	
+					 try {
+						 tx = session.getTransaction();
+						 tx.begin();
+						 Query query = session.createQuery("update IncentiveSalesPersonListBean set eligible_incentive_percentage = :eip  where incentiveBean= :id and salespersonBean = :si");
+						 query.setDouble("eip",percentage);
+						 query.setInteger("id", incentive_id);
+						 query.setInteger("si", sales_id);
+						 int result = query.executeUpdate();
+						 System.out.println("result :"+result);
+						 tx.commit();
+					 } catch (Exception e) {
+						 if (tx != null) {
+							 tx.rollback();
+						 }
+						 e.printStackTrace();
+					 } finally {
+						 session.close();
+					 }	
+					 return true;
+				}
 	
+				
+				//IncentiveSalesPersonList Paid Update
+				public boolean incentivePaidUpdate(int id,String status,String paid_date){
+					Session session = HibernateUtil.openSession();
+					 Transaction tx = null;	
+					 try {
+						 tx = session.getTransaction();
+						 tx.begin();
+						 Query query = session.createQuery("update IncentiveSalesPersonListBean set incentive_status = :is, paid_date = :pd where incentive_sales_person_list_id= :ispli");
+						 query.setString("is", status);
+						 query.setString("pd", paid_date);
+						 query.setInteger("ispli", id);
+						 int result = query.executeUpdate();
+						 System.out.println("result :"+result);
+						 tx.commit();
+					 } catch (Exception e) {
+						 if (tx != null) {
+							 tx.rollback();
+						 }
+						 e.printStackTrace();
+					 } finally {
+						 session.close();
+					 }	
+					 return true;
+				}
+				
+				//IncentiveSalesPersonList Release Update
+				public boolean incentiveReleaseUpdate(int id,String status,String release_date){
+					Session session = HibernateUtil.openSession();
+					 Transaction tx = null;	
+					 try {
+						 tx = session.getTransaction();
+						 tx.begin();
+						 Query query = session.createQuery("update IncentiveSalesPersonListBean set incentive_status = :is, release_date = :rd where incentive_sales_person_list_id= :ispli");
+						 query.setString("is", status);
+						 query.setString("rd", release_date);
+						 query.setInteger("ispli", id);
+						 int result = query.executeUpdate();
+						 System.out.println("result :"+result);
+						 tx.commit();
+					 } catch (Exception e) {
+						 if (tx != null) {
+							 tx.rollback();
+						 }
+						 e.printStackTrace();
+					 } finally {
+						 session.close();
+					 }	
+					 return true;
+				}
+				
 	
 }

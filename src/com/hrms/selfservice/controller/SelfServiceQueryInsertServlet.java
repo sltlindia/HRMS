@@ -94,14 +94,7 @@ public class SelfServiceQueryInsertServlet extends HttpServlet {
 						request.getRequestDispatcher("selfServiceList.jsp").forward(request, response);
 					}
 					
-					
-					if (fieldName.equalsIgnoreCase("attachment")) {
-						String value = fieldValue;
-						System.out.println("file:"+value);
-					}
-					
 				}else {
-					
 					fieldName = item.getFieldName();
 					System.out.println("FieldName : "+fieldName);
 					fileName = item.getName();
@@ -133,7 +126,7 @@ public class SelfServiceQueryInsertServlet extends HttpServlet {
 							selfservice_query_id = selfServiceQuerybean.getSelfservice_query_id();
 							
 							
-						} else if(!fileName.isEmpty()){
+						} else if(fieldName.equalsIgnoreCase("attachment")){
 							System.out.println("MIME : "+context.getMimeType(fileName));
 								item.write(file);
 								System.out.println("===> "+file.getName());

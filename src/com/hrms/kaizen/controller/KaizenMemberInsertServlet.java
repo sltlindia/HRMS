@@ -104,11 +104,14 @@ public class KaizenMemberInsertServlet extends HttpServlet {
 							
 							
 							if (fieldName.equalsIgnoreCase("redirection")) {
-								
 								request.setAttribute("kaizen_id", kaizen_id);
 								request.setAttribute("firstInsert", "firstInsert");
 								request.getRequestDispatcher("kaizenPhotoUpload.jsp").forward(request, response);
-								
+							}
+							
+							if (fieldName.equalsIgnoreCase("redirectionTeamMember")) {
+								request.setAttribute("kaizen_id", kaizen_id);
+								request.getRequestDispatcher("kaizenView.jsp").forward(request, response);
 							}
 							
 							

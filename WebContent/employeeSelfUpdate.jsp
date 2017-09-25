@@ -79,7 +79,6 @@ for(int i = joiningYear;i<=curYear;i++){
 	 }
 }
 
-System.err.println(numberOfDays);
 
 int year = numberOfDays / 365;
 
@@ -515,6 +514,7 @@ int employee_id = user.getEmployee_master_id();
                     <div class="card-body collapse in">
                         <div class="card-block">
                             <div class="chart-container">
+                            <div class="table-responsive">
                               <table class="table table-bordered" id="mtable">
 											<thead>
 												<tr>
@@ -547,6 +547,7 @@ int employee_id = user.getEmployee_master_id();
 											<%} %>
 											</tbody>
 										</table>
+									</div>	
                             </div>
                         </div>
                     </div>
@@ -674,6 +675,9 @@ int employee_id = user.getEmployee_master_id();
     
     <%@include file="footer.jsp"%>
     
+<<<<<<< HEAD
+    
+=======
     <script src="app-assets/js/core/libraries/jquery.min.js" type="text/javascript"></script>
     <script src="app-assets/vendors/js/ui/tether.min.js" type="text/javascript"></script>
     <script src="app-assets/js/core/libraries/bootstrap.min.js" type="text/javascript"></script>
@@ -701,6 +705,7 @@ int employee_id = user.getEmployee_master_id();
     <script src="app-assets/js/scripts/ui/fullscreenSearch.min.js" type="text/javascript"></script>
     <!-- /build-->
     <!-- END ROBUST JS-->
+>>>>>>> a6386ba58ef38b859ad8da397567c65f75dc6d0b
     <!-- BEGIN PAGE LEVEL JS-->
     <script src="app-assets/js/scripts/gallery/photo-swipe/photoswipe-script.min.js" type="text/javascript"></script>
     <script src="app-assets/js/scripts/pages/timeline.min.js" type="text/javascript"></script>

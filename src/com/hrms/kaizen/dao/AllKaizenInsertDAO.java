@@ -5,11 +5,16 @@ import org.hibernate.Transaction;
 
 import com.hrms.incentive.bean.TargetBean;
 import com.hrms.kaizen.bean.KaizenAfterUploadAttachmentBean;
+import com.hrms.kaizen.bean.KaizenAuthorityScoreBean;
 import com.hrms.kaizen.bean.KaizenBean;
 import com.hrms.kaizen.bean.KaizenBeforeUploadAttachmentBean;
+import com.hrms.kaizen.bean.KaizenBillboardResultBean;
 import com.hrms.kaizen.bean.KaizenManagementApprovalBean;
 import com.hrms.kaizen.bean.KaizenManagerBean;
+import com.hrms.kaizen.bean.KaizenManagerScoreBean;
 import com.hrms.kaizen.bean.KaizenMemberBean;
+import com.hrms.kaizen.bean.KaizenProblemIdentificationBean;
+import com.hrms.kaizen.bean.kaizenRCABean;
 import com.hrms.pms.util.HibernateUtil;
 
 public class AllKaizenInsertDAO {
@@ -148,5 +153,107 @@ public class AllKaizenInsertDAO {
 		 return true;
 	}
 	
+	
+	public boolean kaizenManagerScoreInsert(KaizenManagerScoreBean kaizenManagerScoreBean){
+		 Session session = HibernateUtil.openSession();
+		 Transaction tx = null;	
+		 try {
+			 tx = session.getTransaction();
+			 tx.begin();
+			 session.saveOrUpdate(kaizenManagerScoreBean);
+			 tx.commit();
+		 } catch (Exception e) {
+			 if (tx != null) {
+				 tx.rollback();
+			 }
+			 e.printStackTrace();
+		 } finally {
+			 session.close();
+		 }	
+		 return true;
+	}
+	
+	
+	public boolean kaizenAuthorityScoreInsert(KaizenAuthorityScoreBean kaizenAuthorityScoreBean){
+		 Session session = HibernateUtil.openSession();
+		 Transaction tx = null;	
+		 try {
+			 tx = session.getTransaction();
+			 tx.begin();
+			 session.saveOrUpdate(kaizenAuthorityScoreBean);
+			 tx.commit();
+		 } catch (Exception e) {
+			 if (tx != null) {
+				 tx.rollback();
+			 }
+			 e.printStackTrace();
+		 } finally {
+			 session.close();
+		 }	
+		 return true;
+	}
+	
+	
+	public boolean kaizenManagerResultnsert(KaizenBillboardResultBean kaizenBillboardResultBean){
+		 Session session = HibernateUtil.openSession();
+		 Transaction tx = null;	
+		 try {
+			 tx = session.getTransaction();
+			 tx.begin();
+			 session.saveOrUpdate(kaizenBillboardResultBean);
+			 tx.commit();
+		 } catch (Exception e) {
+			 if (tx != null) {
+				 tx.rollback();
+			 }
+			 e.printStackTrace();
+		 } finally {
+			 session.close();
+		 }	
+		 return true;
+	}
+	
+	
+	public boolean kaizenProblemInsert(KaizenProblemIdentificationBean kaizenProblemIdentificationBean){
+		 Session session = HibernateUtil.openSession();
+		 Transaction tx = null;	
+		 try {
+			 tx = session.getTransaction();
+			 tx.begin();
+			 session.saveOrUpdate(kaizenProblemIdentificationBean);
+			 tx.commit();
+		 } catch (Exception e) {
+			 if (tx != null) {
+				 tx.rollback();
+			 }
+			 e.printStackTrace();
+		 } finally {
+			 session.close();
+		 }	
+		 return true;
+	}
+	
+	public boolean kaizenRCAInsert(kaizenRCABean kaizenRCABean){
+		 Session session = HibernateUtil.openSession();
+		 Transaction tx = null;
+		 int id = 0;
+		 boolean result = false;
+		 
+		 try {
+			 tx = session.getTransaction();
+			 tx.begin();
+			 session.save(kaizenRCABean);
+			 tx.commit();
+			
+		 } catch (Exception e) {
+			 if (tx != null) {
+				 tx.rollback();
+			 }
+			 e.printStackTrace();
+		 } finally {
+			 session.close();
+		 }	
+		 return result;
+	}
 	
 }

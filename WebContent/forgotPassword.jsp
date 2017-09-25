@@ -116,7 +116,7 @@
                     <form class="form-horizontal" action="forgotPasswordAuthentication" method="post">
                         <fieldset class="form-group">
                          
-                         							<select class="select2-theme form-control" id="select2-theme" name="companyId" required>
+                         							<select class="select2-diacritics form-control" id="select2-diacritics" name="companyId" required>
 												<%
 													CompanyListDAO companyListDAO = new CompanyListDAO();
 														List<CompanyListBean> listOfCompanyList = (ArrayList) companyListDAO.getListOfCompanyList();

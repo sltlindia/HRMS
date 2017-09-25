@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Query;
-import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -13,7 +12,6 @@ import com.hrms.corehr.bean.CompanyAdressBean;
 import com.hrms.corehr.bean.ExtentionNumberBean;
 import com.hrms.corehr.bean.InterviewTrackerDesignationBean;
 import com.hrms.corehr.bean.SubDepartmentBean;
-import com.hrms.pms.bean.AppraisalBean;
 import com.hrms.pms.bean.EmployeeBean;
 import com.hrms.pms.bean.TaskMasterBean;
 import com.hrms.pms.util.HibernateUtil;
@@ -183,31 +181,6 @@ public class AllListCoreHrDAO {
 	return listOfCompanyAdd;
 	}
 	
-	/*Store Procedure For CUG List*/
-	public List<CUGBean> SPgetListOfCugNo()
-	{
-	List<CUGBean> listOfCompanyAdd = new ArrayList<CUGBean>();
-	Session session = HibernateUtil.openSession();
-	Transaction tx = null;        
-	try {
-	    tx = session.getTransaction();
-	    tx.begin();
-	    SQLQuery query = (SQLQuery) session.createSQLQuery("CALL listOfCugNo()")
-	            .addEntity(CUGBean.class);
-				
-	    listOfCompanyAdd = query.list();
-	    tx.commit();
-	} catch (Exception e) {
-	    if (tx != null) {
-	        tx.rollback();
-	    }
-	    e.printStackTrace();
-	} finally {
-	    session.close();
-	}
-	return listOfCompanyAdd;
-	}
-	
 	
 	public List<EmployeeBean> getListOfCugNoFromEmployee()
 	
@@ -220,31 +193,6 @@ public class AllListCoreHrDAO {
 	    tx.begin();
 	    String hql = "from EmployeeBean where cug_num != 'null'";
 		 Query query = session.createQuery(hql);
-		 listOfCompanyAdd = query.list();
-	    tx.commit();
-	} catch (Exception e) {
-	    if (tx != null) {
-	        tx.rollback();
-	    }
-	    e.printStackTrace();
-	} finally {
-	    session.close();
-	}
-	return listOfCompanyAdd;
-	}
-	
-	/*Store Procedure For CUG No From Employee*/
-	public List<EmployeeBean> SPgetListOfCugNoFromEmployee()
-	
-	{
-	List<EmployeeBean> listOfCompanyAdd = new ArrayList<EmployeeBean>();
-	Session session = HibernateUtil.openSession();
-	Transaction tx = null;        
-	try {
-	    tx = session.getTransaction();
-	    tx.begin();
-	    SQLQuery query = (SQLQuery) session.createSQLQuery("CALL listOfCugNoFromEmployee()")
-	            .addEntity(EmployeeBean.class);
 		 listOfCompanyAdd = query.list();
 	    tx.commit();
 	} catch (Exception e) {

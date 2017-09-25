@@ -20,8 +20,11 @@ import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 import com.hrms.kaizen.bean.KaizenBean;
+import com.hrms.kaizen.bean.KaizenManagementApprovalBean;
 import com.hrms.kaizen.bean.KaizenManagerBean;
+import com.hrms.kaizen.bean.kaizenRCABean;
 import com.hrms.kaizen.dao.AllKaizenInsertDAO;
+import com.hrms.mailer.Mailer;
 import com.hrms.pms.bean.DepartmentBean;
 import com.hrms.pms.bean.EmployeeBean;
 import com.hrms.pms.dao.LoginDAO;
@@ -58,7 +61,7 @@ public class KaizenInsertServlet extends HttpServlet {
 				String money_saving = "null";
 				String effort_saving = "null";*/
 				String existing_problem = "null";
-				String safety_features = "null";
+				String safety_features = "-";
 				String status = "pending";
 				String affecting_department = null;
 				String time_saving = "null";
@@ -66,16 +69,19 @@ public class KaizenInsertServlet extends HttpServlet {
 				String effort_saving = "null";
 				String safety_saving = "null";
 				String productivity_saving = "null";
+				String category = null;
 				int memberCount = 0;
 				int kaizen_id = 0;
+				String affectingmanager = "";
 				String completion_status = "saved"; 
 				
 				SimpleDateFormat formater = new SimpleDateFormat("dd-MM-yyyy");
 				SimpleDateFormat formater1 = new SimpleDateFormat("yyyy-MM-dd");
 				
 				int under_manager_id = Integer.parseInt(user.getUnder_manager_id());
+				LoginDAO loginDAO = new LoginDAO();
 				
-				
+				EmployeeBean bean = loginDAO.getEmailId(under_manager_id);
 				
 				EmployeeBean employeeBean = new EmployeeBean();
 				
@@ -106,6 +112,11 @@ public class KaizenInsertServlet extends HttpServlet {
 							if (fieldName.equalsIgnoreCase("description")) {
 								description = fieldValue;
 								System.out.println("description:"+description);
+							}
+							
+							if (fieldName.equalsIgnoreCase("category")) {
+								category = fieldValue;
+								System.out.println("category:"+category);
 							}
 							
 							if (fieldName.equalsIgnoreCase("existing_problem")) {
@@ -156,17 +167,34 @@ public class KaizenInsertServlet extends HttpServlet {
 							if (fieldName.equalsIgnoreCase("insert")) 
 							{
 								
-								EmployeeBean bean = new EmployeeBean();
-								bean.setEmployee_master_id(user.getEmployee_master_id());
+								EmployeeBean bean1 = new EmployeeBean();
+								bean1.setEmployee_master_id(user.getEmployee_master_id());
 								
-								kaizenBean = new KaizenBean(kaizen_name, description, existing_problem,safety_features, implementation_cost,under_manager_id,status,parseDate, time_saving,money_saving, effort_saving, safety_saving , productivity_saving,bean,completion_status);
+								kaizenBean = new KaizenBean(kaizen_name, description, existing_problem,safety_features, implementation_cost,under_manager_id,status,parseDate, time_saving,money_saving, effort_saving, safety_saving , productivity_saving,bean1,completion_status,category);
 								boolean result = allKaizenInsertDAO.kaizenInsert(kaizenBean);
 								
 								kaizen_id = kaizenBean.getKaizen_id();
 								kaizenBean.setKaizen_id(kaizen_id);
 								
+								
 							}	
 							
+							
+							if (fieldName.equalsIgnoreCase("management_id")) {
+								String value = fieldValue;
+								System.out.println("management_id:"+value);
+								String management_approval_status = "pending";
+								String management_rejection_reason = "-";
+								
+								int employee_id = Integer.parseInt(value);
+								employeeBean.setEmployee_master_id(employee_id);
+								
+								
+								
+								KaizenManagementApprovalBean kaizenManagementApprovalBean = new KaizenManagementApprovalBean(management_approval_status, management_rejection_reason, employeeBean, kaizenBean);
+								boolean result = allKaizenInsertDAO.kaizenManagementInsert(kaizenManagementApprovalBean);
+								
+							}
 							
 							if (fieldName.equalsIgnoreCase("affecting_department")) {
 								affecting_department = fieldValue;
@@ -177,17 +205,66 @@ public class KaizenInsertServlet extends HttpServlet {
 							if (fieldName.equalsIgnoreCase("mngEmployee")) 
 							{
 								
-								if(affecting_department.equalsIgnoreCase("yes")){
 									
 								int value = Integer.parseInt(fieldValue);
 								employeeBean.setEmployee_master_id(value);
 								KaizenManagerBean kaizenManagerBean = new KaizenManagerBean(status, employeeBean, kaizenBean);
 								
-								boolean result = allKaizenInsertDAO.kaizenManagerInsert(kaizenManagerBean);
+								EmployeeBean bean2 = loginDAO.getInfoById(value);
 								
-								}
+								boolean result = allKaizenInsertDAO.kaizenManagerInsert(kaizenManagerBean);
+								affectingmanager = affectingmanager+","+bean2.getFirstname()+" "+bean2.getLastname();
+								
 								
 							}	
+							
+							
+							if (fieldName.equalsIgnoreCase("rcaAns1")) {
+								String value = fieldValue;
+								System.out.println("rcaAns1:"+value);
+								if(!value.equalsIgnoreCase("")) {
+									kaizenRCABean kaizenRCABean = new kaizenRCABean(value, kaizenBean);
+									boolean result = allKaizenInsertDAO.kaizenRCAInsert(kaizenRCABean);
+								}
+							}
+							
+							if (fieldName.equalsIgnoreCase("rcaAns2")) {
+								String value = fieldValue;
+								System.out.println("rcaAns2:"+value);
+								if(!value.equalsIgnoreCase("")) {
+									kaizenRCABean kaizenRCABean = new kaizenRCABean(value, kaizenBean);
+									boolean result = allKaizenInsertDAO.kaizenRCAInsert(kaizenRCABean);
+								}
+							}
+							
+							if (fieldName.equalsIgnoreCase("rcaAns3")) {
+								String value = fieldValue;
+								System.out.println("rcaAns3:"+value);
+								if(!value.equalsIgnoreCase("")) {
+									kaizenRCABean kaizenRCABean = new kaizenRCABean(value, kaizenBean);
+									boolean result = allKaizenInsertDAO.kaizenRCAInsert(kaizenRCABean);
+								}
+							}
+							
+							
+							if (fieldName.equalsIgnoreCase("rcaAns4")) {
+								String value = fieldValue;
+								System.out.println("rcaAns4:"+value);
+								if(!value.equalsIgnoreCase("")) {
+									kaizenRCABean kaizenRCABean = new kaizenRCABean(value, kaizenBean);
+									boolean result = allKaizenInsertDAO.kaizenRCAInsert(kaizenRCABean);
+								}
+							}
+							
+							
+							if (fieldName.equalsIgnoreCase("rcaAns5")) {
+								String value = fieldValue;
+								System.out.println("rcaAns5:"+value);
+								if(!value.equalsIgnoreCase("")) {
+									kaizenRCABean kaizenRCABean = new kaizenRCABean(value, kaizenBean);
+									boolean result = allKaizenInsertDAO.kaizenRCAInsert(kaizenRCABean);
+								}
+							}
 							
 							
 							if (fieldName.equalsIgnoreCase("redirection")) {

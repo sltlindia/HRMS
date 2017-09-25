@@ -94,7 +94,7 @@
 		                                        <th style="width: 100px;">Name</th>
 		                                        <th>Department Name</th>
 		                                        <th>Extension Number</th>
-		                                        <th>Company Name</th>
+		                                        <th>Location</th>
 	                                        </tr>
 	                                    </thead>
 			                            <tbody>
@@ -116,7 +116,7 @@
 		                                        <th style="width: 100px;">Name</th>
 		                                        <th>Department Name</th>
 		                                        <th>Extension Number</th>
-		                                        <th>Company Name</th>
+		                                        <th>Location</th>
 	                                        </tr>
 			                            </tfoot>
 			                        </table>
@@ -133,7 +133,7 @@
 		                                        <th>Name</th>
 		                                        <th>Department Name</th>
 		                                        <th>Extension Number</th>
-		                                        <th>Company Name</th>
+		                                        <th>Location</th>
 	                                        </tr>
 	                                    </thead>
 			                            <tbody>
@@ -155,7 +155,7 @@
 		                                        <th>Name</th>
 		                                        <th>Department Name</th>
 		                                        <th>Extension Number</th>
-		                                        <th>Company Name</th>
+		                                        <th>Location</th>
 	                                        </tr>
 			                            </tfoot>
 			                        </table>
@@ -174,7 +174,7 @@
 		                                        <th>Name</th>
 		                                        <th>Department Name</th>
 		                                        <th>Extension Number</th>
-		                                        <th>Company Name</th>
+		                                        <th>Location</th>
 	                                        </tr>
 	                                    </thead>
 			                            <tbody>
@@ -196,7 +196,7 @@
 		                                        <th>Name</th>
 		                                        <th>Department Name</th>
 		                                        <th>Extension Number</th>
-		                                        <th>Company Name</th>
+		                                        <th>Location</th>
 	                                        </tr>
 			                            </tfoot>
 			                        </table>
@@ -213,7 +213,7 @@
 		                                        <th>Name</th>
 		                                        <th>Department Name</th>
 		                                        <th>Extension Number</th>
-		                                        <th>Company Name</th>
+		                                        <th>Location</th>
 	                                        </tr>
 	                                    </thead>
 			                            <tbody>
@@ -235,7 +235,7 @@
 		                                        <th>Name</th>
 		                                        <th>Department Name</th>
 		                                        <th>Extension Number</th>
-		                                        <th>Company Name</th>
+		                                        <th>Location</th>
 	                                        </tr>
 			                            </tfoot>
 			                        </table>
@@ -252,7 +252,7 @@
 		                                        <th>Name</th>
 		                                        <th>Department Name</th>
 		                                        <th>Extension Number</th>
-		                                        <th>Company Name</th>
+		                                        <th>Location</th>
 	                                        </tr>
 	                                    </thead>
 			                            <tbody>
@@ -274,7 +274,7 @@
 		                                        <th>Name</th>
 		                                        <th>Department Name</th>
 		                                        <th>Extension Number</th>
-		                                        <th>Company Name</th>
+		                                        <th>Location</th>
 	                                        </tr>
 			                            </tfoot>
 			                        </table>

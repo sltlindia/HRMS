@@ -45,7 +45,7 @@ public class AllKaizenUpdateDAO{
 						 tx = session.getTransaction();
 						 tx.begin();
 						 Query query = session.createQuery("update KaizenBean set status = :s, rejection_reason = :rr   where kaizen_id= :k");
-						 query.setString("s",status);
+						 query.setString("s","Genuine");
 						 query.setString("rr",reason);
 						 query.setInteger("k", kaizen_id);
 						 int result = query.executeUpdate();
@@ -61,6 +61,33 @@ public class AllKaizenUpdateDAO{
 					 }	
 					 return true;
 				}
+				
+				
+				
+				//Kaizen approval
+				public boolean kaizenMainApprovalRejetcion(int kaizen_id,String status){
+					Session session = HibernateUtil.openSession();
+					 Transaction tx = null;	
+					 try {
+						 tx = session.getTransaction();
+						 tx.begin();
+						 Query query = session.createQuery("update KaizenBean set status = :s where kaizen_id= :k");
+						 query.setString("s",status);
+						 query.setInteger("k", kaizen_id);
+						 int result = query.executeUpdate();
+						 System.out.println("result :"+result);
+						 tx.commit();
+					 } catch (Exception e) {
+						 if (tx != null) {
+							 tx.rollback();
+						 }
+						 e.printStackTrace();
+					 } finally {
+						 session.close();
+					 }	
+					 return true;
+				}
+				
 				
 				
 				//Kaizen Desc update
@@ -118,7 +145,7 @@ public class AllKaizenUpdateDAO{
 				}
 				
 				
-				//Kaizen Status update
+				//Kaizen completion_status Status update
 				public boolean kaizenStatusUpdate(int kaizen_id,String status){
 					Session session = HibernateUtil.openSession();
 					 Transaction tx = null;	
@@ -143,7 +170,7 @@ public class AllKaizenUpdateDAO{
 				}
 				
 				
-				//Kaizen Status update with date
+				//Kaizen completion Status update with date
 				public boolean kaizenStatusUpdateWithTime(int kaizen_id,String status,String date){
 					Session session = HibernateUtil.openSession();
 					 Transaction tx = null;	
@@ -168,6 +195,9 @@ public class AllKaizenUpdateDAO{
 					 return true;
 				}
 				
+				
+				
+					
 				
 				
 

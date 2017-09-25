@@ -3,10 +3,10 @@ package com.hrms.pms.dao;
 import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.Query;
-import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import com.hrms.pms.bean.DepartmentBean;
 import com.hrms.pms.bean.EmployeeBean;
 import com.hrms.pms.bean.OTPBean;
 import com.hrms.pms.util.HibernateUtil;
@@ -219,33 +219,6 @@ public class LoginDAO {
 		}
 		return employeeBean;
 	}
-	
-	
-	public EmployeeBean getEmailIdEmployeeByCallProcedure(int code) {
-		Session session = HibernateUtil.openSession();
-		Transaction tx = null;
-		EmployeeBean employeeBean = null;
-		try {
-			tx = session.getTransaction();
-			tx.begin();
-			
-			SQLQuery query = (SQLQuery) session.createSQLQuery("CALL employeeData(:empCode)")
-                    .addEntity(EmployeeBean.class)
-                    .setParameter("empCode",code);
-			employeeBean = (EmployeeBean) query.uniqueResult();
-			
-			
-			tx.commit();
-		} catch (Exception e) {
-			if (tx != null) {
-				tx.rollback();
-			}
-			e.printStackTrace();
-		} finally {
-			session.close();
-		}
-		return employeeBean;
-	}
 
 	public EmployeeBean getInfoById(int employee_master_id) {
 		Session session = HibernateUtil.openSession();
@@ -366,7 +339,29 @@ public class LoginDAO {
 			tx = session.getTransaction();
 			tx.begin();
 			Query query = session.createQuery("from EmployeeBean where employee_code=" + employee_code
-					+ " and firstname = '" + firstName + "' and lastname ='" + lastName + "' ");
+					+ " and firstname = '" + firstName + "' and lastname ='" + lastName + "'");
+			employeeBean = (EmployeeBean) query.uniqueResult();
+			tx.commit();
+		} catch (Exception e) {
+			if (tx != null) {
+				tx.rollback();
+			}
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return employeeBean;
+	}
+	
+	public EmployeeBean getUserByUserCodeAndNameWithCompany(int employee_code, String firstName, String lastName,int company_id) {
+		Session session = HibernateUtil.openSession();
+		Transaction tx = null;
+		EmployeeBean employeeBean = null;
+		try {
+			tx = session.getTransaction();
+			tx.begin();
+			Query query = session.createQuery("from EmployeeBean where employee_code=" + employee_code
+					+ " and firstname = '" + firstName + "' and lastname ='" + lastName + "' and companyListBean.company_list_id = '"+company_id+"' ");
 			employeeBean = (EmployeeBean) query.uniqueResult();
 			tx.commit();
 		} catch (Exception e) {
@@ -483,7 +478,7 @@ public class LoginDAO {
 			tx = session.getTransaction();
 			tx.begin();
 			listofEmployee = session.createQuery(
-					"from EmployeeBean e where  manager_id != 99 and employeeStatusBean != 3 and exists (from EmployeeBean e1 where e.managerBean = e1.under_manager_id) order by firstname asc")
+					"from EmployeeBean e where  manager_id != 99 and employeeStatusBean != 3 order by firstname asc")
 					.list();
 			tx.commit();
 		} catch (Exception e) {
@@ -614,4 +609,45 @@ public class LoginDAO {
 		return listofEmployee;
 	}
 
+	 public List<EmployeeBean> getListOfEmployeeUnderProbation(){
+	        List<EmployeeBean> listofEmployee = new ArrayList<EmployeeBean>();
+	        Session session = HibernateUtil.openSession();
+	        Transaction tx = null;        
+	        try {
+	            tx = session.getTransaction();
+	            tx.begin();
+	            listofEmployee = session.createQuery("from EmployeeBean where employee_status_id = 2 and company_list_id != 8").list();                        
+	            tx.commit();
+	        } catch (Exception e) {
+	            if (tx != null) {
+	                tx.rollback();
+	            }
+	            e.printStackTrace();
+	        } finally {
+	            session.close();
+	        }
+	        return listofEmployee;
+	    }
+	 
+	 
+	 public DepartmentBean getDepartmentName(int dept_id) {
+			Session session = HibernateUtil.openSession();
+			Transaction tx = null;
+			DepartmentBean departmentBean = null;
+			try {
+				tx = session.getTransaction();
+				tx.begin();
+				Query query = session.createQuery("from DepartmentBean where department_id = '"+dept_id+"'");
+				departmentBean = (DepartmentBean) query.uniqueResult();
+				tx.commit();
+			} catch (Exception e) {
+				if (tx != null) {
+					tx.rollback();
+				}
+				e.printStackTrace();
+			} finally {
+				session.close();
+			}
+			return departmentBean;
+		}
 }

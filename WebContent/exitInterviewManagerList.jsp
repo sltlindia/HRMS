@@ -12,7 +12,7 @@
     <meta name="description" content="Robust admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
     <meta name="keywords" content="admin template, robust admin template, dashboard template, flat admin template, responsive admin template, web app">
     <meta name="author" content="PIXINVENT">
-    <title>Upload Document</title>
+    <title>Exit Interview Form List</title>
     <link rel="shortcut icon" sizes="152x152"
 	href="app-assets/images/ico/titleIcon.png">
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -82,6 +82,7 @@ SimpleDateFormat AppDateFormat = new SimpleDateFormat("dd-MM-yyyy");
 				            </div>
 				            <div class="card-body collapse in">
 	               				 <div class="card-block card-dashboard">
+	               				 	<div class="table-responsive">
 				                        <table class="table table-striped table-bordered zero-configuration" width="100%">
 				                            <thead>
 				                                <tr>
@@ -134,11 +135,12 @@ SimpleDateFormat AppDateFormat = new SimpleDateFormat("dd-MM-yyyy");
 										<td><%=employeeBean.getManagerBean().getManager_name() %></td>
 										<td><%=jd %></td>
 										<td><%=td %></td>
-										<td><a href="exitInterviewHRComment.jsp?exit_employee_id=<%=e.getExit_interview_employee_id()%>"><i class="icon-edit"></i></a></td>
+										<td><a href="exitInterviewHRComment.jsp?exit_employee_id=<%=e.getExit_interview_employee_id()%>"><button class="btn btn-xs" style="background-color: #3BAFDA"><i class="ficon icon-edit"></i> Review</button></a></i></a></td>
 									</tr>
 									<%} %>
 									</tbody>
 				                        </table>
+				                        </div>
 	               				 </div>
 	               			</div>
 				        </div>
@@ -162,6 +164,7 @@ SimpleDateFormat AppDateFormat = new SimpleDateFormat("dd-MM-yyyy");
 				            <div class="card-body collapse in">
 	               				 <div class="card-body collapse in">
 	               				 <div class="card-block card-dashboard">
+				                        <div class="table-responsive">
 				                        <table class="table table-striped table-bordered zero-configuration" width="100%">
 				                            <thead>
 				                                <tr>
@@ -213,11 +216,12 @@ SimpleDateFormat AppDateFormat = new SimpleDateFormat("dd-MM-yyyy");
 												<td><%=employeeBean.getManagerBean().getManager_name()%></td>
 												<td><%=jd1 %></td>
 												<td><%=td1 %></td>
-												<td><a href="exitInterviewHRComment.jsp?exit_employee_id=<%=e.getExit_interview_employee_id()%>&action=reviewed"><i class="glyphicon glyphicon-eye-open"></i></a></td>
+												<td><a href="exitInterviewHRComment.jsp?exit_employee_id=<%=e.getExit_interview_employee_id()%>&action=reviewed"><button class="btn btn-xs" style="background-color: #3BAFDA"><i class="icon icon-eye4"></i> View</button></a></td>
 											</tr>
 											<%} %>
 											</tbody>
 				                        </table>
+				                        </div>
 	               				 </div>
 	               			</div>
 	               			</div>
@@ -261,6 +265,7 @@ SimpleDateFormat AppDateFormat = new SimpleDateFormat("dd-MM-yyyy");
     <!-- BEGIN ROBUST JS-->
     <!-- build:js app-assets/js/app.min.js-->
     <script src="app-assets/js/core/app-menu.min.js" type="text/javascript"></script>
+    <script src="app-assets/js/core/app.min.js" type="text/javascript"></script>
     <script src="app-assets/js/scripts/ui/fullscreenSearch.min.js" type="text/javascript"></script>
     <!-- /build-->
     <!-- END ROBUST JS-->
@@ -277,6 +282,13 @@ SimpleDateFormat AppDateFormat = new SimpleDateFormat("dd-MM-yyyy");
     <!-- BEGIN PAGE LEVEL JS-->
     <script src="app-assets/js/scripts/tables/datatables/datatable-basic.min.js" type="text/javascript"></script>
     <!-- END PAGE LEVEL JS-->
+    
+    
+     
+  
+   
+    <!-- BEGIN PAGE LEVEL JS-->
+    <script src="app-assets/js/scripts/pickers/dateTime/picker-date-time.min.js" type="text/javascript"></script>
   	<script>
 	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),

@@ -161,6 +161,7 @@
 				            
 				            <div class="card-body collapse in">
 	               				 <div class="card-block card-dashboard">
+	               				  <div class="table-responsive">
 				                        <table class="table table-striped table-bordered" width="100%" id="example">
 				                            <thead>
 				                                <tr>
@@ -207,6 +208,7 @@
 				                            </tbody>
 				                            
 				                        </table>
+				                        </div>
 				                        <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
 					                            <!-- Background of PhotoSwipe. 
 					                     It's a separate element as animating opacity is faster than rgba(). -->
