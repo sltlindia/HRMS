@@ -33,8 +33,29 @@
 	content="admin template, robust admin template, dashboard template, flat admin template, responsive admin template, web app">
 <meta name="author" content="PIXINVENT">
 <title>Exit Interview From</title>
-<link rel="shortcut icon" sizes="152x152"
-	href="app-assets/images/ico/titleIcon.png">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+<meta name="description"
+	content="Robust admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
+<meta name="keywords"
+	content="admin template, robust admin template, dashboard template, flat admin template, responsive admin template, web app">
+<meta name="author" content="PIXINVENT">
+<title>Striped Row Forms - Robust Bootstrap Admin Template</title>
+<link rel="apple-touch-icon" sizes="60x60"
+	href="app-assets/images/ico/apple-icon-60.png">
+<link rel="apple-touch-icon" sizes="76x76"
+	href="app-assets/images/ico/apple-icon-76.png">
+<link rel="apple-touch-icon" sizes="120x120"
+	href="app-assets/images/ico/apple-icon-120.png">
+<link rel="apple-touch-icon" sizes="152x152"
+	href="app-assets/images/ico/apple-icon-152.png">
+<link rel="shortcut icon" type="image/x-icon"
+	href="https://pixinvent.com/bootstrap-admin-template/robust/app-assets/images/ico/favicon.ico">
+<link rel="shortcut icon" type="image/png"
+	href="app-assets/images/ico/favicon-32.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-touch-fullscreen" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
@@ -50,12 +71,6 @@
 	href="app-assets/vendors/css/sliders/slick/slick.css">
 <link rel="stylesheet" type="text/css"
 	href="app-assets/vendors/css/extensions/pace.css">
-<link rel="stylesheet" type="text/css"
-	href="app-assets/vendors/css/pickers/daterange/daterangepicker.css">
-<link rel="stylesheet" type="text/css"
-	href="app-assets/vendors/css/pickers/datetime/bootstrap-datetimepicker.css">
-<link rel="stylesheet" type="text/css"
-	href="app-assets/vendors/css/pickers/pickadate/pickadate.css">
 <!-- END VENDOR CSS-->
 <!-- BEGIN ROBUST CSS-->
 <link rel="stylesheet" type="text/css"
@@ -70,13 +85,10 @@
 	href="app-assets/css/core/menu/menu-types/horizontal-menu.min.css">
 <link rel="stylesheet" type="text/css"
 	href="app-assets/css/core/menu/menu-types/vertical-overlay-menu.min.css">
-<link rel="stylesheet" type="text/css"
-	href="app-assets/css/plugins/pickers/daterange/daterange.min.css">
 <!-- END Page Level CSS-->
 <!-- BEGIN Custom CSS-->
 <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 <!-- END Custom CSS-->
-
 <script type="text/javascript" src="css/TimerPicker/jquery.min.js"></script>
 <script type="text/javascript" src="css/TimerPicker/jquery-ui.min.js"></script>
 <link href="css/TimerPicker/jquery-ui.css" rel="stylesheet">
@@ -301,8 +313,10 @@ textarea {
 
 <%@include file="header.jsp"%>
 </head>
+
+
 <body data-open="hover" data-menu="horizontal-menu" data-col="2-columns"
-	class="horizontal-layout horizontal-menu 2-columns">
+	class="horizontal-layout horizontal-menu 2-columns ">
 	<%
 		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		Date date = new Date();
@@ -312,167 +326,325 @@ textarea {
 	<%
 		int employee_id = user.getEmployee_master_id();
 	%>
- <div class="app-content container center-layout mt-2">
-      <div class="content-wrapper">
-        <div class="content-header row">
-				<%
-				if (request.getAttribute("successAnnouncement") != null) {
-			%>
-			<div id="panelbody" class="panel-body">
-				<div class="alert alert-dismissable alert-success">
-					<button type="button" class="close" data-dismiss="alert"
-						aria-hidden="true">&times;</button>
-					${successAnnouncement}
+	<%
+		if (request.getAttribute("successAnnouncement") != null) {
+	%>
+	<div id="panelbody" class="panel-body">
+		<div class="alert alert-dismissable alert-success">
+			<button type="button" class="close" data-dismiss="alert"
+				aria-hidden="true">&times;</button>
+			${successAnnouncement}
+		</div>
+	</div>
+	<%
+		}
+	%>
+	<%
+		if (request.getAttribute("conflictAnnouncement") != null) {
+	%>
+	<div id="panelbody" class="panel-body">
+		<div class="alert alert-dismissable alert-success">
+			<button type="button" class="close" data-dismiss="alert"
+				aria-hidden="true">&times;</button>
+			${conflictAnnouncement}
+		</div>
+	</div>
+	<%
+		}
+	%>
+	<%
+		if (request.getAttribute("deleteAnnouncement") != null) {
+	%>
+	<div id="panelbody" class="panel-body">
+		<div class="alert alert-dismissable alert-danger">
+			<button type="button" class="close" data-dismiss="alert"
+				aria-hidden="true">&times;</button>
+			${deleteAnnouncement}
+		</div>
+	</div>
+	<%
+		}
+	%>
+	<div class="app-content container center-layout mt-2">
+		<div class="content-wrapper">
+			<div class="content-header row">
+				<div class="content-header-left col-md-6 col-xs-12">
+					<h2 class="content-header-title mb-0">Broadcast Form</h2>
 				</div>
 			</div>
-			<%
-				}
-			%>
-			<%
-				if (request.getAttribute("conflictAnnouncement") != null) {
-			%>
-			<div id="panelbody" class="panel-body">
-				<div class="alert alert-dismissable alert-success">
-					<button type="button" class="close" data-dismiss="alert"
-						aria-hidden="true">&times;</button>
-					${conflictAnnouncement}
-				</div>
-			</div>
-			<%
-				}
-			%>
-			<%
-				if (request.getAttribute("deleteAnnouncement") != null) {
-			%>
-			<div id="panelbody" class="panel-body">
-				<div class="alert alert-dismissable alert-danger">
-					<button type="button" class="close" data-dismiss="alert"
-						aria-hidden="true">&times;</button>
-					${deleteAnnouncement}
-				</div>
-			</div>
-			<%
-				}
-			%>
+			<div class="content-body">
+				<section id="striped-row-form-layouts">
 				<div class="row">
-		<div class="col-md-12">
-	        <div class="card">
-	            <div class="card-header">
-	                <h4 class="card-title" id="striped-label-layout-icons">Broadcast Form</h4>
-	                <a class="heading-elements-toggle"><i class="icon-ellipsis font-medium-3"></i></a>
-	            </div>
-				   <div class="card-body collapse in">
-	                <div class="card-block">
-							<form action="announcementInsert" method="post"
-								name="announcement_form" enctype="multipart/form-data">
-								<div class="form-body">
-	                			<div class="form-group row">
-	                        		<label class="col-md-3 label-control">Title <i class="icon-android-alert" style="color: red" id="inoOfBox"></i></label>
-	                        		<div class="col-md-9">
-			                           <div class="position-relative has-icon-left">
-			                            	<input type="text" class="form-control"
-													name="announcement_title" placeholder="Broadcast Title" autofocus
-													id="announcement_title" required="required">
-				                            <div class="form-control-position">
-				                                <i class="icon-paper-stack"></i>
-				                            </div>
-			                            </div>
-									</div>
-		                        </div>
-		                        <div class="form-group row">
-									<label class="col-md-3 label-control" for="timesheetinput7">Description</label>
-									<div class="col-md-9">
-										<div class="position-relative has-icon-left">
-			                            	<textarea
-														name="description" placeholder="Max. 10000 words"
-														required="required" class="form-control"></textarea>
-				                            <div class="form-control-position">
-				                                <i class="icon-file2"></i>
-				                            </div>
-			                            </div>
-			                        </div>
-								</div>
-								<div class="form-group row">
-	                        		<label class="col-md-3 label-control">Broadcast Date<i class="icon-android-alert" style="color: red" id="inoOfBox"></i></label>
-	                        		<div class="col-md-9">
-			                           <div class="position-relative has-icon-left">
-			                            	<input type="text" class="form-control"
-													name="announcement_date" id="announcement_date"
-													required="required"
-													onchange="ValidateDate(this.value)">
-											<label>Would you like to add
-														time slot for broadcast?</label>
-														<input type="radio" name="yes" id="yes"
-													value="yes" onchange="checkType(this.value)">
-													Yes <input type="radio" name="yes" id="no" value="no"
-													onchange="checkType(this.value)" autofocus> No
-				                            <div class="form-control-position">
-				                                <i class="icon-paper-stack"></i>
-				                            </div>
-			                            </div>
-									</div>
-		                        </div>
-		                        <div class="form-group row">
-	                        		<label class="col-md-3 label-control">Time Slot<i class="icon-android-alert" style="color: red" id="inoOfBox"></i></label>
-	                        		<div class="col-md-9">
-			                           <div class="position-relative has-icon-left">
-			                            From :
-												<input type="text" id="fromTime"
-													class="form-control" name="fromTime" placeholder="HH:mm"
-													required disabled="disabled">
-													<p class="help-block">Please use 24Hours Time-format</p>
-												To:<input type="text" id="toTime"
-													class="form-control" style="width:210px;" name="toTime" placeholder="HH:mm" disabled="disabled"
-													required>
-			                            
-			                            
-				                            <div class="form-control-position">
-				                                <i class="icon-paper-stack"></i>
-				                            </div>
-			                            </div>
-									</div>
-		                        </div>
-		                        <div class="form-group row">
-	                        		<label class="col-md-3 label-control">Broadcast End Date<i class="icon-android-alert" style="color: red" id="inoOfBox"></i></label>
-	                        		<div class="col-md-9">
-			                           <div class="position-relative has-icon-left">
-			                              <input type="text" class="form-control"
-													name="announcement_enddate" id="announcement_enddate"
-													required="required"
-													onchange="ValidateDateMitigation(this.value);endDateValidation(this.value)">
-													<label>Attachment</label>
-													<input type="file" name="attachment" value=""
-													id="attachment_id" onchange="checkFile(this)" />
+					<div class="col-md-12">
+						<div class="card">
+							<div class="card-header">
+								<h4 class="card-title" id="striped-row-layout-basic">Add
+									Broadcast</h4>
+							</div>
+
+							<div class="card-body collapse in">
+								<div class="card-block">
+									<form class="form form-horizontal form-bordered"
+										action="announcementInsert" method="post"
+										name="announcement_form" enctype="multipart/form-data">
+										<div class="form-body">
+											<div class="form-group row">
+												<label class="col-md-3 label-control">Title</label>
+												<div class="col-md-9">
+													<div class="position-relative has-icon-left">
+														<input type="text" class="form-control"
+															name="announcement_title" placeholder="Broadcast Title"
+															autofocus id="announcement_title" required="required">
+														<div class="form-control-position">
+															<i class="icon-paper-stack"></i>
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="form-group row">
+												<label class="col-md-3 label-control" for="Description">Description</label>
+												<div class="col-md-9">
+													<div class="position-relative has-icon-left">
+														<textarea name="description" id="description" rows="5"
+															class="form-control" placeholder="Max. 10000 words"
+															required="required"></textarea>
+														<div class="form-control-position">
+															<i class="icon-file2"></i>
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="form-group row">
+												<label class="col-md-3 label-control">Broadcast Date</label>
+												<div class="col-md-3">
+													<div class="position-relative has-icon-left">
+														<input type="text" class="form-control"
+															name="announcement_date" id="announcement_date"
+															required="required" onchange="ValidateDate(this.value)"
+															data-toggle="tooltip" data-trigger="hover"
+															data-placement="top" data-title="Start Date">
+													</div>
+												</div>
+												<label class="col-md-3 label-control">Broadcast End</label>
+												<div class="col-md-3">
+													<div class="position-relative has-icon-left">
+														<input type="text" class="form-control"
+															name="announcement_enddate" id="announcement_enddate"
+															required="required"
+															onchange="ValidateDateMitigation(this.value);endDateValidation(this.value)"
+															data-toggle="tooltip" data-trigger="hover"
+															data-placement="top" data-title="End Date">
+													</div>
+												</div>
+											</div>
+											<div class="form-group row">
+												<label class="col-md-3 label-control">Time Slot</label>
+												<div class="col-md-3">
+													<div class="position-relative has-icon-left">
+														<input type="text" id="timesheetinput5"
+															class="form-control" name="starttime">
+														<div class="form-control-position">
+															<i class="icon-clock5"></i>
+														</div>
+													</div>
+												</div>
+
+												<label class="col-md-3 label-control">End Time</label>
+												<div class="col-md-3">
+													<div class="position-relative has-icon-left">
+														<input type="text" id="timesheetinput6"
+															class="form-control" name="endtime">
+														<div class="form-control-position">
+															<i class="icon-clock5"></i>
+														</div>
+													</div>
+												</div>
+											</div>
+											<!-- <div class="form-group row">
+												<label class="col-md-3 label-control">Broadcast Date<i
+													class="icon-android-alert" style="color: red" id="inoOfBox"></i></label>
+												<div class="col-md-9">
+													<div class="position-relative has-icon-left">
+														<input type="text" class="form-control"
+															name="announcement_date" id="announcement_date"
+															required="required" onchange="ValidateDate(this.value)">
+														<label>Would you like to add time slot for
+															broadcast?</label> <input type="radio" name="yes" id="yes"
+															value="yes" onchange="checkType(this.value)"> Yes
+														<input type="radio" name="yes" id="no" value="no"
+															onchange="checkType(this.value)" autofocus> No
+														<div class="form-control-position">
+															<i class="icon-paper-stack"></i>
+														</div>
+													</div>
+												</div>
+											</div> -->
+											<!-- <div class="form-group row">
+												<label class="col-md-3 label-control">Time Slot<i
+													class="icon-android-alert" style="color: red" id="inoOfBox"></i></label>
+													
+												<div class="col-md-9">
+													<div class="position-relative has-icon-left">
+														From : <input type="text" id="fromTime"
+															class="form-control" name="fromTime" placeholder="HH:mm"
+															required disabled="disabled">
+														<p class="help-block">Please use 24Hours Time-format</p>
+														To:<input type="text" id="toTime" class="form-control"
+															style="width: 210px;" name="toTime" placeholder="HH:mm"
+															disabled="disabled" required>
+
+
+														<div class="form-control-position">
+															<i class="icon-paper-stack"></i>
+														</div>
+													</div>
+												</div>
+											</div> -->
+											<div class="form-group row">
+												<label class="col-md-3 label-control">Select File
 													<p class="help-block">(.pdf, .doc, .docx, .jpg, .png,
 														.jpeg, .txt, .ppt, .xml, .xlsx, .xls, .png, .pptx)</p>
-														<a onclick="removeAttachment();" style="cursor: pointer;"> <i
-														class="fa fa-times"></i></a>
-				                            <div class="form-control-position">
-				                                <i class="icon-paper-stack"></i>
-				                            </div>
-			                            </div>
-									</div>
-		                        </div>
-		                      	  <div class="form-actions right">
-	                            <button type="reset" class="btn btn-warning mr-1">
-	                            	<i class="icon-cross2"></i> CANCEL
-	                            </button>
-	                            <input type="hidden" name="redirection"> <input
-											type="submit" class="btn btn-primary">
-	                                <i class="icon-check2"></i> SAVE
-	                        </div>
+												</label>
+												<div class="col-md-9">
+													<label id="projectinput7" class="file center-block">
+														<input type="file" name="attachment" value=""
+														id="attachment_id" onchange="checkFile(this)" /> <a
+														onclick="removeAttachment();" style="cursor: pointer;">
+															<i class="fa fa-times"></i>
+													</a> <span class="file-custom"></span>
+													</label>
+												</div>
+											</div>
+											<div class="form-group row">
+												<label class="col-md-3 label-control">Company</label>
+												<div class="col-md-9">
+													<div class="position-relative has-icon-left">
+														<label><input type="checkbox" id="selecctall2"
+															name="checkAll[]" onclick="myFunction()">All</label></br>
+														<%
+															CompanyListDAO companyListDAO = new CompanyListDAO();
+															List<CompanyListBean> listOfCompany = companyListDAO.getListOfCompanyList();
+															for (CompanyListBean c1 : listOfCompany) {
+														%>
+														<div class="col-md-6" style="height: 25px;">
+														<label><input type="checkbox" name="company"
+															class="checkbox3" id="company"
+															value="<%=c1.getCompany_list_id()%>">&nbsp;<%=c1.getCompany_name()%>&nbsp;&nbsp;<a
+															href="" data-toggle="modal"
+															data-target="#myModalViewCompany<%=c1.getCompany_list_id()%>"><i
+																class="glyphicon glyphicon-eye-open"
+																data-toggle="tooltip" data-placement="top"
+																title="View Company"></i></a>&nbsp;</label>
+																</div>
+														<%
+															}
+														%>
+													</div>
+												</div>
+											</div>
+											<div class="form-group row">
+												<label class="col-md-3 label-control">Department</label>
+												<div class="col-md-9">
+													<div class="position-relative has-icon-left">
+														<label><input type="checkbox" id="selecctall1" name="checkAll[]"
+															onclick="myFunction()">All</label></br>
+														<%
+															DepartmentDAO departmentDAO = new DepartmentDAO();
+															List<DepartmentBean> listOfDepartment = departmentDAO.getListOfDepartment();
+															for (DepartmentBean d : listOfDepartment) {
+																if (d.getDepartment_id() != 0) {
+														%>
+														<div class="col-md-4" style="height: 25px;">
+														<label><input type="checkbox" name="department"
+															class="checkbox2" id="department"
+															value="<%=d.getDepartment_id()%>">&nbsp;&nbsp;<%=d.getDepartment_name()%>&nbsp;&nbsp;<a
+															href="" data-toggle="modal"
+															data-target="#myModalViewDepartment<%=d.getDepartment_id()%>"><i
+																class="glyphicon glyphicon-eye-open"
+																data-toggle="tooltip" data-placement="top"
+																title="View Department"></i></a>&nbsp;</label>
+																</div>
+														<%
+															}
+															}
+														%>
+													</div>
+												</div>
+											</div>
+											<div class="form-group row">
+												<label class="col-md-3 label-control">Role Category</label>
+												<div class="col-md-9">
+													<div class="position-relative has-icon-left">
+														<label><input type="checkbox" id="selecctall"
+															name="checkAll[]" onclick="myFunction()">All</label></br>
+														<%
+															AllListSelfServiceDAO allListSelfServiceDAO = new AllListSelfServiceDAO();
+															List<RoleCategoryBean> listOfCategory = allListSelfServiceDAO.getListOfAnnouncementCategory();
+															for (RoleCategoryBean a1 : listOfCategory) {
+														%>
+														<div class="col-md-2" style="height: 25px;">
+														<label> <input type="checkbox" name="category"
+															class="checkbox1" id="category"
+															value="<%=a1.getRole_category_id()%>">&nbsp;&nbsp;<%=a1.getRole_category_name()%>&nbsp;&nbsp;<a
+															href="" data-toggle="modal"
+															data-target="#myModalViewCategory<%=a1.getRole_category_name()%>"><i
+																class="glyphicon glyphicon-eye-open"
+																data-toggle="tooltip" data-placement="top"
+																title="View Category"></i></a>&nbsp;
+														</label>
+														</div>
+														<%
+															}
+														%>
+													</div>
+												</div>
+											</div>
+											<!-- <div class="form-group row">
+												<label class="col-md-3 label-control">Broadcast End
+													Date<i class="icon-android-alert" style="color: red"
+													id="inoOfBox"></i>
+												</label>
+												<div class="col-md-9">
+													<div class="position-relative has-icon-left">
+														<input type="text" class="form-control"
+															name="announcement_enddate" id="announcement_enddate"
+															required="required"
+															onchange="ValidateDateMitigation(this.value);endDateValidation(this.value)">
+														<label>Attachment</label> <input type="file"
+															name="attachment" value="" id="attachment_id"
+															onchange="checkFile(this)" />
+														<p class="help-block">(.pdf, .doc, .docx, .jpg, .png,
+															.jpeg, .txt, .ppt, .xml, .xlsx, .xls, .png, .pptx)</p>
+														<a onclick="removeAttachment();" style="cursor: pointer;">
+															<i class="fa fa-times"></i>
+														</a>
+														<div class="form-control-position">
+															<i class="icon-paper-stack"></i>
+														</div>
+													</div>
+												</div>
+											</div> -->
+											<div class="form-actions right">
+												<button type="reset" class="btn btn-warning mr-1">
+													<i class="icon-cross2"></i> CANCEL
+												</button>
+												<input type="hidden" name="redirection">
+												<button type="submit" class="btn btn-primary">
+													<i class="icon-check2"></i> SAVE
+											</div>
+										</div>
+									</form>
 								</div>
-       </div>
-	            </div>
-	        </div>
-	    </div>
+							</div>
+						</div>
+					</div>
+				</div>
+				</section>
+			</div>
+		</div>
 	</div>
-	
-</div>
-</div>
-</div>								
-								
-								<%-- <div class="panel-group" id="accordion">
+
+	<%-- <div class="panel-group" id="accordion">
 									<div id="table-responsive">
 										<table class="table table-stripped table-hover">
 											<tr>
@@ -841,23 +1013,6 @@ textarea {
 	<!-- BEGIN PAGE VENDOR JS-->
 	<script type="text/javascript"
 		src="app-assets/vendors/js/ui/jquery.sticky.js"></script>
-	<script
-		src="app-assets/vendors/js/pickers/dateTime/moment-with-locales.min.js"
-		type="text/javascript"></script>
-	<script
-		src="app-assets/vendors/js/pickers/dateTime/bootstrap-datetimepicker.min.js"
-		type="text/javascript"></script>
-	<script src="app-assets/vendors/js/pickers/pickadate/picker.js"
-		type="text/javascript"></script>
-	<script src="app-assets/vendors/js/pickers/pickadate/picker.date.js"
-		type="text/javascript"></script>
-	<script src="app-assets/vendors/js/pickers/pickadate/picker.time.js"
-		type="text/javascript"></script>
-	<script src="app-assets/vendors/js/pickers/pickadate/legacy.js"
-		type="text/javascript"></script>
-	<script
-		src="app-assets/vendors/js/pickers/daterange/daterangepicker.js"
-		type="text/javascript"></script>
 	<!-- END PAGE VENDOR JS-->
 	<!-- BEGIN ROBUST JS-->
 	<!-- build:js app-assets/js/app.min.js-->
@@ -868,12 +1023,6 @@ textarea {
 	<!-- /build-->
 	<!-- END ROBUST JS-->
 	<!-- BEGIN PAGE LEVEL JS-->
-	<script
-		src="app-assets/js/scripts/pickers/dateTime/picker-date-time.min.js"
-		type="text/javascript"></script>
-
-	<!-- BEGIN VENDOR JS-->
-	<!-- BEGIN PAGE VENDOR JS-->
 	<!-- END PAGE LEVEL JS-->
 	<script>
 		(function(i, s, o, g, r, a, m) {
@@ -891,57 +1040,56 @@ textarea {
 		ga('create', 'UA-96096445-1', 'auto');
 		ga('send', 'pageview');
 	</script>
+	<script>
+		// tooltip demo
+		$('.tooltip-demo').tooltip({
+			selector : "[data-toggle=tooltip]",
+			container : "body"
+		})
 
-<script>
-			// tooltip demo
-			$('.tooltip-demo').tooltip({
-				selector : "[data-toggle=tooltip]",
-				container : "body"
-			})
+		// popover demo
+		$("[data-toggle=popover]").popover()
+	</script>
+	<script src="js/timepicki.js"></script>
 
-			// popover demo
-			$("[data-toggle=popover]").popover()
-		</script>
-		<script src="js/timepicki.js"></script>
-
-		<script>
-			$('#fromTime').timepicki();
-		</script>
+	<script>
+		$('#fromTime').timepicki();
+	</script>
 
 
-		<script type="text/javascript">
-			$(function() {
-				$('#fromTime').timepicki({
-					showMeridian : false
-				});
+	<script type="text/javascript">
+		$(function() {
+			$('#fromTime').timepicki({
+				showMeridian : false
 			});
-		</script>
-		<script>
-			$('#toTime').timepicki();
-		</script>
+		});
+	</script>
+	<script>
+		$('#toTime').timepicki();
+	</script>
 
 
-		<script type="text/javascript">
-			$(function() {
-				$('#toTime').timepicki({
-					showMeridian : false
-				});
+	<script type="text/javascript">
+		$(function() {
+			$('#toTime').timepicki({
+				showMeridian : false
 			});
-			
-			var textarea = document.querySelector('textarea');
+		});
 
-		 	textarea.addEventListener('keydown', autosize);
-		 	             
-		 	function autosize(){
-		 	  var el = this;
-		 	  setTimeout(function(){
-		 	    el.style.cssText = 'height:auto; padding:5px;';
-		 	    // for box-sizing other than "content-box" use:
-		 	    // el.style.cssText = '-moz-box-sizing:content-box';
-		 	    el.style.cssText = 'height:' + el.scrollHeight + 'px';
-		 	  },0);
-		 	}
-		</script>
+		var textarea = document.querySelector('textarea');
+
+		textarea.addEventListener('keydown', autosize);
+
+		function autosize() {
+			var el = this;
+			setTimeout(function() {
+				el.style.cssText = 'height:auto; padding:5px;';
+				// for box-sizing other than "content-box" use:
+				// el.style.cssText = '-moz-box-sizing:content-box';
+				el.style.cssText = 'height:' + el.scrollHeight + 'px';
+			}, 0);
+		}
+	</script>
 </body>
 
 </html>
