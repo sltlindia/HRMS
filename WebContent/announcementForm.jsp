@@ -312,10 +312,9 @@ textarea {
 	<%
 		int employee_id = user.getEmployee_master_id();
 	%>
-	<div class="app-content container center-layout mt-2">
-		<div class="content-wrapper">
-			<div class="content-body">
-				<section id="horizontal-form-layouts">
+ <div class="app-content container center-layout mt-2">
+      <div class="content-wrapper">
+        <div class="content-header row">
 				<%
 				if (request.getAttribute("successAnnouncement") != null) {
 			%>
@@ -356,24 +355,124 @@ textarea {
 				}
 			%>
 				<div class="row">
-					<div class="col-xs-12">
-						<h4>Broadcast Form</h4>
-						<hr>
-					</div>
-				</div>
-				<div class="card">
-					<div class="card-body collapse in">
-						<div class="card-block">
-							<div class="form-body">
-							<div class="row">
-				<div class="col-lg-12">
-					<div class="panel panel-primary">
-						<div class="panel-heading">Broadcast</div>
-						<div class="panel-body">
-
+		<div class="col-md-12">
+	        <div class="card">
+	            <div class="card-header">
+	                <h4 class="card-title" id="striped-label-layout-icons">Broadcast Form</h4>
+	                <a class="heading-elements-toggle"><i class="icon-ellipsis font-medium-3"></i></a>
+	            </div>
+				   <div class="card-body collapse in">
+	                <div class="card-block">
 							<form action="announcementInsert" method="post"
 								name="announcement_form" enctype="multipart/form-data">
-								<div class="panel-group" id="accordion">
+								<div class="form-body">
+	                			<div class="form-group row">
+	                        		<label class="col-md-3 label-control">Title <i class="icon-android-alert" style="color: red" id="inoOfBox"></i></label>
+	                        		<div class="col-md-9">
+			                           <div class="position-relative has-icon-left">
+			                            	<input type="text" class="form-control"
+													name="announcement_title" placeholder="Broadcast Title" autofocus
+													id="announcement_title" required="required">
+				                            <div class="form-control-position">
+				                                <i class="icon-paper-stack"></i>
+				                            </div>
+			                            </div>
+									</div>
+		                        </div>
+		                        <div class="form-group row">
+									<label class="col-md-3 label-control" for="timesheetinput7">Description</label>
+									<div class="col-md-9">
+										<div class="position-relative has-icon-left">
+			                            	<textarea
+														name="description" placeholder="Max. 10000 words"
+														required="required" class="form-control"></textarea>
+				                            <div class="form-control-position">
+				                                <i class="icon-file2"></i>
+				                            </div>
+			                            </div>
+			                        </div>
+								</div>
+								<div class="form-group row">
+	                        		<label class="col-md-3 label-control">Broadcast Date<i class="icon-android-alert" style="color: red" id="inoOfBox"></i></label>
+	                        		<div class="col-md-9">
+			                           <div class="position-relative has-icon-left">
+			                            	<input type="text" class="form-control"
+													name="announcement_date" id="announcement_date"
+													required="required"
+													onchange="ValidateDate(this.value)">
+											<label>Would you like to add
+														time slot for broadcast?</label>
+														<input type="radio" name="yes" id="yes"
+													value="yes" onchange="checkType(this.value)">
+													Yes <input type="radio" name="yes" id="no" value="no"
+													onchange="checkType(this.value)" autofocus> No
+				                            <div class="form-control-position">
+				                                <i class="icon-paper-stack"></i>
+				                            </div>
+			                            </div>
+									</div>
+		                        </div>
+		                        <div class="form-group row">
+	                        		<label class="col-md-3 label-control">Time Slot<i class="icon-android-alert" style="color: red" id="inoOfBox"></i></label>
+	                        		<div class="col-md-9">
+			                           <div class="position-relative has-icon-left">
+			                            From :
+												<input type="text" id="fromTime"
+													class="form-control" name="fromTime" placeholder="HH:mm"
+													required disabled="disabled">
+													<p class="help-block">Please use 24Hours Time-format</p>
+												To:<input type="text" id="toTime"
+													class="form-control" style="width:210px;" name="toTime" placeholder="HH:mm" disabled="disabled"
+													required>
+			                            
+			                            
+				                            <div class="form-control-position">
+				                                <i class="icon-paper-stack"></i>
+				                            </div>
+			                            </div>
+									</div>
+		                        </div>
+		                        <div class="form-group row">
+	                        		<label class="col-md-3 label-control">Broadcast End Date<i class="icon-android-alert" style="color: red" id="inoOfBox"></i></label>
+	                        		<div class="col-md-9">
+			                           <div class="position-relative has-icon-left">
+			                              <input type="text" class="form-control"
+													name="announcement_enddate" id="announcement_enddate"
+													required="required"
+													onchange="ValidateDateMitigation(this.value);endDateValidation(this.value)">
+													<label>Attachment</label>
+													<input type="file" name="attachment" value=""
+													id="attachment_id" onchange="checkFile(this)" />
+													<p class="help-block">(.pdf, .doc, .docx, .jpg, .png,
+														.jpeg, .txt, .ppt, .xml, .xlsx, .xls, .png, .pptx)</p>
+														<a onclick="removeAttachment();" style="cursor: pointer;"> <i
+														class="fa fa-times"></i></a>
+				                            <div class="form-control-position">
+				                                <i class="icon-paper-stack"></i>
+				                            </div>
+			                            </div>
+									</div>
+		                        </div>
+		                      	  <div class="form-actions right">
+	                            <button type="reset" class="btn btn-warning mr-1">
+	                            	<i class="icon-cross2"></i> CANCEL
+	                            </button>
+	                            <input type="hidden" name="redirection"> <input
+											type="submit" class="btn btn-primary">
+	                                <i class="icon-check2"></i> SAVE
+	                        </div>
+								</div>
+       </div>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+	
+</div>
+</div>
+</div>								
+								
+								<%-- <div class="panel-group" id="accordion">
 									<div id="table-responsive">
 										<table class="table table-stripped table-hover">
 											<tr>
@@ -709,7 +808,7 @@ textarea {
 				</section>
 			</div>
 		</div>
-	</div>
+	</div> --%>
 
 	<%@include file="footer.jsp"%>
 
