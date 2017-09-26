@@ -281,7 +281,7 @@
 						</div>
 					
 
-	<%@include file="footer.jsp"%>
+	<%@include file="footer.html"%>
 
     <!-- BEGIN VENDOR JS-->
     <!-- build:js app-assets/js/vendors.min.js-->

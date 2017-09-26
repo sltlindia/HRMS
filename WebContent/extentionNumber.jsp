@@ -294,9 +294,40 @@
       </div>
     <!-- ////////////////////////////////////////////////////////////////////////////-->
 
-<%@include file="footer.jsp" %>
+<%@include file="footer.html" %>
     
+    <script src="app-assets/js/core/libraries/jquery.min.js" type="text/javascript"></script>
+    <script src="app-assets/vendors/js/ui/tether.min.js" type="text/javascript"></script>
+    <script src="app-assets/js/core/libraries/bootstrap.min.js" type="text/javascript"></script>
+    <script src="app-assets/vendors/js/ui/perfect-scrollbar.jquery.min.js" type="text/javascript"></script>
+    <script src="app-assets/vendors/js/ui/unison.min.js" type="text/javascript"></script>
+    <script src="app-assets/vendors/js/ui/blockUI.min.js" type="text/javascript"></script>
+    <script src="app-assets/vendors/js/ui/jquery.matchHeight-min.js" type="text/javascript"></script>
+    <script src="app-assets/vendors/js/ui/jquery-sliding-menu.js" type="text/javascript"></script>
+    <script src="app-assets/vendors/js/sliders/slick/slick.min.js" type="text/javascript"></script>
+    <script src="app-assets/vendors/js/ui/screenfull.min.js" type="text/javascript"></script>
+    <script src="app-assets/vendors/js/extensions/pace.min.js" type="text/javascript"></script>
+    <!-- /build-->
     <!-- BEGIN VENDOR JS-->
+    <!-- BEGIN PAGE VENDOR JS-->
+    <script type="text/javascript" src="app-assets/vendors/js/ui/jquery.sticky.js"></script>
+    <script src="app-assets/vendors/js/forms/icheck/icheck.min.js" type="text/javascript"></script>
+    <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBDkKetQwosod2SZ7ZGCpxuJdxY3kxo5Po" type="text/javascript"></script>
+    <script src="app-assets/vendors/js/gallery/masonry/masonry.pkgd.min.js" type="text/javascript"></script>
+    <script src="app-assets/vendors/js/gallery/photo-swipe/photoswipe.min.js" type="text/javascript"></script>
+    <script src="app-assets/vendors/js/gallery/photo-swipe/photoswipe-ui-default.min.js" type="text/javascript"></script>
+    <!-- END PAGE VENDOR JS-->
+    <!-- BEGIN ROBUST JS-->
+    <!-- build:js app-assets/js/app.min.js-->
+    <script src="app-assets/js/core/app-menu.min.js" type="text/javascript"></script>
+    <script src="app-assets/js/core/app.min.js" type="text/javascript"></script>
+    <script src="app-assets/js/scripts/ui/fullscreenSearch.min.js" type="text/javascript"></script>
+    <!-- /build-->
+    <!-- END ROBUST JS-->
+    <!-- BEGIN PAGE LEVEL JS-->
+    <script src="app-assets/js/scripts/gallery/photo-swipe/photoswipe-script.min.js" type="text/javascript"></script>
+    <script src="app-assets/js/scripts/pages/timeline.min.js" type="text/javascript"></script>
+ <!-- BEGIN VENDOR JS-->
     <!-- BEGIN PAGE VENDOR JS-->
     <script src="app-assets/vendors/js/tables/jquery.dataTables.min.js" type="text/javascript"></script>
     <script src="app-assets/vendors/js/tables/datatable/dataTables.bootstrap4.min.js" type="text/javascript"></script>
@@ -306,6 +337,8 @@
     <!-- BEGIN PAGE LEVEL JS-->
     <script src="app-assets/js/scripts/tables/datatables/datatable-basic.min.js" type="text/javascript"></script>
     <!-- END PAGE LEVEL JS-->
+    
+    
   	<script>
 	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),

@@ -189,7 +189,7 @@ AllListExitFormalityDAO allListExitFormalityDAO = new AllListExitFormalityDAO();
 </div>
 
 
-<%@include file="footer.jsp"%>
+<%@include file="footer.html"%>
 	
 
 <script src="app-assets/js/core/libraries/jquery.min.js" type="text/javascript"></script>

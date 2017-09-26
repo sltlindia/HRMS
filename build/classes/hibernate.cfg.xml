@@ -28,13 +28,7 @@
 		<property name="hibernate.connection.username">root</property>    
 		<property name="hibernate.connection.password">root</property> -->    
 
-<<<<<<< HEAD
-		<!-- <property name="hibernate.connection.password">root</property>    
- -->
-		<property name="hibernate.connection.password">root</property>      
-=======
 
->>>>>>> ba4b7ffbb52615c3b71dc69bd19556ae31e9be14
 	    <property name="show_sql">true</property>
 		<property name="hbm2ddl.auto">create/update</property>
 		<!-- performance bean -->
