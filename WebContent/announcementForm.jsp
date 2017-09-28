@@ -419,10 +419,13 @@ textarea {
 												<div class="col-md-3">
 													<div class="position-relative has-icon-left">
 														<input type="text" class="form-control"
-															name="announcement_date" id="announcement_date"
+															name="announcement_date" id="announcement_date" placeholder="yyyy-MM-dd"
 															required="required" onchange="ValidateDate(this.value)"
 															data-toggle="tooltip" data-trigger="hover"
 															data-placement="top" data-title="Start Date">
+															<div class="form-control-position">
+															<i class="icon-calendar4"></i>
+														</div>
 													</div>
 												</div>
 												<label class="col-md-3 label-control">Broadcast End</label>
@@ -430,30 +433,58 @@ textarea {
 													<div class="position-relative has-icon-left">
 														<input type="text" class="form-control"
 															name="announcement_enddate" id="announcement_enddate"
-															required="required"
+															required="required" placeholder="yyyy-MM-dd"
 															onchange="ValidateDateMitigation(this.value);endDateValidation(this.value)"
 															data-toggle="tooltip" data-trigger="hover"
 															data-placement="top" data-title="End Date">
+															<div class="form-control-position">
+															<i class="icon-calendar4"></i>
+														</div>
 													</div>
 												</div>
 											</div>
 											<div class="form-group row">
-												<label class="col-md-3 label-control">Time Slot</label>
-												<div class="col-md-3">
+											<label class="col-md-3 label-control">Would you like to add time slot for
+															broadcast?</label>
+											<div class="col-md-3">
 													<div class="position-relative has-icon-left">
-														<input type="text" id="timesheetinput5"
-															class="form-control" name="starttime">
+											<div class="input-group">
+												<label class="display-inline-block custom-control custom-radio ml-1">
+													<input type="radio" name="yes" id="yes"
+															value="yes" onchange="checkType(this.value)" checked class="custom-control-input">
+													<span class="custom-control-indicator"></span>
+													<span class="custom-control-description ml-0">Yes</span>
+												</label>
+												<label class="display-inline-block custom-control custom-radio">
+													<input type="radio" name="yes" id="no" value="no"
+															onchange="checkType(this.value)" class="custom-control-input">
+													<span class="custom-control-indicator"></span>
+													<span class="custom-control-description ml-0">No</span>
+												</label>
+											</div>
+											</div>
+											</div>
+										</div>
+											<div class="form-group row">
+												<label class="col-md-3 label-control">Time Slot</label>
+												<div class="col-md-2">
+												Start Time
+												</div>
+												<div class="col-md-2">
+													<div class="position-relative has-icon-left">
+														<input type="text" id="fromTime"
+													class="form-control" name="fromTime" placeholder="HH:mm" disabled="disabled" required>
 														<div class="form-control-position">
 															<i class="icon-clock5"></i>
 														</div>
 													</div>
 												</div>
 
-												<label class="col-md-3 label-control">End Time</label>
-												<div class="col-md-3">
+												<label class="col-md-2 label-control">End Time</label>
+												<div class="col-md-2">
 													<div class="position-relative has-icon-left">
-														<input type="text" id="timesheetinput6"
-															class="form-control" name="endtime">
+														<input type="text" id="toTime"
+													class="form-control" name="toTime" placeholder="HH:mm" disabled="disabled" required>
 														<div class="form-control-position">
 															<i class="icon-clock5"></i>
 														</div>
