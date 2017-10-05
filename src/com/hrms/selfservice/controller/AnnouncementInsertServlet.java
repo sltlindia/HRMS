@@ -473,7 +473,7 @@ public class AnnouncementInsertServlet extends HttpServlet {
 							}
 
 							if (request.getAttribute("conflictAnnouncement") == null) {
-								request.setAttribute("successAnnouncement", "Announcement Successfully Inserted");
+								request.setAttribute("successAnnouncement", "Broadcast Successfully Added");
 							}
 							request.getRequestDispatcher("announcementDoneHRList.jsp").forward(request, response);
 						}

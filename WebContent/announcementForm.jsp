@@ -85,6 +85,8 @@
 	href="app-assets/css/core/menu/menu-types/horizontal-menu.min.css">
 <link rel="stylesheet" type="text/css"
 	href="app-assets/css/core/menu/menu-types/vertical-overlay-menu.min.css">
+<link rel="stylesheet" type="text/css"
+	href="app-assets/css/plugins/animate/animate.min.css">
 <!-- END Page Level CSS-->
 <!-- BEGIN Custom CSS-->
 <link rel="stylesheet" type="text/css" href="assets/css/style.css">
@@ -161,7 +163,7 @@ textarea {
 	}
 	function endDateValidation(value) {
 
-		// alert("enddatevalidate function ni andar ayu");
+		 //alert("enddatevalidate function ni andar ayu");
 		var a = value;
 		var b = document.getElementById("announcement_date").value;
 
@@ -323,6 +325,8 @@ textarea {
 		System.out.println(dateFormat.format(date));
 		String date1 = dateFormat.format(date);
 	%>
+	<input type="hidden" id="currentDate" name="currentDate"
+		value="<%=date1%>">
 	<%
 		int employee_id = user.getEmployee_master_id();
 	%>
@@ -419,11 +423,12 @@ textarea {
 												<div class="col-md-3">
 													<div class="position-relative has-icon-left">
 														<input type="text" class="form-control"
-															name="announcement_date" id="announcement_date" placeholder="yyyy-MM-dd"
-															required="required" onchange="ValidateDate(this.value)"
-															data-toggle="tooltip" data-trigger="hover"
-															data-placement="top" data-title="Start Date">
-															<div class="form-control-position">
+															name="announcement_date" id="announcement_date"
+															placeholder="yyyy-MM-dd" required="required"
+															onchange="ValidateDate(this.value)" data-toggle="tooltip"
+															data-trigger="hover" data-placement="top"
+															data-title="Start Date">
+														<div class="form-control-position">
 															<i class="icon-calendar4"></i>
 														</div>
 													</div>
@@ -437,43 +442,45 @@ textarea {
 															onchange="ValidateDateMitigation(this.value);endDateValidation(this.value)"
 															data-toggle="tooltip" data-trigger="hover"
 															data-placement="top" data-title="End Date">
-															<div class="form-control-position">
+														<div class="form-control-position">
 															<i class="icon-calendar4"></i>
 														</div>
 													</div>
 												</div>
 											</div>
 											<div class="form-group row">
-											<label class="col-md-3 label-control">Would you like to add time slot for
-															broadcast?</label>
-											<div class="col-md-3">
+												<label class="col-md-3 label-control">Would you like
+													to add time slot for broadcast?</label>
+												<div class="col-md-3">
 													<div class="position-relative has-icon-left">
-											<div class="input-group">
-												<label class="display-inline-block custom-control custom-radio ml-1">
-													<input type="radio" name="yes" id="yes"
-															value="yes" onchange="checkType(this.value)" checked class="custom-control-input">
-													<span class="custom-control-indicator"></span>
-													<span class="custom-control-description ml-0">Yes</span>
-												</label>
-												<label class="display-inline-block custom-control custom-radio">
-													<input type="radio" name="yes" id="no" value="no"
-															onchange="checkType(this.value)" class="custom-control-input">
-													<span class="custom-control-indicator"></span>
-													<span class="custom-control-description ml-0">No</span>
-												</label>
+														<div class="input-group">
+															<label
+																class="display-inline-block custom-control custom-radio ml-1">
+																<input type="radio" name="yes" id="yes" value="yes"
+																onchange="checkType(this.value)"
+																class="custom-control-input"> <span
+																class="custom-control-indicator"></span> <span
+																class="custom-control-description ml-0">Yes</span>
+															</label> <label
+																class="display-inline-block custom-control custom-radio">
+																<input type="radio" name="yes" id="no" value="no"
+																onchange="checkType(this.value)" checked
+																class="custom-control-input"> <span
+																class="custom-control-indicator"></span> <span
+																class="custom-control-description ml-0">No</span>
+															</label>
+														</div>
+													</div>
+												</div>
 											</div>
-											</div>
-											</div>
-										</div>
 											<div class="form-group row">
 												<label class="col-md-3 label-control">Time Slot</label>
-												<div class="col-md-2">
-												Start Time
-												</div>
+												<div class="col-md-2">Start Time</div>
 												<div class="col-md-2">
 													<div class="position-relative has-icon-left">
-														<input type="text" id="fromTime"
-													class="form-control" name="fromTime" placeholder="HH:mm" disabled="disabled" required>
+														<input type="text" id="fromTime" class="form-control"
+															name="fromTime" placeholder="HH:mm" disabled="disabled"
+															required>
 														<div class="form-control-position">
 															<i class="icon-clock5"></i>
 														</div>
@@ -483,8 +490,9 @@ textarea {
 												<label class="col-md-2 label-control">End Time</label>
 												<div class="col-md-2">
 													<div class="position-relative has-icon-left">
-														<input type="text" id="toTime"
-													class="form-control" name="toTime" placeholder="HH:mm" disabled="disabled" required>
+														<input type="text" id="toTime" class="form-control"
+															name="toTime" placeholder="HH:mm" disabled="disabled"
+															required>
 														<div class="form-control-position">
 															<i class="icon-clock5"></i>
 														</div>
@@ -558,15 +566,15 @@ textarea {
 															for (CompanyListBean c1 : listOfCompany) {
 														%>
 														<div class="col-md-6" style="height: 25px;">
-														<label><input type="checkbox" name="company"
-															class="checkbox3" id="company"
-															value="<%=c1.getCompany_list_id()%>">&nbsp;<%=c1.getCompany_name()%>&nbsp;&nbsp;<a
-															href="" data-toggle="modal"
-															data-target="#myModalViewCompany<%=c1.getCompany_list_id()%>"><i
-																class="glyphicon glyphicon-eye-open"
-																data-toggle="tooltip" data-placement="top"
-																title="View Company"></i></a>&nbsp;</label>
-																</div>
+															<label><input type="checkbox" name="company"
+																class="checkbox3" id="company"
+																value="<%=c1.getCompany_list_id()%>">&nbsp;<%=c1.getCompany_name()%>&nbsp;&nbsp;<a
+																href="" data-toggle="modal"
+																data-target="#myModalViewCompany<%=c1.getCompany_list_id()%>">
+																	<i class="icon icon-eye4" data-toggle="tooltip"
+																	data-placement="top" title="View Company"></i>
+															</a>&nbsp;</label>
+														</div>
 														<%
 															}
 														%>
@@ -577,8 +585,8 @@ textarea {
 												<label class="col-md-3 label-control">Department</label>
 												<div class="col-md-9">
 													<div class="position-relative has-icon-left">
-														<label><input type="checkbox" id="selecctall1" name="checkAll[]"
-															onclick="myFunction()">All</label></br>
+														<label><input type="checkbox" id="selecctall1"
+															name="checkAll[]" onclick="myFunction()">All</label></br>
 														<%
 															DepartmentDAO departmentDAO = new DepartmentDAO();
 															List<DepartmentBean> listOfDepartment = departmentDAO.getListOfDepartment();
@@ -586,15 +594,14 @@ textarea {
 																if (d.getDepartment_id() != 0) {
 														%>
 														<div class="col-md-4" style="height: 25px;">
-														<label><input type="checkbox" name="department"
-															class="checkbox2" id="department"
-															value="<%=d.getDepartment_id()%>">&nbsp;&nbsp;<%=d.getDepartment_name()%>&nbsp;&nbsp;<a
-															href="" data-toggle="modal"
-															data-target="#myModalViewDepartment<%=d.getDepartment_id()%>"><i
-																class="glyphicon glyphicon-eye-open"
-																data-toggle="tooltip" data-placement="top"
-																title="View Department"></i></a>&nbsp;</label>
-																</div>
+															<label><input type="checkbox" name="department"
+																class="checkbox2" id="department"
+																value="<%=d.getDepartment_id()%>">&nbsp;&nbsp;<%=d.getDepartment_name()%>&nbsp;&nbsp;<a
+																href="" data-toggle="modal"
+																data-target="#myModalViewDepartment<%=d.getDepartment_id()%>"><i
+																	class="icon icon-eye4" data-toggle="tooltip"
+																	data-placement="top" title="View Department"></i></a>&nbsp;</label>
+														</div>
 														<%
 															}
 															}
@@ -614,15 +621,14 @@ textarea {
 															for (RoleCategoryBean a1 : listOfCategory) {
 														%>
 														<div class="col-md-2" style="height: 25px;">
-														<label> <input type="checkbox" name="category"
-															class="checkbox1" id="category"
-															value="<%=a1.getRole_category_id()%>">&nbsp;&nbsp;<%=a1.getRole_category_name()%>&nbsp;&nbsp;<a
-															href="" data-toggle="modal"
-															data-target="#myModalViewCategory<%=a1.getRole_category_name()%>"><i
-																class="glyphicon glyphicon-eye-open"
-																data-toggle="tooltip" data-placement="top"
-																title="View Category"></i></a>&nbsp;
-														</label>
+															<label> <input type="checkbox" name="category"
+																class="checkbox1" id="category"
+																value="<%=a1.getRole_category_id()%>">&nbsp;&nbsp;<%=a1.getRole_category_name()%>&nbsp;&nbsp;<a
+																href="" data-toggle="modal"
+																data-target="#myModalViewCategory<%=a1.getRole_category_name()%>"><i
+																	class="icon icon-eye4" data-toggle="tooltip"
+																	data-placement="top" title="View Category"></i></a>&nbsp;
+															</label>
 														</div>
 														<%
 															}
@@ -630,31 +636,7 @@ textarea {
 													</div>
 												</div>
 											</div>
-											<!-- <div class="form-group row">
-												<label class="col-md-3 label-control">Broadcast End
-													Date<i class="icon-android-alert" style="color: red"
-													id="inoOfBox"></i>
-												</label>
-												<div class="col-md-9">
-													<div class="position-relative has-icon-left">
-														<input type="text" class="form-control"
-															name="announcement_enddate" id="announcement_enddate"
-															required="required"
-															onchange="ValidateDateMitigation(this.value);endDateValidation(this.value)">
-														<label>Attachment</label> <input type="file"
-															name="attachment" value="" id="attachment_id"
-															onchange="checkFile(this)" />
-														<p class="help-block">(.pdf, .doc, .docx, .jpg, .png,
-															.jpeg, .txt, .ppt, .xml, .xlsx, .xls, .png, .pptx)</p>
-														<a onclick="removeAttachment();" style="cursor: pointer;">
-															<i class="fa fa-times"></i>
-														</a>
-														<div class="form-control-position">
-															<i class="icon-paper-stack"></i>
-														</div>
-													</div>
-												</div>
-											</div> -->
+
 											<div class="form-actions right">
 												<button type="reset" class="btn btn-warning mr-1">
 													<i class="icon-cross2"></i> CANCEL
@@ -662,10 +644,167 @@ textarea {
 												<input type="hidden" name="redirection">
 												<button type="submit" class="btn btn-primary">
 													<i class="icon-check2"></i> SAVE
+												</button>
 											</div>
 										</div>
 									</form>
 								</div>
+
+								<%
+									for (RoleCategoryBean a1 : listOfCategory) {
+								%>
+								<div class="col-lg-4 col-md-6 col-sm-12">
+									<div class="form-group">
+										<!-- Modal -->
+										<div class="modal animated slideInUp text-xs-left"
+											id="myModalViewCategory<%=a1.getRole_category_name()%>"
+											tabindex="-1" role="dialog" aria-labelledby="myModalLabel74"
+											aria-hidden="true">
+											<div class="modal-dialog modal-lg" role="document">
+												<div class="modal-content">
+													<div class="modal-header">
+														<button type="button" class="close" data-dismiss="modal"
+															aria-label="Close">
+															<span aria-hidden="true">&times;</span>
+														</button>
+														<h4 class="modal-title" id="myModalLabel">
+															<b>Role Type of this category : <%=a1.getRole_category_name()%></b>
+														</h4>
+													</div>
+													<div class="modal-body">
+													<div class="row">
+														<%
+															String role_name = a1.getRole_category_name();
+																AllListDAO allListDAO = new AllListDAO();
+																List<RoleBean> listOfRole = allListDAO.getListOfRoleById(role_name);
+																for (RoleBean r : listOfRole) {
+														%>
+														<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+															<i class="icon-user4"></i>&nbsp;<label><%=r.getRole_type()%></label>
+														</div>
+														<%
+															}
+														%>
+														</div>
+														</div>
+													<div class="modal-footer">
+														<button type="button"
+															class="btn grey btn-outline-secondary"
+															data-dismiss="modal">Close</button>
+													</div>
+
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<%
+									}
+								%>
+								<%
+									for (DepartmentBean d : listOfDepartment) {
+								%>
+								<div class="col-lg-4 col-md-6 col-sm-12">
+									<div class="form-group">
+										<!-- Modal -->
+										<div class="modal animated slideInUp text-xs-left"
+											id="myModalViewDepartment<%=d.getDepartment_id()%>"
+											tabindex="-1" role="dialog" aria-labelledby="myModalLabel74"
+											aria-hidden="true">
+											<div class="modal-dialog modal-lg" role="document">
+												<div class="modal-content">
+													<div class="modal-header">
+														<button type="button" class="close" data-dismiss="modal"
+															aria-label="Close">
+															<span aria-hidden="true">&times;</span>
+														</button>
+														<h4 class="modal-title" id="myModalLabel">
+															<b>Employee Name For Department : <%=d.getDepartment_name()%></b>
+														</h4>
+													</div>
+													<div class="modal-body">
+													<div class="row">
+														<%
+															int department_id = d.getDepartment_id();
+																AllListDAO allListDAO = new AllListDAO();
+																List<EmployeeBean> listOfEmployees = allListDAO.getListOfEmployeeAllocationByDepartment(department_id);
+																for (EmployeeBean r : listOfEmployees) {
+														%>
+														<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+															<i class="icon-user4"></i>&nbsp;<label><%=r.getFirstname() + " " + r.getLastname()%></label>
+														</div>
+														<%
+															}
+														%>
+														</div>
+													</div>
+													<div class="modal-footer">
+														<button type="button"
+															class="btn grey btn-outline-secondary"
+															data-dismiss="modal">Close</button>
+													</div>
+
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<%
+									}
+								%>
+								<%
+									for (CompanyListBean c1 : listOfCompany) {
+								%>
+
+								<div class="col-lg-4 col-md-6 col-sm-12">
+									<div class="form-group">
+										<!-- Modal -->
+										<div class="modal animated slideInUp text-xs-left"
+											id="myModalViewCompany<%=c1.getCompany_list_id()%>"
+											tabindex="-1" role="dialog" aria-labelledby="myModalLabel74"
+											aria-hidden="true">
+											<div class="modal-dialog modal-lg" role="document">
+												<div class="modal-content">
+													<div class="modal-header">
+														<button type="button" class="close" data-dismiss="modal"
+															aria-label="Close">
+															<span aria-hidden="true">&times;</span>
+														</button>
+														<h4 class="modal-title" id="myModalLabel">
+															<b>Employee Name For Company : <%=c1.getCompany_name()%></b>
+														</h4>
+													</div>
+													<div class="modal-body">
+													<div class="row">
+														<%
+															int company_id = c1.getCompany_list_id();
+																AllListDAO allListDAO = new AllListDAO();
+																List<EmployeeBean> listOfEmployees = allListDAO.getListOfEmployeeByCompany(company_id);
+																for (EmployeeBean r : listOfEmployees) {
+														%>
+														
+														<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+															<i class="icon-user4"></i>&nbsp;<label><%=r.getFirstname() + " " + r.getLastname()%></label><br>
+														</div>
+														<%
+															}
+														%>
+														</div>
+														</div>
+													<div class="modal-footer">
+														<button type="button"
+															class="btn grey btn-outline-secondary"
+															data-dismiss="modal">Close</button>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<%
+									}
+								%>
+								
 							</div>
 						</div>
 					</div>
@@ -674,345 +813,6 @@ textarea {
 			</div>
 		</div>
 	</div>
-
-	<%-- <div class="panel-group" id="accordion">
-									<div id="table-responsive">
-										<table class="table table-stripped table-hover">
-											<tr>
-												<th>Title</th>
-												<td>:</td>
-												<td colspan="5"><input type="text" class="form-control"
-													name="announcement_title" placeholder="Broadcast Title" autofocus
-													id="announcement_title" required="required"></td>
-											</tr>
-											<tr>
-												<th>Description</th>
-												<td>:</td>
-												<td colspan="5"><textarea
-														name="description" placeholder="Max. 10000 words"
-														required="required" class="form-control"></textarea></td>
-											</tr>
-											<tr>
-											<th>Broadcast Date</th>
-												<td>:</td>
-												<td><input type="text" class="form-control"
-													name="announcement_date" id="announcement_date"
-													required="required"
-													onchange="ValidateDate(this.value)"></td>
-												<td><label>Would you like to add
-														time slot for broadcast?</label></td>
-												<td>:</td>
-												<td colspan="1"><input type="radio" name="yes" id="yes"
-													value="yes" onchange="checkType(this.value)">
-													Yes <input type="radio" name="yes" id="no" value="no"
-													onchange="checkType(this.value)" autofocus> No</td>
-											</tr>
-
-											<tr>
-												<th>From</th>
-												<td>:</td>
-												<td><input type="text" id="fromTime"
-													class="form-control" name="fromTime" placeholder="HH:mm"
-													required disabled="disabled">
-													<p class="help-block">Please use 24Hours Time-format</p>
-													</td>
-												<th>To</th>
-												<td>:</td>
-												<td><input type="text" id="toTime"
-													class="form-control" style="width:210px;" name="toTime" placeholder="HH:mm" disabled="disabled"
-													required>
-													
-													</td>
-												<td></td>
-											</tr>
-											<tr>
-												<th>Broadcast End Date</th>
-												<td>:</td>
-												<td><input type="text" class="form-control"
-													name="announcement_enddate" id="announcement_enddate"
-													required="required"
-													onchange="ValidateDateMitigation(this.value);endDateValidation(this.value)"></td>
-
-												<th>Attachment
-													<p class="help-block">(Max size 1MB)</p>
-												</th>
-												<td colspan="2"><input type="file" name="attachment" value=""
-													id="attachment_id" onchange="checkFile(this)" />
-													<p class="help-block">(.pdf, .doc, .docx, .jpg, .png,
-														.jpeg, .txt, .ppt, .xml, .xlsx, .xls, .png, .pptx)</p></td>
-												<td><a onclick="removeAttachment();" style="cursor: pointer;"> <i
-														class="fa fa-times"></i></a></td>
-											</tr>
-											<!-- 	<tr>
-											<div class="col-lg-6">	
-												<td>
-												<div class="col-lg-2">From</div>
-											</td>
-											<td><input type="text" id="outTime" class="form-control" name="outTime" placeholder="HH:mm" required>
-										</td>	
-										</div>
-		<div class="col-lg-6">
-											<td><div class="col-lg-2">To</div></td>
-											<td>	
-											<input type="text" id="outTime1" class="form-control" name="outTime1" placeholder="HH:mm" required>
-											</td></div>
-												
-											</tr> -->
-										<tr>
-												<td><label>Category<i
-														class="fa fa-question-circle" data-toggle="tooltip"
-														data-placement="top"
-														title="All the team members of the specific category which you select will notify by all the details of broadcast."></i></label></td>
-												<td>:</td>
-												<td colspan="5">
-													<div class="form-group">
-													<label><input type="checkbox" id="selecctall" name="checkAll[]" onclick="myFunction()">All</label></br>
-														<%
-															AllListSelfServiceDAO allListSelfServiceDAO = new AllListSelfServiceDAO();
-															List<RoleCategoryBean> listOfCategory = allListSelfServiceDAO.getListOfAnnouncementCategory();
-															for (RoleCategoryBean a1 : listOfCategory) {
-														%>
-														<label>
-														<input type="checkbox" name="category" class="checkbox1"
-															id="category" value="<%=a1.getRole_category_id()%>">&nbsp;&nbsp;<%=a1.getRole_category_name()%>&nbsp;&nbsp;<a
-															href="" data-toggle="modal"
-															data-target="#myModalViewCategory<%=a1.getRole_category_name()%>"><i
-																class="glyphicon glyphicon-eye-open"
-																data-toggle="tooltip" data-placement="top"
-																title="View Category"></i></a>&nbsp; </label>
-														<%
-															}
-														%>
-													</div>
-												</td>
-											</tr>
-											
-											<tr>
-												<td><label>&nbsp;Department&nbsp;<i
-														class="fa fa-question-circle" data-toggle="tooltip"
-														data-placement="top"
-														title="All the team members of the specific department which you select will notify by all the details of broadcast."></i></label></td>
-												<td>:</td>
-												<td colspan="4">
-												<label><input type="checkbox" id="selecctall1" name="checkAll[]" onclick="myFunction()">All</label></br>
-													<!-- <div class="row"> -->
-														<%
-															DepartmentDAO departmentDAO = new DepartmentDAO();
-															List<DepartmentBean> listOfDepartment = departmentDAO.getListOfDepartment();
-															for (DepartmentBean d : listOfDepartment) {
-																if (d.getDepartment_id() != 0) {
-														%>
-														<div class="col-lg-4" style="height: 25px;">
-															<label><input type="checkbox" name="department" class="checkbox2" 
-																id="department" value="<%=d.getDepartment_id()%>">&nbsp;&nbsp;<%=d.getDepartment_name()%>&nbsp;&nbsp;<a
-															href="" data-toggle="modal"
-															data-target="#myModalViewDepartment<%=d.getDepartment_id()%>"><i
-																class="glyphicon glyphicon-eye-open"
-																data-toggle="tooltip" data-placement="top"
-																title="View Department"></i></a>&nbsp;</label>
-														</div>
-														<%
-															}
-															}
-														%>
-													<!-- </div> -->
-												</td>
-											</tr>
-											<tr>
-												<td><label>&nbsp;Company&nbsp;<i
-														class="fa fa-question-circle" data-toggle="tooltip"
-														data-placement="top"
-														title="All the employee of the specific company which you select will notify by all the details of broadcast."></i></label></td>
-												<td>:</td>
-												<td colspan="5">
-												<label><input type="checkbox" id="selecctall2" name="checkAll[]" onclick="myFunction()">All</label></br>
-													<%
-														CompanyListDAO companyListDAO = new CompanyListDAO();
-														List<CompanyListBean> listOfCompany = companyListDAO.getListOfCompanyList();
-														for (CompanyListBean c1 : listOfCompany) {
-													%>
-													<div class="col-lg-5" style="height: 25px;">
-														<label><input type="checkbox" name="company" class="checkbox3"
-															id="company" value="<%=c1.getCompany_list_id()%>">&nbsp;<%=c1.getCompany_name()%>&nbsp;&nbsp;<a
-															href="" data-toggle="modal"
-															data-target="#myModalViewCompany<%=c1.getCompany_list_id()%>"><i
-																class="glyphicon glyphicon-eye-open"
-																data-toggle="tooltip" data-placement="top"
-																title="View Company"></i></a>&nbsp;</label>
-													</div> <%
- 	}
- %>
-												</td>
-											</tr>
-											
-										</table>
-									</div>
-									<center>
-										<input type="hidden" name="redirection"> <input
-											type="submit" value="Submit" class="btn btn-primary">
-										<input type="reset" value="Cancel" class="btn btn-danger">
-									</center>
-									<br>
-									<p>
-										<b>Note : </b><font color="red">
-										You can send notification and e-mail by picking either particular or all category / department / company. This will send notification and e-mail
-										to the selected entities. 
-										</font> 
-								</div>
-							</form>
-						</div>
-						<!-- /.panel -->
-					</div>
-					<!-- /.col-lg-12 -->
-				</div>
-			</div>
-			<%
-				for (RoleCategoryBean a1 : listOfCategory) {
-			%>
-			<div class="modal fade col-lg-12"
-				id="myModalViewCategory<%=a1.getRole_category_name()%>"
-				tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-				aria-hidden="true">
-				<div class="modal-dialog">
-					<div class="modal-content">
-						<div class="modal-header">
-							<button type="button" class="close" data-dismiss="modal"
-								aria-hidden="true">&times;</button>
-							<h4 class="modal-title" id="myModalLabel">
-								<b>Role Type of this category : <%=a1.getRole_category_name()%></b>
-							</h4>
-						</div>
-
-						<table class="table table-striped table-hover">
-							<tr>
-								<td class="col-lg-4">
-									<%
-										String role_name = a1.getRole_category_name();
-											AllListDAO allListDAO = new AllListDAO();
-											List<RoleBean> listOfRole = allListDAO.getListOfRoleById(role_name);
-											for (RoleBean r : listOfRole) {
-									%>
-									<div class="col-lg-4">
-										<label><%=r.getRole_type()%></label>
-									</div> <%
- 	}
- %>
-								</td>
-
-							</tr>
-						</table>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-danger" data-dismiss="modal">CLOSE</button>
-						</div>
-					</div>
-					<!-- /.modal-content -->
-				</div>
-				<!-- /.modal-dialog -->
-			</div>
-			<%
-				}
-			%>
-			<%
-				for (DepartmentBean d : listOfDepartment) {
-			%>
-			<div class="modal fade col-lg-12"
-				id="myModalViewDepartment<%=d.getDepartment_id()%>"
-				tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-				aria-hidden="true">
-				<div class="modal-dialog">
-					<div class="modal-content">
-						<div class="modal-header">
-							<button type="button" class="close" data-dismiss="modal"
-								aria-hidden="true">&times;</button>
-							<h4 class="modal-title" id="myModalLabel">
-								<b>Employee Name For Department : <%=d.getDepartment_name()%></b>
-							</h4>
-						</div>
-
-						<table class="table table-striped table-hover">
-							<tr>
-								<td class="col-lg-4">
-									<%
-										int department_id = d.getDepartment_id();
-											AllListDAO allListDAO = new AllListDAO();
-											List<EmployeeBean> listOfEmployees = allListDAO.getListOfEmployeeAllocationByDepartment(department_id);
-											for (EmployeeBean r : listOfEmployees) {
-									%>
-									<div class="col-lg-4">
-										<label><%=r.getFirstname()+" "+r.getLastname()%></label>
-									</div> <%
- 	}
- %>
-								</td>
-
-							</tr>
-						</table>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-danger" data-dismiss="modal">CLOSE</button>
-						</div>
-					</div>
-					<!-- /.modal-content -->
-				</div>
-				<!-- /.modal-dialog -->
-			</div>
-			<%
-				}
-			%>
-			<%
-				for (CompanyListBean c1 : listOfCompany) {
-			%>
-			<div class="modal fade col-lg-12"
-				id="myModalViewCompany<%=c1.getCompany_list_id()%>"
-				tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-				aria-hidden="true">
-				<div class="modal-dialog">
-					<div class="modal-content">
-						<div class="modal-header">
-							<button type="button" class="close" data-dismiss="modal"
-								aria-hidden="true">&times;</button>
-							<h4 class="modal-title" id="myModalLabel">
-								<b>Employee Name For Company : <%=c1.getCompany_name()%></b>
-							</h4>
-						</div>
-
-						<table class="table table-striped table-hover">
-							<tr>
-								<td class="col-lg-4">
-									<%
-										int company_id = c1.getCompany_list_id();
-											AllListDAO allListDAO = new AllListDAO();
-											List<EmployeeBean> listOfEmployees = allListDAO.getListOfEmployeeByCompany(company_id);
-											for (EmployeeBean r : listOfEmployees) {
-									%>
-									<div class="col-lg-4">
-										<label><%=r.getFirstname()+" "+r.getLastname()%></label>
-									</div> <%
- 	}
- %>
-								</td>
-
-							</tr>
-						</table>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-danger" data-dismiss="modal">CLOSE</button>
-						</div>
-					</div>
-					<!-- /.modal-content -->
-				</div>
-				<!-- /.modal-dialog -->
-			</div>
-			<%
-				}
-			%>
-							</div>
-						</div>
-					</div>
-				</div>
-				</section>
-			</div>
-		</div>
-	</div> --%>
-
 	<%@include file="footer.html"%>
 
 	<!-- BEGIN VENDOR JS-->
@@ -1021,7 +821,7 @@ textarea {
 		type="text/javascript"></script>
 	<script src="app-assets/vendors/js/ui/tether.min.js"
 		type="text/javascript"></script>
-	<script src="app-assets/js/core/libraries/bootstrap.min.js"
+	<script src="app-assets/js/core/libraries/bootstrap.min.js"	
 		type="text/javascript"></script>
 	<script src="app-assets/vendors/js/ui/perfect-scrollbar.jquery.min.js"
 		type="text/javascript"></script>
@@ -1038,6 +838,8 @@ textarea {
 	<script src="app-assets/vendors/js/ui/screenfull.min.js"
 		type="text/javascript"></script>
 	<script src="app-assets/vendors/js/extensions/pace.min.js"
+		type="text/javascript"></script>
+	<script src="app-assets/js/scripts/modal/components-modal.min.js"
 		type="text/javascript"></script>
 	<!-- /build-->
 	<!-- BEGIN VENDOR JS-->
