@@ -44,6 +44,28 @@
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
     <!-- END Custom CSS-->
     
+    
+    <script type="text/javascript">
+    var datefield=document.createElement("input")
+    datefield.setAttribute("type", "text")
+    if (datefield.type!="date"){ //if browser doesn't support input type="date", load files for jQuery UI Date Picker
+        document.write('<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />\n')
+        document.write('<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"><\/script>\n')
+        document.write('<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"><\/script>\n')
+    }
+</script>
+
+
+<script>
+    if (datefield.type!="date"){ //if browser doesn't support input type="date", initialize date picker widget:
+        jQuery(function($){ //on document.ready
+                $('#timesheetinput3').datepicker({
+                    dateFormat: 'yy-mm-dd'
+                });
+        })
+    }
+</script>
+    
     <!-- END Custom CSS-->
     <%@include file="header.jsp"%>
   </head>
@@ -159,17 +181,19 @@
 					                        	<label>6) Termination Date : </label>
 					                        </div>
 					                       <div class="form-group col-md-4 col-xs-6">
-					                            <div class="form-group">
-									<div class="input-group">
-										<span class="input-group-addon">
-											<span class="icon-calendar5"></span>
-										</span>
-										<input type='text' name="termination_date" class="form-control pickadate" placeholder="Select Date" />
-										<input type="hidden" name="terminate">
-									</div>
-								</div>
+					                          <div class="form-group row">
+				                        		<div class="col-md-12">
+						                            <div class="position-relative has-icon-left">
+						                            	<input type="text" id="timesheetinput3" class="form-control" name="termination_date" placeholder="yyyy-mm-dd" required">
+							                            <div class="form-control-position">
+							                                <i class="icon-calendar5"></i>
+							                            </div>
+						                            </div>
+						                        </div>
+					                        </div>
 					                       </div>
-		                      		</div>
+					                       <input type="hidden" name="terminate">
+		                      			</div>
 		                      		<hr>
 		                      			<div class="row">
 											<div class="form-group col-md-12 col-xs-12">
@@ -257,7 +281,7 @@
 						</div>
 					
 
-	<%@include file="footer.jsp"%>
+	<%@include file="footer.html"%>
 
     <!-- BEGIN VENDOR JS-->
     <!-- build:js app-assets/js/vendors.min.js-->

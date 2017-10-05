@@ -335,6 +335,7 @@ int under_manager_id = Integer.parseInt(user.getUnder_manager_id());
 </div>
 </div>
 </div>
+<%@include file="footer.html"%>
 
 <script src="app-assets/js/core/libraries/jquery.min.js" type="text/javascript"></script>
     <script src="app-assets/vendors/js/ui/tether.min.js" type="text/javascript"></script>

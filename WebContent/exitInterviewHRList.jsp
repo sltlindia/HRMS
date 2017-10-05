@@ -1,24 +1,15 @@
-<%@page import="com.sun.org.apache.xerces.internal.impl.xpath.regex.ParseException"%>
-<%@page import="com.hrms.exitformality.dao.AllListExitFormalityDAO"%>
+<%@page import="java.text.ParseException"%>
 <%@page import="com.hrms.exitformality.bean.ExitInterviewEmployeeBean"%>
+<%@page import="java.util.List"%>
+<%@page import="com.hrms.exitformality.dao.AllListExitFormalityDAO"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
-    <meta name="description" content="Robust admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
-    <meta name="keywords" content="admin template, robust admin template, dashboard template, flat admin template, responsive admin template, web app">
-    <meta name="author" content="PIXINVENT">
-    <title>Exit Interview Form List</title>
-    <link rel="shortcut icon" sizes="152x152"
-	href="app-assets/images/ico/titleIcon.png">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-touch-fullscreen" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="default">
-    <!-- BEGIN VENDOR CSS-->
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Exit Interview List</title>
+<!-- BEGIN VENDOR CSS-->
     <link rel="stylesheet" type="text/css" href="app-assets/css/bootstrap.min.css">
     <!-- font icons-->
     <link rel="stylesheet" type="text/css" href="app-assets/fonts/icomoon.css">
@@ -46,31 +37,37 @@
     <!-- BEGIN Custom CSS-->
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
     <!-- END Custom CSS-->
-    <%@include file="header.jsp"%>
-  </head>
-<body data-open="hover" data-menu="horizontal-menu" data-col="2-columns" class="horizontal-layout horizontal-menu 2-columns ">
-<%  
+
+
+<%@include file="header.jsp" %>
+</head>
+<body>
+<% 
 int manager_id = user.getManagerBean().getManager_id();
-
-SimpleDateFormat formater = new SimpleDateFormat("yyyy-MM-dd");
-SimpleDateFormat AppDateFormat = new SimpleDateFormat("dd-MM-yyyy");
-
+AllListExitFormalityDAO allListExitFormalityDAO = new AllListExitFormalityDAO();
 %>
 <div class="app-content container center-layout mt-2">
-      <div class="content-wrapper">
-      	<div class="content-body">
-			<section id="horizontal-form-layouts">
-				<div class="row"> 
-			        <div class="col-xs-12">
-			            <h4>Exit Interview List</h4>
-			            <hr>
-			        </div>
-			    </div>
-				<div class="row">
+      <div id="page-wrapper">
+      <div class="content-body">
+      				<section id="horizontal-form-layouts">
+      					<div class="row"> 
+							<div class="col-xs-12">
+								<h4>Exit Interview HR LIST</h4>
+								<hr>
+							</div>
+						</div>
+						
+						
+						
+						
+						
+						
+	<div class="row">
 				    <div class="col-md-12 col-xs-12">
 				        <div class="card">
 				        	<div class="card-header">
-				                <h4 class="card-title" id="horz-layout-basic">Pending Exit Interview List</h4>
+				                <h4 class="card-title" id="horz-layout-basic">PENDING
+									EXIT INTERVIEW LIST</h4>
 				                <a class="heading-elements-toggle"><i class="icon-ellipsis font-medium-3"></i></a>
 			        			<div class="heading-elements">
 				                    <ul class="list-inline mb-0">
@@ -83,21 +80,68 @@ SimpleDateFormat AppDateFormat = new SimpleDateFormat("dd-MM-yyyy");
 				            <div class="card-body collapse in">
 	               				 <div class="card-block card-dashboard">
 	               				 	<div class="table-responsive">
-				                        <table class="table table-striped table-bordered zero-configuration" width="100%">
-				                            <thead>
-				                                <tr>
-			                                    	<th>Employee Name</th>
-			                                    	<th>Department</th>
-			                                    	<th>Designation</th>
-			                                    	<th>Reporting Manager</th>
-			                                    	<th>Date Of Joining</th>
-			                                    	<th>Termination Date</th>
-			                                    	<th>Action</th>
-												</tr>
-				                            </thead>
-				                            <tbody>
+                                <table class="table table-striped table-bordered zero-configuration">
+                               		<thead>
+                                 	<tr>
+                                    	<th>Employee Name</th>
+                                    	<th>Department</th>
+                                    	<th>Designation</th>
+                                    	<th>Reporting Manager</th>
+                                    	<th>Date Of Joining</th>
+                                    	<th>Termination Date</th>
+                                    	<th>Action</th>
+									</tr>
+									</thead>
+									
+									<tbody>
 									<%
-									AllListExitFormalityDAO allListExitFormalityDAO = new AllListExitFormalityDAO();
+									if(employee_master_id == 1474 || employee_master_id == 8){
+									
+									List<ExitInterviewEmployeeBean> listOfExitInterviewEmployees = allListExitFormalityDAO.getListOfExitInterviewEmployees(employee_master_id);
+									
+									String jd = null;
+									String td = null;
+									
+									for(ExitInterviewEmployeeBean e : listOfExitInterviewEmployees){
+										
+										String joiningDate = e.getDate_of_joining();
+   										String terminationDate = e.getTermination_date();
+										
+   										try {
+  											  
+   											SimpleDateFormat formater = new SimpleDateFormat("yyyy-MM-dd");
+    										Date result = formater.parse(joiningDate);
+   											Date result1 = formater.parse(terminationDate);
+   											SimpleDateFormat AppDateFormat = new SimpleDateFormat("dd-MM-yyyy");
+    										jd = AppDateFormat.format(result);
+   											td = AppDateFormat.format(result1);
+   											System.out.println(AppDateFormat.format(result));
+   											
+   											
+   											
+   										} catch (ParseException e1) {
+   											e1.printStackTrace();
+   										}	
+										
+										
+   										int undermanager_id = Integer.parseInt(e.getReporting_manager());
+   										LoginDAO loginDAO = new LoginDAO();
+   										EmployeeBean employeeBean = loginDAO.getEmailId(undermanager_id);
+   										
+   										
+									%>
+									<tr>
+										<td><%=e.getEmployeeBean().getFirstname()+" "+e.getEmployeeBean().getLastname() %></td>
+										<td><%=e.getDepartment() %></td>
+										<td><%=e.getDesignation() %></td>
+										<td><%=employeeBean.getManagerBean().getManager_name() %></td>
+										<td><%=jd %></td>
+										<td><%=td %></td>
+										<td><a href="exitInterviewHRComment.jsp?exit_employee_id=<%=e.getExit_interview_employee_id()%>"><button class="btn btn-xs" style="background-color: #3BAFDA"><i class="icon icon-edit"></i> Review</button></a></td>
+									</tr>
+									<%} }%>
+									
+									<%
 									List<ExitInterviewEmployeeBean> listOfExitInterviewEmployees = allListExitFormalityDAO.getListOfExitInterviewEmployeesByManager(employee_master_id, manager_id);
 									
 									String jd = null;
@@ -110,10 +154,10 @@ SimpleDateFormat AppDateFormat = new SimpleDateFormat("dd-MM-yyyy");
 										
    										try {
   											  
-   											
+   											SimpleDateFormat formater = new SimpleDateFormat("yyyy-MM-dd");
     										Date result = formater.parse(joiningDate);
    											Date result1 = formater.parse(terminationDate);
-   											
+   											SimpleDateFormat AppDateFormat = new SimpleDateFormat("dd-MM-yyyy");
     										jd = AppDateFormat.format(result);
    											td = AppDateFormat.format(result1);
    											System.out.println(AppDateFormat.format(result));
@@ -123,10 +167,13 @@ SimpleDateFormat AppDateFormat = new SimpleDateFormat("dd-MM-yyyy");
    										} catch (ParseException e1) {
    											e1.printStackTrace();
    										}	
-   										
-   										int managerId = Integer.parseInt(e.getReporting_manager());
+										
+										
+   										int undermanager_id = Integer.parseInt(e.getReporting_manager());
    										LoginDAO loginDAO = new LoginDAO();
-   										EmployeeBean employeeBean = loginDAO.getEmailId(managerId);
+   										EmployeeBean employeeBean = loginDAO.getEmailId(undermanager_id);
+   										
+   										
 									%>
 									<tr>
 										<td><%=e.getEmployeeBean().getFirstname()+" "+e.getEmployeeBean().getLastname() %></td>
@@ -135,23 +182,30 @@ SimpleDateFormat AppDateFormat = new SimpleDateFormat("dd-MM-yyyy");
 										<td><%=employeeBean.getManagerBean().getManager_name() %></td>
 										<td><%=jd %></td>
 										<td><%=td %></td>
-										<td><a href="exitInterviewHRComment.jsp?exit_employee_id=<%=e.getExit_interview_employee_id()%>"><button class="btn btn-xs" style="background-color: #3BAFDA"><i class="ficon icon-edit"></i> Review</button></a></i></a></td>
+										<td><a href="exitInterviewHRComment.jsp?exit_employee_id=<%=e.getExit_interview_employee_id()%>"><button class="btn btn-xs" style="background-color: #3BAFDA"><i class="icon icon-edit"></i> Review</button></a></td>
 									</tr>
 									<%} %>
+									
 									</tbody>
-				                        </table>
+									
+									
+									
+								</table>
 				                        </div>
 	               				 </div>
 	               			</div>
 				        </div>
 				    </div>
-				    </div>
-				    
-				    <div class="row">
+				    </div>					
+						
+						
+						
+						
+				<div class="row">
 				    <div class="col-md-12 col-xs-12">
 				        <div class="card">
 				        	<div class="card-header">
-				                <h4 class="card-title" id="horz-layout-basic">Completed Exit Interview List</h4>
+				                <h4 class="card-title" id="horz-layout-basic">COMPLETED EXIT INTERVIEW FORM</h4>
 				                <a class="heading-elements-toggle"><i class="icon-ellipsis font-medium-3"></i></a>
 			        			<div class="heading-elements">
 				                    <ul class="list-inline mb-0">
@@ -162,84 +216,79 @@ SimpleDateFormat AppDateFormat = new SimpleDateFormat("dd-MM-yyyy");
 				                </div>
 				            </div>
 				            <div class="card-body collapse in">
-	               				 <div class="card-body collapse in">
 	               				 <div class="card-block card-dashboard">
-				                        <div class="table-responsive">
-				                        <table class="table table-striped table-bordered zero-configuration" width="100%">
-				                            <thead>
-				                                <tr>
-			                                    	<th>Employee Name</th>
-			                                    	<th>Department</th>
-			                                    	<th>Designation</th>
-			                                    	<th>Reporting Manager</th>
-			                                    	<th>Date Of Joining</th>
-			                                    	<th>Termination Date</th>
-			                                    	<th>Action</th>
-												</tr>
-				                            </thead>
-				                            <tbody>
-											<%
-											List<ExitInterviewEmployeeBean> listOfExitInterviewEmployeesReviewed = allListExitFormalityDAO.getListOfExitInterviewEmployeesReviewedByManager(employee_master_id, manager_id);
-											
-											String jd1 = null;
-											String td1 = null;
-											
-											for(ExitInterviewEmployeeBean e : listOfExitInterviewEmployeesReviewed){
-												
-												String joiningDate = e.getDate_of_joining();
-		   										String terminationDate = e.getTermination_date();
-												
-												try {
-													  
-		    										Date result = formater.parse(joiningDate);
-		   											Date result1 = formater.parse(terminationDate);
-
-		   											jd1 = AppDateFormat.format(result);
-		   											td1 = AppDateFormat.format(result1);
-		   											System.out.println(AppDateFormat.format(result));
-		   											
-		   											
-		   											
-		   										} catch (ParseException e1) {
-		   											e1.printStackTrace();
-		   										}	
-												
-												int managerId = Integer.parseInt(e.getReporting_manager());
-		   										LoginDAO loginDAO = new LoginDAO();
-		   										EmployeeBean employeeBean = loginDAO.getEmailId(managerId);
-												
-											%>
-											<tr>
-												<td><%=e.getEmployeeBean().getFirstname()+" "+e.getEmployeeBean().getLastname() %></td>
-												<td><%=e.getDepartment() %></td>
-												<td><%=e.getDesignation() %></td>
-												<td><%=employeeBean.getManagerBean().getManager_name()%></td>
-												<td><%=jd1 %></td>
-												<td><%=td1 %></td>
-												<td><a href="exitInterviewHRComment.jsp?exit_employee_id=<%=e.getExit_interview_employee_id()%>&action=reviewed"><button class="btn btn-xs" style="background-color: #3BAFDA"><i class="icon icon-eye4"></i> View</button></a></td>
-											</tr>
-											<%} %>
-											</tbody>
-				                        </table>
+	               				 	<div class="table-responsive">
+	               				 	                                <table class="table table-striped table-bordered zero-configuration">
+                               		<thead>
+                                 	<tr>
+                                    	<th>Employee Name</th>
+                                    	<th>Department</th>
+                                    	<th>Designation</th>
+                                    	<th>Reporting Manager</th>
+                                    	<th>Date Of Joining</th>
+                                    	<th>Termination Date</th>
+                                    	<th>Action</th>
+									</tr>
+									</thead>
+									
+									<tbody>
+									<%
+									List<ExitInterviewEmployeeBean> listOfExitInterviewEmployeesReviewed = allListExitFormalityDAO.getListOfExitInterviewEmployeesReviewed(employee_master_id);
+									
+									String jd1 = null;
+									String td1 = null;
+									
+									for(ExitInterviewEmployeeBean e : listOfExitInterviewEmployeesReviewed){
+										
+										String joiningDate = e.getDate_of_joining();
+   										String terminationDate = e.getTermination_date();
+										
+   										try {
+  											  
+   											SimpleDateFormat formater = new SimpleDateFormat("yyyy-MM-dd");
+    										Date result = formater.parse(joiningDate);
+   											Date result1 = formater.parse(terminationDate);
+   											SimpleDateFormat AppDateFormat = new SimpleDateFormat("dd-MM-yyyy");
+    										jd1 = AppDateFormat.format(result);
+   											td1 = AppDateFormat.format(result1);
+   											System.out.println(AppDateFormat.format(result));
+   											
+   											
+   											
+   										} catch (ParseException e1) {
+   											e1.printStackTrace();
+   										}	
+										
+									%>
+									<tr>
+										<td><%=e.getEmployeeBean().getFirstname()+" "+e.getEmployeeBean().getLastname() %></td>
+										<td><%=e.getDepartment() %></td>
+										<td><%=e.getDesignation() %></td>
+										<td><%=e.getReporting_manager() %></td>
+										<td><%=jd1 %></td>
+										<td><%=td1 %></td>
+										<td><a href="exitInterviewHRComment.jsp?exit_employee_id=<%=e.getExit_interview_employee_id()%>&action=reviewed"><button class="btn btn-xs" style="background-color: #3BAFDA"><i class="icon icon-eye4"></i> View</button></a></td>
+									</tr>
+									<%} %>
+									</tbody>
+								</table>
+	               				 	
 				                        </div>
 	               				 </div>
 	               			</div>
-	               			</div>
-	               			
-	               			
 				        </div>
 				    </div>
-				 </div>
-			</section>
-		</div>
-	</div>
+				    </div>							
+						
+						
+						
+</section>
 </div>
-				    
-				    
-				    
-
+</div>
+</div>
 
 <%@include file="footer.html"%>
+	
 
 <script src="app-assets/js/core/libraries/jquery.min.js" type="text/javascript"></script>
     <script src="app-assets/vendors/js/ui/tether.min.js" type="text/javascript"></script>
@@ -281,23 +330,6 @@ SimpleDateFormat AppDateFormat = new SimpleDateFormat("dd-MM-yyyy");
     
     <!-- BEGIN PAGE LEVEL JS-->
     <script src="app-assets/js/scripts/tables/datatables/datatable-basic.min.js" type="text/javascript"></script>
-    <!-- END PAGE LEVEL JS-->
-    
-    
-     
-  
-   
-    <!-- BEGIN PAGE LEVEL JS-->
-    <script src="app-assets/js/scripts/pickers/dateTime/picker-date-time.min.js" type="text/javascript"></script>
-  	<script>
-	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	  })(window,document,'script','www.google-analytics.com/analytics.js','ga');
-
-	  ga('create', 'UA-96096445-1', 'auto');
-	  ga('send', 'pageview');
-
-	</script>
+	
 </body>
 </html>

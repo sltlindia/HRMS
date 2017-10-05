@@ -719,16 +719,68 @@
 				}
 					
 					
+					
+					
+					AllListExitFormalityDAO allListExitFormalityDAO = new AllListExitFormalityDAO();
+					 List<DetailsOfHandOverFormBean> listOfExitFormalityFormByEmpId = allListExitFormalityDAO.getListOfExitFormalityFormByHandOverId(employee_master_id); 
+					 int secondHandOver = 0;
+					 
+					 if(manager_id != 99){
+					List<ExitInterviewEmployeeBean> listOfExitInterviewEmployees  = allListExitFormalityDAO.getListOfExitInterviewEmployeesByManager(employee_master_id, manager_id);
+					 List<DetailsOfHandOverFormBean> listOfExitFormalityFormByHandOverIdAfterSecondApproval = allListExitFormalityDAO.getListOfExitFormalityFormByHandOverIdAfterSecondApproval(manager_id);
+					 
+					 
+					 for(DetailsOfHandOverFormBean d : listOfExitFormalityFormByHandOverIdAfterSecondApproval){ 
+							
+							int details_of_hand_over_form_id = d.getDetails_of_hand_over_form_id();
+							
+							HandOverApprovalBean handOverApprovalBean = allListExitFormalityDAO.getHandOverDetailIdByEmpId(employee_master_id, details_of_hand_over_form_id);
+							if(handOverApprovalBean != null){
+								secondHandOver++;
+								
+							}
+						 }
+					 
+					 secondHandOver = secondHandOver + listOfExitInterviewEmployees.size();
+					 }
+					 
+					 
+					 int hrListOfexitfromality = 0;
+					 if(employee_master_id == 1474 || employee_master_id == 8){
+					 List<ExitInterviewEmployeeBean> listOfExitInterviewEmployeesForHR = allListExitFormalityDAO.getListOfExitInterviewEmployees(employee_master_id);
+					 hrListOfexitfromality = listOfExitInterviewEmployeesForHR.size();
+					 }
+					 List<DetailsOfHandOverFormBean> listOfExitFormalityFormByHandOverIdAfterSecondApproval = allListExitFormalityDAO.getListOfExitFormalityFormByHandOverIdAfterSecondApproval(manager_id);
+					 
+					 
+					 int hrHandOver = 0;
+					 if(employee_master_id == 1474 || employee_master_id == 8){
+							
+							List<DetailsOfHandOverFormBean> listOfExitFormalityForHrApproval = allListExitFormalityDAO.getListOfExitFormalityFormForHRApproval();
+							for(DetailsOfHandOverFormBean d : listOfExitFormalityForHrApproval){ 
+							
+							int details_of_hand_over_form_id = d.getDetails_of_hand_over_form_id();
+							
+							Long count = allListExitFormalityDAO.getCountOfApprovalHandOver(details_of_hand_over_form_id);
+							if(count == 3){
+								hrHandOver++;
+							}
+						}
+					 }		
+					 int exitTotal = listOfExitFormalityFormByEmpId.size() + hrListOfexitfromality + secondHandOver + hrHandOver + announcement_count;
+					 
+					 
+					
               %>
 					<li class="dropdown dropdown-notification nav-item"><a
 						href="#" data-toggle="dropdown" class="nav-link nav-link-label"><i
 							class="ficon icon-android-hand"></i><span
-							class="tag tag-pill tag-default tag-info tag-default tag-up"><%=announcement_count %></span></a>
+							class="tag tag-pill tag-default tag-info tag-default tag-up"><%=exitTotal %></span></a>
 						<ul class="dropdown-menu dropdown-menu-media dropdown-menu-right">
 							<li class="dropdown-menu-header">
 								<h6 class="dropdown-header m-0">
 									<span class="grey darken-2">Notification</span><span
-										class="notification-tag tag tag-default tag-info float-xs-right m-0"><%=announcement_count %>
+										class="notification-tag tag tag-default tag-info float-xs-right m-0"><%=exitTotal %>
 										NEW</span>
 								</h6>
 							</li>
@@ -807,106 +859,12 @@
 												}
 											}}
 									%>
-							</li>
-							<li class="dropdown-menu-footer"><a
-								href="javascript:void(0)"
-								class="dropdown-item text-muted text-xs-center">Read all
-									messages</a></li>
-						</ul></li>
-						
-			<%	if(manager_id == 4 || manager_id == 117 || under_manager_id == 4 || under_manager_id == 117){  
-				List<GrievanceQueryBean> listOfGrievance = allLMSListDAO.SPgetListOfGrievanceQuery(); %>	
-			<li class="dropdown dropdown-notification nav-item"><a href="#" data-toggle="dropdown" class="nav-link nav-link-label"><i class="ficon icon-user-tie"></i><span class="tag tag-pill tag-default tag-info tag-default tag-up"><%=listOfGrievance.size()%></span></a>
-                <ul class="dropdown-menu dropdown-menu-media dropdown-menu-right">
-                  <li class="dropdown-menu-header">
-                    <h6 class="dropdown-header m-0"><span class="grey darken-2">Notification</span><span class="notification-tag tag tag-default tag-info float-xs-right m-0"><%=listOfGrievance.size()%> New</span></h6>
-                  </li>
-                  <li class="list-group scrollable-container">
-                  <a href="javascript:void(0)" class="list-group-item">
-                      <div class="media">
-                        <div class="media-left"><i class="ficon icon-table2"></i></div>
-                        <div class="media-body">
-                          <h6 class="media-heading"><b><%=listOfGrievance.size()%></b> Grievance query(s).</h6>
-                          <p class="notification-text font-small-3 text-muted"></p>
-                        </div>
-                      </div>
-                   </a>
-                   </li>
-                  <li class="dropdown-menu-footer"><a href="javascript:void(0)" class="dropdown-item text-muted text-xs-center">Read all messages</a></li>
-                </ul>
-              </li>
-				<%} %>
-				
-				
-				
-				
-				
-							<%
-							 AllListExitFormalityDAO allListExitFormalityDAO = new AllListExitFormalityDAO();
-							 List<DetailsOfHandOverFormBean> listOfExitFormalityFormByEmpId = allListExitFormalityDAO.getListOfExitFormalityFormByHandOverId(employee_master_id); 
-							 int secondHandOver = 0;
-							 
-							 if(manager_id != 99){
-							List<ExitInterviewEmployeeBean> listOfExitInterviewEmployees  = allListExitFormalityDAO.getListOfExitInterviewEmployeesByManager(employee_master_id, manager_id);
-							 List<DetailsOfHandOverFormBean> listOfExitFormalityFormByHandOverIdAfterSecondApproval = allListExitFormalityDAO.getListOfExitFormalityFormByHandOverIdAfterSecondApproval(manager_id);
-							 
-							 
-							 for(DetailsOfHandOverFormBean d : listOfExitFormalityFormByHandOverIdAfterSecondApproval){ 
 									
-									int details_of_hand_over_form_id = d.getDetails_of_hand_over_form_id();
 									
-									HandOverApprovalBean handOverApprovalBean = allListExitFormalityDAO.getHandOverDetailIdByEmpId(employee_master_id, details_of_hand_over_form_id);
-									if(handOverApprovalBean != null){
-										secondHandOver++;
-										
-									}
-								 }
-							 
-							 secondHandOver = secondHandOver + listOfExitInterviewEmployees.size();
-							 }
-							 
-							 
-							 int hrListOfexitfromality = 0;
-							 if(employee_master_id == 1474 || employee_master_id == 8){
-							 List<ExitInterviewEmployeeBean> listOfExitInterviewEmployeesForHR = allListExitFormalityDAO.getListOfExitInterviewEmployees(employee_master_id);
-							 hrListOfexitfromality = listOfExitInterviewEmployeesForHR.size();
-							 }
-							 List<DetailsOfHandOverFormBean> listOfExitFormalityFormByHandOverIdAfterSecondApproval = allListExitFormalityDAO.getListOfExitFormalityFormByHandOverIdAfterSecondApproval(manager_id);
-							 
-							 
-							 int hrHandOver = 0;
-							 if(employee_master_id == 1474 || employee_master_id == 8){
-									
-									List<DetailsOfHandOverFormBean> listOfExitFormalityForHrApproval = allListExitFormalityDAO.getListOfExitFormalityFormForHRApproval();
-									for(DetailsOfHandOverFormBean d : listOfExitFormalityForHrApproval){ 
-									
-									int details_of_hand_over_form_id = d.getDetails_of_hand_over_form_id();
-									
-									Long count = allListExitFormalityDAO.getCountOfApprovalHandOver(details_of_hand_over_form_id);
-									if(count == 3){
-										hrHandOver++;
-									}
-								}
-							 }		
-							 int exitTotal = listOfExitFormalityFormByEmpId.size() + hrListOfexitfromality + secondHandOver + hrHandOver;
-							 
-							 
-							 %>	
-							 
-							 
-				
-				<li class="dropdown dropdown-notification nav-item"><a href="#" data-toggle="dropdown" class="nav-link nav-link-label"><i class="ficon icon-exit"></i><span class="tag tag-pill tag-default tag-info tag-default tag-up"><%=exitTotal%></span></a>
-                <ul class="dropdown-menu dropdown-menu-media dropdown-menu-right">
-                  <li class="dropdown-menu-header">
-                    <h6 class="dropdown-header m-0"><span class="grey darken-2">Notification</span><span class="notification-tag tag tag-default tag-info float-xs-right m-0"><%=exitTotal %> New</span></h6>
-                  </li>
-                  <li class="list-group scrollable-container">
-                
-                
-                	<%for(DetailsOfHandOverFormBean detailsOfHandOverFormBean : listOfExitFormalityFormByEmpId){%>
+									<%for(DetailsOfHandOverFormBean detailsOfHandOverFormBean : listOfExitFormalityFormByEmpId){%>
 										<a
 										href="handOverApprovalForm.jsp?hand_over_form_detail_id=<%=detailsOfHandOverFormBean.getDetails_of_hand_over_form_id()%>"
-										class="list-group-item"> <i class="fa fa-sign-out"></i>
+										class="list-group-item" style=""> <i class="ficon icon-stack3"></i>
 										<b><%=detailsOfHandOverFormBean.getEmployeeBean().getFirstname()+" "+detailsOfHandOverFormBean.getEmployeeBean().getLastname()%></b> Handed Over you.
 									</a>
 									<%} %>
@@ -996,15 +954,41 @@
 							                   </a>
 									
 									<% }}} %>
-                
-                
-                
-                  
-                   
+									
+									
+							</li>
+							<li class="dropdown-menu-footer"><a
+								href="javascript:void(0)"
+								class="dropdown-item text-muted text-xs-center">Read all
+									messages</a></li>
+						</ul></li>
+						
+			<%	if(manager_id == 4 || manager_id == 117 || under_manager_id == 4 || under_manager_id == 117){  
+				List<GrievanceQueryBean> listOfGrievance = allLMSListDAO.SPgetListOfGrievanceQuery(); %>	
+			<li class="dropdown dropdown-notification nav-item"><a href="#" data-toggle="dropdown" class="nav-link nav-link-label"><i class="ficon icon-user-tie"></i><span class="tag tag-pill tag-default tag-info tag-default tag-up"><%=listOfGrievance.size()%></span></a>
+                <ul class="dropdown-menu dropdown-menu-media dropdown-menu-right">
+                  <li class="dropdown-menu-header">
+                    <h6 class="dropdown-header m-0"><span class="grey darken-2">Notification</span><span class="notification-tag tag tag-default tag-info float-xs-right m-0"><%=listOfGrievance.size()%> New</span></h6>
+                  </li>
+                  <li class="list-group scrollable-container">
+                  <a href="javascript:void(0)" class="list-group-item">
+                      <div class="media">
+                        <div class="media-left"><i class="ficon icon-table2"></i></div>
+                        <div class="media-body">
+                          <h6 class="media-heading"><b><%=listOfGrievance.size()%></b> Grievance query(s).</h6>
+                          <p class="notification-text font-small-3 text-muted"></p>
+                        </div>
+                      </div>
+                   </a>
                    </li>
                   <li class="dropdown-menu-footer"><a href="javascript:void(0)" class="dropdown-item text-muted text-xs-center">Read all messages</a></li>
                 </ul>
               </li>
+				<%} %>
+				
+				
+				
+				
               
               
               
@@ -1393,8 +1377,6 @@
 										</li>
 										<li><a href="newEmployee.jsp" class="dropdown-item"><i></i>Add
 												New Employee</a></li>
-										<li><a href="newEmployee.jsp" class="dropdown-item"><i></i>Add
-												New Employee</a></li>
 										<li><a href="newEmployee.jsp" class="dropdown-item"><i></i>Employee
 												List</a>
 											<ul class="mega-menu-sub">
@@ -1497,8 +1479,6 @@
 									<ul class="mega-menu-sub">
 										<li><a href="exitInterviewHRList.jsp"
 											class="dropdown-item"><i></i>Exit Interview Form List</a></li>
-										<li><a href="exitInterviewFinalReviewList.jsp"
-											class="dropdown-item"><i></i>Exit Interview Final List</a></li>
 										<li><a href="handOverFormHRList.jsp"
 											class="dropdown-item"><i></i>Hand Over Form List</a></li>
 									</ul>

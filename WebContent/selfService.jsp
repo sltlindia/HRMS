@@ -266,7 +266,7 @@
       </div>
 </div>
 
-<%@include file="footer.jsp"%>
+<%@include file="footer.html"%>
 
 <script type="text/javascript">
 	$(document).ready(function(){

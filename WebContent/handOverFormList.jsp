@@ -1,24 +1,15 @@
-<%@page import="com.sun.org.apache.xerces.internal.impl.xpath.regex.ParseException"%>
+<%@page import="com.hrms.exitformality.bean.HandOverApprovalBean"%>
+<%@page import="com.hrms.exitformality.bean.DetailsOfHandOverFormBean"%>
+<%@page import="java.util.List"%>
 <%@page import="com.hrms.exitformality.dao.AllListExitFormalityDAO"%>
-<%@page import="com.hrms.exitformality.bean.ExitInterviewEmployeeBean"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
-    <meta name="description" content="Robust admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
-    <meta name="keywords" content="admin template, robust admin template, dashboard template, flat admin template, responsive admin template, web app">
-    <meta name="author" content="PIXINVENT">
-    <title>Exit Interview Form List</title>
-    <link rel="shortcut icon" sizes="152x152"
-	href="app-assets/images/ico/titleIcon.png">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-touch-fullscreen" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="default">
-    <!-- BEGIN VENDOR CSS-->
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Hand Over Form List</title>
+<!-- BEGIN VENDOR CSS-->
     <link rel="stylesheet" type="text/css" href="app-assets/css/bootstrap.min.css">
     <!-- font icons-->
     <link rel="stylesheet" type="text/css" href="app-assets/fonts/icomoon.css">
@@ -46,31 +37,31 @@
     <!-- BEGIN Custom CSS-->
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
     <!-- END Custom CSS-->
-    <%@include file="header.jsp"%>
-  </head>
-<body data-open="hover" data-menu="horizontal-menu" data-col="2-columns" class="horizontal-layout horizontal-menu 2-columns ">
-<%  
-int manager_id = user.getManagerBean().getManager_id();
-
-SimpleDateFormat formater = new SimpleDateFormat("yyyy-MM-dd");
-SimpleDateFormat AppDateFormat = new SimpleDateFormat("dd-MM-yyyy");
-
+<%@include file="header.jsp" %>
+</head>
+<body>
+<%
+   int manager_id = user.getManagerBean().getManager_id();
+   int under_manager_id = Integer.parseInt(user.getUnder_manager_id());
 %>
 <div class="app-content container center-layout mt-2">
       <div class="content-wrapper">
-      	<div class="content-body">
-			<section id="horizontal-form-layouts">
-				<div class="row"> 
-			        <div class="col-xs-12">
-			            <h4>Exit Interview List</h4>
-			            <hr>
-			        </div>
-			    </div>
-				<div class="row">
+      <div class="content-body">
+      				<section id="horizontal-form-layouts">
+      					<div class="row"> 
+							<div class="col-xs-12">
+								<h4>Hand Over List</h4>
+								<hr>
+							</div>
+						</div>
+		
+		
+		
+		<div class="row">
 				    <div class="col-md-12 col-xs-12">
 				        <div class="card">
 				        	<div class="card-header">
-				                <h4 class="card-title" id="horz-layout-basic">Pending Exit Interview List</h4>
+				                <h4 class="card-title" id="horz-layout-basic">PENDING HAND OVER FORM</h4>
 				                <a class="heading-elements-toggle"><i class="icon-ellipsis font-medium-3"></i></a>
 			        			<div class="heading-elements">
 				                    <ul class="list-inline mb-0">
@@ -83,75 +74,63 @@ SimpleDateFormat AppDateFormat = new SimpleDateFormat("dd-MM-yyyy");
 				            <div class="card-body collapse in">
 	               				 <div class="card-block card-dashboard">
 	               				 	<div class="table-responsive">
-				                        <table class="table table-striped table-bordered zero-configuration" width="100%">
-				                            <thead>
-				                                <tr>
-			                                    	<th>Employee Name</th>
-			                                    	<th>Department</th>
-			                                    	<th>Designation</th>
-			                                    	<th>Reporting Manager</th>
-			                                    	<th>Date Of Joining</th>
-			                                    	<th>Termination Date</th>
-			                                    	<th>Action</th>
-												</tr>
-				                            </thead>
-				                            <tbody>
-									<%
-									AllListExitFormalityDAO allListExitFormalityDAO = new AllListExitFormalityDAO();
-									List<ExitInterviewEmployeeBean> listOfExitInterviewEmployees = allListExitFormalityDAO.getListOfExitInterviewEmployeesByManager(employee_master_id, manager_id);
-									
-									String jd = null;
-									String td = null;
-									
-									for(ExitInterviewEmployeeBean e : listOfExitInterviewEmployees){
-										
-										String joiningDate = e.getDate_of_joining();
-   										String terminationDate = e.getTermination_date();
-										
-   										try {
-  											  
-   											
-    										Date result = formater.parse(joiningDate);
-   											Date result1 = formater.parse(terminationDate);
-   											
-    										jd = AppDateFormat.format(result);
-   											td = AppDateFormat.format(result1);
-   											System.out.println(AppDateFormat.format(result));
-   											
-   											
-   											
-   										} catch (ParseException e1) {
-   											e1.printStackTrace();
-   										}	
-   										
-   										int managerId = Integer.parseInt(e.getReporting_manager());
-   										LoginDAO loginDAO = new LoginDAO();
-   										EmployeeBean employeeBean = loginDAO.getEmailId(managerId);
-									%>
-									<tr>
-										<td><%=e.getEmployeeBean().getFirstname()+" "+e.getEmployeeBean().getLastname() %></td>
-										<td><%=e.getDepartment() %></td>
-										<td><%=e.getDesignation() %></td>
-										<td><%=employeeBean.getManagerBean().getManager_name() %></td>
-										<td><%=jd %></td>
-										<td><%=td %></td>
-										<td><a href="exitInterviewHRComment.jsp?exit_employee_id=<%=e.getExit_interview_employee_id()%>"><button class="btn btn-xs" style="background-color: #3BAFDA"><i class="ficon icon-edit"></i> Review</button></a></i></a></td>
+				                       <table class="table table-striped table-bordered zero-configuration">
+                               	<thead>
+                                 	<tr>
+                                    	<th>Employee Name</th>
+                                    	<th>Designation</th>
+                                    	<th>Department</th>
+                                    	<th>Action</th>
+                                    	
 									</tr>
+								</thead>
+									
+								<tbody>
+									<%AllListExitFormalityDAO allListExitFormalityDAO = new AllListExitFormalityDAO();
+									List<DetailsOfHandOverFormBean> listOfExitFormalityFormByEmpId = allListExitFormalityDAO.getListOfExitFormalityFormByHandOverId(employee_master_id);
+									
+									for(DetailsOfHandOverFormBean d : listOfExitFormalityFormByEmpId){ %>
+										<tr>
+											<td><%=d.getHand_over_from_name() %></td>
+											<td><%=d.getHand_over_from_designation() %></td>
+											<td><%=d.getHand_over_from_department() %></td>
+											<td><a href="handOverApprovalForm.jsp?hand_over_form_detail_id=<%=d.getDetails_of_hand_over_form_id()%>"><button class="btn btn-xs" style="background-color: #3BAFDA"><i class="icon icon-edit"></i> Review</button></a></td>
+										</tr>
 									<%} %>
-									</tbody>
-				                        </table>
+									
+									
+									<%
+									List<DetailsOfHandOverFormBean> listOfExitFormalityFormByHandOverIdAfterSecondApproval = allListExitFormalityDAO.getListOfExitFormalityFormByHandOverIdAfterSecondApproval(manager_id);
+									for(DetailsOfHandOverFormBean d : listOfExitFormalityFormByHandOverIdAfterSecondApproval){ 
+									
+										int details_of_hand_over_form_id = d.getDetails_of_hand_over_form_id();
+										
+										HandOverApprovalBean handOverApprovalBean = allListExitFormalityDAO.getHandOverDetailIdByEmpId(employee_master_id, details_of_hand_over_form_id);
+										if(handOverApprovalBean != null){
+										%>
+											<tr>
+												<td><%=d.getHand_over_from_name() %></td>
+												<td><%=d.getHand_over_from_designation() %></td>
+												<td><%=d.getHand_over_from_department() %></td>
+												<td><a href="handOverApprovalForm.jsp?hand_over_form_detail_id=<%=d.getDetails_of_hand_over_form_id()%>"><button class="btn btn-xs" style="background-color: #3BAFDA"><i class="icon icon-edit"></i> Review</button></a></td>
+											</tr>
+									<%} }%>
+									
+								</tbody>
+							</table>
 				                        </div>
 	               				 </div>
 	               			</div>
 				        </div>
 				    </div>
 				    </div>
-				    
-				    <div class="row">
+		
+		
+		<div class="row">
 				    <div class="col-md-12 col-xs-12">
 				        <div class="card">
 				        	<div class="card-header">
-				                <h4 class="card-title" id="horz-layout-basic">Completed Exit Interview List</h4>
+				                <h4 class="card-title" id="horz-layout-basic">COMPLETED HAND HOVER FORM</h4>
 				                <a class="heading-elements-toggle"><i class="icon-ellipsis font-medium-3"></i></a>
 			        			<div class="heading-elements">
 				                    <ul class="list-inline mb-0">
@@ -165,62 +144,65 @@ SimpleDateFormat AppDateFormat = new SimpleDateFormat("dd-MM-yyyy");
 	               				 <div class="card-body collapse in">
 	               				 <div class="card-block card-dashboard">
 				                        <div class="table-responsive">
-				                        <table class="table table-striped table-bordered zero-configuration" width="100%">
-				                            <thead>
-				                                <tr>
-			                                    	<th>Employee Name</th>
-			                                    	<th>Department</th>
-			                                    	<th>Designation</th>
-			                                    	<th>Reporting Manager</th>
-			                                    	<th>Date Of Joining</th>
-			                                    	<th>Termination Date</th>
-			                                    	<th>Action</th>
-												</tr>
-				                            </thead>
-				                            <tbody>
-											<%
-											List<ExitInterviewEmployeeBean> listOfExitInterviewEmployeesReviewed = allListExitFormalityDAO.getListOfExitInterviewEmployeesReviewedByManager(employee_master_id, manager_id);
-											
-											String jd1 = null;
-											String td1 = null;
-											
-											for(ExitInterviewEmployeeBean e : listOfExitInterviewEmployeesReviewed){
-												
-												String joiningDate = e.getDate_of_joining();
-		   										String terminationDate = e.getTermination_date();
-												
-												try {
-													  
-		    										Date result = formater.parse(joiningDate);
-		   											Date result1 = formater.parse(terminationDate);
-
-		   											jd1 = AppDateFormat.format(result);
-		   											td1 = AppDateFormat.format(result1);
-		   											System.out.println(AppDateFormat.format(result));
-		   											
-		   											
-		   											
-		   										} catch (ParseException e1) {
-		   											e1.printStackTrace();
-		   										}	
-												
-												int managerId = Integer.parseInt(e.getReporting_manager());
-		   										LoginDAO loginDAO = new LoginDAO();
-		   										EmployeeBean employeeBean = loginDAO.getEmailId(managerId);
-												
-											%>
-											<tr>
-												<td><%=e.getEmployeeBean().getFirstname()+" "+e.getEmployeeBean().getLastname() %></td>
-												<td><%=e.getDepartment() %></td>
-												<td><%=e.getDesignation() %></td>
-												<td><%=employeeBean.getManagerBean().getManager_name()%></td>
-												<td><%=jd1 %></td>
-												<td><%=td1 %></td>
-												<td><a href="exitInterviewHRComment.jsp?exit_employee_id=<%=e.getExit_interview_employee_id()%>&action=reviewed"><button class="btn btn-xs" style="background-color: #3BAFDA"><i class="icon icon-eye4"></i> View</button></a></td>
-											</tr>
-											<%} %>
-											</tbody>
-				                        </table>
+				                       	<table class="table table-striped table-bordered zero-configuration"">
+				                               		<thead>
+				                                 	<tr>
+				                                    	<th>Employee Name</th>
+				                                    	<th>Designation</th>
+				                                    	<th>Department</th>
+				                                    	<th>Action</th>
+													</tr>
+													</thead>
+													
+													<tbody>
+													<%
+													List<DetailsOfHandOverFormBean> listOfExitFormalityFormByEmpId1 = allListExitFormalityDAO.getListOfExitFormalityFormByHandOverIdForView(employee_master_id);
+													
+													for(DetailsOfHandOverFormBean d : listOfExitFormalityFormByEmpId1){ %>
+														<tr>
+															<td><%=d.getHand_over_from_name() %></td>
+															<td><%=d.getHand_over_from_designation() %></td>
+															<td><%=d.getHand_over_from_department() %></td>
+															<td><a href="handOverApprovalForm.jsp?hand_over_form_detail_id=<%=d.getDetails_of_hand_over_form_id()%>&approved=approved"><button class="btn btn-xs" style="background-color: #3BAFDA"><i class="icon icon-eye4"></i> View</button></a></td>
+														</tr>
+													<%} %>
+													
+													<%
+													for(DetailsOfHandOverFormBean d : listOfExitFormalityFormByHandOverIdAfterSecondApproval){ 
+													
+														int details_of_hand_over_form_id = d.getDetails_of_hand_over_form_id();
+													
+														HandOverApprovalBean handOverApprovalBean = allListExitFormalityDAO.getHandOverDetailIdByEmpIdForView(employee_master_id, details_of_hand_over_form_id);
+														if(handOverApprovalBean != null){
+													%>
+														<tr>
+															<td><%=d.getHand_over_from_name() %></td>
+															<td><%=d.getHand_over_from_designation() %></td>
+															<td><%=d.getHand_over_from_department() %></td>
+															<td><a href="handOverApprovalForm.jsp?hand_over_form_detail_id=<%=d.getDetails_of_hand_over_form_id()%>&approved=approved"><button class="btn btn-xs" style="background-color: #3BAFDA"><i class="icon icon-eye4"></i> View</button></a></td>
+														</tr>
+													<%} }%>
+													
+													<%
+													if (manager_id == 4 || manager_id == 117 || under_manager_id == 4 || under_manager_id == 117) {
+													List<DetailsOfHandOverFormBean> listOfExitFormalityForHrApproval1 = allListExitFormalityDAO.getListOfExitFormalityFormForHRApproval();
+													for(DetailsOfHandOverFormBean d : listOfExitFormalityForHrApproval1){ 
+													
+													int details_of_hand_over_form_id = d.getDetails_of_hand_over_form_id();
+													
+													Long count = allListExitFormalityDAO.getCountOfApprovalHandOver(details_of_hand_over_form_id);
+													if(count == 4){
+													%>
+														<tr>
+															<td><%=d.getHand_over_from_name() %></td>
+															<td><%=d.getHand_over_from_designation() %></td>
+															<td><%=d.getHand_over_from_department() %></td>
+															<td><a href="handOverApprovalForm.jsp?hand_over_form_detail_id=<%=d.getDetails_of_hand_over_form_id()%>&hrApproval=hrApproval&approved=approved"><button class="btn btn-xs" style="background-color: #3BAFDA"><i class="icon icon-eye4"></i> View</button></a></td>
+														</tr>
+													<%} } }%>
+													</tbody>
+											</table>
+				                        	
 				                        </div>
 	               				 </div>
 	               			</div>
@@ -230,13 +212,10 @@ SimpleDateFormat AppDateFormat = new SimpleDateFormat("dd-MM-yyyy");
 				        </div>
 				    </div>
 				 </div>
-			</section>
-		</div>
-	</div>
+</section>
 </div>
-				    
-				    
-				    
+</div>
+</div>
 
 
 <%@include file="footer.html"%>
@@ -299,5 +278,6 @@ SimpleDateFormat AppDateFormat = new SimpleDateFormat("dd-MM-yyyy");
 	  ga('send', 'pageview');
 
 	</script>
+	
 </body>
 </html>

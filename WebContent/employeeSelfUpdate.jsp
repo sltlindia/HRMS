@@ -673,7 +673,7 @@ int employee_id = user.getEmployee_master_id();
       </div>
     </div>
     
-    <%@include file="footer.jsp"%>
+    <%@include file="footer.html"%>
     
 <<<<<<< HEAD
     
