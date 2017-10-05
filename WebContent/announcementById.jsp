@@ -119,7 +119,7 @@
         AllListSelfServiceDAO allListSelfServiceDAO = new AllListSelfServiceDAO();
 		List<AnnouncementBean> listOfAnnouncement = allListSelfServiceDAO.getListOfAnnouncement(announcement_id);
 		for (AnnouncementBean a : listOfAnnouncement) {%>
-							 <div class="col-sm-12">
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <div class="card">
             <div class="card-header">
                 <h4 class="card-title">Broadcast Title:<%=a.getAnnouncement_title()%></h4>
@@ -132,17 +132,17 @@
       <div class="card-deck-wrapper">
         <div class="card-deck">
         <div class="row">
-      <div class="col-lg-6">
+      <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
 														<%		if (!a.getAnnouncement_attachment().equalsIgnoreCase("-")) {
 															%>
            <figure class="card card-img-top border-grey border-lighten-2" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
             <a href="downloadAnnouncementAttachment?attachment=<%=a.getAnnouncement_attachment()%>" itemprop="contentUrl" data-size="480x360">
-                <img class="gallery-thumbnail card-img-top" src="downloadAnnouncementAttachment?attachment=<%=a.getAnnouncement_attachment()%>" itemprop="thumbnail" alt="Image description" />
+                <img class="gallery-thumbnail card-img-top" style="max-width: 100%;height: auto;width: auto\9;" src="downloadAnnouncementAttachment?attachment=<%=a.getAnnouncement_attachment()%>" itemprop="thumbnail" alt="Image description" />
             </a>
           </figure>
           </div>
           <%}%>
-          <div class="col-lg-6">
+          <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
           <div class="card-text">
           <h4 class="card-title">Broadcast Description:</h4>
           <%=a.getAnnouncement_description()%>

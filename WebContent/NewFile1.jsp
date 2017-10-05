@@ -4,7 +4,6 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Announcement Form</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport"
@@ -14,7 +13,6 @@
 <meta name="keywords"
 	content="admin template, robust admin template, dashboard template, flat admin template, responsive admin template, web app">
 <meta name="author" content="PIXINVENT">
-<title>Exit Interview From</title>
 <link rel="shortcut icon" sizes="152x152"
 	href="app-assets/images/ico/titleIcon.png">
 <meta name="apple-mobile-web-app-capable" content="yes">

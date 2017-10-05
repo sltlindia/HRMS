@@ -13,78 +13,85 @@
 <%@page import="java.text.DateFormat"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
-
+pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@page import="com.hrms.pms.bean.*"%>
 <%@page import="java.util.Calendar"%>
 <%@page import="java.util.Date"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.GregorianCalendar"%>
-
-<%-- <%@page import="com.lms.dao.AllListDAO"%>
-<%@page import="com.lms.bean.YearBean"%>
-<%@page import="com.lms.bean.MonthBean"%> --%>
 <%@page import="java.util.List"%>
 <html>
 <head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
-    <meta name="description" content="Robust admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
-    <meta name="keywords" content="admin template, robust admin template, dashboard template, flat admin template, responsive admin template, web app">
-    <meta name="author" content="PIXINVENT">
-    <title>Upload Document</title>
-    <link rel="shortcut icon" sizes="152x152"
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+<meta name="description"
+	content="Robust admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
+<meta name="keywords"
+	content="admin template, robust admin template, dashboard template, flat admin template, responsive admin template, web app">
+<meta name="author" content="PIXINVENT">
+<link rel="shortcut icon" sizes="152x152"
 	href="app-assets/images/ico/titleIcon.png">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-touch-fullscreen" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="default">
-    <!-- BEGIN VENDOR CSS-->
-    <link rel="stylesheet" type="text/css" href="app-assets/css/bootstrap.min.css">
-    <!-- font icons-->
-    <link rel="stylesheet" type="text/css" href="app-assets/fonts/icomoon.css">
-    <link rel="stylesheet" type="text/css" href="app-assets/fonts/flag-icon-css/css/flag-icon.min.css">
-    <link rel="stylesheet" type="text/css" href="app-assets/vendors/css/sliders/slick/slick.css">
-    <link rel="stylesheet" type="text/css" href="app-assets/vendors/css/extensions/pace.css">
-    <link rel="stylesheet" type="text/css" href="app-assets/vendors/css/forms/icheck/icheck.css">
-    <link rel="stylesheet" type="text/css" href="app-assets/vendors/css/forms/icheck/custom.css">
-    <link rel="stylesheet" type="text/css" href="app-assets/vendors/js/gallery/photo-swipe/photoswipe.css">
-    <link rel="stylesheet" type="text/css" href="app-assets/vendors/js/gallery/photo-swipe/default-skin/default-skin.css">
-    <link rel="stylesheet" type="text/css" href="app-assets/vendors/css/tables/datatable/dataTables.bootstrap4.min.css">
-    <!-- END VENDOR CSS-->
-    <!-- BEGIN ROBUST CSS-->
-    <link rel="stylesheet" type="text/css" href="app-assets/css/bootstrap-extended.min.css">
-    <link rel="stylesheet" type="text/css" href="app-assets/css/app.min.css">
-    <link rel="stylesheet" type="text/css" href="app-assets/css/colors.min.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-    <!-- END ROBUST CSS-->
-    <!-- BEGIN Page Level CSS-->
-    <link rel="stylesheet" type="text/css" href="app-assets/css/core/menu/menu-types/horizontal-menu.min.css">
-    <link rel="stylesheet" type="text/css" href="app-assets/css/core/menu/menu-types/vertical-overlay-menu.min.css">
-    <link rel="stylesheet" type="text/css" href="app-assets/css/pages/users.min.css">
-    <link rel="stylesheet" type="text/css" href="app-assets/css/pages/timeline.min.css">
-    <!-- END Page Level CSS-->
-    <!-- BEGIN Custom CSS-->
-    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-    <link rel="stylesheet" type="text/css" href="css/dropzone.css">
-    <script src="js/dropzone.js" type="text/javascript"></script>
-    <!-- END Custom CSS-->
-    <%@include file="header.jsp"%>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-touch-fullscreen" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<!-- BEGIN VENDOR CSS-->
+<link rel="stylesheet" type="text/css"
+	href="app-assets/css/bootstrap.min.css">
+<!-- font icons-->
+<link rel="stylesheet" type="text/css"
+	href="app-assets/fonts/icomoon.css">
+<link rel="stylesheet" type="text/css"
+	href="app-assets/fonts/flag-icon-css/css/flag-icon.min.css">
+<link rel="stylesheet" type="text/css"
+	href="app-assets/vendors/css/sliders/slick/slick.css">
+<link rel="stylesheet" type="text/css"
+	href="app-assets/vendors/css/extensions/pace.css">
+<link rel="stylesheet" type="text/css"
+	href="app-assets/vendors/css/pickers/daterange/daterangepicker.css">
+<link rel="stylesheet" type="text/css"
+	href="app-assets/vendors/css/pickers/datetime/bootstrap-datetimepicker.css">
+<link rel="stylesheet" type="text/css"
+	href="app-assets/vendors/css/pickers/pickadate/pickadate.css">
+<!-- END VENDOR CSS-->
+<!-- BEGIN ROBUST CSS-->
+<link rel="stylesheet" type="text/css"
+	href="app-assets/css/bootstrap-extended.min.css">
+<link rel="stylesheet" type="text/css" href="app-assets/css/app.min.css">
+<link rel="stylesheet" type="text/css"
+	href="app-assets/css/colors.min.css">
+<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+<!-- END ROBUST CSS-->
+<!-- BEGIN Page Level CSS-->
+<link rel="stylesheet" type="text/css"
+	href="app-assets/css/core/menu/menu-types/horizontal-menu.min.css">
+<link rel="stylesheet" type="text/css"
+	href="app-assets/css/core/menu/menu-types/vertical-overlay-menu.min.css">
+<link rel="stylesheet" type="text/css"
+	href="app-assets/css/plugins/pickers/daterange/daterange.min.css">
+<!-- END Page Level CSS-->
+<!-- BEGIN Custom CSS-->
+<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+<!-- END Custom CSS-->
+<%@include file="header.jsp"%>
+<script src="bower_components/jquery/dist/jquery.min.js"></script>
+<title>Leave Application Form</title>
 <script type="text/javascript" src="offlineDatePicker/jquery.min.js"></script>
 <script type="text/javascript" src="offlineDatePicker/jquery-ui.min.js"></script>
 <link href="offlineDatePicker/1jquery-ui.css" rel="stylesheet">
 
-
 <script type="text/javascript">
 
 function redirect(value) {
-	alert("test"); 
+	/* alert("test"); */
 	window.location.replace(value);
 }
 </script>
 
-<script type = "text/javascript">
+<script type="text/javascript">
 
  var y;
  var x;
@@ -150,23 +157,19 @@ function redirect(value) {
 				}
 
 		</script>
-		
+
 <style>
-				
-				
-				.ui-datepicker-unselectable.gesloten span.ui-state-default
-				{
-					background:#999999 !important;
-					border-color:#999999 !important;
-					text-decoration: line-through;
-				 }
-				.ui-datepicker-unselectable.verhuurt span.ui-state-default 
-				 {
-				 	background: #FF0000 !important; 
-				 	border-color: #FF0000 !important;
-				 	color:#FF9966  !important;
-				 }
-				
+.ui-datepicker-unselectable.gesloten span.ui-state-default {
+	background: #999999 !important;
+	border-color: #999999 !important;
+	text-decoration: line-through;
+}
+
+.ui-datepicker-unselectable.verhuurt span.ui-state-default {
+	background: #FF0000 !important;
+	border-color: #FF0000 !important;
+	color: #FF9966 !important;
+}
 </style>
 <script type="text/javascript">
 function checkInteger(id) {
@@ -188,185 +191,199 @@ function checkInteger(id) {
 }
 </script>
 </head>
-
-<body data-open="hover" data-menu="horizontal-menu" data-col="2-columns" class="horizontal-layout horizontal-menu 2-columns " onload = "startTimer()">
-
+<body data-open="hover" data-menu="horizontal-menu" data-col="2-columns"
+	class="horizontal-layout horizontal-menu 2-columns"
+	onload="startTimer()">
 	<%
-	//int employee_master_id = 0;
-	String under_manager_id = null;
-	int dept_id = 0;
-	String marrital_status = null;
-	String gender = null;
-	if(request.getAttribute("HR") == null){
-		employee_master_id = user.getEmployee_master_id();
-		under_manager_id = user.getUnder_manager_id();
-		dept_id = user.getDepartmentBean().getDepartment_id();
-		marrital_status = user.getMarital_status();
-		gender = user.getGender();
-	}else{ 
-		employee_master_id = (Integer) request.getAttribute("emp_id");
-		under_manager_id = (String) request.getAttribute("under_manger_id");
-		dept_id = (Integer) request.getAttribute("dept_id");
-		marrital_status = (String) request.getAttribute("marrital_status");
-		gender = (String) request.getAttribute("gender");
-	}
-	
-ArrayList<String> holiday = new ArrayList<String>();
-ArrayList<String> holidayName = new ArrayList<String>();
-ArrayList<String> holidayDate = new ArrayList<String>();
-System.out.print("Employee Master Id " + employee_master_id);
-%>
-<div class="app-content container center-layout mt-2">
-   <div class="content-wrapper">
-	 <div class="content-body">
-      				<section id="horizontal-form-layouts">
-      					<div class="row"> 
-							<div class="col-xs-12">
-								<h4>Apply Leave Form</h4>
-								<hr>
-							</div>
-						</div>
-      					<div class="card">
-	      					<div class="card-body collapse in">
-			               		<div class="card-block">
-									<div class="form-body">
-			 <div class="row">
-                <div class="col-lg-12">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
-                            Leave / CO / OD Form
-                        </div>
-                        <div class="panel-body" >
-                        
-                        <table class="table" style="margin-bottom: 0px;">
-                        <%if(request.getAttribute("HR") == null){ %>
-                        <thead>
-	                        <tr>
-								<td width="100px"><label>Select Form</label></td>
-								<td width="10px">:</td>
-								<td width="200px;">
-									<select class="form-control" name="leavetypeselect" id="leavetypeselect" onchange="redirect(this.value);" required>
-										<option value="applyLeave.jsp" selected="selected">   Leave    </option>
-										<option value="leaveCO.jsp">   	 CO       </option>
-										<option value="leaveOD.jsp">      OD       </option>
-									</select>
-								</td>
-								<td></td>
-								<td></td>
-							</tr>
-                        </thead>
-                        <%}else{ %>
-                        <form action="specialHRLeave" method="post">
-                        <thead>
-															
-																<%if(request.getAttribute("empcode") != null)
-																{ 
-																	int comapny_code = Integer.parseInt(request.getParameter("companyId"));
-																%>
-																<tr>
+		String under_manager_id = null;
+		int dept_id = 0;
+		String marrital_status = null;
+		String gender = null;
+		if (request.getAttribute("HR") == null) {
+			employee_master_id = user.getEmployee_master_id();
+			under_manager_id = user.getUnder_manager_id();
+			dept_id = user.getDepartmentBean().getDepartment_id();
+			marrital_status = user.getMarital_status();
+			gender = user.getGender();
+		} else {
+			employee_master_id = (Integer) request.getAttribute("emp_id");
+			under_manager_id = (String) request.getAttribute("under_manger_id");
+			dept_id = (Integer) request.getAttribute("dept_id");
+			marrital_status = (String) request.getAttribute("marrital_status");
+			gender = (String) request.getAttribute("gender");
+		}
+
+		ArrayList<String> holiday = new ArrayList<String>();
+		ArrayList<String> holidayName = new ArrayList<String>();
+		ArrayList<String> holidayDate = new ArrayList<String>();
+		System.out.print("Employee Master Id " + employee_master_id);
+	%>
+	<div class="app-content container center-layout mt-2">
+		<div class="content-wrapper">
+			<div class="content-body">
+				<section id="horizontal-form-layouts">
+				<div class="row">
+					<div class="col-xs-12">
+						<h4>Apply Leave Form</h4>
+						<hr>
+					</div>
+				</div>
+				<div class="card">
+					<div class="card-body collapse in">
+						<div class="card-block">
+							<div class="form-body">
+								<div class="row">
+									<div class="col-lg-12">
+										<div class="panel panel-primary">
+											<div class="panel-heading">Leave / CO / OD Form</div>
+											<div class="panel-body">
+
+												<table class="table" style="margin-bottom: 0px;">
+													<%
+														if (request.getAttribute("HR") == null) {
+													%>
+													<thead>
+														<tr>
+															<td width="100px"><label>Select Form</label></td>
+															<td width="10px">:</td>
+															<td width="200px;"><select class="form-control"
+																name="leavetypeselect" id="leavetypeselect"
+																onchange="redirect(this.value);" required>
+																	<option value="applyLeave.jsp" selected="selected">
+																		Leave</option>
+																	<option value="leaveCO.jsp">CO</option>
+																	<option value="leaveOD.jsp">OD</option>
+															</select></td>
+															<td></td>
+															<td></td>
+														</tr>
+													</thead>
+													<%
+														} else {
+													%>
+													<form action="specialHRLeave" method="post">
+														<thead>
+
+															<%
+																if (request.getAttribute("empcode") != null) {
+																		int comapny_code = Integer.parseInt(request.getParameter("companyId"));
+															%>
+															<tr>
 																<td><label>Enter Employee Code</label></td>
 																<td>:</td>
-																<td>
-																<input type="text" class="form-control" name="empcode" id="empcode" placeholder="Enter Code"  value="<%=request.getAttribute("empcode")%>" required />
+																<td><input type="text" class="form-control"
+																	name="empcode" id="empcode" placeholder="Enter Code"
+																	value="<%=request.getAttribute("empcode")%>" required />
 																</td>
 															</tr>
-															
-															<tr><td><label>Select Comapny Name</label></td>
-																<td>:</td><td><select class="form-control"
-																name="companyId" placeholder="Select Company Name"
-																id="companyId" required="required">
-																
-																	<option value="">---Select Company Name---</option>
-																	<%
-																		CompanyListDAO companyListDAO = new CompanyListDAO();
-																	List<CompanyListBean> listOfCompanyList = (ArrayList) companyListDAO.getListOfCompanyList();
-																		for (CompanyListBean companyListBean : listOfCompanyList) {
-																			if(comapny_code == companyListBean.getCompany_list_id()){
-																	%>
-																	<option
-																		value="<%=companyListBean.getCompany_list_id()%>" selected="selected"><%=companyListBean.getCompany_name()%></option>
-																	
-																	<%}else{ %>
-																	<option
-																		value="<%=companyListBean.getCompany_list_id()%>"><%=companyListBean.getCompany_name()%></option>
-																	<%} %>
-																	
-																	<%
-																		}
-																	%>
-															</select></tr>
-															
-															
+
+															<tr>
+																<td><label>Select Comapny Name</label></td>
+																<td>:</td>
+																<td><select class="form-control" name="companyId"
+																	placeholder="Select Company Name" id="companyId"
+																	required="required">
+
+																		<option value="">---Select Company Name---</option>
+																		<%
+																			CompanyListDAO companyListDAO = new CompanyListDAO();
+																					List<CompanyListBean> listOfCompanyList = (ArrayList) companyListDAO.getListOfCompanyList();
+																					for (CompanyListBean companyListBean : listOfCompanyList) {
+																						if (comapny_code == companyListBean.getCompany_list_id()) {
+																		%>
+																		<option
+																			value="<%=companyListBean.getCompany_list_id()%>"
+																			selected="selected"><%=companyListBean.getCompany_name()%></option>
+
+																		<%
+																			} else {
+																		%>
+																		<option
+																			value="<%=companyListBean.getCompany_list_id()%>"><%=companyListBean.getCompany_name()%></option>
+																		<%
+																			}
+																		%>
+
+																		<%
+																			}
+																		%>
+																</select>
+															</tr>
+
+
 															<tr>
 																<td><label>Select </label></td>
 																<td>:</td>
-																<td>
-																<select class="form-control" name="leavetypeselect" id="leavetypeselect" required>
-																	<option>-- Select Form--</option>
-																	<option value="Leave">   Leave    </option>
-																	<option value="CO">   	 CO       </option>
-																	<option value="OD">      OD       </option>
-																	</select>
-																</td>
+																<td><select class="form-control"
+																	name="leavetypeselect" id="leavetypeselect" required>
+																		<option>-- Select Form--</option>
+																		<option value="Leave">Leave</option>
+																		<option value="CO">CO</option>
+																		<option value="OD">OD</option>
+																</select></td>
 															</tr>
-															
-															
-															
-															
+
+
+
+
 														</thead>
-													
-														<%}
-															else
-															{ %>
-															<tr>
-																<td><label>Enter Employee Code</label></td>
-																<td>:</td>
-															<td><input type="text" class="form-control" name="empcode" id="empcode"	placeholder="Enter Code" required>
-												</td>
-												</tr>
-												
-												
-															<tr>
+
+														<%
+															} else {
+														%>
+														<tr>
+															<td><label>Enter Employee Code</label></td>
+															<td>:</td>
+															<td><input type="text" class="form-control"
+																name="empcode" id="empcode" placeholder="Enter Code"
+																required></td>
+														</tr>
+
+
+														<tr>
 															<td><label>Select Company Name</label></td>
 															<td>:</td>
-															<td><select class="form-control"
-																name="companyId" placeholder="Select Company Name"
-																id="companyId" required>
-																
+															<td><select class="form-control" name="companyId"
+																placeholder="Select Company Name" id="companyId"
+																required>
+
 																	<option value="">---Select Company Name---</option>
 																	<%
 																		CompanyListDAO companyListDAO = new CompanyListDAO();
-																	List<CompanyListBean> listOfCompanyList = (ArrayList) companyListDAO.getListOfCompanyList();
-																		for (CompanyListBean companyListBean : listOfCompanyList) {
+																				List<CompanyListBean> listOfCompanyList = (ArrayList) companyListDAO.getListOfCompanyList();
+																				for (CompanyListBean companyListBean : listOfCompanyList) {
 																	%>
 																	<option
 																		value="<%=companyListBean.getCompany_list_id()%>"><%=companyListBean.getCompany_name()%></option>
 																	<%
 																		}
 																	%>
-															</select>
-															</td>
-												</tr>
-												
-												
-												<tr>
-																<td><label>Select </label></td>
-																<td>:</td>
-																<td>
-																<select class="form-control" name="leavetypeselect" id="leavetypeselect" required>
+															</select></td>
+														</tr>
+
+
+														<tr>
+															<td><label>Select </label></td>
+															<td>:</td>
+															<td><select class="form-control"
+																name="leavetypeselect" id="leavetypeselect" required>
 																	<option value="">-- Select Form--</option>
-																	<option value="Leave">   Leave    </option>
-																	<option value="CO">   	 CO       </option>
-																	<option value="OD">      OD       </option>
-																	</select>
-												<%} %>
-												<tr>
+																	<option value="Leave">Leave</option>
+																	<option value="CO">CO</option>
+																	<option value="OD">OD</option>
+															</select> <%
+ 	}
+ %>
+																<tr>
 															<td colspan="3" align="center">
-															<button class="btn btn-success" type="submit" value="Submit">Submit</button>
+															<button class="btn btn-success" type="submit"
+																	value="Submit">Submit</button>
 															</td>
 														</tr>
                         </form>
-                        <%} %>
+                        <%
+                        	}
+                        %>
                         </table>
                    </div>
                     </div>
@@ -376,34 +393,42 @@ System.out.print("Employee Master Id " + employee_master_id);
 		</div>     
                         
 			
-			<%if(request.getAttribute("LeaveExist") !=null) {%>
+			<%
+                             							if (request.getAttribute("LeaveExist") != null) {
+                             						%>
 		 		<div id="panelbody" class="panel-body">
-                            <div class="alert alert-dismissable alert-danger">
-                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                            <div
+										class="alert alert-dismissable alert-danger">
+                                <button type="button" class="close"
+											data-dismiss="alert" aria-hidden="true">&times;</button>
                                  ${LeaveExist}
                             </div>
           		</div>  
-          	<%}
-			else if(request.getAttribute("LeaveSuccessfully") !=null) 
-			{	
-			%>
+          	<%
+            		} else if (request.getAttribute("LeaveSuccessfully") != null) {
+            	%>
 			<div id="panelbody" class="panel-body">
-                            <div class="alert alert-dismissable alert-success">
-                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                            <div
+										class="alert alert-dismissable alert-success">
+                                <button type="button" class="close"
+											data-dismiss="alert" aria-hidden="true">&times;</button>
                                  ${LeaveSuccessfully}
                             </div>
           		</div>  
-          		<%}
-			else if(request.getAttribute("LeavefromtodateExist") !=null) 
-				{	
-          		%>
+          		<%
+            			} else if (request.getAttribute("LeavefromtodateExist") != null) {
+            		%>
           		<div id="panelbody" class="panel-body">
-                            <div class="alert alert-dismissable alert-danger">
-                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                            <div
+										class="alert alert-dismissable alert-danger">
+                                <button type="button" class="close"
+											data-dismiss="alert" aria-hidden="true">&times;</button>
                                  ${LeavefromtodateExist}
                             </div>
           		</div>
-          		<%} %>
+          		<%
+          			}
+          		%>
 			<!-- /.row -->
 			<div class="row">
 				<div class="col-lg-12">
@@ -411,16 +436,17 @@ System.out.print("Employee Master Id " + employee_master_id);
 						<div class="panel-heading">
 						<h5 align="left">	
 								Date :
-								<%DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
-							Date today = Calendar.getInstance().getTime();  
-							
-							String date1= dateFormat.format(today);
-							
+								<%
+							DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+							Date today = Calendar.getInstance().getTime();
+
+							String date1 = dateFormat.format(today);
+
 							String d = null;
 							String currentdate = null;
-							
+
 							try {
-								  
+
 								SimpleDateFormat formater = new SimpleDateFormat("dd-MM-yyyy");
 								Date result = formater.parse(date1);
 								SimpleDateFormat AppDateFormat = new SimpleDateFormat("dd-MMM-yyyy");
@@ -431,29 +457,44 @@ System.out.print("Employee Master Id " + employee_master_id);
 							} catch (ParseException e1) {
 								e1.printStackTrace();
 							}
-							
-							%><%=d %></h5> 
+						%><%=d%></h5> 
 						</div>
 						<div class="panel-body">
-						<%if(request.getAttribute("HR") == null){ %>
-							<form action="leaveInsert" id="temp" method="post"  enctype="multipart/form-data">
-							<%}else{ %>
-							<form action="specialHRLeaveApproval" id="temp" method="post" enctype="multipart/form-data">
-							<%} %>
+						<%
+							if (request.getAttribute("HR") == null) {
+						%>
+							<form action="leaveInsert" id="temp" method="post"
+													enctype="multipart/form-data">
+							<%
+								} else {
+							%>
+							<form action="specialHRLeaveApproval" id="temp" method="post"
+														enctype="multipart/form-data">
+							<%
+								}
+							%>
 								<div class="row">
 									<div class="col-lg-6">
 										
 										<div class="row">
 											<div class="col-lg-4">
-												<center><label>Employee Name</label></center>
+												<center>
+																			<label>Employee Name</label>
+																		</center>
 											</div>
 											<!-- ./col-lg-4 -->
 											<div class="col-lg-8">
-											<%if(request.getAttribute("HR") == null){%>
-												<%=user.getFirstname()+" "+user.getLastname()%>
-												<%}else{ %>
+											<%
+												if (request.getAttribute("HR") == null) {
+											%>
+												<%=user.getFirstname() + " " + user.getLastname()%>
+												<%
+													} else {
+												%>
 													<%=request.getAttribute("name")%>
-												<%} %>
+												<%
+													}
+												%>
 												
 											</div>
 											<!-- ./col-lg-8 -->
@@ -463,11 +504,16 @@ System.out.print("Employee Master Id " + employee_master_id);
 										<br>
 										<div class="row">
 											<div class="col-lg-4">
-												<center><label>Purpose Of Leave</label></center>
+												<center>
+																			<label>Purpose Of Leave</label>
+																		</center>
 											</div>
 											<!-- ./col-lg-4 -->
 											<div class="col-lg-8">
-												<textarea class="form-control" rows="6" id="purposeOfLeave" name="purposeOfLeave" placeholder="Enter purpose of leave" autofocus required></textarea>
+												<textarea class="form-control" rows="6" id="purposeOfLeave"
+																			name="purposeOfLeave"
+																			placeholder="Enter purpose of leave" autofocus
+																			required></textarea>
 												
 											</div>
 											<!-- ./col-lg-8 -->
@@ -486,66 +532,104 @@ System.out.print("Employee Master Id " + employee_master_id);
 												</tr>
 											</tbody>
 											<tbody>
-											<%  
-										
-											 AllLMSListDAO gradeMasterList1 = new AllLMSListDAO();
-	   						 				List<LeaveTypeBean> listOfleave1 = gradeMasterList1.getListOfLeave();
-	   						 				LeaveBalanceBean leaveBalanceBean =(LeaveBalanceBean) gradeMasterList1.getleaveListbyEMP(employee_master_id);
-	   						 				
-	   						 				double Co_Leave = leaveBalanceBean.getCO();
-	   						 				
-	   						 				double Plan_Leave = leaveBalanceBean.getPlan_Leave();
-							 				double unplan_Leave = leaveBalanceBean.getUnplan_Leave();
-							 				double lwp = leaveBalanceBean.getLeave_without_pay();
-							 				double MT = 0;
-	   						 				for (LeaveTypeBean c : listOfleave1)
-	   						 					{
-	   						 				String p = c.getLeave_name();
-	   						 						 if(marrital_status.equalsIgnoreCase("married") && gender.equalsIgnoreCase("female"))
-	   		   						 					{
-	   						 						%> 
+											<%
+												AllLMSListDAO gradeMasterList1 = new AllLMSListDAO();
+												List<LeaveTypeBean> listOfleave1 = gradeMasterList1.getListOfLeave();
+												LeaveBalanceBean leaveBalanceBean = (LeaveBalanceBean) gradeMasterList1
+														.getleaveListbyEMP(employee_master_id);
+
+												double Co_Leave = leaveBalanceBean.getCO();
+
+												double Plan_Leave = leaveBalanceBean.getPlan_Leave();
+												double unplan_Leave = leaveBalanceBean.getUnplan_Leave();
+												double lwp = leaveBalanceBean.getLeave_without_pay();
+												double MT = 0;
+												for (LeaveTypeBean c : listOfleave1) {
+													String p = c.getLeave_name();
+													if (marrital_status.equalsIgnoreCase("married") && gender.equalsIgnoreCase("female")) {
+											%> 
    						 						<tr>
    						 			
 				   						 			<td colspan="2">
 				   						 				<%=c.getLeave_name()%>
 				   						 			</td>	
 			   						 				<td colspan="6">
-			   						 					 	<%if(p.equalsIgnoreCase("CO")){%>
+			   						 					 	<%
+			   						 					 		if (p.equalsIgnoreCase("CO")) {
+			   						 					 	%>
 			   						 							<%=Co_Leave%>
-			   						 						<%} %>
-			   						 						<%if(p.equalsIgnoreCase("Plan Leave")){%>
+			   						 						<%
+			   						 							}
+			   						 						%>
+			   						 						<%
+			   						 							if (p.equalsIgnoreCase("Plan Leave")) {
+			   						 						%>
 			   						 							<%=Plan_Leave%>
-			   						 						<%} %>
-			   						 						<%if(p.equalsIgnoreCase("Unplan Leave")){%>
+			   						 						<%
+			   						 							}
+			   						 						%>
+			   						 						<%
+			   						 							if (p.equalsIgnoreCase("Unplan Leave")) {
+			   						 						%>
 			   						 							<%=unplan_Leave%>
-			   						 						<%} %>
-			   						 						<%if(p.equalsIgnoreCase("Leave without pay")){%>
-			   						 							<%= lwp %>
-			   						 						<%} %>
-			   						 						<%if(p.equalsIgnoreCase("Maternity Leave")){%>
-			   						 							<%= MT %>
-			   						 						<%} %>
+			   						 						<%
+			   						 							}
+			   						 						%>
+			   						 						<%
+			   						 							if (p.equalsIgnoreCase("Leave without pay")) {
+			   						 						%>
+			   						 							<%=lwp%>
+			   						 						<%
+			   						 							}
+			   						 						%>
+			   						 						<%
+			   						 							if (p.equalsIgnoreCase("Maternity Leave")) {
+			   						 						%>
+			   						 							<%=MT%>
+			   						 						<%
+			   						 							}
+			   						 						%>
 			   						 				</td>	
-   						 					<%}else if(! c.getLeave_name().equalsIgnoreCase("Maternity Leave")){ %>
+   						 					<%
+	   						 						} else if (!c.getLeave_name().equalsIgnoreCase("Maternity Leave")) {
+	   						 					%>
    						 					
 			   						 				<td colspan="2">
 			   						 					<%=c.getLeave_name()%>
 			   						 				</td>
 			   						 				<td colspan="6">
-			   						 					 	<%if(p.equalsIgnoreCase("CO")){%>
+			   						 					 	<%
+			   						 					 		if (p.equalsIgnoreCase("CO")) {
+			   						 					 	%>
 			   						 							<%=Co_Leave%>
-			   						 						<%} %>
-			   						 						<%if(p.equalsIgnoreCase("Plan Leave")){%>
+			   						 						<%
+			   						 							}
+			   						 						%>
+			   						 						<%
+			   						 							if (p.equalsIgnoreCase("Plan Leave")) {
+			   						 						%>
 			   						 							<%=Plan_Leave%>
-			   						 						<%} %>
-			   						 						<%if(p.equalsIgnoreCase("Unplan Leave")){%>
+			   						 						<%
+			   						 							}
+			   						 						%>
+			   						 						<%
+			   						 							if (p.equalsIgnoreCase("Unplan Leave")) {
+			   						 						%>
 			   						 							<%=unplan_Leave%>
-			   						 						<%} %>
-			   						 						<%if(p.equalsIgnoreCase("Leave without pay")){%>
-			   						 							<%= lwp %>
-			   						 						<%} %>
+			   						 						<%
+			   						 							}
+			   						 						%>
+			   						 						<%
+			   						 							if (p.equalsIgnoreCase("Leave without pay")) {
+			   						 						%>
+			   						 							<%=lwp%>
+			   						 						<%
+			   						 							}
+			   						 						%>
 			   						 				</td>
-   						 						<%} %>
+   						 						<%
+   						 							}
+   						 						%>
    						 						 <%-- <td colspan="5">
    						 						 <div id="autoUpdate<%=c.getLeave_type_id()%>">
    						 							<input type="radio" id="typeOfcheckboxLeave"  name="typeOfcheckboxLeave" onchange="check1()" value="<%=c.getLeave_type_id()%>">
@@ -554,7 +638,9 @@ System.out.print("Employee Master Id " + employee_master_id);
    						 					</tr>
    						 			
    						 			
-   						 			<%} %>
+   						 			<%
+   						 			   						 			   						 				}
+   						 			   						 			   						 			%>
 									</tbody>
 							</table>
 						</div>
@@ -563,44 +649,62 @@ System.out.print("Employee Master Id " + employee_master_id);
 						</div>
 						<!-- ./row -->
 						
-								<input type="hidden"  name="employee_master_id" 					value="<%=employee_master_id%>"> 
-								<input type="hidden"  name="Name" id="Name" value="<%=request.getAttribute("name")%>"/>
-								<input type="hidden"  name="EMPCODE" id="EMPCODE" value="<%=request.getAttribute("empcode")%>"/>
-								<input type="hidden"  name="CO" 				id="CO" 			value="<%=leaveBalanceBean.getCO()%>">
-								<input type="hidden"  name="plan" 				id="plan" 			value="<%=leaveBalanceBean.getPlan_Leave()%>">
-								<input type="hidden"  name="unplan" 			id="unplan" 		value="<%=leaveBalanceBean.getUnplan_Leave()%>"/>
-								<input type="hidden"  name="LWP" 				id="LWP" 			value="<%= leaveBalanceBean.getLeave_without_pay()%>"/>
-								<input type="hidden"  name="currentdate" 		id="currentdate"	value="<%= currentdate %>"/>
-								<input type="hidden"  name="CO1" 				id="CO1" 			value="">
-								<input type="hidden"  name="PL1" 				id="PL1"	 		value="">
-								<input type="hidden"  name="SL1" 				id=SL1 				value="">
-								<input type="hidden"  name="LWP1" 				id="LWP1" 			value="">
-								<input type="hidden"    name="pushMainDate"       id="pushMainDate"   value=""/>
-								<input type="hidden"    name="popMainDate"        id="popMainDate"    value=""/>
-								<input type="hidden"  name="BackwordSunday"     id=BackwordSunday   value=""/>
-								<input type="hidden"  name="monthID"            id="monthID"        value=""/>
-								<input type="hidden"  name="leavetype"          id="leavetype"      value=""/>
-								<input type="hidden"  name="COCUT"              id="COCUT"          value=""/>
-								<input type="hidden"  name="PLCUT"              id="PLCUT"          value=""/>
-								<input type="hidden"  name="SLCUT"              id=SLCUT            value=""/>
-								<input type="hidden"  name="LWPCUT"             id="LWPCUT"         value=""/>
-								<input type="hidden"  name="sunday"             id="sunday"         value=""/>
-								<input type="hidden"  name="holiday"            id="holiday"        value=""/>
+								<input type="hidden" name="employee_master_id"
+															value="<%=employee_master_id%>"> 
+								<input type="hidden" name="Name" id="Name"
+															value="<%=request.getAttribute("name")%>" />
+								<input type="hidden" name="EMPCODE" id="EMPCODE"
+															value="<%=request.getAttribute("empcode")%>" />
+								<input type="hidden" name="CO" id="CO"
+															value="<%=leaveBalanceBean.getCO()%>">
+								<input type="hidden" name="plan" id="plan"
+															value="<%=leaveBalanceBean.getPlan_Leave()%>">
+								<input type="hidden" name="unplan" id="unplan"
+															value="<%=leaveBalanceBean.getUnplan_Leave()%>" />
+								<input type="hidden" name="LWP" id="LWP"
+															value="<%=leaveBalanceBean.getLeave_without_pay()%>" />
+								<input type="hidden" name="currentdate" id="currentdate"
+															value="<%=currentdate%>" />
+								<input type="hidden" name="CO1" id="CO1" value="">
+								<input type="hidden" name="PL1" id="PL1" value="">
+								<input type="hidden" name="SL1" id=SL1 value="">
+								<input type="hidden" name="LWP1" id="LWP1" value="">
+								<input type="hidden" name="pushMainDate" id="pushMainDate"
+															value="" />
+								<input type="hidden" name="popMainDate" id="popMainDate"
+															value="" />
+								<input type="hidden" name="BackwordSunday" id=BackwordSunday
+															value="" />
+								<input type="hidden" name="monthID" id="monthID" value="" />
+								<input type="hidden" name="leavetype" id="leavetype" value="" />
+								<input type="hidden" name="COCUT" id="COCUT" value="" />
+								<input type="hidden" name="PLCUT" id="PLCUT" value="" />
+								<input type="hidden" name="SLCUT" id=SLCUT value="" />
+								<input type="hidden" name="LWPCUT" id="LWPCUT" value="" />
+								<input type="hidden" name="sunday" id="sunday" value="" />
+								<input type="hidden" name="holiday" id="holiday" value="" />
 								
 								
 								<div class="row">
 									<div class="col-lg-2">
-										<center><label>Leave Applied For</label></center>
+										<center>
+																	<label>Leave Applied For</label>
+																</center>
 									</div>
 									<!-- ./col-lg-2 -->
 									<div class="col-lg-6">
-										From Date: <input type="text" id="datepicker1" width="155" name="fromDate" placeholder="dd/mm/yyyy" required class="form-control" readonly="readonly">
+										From Date: <input type="text" id="datepicker1" width="155"
+																	name="fromDate" placeholder="dd/mm/yyyy" required
+																	class="form-control" readonly="readonly">
 									</div>
 									<!-- ./col-lg-6 -->
 										<div id="radiobutton1">
-												<input id="0" type="radio" name="leavefromDate" value="FF" onchange="check();" required checked="checked">Full Day
-												<input id="1" type="radio" name="leavefromDate" value="FH" onchange="check();" required>First Half
-												<input id="2" type="radio" name="leavefromDate" value="SH" onchange="check();" required>Second Half
+												<input id="0" type="radio" name="leavefromDate" value="FF"
+																	onchange="check();" required checked="checked">Full Day
+												<input id="1" type="radio" name="leavefromDate" value="FH"
+																	onchange="check();" required>First Half
+												<input id="2" type="radio" name="leavefromDate" value="SH"
+																	onchange="check();" required>Second Half
 										</div>
 										<input type="hidden" id="date1" value="">
 									
@@ -614,30 +718,40 @@ System.out.print("Employee Master Id " + employee_master_id);
 									</div>
 									<!-- ./col-lg-2 -->
 									<div class="col-lg-6">
-										To Date: <input type="text" id="datepicker2" placeholder="dd/mm/yyyy" class="form-control" name="toDate"  required readonly="readonly">
+										To Date: <input type="text" id="datepicker2"
+																	placeholder="dd/mm/yyyy" class="form-control"
+																	name="toDate" required readonly="readonly">
 									</div>
 									<!-- ./col-lg-6 -->
 										<div id="radiobutton2">
-											<input id="3" type="radio" name="leavetoDate"  value="FF" onchange="check();"  checked="checked">Full Day
-											<input id="4" type="radio" name="leavetoDate"  value="FH" onchange="check();" >First Half
-											<input id="5" type="radio" name="leavetoDate"  value="SH" onchange="check();" >Second Half
+											<input id="3" type="radio" name="leavetoDate" value="FF"
+																	onchange="check();" checked="checked">Full Day
+											<input id="4" type="radio" name="leavetoDate" value="FH"
+																	onchange="check();">First Half
+											<input id="5" type="radio" name="leavetoDate" value="SH"
+																	onchange="check();">Second Half
 										</div>	
 										<input type="hidden" id="date2" value="">
 									
 								</div>
 								<!-- ./row -->
 								
-								<input type="hidden" class="textbox" id="numdays3" name="numdays3" value="00"/>
+								<input type="hidden" class="textbox" id="numdays3"
+															name="numdays3" value="00" />
 								
 								
 								<br>
 								<div class="row">
 									<div class="col-lg-2">
-										<center><label> Holidays Count </label></center>
+										<center>
+																	<label> Holidays Count </label>
+																</center>
 									</div>
 									<!-- ./col-lg-2 -->
 									<div class="col-lg-10">
-										<input type="text" class="form-control" rows="3" placeholder="Total of holidays " id="numdays4" name="numdays4" required readonly></input>
+										<input type="text" class="form-control" rows="3"
+																	placeholder="Total of holidays " id="numdays4"
+																	name="numdays4" required readonly></input>
 									</div>
 									<!-- ./col-lg-10 -->
 									
@@ -648,11 +762,15 @@ System.out.print("Employee Master Id " + employee_master_id);
 								<br>
 								<div class="row">
 									<div class="col-lg-2">
-										<center><label> Total Leave Day Count </label></center>
+										<center>
+																	<label> Total Leave Day Count </label>
+																</center>
 									</div>
 									<!-- ./col-lg-2 -->
 									<div class="col-lg-10">
-										<input type="text" class="form-control" rows="3" placeholder="Total Days" id="numdays2" name="numdays" required readonly></input>
+										<input type="text" class="form-control" rows="3"
+																	placeholder="Total Days" id="numdays2" name="numdays"
+																	required readonly></input>
 									</div>
 									<!-- ./col-lg-10 -->
 									
@@ -663,11 +781,15 @@ System.out.print("Employee Master Id " + employee_master_id);
 								<br>
 								<div class="row">
 									<div class="col-lg-2">
-										<center><label> Contact Address </label></center>
+										<center>
+																	<label> Contact Address </label>
+																</center>
 									</div>
 									<!-- ./col-lg-2 -->
 									<div class="col-lg-10">
-										<textarea class="form-control" id="contactAddress" placeholder="Alternate Contact Address" name="contactAddress" rows="2" required></textarea>
+										<textarea class="form-control" id="contactAddress"
+																	placeholder="Alternate Contact Address"
+																	name="contactAddress" rows="2" required></textarea>
 									</div>
 									<!-- ./col-lg-10 -->
 									
@@ -678,11 +800,16 @@ System.out.print("Employee Master Id " + employee_master_id);
 								<br>
 								<div class="row">
 									<div class="col-lg-2">
-										<center><label> Contact Number During Leave </label></center>
+										<center>
+																	<label> Contact Number During Leave </label>
+																</center>
 									</div>
 									<!-- ./col-lg-2 -->
 									<div class="col-lg-10">
-										<input type="text" name="contactNumberDuringLeave" placeholder="Alternate Contact Number" id="contactNumberDuringLeave" class="form-control"  onchange="checkInteger(this.id)" required></input>
+										<input type="text" name="contactNumberDuringLeave"
+																	placeholder="Alternate Contact Number"
+																	id="contactNumberDuringLeave" class="form-control"
+																	onchange="checkInteger(this.id)" required></input>
 									</div>
 									<!-- ./col-lg-10 -->
 									
@@ -691,23 +818,28 @@ System.out.print("Employee Master Id " + employee_master_id);
 								
 								
 								
-								<% 
-								AllLMSListDAO allLMSListDAO = new AllLMSListDAO();
-									
-								ManagerBean managerBean = allLMSListDAO.getnameOfManager(under_manager_id);
-								%>
+								<%
+																																	AllLMSListDAO allLMSListDAO = new AllLMSListDAO();
+
+																																	ManagerBean managerBean = allLMSListDAO.getnameOfManager(under_manager_id);
+																																%>
 								
 								
 								<br>
 								<div class="row">
-									<div class="col-lg-2">
-										<center><label> Reporting Manager </label></center>
+																	<div class="col-lg-2">
+										<center>
+																			<label> Reporting Manager </label>
+																		</center>
 									</div>
 									<!-- ./col-lg-2 -->
 									<div class="col-lg-10">
 										<input type="text" class="form-control" name="Manager"
-											class="form-control" placeholder="Reporting Manager" value="<%=managerBean.getManager_name()%>" required readonly></input>
-											<input type="hidden"  name="reportingManager" value="<%=under_manager_id%>">
+																			class="form-control" placeholder="Reporting Manager"
+																			value="<%=managerBean.getManager_name()%>" required
+																			readonly></input>
+											<input type="hidden" name="reportingManager"
+																			value="<%=under_manager_id%>">
 									</div>
 									<!-- ./col-lg-10 -->
 									
@@ -723,45 +855,46 @@ System.out.print("Employee Master Id " + employee_master_id);
 								
 								<br>
 								<center>
-												<button class="btn btn-success" id="btnsubmit" type="button" value="Submit" onclick="myFunction()">Submit</button>
+												<button class="btn btn-success" id="btnsubmit" type="button"
+																		value="Submit" onclick="myFunction()">Submit</button>
 										</center>
 								
 								<%
-								AllLMSListDAO allListDAO2 = new AllLMSListDAO();
-								List<HolidayBean> listgholiday = allListDAO2.getListOfHoliday();
-								for(HolidayBean h : listgholiday)
-								{
-									/* SimpleDateFormat formater = new SimpleDateFormat("dd-MM-yyyy");
-									Date result = formater.parse(h.getHoliday_date());
-									System.out.println(result.toString()); */
-									
-									
-									String date = h.getHoliday_date();
-									String Name = h.getHoliday_name();
-									String d1 = null;	
-									String d2 = null;
-										try {
-											  
-											SimpleDateFormat formater1 = new SimpleDateFormat("yyyy-MM-dd");
-											Date result2 = formater1.parse(date);
-											SimpleDateFormat AppDateFormat = new SimpleDateFormat("MM/dd/yyyy");
-											SimpleDateFormat AppDateFormat1 = new SimpleDateFormat("dd-MM-yyyy");
-											d1 = AppDateFormat.format(result2);
-											d2 = AppDateFormat1.format(result2);
-											//System.out.println("date:"+d1);
-											holiday.add(d1);
-											holidayDate.add(d2);
-											holidayName.add(Name);
-										} catch (ParseException e1) {
-											e1.printStackTrace();
-										}	
-									
-								}
-								%>
+																	AllLMSListDAO allListDAO2 = new AllLMSListDAO();
+																	List<HolidayBean> listgholiday = allListDAO2.getListOfHoliday();
+																	for (HolidayBean h : listgholiday) {
+																		/* SimpleDateFormat formater = new SimpleDateFormat("dd-MM-yyyy");
+																		Date result = formater.parse(h.getHoliday_date());
+																		System.out.println(result.toString()); */
+
+																		String date = h.getHoliday_date();
+																		String Name = h.getHoliday_name();
+																		String d1 = null;
+																		String d2 = null;
+																		try {
+
+																			SimpleDateFormat formater1 = new SimpleDateFormat("yyyy-MM-dd");
+																			Date result2 = formater1.parse(date);
+																			SimpleDateFormat AppDateFormat = new SimpleDateFormat("MM/dd/yyyy");
+																			SimpleDateFormat AppDateFormat1 = new SimpleDateFormat("dd-MM-yyyy");
+																			d1 = AppDateFormat.format(result2);
+																			d2 = AppDateFormat1.format(result2);
+																			//System.out.println("date:"+d1);
+																			holiday.add(d1);
+																			holidayDate.add(d2);
+																			holidayName.add(Name);
+																		} catch (ParseException e1) {
+																			e1.printStackTrace();
+																		}
+
+																	}
+																%>
 								<%-- <%=holidayDate%> --%>
 								
-							</form>
-						</div>
+							
+														</form>
+						
+											</div>
 						<!-- /.panel-body -->
 					</div>
 					<!-- /.panel -->
@@ -769,14 +902,97 @@ System.out.print("Employee Master Id " + employee_master_id);
 				<!-- /.col-lg-12 -->
 			</div>
 			<!-- /.row -->
-		</div>
-		</div>
-		</div>
-		</div>
-		</section>
-		</div>
+			
+							</div>
+						</div>
+					</div>
+				</div>
+				</section>
+			</div>
 		</div>
 	</div>
+	<%@include file="footer.html"%>
+
+	<!-- BEGIN VENDOR JS-->
+	<!-- build:js app-assets/js/vendors.min.js-->
+	<script src="app-assets/js/core/libraries/jquery.min.js"
+		type="text/javascript"></script>
+	<script src="app-assets/vendors/js/ui/tether.min.js"
+		type="text/javascript"></script>
+	<script src="app-assets/js/core/libraries/bootstrap.min.js"
+		type="text/javascript"></script>
+	<script src="app-assets/vendors/js/ui/perfect-scrollbar.jquery.min.js"
+		type="text/javascript"></script>
+	<script src="app-assets/vendors/js/ui/unison.min.js"
+		type="text/javascript"></script>
+	<script src="app-assets/vendors/js/ui/blockUI.min.js"
+		type="text/javascript"></script>
+	<script src="app-assets/vendors/js/ui/jquery.matchHeight-min.js"
+		type="text/javascript"></script>
+	<script src="app-assets/vendors/js/ui/jquery-sliding-menu.js"
+		type="text/javascript"></script>
+	<script src="app-assets/vendors/js/sliders/slick/slick.min.js"
+		type="text/javascript"></script>
+	<script src="app-assets/vendors/js/ui/screenfull.min.js"
+		type="text/javascript"></script>
+	<script src="app-assets/vendors/js/extensions/pace.min.js"
+		type="text/javascript"></script>
+	<!-- /build-->
+	<!-- BEGIN VENDOR JS-->
+	<!-- BEGIN PAGE VENDOR JS-->
+	<script type="text/javascript"
+		src="app-assets/vendors/js/ui/jquery.sticky.js"></script>
+	<script
+		src="app-assets/vendors/js/pickers/dateTime/moment-with-locales.min.js"
+		type="text/javascript"></script>
+	<script
+		src="app-assets/vendors/js/pickers/dateTime/bootstrap-datetimepicker.min.js"
+		type="text/javascript"></script>
+	<script src="app-assets/vendors/js/pickers/pickadate/picker.js"
+		type="text/javascript"></script>
+	<script src="app-assets/vendors/js/pickers/pickadate/picker.date.js"
+		type="text/javascript"></script>
+	<script src="app-assets/vendors/js/pickers/pickadate/picker.time.js"
+		type="text/javascript"></script>
+	<script src="app-assets/vendors/js/pickers/pickadate/legacy.js"
+		type="text/javascript"></script>
+	<script
+		src="app-assets/vendors/js/pickers/daterange/daterangepicker.js"
+		type="text/javascript"></script>
+	<!-- END PAGE VENDOR JS-->
+	<!-- BEGIN ROBUST JS-->
+	<!-- build:js app-assets/js/app.min.js-->
+	<script src="app-assets/js/core/app-menu.min.js" type="text/javascript"></script>
+	<script src="app-assets/js/core/app.min.js" type="text/javascript"></script>
+	<script src="app-assets/js/scripts/ui/fullscreenSearch.min.js"
+		type="text/javascript"></script>
+	<!-- /build-->
+	<!-- END ROBUST JS-->
+	<!-- BEGIN PAGE LEVEL JS-->
+	<script
+		src="app-assets/js/scripts/pickers/dateTime/picker-date-time.min.js"
+		type="text/javascript"></script>
+
+	<!-- BEGIN VENDOR JS-->
+	<!-- BEGIN PAGE VENDOR JS-->
+	<!-- END PAGE LEVEL JS-->
+	<script>
+		(function(i, s, o, g, r, a, m) {
+			i['GoogleAnalyticsObject'] = r;
+			i[r] = i[r] || function() {
+				(i[r].q = i[r].q || []).push(arguments)
+			}, i[r].l = 1 * new Date();
+			a = s.createElement(o), m = s.getElementsByTagName(o)[0];
+			a.async = 1;
+			a.src = g;
+			m.parentNode.insertBefore(a, m)
+		})(window, document, 'script', 'www.google-analytics.com/analytics.js',
+				'ga');
+
+		ga('create', 'UA-96096445-1', 'auto');
+		ga('send', 'pageview');
+	</script>
+	
 	<script>
 			//$(function() {
 			//	$( ".datepicker" ).datepicker();
@@ -803,19 +1019,15 @@ System.out.print("Employee Master Id " + employee_master_id);
 		    var disableddates =[];
 		    
 		    
-		    <%for (int k = 0; k < holidayName.size(); k++)
-	 		{
-	 				String Name = holidayName.get(k);
-	 				 %>
+		    <%for (int k = 0; k < holidayName.size(); k++) {
+				String Name = holidayName.get(k);%>
 	 				
-	 				tool[<%= k %>] = ("\"<%=Name%>\"");
+	 				tool[<%=k%>] = ("\"<%=Name%>\"");
 	   		  		
 	   		  <%}%>
 		    
-	 		<%for (int i =0; i< holiday.size(); i++)
-	 		{
-	 				String date = holiday.get(i);
-	 				 %>
+	 		<%for (int i = 0; i < holiday.size(); i++) {
+				String date = holiday.get(i);%>
 	 				
 	   		  		holiDates[<%=i%>] = new Date("\"<%=date%>\"");
 	   		  		
@@ -842,18 +1054,15 @@ System.out.print("Employee Master Id " + employee_master_id);
 	   		  holiDates[17] = new Date("09/01/2016"); */
 	   		
 	   		var daysToDisable = [0];
-	   	 	<%for (int z =0; z<holidayDate.size(); z++)
-	 		{
-	 				String datedate = holidayDate.get(z);%>
+	   	 	<%for (int z = 0; z < holidayDate.size(); z++) {
+				String datedate = holidayDate.get(z);%>
 	 				disableddates.push("<%=datedate%>");
 	   		  <%}%>
 	   		  
 	   		  
 	   		  
-	   		  <% int role_id = dept_id;
-	   		  if(role_id == 1)
-	   		  {
-				%>
+	   		  <%int role_id = dept_id;
+			if (role_id == 1) {%>
 				   		function noSundaynoHoliday(date)
 				   		{
 				   			// SUNDAY DISABLE //
@@ -882,11 +1091,7 @@ System.out.print("Employee Master Id " + employee_master_id);
 						
 				   		    return [true]
 				   		}
-	   		<%
-	   		}
-	   		  else
-	   		  {
-	   		%>
+	   		<%} else {%>
 	   		function noSundaynoHoliday(date)
 	   		{
 	   			// SUNDAY DISABLE //
@@ -1128,8 +1333,6 @@ System.out.print("Employee Master Id " + employee_master_id);
 						 backDate.setDate(backDate.getDate() - 1);
 						 var frontDate = new Date(fromDate);
 							frontDate.setDate(frontDate.getDate() + 1);
-							
-							
 					     
 					     for(var k = 0; k < between.length; k++)
 						  {
@@ -1689,63 +1892,18 @@ System.out.print("Employee Master Id " + employee_master_id);
 
 			function unchecked(){
 
-				alert("akash");
 				 document.getElementById("typeOfcheckboxLeave").checked = false;
 			}		
 			
 		
 		</script>
-	   <script src="app-assets/js/core/libraries/jquery.min.js" type="text/javascript"></script>
-    <script src="app-assets/vendors/js/ui/tether.min.js" type="text/javascript"></script>
-    <script src="app-assets/js/core/libraries/bootstrap.min.js" type="text/javascript"></script>
-    <script src="app-assets/vendors/js/ui/perfect-scrollbar.jquery.min.js" type="text/javascript"></script>
-    <script src="app-assets/vendors/js/ui/unison.min.js" type="text/javascript"></script>
-    <script src="app-assets/vendors/js/ui/blockUI.min.js" type="text/javascript"></script>
-    <script src="app-assets/vendors/js/ui/jquery.matchHeight-min.js" type="text/javascript"></script>
-    <script src="app-assets/vendors/js/ui/jquery-sliding-menu.js" type="text/javascript"></script>
-    <script src="app-assets/vendors/js/sliders/slick/slick.min.js" type="text/javascript"></script>
-    <script src="app-assets/vendors/js/ui/screenfull.min.js" type="text/javascript"></script>
-    <script src="app-assets/vendors/js/extensions/pace.min.js" type="text/javascript"></script>
-    <!-- /build-->
-    <!-- BEGIN VENDOR JS-->
-    <!-- BEGIN PAGE VENDOR JS-->
-    <script type="text/javascript" src="app-assets/vendors/js/ui/jquery.sticky.js"></script>
-    <script src="app-assets/vendors/js/forms/icheck/icheck.min.js" type="text/javascript"></script>
-    <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBDkKetQwosod2SZ7ZGCpxuJdxY3kxo5Po" type="text/javascript"></script>
-    <script src="app-assets/vendors/js/gallery/masonry/masonry.pkgd.min.js" type="text/javascript"></script>
-    <script src="app-assets/vendors/js/gallery/photo-swipe/photoswipe.min.js" type="text/javascript"></script>
-    <script src="app-assets/vendors/js/gallery/photo-swipe/photoswipe-ui-default.min.js" type="text/javascript"></script>
-    <!-- END PAGE VENDOR JS-->
-    <!-- BEGIN ROBUST JS-->
-    <!-- build:js app-assets/js/app.min.js-->
-    <script src="app-assets/js/core/app-menu.min.js" type="text/javascript"></script>
-    <script src="app-assets/js/scripts/ui/fullscreenSearch.min.js" type="text/javascript"></script>
-    <!-- /build-->
-    <!-- END ROBUST JS-->
-    <!-- BEGIN PAGE LEVEL JS-->
-    <script src="app-assets/js/scripts/gallery/photo-swipe/photoswipe-script.min.js" type="text/javascript"></script>
-    <script src="app-assets/js/scripts/pages/timeline.min.js" type="text/javascript"></script>
- <!-- BEGIN VENDOR JS-->
-    <!-- BEGIN PAGE VENDOR JS-->
-    <script src="app-assets/vendors/js/tables/jquery.dataTables.min.js" type="text/javascript"></script>
-    <script src="app-assets/vendors/js/tables/datatable/dataTables.bootstrap4.min.js" type="text/javascript"></script>
-    <script src="app-assets/vendors/js/tables/datatable/dataTables.buttons.min.js" type="text/javascript"></script>
-    <!-- END PAGE VENDOR JS-->
-    
-    <!-- BEGIN PAGE LEVEL JS-->
-    <script src="app-assets/js/scripts/tables/datatables/datatable-basic.min.js" type="text/javascript"></script>
-    <!-- END PAGE LEVEL JS-->
-  	<script>
-	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	  })(window,document,'script','www.google-analytics.com/analytics.js','ga');
-
-	  ga('create', 'UA-96096445-1', 'auto');
-	  ga('send', 'pageview');
-
-	</script>
-
+		 <script>
+    $(document).ready(function() {
+        $('#dataTables-example').DataTable({
+                responsive: true
+        });
+    });
+    </script>
         <script type="text/javascript">
         window.onload = function() 
         {            
@@ -1764,5 +1922,7 @@ System.out.print("Employee Master Id " + employee_master_id);
         }
         </script>
 	
+</body>
+</html>	
 </body>
 </html>
