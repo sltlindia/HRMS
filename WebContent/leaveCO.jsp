@@ -235,14 +235,28 @@ function hideMessage()
 
 </head>
 
-<body onload = "startTimer()">
+<body data-open="hover" data-menu="horizontal-menu" data-col="2-columns"
+	class="horizontal-layout horizontal-menu 2-columns"
+	onload="startTimer()">
 <%
 //int employee_master_id = user.getEmployee_master_id();
 %>
 
 								
-<div id="wrapper">
-		<div id="page-wrapper">
+<div class="app-content container center-layout mt-2">
+		<div class="content-wrapper">
+			<div class="content-body">
+				<section id="horizontal-form-layouts">
+				<!-- <div class="row">
+					<div class="col-xs-12">
+						<h4>Apply Leave Form</h4>
+						<hr>
+					</div>
+				</div> -->
+				<div class="card">
+					<div class="card-body collapse in">
+						<div class="card-block">
+							<div class="form-body">
 			<div class="row">
 				<div class="col-lg-12">
 					<h3 class="page-header" align="Center">Compensatory Off Form <br>
@@ -251,15 +265,6 @@ function hideMessage()
 					
 				</div>
 			</div>
-			
-			<!-- <div class="row">
-				<div class="col-lg-12">
-					<h1 class="page-header"> Leave / CO / OD Form </h1>
-				</div>
-				/.col-lg-12
-			</div> -->
-			
-			
 			<div class="row">
                 <div class="col-lg-12">
                     <div class="panel panel-primary">
@@ -450,7 +455,13 @@ function hideMessage()
 							</div>
 							</div>
 							</div>
-							</div>
+						</div>
+					</div>
+				</div>
+				</section>
+			</div>
+		</div>
+	</div>
 </body>
 
 	   <!-- Bootstrap Core JavaScript -->

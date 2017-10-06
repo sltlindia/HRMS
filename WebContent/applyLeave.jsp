@@ -222,12 +222,12 @@ function checkInteger(id) {
 		<div class="content-wrapper">
 			<div class="content-body">
 				<section id="horizontal-form-layouts">
-				<div class="row">
+				<!-- <div class="row">
 					<div class="col-xs-12">
 						<h4>Apply Leave Form</h4>
 						<hr>
 					</div>
-				</div>
+				</div> -->
 				<div class="card">
 					<div class="card-body collapse in">
 						<div class="card-block">
@@ -327,6 +327,7 @@ function checkInteger(id) {
 
 
 														</thead>
+														<tbody>
 
 														<%
 															} else {
@@ -380,6 +381,7 @@ function checkInteger(id) {
 																	value="Submit">Submit</button>
 															</td>
 														</tr>
+														</tbody>
                         </form>
                         <%
                         	}
@@ -748,26 +750,26 @@ function checkInteger(id) {
 																</center>
 									</div>
 									<!-- ./col-lg-2 -->
-									<div class="col-lg-10">
+									<div class="col-lg-4">
 										<input type="text" class="form-control" rows="3"
 																	placeholder="Total of holidays " id="numdays4"
 																	name="numdays4" required readonly></input>
 									</div>
 									<!-- ./col-lg-10 -->
 									
-								</div>
-								<!-- ./row -->
+								<!-- </div>
+								./row
 								
 								
 								<br>
-								<div class="row">
+								<div class="row"> -->
 									<div class="col-lg-2">
 										<center>
 																	<label> Total Leave Day Count </label>
 																</center>
 									</div>
 									<!-- ./col-lg-2 -->
-									<div class="col-lg-10">
+									<div class="col-lg-4">
 										<input type="text" class="form-control" rows="3"
 																	placeholder="Total Days" id="numdays2" name="numdays"
 																	required readonly></input>
@@ -781,31 +783,27 @@ function checkInteger(id) {
 								<br>
 								<div class="row">
 									<div class="col-lg-2">
-										<center>
 																	<label> Contact Address </label>
-																</center>
 									</div>
 									<!-- ./col-lg-2 -->
-									<div class="col-lg-10">
+									<div class="col-lg-4">
 										<textarea class="form-control" id="contactAddress"
 																	placeholder="Alternate Contact Address"
 																	name="contactAddress" rows="2" required></textarea>
 									</div>
 									<!-- ./col-lg-10 -->
 									
-								</div>
-								<!-- ./row -->
+								<!-- </div>
+								./row
 
 
 								<br>
-								<div class="row">
-									<div class="col-lg-2">
-										<center>
+								<div class="row"> -->
+									<div class="col-lg-3">
 																	<label> Contact Number During Leave </label>
-																</center>
 									</div>
 									<!-- ./col-lg-2 -->
-									<div class="col-lg-10">
+									<div class="col-lg-3">
 										<input type="text" name="contactNumberDuringLeave"
 																	placeholder="Alternate Contact Number"
 																	id="contactNumberDuringLeave" class="form-control"
