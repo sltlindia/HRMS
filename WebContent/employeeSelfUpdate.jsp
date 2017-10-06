@@ -705,7 +705,6 @@ int employee_id = user.getEmployee_master_id();
     <script src="app-assets/js/scripts/ui/fullscreenSearch.min.js" type="text/javascript"></script>
     <!-- /build-->
     <!-- END ROBUST JS-->
->>>>>>> a6386ba58ef38b859ad8da397567c65f75dc6d0b
     <!-- BEGIN PAGE LEVEL JS-->
     <script src="app-assets/js/scripts/gallery/photo-swipe/photoswipe-script.min.js" type="text/javascript"></script>
     <script src="app-assets/js/scripts/pages/timeline.min.js" type="text/javascript"></script>
