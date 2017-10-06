@@ -51,8 +51,8 @@ public class AnnouncementDeleteServlet extends HttpServlet {
 	}
 	}
 	allDeleteSelfServiceDAO.announcementDelete(announcement_id);
-	request.setAttribute("deleteAnnouncement", "Announcement Successfully Deleted");
-	request.getRequestDispatcher("announcementDoneHRList.jsp").forward(request, response);
+	request.setAttribute("deleteAnnouncement", "Broadcast Successfully Deleted");
+	request.getRequestDispatcher("announcementList.jsp").forward(request, response);
 	
 	}
 	

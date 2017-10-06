@@ -234,11 +234,6 @@ SimpleDateFormat AppDateFormat = new SimpleDateFormat("dd-MM-yyyy");
 		</div>
 	</div>
 </div>
-				    
-				    
-				    
-
-
 <%@include file="footer.html"%>
 
 <script src="app-assets/js/core/libraries/jquery.min.js" type="text/javascript"></script>
@@ -282,11 +277,6 @@ SimpleDateFormat AppDateFormat = new SimpleDateFormat("dd-MM-yyyy");
     <!-- BEGIN PAGE LEVEL JS-->
     <script src="app-assets/js/scripts/tables/datatables/datatable-basic.min.js" type="text/javascript"></script>
     <!-- END PAGE LEVEL JS-->
-    
-    
-     
-  
-   
     <!-- BEGIN PAGE LEVEL JS-->
     <script src="app-assets/js/scripts/pickers/dateTime/picker-date-time.min.js" type="text/javascript"></script>
   	<script>
