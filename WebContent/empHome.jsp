@@ -8,9 +8,6 @@
 <%@include file="header.jsp"%>
 </head>
 <body>
-
-
-
 <!-- BEGIN VENDOR JS-->
 	<!-- build:js app-assets/js/vendors.min.js-->
 	<script src="app-assets/js/core/libraries/jquery.min.js"
