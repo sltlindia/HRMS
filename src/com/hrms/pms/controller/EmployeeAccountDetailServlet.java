@@ -30,7 +30,7 @@ public class EmployeeAccountDetailServlet extends HttpServlet {
 		EmployeeBean user = (EmployeeBean)session.getAttribute("user");
 		if(user!=null){
 			
-			int employee_master_id = Integer.parseInt(request.getParameter("employee_master_id"));
+			int employee_master_id = (Integer)request.getAttribute("employee_master_id");
 			String pan_no = request.getParameter("pan_no");
 			String adhar_no = request.getParameter("adhar_no");
 			String pf_no = request.getParameter("pf_no");
@@ -46,11 +46,7 @@ public class EmployeeAccountDetailServlet extends HttpServlet {
 			request.setAttribute("employee_master_id", employee_master_id);
 			
 			
-			if(request.getParameter("accountUpdate").equalsIgnoreCase("accountUpdate")){
-				request.getRequestDispatcher("employeeUpdate.jsp").forward(request, response);
-			}else{
-				request.getRequestDispatcher("newEmployee.jsp").forward(request, response);
-			}
+				request.getRequestDispatcher("familyDetailInsert").forward(request, response);
 			
 			
 		}else{
