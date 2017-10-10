@@ -1,3 +1,5 @@
+<%@page import="com.hrms.pms.bean.FamilyDetailBean"%>
+<%@page import="java.text.ParseException"%>
 <%@page import="com.hrms.pms.bean.FamilyRelationBean"%>
 <%@page import="com.hrms.pms.bean.EmployeeStatusBean"%>
 <%@page import="com.hrms.pms.bean.GraduateDegreeBean"%>
@@ -51,6 +53,7 @@
     <link rel="stylesheet" type="text/css" href="app-assets/css/core/menu/menu-types/vertical-overlay-menu.min.css">
     <link rel="stylesheet" type="text/css" href="app-assets/css/plugins/forms/wizard.min.css">
     <link rel="stylesheet" type="text/css" href="app-assets/css/plugins/pickers/daterange/daterange.min.css">
+    <link rel="stylesheet" type="text/css" href="app-assets/vendors/css/extensions/sweetalert.css">
     <!-- END Page Level CSS-->
     <!-- BEGIN Custom CSS-->
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
@@ -87,7 +90,24 @@
 <%@include file="header.jsp"%>
 </head>
 <body>
-<%AllListDAO allListDAO = new AllListDAO(); %>
+<%AllListDAO allListDAO = new AllListDAO();
+int employee_status_id = 0; 
+
+String action = "empDetail";
+if(request.getParameter("action") != null){
+	action = request.getParameter("action");
+}
+
+    if(request.getAttribute("employee_master_id") != null){
+			employee_master_id =(Integer) (request.getAttribute("employee_master_id"));
+	}else if(request.getParameter("employee_master_id") != null){
+		employee_master_id = Integer.parseInt(request.getParameter("employee_master_id"));
+	}
+
+EmployeeBean employeeBean = loginDAO1.getEmailIdEmployee(employee_master_id);
+int employee_code = employeeBean.getEmployee_code();
+
+%>
  <div class="app-content container center-layout mt-2">
       <div class="content-wrapper">
         <div class="content-header row">
@@ -127,14 +147,14 @@
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label for="firstName2">Employee Code :</label>
-                                           <input type="text" class="form-control" name="employeecode" id="employeecode" value="" required>
+                                           <input type="text" class="form-control" name="employeecode" id="employeecode" value="<%=employeeBean.getEmployee_code()%>" required>
                                         </div>
                                     </div>
 
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label for="lastName2">Grade Code :</label>
-                                            <input type="text" class="form-control" name="gradecode" id="gradecode" value="" required>
+                                            <input type="text" class="form-control" name="gradecode" id="gradecode" value="<%=employeeBean.getGrade_code()%>" required>
                                         </div>
                                     </div>
                                     
@@ -184,7 +204,7 @@
                                             <label for="firstName2">First Name :</label>
                                            <input type="text" class="form-control"
 												 name="firstname" id="firstname"
-												value=""  oninput="autoFill(1);" required>
+												value="<%=employeeBean.getFirstname()%>"  oninput="autoFill(1);" required>
                                         </div>
 								</div>
 								
@@ -193,7 +213,7 @@
 									<label >Middle Name</label>
 									<input type="text" class="form-control"
 												 name="middlename" id="middlename" 
-												value="" oninput="autoFill(2);" required>
+												value="<%=employeeBean.getMiddlename()%>" oninput="autoFill(2);" required>
 												</div>
 								</div>
 								<div class="col-md-4">
@@ -201,7 +221,7 @@
 									<label >Last Name</label>
 									<input type="text" class="form-control"
 												 name="lastname" id="lastname"
-												value="" oninput="autoFill(3);" required>
+												value="<%=employeeBean.getLastname()%>" oninput="autoFill(3);" required>
 												</div>
 								</div>
 							</div>
@@ -213,7 +233,7 @@
 								<div class="col-lg-8">
 									<label >Address</label>
 									<textarea class="form-control" rows="4"
-														name="address"></textarea>
+														name="address"><%=employeeBean.getAdress()%></textarea>
 								</div>
 								
 								
@@ -267,7 +287,7 @@
 										<label >Birth Date</label>&nbsp;&nbsp;&nbsp;&nbsp;
 										<input type="text" class="form-control"
 												name="birthdate" placeholder="yyyy-mm-dd" id="birthdate"
-												value=""
+												value="<%=employeeBean.getBirth_date()%>"
 												required>
 												</div>
 							</div>
@@ -277,7 +297,7 @@
 							<div class="form-group">
 								<label >Height</label>
 								<input type="text" class="form-control"
-												name="height" value="" required>
+												name="height" value="<%=employeeBean.getHeight()%>" required>
 												</div>
 							</div>
 							<!-- /.col-lg-4-->
@@ -286,7 +306,7 @@
 							<div class="form-group">
 										<label>Weight</label><br>
 										<input type="text" class="form-control"
-												name="weight" value="" required>
+												name="weight" value="<%=employeeBean.getWeight()%>" required>
 												</div>
 							</div>
 							<!-- /.col-lg-4 -->
@@ -301,7 +321,7 @@
 								<label style="margin-bottom: 0%; margin-top: 15px;">Identification Marks</label>
 								<input type="text" class="form-control"
 												name="identificationmarks"
-												value="" required>
+												value="<%=employeeBean.getIdentification_marks()%>" required>
 												</div>
 							</div>
 							<!-- /.col-lg-4 -->
@@ -310,7 +330,7 @@
 							<div class="form-group">
 								<label style="margin-bottom: 0%; margin-top: 15px;">Languages</label>
 								<input type="text" class="form-control"
-												name="languages" value="" required>
+												name="languages" value="<%=employeeBean.getLanguages()%>" required>
 												</div>
 							</div>
 							<!-- /.col-lg-4 -->
@@ -319,7 +339,7 @@
 							<div class="form-group">
 										<label style="margin-bottom: 0%; margin-top: 15px;">Blood Group</label><br>
 										<input type="text" class="form-control"
-												name="bloodgroup" value="" required>
+												name="bloodgroup" value="<%=employeeBean.getBlood_group()%>" required>
 												</div>
 							</div>
 							<!-- /.col-lg-4 -->
@@ -333,21 +353,21 @@
 							<div class="col-lg-4">
 										<label style="margin-bottom: 0%; margin-top: 15px;">Mobile No</label><br>
 										<input type="text" class="form-control"
-												name="mobileno" value="" required>
+												name="mobileno" value="<%=employeeBean.getMob_num()%>" required>
 							</div>
 							<!-- /.col-lg-4 -->
 					
 							<div class="col-lg-4">
 								<label style="margin-bottom: 0%; margin-top: 15px;">Official Email-id</label>
 								<input type="email" class="form-control"
-												name="emailid" value="" required>
+												name="emailid" value="<%=employeeBean.getEmail_id()%>" required>
 							</div>
 							<!-- /.col-lg-4 -->
 							
 							<div class="col-lg-4">
 								<label style="margin-bottom: 0%; margin-top: 15px;">Personal Email-id</label>
 								<input type="email" class="form-control"
-												name="per_emailid" value="" required>
+												name="per_emailid" value="<%=employeeBean.getPer_emailid()%>" required>
 							</div>
 							<!-- /.col-lg-4 -->
 							
@@ -365,9 +385,13 @@
 												<%
 													List<BasicQualificationBean> listOfBasicQualification = allListDAO.getListOfBasicQualification();
 													for (BasicQualificationBean b : listOfBasicQualification) {
-												%>
+														if(employeeBean.getBasic_qualification().equalsIgnoreCase(b.getBasic_qualification())){												%>
+													<option value="<%=b.getBasic_qualification()%>" selected="selected"><%=b.getBasic_qualification()%></option>
+													<%}else{ %>
 													<option value="<%=b.getBasic_qualification()%>"><%=b.getBasic_qualification()%></option>
-												<%
+													<%} %>
+
+													<%
 													
 													}
 												%>
@@ -388,8 +412,12 @@
 										<%
 											List<SpecialQualificationBean> listOfSpecialQualification = allListDAO.getListOfSpecialQualification();
 											for (SpecialQualificationBean s : listOfSpecialQualification) {
+												if(s.getSpecial_qualification().equalsIgnoreCase(employeeBean.getSpecial_qualification())){
 										%>
+											<option value="<%=s.getSpecial_qualification()%>" selected="selected"><%=s.getSpecial_qualification()%></option>
+											<%}else{ %>
 											<option value="<%=s.getSpecial_qualification()%>"><%=s.getSpecial_qualification()%></option>
+											<%} %>
 										<%
 											
 											}
@@ -406,7 +434,7 @@
 							<div class="col-lg-4">
 										<label style="margin-bottom: 0%; margin-top: 15px;">Location</label>
 										<input type="text" class="form-control"
-												name="location" value="" required>
+												name="location" value="<%=employeeBean.getLocation()%>" required>
 							</div>
 							<!-- /.col-lg-4 -->
 							
@@ -425,11 +453,16 @@
 													<%
 														CompanyListDAO companyListDAO = new CompanyListDAO();
 													int company_id = 0;
-															List<CompanyListBean	> listOfCompanyList = companyListDAO.getListOfCompanyList();
+															List<CompanyListBean> listOfCompanyList = companyListDAO.getListOfCompanyList();
 
 															for (CompanyListBean companyListBean : listOfCompanyList) {
+																if(companyListBean.getCompany_list_id() == employeeBean.getCompanyListBean().getCompany_list_id()){
 													%>
+													<option value="<%=companyListBean.getCompany_list_id()%>" selected="selected"><%=companyListBean.getCompany_name()%></option>
+													<%}else{ %>
 													<option value="<%=companyListBean.getCompany_list_id()%>"><%=companyListBean.getCompany_name()%></option>
+													<%} %>
+													
 													<%
 														
 															}
@@ -449,9 +482,16 @@
 													int id = 0;
 															List<DepartmentBean> listOfDepartment = departmentDAO.getListOfDepartment();
 															for (DepartmentBean departmentBean : listOfDepartment) {
+																if(departmentBean.getDepartment_id() == employeeBean.getDepartmentBean().getDepartment_id()){
 
 													%>
+													<option value="<%=departmentBean.getDepartment_id()%>" selected="selected"><%=departmentBean.getDepartment_name()%></option>
+													
+													<%}else{ %>
+													
 													<option value="<%=departmentBean.getDepartment_id()%>"><%=departmentBean.getDepartment_name()%></option>
+													
+													<%} %>
 													<%
 															}
 													%>
@@ -469,11 +509,14 @@
 														AllListCoreHrDAO allListCoreHrDAO = new AllListCoreHrDAO();
 															List<SubDepartmentBean> listOfSubDepartment = allListCoreHrDAO.getListOfSubDepartent();
 															for (SubDepartmentBean subDepartmentBean : listOfSubDepartment) {
-
+															if(subDepartmentBean.getSub_department_name() == employeeBean.getSub_department()){
 																	
 													%>
-													
+													<option value="<%=subDepartmentBean.getSub_department_name()%>" selected="selected"><%=subDepartmentBean.getSub_department_name()%></option>
+													<%}else{ %>
 													<option value="<%=subDepartmentBean.getSub_department_name()%>"><%=subDepartmentBean.getSub_department_name()%></option>
+													<%} %>
+													
 													<%
 														}
 													%>
@@ -502,9 +545,14 @@
 															List<RoleBean> listofRole = allListDAO1.getListOfRole();
 
 															for (RoleBean roleBean : listofRole) {
+																if(roleBean.getRole_id() == employeeBean.getRoleBean().getRole_id()){
 
 													%>
+													<option value="<%=roleBean.getRole_id()%>" selected="selected"><%=roleBean.getRole_type()%></option>
+													<%}else{ %>
 													<option value="<%=roleBean.getRole_id()%>"><%=roleBean.getRole_type()%></option>
+													<%} %>
+													
 													<%
 															}
 													%>
@@ -525,8 +573,13 @@
 													String under_manager_id = null;
 															List<ManagerBean> ListOfManager = allListDAO2.getListOfManager();
 															for (ManagerBean managerBean : ListOfManager) {
+																if(managerBean.getManager_id() == employeeBean.getManagerBean().getManager_id()){
 													%>
+													<option value="<%=managerBean.getManager_id()%>" selected="selected"><%=managerBean.getManager_name()%></option>
+													<%}else{ %>
 													<option value="<%=managerBean.getManager_id()%>"><%=managerBean.getManager_name()%></option>
+													<%} %>
+
 													<%
 															}
 													%>
@@ -539,7 +592,7 @@
 												<input type="text" class="form-control"
 												name="joiningdate" id="joiningdate" placeholder="yyyy-mm-dd"
 												onchange="checkedstartDate();days_between();"
-												value="" reqiured/>
+												value="<%=employeeBean.getJoining_date()%>" reqiured/>
 									</div>
 									<!-- /.col-lg-4 -->
 								
@@ -553,7 +606,7 @@
 									<div class="col-lg-4">
 										<label style="margin-bottom: 0%; margin-top: 15px;">Resource Cost</label>
 										<input type="text" class="form-control"
-												name="resourcecost" value=""
+												name="resourcecost" value="<%=employeeBean.getResource_cost()%>"
 												required>
 									</div>
 									<!-- /.col-lg-4 -->
@@ -561,7 +614,7 @@
 									<div class="col-lg-4">
 												<label style="margin-bottom: 0%; margin-top: 15px;">Gross Salary</label><br>
 												<input type="text" class="form-control"
-												name="grosssalary" value=""
+												name="grosssalary" value="<%=employeeBean.getGross_salary()%>"
 												required>
 									</div>
 									<!-- /.col-lg-4 -->
@@ -576,8 +629,13 @@
 													AllListDAO allListDAO5 = new AllListDAO();
 														List<EmployeeStatusBean> listOfEmployeeStatus = allListDAO5.getListOfEmployeeStatus();
 														for (EmployeeStatusBean employeeStatusBean : listOfEmployeeStatus) {
+															if(employeeBean.getEmployeeStatusBean().getEmployee_status_id() == employeeStatusBean.getEmployee_status_id()){
 
-																%>		<option value="<%=employeeStatusBean.getEmployee_status_id()%>"><%=employeeStatusBean.getEmployee_status_name()%></option>
+																%>		<option value="<%=employeeStatusBean.getEmployee_status_id()%>" selected="selected"><%=employeeStatusBean.getEmployee_status_name()%></option>
+																	<%}else{ %>
+																		<option value="<%=employeeStatusBean.getEmployee_status_id()%>"><%=employeeStatusBean.getEmployee_status_name()%></option>
+																	<%} %>
+																	
 																	<%}
 																%>
 											</select>
@@ -600,8 +658,12 @@
 												<%
 													List<GraduateDegreeBean> listOfGraduateDegree = allListDAO.getListOfGraduateDegree();
 													for (GraduateDegreeBean g : listOfGraduateDegree) {
+														if(g.getGraduate_degree().equalsIgnoreCase(employeeBean.getGraduate_degree())){
 												%>
 													<option value="<%=g.getGraduate_degree()%>"><%=g.getGraduate_degree()%></option>
+													<%}else{ %>
+													<option value="<%=g.getGraduate_degree()%>" selected="selected"><%=g.getGraduate_degree()%></option>
+													<%} %>
 												<%
 													
 													}
@@ -624,8 +686,12 @@
 												<%
 													List<MasterDegreeBean> listOfMasterDegree = allListDAO.getListOfMasterDegree();
 													for (MasterDegreeBean m : listOfMasterDegree) {
+														if(m.getMaster_degree().equalsIgnoreCase(employeeBean.getMaster_degree())){
 												%>
+													<option value="<%=m.getMaster_degree()%>" selected="selected"><%=m.getMaster_degree()%></option>
+													<%}else{ %>
 													<option value="<%=m.getMaster_degree()%>"><%=m.getMaster_degree()%></option>
+													<%} %>
 												<%
 													
 													}
@@ -639,7 +705,7 @@
 									<div class="col-lg-3">
 										<label style="margin-bottom: 0%; margin-top: 15px;">Nationality</label><br>
 										<input type="text" class="form-control"
-												name="nationality" value="" required>
+												name="nationality" value="<%=employeeBean.getNationality() %>" required>
 							</div>
 							<!-- /.col-lg-4 -->	
 							
@@ -647,7 +713,7 @@
 								<div class="col-lg-3">
 										<label style="margin-bottom: 0%; margin-top: 15px;">CUG Number</label><br>
 										<input type="text" class="form-control"
-												name="cug_num" value="" required>
+												name="cug_num" value="<%=employeeBean.getCug_num() %>" required>
 							</div>
 							<!-- /.col-lg-4 -->	
 									
@@ -667,8 +733,12 @@
 												<%
 													List<ITICourseBean> listOfITICourse = allListDAO.getListOfITICourse();
 													for (ITICourseBean i : listOfITICourse) {
+														if(i.getIti_course().equalsIgnoreCase(employeeBean.getIti_course())){
 												%>
+													<option value="<%=i.getIti_course()%>" selected="selected"><%=i.getIti_course()%></option>
+													<%}else{ %>
 													<option value="<%=i.getIti_course()%>"><%=i.getIti_course()%></option>
+													<%} %>
 												<%
 													
 													}
@@ -691,8 +761,12 @@
 												<%
 													List<DiplomaCourseBean> listOfDiplomaCourse = allListDAO.getListOfDiplomaCourse();
 													for (DiplomaCourseBean d : listOfDiplomaCourse) {
+														if(d.getDiploma_course().equalsIgnoreCase(employeeBean.getDiploma_course())){
 												%>
+													<option value="<%=d.getDiploma_course()%>" selected="selected"><%=d.getDiploma_course()%></option>
+													<%}else{ %>
 													<option value="<%=d.getDiploma_course()%>"><%=d.getDiploma_course()%></option>
+													<%} %>
 												<%
 													
 													}
@@ -706,7 +780,7 @@
 									<div class="form-group">
 										<label style="margin-bottom: 0%; margin-top: 15px;">Special Interest</label><br>
 										<input type="text" class="form-control"
-												name="special_interest" value="" required>
+												name="special_interest" value="<%=employeeBean.getSpecial_interest()%>" required>
 												</div>
 							
 							</div>
@@ -724,17 +798,56 @@
                             <!-- Step 2 -->
                             <h6>Step 2</h6>
                             <fieldset>
+                            <% String panNo = "-";
+                                    String addharNo = "-";
+                                    String pf = "-";
+                                    String uanNo = "-";
+                                    String esicNo = "-";
+                                    String bankAccNo = "-";
+                                    String bankName = "-";
+                                    String gradeCode = "-";
+                                    String ifscCode = "-";
+                                    
+                                    if(employeeBean.getPan_no() != null) {
+                                    	panNo = employeeBean.getPan_no();
+                                    }
+                                    if(employeeBean.getAdhar_no() != null){
+                                    	addharNo = employeeBean.getAdhar_no();
+                                    }
+                                    if(employeeBean.getPf_uan_no() != null){
+                                    	uanNo = employeeBean.getPf_uan_no();
+                                    }
+                                    if(employeeBean.getEsic_no() != null){
+                                    	esicNo = employeeBean.getEsic_no();
+                                    }
+                                    if(employeeBean.getBank_name() != null){
+                                    	bankName = employeeBean.getBank_name();
+                                    }
+                                    if(employeeBean.getBank_acount_no() != null){
+                                    	bankAccNo = employeeBean.getBank_acount_no();
+                                    }
+                                    if(employeeBean.getGrade_code() != null){
+                                    	gradeCode = employeeBean.getGrade_code() ;
+                                    }
+                                    if(employeeBean.getPf_no() != null){
+                                    	pf = employeeBean.getPf_no() ;
+                                    }
+                                    if(employeeBean.getIfsc_code() != null){
+                                    	ifscCode = employeeBean.getIfsc_code();
+                                    }
+                                    
+                                    %> 
                               <input type="hidden" name="accountUpdate" value="">
                                  <div class="row">
                                     	<div class="col-md-6">
                                     		<label>PAN Card No.</label>
                                     		<input type="text" class="form-control"
-												name="pan_no" value="" >
+												name="pan_no" value="<%=panNo %>" >
                                     	</div>
                                     	<div class="col-md-6">
                                     		<label>Adhaar Card No.</label>
                                     		<input type="text" class="form-control"
-												name="adhar_no" id="adhar_no" value="" onchange="adharCard(this.id);">
+												name="adhar_no" id="adhar_no" value="<%=addharNo%>" onchange="adharCard(this.id);">
                                     	</div>
                                     </div>
                                     <br>
@@ -744,12 +857,12 @@
                                     	<div class="col-md-6">
                                     		<label>PF No.</label>
                                     		<input type="text" class="form-control"
-												name="pf_no" value="" >
+												name="pf_no" value="<%=pf%>" >
                                     	</div>
                                     	<div class="col-md-6">
                                     		<label>PF UAN No.</label>
                                     		<input type="text" class="form-control"
-												name="pf_uan_no" value="" >
+												name="pf_uan_no" value="<%=uanNo%>" >
                                     	</div>
                                     </div>
                                     <br>
@@ -758,7 +871,7 @@
                                     	<div class="col-md-6">
                                     		<label>ESIC No.</label>
                                     		<input type="text" class="form-control"
-												name="esic_no" value="" >
+												name="esic_no" value="<%=esicNo %>" >
                                     	</div>
                                     </div>
                                     <br>
@@ -768,12 +881,12 @@
                                     	<div class="col-md-6">
                                     		<label>Bank Name</label>
                                     		<input type="text" class="form-control"
-												name="bank_name" value="" >
+												name="bank_name" value="<%=bankName %>" >
                                     	</div>
                                     	<div class="col-md-6">
                                     		<label>IFSC Code</label>
                                     		<input type="text" class="form-control" id="ifsc_code"
-												name="ifsc_code" value="" onchange="ifcsCode(this.id)">
+												name="ifsc_code" value="<%=ifscCode%>" onchange="ifcsCode(this.id)">
                                     	</div>
                                     	
                                     	
@@ -783,7 +896,7 @@
                                     	<div class="col-md-6">
                                     		<label>Bank Account No.</label>
                                     		<input type="text" class="form-control"
-												name="bank_acount_no" value="" >
+												name="bank_acount_no" value="<%=bankAccNo %>" >
                                     	</div>
                                     	
                                     </div>
@@ -792,6 +905,10 @@
                             <!-- Step 3 -->
                             <h6>Step 3</h6>
                             <fieldset>
+                            <input type="hidden" id="row" placeholder="Enter Item Name" value="2" />
+                            <div class="col-md-1" style="padding-right: 0px; padding-left: 0px;">
+								<i class="icon icon-ios-plus" id="irow" style="cursor: pointer;font-size: 30px;" onclick="addValue();"></i>
+							</div>
                                 <table class="table table-bordered" id="mtable">
 											<thead>
 												<tr>
@@ -806,29 +923,84 @@
 												
 											</thead>
 											<tbody>
+											<% 
+											int familyMenberCount = 0;
+											List<FamilyDetailBean> listOfFamilyMember = allListDAO.getListOfFamilyMember(employee_master_id); 
+											familyMenberCount =  listOfFamilyMember.size()+2 ;  
+												for(int i = 0 ; i < listOfFamilyMember.size() ; i++){
+													FamilyDetailBean f = listOfFamilyMember.get(i);
+											%>
 												<tr>
-													<td>1</td>
-													<td><input type="text" class="form-control" name="name"></td>
+													<td><%=i+1 %><input type="hidden" name="family_detail_id" value="<%=f.getFamily_detail_id()%>"></td>
+													<td><input type="text" class="form-control" name="name" value="<%=f.getName()%>"></td>
 													<td>
 													<select class="form-control" name="relation" id="relation">
+														<option value="0">Select Relation</option>
+															<%
+																List<FamilyRelationBean> listOfFamilyRelation =  allListDAO.getListOfFamilyRelation();
+																for(FamilyRelationBean r : listOfFamilyRelation){
+																	if(r.getFamily_relation_id() == f.getFamilyRelationBean().getFamily_relation_id()){
+		
+															%>	
+																<option value="<%=r.getFamily_relation_id()%>" selected="selected"><%=r.getRelation()%></option>
+															<%}else{ %>	
+																<option value="<%=r.getFamily_relation_id()%>"><%=r.getRelation()%></option>
+															<%} %>
+																
+															<%}%>
+													</select>
+													</td>
+													<td>
+													
+													<%
+													String dob = null;
+													try {
+														  
+														SimpleDateFormat formater = new SimpleDateFormat("dd-MM-yyyy");
+														SimpleDateFormat AppDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+														Date result = AppDateFormat.parse(f.getDob());
+														dob = formater.format(result);
+														
+														
+													} catch (ParseException e1) {
+														e1.printStackTrace();
+													}	
+													%>
+													
+														<input type="text" class="form-control" name="dob" placeholder="dd-mm-yyyy" value="<%=dob%>">
+													</td>
+													<td><input type="text" class="form-control" name="occupation" value="<%=f.getOccupation()%>"></td>
+													<td><input type="text" class="form-control" name="contact_number" value="<%=f.getContact_number()%>"></td>
+													<td><input type="text" class="form-control" name="adhaar_number" value="<%=f.getAdhaar_number()%>" onchange="adharCard(this.id);"></td>
+													<input type="hidden" name="update">
+												</tr>
+											<%} %>
+											
+											
+											<tr>
+													<td><%=listOfFamilyMember.size()+1 %></td>
+													<td><input type="text" class="form-control" name="name"></td>
+													<td>
+														<select class="form-control" name="relation" id="relation">
 														<option value="0">-Relation-</option>
 															<%
 																List<FamilyRelationBean> listOfFamilyRelation =  allListDAO.getListOfFamilyRelation();
-																for(FamilyRelationBean f : listOfFamilyRelation){
+																for(FamilyRelationBean r : listOfFamilyRelation){
 		
 															%>		
-																<option value="<%=f.getFamily_relation_id()%>"><%=f.getRelation()%></option>
+																<option value="<%=r.getFamily_relation_id()%>"><%=r.getRelation()%></option>
 															<%}%>
 													</select>
-													
-													<td><input type="text" class="dateField" name="dob" placeholder="yyyy-MM-dd"></td>
+													</td>
+													<td><input type="text" class="form-control" placeholder="dd-mm-yyyy" name="dob"></td>
 													<td><input type="text" class="form-control" name="occupation"></td>
 													<td><input type="text" class="form-control" name="contact_number"></td>
-													<td><input type="text" class="form-control" name="adhaar_number" id="adhaarNumber" onchange="adharCard(this.id);"></td>
+													<td><input type="text" class="form-control" name="adhaar_number" id="adhaar_number" onchange="adharCard(this.id);"></td>
 													<input type="hidden" name="insert">
 												</tr>
 											</tbody>
 										</table>
+
                             </fieldset>
 
                         </form>
@@ -873,6 +1045,8 @@
     <script src="app-assets/js/core/app-menu.min.js" type="text/javascript"></script>
     <script src="app-assets/js/core/app.min.js" type="text/javascript"></script>
     <script src="app-assets/js/scripts/ui/fullscreenSearch.min.js" type="text/javascript"></script>
+    <script src="app-assets/js/scripts/extensions/sweet-alerts.min.js" type="text/javascript"></script>
+     <script src="app-assets/vendors/js/extensions/sweetalert.min.js" type="text/javascript"></script>
     <!-- /build-->
     <!-- END ROBUST JS-->
     <!-- BEGIN PAGE LEVEL JS-->
@@ -888,8 +1062,22 @@
 	  ga('send', 'pageview');
 
 	</script>
+	<script type="text/javascript">
+	var colCount = 1;
+	var count = <%=familyMenberCount%>;
+	function addValue(){
+	    if($('#row').val()){
+	        $('#mtable tbody').append($("#mtable tbody tr:last").clone());
+	        $('#mtable tbody tr:last :checkbox').attr('checked',false);
+	        $('#mtable tbody tr:last td:first').html($('#row').val());
+	        count++;
+	        document.getElementById("row").value=count;
+	    }else{alert('Enter Text');}
+	};
 	
+	</script>
 	
 	 <script src="app-assets/js/scripts/forms/wizard-steps.min.js" type="text/javascript"></script>
+	 
 </body>
 </html>

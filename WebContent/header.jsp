@@ -1375,8 +1375,7 @@
 										<li><a href="newEmployee.jsp" class="dropdown-item"><i></i>Employee
 												List</a>
 											<ul class="mega-menu-sub">
-												<li><a href="employeeList.jsp" class="dropdown-item"><i></i>All
-														Employees</a></li>
+												<li><a href="employeeList.jsp" class="dropdown-item"><i></i>Department Wise</a></li>
 												<li><a href="employeeListCompanyWise.jsp"
 													class="dropdown-item"><i></i>Company Wise</a></li>
 											</ul></li>

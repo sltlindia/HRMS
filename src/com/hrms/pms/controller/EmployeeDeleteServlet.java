@@ -16,7 +16,7 @@ public class EmployeeDeleteServlet extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		int employee_dummy_id= Integer.parseInt(request.getParameter("employee_dummy_id"));
-		
+		System.out.println(employee_dummy_id);
 		HttpSession session = request.getSession();
 		EmployeeBean user = (EmployeeBean)session.getAttribute("user");
 		if(user!=null){
@@ -26,13 +26,9 @@ public class EmployeeDeleteServlet extends HttpServlet {
 		
 		if(result == true){
 			System.out.println("deleted");
-			request.getRequestDispatcher("employeeList.jsp").forward(request, response);
-			return;
-		}
-		
-		else{
-				request.setAttribute("sessionExpired", "Your session is expired...Please login again...");
-				request.getRequestDispatcher("login.jsp").forward(request, response);
+			response.getWriter().print("success");
+		}else{
+			response.getWriter().print("error");
 			}
 		
 		}
