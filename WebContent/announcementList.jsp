@@ -637,7 +637,7 @@
 										</h5>
 										<i class="icon icon-eye4"
 											style="color: #3BAFDA;"></i><b> : View Broadcast </b>
-										&nbsp;&nbsp;&nbsp;<i class="ficon icon-edit""
+										&nbsp;&nbsp;&nbsp;<i class="ficon icon-edit"
 											style="color: #3BAFDA;"></i><b> : Update Broadcast </b>
 										&nbsp;&nbsp;&nbsp;<i class="ficon icon-trash-o"
 											style="color: red;"></i><b> : Delete Broadcast</b>

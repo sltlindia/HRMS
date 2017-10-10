@@ -34,11 +34,6 @@
 <title>SLTL</title>
 <link rel="apple-touch-icon" sizes="60x60"
 	href="app-assets/images/ico/apple-icon-60.png">
-<!--  <link rel="apple-touch-icon" sizes="76x76" href="app-assets/images/ico/apple-icon-76.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="app-assets/images/ico/apple-icon-120.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="app-assets/images/ico/apple-icon-152.png"> -->
-<!--  <link rel="shortcut icon" type="image/x-icon" href="https://pixinvent.com/bootstrap-admin-template/robust/app-assets/images/ico/favicon.ico">
-	    <link rel="shortcut icon" type="image/png" href="app-assets/images/ico/favicon-32.png"> -->
 
 <link rel="shortcut icon" sizes="152x152"
 	href="app-assets/images/ico/titleIcon.png">
@@ -1560,7 +1555,7 @@
 											<ul class="mega-menu-sub">
 												<li><a href="leaveListManager.jsp"
 													class="dropdown-item"><i></i>Leave / CO / OD Status</a></li>
-												<li><a href="gatePassListManager.jsp"
+												<li><a href="masterINOUT.jsp"
 													class="dropdown-item"><i></i>IN / OUT Status</a></li>
 											</ul></li>
 										<%} %>
