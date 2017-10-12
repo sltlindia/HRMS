@@ -104,7 +104,8 @@
 														<select class="form-control" name="leavetypeselect"
 															id="leavetypeselect" onchange="redirect(this.value);"
 															required>
-															<option value="applyLeave.jsp" selected="selected">
+															<option value="">Select Form</option>
+															<option value="applyLeave.jsp">
 																Leave</option>
 															<option value="leaveCO.jsp">CO</option>
 															<option value="leaveOD.jsp">OD</option>

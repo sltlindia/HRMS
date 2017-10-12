@@ -1,0 +1,456 @@
+<script type="text/javascript">
+FusionCharts.ready(function () {
+    var cnstrctnPlan = new FusionCharts({
+        type: 'gantt',
+        renderAt: 'chartContainer',
+        width: '750',
+        height: '500',
+        dataFormat: 'json',
+        dataSource: {
+            "chart": {
+                "caption": "Construction management of a new store in Denver",
+                "subcaption": "Planned vs Actual",                
+                "dateformat": "dd/mm/yyyy",
+                "outputdateformat": "ddds mns yy",
+                "ganttwidthpercent": "60",
+                "ganttPaneDuration": "40",
+                "ganttPaneDurationUnit": "d",
+                "plottooltext": "$processName{br} $label starting date $start{br}$label ending date $end",
+                "legendBorderAlpha": "0",
+                "legendShadow": "0",
+                "usePlotGradientColor": "0",
+                "showCanvasBorder": "0",
+                "flatScrollBars": "1",
+                "gridbordercolor": "#333333",
+                "gridborderalpha": "20",
+                "slackFillColor": "#e44a00",
+                "taskBarFillMix": "light+0"
+            },
+            "categories": [
+                {
+                    "bgcolor": "#999999",
+                    "category": [
+                        {
+                            "start":"\"<%=projStartDate%>\"",
+                            "end": "\"<%=projEndDate%>\"",
+                            "label": "Months",
+                            "align": "middle",
+                            "fontcolor": "#ffffff",
+                            "fontsize": "12"
+                        }
+                    ]
+                },
+                {
+                    "bgcolor": "#999999",
+                    "align": "middle",                                                        
+                    "fontcolor": "#ffffff",
+                    "fontsize": "12",
+                    "category": [
+<%for(String l : monthWiseDate){
+
+	String[] split = l.split(",");
+
+	String s = split[0];
+	String e = split[1];
+	String m = split[2];
+	%>      
+	{
+	    "start": "<%=s%>",
+	    "end": "<%=e%>",
+	    "label": "<%=m%>"                            
+	},
+	<%}%>
+	]
+	},
+	{
+                    "bgcolor": "#ffffff",
+                    "fontcolor": "#333333",
+                    "fontsize": "11",
+                    "align": "center",
+                    "category": [
+                         <%for(int z=0;z<weekDates.size();z++){
+                         	String merge = weekDates.get(z);
+                         	String[] split = merge.split(",");
+                         	
+                         	String ws = split[0];
+                         	String wd = split[1];
+                         %>
+                        {
+                            "start":"<%=ws%>",
+                            "end": "<%=wd%>",
+                            "label": "Week <%=z+1%>"
+                        },
+                        <%}%>
+                    ]
+                }
+            ],
+            "processes": {
+                "headertext": "Task",
+                "fontcolor": "#000000",
+                "fontsize": "11",
+                "isanimated": "1",
+                "bgcolor": "#6baa01",
+                "headervalign": "bottom",
+                "headeralign": "left",
+                "headerbgcolor": "#999999",
+                "headerfontcolor": "#ffffff",
+                "headerfontsize": "12",
+                "align": "left",
+                "isbold": "1",
+                "bgalpha": "25",
+                "process": [
+                   <%for(int k=0;k<taskArrayList.size();k++){
+                   	String taskName = taskArrayList.get(k);
+                   %>
+                    {
+                        "label":"<%=taskName%>",
+                        "id": "<%=k+1%>",
+                        "hoverBandColor": "#e44a00",
+                        "hoverBandAlpha": "40"
+                    },
+                    <%}%>
+                ]
+            },
+            "datatable": {
+                "showprocessname": "1",
+                "namealign": "left",
+                "fontcolor": "#000000",
+                "fontsize": "10",
+                "valign": "right",
+                "align": "center",
+                "headervalign": "bottom",
+                "headeralign": "center",
+                "headerbgcolor": "#999999",
+                "headerfontcolor": "#ffffff",
+                "headerfontsize": "12",                
+                "datacolumn": [
+                    {
+                        "bgcolor": "#eeeeee",
+                        "headertext": "Planned{br}Start{br}Date",
+                        "text": [
+                            <%for(String tsd : plannedStartDateArrayList){
+                            	 String[] split = tsd.split(",");
+                                 String ptsd = split[0];
+                                 String atsd = split[1];
+                                 
+                                 Date actualEnd = null;
+                                 Date plannedEnd = null;
+                                 if(!atsd.equalsIgnoreCase("null")){
+                                 SimpleDateFormat AppDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                                 SimpleDateFormat formater = new SimpleDateFormat("dd-MMM-yyyy");
+                               	plannedEnd = formater.parse(ptsd);
+         						actualEnd = formater.parse(atsd);
+                                 }
+                                 
+                            %>     
+                            <%if(!atsd.equalsIgnoreCase("null")){
+								if(actualEnd.after(plannedEnd)){
+								%>
+									{
+                                	 "label": "<%=ptsd%>",
+                                	 "bgcolor": "#e44a00",
+                                     "bgalpha": "40"
+                                     },
+                                     <%}else{%>
+                                     {
+	                                	 "label": "<%=ptsd%>"
+	                                     },
+                                     <%}%>
+								<%}else{%>
+                             	{
+                            	 "label": "<%=ptsd%>"
+                                 },
+                                 <%}%>
+                           <%}%>
+                        ]
+                    },
+                    {
+                        "bgcolor": "#eeeeee",
+                        "headertext": "Planned{br}End{br}Date",
+                        "text": [
+                                 <%for(String ted : plannedEndDateArrayList){
+                                 String[] split = ted.split(",");
+                                 String pted = split[0];
+                                 String ated = split[1];
+                                 Date actualEnd = null;
+                                 Date plannedEnd = null;
+                                 if(!ated.equalsIgnoreCase("null")){
+                                 SimpleDateFormat AppDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                                 SimpleDateFormat formater = new SimpleDateFormat("dd-MMM-yyyy");
+                               	plannedEnd = formater.parse(pted);
+         						actualEnd = formater.parse(ated);
+                                 }
+                                 %>  
+									<%if(!ated.equalsIgnoreCase("null")){
+									if(actualEnd.after(plannedEnd)){
+									%>
+										{
+	                                	 "label": "<%=pted%>",
+	                                	 "bgcolor": "#e44a00",
+	                                     "bgalpha": "40"
+	                                     },
+	                                     <%}else{%>
+	                                     {
+		                                	 "label": "<%=pted%>"
+		                                     },
+	                                     <%}%>
+									<%}else{%>
+                                 	{
+                                	 "label": "<%=pted%>"
+                                     },
+                                     <%}%>
+                               <%}%>
+                        ]
+                    }                    
+                ]
+            },
+            "tasks": {
+            	"task": [
+                         <%for(int j=0;j<mergeOfDateArrayList.size();j++){
+                         	String dataOfMergeDate = mergeOfDateArrayList.get(j);
+                         	String[] split = dataOfMergeDate.split(",");
+                         	String psd = split[0];
+                      	String ped = split[1];
+                      	String asd = split[2];
+                      	String aed = split[3];
+                      	
+                      	Date plannedEnd = null;
+                      	Date actualEnd =null;
+                      	Date plannedEnd1 = null;
+                      	Date actualEnd1 =null;
+                      	
+                      	String startDate11 = null;
+                      	String endDate11 = null;
+                      	 int numberOfDays = 0;
+                      	
+                      	
+                      	if(aed.equalsIgnoreCase("null")){
+                      	}else{
+                      		SimpleDateFormat formater = new SimpleDateFormat("dd-MMM-yyyy");
+                          	plannedEnd = formater.parse(ped);
+    						actualEnd = formater.parse(aed);
+    						
+    						SimpleDateFormat AppDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+							startDate11 = AppDateFormat.format(plannedEnd);
+							endDate11 = AppDateFormat.format(actualEnd);
+							
+							
+							SimpleDateFormat formater1 = new SimpleDateFormat("yyyy-MM-dd");
+                          	plannedEnd1 = formater1.parse(startDate11);
+    						actualEnd1 = formater1.parse(endDate11);
+    						
+    						
+    							 Calendar cal1 = Calendar.getInstance();
+							    Calendar cal2 = Calendar.getInstance();
+							    cal1.setTime(plannedEnd1);
+								 cal2.setTime(actualEnd1);
+								 
+								 while (cal1.before(cal2)) {
+								            numberOfDays++;
+								        cal1.add(Calendar.DATE,1);
+								    }
+                      	}
+                      	
+                         %>
+                          {
+                        "label": "Planned",
+                        "processid": "<%=j+1%>",
+                        "start": "<%=psd%>",
+                        "end": "<%=ped%>",
+                        "id": "<%=j+1%>-1",
+                        "color": "#008ee4",
+                        "height": "32%",
+                        "toppadding": "12%"
+                    },
+                    <%
+                    if(!aed.equalsIgnoreCase("null")){
+                    	if(plannedEnd.before(actualEnd)){%>
+                    
+                    {
+                        "label": "Actual",
+                        "processid": "<%=j+1%>",
+                        "start": "<%=asd%>",
+                        "end": "<%=ped%>",
+                        "id": "<%=j+1%>",
+                        "color": "#6baa01",                        
+                        "toppadding": "56%",
+                        "height": "32%",
+                        
+                    },
+                    {
+                        "label": "Delay",
+                        "processid": "<%=j+1%>",
+                        "start": "<%=ped%>",
+                        "end": "<%=aed%>",
+                        "id": "<%=j+1%>-2",
+                        "color": "#e44a00",                        
+                        "toppadding": "56%",
+                        "height": "32%",
+                        "tooltext": "Delayed by <%=numberOfDays%> days.",
+                    },
+                    <%}else{%>
+                    {
+                        "label": "Actual",
+                        "processid": "<%=j+1%>",
+                        "start": "<%=asd%>",
+                        "end": "<%=ped%>",
+                        "id": "<%=j+1%>",
+                        "color": "#6baa01",                        
+                        "toppadding": "56%",
+                        "height": "32%"
+                        
+                    },
+                    <%}}else{%>
+                    {
+                        "label": "Actual",
+                        "processid": "<%=j+1%>",
+                        "start": "<%=asd%>",
+                        "end": "<%=ped%>",
+                        "id": "<%=j+1%>",
+                        "color": "#6baa01",                        
+                        "toppadding": "56%",
+                        "height": "32%"
+                        
+                    },
+                    
+                    <%}%>
+                    <%}%>
+                ]
+            },
+            
+            /* "connectors": [
+                {
+                    "connector": [
+                        {
+                            "fromtaskid": "1",
+                            "totaskid": "2",
+                            "color": "#008ee4",
+                            "thickness": "2",
+                            "fromtaskconnectstart_": "1"
+                        },
+                        {
+                            "fromtaskid": "2-2",
+                            "totaskid": "3",
+                            "color": "#008ee4",
+                            "thickness": "2"
+                        },
+                        {
+                            "fromtaskid": "3-2",
+                            "totaskid": "4",
+                            "color": "#008ee4",
+                            "thickness": "2"
+                        },
+                        {
+                            "fromtaskid": "3-2",
+                            "totaskid": "6",
+                            "color": "#008ee4",
+                            "thickness": "2"
+                        },
+                        {
+                            "fromtaskid": "7",
+                            "totaskid": "8",
+                            "color": "#008ee4",
+                            "thickness": "2"
+                        },
+                        {
+                            "fromtaskid": "7",
+                            "totaskid": "9",
+                            "color": "#008ee4",
+                            "thickness": "2"
+                        },
+                        {
+                            "fromtaskid": "12",
+                            "totaskid": "16",
+                            "color": "#008ee4",
+                            "thickness": "2"
+                        },
+                        {
+                            "fromtaskid": "12",
+                            "totaskid": "17",
+                            "color": "#008ee4",
+                            "thickness": "2"
+                        },
+                        {
+                            "fromtaskid": "17-2",
+                            "totaskid": "18",
+                            "color": "#008ee4",
+                            "thickness": "2"
+                        },
+                        {
+                            "fromtaskid": "19",
+                            "totaskid": "22",
+                            "color": "#008ee4",
+                            "thickness": "2"
+                        }
+                    ]
+                }
+            ], */
+            /* "milestones": {
+                "milestone": [
+                    {
+                        "date": "2/6/2014",
+                        "taskid": "12",
+                        "color": "#f8bd19",
+                        "shape": "star",
+                        "tooltext": "Completion of Phase 1"
+                    },
+                    {
+                        "date": "21/8/2008",
+                        "taskid": "10",
+                        "color": "#f8bd19",
+                        "shape": "star",
+                        "tooltext": "New estimated moving date"
+                    }
+                ]
+            }, */
+            "legend": {
+                "item": [
+                    {
+                        "label": "Planned",
+                        "color": "#008ee4"
+                    },
+                    {
+                        "label": "Actual",
+                        "color": "#6baa01"
+                    },
+                    {
+                        "label": "Slack (Delay)",
+                        "color": "#e44a00"
+                    }
+                ]
+            },
+            "trendlines": [
+                           {
+                               "line": [
+                                        <%DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+												Date today = Calendar.getInstance().getTime();
+
+												String date1 = dateFormat.format(today);%>
+                                   {
+                                       "start": "<%=date1%>",
+                                       "displayvalue": "<%=date1%>",
+                                       "color": "333333",
+                                       "thickness": "1",
+                                       "startvalue": 1187029800000,
+                                       "origText": "Today"
+                                   },
+                                  /*  {
+                                       "start": "05/3/2007",
+                                       "end": "05/10/2007",
+                                       "displayvalue": "Vacation",
+                                       "istrendzone": "1",
+                                       "alpha": "20",
+                                       "color": "FF5904",
+                                       "startvalue": 1178130600000,
+                                       "endvalue": 1178735400000,
+                                       "origText": "Vacation"
+                                   } */
+                               ]
+                           }
+                       ]
+           
+        }
+})
+    .render();
+});
+</script>

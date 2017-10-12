@@ -46,122 +46,43 @@ public class FamilyDetailInsertServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		EmployeeBean user = (EmployeeBean)session.getAttribute("user");
 		if(user!=null){
-
-			String filePath = 
-		             getServletContext().getInitParameter("file-upload"); 
-			FileItemFactory factory = new DiskFileItemFactory();
-			ServletFileUpload upload = new ServletFileUpload(factory);
-			response.setContentType("text/html;charset=UTF-8");
-			PrintWriter out = response.getWriter();
 			
-			 List<FileItem> items = null;
-				String fieldName = null;
-				String fieldValue = null;
-				String fileName = null;
-				File file = null;
+			
+			int employee_master_id = (Integer)request.getAttribute("employee_master_id");
+			String[] name = request.getParameterValues("name");
+			String[] relation = request.getParameterValues("relation");
+			String[] dob = request.getParameterValues("dob");  
+			String[] occupation = request.getParameterValues("occupation");
+			String[] contact_number = request.getParameterValues("contact_number");
+			String[] adhaar_number = request.getParameterValues("adhaar_number");
+			
+			
+			FamilyRelationBean familyRelationBean = new FamilyRelationBean();
+			EmployeeBean employeeBean = new EmployeeBean();
+			employeeBean.setEmployee_master_id(employee_master_id);
+			AllInsertDAO allInsertDAO = new AllInsertDAO();
+			
+			System.out.println(employee_master_id);
+			
+			
+			for(int i=0;i<name.length;i++) {
+				System.out.println(name[i]);
+				System.out.println(relation[i]);
+				System.out.println(dob[i]);
+				System.out.println(occupation[i]);
+				System.out.println(contact_number[i]);
+				System.out.println(adhaar_number[i]);
 				
-				int employee_master_id = 0;
-				String name = "null";
-				int relation = 0;
-				String dob = "null";
-				String occupation = "null";
-				String contact_number = "null";
-				String adhaar_number = "null";
+				familyRelationBean.setFamily_relation_id(Integer.parseInt(relation[i]));
 				
-				
-				EmployeeBean employeeBean = new EmployeeBean();
-				FamilyRelationBean familyRelationBean = new FamilyRelationBean();
-				
-				AllInsertDAO allInsertDAO = new AllInsertDAO();
-				
-				try {
-					items = upload.parseRequest(request);// Parse Request
-					for (int i = 0; i < items.size(); i++) {
-						FileItem item = items.get(i);
-					
-						
-						if (item.isFormField()) {
-							fieldName = item.getFieldName();
-							fieldValue = item.getString();
-							
-							
-							
-							if (fieldName.equalsIgnoreCase("employee_master_id")) {
-								String value = fieldValue;
-								employee_master_id = Integer.parseInt(value);
-								System.out.println("employee_master_id:"+employee_master_id);
-								employeeBean.setEmployee_master_id(employee_master_id);
-							}
-							
-							if (fieldName.equalsIgnoreCase("name")) {
-								name = fieldValue;
-								System.out.println("name:"+name);
-							}
-							
-							if (fieldName.equalsIgnoreCase("relation")) {
-								String value = fieldValue;
-								relation = Integer.parseInt(value);
-								familyRelationBean.setFamily_relation_id(relation);
-								System.out.println("relation:"+relation);
-							}
-							
-							if (fieldName.equalsIgnoreCase("dob")) {
-								dob = fieldValue;
-								
-								
-								try {
-									  
-									SimpleDateFormat formater = new SimpleDateFormat("dd-MM-yyyy");
-									SimpleDateFormat AppDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-									Date result = formater.parse(dob);
-									dob = AppDateFormat.format(result);
-									
-									
-								} catch (ParseException e1) {
-									e1.printStackTrace();
-								}	
-								
-								
-								System.out.println("dob:"+dob);
-								
-							}
-							
-							if (fieldName.equalsIgnoreCase("occupation")) {
-								occupation = fieldValue;
-								System.out.println("occupation:"+occupation);
-							}
-							
-							
-							if (fieldName.equalsIgnoreCase("contact_number")) {
-								contact_number = fieldValue;
-								System.out.println("contact_number:"+contact_number);
-							}
-							
-							if (fieldName.equalsIgnoreCase("adhaar_number")) {
-								adhaar_number = fieldValue;
-								System.out.println("adhaar_number:"+adhaar_number);
-							}
-							
-							
-							if (fieldName.equalsIgnoreCase("insert")) {
-								if(!name.equalsIgnoreCase("")){
-								FamilyDetailBean familyDetailBean = new FamilyDetailBean(name, relation, dob, occupation, contact_number, adhaar_number, employeeBean, familyRelationBean);
-								boolean result = allInsertDAO.familyDetailInsert(familyDetailBean);    //Insert Method 
-								System.out.println("Inserted....");
-								}
-							}
-							
-							
-							if (fieldName.equalsIgnoreCase("redirect")) {
-								request.getRequestDispatcher("employeeList.jsp").forward(request, response);
-							}
-					}
-						
-				}
-						
-			} catch (FileUploadException e) {
-							e.printStackTrace();
+				if(!name[i].equalsIgnoreCase("")){
+					FamilyDetailBean familyDetailBean = new FamilyDetailBean(name[i],Integer.parseInt(relation[i]), dob[i], occupation[i], contact_number[i], adhaar_number[i], employeeBean, familyRelationBean);
+					boolean result = allInsertDAO.familyDetailInsert(familyDetailBean);    //Insert Method 
+					System.out.println("Inserted....");
 			}
+			}
+			
+			
 			
 		
 		}else{

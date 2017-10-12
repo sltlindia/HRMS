@@ -222,27 +222,26 @@
 																	<div class="panel-body">
 																		<div class="dataTable_wrapper">
 																			<div class="table-responsive">
-																				<table class="table table-bordered"
-																					id="dataTables-example">
+																				<table class="table table-bordered table-xs" style="font-size: 12px;">
 																					<thead>
 																						<tr>
 																							<!--     <th>Vacancy Id</th> -->
-																							<th style="text-align: center">Date</th>
-																							<th style="text-align: center" rowspan="2">In
+																							<th style="text-align:center; padding-left: 0px; padding-right: 0px;" width="15px;">Date</th>
+																							<th style="text-align:center; padding-left: 0px; padding-right: 0px;" rowspan="2" width="15px;">In
 																								Time</th>
-																							<th style="text-align: center" rowspan="2">Out
+																							<th style="text-align:center;padding-left: 0px; padding-right: 0px;" rowspan="2" width="15px;">Out
 																								Time</th>
-																							<th style="text-align: center">Total Hours</th>
-																							<th style="text-align: center">Work Hours <a
+																							<th style="text-align:center;padding-left: 0px; padding-right: 0px;" width="15px;">Total Hours</th>
+																							<th style="text-align:center;padding-left: 0px; padding-right: 0px;" width="15px;">Work Hours <a
 																								href="" data-toggle="modal"
 																								data-target="#myModal"><i class="fa fa-info"></i></a></th>
-																							<th style="text-align: center">LC</th>
-																							<th style="text-align: center">EG</th>
+																							<th style="text-align:center;padding-left: 0px; padding-right: 0px;" width="15px;">LC</th>
+																							<th style="text-align:center;padding-left: 0px; padding-right: 0px;" width="15px;">EG</th>
 																							<!-- <th style="text-align:center"> Leave </th>
 											<th style="text-align:center"> SL </th>
 											<th style="text-align:center"> HD </th> -->
-																							<th style="text-align: center">Gate Pass</th>
-																							<th style="text-align: center">Status</th>
+																							<th style="text-align:center;padding-left: 0px; padding-right: 0px;" width="15px;">Gate Pass</th>
+																							<th style="text-align:center;padding-left: 0px; padding-right: 0px;" width="15px;">Status</th>
 
 																						</tr>
 																					</thead>
@@ -902,10 +901,10 @@
 
 																					<tbody>
 																						<tr align="Center">
-																							<th style="text-align: center; width: 50px;"
+																							<th style="padding-left: 0px; padding-right: 0px; text-align:center" width="15px;"
 																								rowspan="2"><%=PunchDate%></th>
 																							<th
-																								style="text-align: center; width: 90px; height: 20px; padding-top: 0px; padding-bottom: 0px;">
+																								style="padding-left: 0px; padding-right: 0px; text-align:center" width="15px;">
 																								<%
 																									if (PunchIn1 == null) {
 																								%>--<%
@@ -915,7 +914,7 @@
  %>
 																							</th>
 																							<th
-																								style="text-align: center; width: 90px; height: 20px; padding-top: 0px; padding-bottom: 0px;">
+																								style="padding-left: 0px; padding-right: 0px; text-align:center" width="15px;">
 																								<%
 																									if (PunchOut1 == null) {
 																								%>--<%
@@ -924,11 +923,11 @@
  	}
  %>
 																							</th>
-																							<th style="text-align: center" rowspan="2"><%=w%>
+																							<th style="padding-left: 0px; padding-right: 0px; text-align:center" width="15px;" rowspan="2"><%=w%>
 																							</th>
-																							<th style="text-align: center" rowspan="2"><%=w1%>
+																							<th style="padding-left: 0px; padding-right: 0px; text-align:center" width="15px;" rowspan="2"><%=w1%>
 																							</th>
-																							<th style="text-align: center; width: 90px;"
+																							<th style="padding-left: 0px; padding-right: 0px; text-align:center" width="15px;"
 																								rowspan="2">
 																								<%
 																									if (finalWorkHour < 7.46) {
@@ -940,7 +939,7 @@
 																												}
 																								%>
 																							</th>
-																							<th style="text-align: center; width: 90px;"
+																							<th style="padding-left: 0px; padding-right: 0px; text-align:center" width="15px;"
 																								rowspan="2">
 																								<%
 																									if (finalWorkHour < 7.46) {
@@ -954,7 +953,7 @@
 																							</th>
 
 
-																							<th style="text-align: center" rowspan="2"><font
+																							<th style="padding-left: 0px; padding-right: 0px; text-align:center" width="15px;" rowspan="2"><font
 																								color="Black" style="font-style: italic;"><i
 																									class="" style="cursor: pointer;"
 																									style="width:1000px;" tabindex="0"
@@ -962,7 +961,7 @@
 																									title="Out Time Detail"
 																									data-content="<%=security_out_time%>"> <%=gatePass%>
 																								</i></font></th>
-																							<th style="text-align: center; width: 100px;"
+																							<th style="padding-left: 0px; padding-right: 0px; text-align:center" width="15px;"
 																								rowspan="2">
 																								<%
 																									if (PunchIn1 == null && PunchIn2 == null && PunchOut1 == null && PunchOut2 == null) {
@@ -1117,119 +1116,12 @@
  	}
  %>
 																							</th>
-
-
-
-
-
-																							<%--  	
-                                    	
-                                     		<td><%=PunchDate %></td>
-                                     		<td><%if(PunchIn1 == null){%>--<%}else{%><%=PunchIn1%><%} %></td>
-                                     		<td><%if(PunchIn2 == null){%>--<%}else{%><%=PunchIn2%><%} %></td>
-                                     		<td><%if(PunchOut1 == null){%>--<%}else{%><%=PunchOut1%><%} %></td>
-                                     		<td><%if(PunchOut2 == null){%>--<%}else{%><%=PunchOut2%><%} %></td>
-                                     		
-                                     		<td><%=total%></td>
-                                     		<td><%=qwrty%></td>
-                                     		
-                                     		 <td>
-                                     		 <%if(finalWorkHour < 7.31) {%>
-                                     		 <%if(BioIntime < StartIntime)
-                             					{ %>
-                             					<font color="Red"><%= MININTIME %></font>
-                             					<% ShortLeaveCounter++; %> 
-                             					<%} }%></td>
-                                     		<td>
-                                     		 <%if(finalWorkHour < 7.31) {%>
-                                     		<%
-											if(EG > EndOuttime)
-                             				{
-                                     			%>
-                                     			<font color="Red"><%= MAXOUTTIME %></font>
-                                     			<% ShortLeaveCounter++; %> 
-                                     			<% 
-                             				}}
-                                     		%>
-                                     		
-                                     		</td>  
-                                     		<td>
-                                     		 <% if(total != 0 && total <= 4.0){ %>
-                                     		   <%=ShortLeaveCounter++%> 
-                                     		<%} %>
-                                     	     
-                                     		
-                                     		</td>
-                                     		<td>
-                                     		 
-                                     		</td>
-                                     		
-                                     		<td><font color="Black" style="font-style: italic;"><%=gatePass %> </font></td>
-                                     		<td>
-                                     		<%if(PunchIn1 == null && PunchIn2 == null && PunchOut1 == null && PunchOut2 == null) {
-                                     		if(sundayflag == false)
-                                     			{%>
-                                     		   <font color="Red"> Absent </font>
-                                     		     <%}else{ %>
-                                     		     <font color="blue" style="font-style: italic;"> Sunday </font>
-                                     		     <%} %>
-                                     		     <%}else{ %>
-                                     		<%if(total != 0 && total >= 4.0)
-                                     			{
-                                     			
-                                     				if(finalWorkHour < 7.31){
-                                     					
-                                     				if(BioIntime < StartIntime)
-                                     				{
-                                     				%>
-                                     				 <font color="green"><font color="Red">(LC)</font> Present</font> 
-                                     				<%}
-                                     					else if(BioOutTime > EndOuttime)
-                                     					{%>
-                                     					 <font color="green"><font color="Red">(EG)</font> Present</font> 
-                                     					<%}
-                                     						else
-                                     						{%>
-                                     						 <font color="green">Present</font> 
-                                     						<%} %>
-                                     			<%}else{ %>
-                                     			<font color="green">Present</font> 
-                                     			<%} %>
-                                     			<%}
-                                     		else if((PunchIn1 != null) && (w.equals("")) || (PunchIn1 != null && PunchOut1 == null))
-                                     		{
-                                     			%>
-                                     			<font color="Red" > Miss Punch</font>
-                                     		<%}
-                                     		else if(w.equals(""))
-                                     		{
-                                     			if(sundayflag == false)
-                                     			{
-                                     		%>	
-                                     		<font color="Red"> Absent </font>
-                                     		<% }
-                                     			else
-                                     			{
-                                     			%>
-                                     			<font color="blue" style="font-style: italic;"> Sunday </font>
-                                     		<% 
-                                     		}
-                                     			}
-                                     		 else if(total <= 4.0)
-                                     		 {%>
-                                     		 	<font color="Red"> Leave </font>
-                                     		 <%} %>
-                                     		 
-                                     		 <%} %>
-                                     		 
-                                     		</td> --%>
-
 																						</tr>
 
 
 																						<tr>
 																							<th
-																								style="text-align: center; height: 20px; padding-top: 0px; padding-bottom: 0px;">
+																								style="padding-left: 0px; padding-right: 0px;text-align:center" width="15px;">
 																								<%
 																									if (PunchIn2 == null) {
 																								%>--<%
@@ -1239,7 +1131,7 @@
  %>
 																							</th>
 																							<th
-																								style="text-align: center; height: 20px; padding-top: 0px; padding-bottom: 0px;">
+																								style="padding-left: 0px; padding-right: 0px;text-align:center" width="15px;">
 																								<%
 																									if (PunchOut2 == null) {
 																								%>--<%

@@ -218,12 +218,7 @@ function checkInteger(id) {
 	<div class="app-content container center-layout mt-2">
 		<div class="content-wrapper">
 			<div class="content-body">
-				<section id="horizontal-form-layouts"> <!-- <div class="row">
-					<div class="col-xs-12">
-						<h4>Apply Leave Form</h4>
-						<hr>
-					</div>
-				</div> -->
+				<section id="horizontal-form-layouts"> 
 				<div class="card">
 					<div class="card-body collapse in">
 						<div class="card-block">

@@ -8,6 +8,7 @@ import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import com.hrms.lms.bean.LeaveBalanceBean;
 import com.hrms.pms.bean.AllocationNotificationBean;
 import com.hrms.pms.bean.Appraisal5sBean;
 import com.hrms.pms.bean.AppraisalBean;
@@ -6826,5 +6827,26 @@ public class AllListDAO {
 			}
 			return listOfAppraisal;
 		}
-	
+		
+		public LeaveBalanceBean getleaveListbyEMP(int emp_id) {
+			Session session = HibernateUtil.openSession();
+			Transaction tx = null;
+			LeaveBalanceBean leaveBalanceBean = null;
+			try {
+				tx = session.getTransaction();
+				tx.begin();
+				Query query = session.createQuery("FROM LeaveBalanceBean WHERE employeeBean='" + emp_id + "'");
+				leaveBalanceBean = (LeaveBalanceBean) query.uniqueResult();
+				tx.commit();
+			} catch (Exception e) {
+				if (tx != null) {
+					tx.rollback();
+				}
+				e.printStackTrace();
+			} finally {
+				session.close();
+			}
+			return leaveBalanceBean;
+
+		}
 }
