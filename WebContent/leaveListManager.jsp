@@ -534,8 +534,7 @@
 												<div class="dataTable_wrapper">
 													<div class="table-responsive">
 														<table
-															class="table table-striped table-bordered table-hover"
-															id="datatable-buttons">
+															class="table table-striped table-bordered table-hover file-export">
 															<thead>
 																<tr>
 																	<th>Company Name</th>
@@ -661,8 +660,7 @@
 														<div class="table-responsive">
 
 															<table
-																class="table table-striped table-bordered table-hover"
-																id="datatable-buttons1">
+																class="table table-striped table-bordered table-hover file-export">
 																<thead>
 																	<tr>
 																	<tr>
@@ -801,8 +799,7 @@
 
 
 																<table
-																	class="table table-striped table-bordered table-hover"
-																	id="datatable-buttons2">
+																	class="table table-striped table-bordered table-hover file-export">
 																	<thead>
 																		<tr>
 																		<tr>
@@ -977,15 +974,30 @@
 		type="text/javascript"></script>
 	<!-- /build-->
 	<!-- END ROBUST JS-->
-   <!-- BEGIN PAGE VENDOR JS-->
+ <!-- BEGIN PAGE VENDOR JS-->
+    <script type="text/javascript" src="app-assets/vendors/js/ui/jquery.sticky.js"></script>
     <script src="app-assets/vendors/js/tables/jquery.dataTables.min.js" type="text/javascript"></script>
     <script src="app-assets/vendors/js/tables/datatable/dataTables.bootstrap4.min.js" type="text/javascript"></script>
     <script src="app-assets/vendors/js/tables/datatable/dataTables.buttons.min.js" type="text/javascript"></script>
+    <script src="app-assets/vendors/js/tables/buttons.flash.min.js" type="text/javascript"></script>
+    <script src="app-assets/vendors/js/tables/jszip.min.js" type="text/javascript"></script>
+    <script src="app-assets/vendors/js/tables/pdfmake.min.js" type="text/javascript"></script>
+    <script src="app-assets/vendors/js/tables/vfs_fonts.js" type="text/javascript"></script>
+    <script src="app-assets/vendors/js/tables/buttons.html5.min.js" type="text/javascript"></script>
+    <script src="app-assets/vendors/js/tables/buttons.print.min.js" type="text/javascript"></script>
     <!-- END PAGE VENDOR JS-->
-    
-    <!-- BEGIN PAGE LEVEL JS-->
-    <script src="app-assets/js/scripts/tables/datatables/datatable-basic.min.js" type="text/javascript"></script>
+<script src="app-assets/js/scripts/tables/datatables/datatable-advanced.min.js" type="text/javascript"></script>
+    <!-- END PAGE LEVEL JS-->
+  	<script>
+	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	  })(window,document,'script','../../../../../../www.google-analytics.com/analytics.js','ga');
 
+	  ga('create', 'UA-96096445-1', 'auto');
+	  ga('send', 'pageview');
+
+	</script>
 	<!-- Page-Level Demo Scripts - Tables - Use for reference -->
 
 </body>

@@ -12,7 +12,6 @@
 <%@page import="com.hrms.lms.bean.LeaveTypeBean"%>
 <%@page import="com.hrms.lms.bean.LeaveBean"%>
 <%@page import="java.util.List"%>
-
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -840,7 +839,7 @@ function deleteCO(id) {
 																						</h5>
 																						<i class="icon icon-eye4" style="color: #337ab7;"></i><b>
 																							: View OD </b> &nbsp;&nbsp;&nbsp;<i
-																							class=" icon icon-trash" style="color: red;"></i><b>
+																							class="icon icon-trash" style="color: red;"></i><b>
 																							: Cancel OD </b> &nbsp;&nbsp;&nbsp;<i
 																							class="icon-android-list" style="color: #337ab7;"></i>
 																						: Description of OD
@@ -923,5 +922,6 @@ function deleteCO(id) {
 		type="text/javascript"></script>
 	<!-- END PAGE LEVEL JS-->
 	<!-- Page-Level Demo Scripts - Tables - Use for reference -->
+	
 </body>
 </html>

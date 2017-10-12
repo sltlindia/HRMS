@@ -77,10 +77,8 @@
 	href="app-assets/css/core/menu/menu-types/vertical-overlay-menu.min.css">
 <link rel="stylesheet" type="text/css"
 	href="app-assets/css/core/colors/palette-gradient.min.css">
-<!--   <link rel="stylesheet" type="text/css" href="app-assets/css/plugins/calendars/clndr.min.css"> -->
 <!-- END Page Level CSS-->
 <!-- BEGIN Custom CSS-->
-<!--  <link rel="stylesheet" type="text/css" href="assets/css/style.css"> -->
 <link rel="stylesheet" type="text/css" href="css/logocss.css">
 <!-- END Custom CSS-->
 
@@ -398,7 +396,7 @@
 								<%
                   String color = null;
                   for(LeaveBean leaveBean : getLeaveByEmpId){
-                  	 String status = leaveBean.getStatus();
+                  	 String status1 = leaveBean.getStatus();
                 	 
                 	  
                   %> <a href="Myleave?leave_id=<%=leaveBean.getLeave_id()%>&status=<%=leaveBean.getStatus()%>"
@@ -408,11 +406,11 @@
 											<i class="ficon icon-paper-airplane"></i>
 										</div>
 										<div class="media-body">
-											<% if(status.equalsIgnoreCase("pending")){%>
+											<% if(status1.equalsIgnoreCase("pending")){%>
 											<h6 class="media-heading" style="color: #3BAFDA">
-												<%}else if(status.equalsIgnoreCase("rejected")){%>
+												<%}else if(status1.equalsIgnoreCase("rejected")){%>
 												<h6 class="media-heading red darken-1">
-													<%}else if(status.equalsIgnoreCase("approved")){%>
+													<%}else if(status1.equalsIgnoreCase("approved")){%>
 													<h6 class="media-heading green darken-1">
 														<%} %>
 
@@ -426,7 +424,7 @@
 										</div>
 									</div>
 							</a> <%} %> <%for(LeaveCOBean leaveCOBean : getCOByEmpid){
-                    	 String status = leaveCOBean.getStatus();
+                    	 String status1 = leaveCOBean.getStatus();
                     	
                     	 
                      %> <a href="LeaveCOEmployeeShow?CO_ID=<%=leaveCOBean.getCO_ID()%>&status=<%=leaveCOBean.getStatus()%>"
@@ -437,11 +435,11 @@
 										</div>
 										<div class="media-body">
 
-											<% if(status.equalsIgnoreCase("pending")){%>
+											<% if(status1.equalsIgnoreCase("pending")){%>
 											<h6 class="media-heading" style="color: #3BAFDA">
-												<%}else if(status.equalsIgnoreCase("rejected")){%>
+												<%}else if(status1.equalsIgnoreCase("rejected")){%>
 												<h6 class="media-heading red darken-1">
-													<%}else if(status.equalsIgnoreCase("approved")){%>
+													<%}else if(status1.equalsIgnoreCase("approved")){%>
 													<h6 class="media-heading green darken-1">
 														<%} %>
 
@@ -453,7 +451,7 @@
 										</div>
 									</div>
 							</a> <%} %> <%for(LeaveODBean leaveODBean : getODByEmpid){
-                    	String status = leaveODBean.getStatus();
+                    	String status1 = leaveODBean.getStatus();
                     	 
                     %> <a href="LeaveODEmployeeShow?OD_ID=<%=leaveODBean.getOD_ID()%>&status=<%=leaveODBean.getStatus()%>"
 								class="list-group-item">
@@ -463,11 +461,11 @@
 										</div>
 										<div class="media-body">
 
-											<% if(status.equalsIgnoreCase("pending")){%>
+											<% if(status1.equalsIgnoreCase("pending")){%>
 											<h6 class="media-heading" style="color: #3BAFDA">
-												<%}else if(status.equalsIgnoreCase("rejected")){%>
+												<%}else if(status1.equalsIgnoreCase("rejected")){%>
 												<h6 class="media-heading red darken-1">
-													<%}else if(status.equalsIgnoreCase("approved")){%>
+													<%}else if(status1.equalsIgnoreCase("approved")){%>
 													<h6 class="media-heading green darken-1">
 														<%} %>
 
@@ -1411,7 +1409,7 @@
 										<li><a href="leaveReportByDate?date=<%=date1%>"
 											class="dropdown-item"><i class="undefined"></i>Leave
 												Report By Date</a></li>
-										<li><a href="specialHRLeavep.jsp" class="dropdown-item"><i
+										<li><a href="specialHRLeave.jsp" class="dropdown-item"><i
 												class="undefined"></i>Special Leave Taken</a></li>
 										<li><a href="gatePassHistoryHRSide.jsp"
 											class="dropdown-item"><i class="undefined"></i>Gate Pass

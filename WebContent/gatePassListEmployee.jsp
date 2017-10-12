@@ -50,6 +50,7 @@
 	href="app-assets/vendors/css/pickers/datetime/bootstrap-datetimepicker.css">
 <link rel="stylesheet" type="text/css"
 	href="app-assets/vendors/css/pickers/pickadate/pickadate.css">
+<link rel="stylesheet" type="text/css" href="app-assets/vendors/css/tables/datatable/dataTables.bootstrap4.min.css">
 <!-- END VENDOR CSS-->
 <!-- BEGIN ROBUST CSS-->
 <link rel="stylesheet" type="text/css"
@@ -116,10 +117,10 @@
 															<div class="dataTable_wrapper">
 																<div class="table-responsive">
 
-																	<table class="table table-striped table-bordered"
+																	<table class="table table-striped table-bordered zero-configuration"
 																		id="dataTables-example">
 																		<thead>
-																			<tr bgcolor=" #d7dbdd">
+																			<tr>
 																				<th><center>Submission Date</center></th>
 																				<th><center>Type</center></th>
 																				<th><center>Out Time</center></th>
@@ -171,11 +172,11 @@
 																					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href=""
 																					data-toggle="modal"
 																					data-target="#myModalView<%=g.getGate_pass_id()%>"><i
-																						class="glyphicon glyphicon-eye-open"></i></a> <%
+																						class="icon icon-eye4"></i></a> <%
  	if (g.getStatus().equalsIgnoreCase("Pending")) {
  %> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a
 																					href="GatePassStatusCancelledEmp?gate_pass_id=<%=g.getGate_pass_id()%>&status=Cancelled"><i
-																						class="fa fa-times" style="color: red;"></i></a> <%
+																						class="icon-close" style="color: red;"></i></a> <%
  	}
  %> <%-- <a href="gatePassStatusUpdate?gate_pass_id=<%=g.getGate_pass_id()%>&status=Approved"><i class="fa fa-check"></i></a> --%>
 																					&nbsp;
@@ -196,10 +197,10 @@
 															<h4>
 																<b>Legends :&nbsp;</b>
 															</h4>
-															<i class="fa fa-times" style="color: red;"></i><b> :
+															<i class="icon-close" style="color: red;"></i><b> :
 																Cancelled Gate Pass </b>&nbsp;&nbsp;&nbsp;&nbsp;<i
-																class="glyphicon glyphicon-eye-open"
-																style="color: #337ab7;"></i><b> : View Detail </b>
+																class="icon icon-eye4"
+																style="color: #3BAFDA;"></i><b> : View Detail </b>
 
 														</div>
 													</div>
@@ -225,8 +226,7 @@
 																	<div class="dataTable_wrapper">
 																		<div class="table-responsive">
 
-																			<table class="table table-striped table-bordered"
-																				id="dataTables-example1">
+																			<table class="table table-striped table-bordered zero-configuration">
 																				<thead>
 																					<tr bgcolor=" #d7dbdd">
 																						<th><center>Submission Date</center></th>
@@ -308,7 +308,7 @@
 																						<td><center>
 																								<a href="" data-toggle="modal"
 																									data-target="#myModalView<%=g.getGate_pass_id()%>"><i
-																									class="glyphicon glyphicon-eye-open"></i></a>
+																									class="icon icon-eye4"></i></a>
 																							</center></td>
 																					</tr>
 
@@ -325,8 +325,8 @@
 																	<h4>
 																		<b>Legends :&nbsp;</b>
 																	</h4>
-																	<i class="glyphicon glyphicon-eye-open"
-																		style="color: #337ab7;"></i><b> : View Detail </b>
+																	<i class="icon icon-eye4"
+																		style="color: #3BAFDA;"></i><b> : View Detail </b>
 																</div>
 															</div>
 														</div>
@@ -352,10 +352,9 @@
 																	<div class="dataTable_wrapper">
 																		<div class="table-responsive">
 
-																			<table class="table table-striped table-bordered"
-																				id="dataTables-example2">
+																			<table class="table table-striped table-bordered zero-configuration">
 																				<thead>
-																					<tr bgcolor=" #d7dbdd">
+																					<tr>
 																						<th><center>Submission Date</center></th>
 																						<th><center>Type</center></th>
 																						<th><center>Out Time</center></th>
@@ -395,7 +394,7 @@
 																						<td><center>
 																								<a href="" data-toggle="modal"
 																									data-target="#myModalView<%=g.getGate_pass_id()%>"><i
-																									class="glyphicon glyphicon-eye-open"></i></a>
+																									class="icon icon-eye4"></i></a>
 																							</center></td>
 																					</tr>
 
@@ -412,8 +411,8 @@
 																	<h4>
 																		<b>Legends :&nbsp;</b>
 																	</h4>
-																	<i class="glyphicon glyphicon-eye-open"
-																		style="color: #337ab7;"></i><b> : View Detail </b>
+																	<i class="icon icon-eye4"
+																		style="color: #3BAFDA;"></i><b> : View Detail </b>
 																</div>
 															</div>
 														</div>
@@ -879,6 +878,28 @@
 	<script src="app-assets/js/scripts/navs/navs.min.js"
 		type="text/javascript"></script>
 	<!-- END PAGE LEVEL JS-->
+	 <!-- BEGIN PAGE VENDOR JS-->
+    <script src="app-assets/vendors/js/tables/jquery.dataTables.min.js" type="text/javascript"></script>
+    <script src="app-assets/vendors/js/tables/datatable/dataTables.bootstrap4.min.js" type="text/javascript"></script>
+    <script src="app-assets/vendors/js/tables/datatable/dataTables.buttons.min.js" type="text/javascript"></script>
+    <!-- END PAGE VENDOR JS-->
+    
+    <!-- BEGIN PAGE LEVEL JS-->
+    <script src="app-assets/js/scripts/tables/datatables/datatable-basic.min.js" type="text/javascript"></script>
+    <!-- END PAGE LEVEL JS-->
+   
+    <!-- BEGIN PAGE VENDOR JS-->
+    <script type="text/javascript" src="app-assets/vendors/js/ui/jquery.sticky.js"></script>
+    <script src="app-assets/vendors/js/tables/jquery.dataTables.min.js" type="text/javascript"></script>
+    <script src="app-assets/vendors/js/tables/datatable/dataTables.bootstrap4.min.js" type="text/javascript"></script>
+    <script src="app-assets/vendors/js/tables/datatable/dataTables.buttons.min.js" type="text/javascript"></script>
+    <script src="app-assets/vendors/js/tables/buttons.flash.min.js" type="text/javascript"></script>
+    <script src="app-assets/vendors/js/tables/jszip.min.js" type="text/javascript"></script>
+    <script src="app-assets/vendors/js/tables/pdfmake.min.js" type="text/javascript"></script>
+    <script src="app-assets/vendors/js/tables/vfs_fonts.js" type="text/javascript"></script>
+    <script src="app-assets/vendors/js/tables/buttons.html5.min.js" type="text/javascript"></script>
+    <script src="app-assets/vendors/js/tables/buttons.print.min.js" type="text/javascript"></script>
+    <!-- END PAGE VENDOR JS-->
 	<!-- Page-Level Demo Scripts - Tables - Use for reference -->
 </body>
 </html>
