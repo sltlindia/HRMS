@@ -340,12 +340,6 @@
 		<mapping class="com.hrms.incentive.bean.IncentiveDesignationBean"/>
 		<mapping class="com.hrms.incentive.bean.IncentiveSalesPersonListBean"/>
 		
-		
-		
-		
-		
-		
-		
 		<!-- Asset Management -->
 		<mapping class="com.hrms.assetmanagement.bean.AssetMasterBean"/>
 		<mapping class="com.hrms.assetmanagement.bean.AssetConfigurationBean"/>

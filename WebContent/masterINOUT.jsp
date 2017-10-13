@@ -1224,26 +1224,6 @@
 	<script src="app-assets/js/scripts/forms/select/form-select2.min.js"
 		type="text/javascript"></script>
 	<!-- END PAGE LEVEL JS-->
-	<script>
-		$(document).ready(function() {
-
-			$('#dataTables-example').DataTable({
-				responsive : true,
-			// "aSort" : false
-			});
-
-			/*  $('#dataTables-exampleCO').DataTable({
-			     responsive: true, 
-			     "aSort" : false
-				 });
-			
-			 $('#dataTables-exampleLEAVE').DataTable({
-			     responsive: true,   
-			     "order": [[ 6, "desc" ]]
-				 }); */
-		});
-	</script>
-
 
 </body>
 </html>
