@@ -28,12 +28,12 @@ public class GatePassSecurityInsertServlet extends HttpServlet {
 		EmployeeBean user = (EmployeeBean)session.getAttribute("user");
 		if(user!=null){
 			
-			String value = request.getParameter("employee_name");
+			/*String value = 
 
 			String[] split = value.split(",");
 			int emp_code = Integer.parseInt(split[0]);
 			String name = split[1];
-			int other_manager_id = 0;
+			
 			
 			String[] splitName = name.split(" ");
 			String firstName = splitName[0];
@@ -44,9 +44,9 @@ public class GatePassSecurityInsertServlet extends HttpServlet {
 			System.out.println("lastName:"+lastName);
 			
 			LoginDAO loginDAO = new LoginDAO();
-			EmployeeBean employeeBean1 = loginDAO.getUserByUserCodeAndName(emp_code, firstName, lastName);
-			
-			int emp_id = employeeBean1.getEmployee_master_id();
+			EmployeeBean employeeBean1 = loginDAO.getUserByUserCodeAndName(emp_code, firstName, lastName);*/
+			int other_manager_id = 0;
+			int emp_id = Integer.parseInt(request.getParameter("employee_name"));
 			
 			
 			System.out.println("emp_id:"+emp_id);
