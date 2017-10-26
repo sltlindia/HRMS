@@ -173,30 +173,31 @@
 
 																<div class="col-md-2">Select Employee :</div>
 																<div class="col-md-3">
-																	
 
-																		<%
- 	AllListDAO allListDAO = new AllListDAO();
- 	int emp_id = user.getEmployee_master_id();
- 	List<EmployeeBean> listOfEmployee = null;
- 	if (emp_id == 1120 || emp_id == 975 || emp_id == 1946) {
- 		//listOfEmployee = allListDAO.getListOfAllEmployeeForLeaveSurat();
- 	} else if (emp_id == 1959) {
- 		//listOfEmployee = allListDAO.getListOfAllEmployeeForLeaveA8DeptWise();
- 	} else {
- 		listOfEmployee = allListDAO.getListOfAllEmployeeForLeave();
- 	}%>
- 	<select class="select2-diacritics form-control"
-			id="select2-diacritics" name="employee_name" placeholder="SELECT" required>
-			<option value="">---SELECT---</option>
- 	<%for (EmployeeBean e : listOfEmployee) {
- 		
- %>
-																		<option value="<%=e.getEmployee_master_id()%>"><%=e.getEmployee_code() + "," + e.getFirstname() + " " + e.getLastname() %></option>
-																		<%
+
+																	<%
+																		AllListDAO allListDAO = new AllListDAO();
+																		int emp_id = user.getEmployee_master_id();
+																		List<EmployeeBean> listOfEmployee = null;
+																		if (emp_id == 1120 || emp_id == 975 || emp_id == 1946) {
+																			//listOfEmployee = allListDAO.getListOfAllEmployeeForLeaveSurat();
+																		} else if (emp_id == 1959) {
+																			//listOfEmployee = allListDAO.getListOfAllEmployeeForLeaveA8DeptWise();
+																		} else {
+																			listOfEmployee = allListDAO.getListOfAllEmployeeForLeave();
 																		}
- 	
 																	%>
+																	<select class="select2-diacritics form-control"
+																		id="select2-diacritics" name="employee_name"
+																		placeholder="SELECT" required>
+																		<option value="">---SELECT---</option>
+																		<%
+																			for (EmployeeBean e : listOfEmployee) {
+																		%>
+																		<option value="<%=e.getEmployee_master_id()%>"><%=e.getEmployee_code() + "," + e.getFirstname() + " " + e.getLastname()%></option>
+																		<%
+																			}
+																		%>
 
 																	</select>
 																</div>
@@ -261,25 +262,44 @@
 																				<%-- <h4>
 																					<%=name%>
 																				</h4> --%>
-																				<table class="table table-bordered table-xs" style="font-size: 12px;">
+																				<table class="table table-bordered table-xs"
+																					style="font-size: 12px;">
 																					<thead>
 																						<tr>
 																							<!--     <th>Vacancy Id</th> -->
-																							<th style="text-align:center; padding-left: 0px; padding-right: 0px;" width="15px;">Date</th>
-																							<th style="text-align:center; padding-left: 0px; padding-right: 0px;" rowspan="2" width="15px;">In
-																								Time</th>
-																							<th style="text-align:center; padding-left: 0px; padding-right: 0px;" rowspan="2" width="15px;">Out
-																								Time</th>
-																							<th style="text-align:center;padding-left: 0px; padding-right: 0px;" width="15px;">Total Hours</th>
-																							<th style="text-align:center;padding-left: 0px; padding-right: 0px;" width="15px;">Work Hours <a
-																								href="" data-toggle="modal"
-																								data-target="#myModal"><i class="icon icon-eye4"></i></a></th>
-																							<th style="text-align:center;padding-left: 0px; padding-right: 0px;" width="15px;">LC</th>
-																							<th style="text-align:center;padding-left: 0px; padding-right: 0px;" width="15px;">EG</th>
-																							<th style="text-align:center;padding-left: 0px; padding-right: 0px;" width="15px;">LS</th>
+																							<th
+																								style="text-align: center; padding-left: 0px; padding-right: 0px;"
+																								width="15px;">Date</th>
+																							<th
+																								style="text-align: center; padding-left: 0px; padding-right: 0px;"
+																								rowspan="2" width="15px;">In Time</th>
+																							<th
+																								style="text-align: center; padding-left: 0px; padding-right: 0px;"
+																								rowspan="2" width="15px;">Out Time</th>
+																							<th
+																								style="text-align: center; padding-left: 0px; padding-right: 0px;"
+																								width="15px;">Total Hours</th>
+																							<th
+																								style="text-align: center; padding-left: 0px; padding-right: 0px;"
+																								width="15px;">Work Hours <a href=""
+																								data-toggle="modal" data-target="#myModal"><i
+																									class="icon icon-eye4"></i></a></th>
+																							<th
+																								style="text-align: center; padding-left: 0px; padding-right: 0px;"
+																								width="15px;">LC</th>
+																							<th
+																								style="text-align: center; padding-left: 0px; padding-right: 0px;"
+																								width="15px;">EG</th>
+																							<th
+																								style="text-align: center; padding-left: 0px; padding-right: 0px;"
+																								width="15px;">LS</th>
 																							<!-- <th style="text-align:center"> Short Leave </th> -->
-																							<th style="text-align:center;padding-left: 0px; padding-right: 0px;" width="15px;">Gate Pass</th>
-																							<th style="text-align:center;padding-left: 0px; padding-right: 0px;" width="15px;">Status</th>
+																							<th
+																								style="text-align: center; padding-left: 0px; padding-right: 0px;"
+																								width="15px;">Gate Pass</th>
+																							<th
+																								style="text-align: center; padding-left: 0px; padding-right: 0px;"
+																								width="15px;">Status</th>
 
 																						</tr>
 																					</thead>
@@ -758,69 +778,79 @@
 
 																					<tbody>
 																						<tr align="Center">
-																							<th style="text-align:center;padding-left: 0px; padding-right: 0px;" width="15px;"
-																								rowspan="2"><%=PunchDate%></th>
 																							<th
-																								style="text-align:center;padding-left: 0px; padding-right: 0px;" width="15px;">
+																								style="text-align: center; padding-left: 0px; padding-right: 0px;"
+																								width="15px;" rowspan="2"><%=PunchDate%></th>
+																							<th
+																								style="text-align: center; padding-left: 0px; padding-right: 0px;"
+																								width="15px;">
 																								<%
 																									if (PunchIn1 == null) {
 																								%>--<%
 																									} else {
 																								%><%=PunchIn1%> <%
-																									}
-																								%>
+ 	}
+ %>
 																							</th>
 																							<th
-																								style="text-align:center;padding-left: 0px; padding-right: 0px;" width="15px;">
+																								style="text-align: center; padding-left: 0px; padding-right: 0px;"
+																								width="15px;">
 																								<%
 																									if (PunchOut1 == null) {
 																								%>--<%
 																									} else {
 																								%><%=PunchOut1%> <%
-																									}
-																								%>
+ 	}
+ %>
 																							</th>
-																							<th style="text-align:center;padding-left: 0px; padding-right: 0px;" width="15px;" rowspan="2">
+																							<th
+																								style="text-align: center; padding-left: 0px; padding-right: 0px;"
+																								width="15px;" rowspan="2">
 																								<%
 																									long hours = actualMintes / 60;
 																													long minutes = actualMintes % 60;
 																								%> <%=hours + "." + minutes%>
 																							</th>
-																							<th style="text-align:center;padding-left: 0px; padding-right: 0px;" width="15px;" rowspan="2">
+																							<th
+																								style="text-align: center; padding-left: 0px; padding-right: 0px;"
+																								width="15px;" rowspan="2">
 																								<%
 																									long fhours = finalMinutes / 60;
 																													long fminutes = finalMinutes % 60;
 																													dailyWorkHours = Double.parseDouble(fhours + "." + fminutes);
 																								%> <%=fhours + "." + fminutes%>
 																							</th>
-																							<th style="text-align:center;padding-left: 0px; padding-right: 0px;" width="15px;"
-																								rowspan="2">
+																							<th
+																								style="text-align: center; padding-left: 0px; padding-right: 0px;"
+																								width="15px;" rowspan="2">
 																								<%
 																									if (finalMinutes <= 474) {
 																								%> <%
  	if (BioIntime <= StartIntime) {
  %> <font color="Red"><%=MININTIME%></font> <%-- <% ShortLeaveCounter++; %>  --%>
 																								<%
- 	}
- 					}
- %>
+																									}
+																													}
+																								%>
 
 																							</th>
-																							<th style="text-align:center;padding-left: 0px; padding-right: 0px;" width="15px;"
-																								rowspan="2">
+																							<th
+																								style="text-align: center; padding-left: 0px; padding-right: 0px;"
+																								width="15px;" rowspan="2">
 																								<%
 																									if (finalMinutes <= 474) {
 																								%> <%
  	if (EG >= EndOuttime) {
  %> <font color="Red"><%=MAXOUTTIME%></font> <%-- <% ShortLeaveCounter++; %>  --%>
 																								<%
- 	}
- 					}
- %>
+																									}
+																													}
+																								%>
 																							</th>
 
-																							<th style="text-align:center;padding-left: 0px; padding-right: 0px;" width="15px;"
-																								rowspan="2">
+																							<th
+																								style="text-align: center; padding-left: 0px; padding-right: 0px;"
+																								width="15px;" rowspan="2">
 																								<%
 																									if (finalMinutes > 480) {
 																								%> <%=finalMinutes - 480%> minutes <%
@@ -829,17 +859,19 @@
 																							</th>
 
 
-																							<th style="text-align:center;padding-left: 0px; padding-right: 0px;" width="15px;" rowspan="2">
-																								<font color="Black" style="font-style: italic;"><i
+																							<th
+																								style="text-align: center; padding-left: 0px; padding-right: 0px;"
+																								width="15px;" rowspan="2"><font
+																								color="Black" style="font-style: italic;"><i
 																									class="" style="cursor: pointer;"
 																									style="width:1000px;" tabindex="0"
 																									data-toggle="popover" data-trigger="hover"
 																									title="Out Time Detail"
 																									data-content="<%=security_out_time%>"> <%=gatePass%>
-																										<%=gatePassPurpose%></i></font>
-																							</th>
-																							<th style="text-align:center;padding-left: 0px; padding-right: 0px;" width="15px;"
-																								rowspan="2">
+																										<%=gatePassPurpose%></i></font></th>
+																							<th
+																								style="text-align: center; padding-left: 0px; padding-right: 0px;"
+																								width="15px;" rowspan="2">
 																								<%
 																									if (listOfAllPunch.size() == 0) {
 																														if (sundayflag == false) {
@@ -862,8 +894,8 @@
  %> <font color="Red"> Leave </font> <%
  	} else {
  %> <i class="glyphicon glyphicon-cloud-download"></i> <%
-																									}
-																								%> <%
+ 	}
+ %> <%
  	}
  %> <%
  	}
@@ -897,8 +929,8 @@
 
  										HdCounter = HdCounter + 1;
  %> <font color="green"><font color="Red">(HD)</font></font> <%
-																									}
-																								%> <%
+ 	}
+ %> <%
  	} else if (finalMinutes <= 444) {
  %> <%
  	if (ODflag == true) {
@@ -909,8 +941,8 @@
  	} else {
  										SLCounter = SLCounter + 1;
  %> <font color="green"><font color="Red">(SL)</font></font> <%
-																									}
-																								%> <%
+ 	}
+ %> <%
  	} else {
  %> <%
  	if ((BioIntime < StartIntime) && (finalMinutes <= 474)) {
@@ -918,18 +950,18 @@
  %> <%
  	presentCounter++;
  %> <font color="Red">(LC) </font><font color="green">Present</font> <%
-																									} else if ((BioOutTime > EndOuttime) && (finalMinutes <= 474)) {
-																								%> <%
+ 	} else if ((BioOutTime > EndOuttime) && (finalMinutes <= 474)) {
+ %> <%
  	FinalHoursCounter = FinalHoursCounter + finalMinutes;
 
  										presentCounter++;
  %> <font color="Red">(EG)</font><font color="green">Present</font> <%
-																									} else {
-																								%> <%
+ 	} else {
+ %> <%
  	presentCounter++;
  %> <font color="green">Present</font> <%
-																									}
-																								%> <%
+ 	}
+ %> <%
  	}
  %> <%
  	} else if (sundayflag == true) {
@@ -944,8 +976,8 @@
  %> <%
  	} else if (finalMinutes > 480) {
  %> <%
-																									presentCounter++;
-																								%> <%
+ 	presentCounter++;
+ %> <%
  	if (COflag == true) {
  									FinalHoursCounter = FinalHoursCounter + 480;
  %> <font color="purple"> CO </font> <%
@@ -953,14 +985,14 @@
  									FinalHoursCounter = FinalHoursCounter + finalMinutes;
  %> <font color="Orange">(LS)</font> <font color="green">Present</font>
 																								<%
- 	}
- %> <%
+																									}
+																								%> <%
  	} else {
  %> <%
-																									presentCounter++;
-																								%> <font color="green">Present</font> <%
-																									}
-																								%> <!-- COUNTING OF LESS THAN 4 HOURS --> <%
+ 	presentCounter++;
+ %> <font color="green">Present</font> <%
+ 	}
+ %> <!-- COUNTING OF LESS THAN 4 HOURS --> <%
  	} else if (listOfAllPunch.size() == 1) {
 
  							MissPunch = MissPunch + 1;
@@ -990,8 +1022,8 @@
  %> <font color="Red"> Leave </font> <%
  	} else {
  %> <i class="glyphicon glyphicon-cloud-download"></i> <%
-																									}
-																								%> <%
+ 	}
+ %> <%
  	}
  %> <%
  	}
@@ -1013,24 +1045,26 @@
 
 																						<tr>
 																							<th
-																								style="text-align:center;padding-left: 0px; padding-right: 0px;" width="15px;">
+																								style="text-align: center; padding-left: 0px; padding-right: 0px;"
+																								width="15px;">
 																								<%
 																									if (PunchIn2 == null) {
 																								%>--<%
 																									} else {
 																								%><%=PunchIn2%> <%
-																									}
-																								%>
+ 	}
+ %>
 																							</th>
 																							<th
-																								style="text-align:center;padding-left: 0px; padding-right: 0px;" width="15px;">
+																								style="text-align: center; padding-left: 0px; padding-right: 0px;"
+																								width="15px;">
 																								<%
 																									if (PunchOut2 == null) {
 																								%>--<%
 																									} else {
 																								%><%=PunchOut2%> <%
-																									}
-																								%>
+ 	}
+ %>
 																							</th>
 																						</tr>
 
