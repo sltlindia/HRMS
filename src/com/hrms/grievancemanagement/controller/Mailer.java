@@ -142,7 +142,7 @@ public class Mailer {
 		         // second part (the image)
 		         messageBodyPart = new MimeBodyPart();
 		         DataSource fds = new FileDataSource(
-		            "c:/hrms/upload/img/sltllogo.png");
+		            "D:/hrms/upload/img/sltllogo.png");
 
 		         messageBodyPart.setDataHandler(new DataHandler(fds));
 		         messageBodyPart.setHeader("Content-ID", "<image>");
@@ -288,7 +288,7 @@ public class Mailer {
 		         // second part (the image)
 		         messageBodyPart = new MimeBodyPart();
 		         DataSource fds = new FileDataSource(
-		            "c:/hrms/upload/img/sltllogo.png");
+		            "D:/hrms/upload/img/sltllogo.png");
 
 		         messageBodyPart.setDataHandler(new DataHandler(fds));
 		         messageBodyPart.setHeader("Content-ID", "<image>");

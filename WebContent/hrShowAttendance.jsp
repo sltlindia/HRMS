@@ -1408,7 +1408,6 @@ ArrayList<String> CODATECOUNT = new ArrayList<String>();
 
 
 	<%@include file="footer.html"%>
-
 	<!-- BEGIN VENDOR JS-->
 	<!-- build:js app-assets/js/vendors.min.js-->
 	<script src="app-assets/js/core/libraries/jquery.min.js"

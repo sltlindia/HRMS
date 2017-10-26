@@ -1966,7 +1966,6 @@ function demo(gate_pass_id){
 	</div>
 	
 <%@include file="footer.html"%>
-
     <script src="app-assets/js/core/libraries/jquery.min.js" type="text/javascript"></script>
     <script src="app-assets/vendors/js/ui/tether.min.js" type="text/javascript"></script>
     <script src="app-assets/js/core/libraries/bootstrap.min.js" type="text/javascript"></script>

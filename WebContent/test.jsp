@@ -158,6 +158,10 @@
       <!-- BEGIN PAGE LEVEL JS-->
     <script src="app-assets/js/scripts/tables/datatables/datatable-advanced.min.js" type="text/javascript"></script>
     <!-- END PAGE LEVEL JS-->
+    
+    <script src="app-assets/js/scripts/navs/navs.min.js"
+		type="text/javascript"></script>
+		<script src="app-assets/js/scripts/forms/select/form-select2.min.js" type="text/javascript"></script>
 </body>
 
 <!-- Mirrored from pixinvent.com/bootstrap-admin-template/robust/html/ltr/horizontal-menu-template/ex-component-sweet-alerts.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 09 Aug 2017 08:51:37 GMT -->

@@ -13,7 +13,6 @@
 <%@page import="com.hrms.lms.bean.LeaveTypeBean"%>
 <%@page import="com.hrms.lms.bean.LeaveBean"%>
 <%@page import="java.util.List"%>
-
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -1080,6 +1079,7 @@ function deleteLeave(id,status) {
 			</div>
 		</div>
 	</div>
+	<%@include file="footer.html"%>
 	 <!-- BEGIN VENDOR JS-->
     <!-- build:js app-assets/js/vendors.min.js-->
     <script src="app-assets/js/core/libraries/jquery.min.js" type="text/javascript"></script>

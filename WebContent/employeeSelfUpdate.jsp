@@ -675,9 +675,6 @@ int employee_id = user.getEmployee_master_id();
     
     <%@include file="footer.html"%>
     
-<<<<<<< HEAD
-    
-=======
     <script src="app-assets/js/core/libraries/jquery.min.js" type="text/javascript"></script>
     <script src="app-assets/vendors/js/ui/tether.min.js" type="text/javascript"></script>
     <script src="app-assets/js/core/libraries/bootstrap.min.js" type="text/javascript"></script>

@@ -156,7 +156,8 @@ public class GrievanceQueryInsertServlet extends HttpServlet {
 							}
 						}
 					if (fieldName.equalsIgnoreCase("redirect")) {
-						
+						System.err.println("IN REDIRECT");
+						System.out.println(arrayEmail);
 						String msg1 = query;
 						String type1 = type;
 						String name1 = fileName;
@@ -167,7 +168,7 @@ public class GrievanceQueryInsertServlet extends HttpServlet {
 						new Thread(new Runnable() {
 						    @Override
 						    public void run() {
-						    	
+						    	System.err.println("IN MAIL");
 						    	String sub = name+" Submitted one query";
 						    	String type = type1;
 						    	String query = msg1;
@@ -176,7 +177,7 @@ public class GrievanceQueryInsertServlet extends HttpServlet {
 						    	String attachment = name1;
 						    	
 						    	Mailer.send(sub, type , query,code,attachment,candidateName,arrayEmail);
-						    	
+						    	System.err.println("MAIL DONE");
 						    }
 						}).start();
 						

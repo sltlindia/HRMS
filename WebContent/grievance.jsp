@@ -180,7 +180,7 @@
 												<label class="col-md-3 label-control">Addition Email-Id<br>(Enter Multiple Email-Ids Using Tab key.)</label>
 												<div class="col-md-9">
 													<div class="position-relative has-icon-left">
-							                                <input type="text" value="" data-role="tagsinput" class="form-control typeahead-tags" width="100px"/>
+							                                <input type="text" name="email" value="" data-role="tagsinput" class="form-control typeahead-tags" width="100px"/>
 													</div>
 												</div>
 											</div>
@@ -210,7 +210,6 @@
 
 
     <%@include file="footer.html"%>
-
     <script src="app-assets/js/core/libraries/jquery.min.js" type="text/javascript"></script>
     <script src="app-assets/vendors/js/ui/tether.min.js" type="text/javascript"></script>
     <script src="app-assets/js/core/libraries/bootstrap.min.js" type="text/javascript"></script>
