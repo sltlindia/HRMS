@@ -355,9 +355,6 @@ Each Employee has to apply for OD & CO through Leave module only.
 			</div>
 		</div>
 	</div>
-
-
-
 	<%@include file="footer.html"%>
 	<!-- BEGIN VENDOR JS-->
 	<!-- build:js app-assets/js/vendors.min.js-->
