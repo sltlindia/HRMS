@@ -118,7 +118,6 @@ int monthid = 0;
 double qwe = 0;
 String status = null;
  int leave_id = Integer.parseInt(request.getParameter("leave_id"));
-int employee_master_id = user.getEmployee_master_id();
 String fromDate = null;
 String toDate = null;
 System.out.println("Leaved Id" + leave_id);
