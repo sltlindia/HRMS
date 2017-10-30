@@ -277,8 +277,7 @@ function deleteCO(id) {
 																			<div class="dataTable_wrapper">
 																				<div class="table-responsive">
 																					<table
-																						class="table table-striped table-bordered table-hover"
-																						id="">
+																						class="table table-striped table-bordered table-hover file-export">
 																						<thead>
 																							<tr>
 																								<th style="text-align: center">No</th>
@@ -604,8 +603,7 @@ function deleteCO(id) {
 																				<div class="dataTable_wrapper">
 																					<div class="table-responsive">
 																						<table
-																							class="table table-striped table-bordered table-hover"
-																							id="dataTables-example2">
+																							class="table table-striped table-bordered table-hover zero-configuration">
 																							<thead>
 																								<tr>
 																									<th style="text-align: center">Date</th>

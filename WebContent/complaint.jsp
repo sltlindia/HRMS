@@ -52,6 +52,8 @@
 <link rel="stylesheet" type="text/css"
 	href="app-assets/css/colors.min.css">
 <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+<link rel="stylesheet" type="text/css"
+	href="app-assets/vendors/css/tables/datatable/dataTables.bootstrap4.min.css">
 <!-- END ROBUST CSS-->
 <!-- BEGIN Page Level CSS-->
 <link rel="stylesheet" type="text/css"
@@ -66,7 +68,6 @@
 <!-- END Custom CSS-->
 <%@include file="header.jsp"%>
 </head>
-
 <link href="offlineDatePicker/1jquery-ui.css" rel="stylesheet">
 <script type="text/javascript">
 
@@ -123,39 +124,41 @@ function demo(complaint_id){
 					<div class="panel panel-primary">
 						<div class="panel-heading">Basic Information</div>
 						<div class="panel-body">
-							<ul class="nav nav-tabs">
-								<li class="active"><a href="#complaint" data-toggle="tab">F-IT-01_Complain
-										Register_2017_FINAL</a></li>
-								<li><a href="#download" data-toggle="tab">Download Link</a>
-								</li>
-								
+							<ul class="nav nav-tabs nav-top-border no-hover-bg">
+							<li class="nav-item">
+							<a class="nav-link active" id="homeIcon-tab1" data-toggle="tab" href="#complaint" aria-controls="homeIcon1" aria-expanded="true"><i class="icon-ios-plus"></i> F-IT-01_Complain
+										Register_2017_FINAL</a>
+							</li>
+							<li class="nav-item">
+							<a class="nav-link" id="profileIcon-tab1" data-toggle="tab" href="#download" aria-controls="profileIcon1" aria-expanded="false"><i class="icon-download"></i> Download Link</a>
+							</li>
 								 <%if(manager_id == 65 || manager_id == 5 || under_manager_id == 65){ %>
-								<li class="#complaint1"><a href="#complaint1" data-toggle="tab">Complain
-										Register</a></li>
-								
+								 <li class="nav-item">
+							<a class="nav-link" id="profileIcon-tab1" data-toggle="tab" href="#complaint1" aria-controls="profileIcon1" aria-expanded="false"><i class="icon-question"></i> Complain Register</a>
+							</li>
 									<% } %>			
 							</ul>
 
-							<div class="tab-content">
-								<div class="tab-pane fade in active" id="complaint">
+							<div class="tab-content px-1 pt-1">
+							<div role="tabpanel" class="tab-pane fade active in" id="complaint" aria-labelledby="homeIcon-tab1" aria-expanded="true">
 									<form action="complaintInsert" melabelod="post"
 										enctype="multipart/form-data">
 										<br>
 										<div class="row">
 											<div class="col-lg-3">
 												<label>Employee Name</label> <label>:</label> <font
-													color="#337ab7"><%=user.getFirstname() + " " + user.getLastname()%></font>
+													color="#3BAFDA"><%=user.getFirstname() + " " + user.getLastname()%></font>
 											</div>
 											<input type="hidden" name="employee_master_id"
 												class="form-control"
 												value="<%=user.getEmployee_master_id()%>">
 											<div class="col-lg-2">
 												<label>Employee Code</label> <label>:</label> <label
-													style="color: #337ab7"><%=user.getEmployee_code()%></label>
+													style="color: #3BAFDA"><%=user.getEmployee_code()%></label>
 											</div>
 											<div class="col-lg-3">
 												<label>Department</label> <label>:</label> <label
-													style="color: #337ab7"><%=user.getDepartmentBean().getDepartment_name()%></label>
+													style="color: #3BAFDA"><%=user.getDepartmentBean().getDepartment_name()%></label>
 											</div>
 											<div class="col-lg-4">
 												<label>Current Date</label> <label>:</label>
@@ -182,7 +185,7 @@ function demo(complaint_id){
 														e1.printStackTrace();
 													}
 												%>
-												<label style="color: #337ab7"><%=date1%></label>
+												<label style="color: #3BAFDA"><%=date1%></label>
 											</div>
 										</div>
 										<hr>
@@ -254,7 +257,7 @@ function demo(complaint_id){
 												<div class="dataTable_wrapper">
 												<div class="table-responsive"></div>
 													<table
-														class="table table-striped table-bordered table-hover">
+														class="table table-striped table-bordered table-hover zero-configuration">
 														
 														<thead>
 															<tr>
@@ -296,7 +299,7 @@ function demo(complaint_id){
 																<td><%=a.getStatus()%>
 																<td><a href="" data-toggle="modal"
 																	data-target="#myModalView<%=a.getComplaint_id()%>"><i
-																		class="glyphicon glyphicon-eye-open"
+																		class="icon icon-eye4"
 																		data-toggle="tooltip" data-placement="top"
 																		title="View Broadcast"></i></a>&nbsp; <%
  	if (a.getStatus().equalsIgnoreCase("pending")) {
@@ -304,11 +307,11 @@ function demo(complaint_id){
 
 																	<a
 																	href="complaintUpdate.jsp?complaint_id=<%=a.getComplaint_id()%>"><i
-																		class="glyphicon glyphicon-edit" data-toggle="tooltip"
+																		class="icon icon-edit2" data-toggle="tooltip"
 																		data-placement="top" title="Update Complaint""></i></a>
 
 <a href="complaintDelete?complaint_id=<%=a.getComplaint_id()%>"><i
-																		class="glyphicon glyphicon-trash" style="color: red;
+																		class="icon icon-trash" style="color: red;
 																		data-toggle="tooltip" data-placement="top"
 																		title="Delete Complaint"
 																		onclick="demo(<%=a.getComplaint_id()%>)"></i></a> 
@@ -437,11 +440,11 @@ function demo(complaint_id){
 													<h5>
 														<b>Legends :&nbsp;</b>
 													</h5>
-													&nbsp;&nbsp;&nbsp;<i class="glyphicon  glyphicon-edit"
-														style="color: #337ab7;"></i><b> : Edit Complaint </b>
-													&nbsp;&nbsp;&nbsp;<i class="glyphicon glyphicon-eye-open"
-														style="color: #337ab7;"></i><b> : View Complaint </b>
-													&nbsp;&nbsp;&nbsp;<i class="glyphicon glyphicon-trash"
+													&nbsp;&nbsp;&nbsp;<i class="icon  icon-edit2"
+														style="color: #3BAFDA;"></i><b> : Edit Complaint </b>
+													&nbsp;&nbsp;&nbsp;<i class="icon icon-eye4"
+														style="color: #3BAFDA;"></i><b> : View Complaint </b>
+													&nbsp;&nbsp;&nbsp;<i class="icon icon-trash"
 														style="color: red;"></i><b> : Delete Complaint </b>
 														
 														
@@ -454,11 +457,7 @@ function demo(complaint_id){
 
 								</div>
 								
-								
-								
-								
-									
-												<div class="tab-pane fade" id="complaint1">
+								<div class="tab-pane fade" id="complaint1" aria-labelledby="homeIcon-tab1" aria-expanded="false">
 									<form action="complaintInsert" melabelod="post"
 										enctype="multipart/form-data">
 										<br>
@@ -549,26 +548,25 @@ function demo(complaint_id){
 								
 								
 								<!-- Download link -->
-								<div class="tab-pane fade" id="download">
-									
+								<div class="tab-pane fade" id="download" role="tabpanel" aria-labelledby="dropdownIcon2-tab1" aria-expanded="false">
 														<form action="downloadInsert" melabelod="post"
 										enctype="multipart/form-data">
 										<br>
 										<div class="row">
 											<div class="col-lg-3">
 												<label>Employee Name</label> <label>:</label> <font
-													color="#337ab7"><%=user.getFirstname() + " " + user.getLastname()%></font>
+													color="#3BAFDA"><%=user.getFirstname() + " " + user.getLastname()%></font>
 											</div>
 											<input type="hidden" name="employee_master_id"
 												class="form-control"
 												value="<%=user.getEmployee_master_id()%>">
 											<div class="col-lg-2">
 												<label>Employee Code</label> <label>:</label> <label
-													style="color: #337ab7"><%=user.getEmployee_code()%></label>
+													style="color: #3BAFDA"><%=user.getEmployee_code()%></label>
 											</div>
 											<div class="col-lg-3">
 												<label>Department</label> <label>:</label> <label
-													style="color: #337ab7"><%=user.getDepartmentBean().getDepartment_name()%></label>
+													style="color: #3BAFDA"><%=user.getDepartmentBean().getDepartment_name()%></label>
 											</div>
 											<div class="col-lg-4">
 												<label>Current Date</label> <label>:</label>
@@ -595,7 +593,7 @@ function demo(complaint_id){
 														e1.printStackTrace();
 													}
 												%>
-												<label style="color: #337ab7"><%=date2%></label>
+												<label style="color: #3BAFDA"><%=date2%></label>
 											</div>
 										</div>
 										<hr>
@@ -639,7 +637,7 @@ function demo(complaint_id){
 												<div class="dataTable_wrapper">
 												<div class="table table-responsive">
 													<table
-														class="table table-striped table-bordered table-hover">
+														class="table table-striped table-bordered table-hover zero-configuration">
 														
 														<thead>
 															<tr>
@@ -689,7 +687,7 @@ function demo(complaint_id){
 
 																	<a
 																	href="downloadDelete?download_id=<%=a.getDownload_id()%>"><i
-																		class="glyphicon glyphicon-trash" style="color: red"
+																		class="icon icon-trash" style="color: red"
 																		data-toggle="tooltip" data-placement="top"
 																		title="Delete Link"
 																		onclick="demo(<%=a.getDownload_id()%>)"></i></a>  <%
@@ -697,7 +695,7 @@ function demo(complaint_id){
  		%>
  		<a href="" data-toggle="modal"
 																	data-target="#myModalView1<%=a.getDownload_id()%>"><i
-																		class="glyphicon glyphicon-eye-open"
+																		class="icon icon-eye4"
 																		data-toggle="tooltip" data-placement="top"
 																		title="View Detail"></i></a> 
  		
@@ -913,7 +911,7 @@ function demo(complaint_id){
 													<h5>
 														<b>Legends :&nbsp;</b>
 													</h5>
-													&nbsp;&nbsp;&nbsp;<i class="glyphicon glyphicon-trash"
+													&nbsp;&nbsp;&nbsp;<i class="icon icon-trash"
 														style="color: red;"></i><b> : Delete Link</b>
 												</div>
 
@@ -939,7 +937,7 @@ function demo(complaint_id){
 			</div>
 		</div>
 	</div>
-<%@include file="footer.html"%>
+
 	<!-- BEGIN VENDOR JS-->
 	<!-- build:js app-assets/js/vendors.min.js-->
 	<script src="app-assets/js/core/libraries/jquery.min.js"
@@ -989,29 +987,17 @@ function demo(complaint_id){
 <script type="text/javascript" src="offlineDatePicker/jquery.min.js"></script>
 <script type="text/javascript" src="offlineDatePicker/jquery-ui.min.js"></script>
 	<!-- Page-Level Demo Scripts - Tables - Use for reference -->
-	<script>
-    $(document).ready(function() {
-        $('#dataTables-example').DataTable({
-                responsive: true
-        });
-        $('#dataTables-example1').DataTable({
-            responsive: true
-    });
-        $('#dataTables-example2').DataTable({
-            responsive: true
-    });
-    });
-    </script>
-	<script>
-    // tooltip demo
-    $('.tooltip-demo').tooltip({
-        selector: "[data-toggle=tooltip]",
-        container: "body"
-    })
-
-    // popover demo
-    $("[data-toggle=popover]")
-        .popover()
-    </script>
-</body>
+	 <!-- BEGIN PAGE VENDOR JS-->
+    <script src="app-assets/vendors/js/tables/jquery.dataTables.min.js" type="text/javascript"></script>
+    <script src="app-assets/vendors/js/tables/datatable/dataTables.bootstrap4.min.js" type="text/javascript"></script>
+    <script src="app-assets/vendors/js/tables/datatable/dataTables.buttons.min.js" type="text/javascript"></script>
+    <!-- END PAGE VENDOR JS-->
+	
+	
+	<!-- BEGIN PAGE LEVEL JS-->
+    <script src="app-assets/js/scripts/tables/datatables/datatable-basic.min.js" type="text/javascript"></script>
+    <!-- END PAGE LEVEL JS-->
+    <script src="app-assets/js/scripts/navs/navs.min.js"
+		type="text/javascript"></script>
+	</body>
 </html>

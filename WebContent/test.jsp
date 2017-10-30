@@ -33,6 +33,7 @@
     <link rel="stylesheet" type="text/css" href="app-assets/css/app.min.css">
     <link rel="stylesheet" type="text/css" href="app-assets/css/colors.min.css">
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    
     <!-- END ROBUST CSS-->
     <!-- BEGIN Page Level CSS-->
     <link rel="stylesheet" type="text/css" href="app-assets/css/core/menu/menu-types/horizontal-menu.min.css">
@@ -171,7 +172,7 @@
 <button class="btn btn-xs"
 																style="background-color: #3BAFDA" data-toggle="tooltip"
 																data-placement="top" title="Back">
-
+#3BAFDA
 file-export
 zero-configuration
 

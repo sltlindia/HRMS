@@ -1,0 +1,40 @@
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td { margin:0; padding:0; }
+table { border-collapse:collapse; border-spacing:0; }
+fieldset,img { border:0; }
+address,caption,cite,code,dfn,em,strong,th,var { font-style:normal; font-weight:normal; }
+caption,th { text-align:left; }
+h1,h2,h3,h4,h5,h6 { font-size:100%; font-weight:normal; }
+q:before,q:after { content:''; }
+abbr,acronym { border:0; }
+
+body { background: #fff;  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif; }
+/* optional Container STYLES */
+.chart { height: auto; width: auto; margin: 5px; margin: 15px auto; border: none; border-radius: 3px; }
+
+.evolution-tree {
+	
+    padding: 2px;
+    width: 40px; height: 40px;
+    border-radius: 3px;
+    font-size: 10px;
+    
+}
+
+.evolution-tree .node { padding: 3px; border: 1px solid #484848; border-radius: 3px; }
+.evolution-tree .node-name { text-align: center; position: absolute; width: 80px; left: -50%; margin-left: 20px; }
+.evolution-tree img {  margin-right:  10px; margin-left: 7px; float: initial !important;height: 20px; width: 20px;border-radius: 50%; }
+
+.evolution-tree.the-parent_department { border-radius: 50%; background-color: #000; width: 8px; height: 8px; }
+/* .evolution-tree.the-parent .node-name { width: 50px; margin-top: -7px; text-indent: 12px; font-weight: bold; } */
+.evolution-tree.the-parent_department img {  margin-right:  10px; float: initial !important;height: 20px; width: 20px;border-radius: 50%; }
+.evolution-tree.the-parent_department .node-name {text-align: center; position: absolute; width: 50px; text-align:left; font-weight: bold; margin-top: 3px; margin-left : 10px;color: #D35400;}
+
+.evolution-tree.the-parent_employee { border-radius: 50%; background-color: #000; width: 8px; height: 8px; }
+.evolution-tree.the-parent_employee img {  margin-right:  10px; float: initial !important;height: 20px; width: 20px;border-radius: 50%; margin-top: -10px;}
+.evolution-tree.the-parent_employee .node-name { text-align: center; position: absolute; width: 80px; left: -50%; margin-left: 10px; }
+/* .evolution-tree.the-parent_employee .node-name {text-align: center; position: absolute; width: 80px; text-align:left; font-weight: bold; margin-top: 3px; margin-left : 10px;color: black;} */
+
+.evolution-tree.the-parent_subDepartment { border-radius: 50%; background-color: #000; width: 8px; height: 8px; }
+/* .evolution-tree.the-parent .node-name { width: 50px; margin-top: -7px; text-indent: 12px; font-weight: bold; } */
+.evolution-tree.the-parent_subDepartment img {  margin-right:  10px; float: initial !important;height: 20px; width: 20px;border-radius: 50%; }
+.evolution-tree.the-parent_subDepartment .node-name {text-align: center; position: absolute; width: 50px; text-align:left; font-weight: bold; margin-top: 3px; margin-left : 10px;color: #239B56;}
