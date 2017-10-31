@@ -128,7 +128,7 @@ function demo(complaint_id){
 							<a class="nav-link active" id="homeIcon-tab1" data-toggle="tab" href="#complaint" aria-controls="homeIcon1" aria-expanded="true"><i class="icon-ios-plus"></i> F-IT-01_Complain Register_2017_FINAL</a>
 							</li>
 							<li class="nav-item">
-							<a class="nav-link" id="profileIcon-tab1" data-toggle="tab" href="#download" aria-controls="profileIcon1" aria-expanded="false"><i class="icon-download"></i> Download Link</a>
+							<a class="nav-link" id="profileIcon-tab1" data-toggle="tab" href="#download" aria-controls="profileIcon1" aria-expanded="false"><i class="icon-download"></i> Download Link</a></li>
 												</ul>
 												<br>
 												<div class="tab-content px-1 pt-1">
