@@ -113,13 +113,14 @@
 		SimpleDateFormat yyyyMMdd = new SimpleDateFormat("yyyy-MM-dd");
 		SimpleDateFormat ddMMyyyy= new SimpleDateFormat("dd-MM-yyyy");
 		SimpleDateFormat ddMMMyyyy= new SimpleDateFormat("dd-MMM-yyyy");
+		SimpleDateFormat yyyyMMddhh = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 		Date current_date = new Date();
 
 		if (user == null) {
 			request.setAttribute("loginError", "You need to login first with your Id and Password");
 			request.getRequestDispatcher("login.jsp").forward(request, response);
 		} else {
-			
+			int emp_id = user.getEmployee_master_id();
 			int role_id = user.getRoleBean().getRole_id();
 			String authority = user.getRoleBean().getRole_authority();
 			int id = user.getEmployee_master_id();
@@ -1180,6 +1181,94 @@
 								</li>
 							</ul>
 						</li>
+							<li data-mega-col="col-md-3" class="col-md-3">
+							<h6 data-toggle="dropdown"
+								class="dropdown-menu-header text-uppercase">
+								<i class="icon-bullhorn"></i>Continuous Improvement
+							</h6>
+							<ul class="drilldown-menu">
+								<li class="menu-list">
+									<ul class="mega-menu-sub">
+										
+										<li><a href="kaizenProblemIdentification.jsp" class="dropdown-item"><i
+										class="undefined"></i> Add CI</a></li>
+										<li><a href="kaizenEmpYearWiseList.jsp" class="dropdown-item"><i
+										class="undefined"></i> My CI List</a></li>
+												<%if(manager_id != 99){%>
+												<li><a href="kaizenYearWiseList.jsp" class="dropdown-item"><i
+										class="undefined"></i> CI BillBoard</a></li>
+										<%if(emp_id == 989 || emp_id == 8 || emp_id == 7 || emp_id == 984 || emp_id == 62){ %>
+										<li><a href="kaizenAuthorityYearWiseList.jsp" class="dropdown-item"><i
+										class="undefined"></i> CI LeaderBoard </a></li>
+										<%} %>
+										<%if(emp_id == 8 ){ %>
+										<li><a href="kaizenBillBoardExceptionReport.jsp" class="dropdown-item"><i
+										class="undefined"></i> CI Exception Report </a></li>
+										<li><a href="kaizenDashboard.jsp" class="dropdown-item"><i
+										class="undefined"></i> CI Dashboard </a></li>
+										<%} %>
+										<%} %>
+										<li><a href="kaizenBillBoardHistory.jsp" class="dropdown-item"><i
+										class="undefined"></i> CI History</a></li>
+									</ul>
+								</li>
+							</ul>
+						</li>
+						<%-- <li><a href="#"><i class="fa fa-file-text">&nbsp;</i>
+								Continuous Improvement<span class="fa arrow"></span></a>
+							<ul class="nav nav-second-level">
+								<%
+									if  (authority.equals("D1") || authority.equals("D2") || authority.equals("D3") || authority.equals("D4")
+											|| authority.equals("W1") || authority.equals("W2") || authority.equals("W3") || authority.equals("T1") || authority.equals("T2") || authority.equals("T3") || authority.equals("E1") || authority.equals("E2") 
+											|| authority.equals("E3") || authority.equals("E4")  || authority.equals("M1") || authority.equals("M2") ||  authority.equals("M3") || authority.equals("M4") || authority.equals("M5") || authority.equals("M6") || authority.equals("M7") || authority.equals("M8") || authority.equals("M9") || authority.equals("M10") || authority.equals("M11") || authority.equals("M12") || authority.equals("M13") || authority.equals("M14")
+											|| authority.equals("A1") || authority.equals("A2") || authority.equals("A3") || authority.equals("A4")) {
+									%>
+								<li><a href="kaizenProblemIdentification.jsp"><i
+										class="fa fa-plus-circle"></i> Add CI</a></li>
+								<%
+									}
+								%>
+								<%
+									if  (authority.equals("D1") || authority.equals("D2") || authority.equals("D3") || authority.equals("D4")
+											|| authority.equals("W1") || authority.equals("W2") || authority.equals("W3") || authority.equals("T1") || authority.equals("T2") || authority.equals("T3") || authority.equals("E1") || authority.equals("E2") 
+											|| authority.equals("E3") || authority.equals("E4")  || authority.equals("M1") || authority.equals("M2") ||  authority.equals("M3") || authority.equals("M4") || authority.equals("M5") || authority.equals("M6") || authority.equals("M7") || authority.equals("M8") || authority.equals("M9") || authority.equals("M10") || authority.equals("M11") || authority.equals("M12") || authority.equals("M13") || authority.equals("M14")
+											|| authority.equals("A1") || authority.equals("A2") || authority.equals("A3") || authority.equals("A4")) {
+								%>
+								<li><a href="kaizenEmpYearWiseList.jsp"><i
+										class="fa fa-tasks"></i> My CI List</a></li>
+								<%
+									}
+								%>
+								<%
+									if  (authority.equals("D1") || authority.equals("D2") || authority.equals("D3") || authority.equals("D4")
+											|| authority.equals("W1") || authority.equals("W2") || authority.equals("W3") || authority.equals("T1") || authority.equals("T2") || authority.equals("T3") || authority.equals("E1") || authority.equals("E2") 
+											|| authority.equals("E3") || authority.equals("E4")  || authority.equals("M1") || authority.equals("M2") ||  authority.equals("M3") || authority.equals("M4") || authority.equals("M5") || authority.equals("M6") || authority.equals("M7") || authority.equals("M8") || authority.equals("M9") || authority.equals("M10") || authority.equals("M11") || authority.equals("M12") || authority.equals("M13") || authority.equals("M14")
+											|| authority.equals("A1") || authority.equals("A2") || authority.equals("A3") || authority.equals("A4")) {
+								%>
+								<%if(manager_id != 99){ %>
+								<li><a href="kaizenYearWiseList.jsp"><i
+										class="glyphicon glyphicon-th"></i> CI BillBoard</a></li>
+										
+										<%if(emp_id == 989 || emp_id == 8 || emp_id == 7 || emp_id == 984 || emp_id == 62){ %>
+										<li><a href="kaizenAuthorityYearWiseList.jsp"><i
+										class="glyphicon glyphicon-th"></i> CI LeaderBoard </a></li>
+										<%} %>
+										
+										
+										<%if(emp_id == 8 ){ %>
+										<li><a href="kaizenBillBoardExceptionReport.jsp"><i
+										class="glyphicon glyphicon-ban-circle"></i> CI Exception Report </a></li>
+										<li><a href="kaizenDashboard.jsp"><i
+										class="fa fa-bar-chart-o"></i> CI Dashboard </a></li>
+										<%} %>
+								<%
+									}}
+								%>
+								
+								<li><a href="kaizenBillBoardHistory.jsp"><i
+										class="fa  fa-history"></i> CI History</a></li>
+								</ul>
+								</li> --%>
 					</ul></li>
 
 

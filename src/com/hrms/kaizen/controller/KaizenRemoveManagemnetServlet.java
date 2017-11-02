@@ -22,11 +22,21 @@ public class KaizenRemoveManagemnetServlet extends HttpServlet {
 	int managent_id = Integer.parseInt(request.getParameter("kaizen_management_id"));
 	int kaizen_id = Integer.parseInt(request.getParameter("kaizen_id"));
 	
+	boolean rejectFlag = false;
+	
+	if(request.getParameter("reject") != null) {
+		rejectFlag = true;
+	}
+	
 	
 	AllKaizenDeleteDAO allKaizenDeleteDAO = new AllKaizenDeleteDAO();
 	boolean result = allKaizenDeleteDAO.kaizenManagemnetDelete(managent_id);
 	
-	request.getRequestDispatcher("kaizenView.jsp").forward(request, response);
+	if(rejectFlag == false) {
+		request.getRequestDispatcher("kaizenView.jsp").forward(request, response);
+	}else {
+		request.getRequestDispatcher("kaizenRejectionUpdate.jsp").forward(request, response);
+	}
 	
 		
 	

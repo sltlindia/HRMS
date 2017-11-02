@@ -650,4 +650,58 @@ public class LoginDAO {
 			}
 			return departmentBean;
 		}
+	 
+	 
+	 public List<EmployeeBean> getListOfManager(){
+	        List<EmployeeBean> listofEmployee = new ArrayList<EmployeeBean>();
+	        Session session = HibernateUtil.openSession();
+	        Transaction tx = null;        
+	        try {
+	            tx = session.getTransaction();
+	            tx.begin();
+	            listofEmployee = session.createQuery("from EmployeeBean where employee_status_id != 3 and manager_id != 99 order by firstname ASC").list();                        
+	            tx.commit();
+	        } catch (Exception e) {
+	            if (tx != null) {
+	                tx.rollback();
+	            }
+	            e.printStackTrace();
+	        } finally {
+	            session.close();
+	        }
+	        return listofEmployee;
+	    }
+	 
+	 
+	 
+	 
+	 
+	 public boolean employeeLeaveBalanceUpdate(double co,double pl,double sl,double lwp,int emp_id){
+		 Session session = HibernateUtil.openSession();
+		 Transaction tx = null;	
+		 try {
+			 tx = session.getTransaction();
+			 tx.begin();
+			 Query query = session.createQuery("update LeaveBalanceBean set CO = :co ,Plan_Leave = :pl ,Unplan_Leave = :sl ,Leave_without_pay = :lwp where employeeBean = :e ");
+			 query.setDouble("co", co);
+			 query.setDouble("pl", pl);
+			 query.setDouble("sl", sl);
+			 query.setDouble("lwp", lwp);
+			 query.setInteger("e", emp_id);
+			 
+			 int result = query.executeUpdate();
+			 System.out.println("result :"+result);
+			 tx.commit();
+		 } catch (Exception e) {
+			 if (tx != null) {
+				 tx.rollback();
+			 }
+			 e.printStackTrace();
+		 } finally {
+			 session.close();
+		 }	
+		 return true;
+	}
+	 
+	 
 }

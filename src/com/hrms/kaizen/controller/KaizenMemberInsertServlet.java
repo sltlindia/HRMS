@@ -57,6 +57,7 @@ public class KaizenMemberInsertServlet extends HttpServlet {
 				int kaizen_id = 0;
 				String name = null;
 				String employee_name = "null";
+				boolean flag = false;
 				
 				
 				AllKaizenInsertDAO allKaizenInsertDAO = new AllKaizenInsertDAO();
@@ -102,6 +103,9 @@ public class KaizenMemberInsertServlet extends HttpServlet {
 								
 							}
 							
+							if (fieldName.equalsIgnoreCase("reject")) {
+								flag = true;
+							}
 							
 							if (fieldName.equalsIgnoreCase("redirection")) {
 								request.setAttribute("kaizen_id", kaizen_id);
@@ -111,7 +115,11 @@ public class KaizenMemberInsertServlet extends HttpServlet {
 							
 							if (fieldName.equalsIgnoreCase("redirectionTeamMember")) {
 								request.setAttribute("kaizen_id", kaizen_id);
-								request.getRequestDispatcher("kaizenView.jsp").forward(request, response);
+								if(flag == false) {
+									request.getRequestDispatcher("kaizenView.jsp").forward(request, response);
+								}else {
+									request.getRequestDispatcher("kaizenRejectionUpdate.jsp").forward(request, response);
+								}
 							}
 							
 							

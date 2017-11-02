@@ -22,7 +22,7 @@ public class KaizenAuthorityScoreBean implements Serializable{
 	private int delivery;
 	private int horizontal_deployment;
 	private int employee_master_id;
-	private int total;
+	private double total;
 	private int year;
 	private int month;
 	
@@ -35,7 +35,8 @@ public class KaizenAuthorityScoreBean implements Serializable{
 	}
 	
 	public KaizenAuthorityScoreBean(int quality, int cost, int safety, int productivity, int delivery,
-			int horizontal_deployment, int employee_master_id, KaizenBean kaizenBean,int year,int month) {
+			int horizontal_deployment, int employee_master_id, KaizenBean kaizenBean,int year,int month,
+			double total) {
 		super();
 		this.quality = quality;
 		this.cost = cost;
@@ -47,6 +48,7 @@ public class KaizenAuthorityScoreBean implements Serializable{
 		this.kaizenBean = kaizenBean;
 		this.year = year;
 		this.month = month;
+		this.total = total;
 	}
 	
 	
@@ -56,7 +58,7 @@ public class KaizenAuthorityScoreBean implements Serializable{
 	
 	public KaizenAuthorityScoreBean(int kaizen_authority_score_id, int quality, int cost, int safety, int productivity,
 			int delivery, int horizontal_deployment, int employee_master_id, KaizenBean kaizenBean,
-			int year,int month) {
+			int year,int month,double total) {
 		super();
 		this.kaizen_authority_score_id = kaizen_authority_score_id;
 		this.quality = quality;
@@ -69,6 +71,7 @@ public class KaizenAuthorityScoreBean implements Serializable{
 		this.kaizenBean = kaizenBean;
 		this.year = year;
 		this.month = month;
+		this.total = total;
 	}
 
 
@@ -142,11 +145,13 @@ public class KaizenAuthorityScoreBean implements Serializable{
 	
 	
 	
-	public int getTotal() {
+	
+
+	public double getTotal() {
 		return total;
 	}
 
-	public void setTotal(int total) {
+	public void setTotal(double total) {
 		this.total = total;
 	}
 

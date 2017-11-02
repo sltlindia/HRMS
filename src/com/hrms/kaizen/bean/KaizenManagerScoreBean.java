@@ -24,7 +24,7 @@ public class KaizenManagerScoreBean implements Serializable{
 	private int delivery;
 	private int horizontal_deployment;
 	private int employee_master_id;
-	private int total;
+	private double total;
 	
 	private KaizenBean kaizenBean;
 	
@@ -35,7 +35,7 @@ public class KaizenManagerScoreBean implements Serializable{
 	}
 	
 	public KaizenManagerScoreBean(int quality, int cost, int safety, int productivity, int delivery,
-			int horizontal_deployment, int employee_master_id, KaizenBean kaizenBean) {
+			int horizontal_deployment, int employee_master_id, KaizenBean kaizenBean,double total) {
 		super();
 		this.quality = quality;
 		this.cost = cost;
@@ -45,6 +45,7 @@ public class KaizenManagerScoreBean implements Serializable{
 		this.horizontal_deployment = horizontal_deployment;
 		this.employee_master_id = employee_master_id;
 		this.kaizenBean = kaizenBean;
+		this.total = total;
 	}
 	
 	
@@ -53,7 +54,7 @@ public class KaizenManagerScoreBean implements Serializable{
 	
 	
 	public KaizenManagerScoreBean(int kaizen_manager_score_id, int quality, int cost, int safety, int productivity,
-			int delivery, int horizontal_deployment, int employee_master_id, KaizenBean kaizenBean) {
+			int delivery, int horizontal_deployment, int employee_master_id, KaizenBean kaizenBean,double total) {
 		super();
 		this.kaizen_manager_score_id = kaizen_manager_score_id;
 		this.quality = quality;
@@ -64,6 +65,7 @@ public class KaizenManagerScoreBean implements Serializable{
 		this.horizontal_deployment = horizontal_deployment;
 		this.employee_master_id = employee_master_id;
 		this.kaizenBean = kaizenBean;
+		this.total = total;
 	}
 
 
@@ -131,11 +133,12 @@ public class KaizenManagerScoreBean implements Serializable{
 	
 	
 	
-	public int getTotal() {
+
+	public double getTotal() {
 		return total;
 	}
 
-	public void setTotal(int total) {
+	public void setTotal(double total) {
 		this.total = total;
 	}
 

@@ -5,6 +5,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import com.hrms.kaizen.bean.KaizenManagementApprovalBean;
+import com.hrms.kaizen.bean.KaizenProblemIdentificationBean;
 import com.hrms.pms.util.HibernateUtil;
 
 public class AllKaizenUpdateDAO{
@@ -181,6 +182,63 @@ public class AllKaizenUpdateDAO{
 						 query.setString("cs",status);
 						 query.setString("cd",date);
 						 query.setInteger("k", kaizen_id);
+						 int result = query.executeUpdate();
+						 System.out.println("result :"+result);
+						 tx.commit();
+					 } catch (Exception e) {
+						 if (tx != null) {
+							 tx.rollback();
+						 }
+						 e.printStackTrace();
+					 } finally {
+						 session.close();
+					 }	
+					 return true;
+				}
+				
+				
+				
+				
+				//Kaizen completion Status update with date
+				public boolean kaizenDateUpdate(int kaizen_id,String startDate,String endDate){
+					Session session = HibernateUtil.openSession();
+					 Transaction tx = null;	
+					 try {
+						 tx = session.getTransaction();
+						 tx.begin();
+						 Query query = session.createQuery("update KaizenBean set completion_date = :cd,date = :d   where kaizen_id= :k ");
+						 query.setString("d",startDate);
+						 query.setString("cd",endDate);
+						 query.setInteger("k", kaizen_id);
+						 int result = query.executeUpdate();
+						 System.out.println("result :"+result);
+						 tx.commit();
+					 } catch (Exception e) {
+						 if (tx != null) {
+							 tx.rollback();
+						 }
+						 e.printStackTrace();
+					 } finally {
+						 session.close();
+					 }	
+					 return true;
+				}
+				
+				
+				
+				
+				//Kaizen completion Status update with date
+				public boolean kaizenProblemUpdate(int problem_id,String desc,String cateory){
+					Session session = HibernateUtil.openSession();
+					 Transaction tx = null;	
+					 
+					 try {
+						 tx = session.getTransaction();
+						 tx.begin();
+						 Query query = session.createQuery("update KaizenProblemIdentificationBean set problem_description = :pd,category = :c   where kaizen_problem_identification_id= :kpid ");
+						 query.setString("pd",desc);
+						 query.setString("c",cateory);
+						 query.setInteger("kpid", problem_id);
 						 int result = query.executeUpdate();
 						 System.out.println("result :"+result);
 						 tx.commit();

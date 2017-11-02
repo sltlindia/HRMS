@@ -61,6 +61,7 @@ public class KaizenManagerInsertServlet extends HttpServlet {
 				String affecting_department = null;
 				int memberCount = 0;
 				int kaizen_id = 0;
+				boolean rejectionflag = false;
 				
 				SimpleDateFormat formater = new SimpleDateFormat("dd-MM-yyyy");
 				SimpleDateFormat formater1 = new SimpleDateFormat("yyyy-MM-dd");
@@ -107,10 +108,24 @@ public class KaizenManagerInsertServlet extends HttpServlet {
 								
 							}	
 							
+							if (fieldName.equalsIgnoreCase("reject")) 
+							{
+								
+									
+								rejectionflag = true;
+								
+								
+							}
+							
+							
 							
 							if (fieldName.equalsIgnoreCase("redirection")) {
 								request.setAttribute("kaizen_id", kaizen_id);
+								if(rejectionflag == false) {
 								request.getRequestDispatcher("kaizenView.jsp").forward(request, response);
+								}else {
+								request.getRequestDispatcher("kaizenRejectionUpdate.jsp").forward(request, response);
+								}
 							}	
 							
 						}

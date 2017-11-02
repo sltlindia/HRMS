@@ -6848,5 +6848,25 @@ public class AllListDAO {
 			}
 			return leaveBalanceBean;
 
-		}
+		}//List Method for getting year from year_tbl by year_id
+		public YearBean getInfoByIdYear(int year_id) {
+	        Session session = HibernateUtil.openSession();
+	        Transaction tx = null;
+	        YearBean yearBean = null;
+	        try {
+	            tx = session.getTransaction();
+	            tx.begin();
+	            Query query = session.createQuery("from YearBean where year_id="+year_id+"");
+	            yearBean = (YearBean)query.uniqueResult();
+	            tx.commit();
+	        } catch (Exception e) {
+	            if (tx != null) {
+	                tx.rollback();
+	            }
+	            e.printStackTrace();
+	        } finally {
+	            session.close();
+	        }
+	        return yearBean;
+	    }
 }

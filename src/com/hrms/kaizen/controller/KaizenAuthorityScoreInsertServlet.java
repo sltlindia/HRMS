@@ -33,6 +33,7 @@ public class KaizenAuthorityScoreInsertServlet extends HttpServlet {
 		int horizontal_deployment = Integer.parseInt(request.getParameter("horizontal_deployment"));
 		int year = Integer.parseInt(request.getParameter("year"));
 		int month = Integer.parseInt(request.getParameter("month"));
+		double ave = Double.parseDouble(request.getParameter("ave"));
 		
 		AllKaizenListDAO allKaizenListDAO = new AllKaizenListDAO();
 		
@@ -45,10 +46,10 @@ public class KaizenAuthorityScoreInsertServlet extends HttpServlet {
 		
 		if(kaizenAuthorityScoreBean != null) {
 			int kaizen_authority_score_id = kaizenAuthorityScoreBean.getKaizen_authority_score_id();
-			KaizenAuthorityScoreBean authorityScoreBean = new KaizenAuthorityScoreBean(kaizen_authority_score_id, quality, cost, safety, productivity, delivery, horizontal_deployment, employee_id, kaizenBean,year,month);
+			KaizenAuthorityScoreBean authorityScoreBean = new KaizenAuthorityScoreBean(kaizen_authority_score_id, quality, cost, safety, productivity, delivery, horizontal_deployment, employee_id, kaizenBean,year,month,ave);
 			boolean result = allKaizenInsertDAO.kaizenAuthorityScoreInsert(authorityScoreBean);
 		}else {
-			KaizenAuthorityScoreBean authorityScoreBean = new KaizenAuthorityScoreBean(quality, cost, safety, productivity, delivery, horizontal_deployment, employee_id, kaizenBean,year,month);
+			KaizenAuthorityScoreBean authorityScoreBean = new KaizenAuthorityScoreBean(quality, cost, safety, productivity, delivery, horizontal_deployment, employee_id, kaizenBean,year,month,ave);
 			boolean result = allKaizenInsertDAO.kaizenAuthorityScoreInsert(authorityScoreBean);
 		}
 		

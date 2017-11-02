@@ -80,6 +80,8 @@ public class KaizenAcceptRejectServlet extends HttpServlet {
 		
 		if(status.equalsIgnoreCase("approved")){
 			
+			
+			
 			if(kaizen_manager_id == manager_id){
 				boolean result = allKaizenUpdateDAO.kaizenMainApproval(kaizen_id, status, reason);
 				
@@ -133,12 +135,36 @@ public class KaizenAcceptRejectServlet extends HttpServlet {
 				}
 				
 				
+			}else if(kaizenBean.getEmployeeBean().getEmployee_master_id() == user.getEmployee_master_id()) {
+				System.err.println("ripal");
+				boolean result = allKaizenUpdateDAO.kaizenMainApprovalRejetcion(kaizen_id,"pending");
+				
+				
+				
+				new Thread(new Runnable() {
+				    @Override
+				    public void run() {
+				    	
+				    	String to = managerInfoBean.getEmail_id();
+				    	String sub ="CI Approval Reminder";
+				    	String empname = user.getFirstname()+" "+user.getLastname();
+				    	String managername = managerInfoBean.getFirstname()+" "+managerInfoBean.getLastname();
+				    
+				    	Mailer.kaizenManagerReminder(to, sub, empname,managername,kaizenBean.getKaizen_name(),kaizenBean.getKaizen_desc(),user.getDepartmentBean().getDepartment_name(),managerList);
+				    	System.out.println("Done");
+				    	
+				    }
+				}).start();
+				return;
+				
+				
 			}else{
 				
 			boolean result = allKaizenUpdateDAO.kaizenApproval(kaizen_id, status, reason, employee_id);
 			
 			
 			}
+			
 			
 			String aStatus = "approved";
 			List<KaizenManagerBean> listOfManagerOfKaizen = allKaizenListDAO.getListOfManagerByKaizenId(kaizen_id);
@@ -218,8 +244,13 @@ public class KaizenAcceptRejectServlet extends HttpServlet {
 			if(kaizen_manager_id == manager_id){
 				boolean result = allKaizenUpdateDAO.kaizenMainApproval(kaizen_id, status, reason);
 			}else{
-			boolean result = allKaizenUpdateDAO.kaizenApproval(kaizen_id, status, reason, employee_id);
+				boolean result = allKaizenUpdateDAO.kaizenApproval(kaizen_id, status, reason, employee_id);
 			}
+			
+			
+			
+			
+			
 			
 			List<KaizenManagerBean> listOfManagerOfKaizen = allKaizenListDAO.getListOfManagerByKaizenId(kaizen_id);
 			List<KaizenManagementApprovalBean> listOfManagementOfKaizen = allKaizenListDAO.getListOfManagemnet(kaizen_id);

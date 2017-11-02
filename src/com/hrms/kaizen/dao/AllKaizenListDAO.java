@@ -1,5 +1,6 @@
 package com.hrms.kaizen.dao;
 
+import java.time.Year;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,6 +24,9 @@ import com.hrms.kaizen.bean.KaizenProblemIdentificationBean;
 import com.hrms.kaizen.bean.kaizenRCABean;
 import com.hrms.lms.util.HibernateUtil;
 import com.hrms.pms.bean.EmployeeBean;
+import com.hrms.pms.bean.YearBean;
+import com.hrms.pms.dao.AllListDAO;
+import com.hrms.vehicletracking.bean.VehicleTrackingBean;
 
 public class AllKaizenListDAO {
 
@@ -34,6 +38,28 @@ public class AllKaizenListDAO {
 			tx = session.getTransaction();
 			tx.begin();
 			Query query = session.createQuery("from KaizenBean where kaizen_id = '"+kaizen_id+"'");
+			kaizenBean = (KaizenBean) query.uniqueResult();
+			tx.commit();
+		} catch (Exception e) {
+			if (tx != null) {
+				tx.rollback();
+			}
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return kaizenBean;
+	}
+	
+	
+	public KaizenBean getDetailOfKaizenByProblemId(int problem_id) {
+		Session session = HibernateUtil.openSession();
+		Transaction tx = null;
+		KaizenBean kaizenBean = null;
+		try {
+			tx = session.getTransaction();
+			tx.begin();
+			Query query = session.createQuery("from KaizenBean where kaizenProblemIdentificationBean = '"+problem_id+"'");
 			kaizenBean = (KaizenBean) query.uniqueResult();
 			tx.commit();
 		} catch (Exception e) {
@@ -826,7 +852,9 @@ public class AllKaizenListDAO {
 		try {
 			tx = session.getTransaction();
 			tx.begin();
+			
 			Query query = session.createQuery("from KaizenBillboardResultBean where year = '"+year+"' and kaizenManagerScoreBean.employee_master_id = '"+emp_id+"' and monthBean = '"+month+"'");
+			
 			kaizenBillboardResultBean = (KaizenBillboardResultBean) query.uniqueResult();
 			tx.commit();
 		} catch (Exception e) {
@@ -838,6 +866,30 @@ public class AllKaizenListDAO {
 			session.close();
 		}
 		return kaizenBillboardResultBean;
+	}
+	
+	
+	public List<KaizenAuthorityScoreBean> listOfAuthorityScoring(int year,int month) {
+		Session session = HibernateUtil.openSession();
+		Transaction tx = null;
+		List<KaizenAuthorityScoreBean> listOfAuthorityScoring = new ArrayList<KaizenAuthorityScoreBean>();
+		try {
+			tx = session.getTransaction();
+			tx.begin();
+			
+			Query query = session.createQuery("from KaizenAuthorityScoreBean where year = '"+year+"' and month = '"+month+"' group by employee_master_id");
+			
+			listOfAuthorityScoring = query.list();
+			tx.commit();
+		} catch (Exception e) {
+			if (tx != null) {
+				tx.rollback();
+			}
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return listOfAuthorityScoring;
 	}
 	
 	
@@ -899,7 +951,7 @@ public class AllKaizenListDAO {
 				try {
 					tx = session.getTransaction();
 					tx.begin();
-					listOfProblem = session.createQuery("FROM KaizenProblemIdentificationBean where (YEAR(date)=YEAR(NOW()) AND MONTH(date)=MONTH(NOW())) and employeeBean.departmentBean = '"+dept_id+"'").list();
+					listOfProblem = session.createQuery("FROM KaizenProblemIdentificationBean where employeeBean.departmentBean = '"+dept_id+"' order by kaizen_problem_identification_id DESC").list();
 					System.out.println(listOfProblem.size());
 					tx.commit();
 				} catch (Exception e) {
@@ -1024,6 +1076,363 @@ public class AllKaizenListDAO {
 				return listOfScore;
 
 			}
+			
+			
+			
+			public List<KaizenBillboardResultBean> listOfBillboardDepartment(int year,int month,int dept_id) {
+				Session session = HibernateUtil.openSession();
+				Transaction tx = null;
+				List<KaizenBillboardResultBean> listOfBillBoard = new ArrayList<KaizenBillboardResultBean>();
+				try {
+					tx = session.getTransaction();
+					tx.begin();
+					
+					Query query = session.createQuery("from KaizenBillboardResultBean where year = '"+year+"' and monthBean = '"+month+"' and kaizenManagerScoreBean.kaizenBean.employeeBean.departmentBean = '"+dept_id+"'");
+					
+					listOfBillBoard = query.list();
+					tx.commit();
+				} catch (Exception e) {
+					if (tx != null) {
+						tx.rollback();
+					}
+					e.printStackTrace();
+				} finally {
+					session.close();
+				}
+				return listOfBillBoard;
+			}
+			
+			public List<KaizenAuthorityScoreBean> listOfAuthorityScoringByEmpId(int year,int month,int emp_id) {
+				Session session = HibernateUtil.openSession();
+				Transaction tx = null;
+				List<KaizenAuthorityScoreBean> listOfAuthorityScoring = new ArrayList<KaizenAuthorityScoreBean>();
+				try {
+					tx = session.getTransaction();
+					tx.begin();
+					
+					Query query = session.createQuery("from KaizenAuthorityScoreBean where year = '"+year+"' and month = '"+month+"' and employee_master_id = '"+emp_id+"'");
+					
+					listOfAuthorityScoring = query.list();
+					tx.commit();
+				} catch (Exception e) {
+					if (tx != null) {
+						tx.rollback();
+					}
+					e.printStackTrace();
+				} finally {
+					session.close();
+				}
+				return listOfAuthorityScoring;
+			}
+			
+			
+			public List<KaizenBean> getListOfKaizenByStatusApproved(int year,int year1) {
+				List<KaizenBean> listOfKaizenByEmployeeId = new ArrayList<KaizenBean>();
+				Session session = HibernateUtil.openSession();
+				Transaction tx = null;
+				try {
+					tx = session.getTransaction();
+					tx.begin();
+					String hql = "from KaizenBean where status = 'approved' and (((MONTH(date) between 4 and 12) and YEAR(date) = '"+year+"') or ((MONTH(date) between 1 and 3) and YEAR(date) = '"+year1+"'))";
+					Query query = session.createQuery(hql);
+					listOfKaizenByEmployeeId = query.list();
+					tx.commit();
+				} catch (Exception e) {
+					if (tx != null) {
+						tx.rollback();
+					}
+					e.printStackTrace();
+				} finally {
+					session.close();
+				}
+				return listOfKaizenByEmployeeId;
+
+			}
+			
+			public List<KaizenBean> getListOfKaizenByStatusPending(int year,int year1) {
+				List<KaizenBean> listOfKaizenByEmployeeId = new ArrayList<KaizenBean>();
+				Session session = HibernateUtil.openSession();
+				Transaction tx = null;
+				try {
+					tx = session.getTransaction();
+					tx.begin();
+					String hql = "from KaizenBean where status = 'pending' and (((MONTH(date) between 4 and 12) and YEAR(date) = '"+year+"') or ((MONTH(date) between 1 and 3) and YEAR(date) = '"+year1+"'))";
+					Query query = session.createQuery(hql);
+					listOfKaizenByEmployeeId = query.list();
+					tx.commit();
+				} catch (Exception e) {
+					if (tx != null) {
+						tx.rollback();
+					}
+					e.printStackTrace();
+				} finally {
+					session.close();
+				}
+				return listOfKaizenByEmployeeId;
+
+			}
+			
+			
+			public List<KaizenProblemIdentificationBean> getListOfProlemIdentificationCategory(String ptype,int year,int year1) {
+				List<KaizenProblemIdentificationBean> listOfKaizenByEmployeeId = new ArrayList<KaizenProblemIdentificationBean>();
+				Session session = HibernateUtil.openSession();
+				Transaction tx = null;
+				try {
+					tx = session.getTransaction();
+					tx.begin();
+					String hql = "from KaizenProblemIdentificationBean where category = '"+ptype+"' and (((MONTH(date) between 4 and 12) and YEAR(date) = '"+year+"') or ((MONTH(date) between 1 and 3) and YEAR(date) = '"+year1+"'))";
+					Query query = session.createQuery(hql);
+					listOfKaizenByEmployeeId = query.list();
+					tx.commit();
+				} catch (Exception e) {
+					if (tx != null) {
+						tx.rollback();
+					}
+					e.printStackTrace();
+				} finally {
+					session.close();
+				}
+				return listOfKaizenByEmployeeId;
+
+			}
+
+			public List<KaizenBean> getListOfProlemIdentificationCategoryInKaizen(String ptype,int year,int year1) {
+				List<KaizenBean> listOfKaizenByEmployeeId = new ArrayList<KaizenBean>();
+				Session session = HibernateUtil.openSession();
+				Transaction tx = null;
+				try {
+					tx = session.getTransaction();
+					tx.begin();
+					String hql = "from KaizenBean where category_id = '"+ptype+"' and (((MONTH(date) between 4 and 12) and YEAR(date) = '"+year+"') or ((MONTH(date) between 1 and 3) and YEAR(date) = '"+year1+"')) and status = 'approved'";
+					Query query = session.createQuery(hql);
+					listOfKaizenByEmployeeId = query.list();
+					tx.commit();
+				} catch (Exception e) {
+					if (tx != null) {
+						tx.rollback();
+					}
+					e.printStackTrace();
+				} finally {
+					session.close();
+				}
+				return listOfKaizenByEmployeeId;
+
+			}
+
+			
+			public List<KaizenBean> getListOfImplementedCIByMonth(int month_id,int year) {
+				List<KaizenBean> listOfKaizenByEmployeeId = new ArrayList<KaizenBean>();
+				Session session = HibernateUtil.openSession();
+				Transaction tx = null;
+				try {
+					tx = session.getTransaction();
+					tx.begin();
+					String hql = "from KaizenBean where status = 'approved' and MONTH(date)='"+month_id+"' and YEAR(date) = '"+year+"'";
+					Query query = session.createQuery(hql);
+					listOfKaizenByEmployeeId = query.list();
+					tx.commit();
+				} catch (Exception e) {
+					if (tx != null) {
+						tx.rollback();
+					}
+					e.printStackTrace();
+				} finally {
+					session.close();
+				}
+				return listOfKaizenByEmployeeId;
+
+			}
+			
+
+			public List<KaizenBean> getListOfFactors(String ptype,int year,int year1) {
+				List<KaizenBean> listOfKaizenByEmployeeId = new ArrayList<KaizenBean>();
+				Session session = HibernateUtil.openSession();
+				Transaction tx = null;
+				try {
+					tx = session.getTransaction();
+					tx.begin();
+					String hql = "from KaizenBean where "+ptype+" != ' ' and status = 'approved' and (((MONTH(date) between 4 and 12) and YEAR(date) = '"+year+"') or ((MONTH(date) between 1 and 3) and YEAR(date) = '"+year1+"'))";
+					Query query = session.createQuery(hql);
+					listOfKaizenByEmployeeId = query.list();
+					tx.commit();
+				} catch (Exception e) {
+					if (tx != null) {
+						tx.rollback();
+					}
+					e.printStackTrace();
+				} finally {
+					session.close();
+				}
+				return listOfKaizenByEmployeeId;
+
+			}
+			
+			public String getListOfCostByMonth(int month_id,int year) {
+				String sum = null;
+				Session session = HibernateUtil.openSession();
+				Transaction tx = null;
+				try {
+					tx = session.getTransaction();
+					tx.begin();
+					Query query = session.createQuery("select sum(cost) from KaizenBean where cost != '' and  status = 'approved' and MONTH(date)='"+month_id+"' and YEAR(date) = '"+year+"'");
+					sum = (String)query.uniqueResult();
+					tx.commit();
+				} catch (Exception e) {
+					if (tx != null) {
+						tx.rollback();
+					}
+					e.printStackTrace();
+				} finally {
+					session.close();
+				}
+				return sum;
+
+			}
+			
+			public String getListOfImplemetationCostByMonth(int month_id,int year) {
+				String sum = null;
+				Session session = HibernateUtil.openSession();
+				Transaction tx = null;
+				try {
+					tx = session.getTransaction();
+					tx.begin();
+					Query query = session.createQuery("select sum(implementation_cost) from KaizenBean where status = 'approved' and MONTH(date)='"+month_id+"' and YEAR(date) = '"+year+"'");
+					sum = (String)query.uniqueResult();
+					tx.commit();
+				} catch (Exception e) {
+					if (tx != null) {
+						tx.rollback();
+					}
+					e.printStackTrace();
+				} finally {
+					session.close();
+				}
+				return sum;
+
+			}
+
+			
+			public List<KaizenBean> getListCountByDeptId(int monthId,int year) {
+				List<KaizenBean> listOfKaizenByEmployeeId = new ArrayList<KaizenBean>();
+				Session session = HibernateUtil.openSession();
+				Transaction tx = null;
+				try {
+					tx = session.getTransaction();
+					tx.begin();
+					String hql = "from KaizenBean where status = 'approved' and MONTH(date) ='"+monthId+"' and YEAR(date) = '"+year+"' group by employeeBean.departmentBean";
+					Query query = session.createQuery(hql);
+					listOfKaizenByEmployeeId = query.list();
+					tx.commit();
+				} catch (Exception e) {
+					if (tx != null) {
+						tx.rollback();
+					}
+					e.printStackTrace();
+				} finally {
+					session.close();
+				}
+				return listOfKaizenByEmployeeId;
+
+			}
+			
+			
+			//List Method for getting count of month filled from probation_assessment_direct_tbl by employee_master_id	
+			public long getCountOfKaizenByDeptId(int monthId,int year,int dept_id) {
+		        Session session = HibernateUtil.openSession();
+		        Transaction tx = null;
+		        long maxvalue = 0;
+		        
+		        try {
+		            tx = session.getTransaction();
+		            tx.begin();
+		            
+		            Query query = session.createQuery("select count(kaizen_id) from KaizenBean where status = 'approved' and MONTH(date) ='"+monthId+"' and YEAR(date) = '"+year+"' and employeeBean.departmentBean = '"+dept_id+"'");
+		            maxvalue = (long) query.uniqueResult();
+		            tx.commit();
+		        } catch (Exception e) {
+		            if (tx != null) {
+		                tx.rollback();
+		            }
+		            e.printStackTrace();
+		        } finally {
+		            session.close();
+		        }
+		        return maxvalue;
+		    }
 	
+			public List<KaizenBean> getListOfReportKaizen(String year_id,String month_id,String dept_id,int count) {
+				String v1 = null;
+				String v2 = null;
+				String v3 = null;
+
+				String c1 = null;
+				String c2 = null;
+				String c3 = null;
+
+				if (!year_id.equalsIgnoreCase("0")) {
+					if (c1 == null) {
+						c1 = "YEAR(date)";
+						AllListDAO allListDAO = new AllListDAO();
+						YearBean yearBean1 = allListDAO.getInfoByIdYear(Integer.parseInt(year_id));
+						v1 = yearBean1.getYear();
+					}
+				}
+
+				if (!month_id.equalsIgnoreCase("0")) {
+					if (c1 == null) {
+						c1 = "MONTH(date)";
+						v1 = month_id;
+					} else if (c2 == null) {
+						c2 = "MONTH(date)";
+						v2 = month_id;
+					} 
+				}
+				
+				if (!dept_id.equalsIgnoreCase("0")) {
+					if (c1 == null) {
+						c1 = "employeeBean.departmentBean";
+						v1 = dept_id;
+					} else if (c2 == null) {
+						c2 = "employeeBean.departmentBean";
+						v2 = dept_id;
+					} else if (c3 == null) {
+						c3 = "employeeBean.departmentBean";
+						v3 = dept_id;
+					} 
+				}
+
+
+				List<KaizenBean> listOfKaizen = new ArrayList<KaizenBean>();
+				Session session = HibernateUtil.openSession();
+				Transaction tx = null;
+				try {
+					tx = session.getTransaction();
+					tx.begin();
+
+
+						if (count == 1) {
+							listOfKaizen = session
+									.createQuery("FROM KaizenBean where status = 'approved' and "+c1+" = '"+v1+"' ")
+									.list();
+						} else if (count == 2) {
+							listOfKaizen = session.createQuery("FROM KaizenBean where status = 'approved' and "+c1+" = '"+v1+"' and "+c2+" = '"+v2+"'").list();
+						} else if (count == 3) {
+							listOfKaizen = session.createQuery("FROM KaizenBean where status = 'approved' and " + c1 + " = '" + v1 + "' and "
+									+ c2 + " = '" + v2 + "' and " + c3 + " = '" + v3 + "' ").list();
+						} 
+
+					System.out.println(listOfKaizen.size());
+					tx.commit();
+				} catch (Exception e) {
+					if (tx != null) {
+						tx.rollback();
+					}
+					e.printStackTrace();
+				} finally {
+					session.close();
+				}
+				return listOfKaizen;
+
+			}
 			
 }

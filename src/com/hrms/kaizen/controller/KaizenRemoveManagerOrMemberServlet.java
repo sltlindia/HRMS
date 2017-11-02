@@ -20,19 +20,33 @@ public class KaizenRemoveManagerOrMemberServlet extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		AllKaizenDeleteDAO allKaizenDeleteDAO = new AllKaizenDeleteDAO();
+		boolean flag = false;
+		
+		if(request.getParameter("reject") != null) {
+			flag = true;
+		}
+		
 		
 		if(request.getParameter("kaizen_manager_id") != null){
 			
 			int kaizen_manager_id = Integer.parseInt(request.getParameter("kaizen_manager_id"));
 			boolean result = allKaizenDeleteDAO.kaizenManagerDelete(kaizen_manager_id);
+			if(flag == false) {
 			request.getRequestDispatcher("kaizenView.jsp").forward(request, response);
+			}else {
+				request.getRequestDispatcher("kaizenRejectionUpdate.jsp").forward(request, response);
+			}
 			
 			
 		}else if(request.getParameter("kaizen_member_id") != null){
 			
 			int kaizen_member_id = Integer.parseInt(request.getParameter("kaizen_member_id"));
 			boolean result = allKaizenDeleteDAO.kaizenMemberDelete(kaizen_member_id);
-			request.getRequestDispatcher("kaizenView.jsp").forward(request, response);
+			if(flag == false) {
+				request.getRequestDispatcher("kaizenView.jsp").forward(request, response);
+				}else {
+					request.getRequestDispatcher("kaizenRejectionUpdate.jsp").forward(request, response);
+				}
 			
 		}
 	

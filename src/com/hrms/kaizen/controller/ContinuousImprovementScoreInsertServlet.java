@@ -30,6 +30,7 @@ public class ContinuousImprovementScoreInsertServlet extends HttpServlet {
 		int productivity = Integer.parseInt(request.getParameter("productivity"));
 		int delivery = Integer.parseInt(request.getParameter("delivery"));
 		int horizontal_deployment = Integer.parseInt(request.getParameter("horizontal_deployment"));
+		double ave = Double.parseDouble(request.getParameter("ave"));
 		
 		AllKaizenListDAO allKaizenListDAO = new AllKaizenListDAO();
 		
@@ -40,10 +41,10 @@ public class ContinuousImprovementScoreInsertServlet extends HttpServlet {
 		KaizenManagerScoreBean kaizenManagerScoreBean = allKaizenListDAO.getDetailOfKaizenScoreByempId(kaizen_id, employee_id);
 		if(kaizenManagerScoreBean != null) {
 			int kaizen_manager_score_id = kaizenManagerScoreBean.getKaizen_manager_score_id();
-			KaizenManagerScoreBean kaizenManagerScoreBean1 = new KaizenManagerScoreBean(kaizen_manager_score_id, quality, cost, safety, productivity, delivery, horizontal_deployment, employee_id, kaizenBean);
+			KaizenManagerScoreBean kaizenManagerScoreBean1 = new KaizenManagerScoreBean(kaizen_manager_score_id, quality, cost, safety, productivity, delivery, horizontal_deployment, employee_id, kaizenBean,ave);
 			boolean result = allKaizenInsertDAO.kaizenManagerScoreInsert(kaizenManagerScoreBean1);
 		}else {
-			KaizenManagerScoreBean kaizenManagerScoreBean1 = new KaizenManagerScoreBean(quality, cost, safety, productivity, delivery, horizontal_deployment, employee_id, kaizenBean);
+			KaizenManagerScoreBean kaizenManagerScoreBean1 = new KaizenManagerScoreBean(quality, cost, safety, productivity, delivery, horizontal_deployment, employee_id, kaizenBean,ave);
 			boolean result = allKaizenInsertDAO.kaizenManagerScoreInsert(kaizenManagerScoreBean1);
 		}
 		

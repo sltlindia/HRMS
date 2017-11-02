@@ -48,7 +48,7 @@ public class KaizenManagerResultLockServlet extends HttpServlet {
 		
 		KaizenManagerScoreBean kaizenManagerScoreBean = allKaizenListDAO.getresultOfBillBordByMonthAndYear(employee_id, month_id, year);
 		kaizenManagerScoreBean.setKaizen_manager_score_id(kaizenManagerScoreBean.getKaizen_manager_score_id());
-		int total_score = kaizenManagerScoreBean.getTotal();
+		double total_score = kaizenManagerScoreBean.getTotal();
 		
 		AllKaizenInsertDAO allKaizenInsertDAO = new AllKaizenInsertDAO();
 		

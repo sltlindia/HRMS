@@ -22,6 +22,7 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import com.hrms.kaizen.bean.KaizenBean;
 import com.hrms.kaizen.bean.KaizenManagementApprovalBean;
 import com.hrms.kaizen.bean.KaizenManagerBean;
+import com.hrms.kaizen.bean.KaizenProblemIdentificationBean;
 import com.hrms.kaizen.bean.kaizenRCABean;
 import com.hrms.kaizen.dao.AllKaizenInsertDAO;
 import com.hrms.mailer.Mailer;
@@ -74,6 +75,7 @@ public class KaizenInsertServlet extends HttpServlet {
 				int kaizen_id = 0;
 				String affectingmanager = "";
 				String completion_status = "saved"; 
+				int problem_id = 0;
 				
 				SimpleDateFormat formater = new SimpleDateFormat("dd-MM-yyyy");
 				SimpleDateFormat formater1 = new SimpleDateFormat("yyyy-MM-dd");
@@ -89,6 +91,7 @@ public class KaizenInsertServlet extends HttpServlet {
 				AllKaizenInsertDAO allKaizenInsertDAO = new AllKaizenInsertDAO();
 				KaizenBean kaizenBean = new KaizenBean();
 				DepartmentBean departmentBean = new DepartmentBean();
+				KaizenProblemIdentificationBean kaizenProblemIdentificationBean = new KaizenProblemIdentificationBean();
 				
 				Date date = new Date();
 				String parseDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(date);
@@ -113,6 +116,15 @@ public class KaizenInsertServlet extends HttpServlet {
 								description = fieldValue;
 								System.out.println("description:"+description);
 							}
+							
+							
+							
+							if (fieldName.equalsIgnoreCase("under_manager_id")) {
+								String value = fieldValue;
+								under_manager_id = Integer.parseInt(value);
+								System.out.println("under_manager_id:"+description);
+							}
+
 							
 							if (fieldName.equalsIgnoreCase("category")) {
 								category = fieldValue;
@@ -164,13 +176,22 @@ public class KaizenInsertServlet extends HttpServlet {
 								System.out.println("memberCount:"+memberCount);
 							}
 							
+							if (fieldName.equalsIgnoreCase("problem_id")) {
+								String value = fieldValue;
+								problem_id = Integer.parseInt(value);
+								kaizenProblemIdentificationBean.setKaizen_problem_identification_id(problem_id);
+								
+							}
+
+							
 							if (fieldName.equalsIgnoreCase("insert")) 
 							{
 								
 								EmployeeBean bean1 = new EmployeeBean();
 								bean1.setEmployee_master_id(user.getEmployee_master_id());
 								
-								kaizenBean = new KaizenBean(kaizen_name, description, existing_problem,safety_features, implementation_cost,under_manager_id,status,parseDate, time_saving,money_saving, effort_saving, safety_saving , productivity_saving,bean1,completion_status,category);
+								kaizenBean = new KaizenBean(kaizen_name, description, existing_problem,safety_features, implementation_cost,under_manager_id,status,parseDate, time_saving,money_saving, effort_saving, 
+																safety_saving , productivity_saving,bean1,completion_status,category,kaizenProblemIdentificationBean);
 								boolean result = allKaizenInsertDAO.kaizenInsert(kaizenBean);
 								
 								kaizen_id = kaizenBean.getKaizen_id();

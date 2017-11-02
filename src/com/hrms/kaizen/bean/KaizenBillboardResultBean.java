@@ -20,7 +20,7 @@ public class KaizenBillboardResultBean implements Serializable{
 	
 	private int kaizen_billboard_result_id;
 	private int year;
-	private int total_score;
+	private double total_score;
 	
 	private KaizenManagerScoreBean kaizenManagerScoreBean;
 	private MonthBean monthBean;
@@ -37,7 +37,7 @@ public class KaizenBillboardResultBean implements Serializable{
 
 	
 	public KaizenBillboardResultBean(KaizenManagerScoreBean kaizenManagerScoreBean, MonthBean monthBean,
-			int year, int total_score) {
+			int year, double total_score) {
 		super();
 		this.kaizenManagerScoreBean = kaizenManagerScoreBean;
 		this.monthBean = monthBean;
@@ -96,7 +96,7 @@ public class KaizenBillboardResultBean implements Serializable{
 
 
 
-	public int getTotal_score() {
+	public double getTotal_score() {
 		return total_score;
 	}
 
@@ -104,9 +104,14 @@ public class KaizenBillboardResultBean implements Serializable{
 
 
 
-	public void setTotal_score(int total_score) {
+	public void setTotal_score(double total_score) {
 		this.total_score = total_score;
 	}
+
+
+
+
+
 
 
 
