@@ -83,6 +83,10 @@
     <param-name>announcement-upload</param-name>
     <param-value>d:\\hrms\\upload\\announcement</param-value>
   </context-param>
+  <context-param>
+    <param-name>tds-upload</param-name>
+    <param-value>d:\\hrms\\upload\\TDSDocument</param-value>
+  </context-param>
   <servlet>
     <description></description>
     <display-name>LoginServlet</display-name>
@@ -3959,4 +3963,138 @@
     <servlet-name>DocumentDataListServlet</servlet-name>
     <url-pattern>/documentDataList</url-pattern>
   </servlet-mapping>
+  
+  <!--  TDS -->
+  
+  <servlet>
+    <description></description>
+    <display-name>TDSInsertServlet</display-name>
+    <servlet-name>TDSInsertServlet</servlet-name>
+    <servlet-class>com.hrms.tds.controller.TDSInsertServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>TDSInsertServlet</servlet-name>
+    <url-pattern>/tdsInsert</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>TDSDocumentInsertServlet</display-name>
+    <servlet-name>TDSDocumentInsertServlet</servlet-name>
+    <servlet-class>com.hrms.tds.controller.TDSDocumentInsertServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>TDSDocumentInsertServlet</servlet-name>
+    <url-pattern>/tdsDocumentInsert</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>TDSHrInsertServlet</display-name>
+    <servlet-name>TDSHrInsertServlet</servlet-name>
+    <servlet-class>com.hrms.tds.controller.TDSHrInsertServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>TDSHrInsertServlet</servlet-name>
+    <url-pattern>/tdsHrInsert</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>TDSFileServlet</display-name>
+    <servlet-name>TDSFileServlet</servlet-name>
+    <servlet-class>com.hrms.tds.controller.TDSFileServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>TDSFileServlet</servlet-name>
+    <url-pattern>/tdsFileServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>TDSDocumentViewServlet</display-name>
+    <servlet-name>TDSDocumentViewServlet</servlet-name>
+    <servlet-class>com.hrms.tds.controller.TDSDocumentViewServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>TDSDocumentViewServlet</servlet-name>
+    <url-pattern>/tdsDocumentView</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>TDSHrUpdateServlet</display-name>
+    <servlet-name>TDSHrUpdateServlet</servlet-name>
+    <servlet-class>com.hrms.tds.controller.TDSHrUpdateServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>TDSHrUpdateServlet</servlet-name>
+    <url-pattern>/tdsHrUpdate</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>TDSUpdateServlet</display-name>
+    <servlet-name>TDSUpdateServlet</servlet-name>
+    <servlet-class>com.hrms.tds.controller.TDSUpdateServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>TDSUpdateServlet</servlet-name>
+    <url-pattern>/tdsUpdate</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>TDSHistoryViewServlet</display-name>
+    <servlet-name>TDSHistoryViewServlet</servlet-name>
+    <servlet-class>com.hrms.tds.controller.TDSHistoryViewServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>TDSHistoryViewServlet</servlet-name>
+    <url-pattern>/tdsHistoryView</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>TDSDocumentDataList</display-name>
+    <servlet-name>TDSDocumentDataList</servlet-name>
+    <servlet-class>com.hrms.tds.controller.TDSDocumentDataList</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>TDSDocumentDataList</servlet-name>
+    <url-pattern>/tdsDocumentDataList</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>TDSCheckChangesServlet</display-name>
+    <servlet-name>TDSCheckChangesServlet</servlet-name>
+    <servlet-class>com.hrms.tds.controller.TDSCheckChangesServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>TDSCheckChangesServlet</servlet-name>
+    <url-pattern>/tdsCheckChanges</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DocumentStatusUpdateServlet</display-name>
+    <servlet-name>DocumentStatusUpdateServlet</servlet-name>
+    <servlet-class>com.hrms.tds.controller.DocumentStatusUpdateServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DocumentStatusUpdateServlet</servlet-name>
+    <url-pattern>/documentStatusUpdate</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>TDSDocumentDeleteServlet</display-name>
+    <servlet-name>TDSDocumentDeleteServlet</servlet-name>
+    <servlet-class>com.hrms.tds.controller.TDSDocumentDeleteServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>TDSDocumentDeleteServlet</servlet-name>
+    <url-pattern>/tdsDocumentDelete</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>MonthlyCheckPayrollDataServlet</display-name>
+    <servlet-name>MonthlyCheckPayrollDataServlet</servlet-name>
+    <servlet-class>com.hrms.tds.controller.MonthlyCheckPayrollDataServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>MonthlyCheckPayrollDataServlet</servlet-name>
+    <url-pattern>/MonthlyCheckPayrollData</url-pattern>
+  </servlet-mapping>
+  
 </web-app>

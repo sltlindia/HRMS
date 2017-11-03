@@ -364,6 +364,33 @@
 		<mapping class="com.hrms.kaizen.bean.KaizenBeforeUploadAttachmentBean"/>
 		<mapping class="com.hrms.kaizen.bean.KaizenAfterUploadAttachmentBean"/>
 		<mapping class="com.hrms.kaizen.bean.KaizenManagementApprovalBean"/>
+		<mapping class="com.hrms.kaizen.bean.KaizenManagerScoreBean"/>
+		<mapping class="com.hrms.kaizen.bean.KaizenBillboardResultBean" />
+		<mapping class="com.hrms.kaizen.bean.KaizenAuthorityScoreBean" />
+		<mapping class="com.hrms.kaizen.bean.KaizenProblemIdentificationBean" />
+		<mapping class="com.hrms.kaizen.bean.kaizenRCABean" />
+		
+		
+		<!-- TDS -->
+		<mapping class="com.hrms.tds.bean.TDSBean" />
+		<mapping class="com.hrms.tds.bean.TDSTotalABean" />
+		<mapping class="com.hrms.tds.bean.TDSTotalBBean" />
+		<mapping class="com.hrms.tds.bean.TDSTotalCBean" />
+		<mapping class="com.hrms.tds.bean.TDSTotalDBean" />
+		<mapping class="com.hrms.tds.bean.TDSTotalEBean" />
+		<mapping class="com.hrms.tds.bean.TDSTotalFBean" />
+		<mapping class="com.hrms.tds.bean.TDSDocumentUploadBean" />
+		<mapping class="com.hrms.tds.bean.TDSHrBean" />
+		<mapping class="com.hrms.tds.bean.TDSHrTotalABean" />
+		<mapping class="com.hrms.tds.bean.TDSHrTotalBBean" />
+		<mapping class="com.hrms.tds.bean.TDSHrTotalCBean" />
+		<mapping class="com.hrms.tds.bean.TDSHrTotalDBean" />
+		<mapping class="com.hrms.tds.bean.TDSHrTotalEBean" />
+		<mapping class="com.hrms.tds.bean.TDSHrTotalFBean" />
+		<mapping class="com.hrms.tds.bean.TDSHistoryBean" />
+		<mapping class="com.hrms.tds.bean.TDSHrHistoryBean" />
+		<mapping class="com.hrms.tds.bean.TDSPayrollBean" />
+		<mapping class="com.hrms.tds.bean.TDSTaxBean" />
 		
 	</session-factory>
 
