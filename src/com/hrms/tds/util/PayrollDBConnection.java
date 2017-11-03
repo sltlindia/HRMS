@@ -28,8 +28,8 @@ public static Connection getConnection() {
 
 		// Step 2: Opening database connection
 		try {
-		  // String msAccDB = "D:\\allWorkSpace\\PayTest.mdb";
-		 String msAccDB = "\\\\RIPAL\\PayrollDB//PayTest.mdb";
+		   String msAccDB = "D:\\allWorkSpace\\PayTest.mdb";
+		 //String msAccDB = "\\\\RIPAL\\PayrollDB//PayTest.mdb";
 		   // String msAccDB = "C:\\xampp\\htdocs\\IPCF\\Parameter.accdb";
 		    String dbURL = "jdbc:ucanaccess://" + msAccDB; 
 

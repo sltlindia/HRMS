@@ -21,7 +21,7 @@ public class PayrollList {
 	
 	public List<PayrollBean> listOfPayroll(int emp_code, String company_name){
 		List<PayrollBean> listOfPayroll = new ArrayList<PayrollBean>();
-		if(company_name.equals("SLT"))
+		/*if(company_name.equals("SLT"))
 		{
 			System.err.println("IN SLT");
 			conn = PayrollDBConnection.getConnection();
@@ -45,8 +45,8 @@ public class PayrollList {
 		{
 			System.err.println("IN SRI");
 			conn = SRIDBConnection.getConnection();
-		}
-		
+		}*/
+		conn = PayrollDBConnection.getConnection();
 		try
 		{
 			Statement st = conn.createStatement();

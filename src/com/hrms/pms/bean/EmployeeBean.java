@@ -62,6 +62,7 @@ public class EmployeeBean implements Serializable {
     private String bank_name;
     private String ifsc_code;
     private String grade_code;
+    private String mealcard;
     
     private RoleBean roleBean;
     private DepartmentBean departmentBean;
@@ -668,7 +669,13 @@ public class EmployeeBean implements Serializable {
 		this.diploma_course = diploma_course;
 	}
 	
-	
+	public String getMealcard() {
+		return mealcard;
+	}
+
+	public void setMealcard(String mealcard) {
+		this.mealcard = mealcard;
+	}
 
 	public String getSpecial_interest() {
 		return special_interest;
