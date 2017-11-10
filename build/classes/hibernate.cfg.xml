@@ -392,6 +392,10 @@
 		<mapping class="com.hrms.tds.bean.TDSPayrollBean" />
 		<mapping class="com.hrms.tds.bean.TDSTaxBean" />
 		
+		<!-- Meeting Managemnet -->
+		<mapping class="com.hrms.meetingmanagemnet.bean.MeetingBookingDetailBean" />
+		<mapping class="com.hrms.meetingmanagemnet.bean.MeetingRoomDetailBean" />
+		
 	</session-factory>
 
 </hibernate-configuration>
