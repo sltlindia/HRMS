@@ -56,7 +56,4 @@ public class MeetingRoomDetailBean implements Serializable{
 		this.resources = resources;
 	}
 	
-	
-	
-	
 }

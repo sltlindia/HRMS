@@ -30,7 +30,7 @@
 </head>
 <%@include file="header.jsp"%>
 <body>
-<%int kaizen_id = 16;
+<%int kaizen_id = 0;
 
 if(request.getParameter("kaizen_id") != null){
 	kaizen_id = Integer.parseInt(request.getParameter("kaizen_id"));

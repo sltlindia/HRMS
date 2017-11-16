@@ -108,22 +108,26 @@
 		<div class="content-wrapper">
 			<div class="content-body">
 				<section id="horizontal-form-layouts">
+					<div class="row">
+						<div class="col-lg-12">
+							<h1 class="page-header">CI Form</h1>
+						</div>
+						<!-- /.col-lg-12 -->
+					</div>
 				<div class="card">
+					<div class="card-header">
+				                <h4 class="card-title" id="horz-layout-basic">CI Form</h4>
+				                <a class="heading-elements-toggle"><i class="icon-ellipsis font-medium-3"></i></a>
+				            </div>
 					<div class="card-body collapse in">
 						<div class="card-block">
 							<div class="form-body">
-			<div class="row">
-				<div class="col-lg-12">
-					<h1 class="page-header">CI Form</h1>
-				</div>
-				<!-- /.col-lg-12 -->
-			</div>
+			
 			<!-- /.row -->
 
 			<div class="row">
 				<div class="col-lg-12">
 					<div class="panel panel-primary">
-						<div class="panel-heading">CI Form</div>
 						<div class="panel-body">
 
 							<form action="kaizenInsert" method="post" name=""

@@ -49,9 +49,7 @@
     <!-- END Custom CSS-->
     <%@include file="header.jsp" %>
   </head>
-
-
-<script src="bower_components/jquery/dist/jquery.min.js"></script>
+  
 <body data-open="hover" data-menu="horizontal-menu" data-col="2-columns" class="horizontal-layout horizontal-menu 2-columns ">
 <%int emp_id = user.getEmployee_master_id(); 
 
@@ -131,9 +129,9 @@ if(request.getParameter("year") != null ){
 	                                     		<%} %>
 	                                     	</td>
 	                                     	<td><%=kaizenBean.getStatus().toUpperCase()%></td>
-	                                     	<td><a href="kaizenView.jsp?kaizen_id=<%=kaizenBean.getKaizen_id()%>" style="color: black;"><button class="btn btn-outline btn-default btn-xs"><i class="fa fa-share-square"></i> Detail</button></a>
+	                                     	<td><a href="kaizenView.jsp?kaizen_id=<%=kaizenBean.getKaizen_id()%>" style="color: black;"><button class="btn btn-primary"><i class="fa fa-share-square"></i> Detail</button></a>
 	                                     	<%if(!kaizenBean.getCompletion_status().equalsIgnoreCase("completed")){%>
-	                                     		<a href="kaizenPhotoUpload.jsp?kaizen_id=<%=kaizenBean.getKaizen_id()%>" style="color: black;"><button class="btn btn-outline btn-default btn-xs"><i class="fa fa-photo"></i> Add Photos</button></a>
+	                                     		<a href="kaizenPhotoUpload.jsp?kaizen_id=<%=kaizenBean.getKaizen_id()%>" style="color: black;"><button class="btn btn-primary"><i class="fa fa-photo"></i> Add Photos</button></a>
 	                                     	<%} %>
 	                                     	</td>
 	                                     </tr>
@@ -198,6 +196,11 @@ if(request.getParameter("year") != null ){
                                      	<%} %>
                                     </tbody>
                                 </table>
+                                <div align="left">
+											<b>NOTE :</b>&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-star" style="color: #85929E;" data-toggle="tooltip"
+														data-placement="top" title="Billboard Result"></i><b> : BillBoard Winner</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-star" style="color: #F1C40F;" data-toggle="tooltip"
+														data-placement="top" title="Leaderboard Result"></i><b> : LeaderBoard Winner</b>
+										</div>
                             </div>
 
                 </div>

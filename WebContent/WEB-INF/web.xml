@@ -3953,6 +3953,37 @@
     <servlet-name>KaizenStatusChangeServlet</servlet-name>
     <url-pattern>/kaizenStatusChange</url-pattern>
   </servlet-mapping>
+   <servlet>
+    <description></description>
+    <display-name>ProblemIndentificationInsertServlet</display-name>
+    <servlet-name>ProblemIndentificationInsertServlet</servlet-name>
+    <servlet-class>com.hrms.kaizen.controller.ProblemIndentificationInsertServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ProblemIndentificationInsertServlet</servlet-name>
+    <url-pattern>/problemIndentificationInsert</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ProblemIndentificationUpdateServlet</display-name>
+    <servlet-name>ProblemIndentificationUpdateServlet</servlet-name>
+    <servlet-class>com.hrms.kaizen.controller.ProblemIndentificationUpdateServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ProblemIndentificationUpdateServlet</servlet-name>
+    <url-pattern>/problemIndentificationUpdate</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ProblemIdentificationDeleteServlet</display-name>
+    <servlet-name>ProblemIdentificationDeleteServlet</servlet-name>
+    <servlet-class>com.hrms.kaizen.controller.ProblemIdentificationDeleteServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ProblemIdentificationDeleteServlet</servlet-name>
+    <url-pattern>/problemIdentificationDelete</url-pattern>
+  </servlet-mapping>
+  
   <servlet>
     <description></description>
     <display-name>DocumentDataListServlet</display-name>
