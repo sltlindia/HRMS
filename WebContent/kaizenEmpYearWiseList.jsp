@@ -121,23 +121,22 @@
 																	int year1 = year + 1;
 																	String yearDuration = year + "-" + year1;
 															%>
-															<tr class="odd gradeX">
+															<tr class="panel-group">
 																<th><a id="year<%=yearBean.getYear_id()%>"
 																	style="color: black; text-decoration: none; cursor: pointer;"
 																	onclick="showData(this.id)"><i
-																		class="fa fa-plus-circle"></i> <%=year%> - <%=year1%></a></th>
+																		class="icon-android-add-circle"></i> <%=year%> - <%=year1%></a></th>
 																<th><button name="button"
 																		onclick="window.open('kaizenBillBoard.jsp?year=<%=yearDuration%>','_blank')"
-																		class="btn btn-default btn-xs">
-																		<i class="fa fa-file-text"></i> BillBoard
+																		class="btn btn-primary">
+																		<i class="fa fa-file-text" align="right"></i> BillBoard
 																	</button>
 																	<button name="button"
 																		onclick="window.open('kaizenLeaderBoard.jsp?year=<%=yearDuration%>','_blank')"
-																		class="btn btn-default btn-xs">
+																		class="btn btn-primary">
 																		<i class="fa fa-file-text"></i> LeaderBoard
 																	</button></th>
 															</tr>
-
 															<script>
 																$(document)
 																		.ready(
@@ -166,11 +165,11 @@
 																		<tbody>
 																			<tr>
 																				<th></th>
-																				<th>On-Progress</th>
-																				<th>Completed</th>
-																				<th>Approval Pending</th>
-																				<th>Genuine</th>
-																				<th>Rejected</th>
+																				<th class="icon-information-circled">On-Progress</th>
+																				<th class="icon-information-circled">Completed</th>
+																				<th class="icon-information-circled">Approval Pending</th>
+																				<th class="icon-information-circled">Genuine</th>
+																				<th class="icon-information-circled">Rejected</th>
 																				<th></th>
 																			</tr>
 																		</tbody>
@@ -188,8 +187,8 @@
 																						List<KaizenBean> lisOfPendingForApprovalCI = allKaizenListDAO.getListOfAllKaizenByEmpIdWithStatus(
 																								emp_id, year, monthBean.getMonth_id(), "pending", "saved");
 																						List<KaizenBean> lisOfPendingForApprovalSumittedCI = allKaizenListDAO
-																								.getListOfAllKaizenByEmpIdWithStatus(emp_id, year, monthBean.getMonth_id(), "pending",
-																										"submitted");
+																								.getListOfAllKaizenByEmpIdWithStatus(emp_id, year, monthBean.getMonth_id(), "pending", 
+																																					"submitted");
 																						List<KaizenBean> lisOfMainRejectedKaizen = allKaizenListDAO.getListOfAllKaizenByEmpIdWithStatus(
 																								emp_id, year, monthBean.getMonth_id(), "rejected", "submitted");
 																						List<KaizenBean> lisOfMainGenuineKaizen = allKaizenListDAO.getListOfAllKaizenByEmpIdWithStatus(
@@ -207,7 +206,7 @@
 																				<th><a
 																					href="kaizenList.jsp?year=<%=year%>&month=<%=monthBean.getMonth_id()%>&month_name=<%=monthBean.getMonth_name()%>"><button
 																							class="btn btn-default btn-xs">
-																							<i class="glyphicon glyphicon-eye-open"></i> Show
+																							<i class="icon-eye6"></i> Show
 																							All CI
 																						</button></a></th>
 																			</tr>
@@ -245,7 +244,7 @@
 																				<th><a
 																					href="kaizenList.jsp?year=<%=year%>&month=<%=monthBean.getMonth_id()%>&month_name=<%=monthBean.getMonth_name()%>"><button
 																							class="btn btn-default btn-xs">
-																							<i class="glyphicon glyphicon-eye-open"></i> Show
+																							<i class="icon-eye6"></i> Show
 																							All CI
 																						</button></a></th>
 																			</tr>

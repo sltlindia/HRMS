@@ -382,7 +382,7 @@ for(KaizenManagementApprovalBean k1 : listOfKaizenManagement){
 
 												<td colspan="3">
 												<div class="panel panel-primary">
-													<table class="table" >
+													<table class="table" style="border: 1px solid black;">
 													<%if(!kaizenBean.getDelivery().equalsIgnoreCase("")){%>
 														<tr id="timeField">
 															<th>Delivery </th>
@@ -534,14 +534,13 @@ for(KaizenManagementApprovalBean k1 : listOfKaizenManagement){
 													
 													<%if(user.getEmployee_master_id() == kaizenBean.getEmployeeBean().getEmployee_master_id() && kaizenBean.getCompletion_status().equalsIgnoreCase("saved") && !kaizenBean.getCategory_id().equalsIgnoreCase("A")) {%>
 													
-													<a href="addManagerForKaizen.jsp?kaizen_id=<%=kaizen_id%>"><button class="btn btn-default btn-circle" id="addManager"><i class="fa fa-plus"></i></button></a>
-												
+													<a href="addManagerForKaizen.jsp?kaizen_id=<%=kaizen_id%>" data-target="#myModalManager" id="addManager">&nbsp;<i class="icon-circle-plus" style="color: black;font-size: 20px;padding-top:20px;"></i></a>
 													<%} %>
 													
 													<%if(user.getEmployee_master_id() == kaizenBean.getEmployeeBean().getEmployee_master_id() && kaizenBean.getStatus().equalsIgnoreCase("rejected") && !kaizenBean.getCategory_id().equalsIgnoreCase("A")) {%>
 													
-													<a href="addManagerForKaizen.jsp?kaizen_id=<%=kaizen_id%>"><button class="btn btn-default btn-circle" id="addManager"><i class="fa fa-plus"></i></button></a>
-												
+													
+													<a href="addManagerForKaizen.jsp?kaizen_id=<%=kaizen_id%>" data-target="#myModalManager" id="addManager">&nbsp;<i class="icon-circle-plus" style="color: black;font-size: 20px;padding-top:20px;"></i></a>
 													<%} %>
 													
 												</td>
@@ -626,13 +625,14 @@ for(KaizenManagementApprovalBean k1 : listOfKaizenManagement){
 														<a tabindex="0"  data-toggle="popover" data-trigger="focus" title="" style="color: black;text-decoration: none; cursor: pointer;" data-content="<a href='kaizenRemoveManagemnet?kaizen_management_id=<%=k.getKaizen_management_approval_id()%>&kaizen_id=<%=kaizen_id%>'>Remove</a>"><img src="FileServlet?path=D:\hrms\upload\profilePic\<%=company_name%>\<%=emp_code%>.bmp" style="border: solid 2px; border-color: <%=borderColor%>;"  alt="<%=k.getEmployeeBean().getFirstname()+" "+k.getEmployeeBean().getLastname() %>"
 														class="img-circle" id="img<%=k.getEmployeeBean().getEmployee_master_id()%>" height="40px" width="40px" tabindex="0" data-placement="left" data-toggle="popover" data-trigger="hover" title="Manager Info" data-content="<div class='media'><a href='#' class='pull-left'><img src='FileServlet?path=D:\hrms\upload\profilePic\<%=company_name%>\<%=emp_code%>.bmp' class='img-circle' height='60px' width='60px' alt='<%=k.getEmployeeBean().getFirstname()+" "+k.getEmployeeBean().getLastname() %>'></a><div class='media-body'><h4 class='media-heading'><%=k.getEmployeeBean().getFirstname()+" "+k.getEmployeeBean().getLastname() %> </h4><p><%=k.getEmployeeBean().getDepartmentBean().getDepartment_name()%></p><p><%=reason%></p></div></div>"/>    
 														</a>
+														<!-- <a href="" data-toggle="modal" data-target="#myModalManager">&nbsp;<i class="icon-circle-plus" style="color: black;font-size: 20px;padding-top:20px;"></i></a> -->
 													<%}%>
 										                  	<%if((Double.parseDouble(kaizenBean.getImplementation_cost()) > 5000 )
 										                  			|| (kaizenBean.getCategory_id().equalsIgnoreCase("C"))){ 
 										                  			
 										                  			if(user.getEmployee_master_id() == kaizenBean.getEmployeeBean().getEmployee_master_id()){%>
 										                  			
-										                  			<button class="btn btn-default btn-circle" id="addAuthority" data-toggle="modal" data-target="#addAuthorityModel"><i class="fa fa-plus"></i></button>
+										                  			<!-- <button class="btn btn-default btn-circle" id="addAuthority" data-toggle="modal" data-target="#addAuthorityModel"><i class="fa fa-plus"></i></button> -->
 										                  			
 													<%}} %>
 													

@@ -222,15 +222,14 @@
 														placeholder="Max 75 words"></textarea></td>
 
 
-												<td id="moneyField"><label>Money Saving (Cost)</label>
+												<td id="moneyField"><label>Money Saving(Cost)</label>
 													<textarea maxlength="75" name="money_saving"
 														id="money_saving" class="form-control"
 														placeholder="Enter Amount"
 														onchange="checkInteger(this.id);"></textarea></td>
 
 
-												<td id="effortField"><label>Effort Saving
-														(Quality)</label> <textarea maxlength="75" name="effort_saving"
+												<td id="effortField"><label>EffortSaving(Quality)</label> <textarea maxlength="75" name="effort_saving"
 														id="effort_saving" class="form-control"
 														placeholder="Max 75 words"></textarea></td>
 
