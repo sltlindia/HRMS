@@ -70,6 +70,8 @@
 <!-- END Page Level CSS-->
 <!-- BEGIN Custom CSS-->
 <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+<script src="app-assets/js/core/libraries/jquery.min.js"
+		type="text/javascript"></script>
 <!-- END Custom CSS-->
 <%@include file="header.jsp"%>
 </head>
@@ -126,7 +128,7 @@
 																	style="color: black; text-decoration: none; cursor: pointer;"
 																	onclick="showData(this.id)"><i
 																		class="icon-android-add-circle"></i> <%=year%> - <%=year1%></a></th>
-																<th><button name="button"
+																<th><div align="right"><button name="button"
 																		onclick="window.open('kaizenBillBoard.jsp?year=<%=yearDuration%>','_blank')"
 																		class="btn btn-primary">
 																		<i class="fa fa-file-text" align="right"></i> BillBoard
@@ -135,18 +137,11 @@
 																		onclick="window.open('kaizenLeaderBoard.jsp?year=<%=yearDuration%>','_blank')"
 																		class="btn btn-primary">
 																		<i class="fa fa-file-text"></i> LeaderBoard
-																	</button></th>
+																	</button></div></th>
 															</tr>
 															<script>
-																$(document)
-																		.ready(
-																				function() {
-																					$(
-																							".year"
-																									+
-															<%=yearBean.getYear_id()%>
-																)
-																							.hide();
+																$(document).ready(function() {
+																					$(".year"+<%=yearBean.getYear_id()%>).hide();
 																				});
 															</script>
 
@@ -281,8 +276,7 @@
 	<%@include file="footer.html"%>
 	<!-- BEGIN VENDOR JS-->
 	<!-- build:js app-assets/js/vendors.min.js-->
-	<script src="app-assets/js/core/libraries/jquery.min.js"
-		type="text/javascript"></script>
+	
 	<script src="app-assets/vendors/js/ui/tether.min.js"
 		type="text/javascript"></script>
 	<script src="app-assets/js/core/libraries/bootstrap.min.js"
@@ -334,6 +328,23 @@
 
 		ga('create', 'UA-96096445-1', 'auto');
 		ga('send', 'pageview');
+	</script>
+	<script>
+    
+    function showData(id){
+		 $("."+id).slideToggle(2);
+	     $("i", "#"+id).toggleClass("icon-android-remove-circle icon-android-add-circle");
+	}
+    </script>
+    <script>
+		// tooltip demo
+		$('.tooltip-demo').tooltip({
+			selector : "[data-toggle=tooltip]",
+			container : "body"
+		})
+
+		// popover demo
+		$("[data-toggle=popover]").popover()
 	</script>
 </body>
 </html>
