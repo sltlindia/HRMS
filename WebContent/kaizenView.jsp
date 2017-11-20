@@ -70,7 +70,7 @@ if (datefield.type!="date"){ //if browser doesn't support input type="date", loa
 }
 </script>
 
-<script>
+<!-- <script>
 if (datefield.type!="date"){ //if browser doesn't support input type="date", initialize date picker widget:
     jQuery(function($){ //on document.ready
         $('#startDate').datepicker({
@@ -82,7 +82,7 @@ if (datefield.type!="date"){ //if browser doesn't support input type="date", ini
     })
 }
 </script>
-
+ -->
 </head>
 <body data-open="hover" data-menu="horizontal-menu" data-col="2-columns" class="horizontal-layout horizontal-menu 2-columns ">
 <%
@@ -469,6 +469,7 @@ for(KaizenManagementApprovalBean k1 : listOfKaizenManagement){
 													
 												%>
 												
+												
 												<img src="FileServlet?path=D:\hrms\upload\profilePic\<%=company_name%>\<%=emp_code%>.bmp" style="border: solid 2px; border-color: <%=borderColor%>;"  alt="Sample Image"
 														class="img-circle" id="img<%=kaizenBean.getManager_id()%>" height="40px" width="40px" tabindex="0" data-placement="left" data-toggle="popover" data-trigger="hover" title="Manager Info" data-content="<div class='media'><a href='#' class='pull-left'><img src='FileServlet?path=D:\hrms\upload\profilePic\<%=company_name%>\<%=emp_code%>.bmp' class='img-circle' height='60px' width='60px' alt='Sample Image'></a><div class='media-body'><h4 class='media-heading'><%=employeeBean.getFirstname()+" "+employeeBean.getLastname() %> </h4><p><%=employeeBean.getDepartmentBean().getDepartment_name()%></p><p><%=reason%></p></div></div>"/>  
 												
@@ -645,7 +646,7 @@ for(KaizenManagementApprovalBean k1 : listOfKaizenManagement){
 												<td colspan="6"></td>
 											<tr>
 											
-										<div class="modal fade" id="myModalManager" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+							<div class="modal fade" id="myModalManager" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                               	  <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
@@ -695,7 +696,7 @@ for(KaizenManagementApprovalBean k1 : listOfKaizenManagement){
 							<div class="col-sm-6 col-md-6 col-lg-6">
 							
 									<%if(listOfBefore.size() != 0){ %>
-						<div class="panel panel-primary">
+										<div class="panel panel-primary">
 												<div class="panel-body">
 														<h5><b>Before Photo List</b></h5>
 												<%
@@ -712,7 +713,7 @@ for(KaizenManagementApprovalBean k1 : listOfKaizenManagement){
 												<h5><b>Description</b></h5>
 												<p style="white-space: pre-wrap;"><%=kaizenBean.getBefore_description()%></p>								
 												</div>
-						</div>
+										</div>
 						<%} %>
 							
 							</div>
@@ -737,19 +738,12 @@ for(KaizenManagementApprovalBean k1 : listOfKaizenManagement){
 												<h5><b>Description</b></h5>
 												<p style="white-space: pre-wrap;"><%=kaizenBean.getAfter_description()%></p>									
 												</div>
-												</div>
+							</div>
 								<%} %>
 							
 							</div>
 						
 						</div>
-						
-						
-						
-					
-						
-						
-						
 						
 						<%
 						if(flag != null){
@@ -975,7 +969,6 @@ for(KaizenManagementApprovalBean k1 : listOfKaizenManagement){
 	}
 	
 	
-	
 	function reject() {
 		
 		var dialog = bootbox.dialog({
@@ -1145,10 +1138,7 @@ for(KaizenManagementApprovalBean k1 : listOfKaizenManagement){
 		
 	}
 	
-	
-	
 	</script>
-	
 	
 	<script>
 	  $("[data-toggle=popover]")

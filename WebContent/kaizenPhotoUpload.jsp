@@ -119,14 +119,27 @@ if(request.getParameter("before_description") != null){
 				     		
 						<!-- /.panel-heading -->
 						<ul class="nav nav-tabs nav-linetriangle no-hover-bg">
-        			
+        				<%if(openStatus.equalsIgnoreCase("before")){ %>
         					<li class="nav-item">
-								<a class="nav-link active" id="base-tab" href="kaizenPhotoGallaryBefore.jsp" aria-expanded="true">Before Photos
+								<a class="nav-link active" id="base-tab" href="#home" aria-expanded="true">Before Photos
 								</a>
 							</li>
+							<%}else{ %>
 							<li class="nav-item">
-								<a class="nav-link" id="base-tab" href="kaizenPhotoGallaryAfter.jsp" aria-expanded="true">After Photos</a>
+								<a class="nav-link" id="base-tab" href="#home" aria-expanded="true">Before Photos</a>
 							</li>
+							<%} %>
+							<%
+								if(openStatus.equalsIgnoreCase("after")){%>
+							<li class="nav-item">
+								<a class="nav-link active" id="base-tab" href="#profile" aria-expanded="true">After Photos
+								</a>
+							</li>
+							<%}else{ %>
+							<li class="nav-item">
+								<a class="nav-link" id="base-tab" href="#profile" aria-expanded="true">After Photos</a>
+							</li>
+							<%} %>
 						</ul>
                             <hr>	
 							<!-- Nav tabs -->

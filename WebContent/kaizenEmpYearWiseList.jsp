@@ -160,12 +160,12 @@
 																		<tbody>
 																			<tr>
 																				<th></th>
-																				<th class="icon-information-circled">On-Progress</th>
-																				<th class="icon-information-circled">Completed</th>
-																				<th class="icon-information-circled">Approval Pending</th>
-																				<th class="icon-information-circled">Genuine</th>
-																				<th class="icon-information-circled">Rejected</th>
-																				<th></th>
+                                    					  						<th>On-Progress&emsp;&emsp;&emsp;<i class="icon-information-circled" style="color: black;font-size: 13px;" tabindex="0" data-placement="left" data-toggle="popover" data-trigger="hover" data-content="No of CI which are Approved but not completed"></i></th>
+				                                    					  		<th>Completed&emsp;&emsp;&emsp;<i class="icon-information-circled" style="color: black;font-size: 13px;" tabindex="0" data-placement="left" data-toggle="popover" data-trigger="hover" data-content="No of CI which are Approved and completed"></i></th>
+				                                    					  		<th>Pending&emsp;&emsp;&emsp;<i class="icon-information-circled" style="color: black;font-size: 13px;" tabindex="0" data-placement="left" data-toggle="popover" data-trigger="hover" data-content="No of CI Pending for Approval"></i></th>
+				                                    					  		<th>Genuine&emsp;&emsp;&emsp;<i class="icon-information-circled" style="color: black;font-size: 13px;" tabindex="0" data-placement="left" data-toggle="popover" data-trigger="hover" data-content="No of CI which are approved by departmental HOD but pending for other HOD's Approval"></i></th>
+				                                    					  		<th>Rejected&emsp;&emsp;&emsp;<i class="icon-information-circled" style="color: black;font-size: 13px;" tabindex="0" data-placement="left" data-toggle="popover" data-trigger="hover" data-content="No of CI Rejected"></i></th>
+				                                    					  		<th></th>
 																			</tr>
 																		</tbody>
 

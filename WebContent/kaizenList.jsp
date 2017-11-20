@@ -46,6 +46,7 @@
     <!-- END Page Level CSS-->
     <!-- BEGIN Custom CSS-->
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <script src="app-assets/js/core/libraries/jquery.min.js" type="text/javascript"></script>
     <!-- END Custom CSS-->
     <%@include file="header.jsp" %>
   </head>
@@ -116,9 +117,28 @@ if(request.getParameter("year") != null ){
                                      		int kaizen_id = kaizenBean.getKaizen_id();
                                      		
                                      	%>
-	                                     <tr>
+                                     	<%-- <tr class="panel-group">
+																<th><a id="year<%=yearBean.getYear_id()%>"
+																	style="color: black; text-decoration: none; cursor: pointer;"
+																	onclick="showData(this.id)"><i
+																		class="icon-android-add-circle"></i> <%=year%> - <%=year1%></a></th>
+																<th><div align="right"><button name="button"
+																		onclick="window.open('kaizenBillBoard.jsp?year=<%=yearDuration%>','_blank')"
+																		class="btn btn-primary">
+																		<i class="fa fa-file-text" align="right"></i> BillBoard
+																	</button>
+																	<button name="button"
+																		onclick="window.open('kaizenLeaderBoard.jsp?year=<%=yearDuration%>','_blank')"
+																		class="btn btn-primary">
+																		<i class="fa fa-file-text"></i> LeaderBoard
+																	</button></div></th>
+															</tr>
+                                     	
+                                     	 --%>
+                                     	
+	                                     <tr  class="panel-group">
 	                                     
-	                                     	<td><a id="kaizen<%=kaizenBean.getKaizen_id()%>" style="color: black;text-decoration: none;cursor: pointer;" onclick="showData(this.id)"><i class="fa fa-plus-circle"></i></a></td>
+	                                     	<td><a id="kaizen<%=kaizenBean.getKaizen_id()%>" style="color: black;text-decoration: none;cursor: pointer;" onclick="showData(this.id)"><i class="icon-android-add-circle"></i></a></td>
 	                                     	<td><%=kaizenBean.getKaizen_name()%></td>
 	                                     	<td><%=ddMMMyyyy.format(yyyyMMddhh.parse(kaizenBean.getDate()))%></td>
 	                                     	<td><%if(kaizenBean.getCompletion_date() != null){%>
@@ -218,7 +238,7 @@ if(request.getParameter("year") != null ){
    <%@include file="footer.html"%>
     <!-- BEGIN VENDOR JS-->
     <!-- build:js app-assets/js/vendors.min.js-->
-    <script src="app-assets/js/core/libraries/jquery.min.js" type="text/javascript"></script>
+    
     <script src="app-assets/vendors/js/ui/tether.min.js" type="text/javascript"></script>
     <script src="app-assets/js/core/libraries/bootstrap.min.js" type="text/javascript"></script>
     <script src="app-assets/vendors/js/ui/perfect-scrollbar.jquery.min.js" type="text/javascript"></script>
@@ -256,7 +276,7 @@ if(request.getParameter("year") != null ){
     <script>
     function showData(id){
 		 $("."+id).slideToggle(2);
-	     $("i", "#"+id).toggleClass("fa-minus-circle fa-plus-circle");
+	     $("i", "#"+id).toggleClass("icon-android-remove-circle icon-android-add-circle");
 	}
     </script>
     <script type="text/javascript" src="app-assets/vendors/js/ui/jquery.sticky.js"></script>
@@ -268,7 +288,7 @@ if(request.getParameter("year") != null ){
     <script src="app-assets/vendors/js/tables/pdfmake.min.js" type="text/javascript"></script>
     <script src="app-assets/vendors/js/tables/vfs_fonts.js" type="text/javascript"></script>
     <script src="app-assets/vendors/js/tables/buttons.html5.min.js" type="text/javascript"></script>
-    <script src="app-assets/vendors/js/tables/buttons.print.min.js" type="text/javascript"></script>
+    <script src="app-assets/vendors/js/tables/buttons.print.min.js" type="text/javascript"></script> 
     <!-- END PAGE VENDOR JS-->
     
       <!-- BEGIN PAGE LEVEL JS-->

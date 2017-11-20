@@ -68,15 +68,16 @@ List<YearBean> listOfYear = allListDAO.getListOfYear();
 					<div class="card-body collapse in">
 						<div class="card-block">
 							<div class="form-body">
-
+	
 			<div class="row">
 				<div class="col-lg-12">
 					<h1 class="page-header">History</h1>
 				</div>
 				<!-- /.col-lg-12 -->
 			</div>
+			 
+			 <div class="row"  style="border: 1px solid #a8afa9; border-radius: 10px;">
 			
-			 <div class="row">
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
@@ -84,10 +85,10 @@ List<YearBean> listOfYear = allListDAO.getListOfYear();
                         	<div class="col-md-6">
                         	Bill Board History
                         	</div>
-                        	
                         </div>
-                           
                         </div>
+                        <hr style="border: 1px solid #a8afa9;">
+                        
                         <!-- /.panel-heading -->
                         <div class="panel-body">
                             <form target="_blank" action="kaizenBillBoard.jsp">
@@ -135,9 +136,10 @@ List<YearBean> listOfYear = allListDAO.getListOfYear();
                 </div>
                 </div>
                 
-                
+                <br>
                 
                  <div class="row">
+                 <div class="row"  style="border: 1px solid #a8afa9; border-radius: 10px;">
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
@@ -145,8 +147,8 @@ List<YearBean> listOfYear = allListDAO.getListOfYear();
                         	<div class="col-md-6">
                         	Leader Board History
                         	</div>
-                        	
                         </div>
+                         <hr style="border: 1px solid #a8afa9;">
                            
                         </div>
                         <!-- /.panel-heading -->
@@ -176,6 +178,7 @@ List<YearBean> listOfYear = allListDAO.getListOfYear();
                             	</div>
                             </form>
 
+                </div>
                 </div>
                 </div>
                 </div>
