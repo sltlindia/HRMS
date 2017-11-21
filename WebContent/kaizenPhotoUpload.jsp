@@ -107,8 +107,10 @@ if(request.getParameter("before_description") != null){
 <div class="row">
 				<div class="col-lg-12">
 					<div class="card">
-				        	<div class="card-header">
-				        		<div class="col-lg-6">
+				       <div class="card-header">
+				        <div class="card box-shadow-0" data-appear="appear">
+					        <div class="card-header card-inverse" style="background-color: #90A4AE;padding: 0.5rem 0rem 1rem 0rem;height: 50px;">
+					                <div class="col-sm-6">
 				               		<h4 class="card-title" id="horz-layout-basic">CI Photos</h4>
 				                </div>
 				                <div class="col-md-6" align="right">
@@ -116,7 +118,8 @@ if(request.getParameter("before_description") != null){
 								<a href="kaizenView.jsp?kaizen_id=<%=kaizen_id%>"><button class="btn btn-outline btn-primary btn-xs">Go To CI</button></a>
 								</div>
 				     		</div>
-				     		
+				     <div class="card-body collapse in">
+					        <div class="card-block border-bottom-blue-grey" style="border-left: 2px solid #607D8B;border-right: 2px solid #607D8B;">
 						<!-- /.panel-heading -->
 						<ul class="nav nav-tabs nav-linetriangle no-hover-bg">
         				<%if(openStatus.equalsIgnoreCase("before")){ %>
@@ -233,12 +236,12 @@ if(request.getParameter("before_description") != null){
 												
 												<br>
 												
-												<div class="card box-shadow-0" data-appear="appear">
-					                <div class="card-header card-inverse" style="background-color: #3BAFDA;padding: 9px;">
+					                <div class="card-header card-inverse" style="background-color: #90A4AE;padding: 9px;">
 					                    <h5 class="card-title">Photo List</h5>
 					                </div>
 					                <div class="card-body collapse in">
-					                    <div class="card-block border-bottom-blue-grey" style="padding:0;">
+					                <div class="card-block border-bottom-blue-grey" style="border-left: 2px solid #607D8B;border-right: 2px solid #607D8B;">
+					                    <!-- <div class="card-block border-bottom-blue-grey" style="padding:0;"> -->
 												<%
 												List<KaizenBeforeUploadAttachmentBean> listOfBefore = allKaizenListDAO.getListOfBeforeUploadAttachment(kaizen_id);
 												for(KaizenBeforeUploadAttachmentBean kaizenBeforeUploadAttachmentBean : listOfBefore){
@@ -256,14 +259,7 @@ if(request.getParameter("before_description") != null){
 												
 								</div>
 								</div>
-								</div>
-										
-												
-												
-												
-												
-												
-												<%-- <div class="panel panel-primary">
+									<%-- <div class="panel panel-primary">
 												<div class="panel-body">
 												
 														<h5><b>Photo List</b></h5>
@@ -373,19 +369,7 @@ if(request.getParameter("before_description") != null){
 								</div>
 								</div>
 								</div>
-												
-												
-												
-												
-												
-												
-												
-												
-												
-												
-												
-												
-												
+											
 												<%-- <div class="card box-shadow-0" data-appear="appear">
 													<div class="card-body collapse in">
 														<h5><b>Photo List</b></h5>
@@ -414,8 +398,16 @@ if(request.getParameter("before_description") != null){
 						<!-- /.panel-body -->
 					</div>
 					<!-- /.panel -->
+					</div>
+					</div>
+
 				</div>
+		
 			</div>
+			</div>
+			</div>
+			</div>
+			
 </section>
 </div>
 		</div>

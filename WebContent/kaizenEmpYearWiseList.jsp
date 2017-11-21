@@ -104,16 +104,19 @@
 
 								<div class="row">
 									<div class="col-lg-12">
-										<div class="panel panel-default">
-											<div class="panel-heading">
-												<div class="row">
-													<div class="col-md-6">CI List</div>
+					<div class="card">
+				        	<div class="card-header">
+				        	<div class="card box-shadow-0" data-appear="appear">
+					                <div class="card-header card-inverse" style="background-color: #90A4AE;padding: 0.5rem 0rem 1rem 0rem;height: 50px;">
+					                <div class="col-sm-6">
+					                 <h5 class="card-title">CI List</h5>
 												</div>
 
 											</div>
 											<!-- /.panel-heading -->
-											<div class="panel-body">
-												<div class="dataTable_wrapper">
+											<div class="card-body collapse in">
+					                    <div class="card-block border-bottom-blue-grey" style="border-left: 2px solid #607D8B;border-right: 2px solid #607D8B;">
+					                    <div class="table-responsive">
 													<table
 														class="table table-striped table-bordered table-hover">
 														<thead>
@@ -131,12 +134,12 @@
 																<th><div align="right"><button name="button"
 																		onclick="window.open('kaizenBillBoard.jsp?year=<%=yearDuration%>','_blank')"
 																		class="btn btn-primary">
-																		<i class="fa fa-file-text" align="right"></i> BillBoard
+																		<i class="icon-document-text" align="right"></i> BillBoard
 																	</button>
 																	<button name="button"
 																		onclick="window.open('kaizenLeaderBoard.jsp?year=<%=yearDuration%>','_blank')"
 																		class="btn btn-primary">
-																		<i class="fa fa-file-text"></i> LeaderBoard
+																		<i class="icon-document-text"></i> LeaderBoard
 																	</button></div></th>
 															</tr>
 															<script>
@@ -147,25 +150,26 @@
 
 															<tr class="year<%=yearBean.getYear_id()%>">
 																<td colspan="2">
+																<div class="table-responsive">
 																	<table
-																		class="table table-striped table-bordered table-hover">
+																		class="table table-striped table-bordered">
 																		<thead>
 																			<tr>
-																				<th rowspan="2">Month</th>
-																				<th colspan="4">Total CI</th>
-																				<th rowspan="2">Action</th>
+																				<th rowspan="2" style="padding: 0px;">Month</th>
+																				<th colspan="4" style="padding: 0px;">Total CI</th>
+																				<th rowspan="2" style="padding: 0px;">Action</th>
 																			</tr>
 																		</thead>
 
 																		<tbody>
 																			<tr>
-																				<th></th>
-                                    					  						<th>On-Progress&emsp;&emsp;&emsp;<i class="icon-information-circled" style="color: black;font-size: 13px;" tabindex="0" data-placement="left" data-toggle="popover" data-trigger="hover" data-content="No of CI which are Approved but not completed"></i></th>
-				                                    					  		<th>Completed&emsp;&emsp;&emsp;<i class="icon-information-circled" style="color: black;font-size: 13px;" tabindex="0" data-placement="left" data-toggle="popover" data-trigger="hover" data-content="No of CI which are Approved and completed"></i></th>
-				                                    					  		<th>Pending&emsp;&emsp;&emsp;<i class="icon-information-circled" style="color: black;font-size: 13px;" tabindex="0" data-placement="left" data-toggle="popover" data-trigger="hover" data-content="No of CI Pending for Approval"></i></th>
-				                                    					  		<th>Genuine&emsp;&emsp;&emsp;<i class="icon-information-circled" style="color: black;font-size: 13px;" tabindex="0" data-placement="left" data-toggle="popover" data-trigger="hover" data-content="No of CI which are approved by departmental HOD but pending for other HOD's Approval"></i></th>
-				                                    					  		<th>Rejected&emsp;&emsp;&emsp;<i class="icon-information-circled" style="color: black;font-size: 13px;" tabindex="0" data-placement="left" data-toggle="popover" data-trigger="hover" data-content="No of CI Rejected"></i></th>
-				                                    					  		<th></th>
+																				<th style="padding: 0px;"></th>
+                                    					  						<th style="padding: 0px;">On-Progress&emsp;<i class="icon-information-circled" style="color: black;font-size: 13px;" tabindex="0" data-placement="left" data-toggle="popover" data-trigger="hover" data-content="No of CI which are Approved but not completed"></i></th>
+				                                    					  		<th style="padding: 0px;">&emsp;Completed&emsp;<i class="icon-information-circled" style="color: black;font-size: 13px;" tabindex="0" data-placement="left" data-toggle="popover" data-trigger="hover" data-content="No of CI which are Approved and completed"></i></th>
+				                                    					  		<th style="padding: 0px;">&emsp;Pending&emsp;<i class="icon-information-circled" style="color: black;font-size: 13px;" tabindex="0" data-placement="left" data-toggle="popover" data-trigger="hover" data-content="No of CI Pending for Approval"></i></th>
+				                                    					  		<th style="padding: 0px;">&emsp;Genuine&emsp;<i class="icon-information-circled" style="color: black;font-size: 13px;" tabindex="0" data-placement="left" data-toggle="popover" data-trigger="hover" data-content="No of CI which are approved by departmental HOD but pending for other HOD's Approval"></i></th>
+				                                    					  		<th style="padding: 0px;">&emsp;Rejected&emsp;<i class="icon-information-circled" style="color: black;font-size: 13px;" tabindex="0" data-placement="left" data-toggle="popover" data-trigger="hover" data-content="No of CI Rejected"></i></th>
+				                                    					  		<th style="padding: 0px;"></th>
 																			</tr>
 																		</tbody>
 
@@ -192,13 +196,13 @@
 
 
 																			<tr>
-																				<th><%=monthBean.getMonth_name()%>,<%=year%></th>
-																				<th><%=lisOfApprovedOnProgressCI.size()%></th>
-																				<th><%=lisOfApprovedCompletedCI.size()%></th>
-																				<th><%=lisOfPendingForApprovalCI.size() + lisOfPendingForApprovalSumittedCI.size()%></th>
-																				<th><%=lisOfMainGenuineKaizen.size()%></th>
-																				<th><%=lisOfMainRejectedKaizen.size()%></th>
-																				<th><a
+																				<th style="padding: 1px;"><%=monthBean.getMonth_name()%>,<%=year%></th>
+																				<th style="padding: 1px;"><%=lisOfApprovedOnProgressCI.size()%></th>
+																				<th style="padding: 1px;"><%=lisOfApprovedCompletedCI.size()%></th>
+																				<th style="padding: 1px;"><%=lisOfPendingForApprovalCI.size() + lisOfPendingForApprovalSumittedCI.size()%></th>
+																				<th style="padding: 1px;"><%=lisOfMainGenuineKaizen.size()%></th>
+																				<th style="padding: 1px;"><%=lisOfMainRejectedKaizen.size()%></th>
+																				<th style="padding: 1px;"><a
 																					href="kaizenList.jsp?year=<%=year%>&month=<%=monthBean.getMonth_id()%>&month_name=<%=monthBean.getMonth_name()%>"><button
 																							class="btn btn-default btn-xs">
 																							<i class="icon-eye6"></i> Show
@@ -230,13 +234,13 @@
 																			%>
 
 																			<tr>
-																				<th><%=monthBean.getMonth_name()%>,<%=year1%></th>
-																				<th><%=lisOfApprovedOnProgressCI.size()%></th>
-																				<th><%=lisOfApprovedCompletedCI.size()%></th>
-																				<th><%=lisOfPendingForApprovalCI.size() + lisOfPendingForApprovalSumittedCI.size()%></th>
-																				<th><%=lisOfMainGenuineKaizen.size()%></th>
-																				<th><%=lisOfMainRejectedKaizen.size()%></th>
-																				<th><a
+																				<th style="padding: 1px;"><%=monthBean.getMonth_name()%>,<%=year1%></th>
+																				<th style="padding: 1px;"><%=lisOfApprovedOnProgressCI.size()%></th>
+																				<th style="padding: 1px;"><%=lisOfApprovedCompletedCI.size()%></th>
+																				<th style="padding: 1px;"><%=lisOfPendingForApprovalCI.size() + lisOfPendingForApprovalSumittedCI.size()%></th>
+																				<th style="padding: 1px;"><%=lisOfMainGenuineKaizen.size()%></th>
+																				<th style="padding: 1px;"><%=lisOfMainRejectedKaizen.size()%></th>
+																				<th style="padding: 1px;"><a
 																					href="kaizenList.jsp?year=<%=year%>&month=<%=monthBean.getMonth_id()%>&month_name=<%=monthBean.getMonth_name()%>"><button
 																							class="btn btn-default btn-xs">
 																							<i class="icon-eye6"></i> Show
@@ -250,6 +254,7 @@
 
 																		</tbody>
 																	</table>
+																	</div>
 																</td>
 															</tr>
 
@@ -258,6 +263,7 @@
 															%>
 														</thead>
 													</table>
+													</div>
 												</div>
 
 											</div>

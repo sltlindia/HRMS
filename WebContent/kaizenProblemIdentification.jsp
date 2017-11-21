@@ -84,23 +84,21 @@
 				    <div class="col-md-12">
 				        <div class="card">
 				        	<div class="card-header">
-				        	<div class="row">
+				        	<div class="card-header card-inverse" style="background-color: #90A4AE;padding: 0.5rem 0rem 1rem 0rem;height: 50px;">
 				        	<div class="col-md-6">
-				                <h4 class="card-title" id="horz-layout-basic">Problem List</h4>
+				            	<h4 class="card-title" id="horz-layout-basic">Problem List</h4>
 				                <a class="heading-elements-toggle"><i class="icon-ellipsis font-medium-3"></i></a>
 				            </div>
 							<div class="col-md-6" align="right">
-									<button data-toggle="modal" data-target="#addProblem"
+								<button data-toggle="modal" data-target="#addProblem"
 										class="btn btn-default">Add Problem</button>
-								</div>
-							</div>	
 							</div>
-						
+							</div>	
 						<!-- /.panel-heading -->
-						<div class="card-body collapse in">
-	               			<div class="card-block">
-								<table class="table table-striped table-bordered table-hover">
-
+				<div class="card-body collapse in">
+					   <div class="card-block border-bottom-blue-grey" style="border-left: 2px solid #607D8B;border-right: 2px solid #607D8B;">
+							<div id="table-responsive">
+								<table class="table table-stripped ">
 									<thead>
 										<tr>
 											<th>Problem</th>
@@ -208,7 +206,7 @@
 										<%} %>
 									</tbody>
 								</table>
-							
+							</div>
 							</div>
 					
 
@@ -247,6 +245,7 @@
 								</div>
 								
 								<!-- /.modal-dialog -->
+							</div>
 							</div>
 							</div>
 							</div>

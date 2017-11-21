@@ -76,21 +76,18 @@ List<YearBean> listOfYear = allListDAO.getListOfYear();
 				<!-- /.col-lg-12 -->
 			</div>
 			 
-			 <div class="row"  style="border: 1px solid #a8afa9; border-radius: 10px;">
-			
+			  <div class="row">
                 <div class="col-lg-12">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                        <div class="row">
-                        	<div class="col-md-6">
+                     <div class="card">
+					    <div class="card-header card-inverse" style="background-color: #90A4AE;padding: 0.5rem 0rem 1rem 0rem;height: 50px;">
+					      <div class="col-sm-6">
                         	Bill Board History
                         	</div>
                         </div>
-                        </div>
-                        <hr style="border: 1px solid #a8afa9;">
-                        
+                       
                         <!-- /.panel-heading -->
-                        <div class="panel-body">
+                        <div class="card-body collapse in">
+					              <div class="card-block border-bottom-blue-grey" style="border-left: 2px solid #607D8B;border-right: 2px solid #607D8B;">
                             <form target="_blank" action="kaizenBillBoard.jsp">
                             <div class="row">
                             	<div class="col-md-6 col-xs-6 col-sm-6">
@@ -130,8 +127,9 @@ List<YearBean> listOfYear = allListDAO.getListOfYear();
                             	<input class="btn btn-primary" type="submit" name="submit" value="SUBMIT">
                             	</div>
                             </form>
-
+					</div>
                 </div>
+               
                 </div>
                 </div>
                 </div>
@@ -139,20 +137,18 @@ List<YearBean> listOfYear = allListDAO.getListOfYear();
                 <br>
                 
                  <div class="row">
-                 <div class="row"  style="border: 1px solid #a8afa9; border-radius: 10px;">
                 <div class="col-lg-12">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                        <div class="row">
-                        	<div class="col-md-6">
+                     <div class="card">
+					    <div class="card-header card-inverse" style="background-color: #90A4AE;padding: 0.5rem 0rem 1rem 0rem;height: 50px;">
+					      <div class="col-sm-6">
                         	Leader Board History
-                        	</div>
-                        </div>
-                         <hr style="border: 1px solid #a8afa9;">
+                          </div>
+                      
                            
                         </div>
                         <!-- /.panel-heading -->
-                        <div class="panel-body">
+                       <div class="card-body collapse in">
+					              <div class="card-block border-bottom-blue-grey" style="border-left: 2px solid #607D8B;border-right: 2px solid #607D8B;">
                             <form target="_blank" action="kaizenLeaderBoard.jsp">
                             <div class="row">
                             	<div class="col-md-6 col-xs-6 col-sm-6">
@@ -177,11 +173,11 @@ List<YearBean> listOfYear = allListDAO.getListOfYear();
                             	</div>
                             	</div>
                             </form>
-
+					</div>
                 </div>
                 </div>
                 </div>
-                </div>
+                
                 </div>
                 </div>
                 </div>

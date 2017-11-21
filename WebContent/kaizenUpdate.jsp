@@ -96,9 +96,11 @@ session.setAttribute("updateSession", "rejection");
 				<div class="col-lg-12">
 					<div class="card">
 				        	<div class="card-header">
+				        	<div class="card-header card-inverse" style="background-color: #90A4AE;padding: 0.5rem 0rem 1rem 0rem;height: 50px;">
 				        		<div class="col-lg-6">
 				               		<h4 class="card-title" id="horz-layout-basic">UPDATE CI</h4>
 				                </div>
+				            </div>
 
 <!-- <div id="wrapper">
 		<div id="page-wrapper">
@@ -117,7 +119,8 @@ session.setAttribute("updateSession", "rejection");
 						<div class="panel-body"> -->
 
 		<%-- <%if(kaizenBean.getCompletion_status().equalsIgnoreCase("saved")){%> --%>
-				<div class="panel-body">
+			<div class="card-body collapse in">
+					   <div class="card-block border-bottom-blue-grey" style="border-left: 2px solid #607D8B;border-right: 2px solid #607D8B;">
 							<form action="kaizenUpdate" method="post" name=""
 								enctype="multipart/form-data">
 								
@@ -451,6 +454,7 @@ session.setAttribute("updateSession", "rejection");
 
 
 <%} %> --%>
+						</div>
 						</div>
 						<!-- /.panel -->
 						</div>

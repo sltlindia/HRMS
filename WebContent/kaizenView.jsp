@@ -141,28 +141,30 @@ for(KaizenManagementApprovalBean k1 : listOfKaizenManagement){
 				<div class="col-lg-12">
 					<div class="card">
 				        	<div class="card-header">
-				        		<div class="col-lg-6">
-				               		<h4 class="card-title" id="horz-layout-basic">CI Detail</h4>
-				                </div>
-				           
-							
-							<%if(user.getEmployee_master_id() == kaizenBean.getEmployeeBean().getEmployee_master_id()) {%>
-							<div class="col-sm-6" align="right">
-								<%if (kaizenBean.getCompletion_status().equalsIgnoreCase("saved") || kaizenBean.getStatus().equalsIgnoreCase("rejected")) {%>
-								<a onclick="changeStatus(<%=kaizen_id%>);"><button class="btn mr-1 mb-1 btn-success" id="changeStatus">LOCK</button></a>
-								<%} %>
-								<%if (kaizenBean.getCompletion_status().equalsIgnoreCase("submitted") && kaizenBean.getStatus().equalsIgnoreCase("approved")) {%>
-								<a onclick="changeStatusCompleted(<%=kaizen_id%>);"><button class="btn btn-primary btn-min-width mr-1 mb-1" id="changeStatusCompleted">COMPLETE</button></a>
-								<%} %>
-								<%if (!kaizenBean.getCompletion_status().equalsIgnoreCase("completed")) {%>
-								<a href="kaizenUpdate.jsp?kaizen_id=<%=kaizen_id%>"><button class="btn mr-1 mb-1 btn-primary" id="updateBtn">UPDATE</button></a>
-								<%} %>
-								<a href="kaizenList.jsp"><button class="btn mr-1 mb-1 btn-warning">Go To List</button></a>
-							</div>
-							 </div>
-							<%} %>				
-						
-						<div id="table-responsive">
+				        	<div class="card box-shadow-0" data-appear="appear">
+					                <div class="card-header card-inverse" style="background-color: #90A4AE;padding: 0.5rem 0rem 1rem 0rem;height: 50px;">
+					                <div class="col-sm-6">
+					                    <h5 class="card-title">CI Detail</h5></div>
+					                    <%if(user.getEmployee_master_id() == kaizenBean.getEmployeeBean().getEmployee_master_id()) {%>
+											<div class="col-sm-6" align="right">
+												<%if (kaizenBean.getCompletion_status().equalsIgnoreCase("saved") || kaizenBean.getStatus().equalsIgnoreCase("rejected")) {%>
+												<a onclick="changeStatus(<%=kaizen_id%>);"><button class="btn mr-1 mb-1 btn-success" id="changeStatus">LOCK</button></a>
+												<%} %>
+												<%if (kaizenBean.getCompletion_status().equalsIgnoreCase("submitted") && kaizenBean.getStatus().equalsIgnoreCase("approved")) {%>
+												<a onclick="changeStatusCompleted(<%=kaizen_id%>);"><button class="btn btn-primary btn-min-width mr-1 mb-1" id="changeStatusCompleted">COMPLETE</button></a>
+												<%} %>
+												<%if (!kaizenBean.getCompletion_status().equalsIgnoreCase("completed")) {%>
+												<a href="kaizenUpdate.jsp?kaizen_id=<%=kaizen_id%>"><button class="btn mr-1 mb-1 btn-primary" id="updateBtn">UPDATE</button></a>
+												<%} %>
+												<a href="kaizenList.jsp"><button class="btn mr-1 mb-1 btn-warning">Go To List</button></a>
+											</div>
+											 
+											<%} %>	
+					                </div>
+					                
+						<div class="card-body collapse in">
+					              <div class="card-block border-bottom-blue-grey" style="border-left: 2px solid #607D8B;border-right: 2px solid #607D8B;">
+										<div id="table-responsive">
 										<table class="table table-stripped ">
 										
 										
@@ -170,7 +172,7 @@ for(KaizenManagementApprovalBean k1 : listOfKaizenManagement){
 												<th>Problem Description</th>
 												<td>:</td>
 												<td style="white-space: pre-wrap;"><%=kaizenBean.getKaizenProblemIdentificationBean().getProblem_description()%></td>
-
+												
 												<th>Category</th>
 												<td>:</td>
 												<td align="left"><%=kaizenBean.getKaizenProblemIdentificationBean().getCategory()%></td>
@@ -382,7 +384,7 @@ for(KaizenManagementApprovalBean k1 : listOfKaizenManagement){
 
 												<td colspan="3">
 												<div class="panel panel-primary">
-													<table class="table" style="border: 1px solid black;">
+													<table div class="table" style="border-left: 2px solid #607D8B;border-right: 2px solid #607D8B; border-top: 2px solid #607D8B;border-bottom: 2px solid #607D8B;">
 													<%if(!kaizenBean.getDelivery().equalsIgnoreCase("")){%>
 														<tr id="timeField">
 															<th>Delivery </th>
@@ -865,6 +867,7 @@ for(KaizenManagementApprovalBean k1 : listOfKaizenManagement){
                                 <!-- /.modal-dialog -->
                   	</div>
                   	<%} }%> --%>
+                 
                   
 									</div>
 									
@@ -880,15 +883,20 @@ for(KaizenManagementApprovalBean k1 : listOfKaizenManagement){
 						<font color="green">Please click on <button class="btn mr-1 mb-1 btn-success btn-sm">LOCK</button> button for sending your CI to manager's Approval.<br></font>
 						<font color="green">After Approval Please click on <button class="btn mr-1 mb-1 btn-primary btn-sm">COMPLETE</button> button for sending your CI to Billboard scoring.
 						</font>
-						</label>	
-								
-							</div>
+						</label>
 						</div>
-					</div>
-				</section>
-			</div>
-		</div>
-	</div>
+						</div>
+							</div>
+							</div>
+							</div>
+							</div>
+							</div>
+							</section>
+							</div>
+							</div>
+							</div>
+							
+			
 
 <%@include file="footer.html"%>
     <!-- BEGIN VENDOR JS-->
@@ -1051,7 +1059,7 @@ for(KaizenManagementApprovalBean k1 : listOfKaizenManagement){
 		posting.done(function(data) {
 			$('#acceptPanel').modal('hide');
 			
-			dialog.find('.bootbox-body').html('<div class="text-center"><i class="fa fa-check-circle fa-4x"></i></div><div class="text-center"><h4><b>CI Approved<b></h4></div>');
+			dialog.find('.bootbox-body').html('<div class="text-center"><i class="icon-checkmark-circled fa-4x"></i></div><div class="text-center"><h4><b>CI Approved<b></h4></div>');
 			
 			$('#img'+<%=user.getEmployee_master_id()%>).css('border-color', 'green');
 			$('.approvButton').hide();
@@ -1068,7 +1076,7 @@ for(KaizenManagementApprovalBean k1 : listOfKaizenManagement){
 			
 			posting.done(function(data) {
 				$('#rejectionPanel').modal('hide');
-				dialog.find('.bootbox-body').html('<div class="text-center"><i class="fa fa-check-circle fa-4x"></i></div><div class="text-center"><h4><b>CI Rejected<b></h4></div>');
+				dialog.find('.bootbox-body').html('<div class="text-center"><i class="icon-checkmark-circled fa-4x"></i></div><div class="text-center"><h4><b>CI Rejected<b></h4></div>');
 				$('#img'+<%=user.getEmployee_master_id()%>).css('border-color', 'red');
 				$('.approvButton').hide();
 			});
@@ -1081,7 +1089,7 @@ for(KaizenManagementApprovalBean k1 : listOfKaizenManagement){
 	
 	function changeStatus(id) {
 		
-		var dialog = bootbox.dialog({
+			var dialog = bootbox.dialog({
 		    message: '<div class="text-center"><i class="fa fa-spin fa-spinner"></i> Loading...</div>',
 		    onEscape : true,
 		});
@@ -1099,7 +1107,7 @@ for(KaizenManagementApprovalBean k1 : listOfKaizenManagement){
 			$('#changeStatus').hide();
 			$('#addEmployee').hide();
 			$('#addManager').hide();
-			dialog.find('.bootbox-body').html('<div class="text-center"><i class="fa fa-check-circle fa-4x"></i></div><div class="text-center"><h4><b>CI Locked<b></h4></div>');			
+			dialog.find('.bootbox-body').html('<div class="text-center"><i class="icon-checkmark-circled fa-4x"></i></div><div class="text-center"><h4><b>CI Locked<b></h4></div>');			
 		});
 		
 	}
