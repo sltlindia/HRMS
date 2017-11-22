@@ -1,127 +1,790 @@
 package com.hrms.tds.dao;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.hrms.tds.bean.PayrollBean;
-import com.hrms.tds.bean.PerformancePayBean;
-import com.hrms.tds.bean.TDSTotalBBean;
-import com.hrms.tds.util.COSMOSDBConnection;
-import com.hrms.tds.util.PayrollDBConnection;
-import com.hrms.tds.util.SENTDBConnection;
-import com.hrms.tds.util.SHRDBConnection;
-import com.hrms.tds.util.SRIDBConnection;
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
+import com.hrms.pms.util.HibernateUtil;
+import com.hrms.tds.bean.TDSDocumentUploadBean;
+import com.hrms.tds.bean.TDSPayrollBean;
 
 public class PayrollList {
 	
-	private static Connection conn = null ;
+	public double getdueMonthIncentive(int emp_code, String company_code) {
+        Session session = HibernateUtil.openSession();
+        Transaction tx = null;
+        double maxvalue = 0;
+        try {
+            tx = session.getTransaction();
+            tx.begin();
+            
+            Query query1 = session.createQuery("select sum(incentive) from TDSPayrollBean where employee_code = '"+emp_code+"' and company_name = '"+ company_code+"' and (date BETWEEN '2017-04-01' AND '2018-03-31')");
+             maxvalue = (Double) query1.uniqueResult();
+            
+            
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return maxvalue;
+    }
 	
-	public List<PayrollBean> listOfPayroll(int emp_code, String company_name){
-		List<PayrollBean> listOfPayroll = new ArrayList<PayrollBean>();
-		/*if(company_name.equals("SLT"))
-		{
-			System.err.println("IN SLT");
-			conn = PayrollDBConnection.getConnection();
-		}
-		else if(company_name.equals("SENT"))
-		{
-			System.err.println("IN SENT");
-			conn = SENTDBConnection.getConnection();
-		}
-		else if(company_name.equals("SHR"))
-		{
-			System.err.println("IN SHR");
-			conn = SHRDBConnection.getConnection();
-		}
-		else if(company_name.equals("COSMOS"))
-		{
-			System.err.println("IN COSMOS");
-			conn = COSMOSDBConnection.getConnection();
-		}
-		else if(company_name.equals("SRI"))
-		{
-			System.err.println("IN SRI");
-			conn = SRIDBConnection.getConnection();
-		}*/
-		conn = PayrollDBConnection.getConnection();
-		try
-		{
-			Statement st = conn.createStatement();
-			ResultSet rs = st.executeQuery("SELECT * FROM Emp_Test_Mst WHERE EmpCode ='"+ emp_code +"' AND Company ='"+company_name+"'");
-			PayrollBean payrollBean = null ;
-			while (rs.next()) {
-				payrollBean = new PayrollBean();
-				payrollBean.setEmpCode(rs.getInt("EmpCode"));
-				payrollBean.setCompany(rs.getString("Company"));
-				payrollBean.setEmpName(rs.getString("EmpName"));
-				payrollBean.setJoiningDate(rs.getString("JoiningDate"));
-				payrollBean.setBasicSalary(rs.getDouble("BasicSalary"));
-				payrollBean.setMA(rs.getDouble("MA"));
-				payrollBean.setConv(rs.getDouble("Conv"));
-				payrollBean.setAll1(rs.getDouble("All1"));
-				payrollBean.setAll2(rs.getDouble("All2"));
-				payrollBean.setAll3(rs.getDouble("All3"));
-				payrollBean.setAll4(rs.getDouble("All4"));
-				payrollBean.setAll5(rs.getDouble("All5"));
-				payrollBean.setAll6(rs.getDouble("All6"));
-				payrollBean.setLTC(rs.getDouble("LTC"));
-				payrollBean.setPTax(rs.getDouble("PTax"));
-				payrollBean.setPrvSalary(rs.getDouble("PrvSalary"));
-				payrollBean.setPF(rs.getDouble("PF"));
-				payrollBean.setMonth(rs.getString("Month"));
-				payrollBean.setYear(rs.getInt("Year"));
-				listOfPayroll.add(payrollBean);
-			}
-			conn.close();
-		}catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		return listOfPayroll ;
-	}
+	public double getDueMonthBasicSalary(int emp_code, String company_code) {
+        Session session = HibernateUtil.openSession();
+        Transaction tx = null;
+        double maxvalue = 0;
+        try {
+            tx = session.getTransaction();
+            tx.begin();
+            
+            Query query1 = session.createQuery("select sum(basic_salary) from TDSPayrollBean where employee_code = '"+emp_code+"' and company_name = '"+ company_code+"' and (date BETWEEN '2017-04-01' AND '2018-03-31')");
+             maxvalue = (Double) query1.uniqueResult();
+            
+            
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return maxvalue;
+    }
 	
-	public List<PerformancePayBean> listOfPerformancePay(int emp_id, String company_name){
-		List<PerformancePayBean> listOfPerformancePay = new ArrayList<PerformancePayBean>();
-		if(company_name.equals("SLT"))
-		{
-			System.err.println("IN SLT");
-			conn = PayrollDBConnection.getConnection();
-		}
-		else if(company_name.equals("SENT"))
-		{
-			System.err.println("IN SENT");
-			conn = SENTDBConnection.getConnection();
-		}
-		else if(company_name.equals("SHR"))
-		{
-			System.err.println("IN SHR");
-			conn = SHRDBConnection.getConnection();
-		}
-		else if(company_name.equals("COSMOS"))
-		{
-			System.err.println("IN COSMOS");
-			conn = COSMOSDBConnection.getConnection();
-		}
-		try
-		{
-			Statement st = conn.createStatement();
-			ResultSet rs = st.executeQuery("SELEct * FROM PerformanceAmt WHERE EmpCode ='"+ emp_id +"' AND Company ='"+company_name+"'");
-			PerformancePayBean performancePayBean = null ;
-			while (rs.next()) {
-				performancePayBean = new PerformancePayBean();
-				performancePayBean.setEmpCode(rs.getInt("EmpCode"));
-				performancePayBean.setPerAmt(rs.getDouble("PerAmt"));
-				listOfPerformancePay.add(performancePayBean);
-			}
-			conn.close();
-		}catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		return listOfPerformancePay ;
-	}
+	
+	public double getDueMonthHRA(int emp_code, String company_code) {
+        Session session = HibernateUtil.openSession();
+        Transaction tx = null;
+        double maxvalue = 0;
+        try {
+            tx = session.getTransaction();
+            tx.begin();
+            
+            Query query1 = session.createQuery("select sum(hra) from TDSPayrollBean where employee_code = '"+emp_code+"' and company_name = '"+ company_code+"' and (date BETWEEN '2017-04-01' AND '2018-03-31')");
+             maxvalue = (Double) query1.uniqueResult();
+            
+            
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return maxvalue;
+    }
+	
+	public double getDueMonthConveyance(int emp_code, String company_code) {
+        Session session = HibernateUtil.openSession();
+        Transaction tx = null;
+        double maxvalue = 0;
+        try {
+            tx = session.getTransaction();
+            tx.begin();
+            
+            Query query1 = session.createQuery("select sum(conveyance) from TDSPayrollBean where employee_code = '"+emp_code+"' and company_name = '"+ company_code+"' and (date BETWEEN '2017-04-01' AND '2018-03-31')");
+             maxvalue = (Double) query1.uniqueResult();
+            
+            
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return maxvalue;
+    }
+	
+	public double getDueMonthLTC(int emp_code, String company_code) {
+        Session session = HibernateUtil.openSession();
+        Transaction tx = null;
+        double maxvalue = 0;
+        try {
+            tx = session.getTransaction();
+            tx.begin();
+            
+            Query query1 = session.createQuery("select sum(ltc) from TDSPayrollBean where employee_code = '"+emp_code+"' and company_name = '"+ company_code+"' and (date BETWEEN '2017-04-01' AND '2018-03-31')");
+             maxvalue = (Double) query1.uniqueResult();
+            
+            
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return maxvalue;
+    }
+	
+	public double getDueMonthMedical(int emp_code, String company_code) {
+        Session session = HibernateUtil.openSession();
+        Transaction tx = null;
+        double maxvalue = 0;
+        try {
+            tx = session.getTransaction();
+            tx.begin();
+            
+            Query query1 = session.createQuery("select sum(medical) from TDSPayrollBean where employee_code = '"+emp_code+"' and company_name = '"+ company_code+"' and (date BETWEEN '2017-04-01' AND '2018-03-31')");
+             maxvalue = (Double) query1.uniqueResult();
+            
+            
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return maxvalue;
+    }
+	
+	
+	public double getDueMonthUniAllw(int emp_code, String company_code) {
+        Session session = HibernateUtil.openSession();
+        Transaction tx = null;
+        double maxvalue = 0;
+        try {
+            tx = session.getTransaction();
+            tx.begin();
+            
+            Query query1 = session.createQuery("select sum(uni_allw) from TDSPayrollBean where employee_code = '"+emp_code+"' and company_name = '"+ company_code+"' and (date BETWEEN '2017-04-01' AND '2018-03-31')");
+             maxvalue = (Double) query1.uniqueResult();
+            
+            
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return maxvalue;
+    }
+	
+	public double getDueMonthEduAllw(int emp_code, String company_code) {
+        Session session = HibernateUtil.openSession();
+        Transaction tx = null;
+        double maxvalue = 0;
+        try {
+            tx = session.getTransaction();
+            tx.begin();
+            
+            Query query1 = session.createQuery("select sum(edu_allw) from TDSPayrollBean where employee_code = '"+emp_code+"' and company_name = '"+ company_code+"' and (date BETWEEN '2017-04-01' AND '2018-03-31')");
+             maxvalue = (Double) query1.uniqueResult();
+            
+            
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return maxvalue;
+    }
+	
+	public double getDueMonthOtherAllw(int emp_code, String company_code) {
+        Session session = HibernateUtil.openSession();
+        Transaction tx = null;
+        double maxvalue = 0;
+        try {
+            tx = session.getTransaction();
+            tx.begin();
+            
+            Query query1 = session.createQuery("select sum(other_allw) from TDSPayrollBean where employee_code = '"+emp_code+"' and company_name = '"+ company_code+"' and (date BETWEEN '2017-04-01' AND '2018-03-31')");
+             maxvalue = (Double) query1.uniqueResult();
+            
+            
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return maxvalue;
+    }
+	
+	public double getDueMonthAdhocAllw(int emp_code, String company_code) {
+        Session session = HibernateUtil.openSession();
+        Transaction tx = null;
+        double maxvalue = 0;
+        try {
+            tx = session.getTransaction();
+            tx.begin();
+            
+            Query query1 = session.createQuery("select sum(adhoc_allw) from TDSPayrollBean where employee_code = '"+emp_code+"' and company_name = '"+ company_code+"' and (date BETWEEN '2017-04-01' AND '2018-03-31')");
+             maxvalue = (Double) query1.uniqueResult();
+            
+            
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return maxvalue;
+    }
 
+	public double getDueMonthSalary(int emp_code, String company_code) {
+        Session session = HibernateUtil.openSession();
+        Transaction tx = null;
+        double maxvalue = 0;
+        try {
+            tx = session.getTransaction();
+            tx.begin();
+            
+            Query query1 = session.createQuery("select sum(salary) from TDSPayrollBean where employee_code = '"+emp_code+"' and company_name = '"+ company_code+"' and (date BETWEEN '2017-04-01' AND '2018-03-31')");
+             maxvalue = (Double) query1.uniqueResult();
+            
+            
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return maxvalue;
+    }
+	
+	public double getDueMonthPTAX(int emp_code, String company_code) {
+        Session session = HibernateUtil.openSession();
+        Transaction tx = null;
+        double maxvalue = 0;
+        try {
+            tx = session.getTransaction();
+            tx.begin();
+            
+            Query query1 = session.createQuery("select sum(ptax) from TDSPayrollBean where employee_code = '"+emp_code+"' and company_name = '"+ company_code+"' and (date BETWEEN '2017-04-01' AND '2018-03-31')");
+             maxvalue = (Double) query1.uniqueResult();
+            
+            
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return maxvalue;
+    }
+	
+	public double getDueMonthPF(int emp_code, String company_code) {
+        Session session = HibernateUtil.openSession();
+        Transaction tx = null;
+        double maxvalue = 0;
+        try {
+            tx = session.getTransaction();
+            tx.begin();
+            
+            Query query1 = session.createQuery("select sum(pf) from TDSPayrollBean where employee_code = '"+emp_code+"' and company_name = '"+ company_code+"' and (date BETWEEN '2017-04-01' AND '2018-03-31')");
+             maxvalue = (Double) query1.uniqueResult();
+            
+            
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return maxvalue;
+    }
+	
+	public double getdueMonthPreviousSalary(int emp_code, String company_code) {
+        Session session = HibernateUtil.openSession();
+        Transaction tx = null;
+        double maxvalue = 0;
+        try {
+            tx = session.getTransaction();
+            tx.begin();
+            
+            Query query1 = session.createQuery("select sum(previous_salary) from TDSPayrollBean where employee_code = '"+emp_code+"' and company_name = '"+ company_code+"' and (date BETWEEN '2017-04-01' AND '2018-03-31')");
+             maxvalue = (Double) query1.uniqueResult();
+            
+            
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return maxvalue;
+    }
+	
+	public double getdueMonthPerformancePay(int emp_code, String company_code) {
+        Session session = HibernateUtil.openSession();
+        Transaction tx = null;
+        double maxvalue = 0;
+        try {
+            tx = session.getTransaction();
+            tx.begin();
+            
+            Query query1 = session.createQuery("select sum(performance_pay) from TDSPayrollBean where employee_code = '"+emp_code+"' and company_name = '"+ company_code+"' and (date BETWEEN '2017-04-01' AND '2018-03-31')");
+             maxvalue = (Double) query1.uniqueResult();
+            
+            
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return maxvalue;
+    }
+	
+	public double getdueMonthLeave(int emp_code, String company_code) {
+        Session session = HibernateUtil.openSession();
+        Transaction tx = null;
+        double maxvalue = 0;
+        try {
+            tx = session.getTransaction();
+            tx.begin();
+            
+            Query query1 = session.createQuery("select sum(leave) from TDSPayrollBean where employee_code = '"+emp_code+"' and company_name = '"+ company_code+"' and (date BETWEEN '2017-04-01' AND '2018-03-31')");
+             maxvalue = (Double) query1.uniqueResult();
+            
+            
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return maxvalue;
+    }
+	
+	// max value 
+	public double getMaxBasicSalary(int emp_code, String company_code) {
+        Session session = HibernateUtil.openSession();
+        Transaction tx = null;
+        double maxvalue = 0;
+        try {
+            tx = session.getTransaction();
+            tx.begin();
+            
+            Query query1 = session.createQuery("select max(basic_salary) from TDSPayrollBean where employee_code = '"+emp_code+"' and company_name = '"+ company_code+"' and (date BETWEEN '2017-04-01' AND '2018-03-31')");
+             maxvalue = (Double) query1.uniqueResult();
+            
+            
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return maxvalue;
+    }
+	
+	public double getMaxHRA(int emp_code, String company_code) {
+        Session session = HibernateUtil.openSession();
+        Transaction tx = null;
+        double maxvalue = 0;
+        try {
+            tx = session.getTransaction();
+            tx.begin();
+            
+            Query query1 = session.createQuery("select max(hra) from TDSPayrollBean where employee_code = '"+emp_code+"' and company_name = '"+ company_code+"' and (date BETWEEN '2017-04-01' AND '2018-03-31')");
+             maxvalue = (Double) query1.uniqueResult();
+            
+            
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return maxvalue;
+    }
+	
+	public double getMaxConveyance(int emp_code, String company_code) {
+        Session session = HibernateUtil.openSession();
+        Transaction tx = null;
+        double maxvalue = 0;
+        try {
+            tx = session.getTransaction();
+            tx.begin();
+            
+            Query query1 = session.createQuery("select max(conveyance) from TDSPayrollBean where employee_code = '"+emp_code+"' and company_name = '"+ company_code+"' and (date BETWEEN '2017-04-01' AND '2018-03-31')");
+             maxvalue = (Double) query1.uniqueResult();
+            
+            
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return maxvalue;
+    }
+	
+	public double getMaxLTC(int emp_code, String company_code) {
+        Session session = HibernateUtil.openSession();
+        Transaction tx = null;
+        double maxvalue = 0;
+        try {
+            tx = session.getTransaction();
+            tx.begin();
+            
+            Query query1 = session.createQuery("select max(ltc) from TDSPayrollBean where employee_code = '"+emp_code+"' and company_name = '"+ company_code+"' and (date BETWEEN '2017-04-01' AND '2018-03-31')");
+             maxvalue = (Double) query1.uniqueResult();
+            
+            
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return maxvalue;
+    }
+	
+	public double getMaxMedical(int emp_code, String company_code) {
+        Session session = HibernateUtil.openSession();
+        Transaction tx = null;
+        double maxvalue = 0;
+        try {
+            tx = session.getTransaction();
+            tx.begin();
+            
+            Query query1 = session.createQuery("select max(medical) from TDSPayrollBean where employee_code = '"+emp_code+"' and company_name = '"+ company_code+"' and (date BETWEEN '2017-04-01' AND '2018-03-31')");
+             maxvalue = (Double) query1.uniqueResult();
+            
+            
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return maxvalue;
+    }
+	
+	
+	public double getMaxUniAllw(int emp_code, String company_code) {
+        Session session = HibernateUtil.openSession();
+        Transaction tx = null;
+        double maxvalue = 0;
+        try {
+            tx = session.getTransaction();
+            tx.begin();
+            
+            Query query1 = session.createQuery("select max(uni_allw) from TDSPayrollBean where employee_code = '"+emp_code+"' and company_name = '"+ company_code+"' and (date BETWEEN '2017-04-01' AND '2018-03-31')");
+             maxvalue = (Double) query1.uniqueResult();
+            
+            
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return maxvalue;
+    }
+	
+	public double getMaxEduAllw(int emp_code, String company_code) {
+        Session session = HibernateUtil.openSession();
+        Transaction tx = null;
+        double maxvalue = 0;
+        try {
+            tx = session.getTransaction();
+            tx.begin();
+            
+            Query query1 = session.createQuery("select max(edu_allw) from TDSPayrollBean where employee_code = '"+emp_code+"' and company_name = '"+ company_code+"' and (date BETWEEN '2017-04-01' AND '2018-03-31')");
+             maxvalue = (Double) query1.uniqueResult();
+            
+            
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return maxvalue;
+    }
+	
+	public double getMaxOtherAllw(int emp_code, String company_code) {
+        Session session = HibernateUtil.openSession();
+        Transaction tx = null;
+        double maxvalue = 0;
+        try {
+            tx = session.getTransaction();
+            tx.begin();
+            
+            Query query1 = session.createQuery("select max(other_allw) from TDSPayrollBean where employee_code = '"+emp_code+"' and company_name = '"+ company_code+"' and (date BETWEEN '2017-04-01' AND '2018-03-31')");
+             maxvalue = (Double) query1.uniqueResult();
+            
+            
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return maxvalue;
+    }
+
+	public double getMaxAdhocAllw(int emp_code, String company_code) {
+        Session session = HibernateUtil.openSession();
+        Transaction tx = null;
+        double maxvalue = 0;
+        try {
+            tx = session.getTransaction();
+            tx.begin();
+            
+            Query query1 = session.createQuery("select max(adhoc_allw) from TDSPayrollBean where employee_code = '"+emp_code+"' and company_name = '"+ company_code+"' and (date BETWEEN '2017-04-01' AND '2018-03-31')");
+             maxvalue = (Double) query1.uniqueResult();
+            
+            
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return maxvalue;
+    }
+	
+	public double getMaxIncentive(int emp_code, String company_code) {
+        Session session = HibernateUtil.openSession();
+        Transaction tx = null;
+        double maxvalue = 0;
+        try {
+            tx = session.getTransaction();
+            tx.begin();
+            
+            Query query1 = session.createQuery("select max(incentive) from TDSPayrollBean where employee_code = '"+emp_code+"' and company_name = '"+ company_code+"' and (date BETWEEN '2017-04-01' AND '2018-03-31')");
+             maxvalue = (Double) query1.uniqueResult();
+            
+            
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return maxvalue;
+    }
+	
+	public double getMaxSalary(int emp_code, String company_code) {
+        Session session = HibernateUtil.openSession();
+        Transaction tx = null;
+        double maxvalue = 0;
+        try {
+            tx = session.getTransaction();
+            tx.begin();
+            
+            Query query1 = session.createQuery("select max(salary) from TDSPayrollBean where employee_code = '"+emp_code+"' and company_name = '"+ company_code+"' and (date BETWEEN '2017-04-01' AND '2018-03-31')");
+             maxvalue = (Double) query1.uniqueResult();
+            
+            
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return maxvalue;
+    }
+	
+	public double getMaxPreviousSalary(int emp_code, String company_code) {
+        Session session = HibernateUtil.openSession();
+        Transaction tx = null;
+        double maxvalue = 0;
+        try {
+            tx = session.getTransaction();
+            tx.begin();
+            
+            Query query1 = session.createQuery("select max(previous_salary) from TDSPayrollBean where employee_code = '"+emp_code+"' and company_name = '"+ company_code+"' and (date BETWEEN '2017-04-01' AND '2018-03-31')");
+             maxvalue = (Double) query1.uniqueResult();
+            
+            
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return maxvalue;
+    }
+	
+	public double getMaxPerformancePay(int emp_code, String company_code) {
+        Session session = HibernateUtil.openSession();
+        Transaction tx = null;
+        double maxvalue = 0;
+        try {
+            tx = session.getTransaction();
+            tx.begin();
+            
+            Query query1 = session.createQuery("select max(performance_pay) from TDSPayrollBean where employee_code = '"+emp_code+"' and company_name = '"+ company_code+"' and (date BETWEEN '2017-04-01' AND '2018-03-31')");
+             maxvalue = (Double) query1.uniqueResult();
+            
+            
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return maxvalue;
+    }
+	
+	public double getMaxLeave(int emp_code, String company_code) {
+        Session session = HibernateUtil.openSession();
+        Transaction tx = null;
+        double maxvalue = 0;
+        try {
+            tx = session.getTransaction();
+            tx.begin();
+            
+            Query query1 = session.createQuery("select max(leave) from TDSPayrollBean where employee_code = '"+emp_code+"' and company_name = '"+ company_code+"' and (date BETWEEN '2017-04-01' AND '2018-03-31')");
+             maxvalue = (Double) query1.uniqueResult();
+            
+            
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return maxvalue;
+    }
+	
+	// last record
+	public List<TDSPayrollBean> getLastBasicSalary(int emp_code, String company_code)
+	{
+	    List<TDSPayrollBean> listOfDocument = new ArrayList<TDSPayrollBean>();
+	    Session session = HibernateUtil.openSession();
+	    Transaction tx = null;
+	    try {
+	        tx = session.getTransaction();
+	        tx.begin();
+            
+            Query query1 = session.createQuery("from TDSPayrollBean where employee_code = '"+emp_code+"' and company_name = '"+ company_code+"' and (date BETWEEN '2017-04-01' AND '2018-03-31') ORDER BY tds_payroll_id DESC");
+            query1.setMaxResults(1);
+            listOfDocument =  query1.list();
+            
+            
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return listOfDocument;
+    }
+	
+	/*public List<TDSPayrollBean> getLastBasicSalary(int tds_id)
+	{
+	    List<TDSPayrollBean> listOfDocument = new ArrayList<TDSPayrollBean>();
+	    Session session = HibernateUtil.openSession();
+	    Transaction tx = null;        
+	    try {
+	        tx = session.getTransaction();
+	        tx.begin();
+	        String hql = "from TDSDocumentUploadBean where tdsBean="+tds_id+"";
+			 Query query = session.createQuery(hql);
+			 listOfDocument = query.list();
+	        tx.commit();
+	    } catch (Exception e) {
+	        if (tx != null) {
+	            tx.rollback();
+	        }
+	        e.printStackTrace();
+	    } finally {
+	        session.close();
+	    }
+	    return listOfDocument;
+	}*/
+	
 }

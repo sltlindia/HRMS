@@ -82,7 +82,7 @@
 
 <div class="app-content container center-layout mt-2">
     <div class="content-wrapper">
-	<div align="right"><button class="btn btn-danger" id="printPageButton" onclick="window.print();">PRINT</button></div>
+	<div align="right"><button type="button" class="btn btn-danger btn-min-width btn-round mr-1 mb-1" id="printPageButton" onclick="window.print();">PRINT</button></div>
 	<br>
 	<div class="row">
        <div class="col-lg-12">

@@ -6,24 +6,16 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
-import com.hrms.pms.bean.MonthBean;
-import com.hrms.pms.bean.YearBean;
-
 @Entity
-@Table(name="tds_payroll_tbl")
-public class TDSPayrollBean	implements Serializable {
+@Table(name="tds_payroll_salary_data_tbl")
+public class TDSPayrollSalaryDataBean implements Serializable{
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	private int tds_payroll_id;
-	private String company_name;
+
+	private int tds_payroll_salary_data_id;
 	private int employee_code;
+	private String employee_name;
+	private String company_name;
 	private String date;
 	private double basic_salary;
 	private double incentive;
@@ -41,23 +33,21 @@ public class TDSPayrollBean	implements Serializable {
 	private double adhoc_allw;
 	private double salary;
 	private double leave_count;
-	
-	private MonthBean monthBean;
-	//private YearBean yearBean;
-	
-	public TDSPayrollBean() {
+	public TDSPayrollSalaryDataBean() {
 		// TODO Auto-generated constructor stub
 	}
-	
+
 	
 
-	public TDSPayrollBean(String company_name, int employee_code, String date, double basic_salary, double incentive,
-			double previous_salary, double performance_pay, double conveyance, double hra, double medical, double ltc,
-			double ptax, double pf, double uni_allw, double edu_allw, double other_allw, double adhoc_allw, double salary,
-			double leave_count, MonthBean monthBean) {
+
+	public TDSPayrollSalaryDataBean(int employee_code, String employee_name, String company_name, String date,
+			double basic_salary, double incentive, double previous_salary, double performance_pay, double conveyance,
+			double hra, double medical, double ltc, double ptax, double pf, double uni_allw, double edu_allw,
+			double other_allw, double adhoc_allw, double salary, double leave_count) {
 		super();
-		this.company_name = company_name;
 		this.employee_code = employee_code;
+		this.employee_name = employee_name;
+		this.company_name = company_name;
 		this.date = date;
 		this.basic_salary = basic_salary;
 		this.incentive = incentive;
@@ -75,29 +65,20 @@ public class TDSPayrollBean	implements Serializable {
 		this.adhoc_allw = adhoc_allw;
 		this.salary = salary;
 		this.leave_count = leave_count;
-		this.monthBean = monthBean;
-		//this.yearBean = yearBean;
 	}
+
 
 
 
 	@Id
 	@GeneratedValue
-	@Column(name="tds_payroll_id")
-	public int getTds_payroll_id() {
-		return tds_payroll_id;
+	@Column(name="tds_payroll_salary_data_id")
+	public int getTds_payroll_salary_data_id() {
+		return tds_payroll_salary_data_id;
 	}
 
-	public void setTds_payroll_id(int tds_payroll_id) {
-		this.tds_payroll_id = tds_payroll_id;
-	}
-	
-	public String getCompany_name() {
-		return company_name;
-	}
-
-	public void setCompany_name(String company_name) {
-		this.company_name = company_name;
+	public void setTds_payroll_salary_data_id(int tds_payroll_salary_data_id) {
+		this.tds_payroll_salary_data_id = tds_payroll_salary_data_id;
 	}
 
 	public int getEmployee_code() {
@@ -107,7 +88,23 @@ public class TDSPayrollBean	implements Serializable {
 	public void setEmployee_code(int employee_code) {
 		this.employee_code = employee_code;
 	}
-	
+
+	public String getEmployee_name() {
+		return employee_name;
+	}
+
+	public void setEmployee_name(String employee_name) {
+		this.employee_name = employee_name;
+	}
+
+	public String getCompany_name() {
+		return company_name;
+	}
+
+	public void setCompany_name(String company_name) {
+		this.company_name = company_name;
+	}
+
 	public String getDate() {
 		return date;
 	}
@@ -115,7 +112,7 @@ public class TDSPayrollBean	implements Serializable {
 	public void setDate(String date) {
 		this.date = date;
 	}
-	
+
 	public double getBasic_salary() {
 		return basic_salary;
 	}
@@ -187,7 +184,7 @@ public class TDSPayrollBean	implements Serializable {
 	public void setPtax(double ptax) {
 		this.ptax = ptax;
 	}
-	
+
 	public double getPf() {
 		return pf;
 	}
@@ -227,7 +224,7 @@ public class TDSPayrollBean	implements Serializable {
 	public void setAdhoc_allw(double adhoc_allw) {
 		this.adhoc_allw = adhoc_allw;
 	}
-
+	
 	public double getSalary() {
 		return salary;
 	}
@@ -243,25 +240,4 @@ public class TDSPayrollBean	implements Serializable {
 	public void setLeave_count(double leave_count) {
 		this.leave_count = leave_count;
 	}
-
-	@ManyToOne
-	@JoinColumn(name="month_id")
-	public MonthBean getMonthBean() {
-		return monthBean;
-	}
-
-	public void setMonthBean(MonthBean monthBean) {
-		this.monthBean = monthBean;
-	}
-
-	/*@ManyToOne
-	@JoinColumn(name="year_id")
-	public YearBean getYearBean() {
-		return yearBean;
-	}
-
-	public void setYearBean(YearBean yearBean) {
-		this.yearBean = yearBean;
-	}*/
-
 }
