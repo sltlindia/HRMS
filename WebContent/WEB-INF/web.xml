@@ -3925,6 +3925,16 @@
   </servlet-mapping>
   <servlet>
     <description></description>
+    <display-name>KaizenAttachmentDeleteServlet</display-name>
+    <servlet-name>KaizenAttachmentDeleteServlet</servlet-name>
+    <servlet-class>com.hrms.kaizen.controller.KaizenAttachmentDeleteServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>KaizenAttachmentDeleteServlet</servlet-name>
+    <url-pattern>/kaizenAttachmentDelete</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
     <display-name>SalesTargetDeleteServlet</display-name>
     <servlet-name>SalesTargetDeleteServlet</servlet-name>
     <servlet-class>com.hrms.incentive.controller.SalesTargetDeleteServlet</servlet-class>

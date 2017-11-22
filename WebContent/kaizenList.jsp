@@ -185,14 +185,14 @@ if(request.getParameter("year") != null ){
 	                                     <div class="row">
 	                                     
 	                                     <div class="col-sm-6 col-md-6 col-lg-6">
-	                                      <div class="panel panel-primary">
+	                                      <div class="panel panel-primary" style="border-left: 2px solid #607D8B;border-right: 2px solid #607D8B; border-top: 2px solid #607D8B;border-bottom: 2px solid #607D8B; border-radius: 10px;">
 												<div class="panel-body">
-														<h5><b>Before Photo List</b></h5>
+														<h5><b> &nbsp;&nbsp; Before Photo List</b></h5>
 												<%
 												List<KaizenBeforeUploadAttachmentBean> listOfBefore = allKaizenListDAO.getListOfBeforeUploadAttachment(kaizen_id);
 												for(KaizenBeforeUploadAttachmentBean kaizenBeforeUploadAttachmentBean : listOfBefore){
 												%>
-													<img
+													 &nbsp;&nbsp; <img
 														src="FileServlet?path=D:\hrms\upload\kaizen\KaizenBefore\<%=kaizenBeforeUploadAttachmentBean.getKaizen_before_uploaded_attachment_name()%>"
 														alt="User Avatar" height="60px" width="60px" style="border: solid 1px;"
 														tabindex="0" data-placement="top" data-toggle="popover" data-trigger="hover" data-content="<div class='media'><a href='#' class='pull-left'><img src='FileServlet?path=D:\hrms\upload\kaizen\KaizenBefore\<%=kaizenBeforeUploadAttachmentBean.getKaizen_before_uploaded_attachment_name()%>' height='250px' width='250px'  alt='Sample Image'></a></div>"
@@ -200,25 +200,26 @@ if(request.getParameter("year") != null ){
 												<%}%>
 																					
 												</div>
+												<br>
 												</div>
 	                                     </div>
 	                                     
 	                                     <div class="col-sm-6 col-md-6 col-lg-6">
-	                                     <div class="panel panel-primary">
+	                                     <div class="panel panel-primary" style="border-left: 2px solid #607D8B;border-right: 2px solid #607D8B; border-top: 2px solid #607D8B;border-bottom: 2px solid #607D8B; border-radius: 10px;">
 												<div class="panel-body">
-														<h5><b>After Photo List</b></h5>
+														<h5><b> &nbsp;&nbsp; After Photo List</b></h5>
 												<%
 												List<KaizenAfterUploadAttachmentBean> listOfAfter = allKaizenListDAO.getListOfAfterUploadAttachment(kaizen_id);
 												for(KaizenAfterUploadAttachmentBean kaizenAfterUploadAttachmentBean : listOfAfter){
 												%>
-													<img
+													 &nbsp;&nbsp; <img
 														src="FileServlet?path=D:\hrms\upload\kaizen\KaizenBefore\<%=kaizenAfterUploadAttachmentBean.getKaizen_after_uploaded_attachment_name()%>"
 														alt="User Avatar" height="60px" width="60px" style="border: solid 1px;" 
 														tabindex="0" data-placement="top" data-toggle="popover" data-trigger="hover" data-content="<div class='media'><a href='#' class='pull-left'><img src='FileServlet?path=D:\hrms\upload\kaizen\KaizenBefore\<%=kaizenAfterUploadAttachmentBean.getKaizen_after_uploaded_attachment_name()%>' height='250px' width='250px' alt='Sample Image'></a></div>"
 														/>
 												<%} %>
-																					
 												</div>
+												<br>
 												</div>
 	                                     
 	                                     </div>

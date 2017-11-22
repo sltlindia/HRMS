@@ -58,6 +58,7 @@ public class KaizenStatusChangeServlet extends HttpServlet {
 		
 		
 		if(status.equalsIgnoreCase("submitted")) {
+			System.err.println("---------------- STATUS ----------------------");
 		boolean result = allKaizenUpdateDAO.kaizenStatusUpdate(kaizen_id, status);
 		String managerList = affectingmanager;
 		new Thread(new Runnable() {
