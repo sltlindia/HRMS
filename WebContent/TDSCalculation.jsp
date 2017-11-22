@@ -1,3 +1,6 @@
+<%@page import="com.hrms.tds.dao.TDSListDAO"%>
+<%@page import="com.hrms.tds.bean.TDSPayrollSalaryDataBean"%>
+<%@page import="com.hrms.tds.bean.TDSPayrollBean"%>
 <%@page import="java.util.Calendar"%>
 <%@page import="com.hrms.tds.bean.PerformancePayBean"%>
 <%@page import="com.hrms.tds.bean.PayrollBean"%>
@@ -196,7 +199,7 @@ ArrayList<String> holidayDate = new ArrayList<String>();
 			var Conv = $("#Conveyance").val();
 			
 			//alert("MONTH: "+total_month);
-			var Convayance = ( Conv * total_month ) ;
+			var Convayance = ( Conv ) ;
 			document.getElementById("Conveyance").value = Convayance;
 			//alert("Convayance :" + Convayance);
 			if(Convayance >= 19200){
@@ -215,7 +218,7 @@ ArrayList<String> holidayDate = new ArrayList<String>();
 		$(document).ready(function(){
 			var bs = $("#totalBasic1").val();
 			//alert("BASIC SALARY :" + bs);
-			var basicSalary = ( bs * total_month);
+			var basicSalary = ( bs );
 			document.getElementById("totalBasic1").value = basicSalary ;
 			
 			totalBasicNonMetro = ((basicSalary * 40) / 100);
@@ -232,7 +235,7 @@ ArrayList<String> holidayDate = new ArrayList<String>();
 		
 		$(document).ready(function(){
 			var hra = $("#actualHRA").val();
-			var actualHRA = ( hra * total_month);
+			var actualHRA = ( hra );
 			
 			document.getElementById("actualHRA").value = actualHRA ;
 			document.getElementById("actualHRANonMetro").value = actualHRA;
@@ -248,7 +251,7 @@ ArrayList<String> holidayDate = new ArrayList<String>();
 		
 		$(document).ready(function(){
 			var med_allw = $("#Medical").val();
-			var medicalAllowance = ( med_allw * total_month);
+			var medicalAllowance = ( med_allw );
 			document.getElementById("Medical").value = medicalAllowance;
 			if( medicalAllowance >= 15000)
 				{
@@ -262,25 +265,25 @@ ArrayList<String> holidayDate = new ArrayList<String>();
 		
 		$(document).ready(function(){
 			var ptax = $("#PTAX").val();
-			var PTAX = ( ptax * total_month );
+			var PTAX = ( ptax );
 			document.getElementById("PTAX").value = PTAX ;
 		});
 		
 		$(document).ready(function(){
 			var lta = $("#LTABillSalary").val();
-			var annual_lta = ( lta * total_month );
+			var annual_lta = ( lta );
 			document.getElementById("LTABillSalary").value = annual_lta;
 		});
 		
 		$(document).ready(function(){
 			var edu_allw = $("#eduAllow").val();
-			var annual_edu_allw = ( edu_allw * total_month );
+			var annual_edu_allw = ( edu_allw );
 			document.getElementById("eduAllow").value = annual_edu_allw;
 		});
 		
 		$(document).ready(function(){
 			var uni_allw = $("#UniformAllowance").val();
-			var annual_uni_allw = ( uni_allw * total_month );
+			var annual_uni_allw = ( uni_allw );
 			document.getElementById("UniformAllowance").value = annual_uni_allw;
 			
 			document.getElementById("part5self").innerHTML = 0.0;
@@ -1367,11 +1370,11 @@ ArrayList<String> holidayDate = new ArrayList<String>();
           	
           	<%
           	
-          		PayrollList payrollList = new PayrollList();
+          		TDSListDAO tdsListDAO = new TDSListDAO();
           		int emp_id = user.getEmployee_code();
           		String hrms_company_name = user.getCompanyListBean().getCompany_code();
           		String payroll_company_name = null;
-	          		if(hrms_company_name.equals("SL"))
+          			if(hrms_company_name.equals("SL"))
 	          		{
 	          			payroll_company_name = "SLT";
 	          		}
@@ -1399,9 +1402,12 @@ ArrayList<String> holidayDate = new ArrayList<String>();
 	          		{
 	          			payroll_company_name = "App";
 	          		}
-	          	System.err.println("COMPANY NAME :"+payroll_company_name);	
+	          	System.err.println("COMPANY NAME :"+payroll_company_name); 
           		
-          		List<PayrollBean> payrollBean = payrollList.listOfPayroll(emp_id, payroll_company_name);
+	          	PayrollList payrollList = new PayrollList();
+          		List<TDSPayrollSalaryDataBean> payrollBean = tdsListDAO.getTDSPayrollSalaryDataByEmpCode(emp_id, payroll_company_name);
+	          	
+          		String joiningDate = null ;
           		double basicSalary = 0.0;
           		double medical = 0.0 ;
           		double conveyance = 0.0 ;
@@ -1415,52 +1421,37 @@ ArrayList<String> holidayDate = new ArrayList<String>();
           		double ptax = 0.0 ;
           		double prvSalary = 0.0 ;
           		double pf = 0.0;
-          		String joiningDate = null ;
           		String companyName = null ;
           		double gross_salary = 0.0 ;
           		double annual_gross_salary = 0.0 ;
           		double annual_epf = 0.0;
           		double bonus = 8400 ;
           		double leave = 0.0 ;
-          		double Incentive = 0.0 ;
-          		
-          		for(PayrollBean bean : payrollBean){
-          			basicSalary = bean.getBasicSalary();
-          			medical = bean.getMA();
-          			conveyance = bean.getConv();
-          			incentive = bean.getAll1();
-          			actualHRA = bean.getAll2();
-          			uniAllw = bean.getAll3();
-          			eduAllw = bean.getAll4();
-          			otherAllw = bean.getAll5();
-          			adhocAllw = bean.getAll6();
-          			ltc = bean.getLTC();
-          			ptax = bean.getPTax();
-          			prvSalary = bean.getPrvSalary();
-          			pf = bean.getPF();
-          			joiningDate = bean.getJoiningDate();
-          			companyName = bean.getCompany();
-          			
-          			gross_salary = basicSalary + medical + conveyance + incentive + actualHRA + uniAllw + eduAllw + otherAllw + adhocAllw + ltc;
-          			System.out.println("Gross Salary :" +gross_salary);
-          			System.err.println(pf);
-          			System.out.println("Company Name :" +companyName);
-          		}
-          		
-          		List<PerformancePayBean> performancePayBean = payrollList.listOfPerformancePay(emp_id,payroll_company_name);
           		double performancePay = 0.0 ;
+          		double salary = 0.0;
+          		double Incentive = 0.0;
           		
-          		for(PerformancePayBean payBean : performancePayBean){
-          			performancePay = payBean.getPerAmt();
+          		double lastBasicSalary = 0.0;
+          		double lastMedical = 0.0 ;
+          		double lastConveyance = 0.0 ;
+          		double lastActualHRA = 0.0 ;
+          		double lastUniAllw = 0.0 ;
+          		double lastEduAllw = 0.0 ;
+          		double lastOtherAllw = 0.0 ;
+          		double lastAdhocAllw = 0.0 ;
+          		double lastLtc = 0.0 ;
+          		double lastPerformancePay = 0.0 ;
+          		double lastSalary = 0.0;
+          		
+          		
+          		for(TDSPayrollSalaryDataBean bean : payrollBean){
+          			joiningDate = bean.getDate();
           		}
           		
-          		/* SimpleDateFormat ddMMyyyy = new SimpleDateFormat("YYYY-MM-dd HH:mm:ss");
-          		SimpleDateFormat ddMMyyyy1 = new SimpleDateFormat("dd-MM-yy");
-          		Date join_date = ddMMyyyy1.parse(joiningDate); */
-          		
+          		SimpleDateFormat yyyyMMdd1 = new SimpleDateFormat("yyyy-MM-dd");
         		Calendar calJoiningDate = Calendar.getInstance();
 	          	Calendar calCurrDate = Calendar.getInstance();
-	          	calJoiningDate.setTime(yyyyMMdd.parse(joiningDate));
+	          	calJoiningDate.setTime(yyyyMMdd1.parse(joiningDate));
 	          	calCurrDate.setTime(current_date);
 	          	int currentYear = calCurrDate.get(Calendar.YEAR);
 	          	int joiningYear = calJoiningDate.get(Calendar.YEAR);
@@ -1472,7 +1463,151 @@ ArrayList<String> holidayDate = new ArrayList<String>();
 	          	int total_month = 0 ;
 	          	int start_month = 4 ;
 	          	
-	          	if(joiningYear == currentYear)
+	          	if(currentMonth >= start_month)
+	          	{
+	          		total_month = (12 - currentMonth) + 3 ; 
+	          	}
+	          	else if(currentMonth < start_month)
+	          	{
+	          		total_month = (3 - currentMonth) + 1 ; 
+	          	}
+          		
+          		
+          		double dueMonthBasicSalary = payrollList.getDueMonthBasicSalary(emp_id, payroll_company_name);
+          		double dueMonthHRA = payrollList.getDueMonthHRA(emp_id, payroll_company_name);
+          		double dueMonthConveyance = payrollList.getDueMonthConveyance(emp_id, payroll_company_name);
+          		double dueMonthLTC = payrollList.getDueMonthLTC(emp_id, payroll_company_name);
+          		double dueMonthMedical = payrollList.getDueMonthMedical(emp_id, payroll_company_name);
+          		double dueMonthUniAllw = payrollList.getDueMonthUniAllw(emp_id, payroll_company_name);
+          		double dueMonthEduAllw = payrollList.getDueMonthEduAllw(emp_id, payroll_company_name);
+          		double dueMonthOtherAllw = payrollList.getDueMonthOtherAllw(emp_id, payroll_company_name);
+          		double dueMonthAdhocAllw = payrollList.getDueMonthAdhocAllw(emp_id, payroll_company_name);
+          		double dueMonthIncentive = payrollList.getdueMonthIncentive(emp_id, payroll_company_name);
+          		double dueMonthSalary = payrollList.getDueMonthSalary(emp_id, payroll_company_name);
+          		double dueMonthPTAX = payrollList.getDueMonthPTAX(emp_id, payroll_company_name);
+          		double dueMonthPF = payrollList.getDueMonthPF(emp_id, payroll_company_name);
+          		double dueMonthPreviousSalary = payrollList.getdueMonthPreviousSalary(emp_id, payroll_company_name);
+          		double dueMonthPerformancePay = payrollList.getdueMonthPerformancePay(emp_id, payroll_company_name);
+          		double dueMonthLeave = payrollList.getdueMonthLeave(emp_id, payroll_company_name);
+          		
+          		List<TDSPayrollBean> lastrecord  = payrollList.getLastBasicSalary(emp_id,payroll_company_name);
+          		System.err.println("LAst Basic Salary :"+lastrecord);
+          		
+          		for(TDSPayrollBean tdsPayrollBean : lastrecord){
+          			lastBasicSalary = tdsPayrollBean.getBasic_salary();
+          			lastMedical = tdsPayrollBean.getMedical();
+          			lastConveyance = tdsPayrollBean.getConveyance();
+          			lastActualHRA = tdsPayrollBean.getHra();
+          			lastUniAllw = tdsPayrollBean.getUni_allw();
+          			lastEduAllw = tdsPayrollBean.getEdu_allw();
+          			lastOtherAllw = tdsPayrollBean.getOther_allw();
+          			lastAdhocAllw = tdsPayrollBean.getAdhoc_allw();
+          			lastLtc = tdsPayrollBean.getLtc();
+          			lastPerformancePay = tdsPayrollBean.getPerformance_pay();
+          			lastSalary = tdsPayrollBean.getSalary();
+          		}
+          		
+          		
+          		double maxBasicSalary = payrollList.getMaxBasicSalary(emp_id, payroll_company_name);
+          		double maxHRA = payrollList.getMaxHRA(emp_id, payroll_company_name);
+          		double maxConveyance = payrollList.getMaxConveyance(emp_id, payroll_company_name);
+          		double maxLTC = payrollList.getMaxLTC(emp_id, payroll_company_name);
+          		double maxMedical = payrollList.getMaxMedical(emp_id, payroll_company_name);
+          		double maxUniAllw = payrollList.getMaxUniAllw(emp_id, payroll_company_name);
+          		double maxEduAllw = payrollList.getMaxEduAllw(emp_id, payroll_company_name);
+          		double maxOtherAllw = payrollList.getMaxOtherAllw(emp_id, payroll_company_name);
+          		double maxAdhocAllw = payrollList.getMaxAdhocAllw(emp_id, payroll_company_name);
+          		//double maxIncentive = payrollList.getMaxIncentive(emp_id, payroll_company_name);
+          		double maxSalary = payrollList.getMaxSalary(emp_id, payroll_company_name);
+          		//double maxPTAX = payrollList.getDueMonthPTAX(emp_id, payroll_company_name);
+          		//double maxPF = payrollList.getDueMonthPF(emp_id, payroll_company_name);
+          		//double maxPreviousSalary = payrollList.getMaxPreviousSalary(emp_id, payroll_company_name);
+          		double maxPerformancePay = payrollList.getMaxPerformancePay(emp_id, payroll_company_name);
+          		//double maxLeave = payrollList.getMaxLeave(emp_id, payroll_company_name);
+          		
+          		
+          		
+          		
+          		/* SimpleDateFormat ddMMyyyy = new SimpleDateFormat("YYYY-MM-dd HH:mm:ss");
+          		SimpleDateFormat ddMMyyyy1 = new SimpleDateFormat("dd-MM-yy");
+          		Date join_date = ddMMyyyy1.parse(joiningDate); */
+          		
+	          	
+	          	/* basicSalary = dueMonthBasicSalary + (maxBasicSalary * total_month);
+	          	actualHRA = dueMonthHRA + (maxHRA * total_month);
+	          	conveyance = dueMonthConveyance + (maxConveyance * total_month);
+	          	ltc = dueMonthLTC + (maxLTC * total_month);
+	          	medical = dueMonthMedical + (maxMedical * total_month);
+	          	uniAllw = dueMonthUniAllw + (maxUniAllw * total_month);
+	          	eduAllw = dueMonthEduAllw + (maxEduAllw * total_month);
+	          	otherAllw = dueMonthOtherAllw + (maxOtherAllw * total_month);
+	          	adhocAllw = dueMonthAdhocAllw + (maxAdhocAllw * total_month);
+	          	incentive = dueMonthIncentive;
+	          	annual_gross_salary = dueMonthSalary + (maxSalary * total_month);
+	          	prvSalary = dueMonthPreviousSalary;
+	          	performancePay = dueMonthPerformancePay + (maxPerformancePay * total_month);
+	          	ptax = dueMonthPTAX;
+	          	pf = dueMonthPF;
+	          	leave = dueMonthLeave; */
+	          	
+	          	/* List<TDSPayrollBean> tdsPayrollBean = tdsListDAO.getSizeOfPayrollDataById(emp_id, payroll_company_name);
+	          	System.err.println(tdsPayrollBean.size()); */
+	          	/* if(tdsPayrollBean.size() == 1)
+	          	{
+	          		basicSalary = dueMonthBasicSalary * total_month;
+		          	actualHRA = dueMonthHRA * total_month;
+		          	conveyance = dueMonthConveyance * total_month;
+		          	ltc = dueMonthLTC * total_month;
+		          	medical = dueMonthMedical * total_month;
+		          	uniAllw = dueMonthUniAllw * total_month;
+		          	eduAllw = dueMonthEduAllw * total_month;
+		          	otherAllw = dueMonthOtherAllw * total_month;
+		          	adhocAllw = dueMonthAdhocAllw * total_month;
+		          	incentive = dueMonthIncentive;
+		          	annual_gross_salary = dueMonthSalary * total_month;
+		          	prvSalary = dueMonthPreviousSalary;
+		          	performancePay = dueMonthPerformancePay * total_month;
+		          	ptax = dueMonthPTAX;
+		          	pf = dueMonthPF;
+	          	}
+	          	else{ */
+	          		
+	          	basicSalary = dueMonthBasicSalary + (lastBasicSalary * total_month);
+	          	actualHRA = dueMonthHRA + (lastActualHRA * total_month);
+	          	conveyance = dueMonthConveyance + (lastConveyance * total_month);
+	          	ltc = dueMonthLTC + (lastLtc * total_month);
+	          	medical = dueMonthMedical + (lastMedical * total_month);
+	          	uniAllw = dueMonthUniAllw + (lastUniAllw * total_month);
+	          	eduAllw = dueMonthEduAllw + (lastEduAllw * total_month);
+	          	otherAllw = dueMonthOtherAllw + (lastOtherAllw * total_month);
+	          	adhocAllw = dueMonthAdhocAllw + (lastAdhocAllw * total_month);
+	          	incentive = dueMonthIncentive;
+	          	annual_gross_salary = dueMonthSalary + (lastSalary * total_month);
+	          	prvSalary = dueMonthPreviousSalary;
+	          	performancePay = dueMonthPerformancePay + (lastPerformancePay * total_month);
+	          	ptax = dueMonthPTAX;
+	          	pf = dueMonthPF;
+	          	leave = dueMonthLeave;
+	          	
+	          	
+	          	System.err.println("Basic Salary :"+basicSalary);
+      			System.err.println("Medical :"+medical);
+      			System.err.println("conveyance :"+conveyance);
+      			System.err.println("incentive :"+incentive);
+      			System.err.println("actualHRA :"+actualHRA);
+      			System.err.println("uniAllw :"+uniAllw);
+      			System.err.println("eduAllw :"+eduAllw);
+      			System.err.println("otherAllw :"+otherAllw);
+      			System.err.println("adhocAllw :"+adhocAllw);
+      			System.err.println("ltc :"+ltc);
+      			System.err.println("ptax :"+ptax);
+      			System.err.println("prvSalary :"+prvSalary);
+      			System.err.println("pf :"+pf);
+      			System.err.println("performancePay :"+performancePay);
+      			System.err.println("joiningDate :"+joiningDate);
+      			System.err.println("Salary :"+annual_gross_salary);
+	          	
+	          	/* if(joiningYear == currentYear)
 	          	{
 	          		if(joinMonth > start_month)
 	          		{
@@ -1509,11 +1644,11 @@ ArrayList<String> holidayDate = new ArrayList<String>();
 		          		total_month = 12;
 		          		System.out.println("month :" + total_month);
 	          		}
-	          	}
+	          	} */
           		
-	          	annual_gross_salary = (gross_salary * total_month);
+	          	/* annual_gross_salary = (gross_salary * total_month);
 	          	annual_epf = pf * total_month ;
-	          	System.err.println(annual_epf);
+	          	System.err.println(annual_epf); */
 	          	double totalA = annual_gross_salary + prvSalary + performancePay + bonus + leave + Incentive ;
           	%>
           	
@@ -1673,12 +1808,12 @@ ArrayList<String> holidayDate = new ArrayList<String>();
 																									<tr>
 																										<th id="modalPadding">Leave</th>
 																										<td id="modalPadding"><input type="text" class="form-control"
-																											id="Leave" name="Leave" value="<%=gross_salary %>" readonly="readonly" onchange="temp();"></td>
+																											id="Leave" name="Leave" value="<%=lastSalary %>" readonly="readonly" onchange="temp();"></td>
 																									</tr>
 																									<tr>
 																										<th id="modalPadding">Incentive</th>
 																										<td id="modalPadding"><input type="text" class="form-control"
-																											id="Incentive" name="Incentive" value="<%=Incentive %>" readonly="readonly"
+																											id="Incentive" name="Incentive" value="<%=incentive %>" readonly="readonly"
 																											onchange="temp();"></td>
 																									</tr>
 																									<tr>
@@ -2586,7 +2721,7 @@ ArrayList<String> holidayDate = new ArrayList<String>();
 																					<div class="input-group">
 																						<span class="input-group-addon">Rs.</span> <input
 																							type="text" class="form-control" name="EPF" id="EPF" readonly="readonly"
-																							value="<%=annual_epf %>" onchange="calculateSection80C();">
+																							value="<%=pf %>" onchange="calculateSection80C();">
 																					</div>
 																				</center></th>
 																	</tr>
