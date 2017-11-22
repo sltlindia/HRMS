@@ -18,7 +18,7 @@
     <meta name="description" content="Robust admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
     <meta name="keywords" content="admin template, robust admin template, dashboard template, flat admin template, responsive admin template, web app">
     <meta name="author" content="PIXINVENT">
-    <title>Sweet Alerts - Robust Bootstrap Admin Template</title>
+    <title>CI BillBoard History</title>
     <link rel="apple-touch-icon" sizes="60x60" href="app-assets/images/ico/apple-icon-60.png">
     <link rel="apple-touch-icon" sizes="76x76" href="app-assets/images/ico/apple-icon-76.png">
     <link rel="apple-touch-icon" sizes="120x120" href="app-assets/images/ico/apple-icon-120.png">
@@ -68,28 +68,26 @@ List<YearBean> listOfYear = allListDAO.getListOfYear();
 					<div class="card-body collapse in">
 						<div class="card-block">
 							<div class="form-body">
-
+	
 			<div class="row">
 				<div class="col-lg-12">
 					<h1 class="page-header">History</h1>
 				</div>
 				<!-- /.col-lg-12 -->
 			</div>
-			
-			 <div class="row">
+			 
+			  <div class="row">
                 <div class="col-lg-12">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                        <div class="row">
-                        	<div class="col-md-6">
+                     <div class="card">
+					    <div class="card-header card-inverse" style="background-color: #90A4AE;padding: 0.5rem 0rem 1rem 0rem;height: 50px;">
+					      <div class="col-sm-6">
                         	Bill Board History
                         	</div>
-                        	
                         </div>
-                           
-                        </div>
+                       
                         <!-- /.panel-heading -->
-                        <div class="panel-body">
+                        <div class="card-body collapse in">
+					              <div class="card-block border-bottom-blue-grey" style="border-left: 2px solid #607D8B;border-right: 2px solid #607D8B;">
                             <form target="_blank" action="kaizenBillBoard.jsp">
                             <div class="row">
                             	<div class="col-md-6 col-xs-6 col-sm-6">
@@ -129,28 +127,28 @@ List<YearBean> listOfYear = allListDAO.getListOfYear();
                             	<input class="btn btn-primary" type="submit" name="submit" value="SUBMIT">
                             	</div>
                             </form>
-
+					</div>
                 </div>
+               
                 </div>
                 </div>
                 </div>
                 
-                
+                <br>
                 
                  <div class="row">
                 <div class="col-lg-12">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                        <div class="row">
-                        	<div class="col-md-6">
+                     <div class="card">
+					    <div class="card-header card-inverse" style="background-color: #90A4AE;padding: 0.5rem 0rem 1rem 0rem;height: 50px;">
+					      <div class="col-sm-6">
                         	Leader Board History
-                        	</div>
-                        	
-                        </div>
+                          </div>
+                      
                            
                         </div>
                         <!-- /.panel-heading -->
-                        <div class="panel-body">
+                       <div class="card-body collapse in">
+					              <div class="card-block border-bottom-blue-grey" style="border-left: 2px solid #607D8B;border-right: 2px solid #607D8B;">
                             <form target="_blank" action="kaizenLeaderBoard.jsp">
                             <div class="row">
                             	<div class="col-md-6 col-xs-6 col-sm-6">
@@ -175,10 +173,11 @@ List<YearBean> listOfYear = allListDAO.getListOfYear();
                             	</div>
                             	</div>
                             </form>
-
+					</div>
                 </div>
                 </div>
                 </div>
+                
                 </div>
                 </div>
                 </div>

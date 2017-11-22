@@ -1,17 +1,18 @@
+<%@page import="com.hrms.meetingmanagemnet.dao.AllListMeetingDAO"%>
+<%@page import="com.hrms.meetingmanagemnet.bean.MeetingBookingDetailBean"%>
 <%@page import="java.util.List"%>
-<%@page import="com.hrms.pms.dao.AllListDAO"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
     <meta name="description" content="Robust admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
     <meta name="keywords" content="admin template, robust admin template, dashboard template, flat admin template, responsive admin template, web app">
     <meta name="author" content="PIXINVENT">
-    <title>Kaizen Member</title>
+    <title>Booking History</title>
     <link rel="apple-touch-icon" sizes="60x60" href="app-assets/images/ico/apple-icon-60.png">
     <link rel="apple-touch-icon" sizes="76x76" href="app-assets/images/ico/apple-icon-76.png">
     <link rel="apple-touch-icon" sizes="120x120" href="app-assets/images/ico/apple-icon-120.png">
@@ -45,101 +46,135 @@
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
     <!-- END Custom CSS-->
     <%@include file="header.jsp" %>
-  </head>
+</head>
 <body data-open="hover" data-menu="horizontal-menu" data-col="2-columns" class="horizontal-layout horizontal-menu 2-columns ">
-
-<%
-int teamMember = (Integer) request.getAttribute("memberCount"); 
-int kaizen_id = (Integer) request.getAttribute("kaizen_id");
-AllListDAO allListDAO = new AllListDAO();
-List<EmployeeBean> listOfEmployee = allListDAO.getFullListOfEmployee();
-%>
-
-	<div class="app-content container center-layout mt-2">
+<%AllListMeetingDAO allListMeetingDAO = new AllListMeetingDAO(); %>
+<div class="app-content container center-layout mt-2">
 		<div class="content-wrapper">
 			<div class="content-body">
 				<section id="horizontal-form-layouts">
+					<div class="row">
+						<div class="col-lg-12">
+							<h1 class="page-header">Meeting History (Grid)</h1>
+						</div>
+						<!-- /.col-lg-12 -->
+					</div>
+					
+					<ul class="nav nav-tabs nav-linetriangle no-hover-bg">
+        			
+        					<li class="nav-item">
+								<a class="nav-link" id="base-tab" href="meetingBook.jsp" aria-expanded="true">Add Meeting
+								</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link active" id="base-tab" href="meetingCalenderViewEmployee.jsp" aria-expanded="true">Grid View (History)</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" id="base-tab" href="meetingCalenderViewEmployee.jsp" aria-expanded="true">Calendar View (History)</a>
+							</li>
+						</ul>
+                            <hr>
+			<div class="row">
+			<div class="col-md-12">
+			
+			
+			<%List<MeetingBookingDetailBean> listOfMeetingByEmpId = allListMeetingDAO.getMeetingsByempId(user.getEmployee_master_id());
+			for(MeetingBookingDetailBean meetingBookingDetailBean : listOfMeetingByEmpId){
+			%>
+				<div class="col-lg-3">
 				<div class="card">
 					<div class="card-body collapse in">
-						<div class="card-block">
-							<div class="form-body">
-			<div class="row">
-				<div class="col-lg-12">
-					<h1 class="page-header">CI Member</h1>
-				</div>
-				<!-- /.col-lg-12 -->
-			</div>
-
-			<div class="row">
-				<div class="col-lg-12">
-					<div class="panel panel-primary">
-						<div class="panel-heading">CI Member</div>
-						<div class="panel-body">
+					<div class="card-block">
+						<h4 style="margin-top: 0px;margin-bottom: 0px">
+					<a style="cursor: pointer;" data-toggle="modal"
+							data-target="#meetingData" onclick="getData(<%=meetingBookingDetailBean.getMeeting_booking_detail_id()%>)"><%=meetingBookingDetailBean.getMeeting_name() %>
+							</a></h4>
+							<p style="margin-top: 0px;margin-bottom: 0px">
+							<%SimpleDateFormat HHmmaa = new SimpleDateFormat("hh:mm aa"); 
+							SimpleDateFormat yyyymmdd = new SimpleDateFormat("dd/MM/yyyy");
+							%>
+								<b><%=yyyymmdd.format(meetingBookingDetailBean.getDate())%></b> (<font><b><%=meetingBookingDetailBean.getParticipant_no()%></b></font> Participant(s))
+								
+							</p>
 						
-						
-						<form action="kaizenMemberInsert" method="post" enctype="multipart/form-data">
-							
-							<input type="hidden" name="kaizen_id" value="<%=kaizen_id%>">
-						
-						<table class="table table-hover">
-						
-						<%for(int i = 0;i<teamMember;i++) { 
-						if(i==0){
-						%>
-						<tr>
-								<td>Team Member <%=i+1%></td>
-								<td>:</td>
-								<td><input list="employee"
-															class="form-control" name="employee_name"
-															placeholder="Search by Employee code Or Name"
-															onchange="replica(this.value)" value="<%=user.getEmployee_code()+","+user.getFirstname().trim()+" "+user.getLastname().trim()%>" required>
-														<datalist id="employee"> 
-														<%
-			  				 								for(EmployeeBean e : listOfEmployee){
-			  				 							%>
-														<option
-															value="<%=e.getEmployee_code()+","+e.getFirstname().trim()+" "+e.getLastname().trim()%>" />
-														<%} %> </datalist></td>
-							</tr>
-						<%}else{ %>
-								<tr>
-								<td>Team Member <%=i+1%></td>
-								<td>:</td>
-								<td><input list="employee"
-															class="form-control" name="employee_name"
-															placeholder="Search by Employee code Or Name"
-															onchange="replica(this.value)" required>
-														<datalist id="employee"> 
-														<%
-			  				 								for(EmployeeBean e : listOfEmployee){
-			  				 							%>
-														<option
-															value="<%=e.getEmployee_code()+","+e.getFirstname().trim()+" "+e.getLastname().trim()%>" />
-														<%} %> </datalist></td>
-							</tr>
-						<%} %>
-						
-						<%} %>
-						
-						</table>
-						
-						<input type="hidden" name="redirection">
-						<center><input type="submit" name="submit" value="Next" class="btn btn-primary"></center>
-						</form>
+							<p><%=meetingBookingDetailBean.getMeetingRoomDetailBean().getFacility_name()%> 
+							<br>(<%=HHmmaa.format(meetingBookingDetailBean.getFrom_time())%> to
+								<%=HHmmaa.format(meetingBookingDetailBean.getTo_time())%>)</p>
 						</div>
 					</div>
+				</div>	
 				</div>
-			</div>
-
-
-		</div>
+			<%} %>	
+					
+			
 	</div>
-</div>
-</div>
-</section>
-</div>
-</div>
-</div>
+	
+
+
+<div class="modal fade" id="meetingData" tabindex="-1"
+		role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="myModalLabel">Meeting Detail</h4>
+				</div>
+					<div class="modal-body">
+						<table class="table">
+							<tr>
+								<td>Meeting Name</td>
+								<td>:</td>
+								<td id="name"></td>
+							</tr>
+							
+							<tr>
+								<td>Meeting Purpose</td>
+								<td>:</td> 
+								<td id="purpose" style="white-space: pre-wrap;"></td>
+							</tr>
+							
+							<tr>
+								<td>Facility</td>
+								<td>:</td>
+								<td id="facility"></td>
+							</tr>
+							
+							
+							<tr>
+								<td>Resource</td>
+								<td>:</td>
+								<td id="resource"></td>
+							</tr>
+							
+							<tr>
+								<td>Participant No</td>
+								<td>:</td>
+								<td id="no"></td>
+							</tr>
+							
+							<tr>
+								<td>Time Period</td>
+								<td>:</td>
+								<td id="time"></td>
+							</tr>
+							
+							
+						</table>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-primary" data-dismiss="modal">CLOSE</button>
+					</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
+	</div>
+	</section>
+	</div>
+	</div>
+	</div>
 <%@include file="footer.html"%>
     <!-- BEGIN VENDOR JS-->
     <!-- build:js app-assets/js/vendors.min.js-->
@@ -177,5 +212,32 @@ List<EmployeeBean> listOfEmployee = allListDAO.getFullListOfEmployee();
 	  ga('send', 'pageview');
 
 	</script>
-	</body>
+	
+<script type="text/javascript">
+function getData(id) {
+	
+	$
+	.ajax({
+		method : "POST",
+		url : 'meetingDataById',
+		data : {id:id},
+		success : function(data) {
+			var json = JSON.parse(data);
+			$("#myModalLabel").text(json.meetingName);
+			$("#name").text(json.meetingName);
+			$("#purpose").text(json.meetingPurpose);
+			$("#facility").text(json.facility+" (Capacity : "+json.capacity+" )");
+			$("#no").text(json.no);
+			$("#time").text(json.from_time+" to "+json.to_time);
+			$("#resource").text(json.resources);
+			
+		}
+			
+	});
+	
+}
+
+</script>	
+
+</body>
 </html>

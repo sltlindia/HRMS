@@ -46,12 +46,11 @@
     <!-- END Page Level CSS-->
     <!-- BEGIN Custom CSS-->
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <script src="app-assets/js/core/libraries/jquery.min.js" type="text/javascript"></script>
     <!-- END Custom CSS-->
     <%@include file="header.jsp" %>
   </head>
-
-
-<script src="bower_components/jquery/dist/jquery.min.js"></script>
+  
 <body data-open="hover" data-menu="horizontal-menu" data-col="2-columns" class="horizontal-layout horizontal-menu 2-columns ">
 <%int emp_id = user.getEmployee_master_id(); 
 
@@ -66,6 +65,26 @@ if(request.getParameter("year") != null ){
 }
 
 %>
+ <div class="app-content container center-layout mt-2">
+		<div class="content-wrapper">
+			<div class="content-body">
+				<section id="horizontal-form-layouts">
+					<div class="row">
+						<div class="col-lg-12">
+							<h1 class="page-header">CI List</h1>
+						</div>
+					</div>
+<br>
+
+	<div class="row">
+				<div class="col-lg-12">
+					<div class="card">
+				        	<div class="card-header card-inverse" style="background-color: #90A4AE;padding: 0.5rem 0rem 1rem 0rem;height: 50px;">
+				        		<div class="col-lg-6">
+				               		<h4 class="card-title" id="horz-layout-basic">My CI List</h4>
+				            </div>
+				            </div>
+<!-- 
 <div class="app-content container center-layout mt-2">
 		<div class="content-wrapper">
 			<div class="content-body">
@@ -78,7 +97,7 @@ if(request.getParameter("year") != null ){
 				<div class="col-lg-12">
 					<h1 class="page-header">CI List</h1>
 				</div>
-				<!-- /.col-lg-12 -->
+				/.col-lg-12
 			</div>
 			
 			 <div class="row">
@@ -92,10 +111,10 @@ if(request.getParameter("year") != null ){
                         	
                         </div>
                            
-                        </div>
+                        </div> -->
                         <!-- /.panel-heading -->
-                        <div class="panel-body">
-                            <div class="dataTable_wrapper">
+                        <div class="card-body collapse in">
+					   <div class="card-block border-bottom-blue-grey" style="border-left: 2px solid #607D8B;border-right: 2px solid #607D8B;">
                                 <table class="table table-striped table-bordered table-hover file-export">
                                     <thead>
                                         <tr>
@@ -108,14 +127,38 @@ if(request.getParameter("year") != null ){
                                         	<th>Action</th>
                                         </tr>
                                     </thead>
-                                    
+                                    <div class="form-group">
+                                    <!-- Round Button Group -->
+                                   
+                                    <%-- <a href="addManagerForKaizen.jsp?kaizen_id=<%=kaizen_id%>" data-target="#myModalManager" id="addManager">&nbsp;<i class="icon-circle-plus" style="color: black;font-size: 20px;padding-top:20px;"></i></a> --%>
                                      <tbody>
+                                     	
                                      	<%for(KaizenBean kaizenBean : listOfKaizenByEmpId){
                                      		int kaizen_id = kaizenBean.getKaizen_id();
                                      		
                                      	%>
-	                                     <tr>
-	                                     	<td><a id="kaizen<%=kaizenBean.getKaizen_id()%>" style="color: black;text-decoration: none;cursor: pointer;" onclick="showData(this.id)"><i class="fa fa-plus-circle"></i></a></td>
+                                     	<%-- <tr class="panel-group">
+																<th><a id="year<%=yearBean.getYear_id()%>"
+																	style="color: black; text-decoration: none; cursor: pointer;"
+																	onclick="showData(this.id)"><i
+																		class="icon-android-add-circle"></i> <%=year%> - <%=year1%></a></th>
+																<th><div align="right"><button name="button"
+																		onclick="window.open('kaizenBillBoard.jsp?year=<%=yearDuration%>','_blank')"
+																		class="btn btn-primary">
+																		<i class="fa fa-file-text" align="right"></i> BillBoard
+																	</button>
+																	<button name="button"
+																		onclick="window.open('kaizenLeaderBoard.jsp?year=<%=yearDuration%>','_blank')"
+																		class="btn btn-primary">
+																		<i class="fa fa-file-text"></i> LeaderBoard
+																	</button></div></th>
+															</tr>
+                                     	
+                                     	 --%>
+                                     	
+	                                     <tr  class="panel-group">
+	                                     
+	                                     	<td><a id="kaizen<%=kaizenBean.getKaizen_id()%>" style="color: black;text-decoration: none;cursor: pointer;" onclick="showData(this.id)"><i class="icon-android-add-circle"></i></a></td>
 	                                     	<td><%=kaizenBean.getKaizen_name()%></td>
 	                                     	<td><%=ddMMMyyyy.format(yyyyMMddhh.parse(kaizenBean.getDate()))%></td>
 	                                     	<td><%if(kaizenBean.getCompletion_date() != null){%>
@@ -128,12 +171,12 @@ if(request.getParameter("year") != null ){
 	                                     			LOCK
 	                                     		<%}else{%>
 	                                     			UNLOCK
-	                                     		<%} %>
+	                                     		<%}%>
 	                                     	</td>
 	                                     	<td><%=kaizenBean.getStatus().toUpperCase()%></td>
-	                                     	<td><a href="kaizenView.jsp?kaizen_id=<%=kaizenBean.getKaizen_id()%>" style="color: black;"><button class="btn btn-outline btn-default btn-xs"><i class="fa fa-share-square"></i> Detail</button></a>
+	                                     	<td><a href="kaizenView.jsp?kaizen_id=<%=kaizenBean.getKaizen_id()%>" style="color: black;"><button class="btn btn-primary"><i class="fa fa-share-square"></i> Detail</button></a>
 	                                     	<%if(!kaizenBean.getCompletion_status().equalsIgnoreCase("completed")){%>
-	                                     		<a href="kaizenPhotoUpload.jsp?kaizen_id=<%=kaizenBean.getKaizen_id()%>" style="color: black;"><button class="btn btn-outline btn-default btn-xs"><i class="fa fa-photo"></i> Add Photos</button></a>
+	                                     		<a href="kaizenPhotoUpload.jsp?kaizen_id=<%=kaizenBean.getKaizen_id()%>" style="color: black;"><button class="btn btn-primary"><i class="fa fa-photo"></i> Add Photos</button></a>
 	                                     	<%} %>
 	                                     	</td>
 	                                     </tr>
@@ -154,7 +197,7 @@ if(request.getParameter("year") != null ){
 														alt="User Avatar" height="60px" width="60px" style="border: solid 1px;"
 														tabindex="0" data-placement="top" data-toggle="popover" data-trigger="hover" data-content="<div class='media'><a href='#' class='pull-left'><img src='FileServlet?path=D:\hrms\upload\kaizen\KaizenBefore\<%=kaizenBeforeUploadAttachmentBean.getKaizen_before_uploaded_attachment_name()%>' height='250px' width='250px'  alt='Sample Image'></a></div>"
 														/>
-												<%} %>
+												<%}%>
 																					
 												</div>
 												</div>
@@ -179,44 +222,46 @@ if(request.getParameter("year") != null ){
 												</div>
 	                                     
 	                                     </div>
-	                                     
-	                                    
-												
-												
-												
-												
-												</div>
+	                                     </div>
 	                                     </td>
 	                                     </tr>
-	                                    					 <script>
+	                                    <script>
 	
-																$(document).ready(function(){
-																		 $(".kaizen"+<%=kaizenBean.getKaizen_id()%>).hide();
-																});
+											$(document).ready(function(){
+											$(".kaizen"+<%=kaizenBean.getKaizen_id()%>).hide();
+											});
 	
-															</script>
+										</script>
                                      	<%} %>
-                                    </tbody>
+                                    
                                 </table>
+                                <div align="left">
+											<b>NOTE :</b>&nbsp;&nbsp;&nbsp;&nbsp;<i class="icon-star-full" style="color: #85929E;" data-toggle="tooltip"
+														data-placement="top" title="Billboard Result"></i><b> : BillBoard Winner</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="icon-star-full" style="color: #F1C40F;" data-toggle="tooltip"
+														data-placement="top" title="Leaderboard Result"></i><b> : LeaderBoard Winner</b>
+										</div>
+                            </tbody>
                             </div>
 
                 </div>
                 </div>
                 </div>
                 </div>
+                </section>
                 </div>
-                </div>
-</div>
+<!-- </div>
 </div>
 </section>
 </div>
+</div>
+</div> -->
 </div>
 </div>
 
    <%@include file="footer.html"%>
     <!-- BEGIN VENDOR JS-->
     <!-- build:js app-assets/js/vendors.min.js-->
-    <script src="app-assets/js/core/libraries/jquery.min.js" type="text/javascript"></script>
+    
     <script src="app-assets/vendors/js/ui/tether.min.js" type="text/javascript"></script>
     <script src="app-assets/js/core/libraries/bootstrap.min.js" type="text/javascript"></script>
     <script src="app-assets/vendors/js/ui/perfect-scrollbar.jquery.min.js" type="text/javascript"></script>
@@ -254,10 +299,9 @@ if(request.getParameter("year") != null ){
     <script>
     function showData(id){
 		 $("."+id).slideToggle(2);
-	     $("i", "#"+id).toggleClass("fa-minus-circle fa-plus-circle");
+	     $("i", "#"+id).toggleClass("icon-android-remove-circle icon-android-add-circle");
 	}
     </script>
-      <!-- BEGIN PAGE VENDOR JS-->
     <script type="text/javascript" src="app-assets/vendors/js/ui/jquery.sticky.js"></script>
     <script src="app-assets/vendors/js/tables/jquery.dataTables.min.js" type="text/javascript"></script>
     <script src="app-assets/vendors/js/tables/datatable/dataTables.bootstrap4.min.js" type="text/javascript"></script>
@@ -267,11 +311,75 @@ if(request.getParameter("year") != null ){
     <script src="app-assets/vendors/js/tables/pdfmake.min.js" type="text/javascript"></script>
     <script src="app-assets/vendors/js/tables/vfs_fonts.js" type="text/javascript"></script>
     <script src="app-assets/vendors/js/tables/buttons.html5.min.js" type="text/javascript"></script>
-    <script src="app-assets/vendors/js/tables/buttons.print.min.js" type="text/javascript"></script>
+    <script src="app-assets/vendors/js/tables/buttons.print.min.js" type="text/javascript"></script> 
     <!-- END PAGE VENDOR JS-->
     
       <!-- BEGIN PAGE LEVEL JS-->
     <script src="app-assets/js/scripts/tables/datatables/datatable-advanced.min.js" type="text/javascript"></script>
-    <!-- END PAGE LEVEL JS-->
+      <!-- BEGIN PAGE VENDOR JS-->
+    <!-- <script>
+          var handleDataTableButtons = function() {
+              "use strict";
+              0 !== $("#datatable-buttons").length && $("#datatable-buttons").DataTable({
+                dom: "Bfrtip",
+                buttons: [{
+                  extend: "copy",
+                  className: "btn-sm"
+                }, {
+                  extend: "csv",
+                  className: "btn-sm"
+                }, {
+                  extend: "excel",
+                  className: "btn-sm"
+                }, {
+                  extend: "pdf",
+                  className: "btn-sm"
+                }, {
+                  extend: "print",
+                  className: "btn-sm"
+                }],
+                responsive: !0	
+              })
+            },
+            TableManageButtons = function() {
+              "use strict";
+              return {
+                init: function() {
+                  handleDataTableButtons()
+                }
+              }
+            }();
+        </script>
+        <script type="text/javascript">
+          $(document).ready(function() {
+            $('#datatable').dataTable();
+            $('#datatable1').dataTable();
+            $('#datatable-keytable').DataTable({
+              keys: true
+            });
+            $('#datatable-responsive').DataTable();
+            $('#datatable-scroller').DataTable({
+              ajax: "js/datatables/json/scroller-demo.json",
+              deferRender: true,
+              scrollY: 380,
+              scrollCollapse: true,
+              scroller: true	
+            });
+            var table = $('#datatable-fixed-header').DataTable({
+              fixedHeader: true
+            });
+          });
+          TableManageButtons.init();
+        </script>
+         -->
+<script>
+	  $("[data-toggle=popover]")
+	    .popover({html:true})
+	    
+	    $('.popover-dismiss').popover({
+	  	trigger: 'focus'
+		})
+	</script>
+        
 </body>
 </html>

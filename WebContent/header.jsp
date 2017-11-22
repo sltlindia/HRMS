@@ -1212,6 +1212,32 @@
 								</li>
 							</ul>
 						</li>
+						
+						<%if(manager_id != 99){ %>
+						<li data-mega-col="col-md-3" class="col-md-3">
+							<h6 data-toggle="dropdown"
+								class="dropdown-menu-header text-uppercase">
+								<i class="icon-inr"></i>Meeting Management
+							</h6>
+							<ul class="drilldown-menu">
+								<li class="menu-list">
+									<ul class="mega-menu-sub">
+										<li><a href="meetingBook.jsp"
+											class="dropdown-item"><i class="undefined"></i>Add Meeting</a></li>
+										<li><a href="meetingCalenderViewEmployee.jsp"
+											class="dropdown-item"><i class="undefined"></i>My Calender</a></li>
+										<li><a href="meetingCalenderViewHR.jsp"
+											class="dropdown-item"><i class="undefined"></i>SLTL Meeting Calender</a></li>
+										
+										<%if(emp_id == 8 || emp_id == 61){ %>
+										<li><a href="meetingReport.jsp"
+											class="dropdown-item"><i class="undefined"></i> Meeting Report</a></li>
+										<%} %>
+									</ul>
+								</li>
+							</ul>
+						</li>
+						<%} %>
 						<%-- <li><a href="#"><i class="fa fa-file-text">&nbsp;</i>
 								Continuous Improvement<span class="fa arrow"></span></a>
 							<ul class="nav nav-second-level">

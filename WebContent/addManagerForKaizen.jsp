@@ -1,17 +1,19 @@
-<%@page import="java.util.List"%>
 <%@page import="com.hrms.pms.dao.AllListDAO"%>
+<%@page import="com.hrms.pms.bean.EmployeeBean"%>
+<%@page import="java.util.List"%>
+<%@page import="com.hrms.pms.bean.DepartmentBean"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
     <meta name="description" content="Robust admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
     <meta name="keywords" content="admin template, robust admin template, dashboard template, flat admin template, responsive admin template, web app">
     <meta name="author" content="PIXINVENT">
-    <title>Kaizen Member</title>
+    <title>Kaizen Manager</title>
     <link rel="apple-touch-icon" sizes="60x60" href="app-assets/images/ico/apple-icon-60.png">
     <link rel="apple-touch-icon" sizes="76x76" href="app-assets/images/ico/apple-icon-76.png">
     <link rel="apple-touch-icon" sizes="120x120" href="app-assets/images/ico/apple-icon-120.png">
@@ -45,101 +47,117 @@
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
     <!-- END Custom CSS-->
     <%@include file="header.jsp" %>
-  </head>
+</head>
 <body data-open="hover" data-menu="horizontal-menu" data-col="2-columns" class="horizontal-layout horizontal-menu 2-columns ">
 
 <%
-int teamMember = (Integer) request.getAttribute("memberCount"); 
-int kaizen_id = (Integer) request.getAttribute("kaizen_id");
-AllListDAO allListDAO = new AllListDAO();
-List<EmployeeBean> listOfEmployee = allListDAO.getFullListOfEmployee();
-%>
 
-	<div class="app-content container center-layout mt-2">
+int kaizen_id = Integer.parseInt(request.getParameter("kaizen_id"));
+AllListDAO allListDAO = new AllListDAO();
+List<DepartmentBean> listOfDepartment = allListDAO.getListOfDepartment();
+%>
+<div class="app-content container center-layout mt-2">
 		<div class="content-wrapper">
 			<div class="content-body">
 				<section id="horizontal-form-layouts">
-				<div class="card">
-					<div class="card-body collapse in">
-						<div class="card-block">
-							<div class="form-body">
-			<div class="row">
+					<div class="row">
+						<div class="col-lg-12">
+							<h1 class="page-header">Department Head</h1>
+						</div>
+						<!-- /.col-lg-12 -->
+					</div>
+
+	<div class="row">
 				<div class="col-lg-12">
-					<h1 class="page-header">CI Member</h1>
+					<div class="card">
+				        	<div class="card-header">
+				        		<div class="col-lg-6">
+				               		<h4 class="card-title" id="horz-layout-basic">Department Head</h4>
+				                </div>
+				                
+								<div class="col-lg-6" align="right">
+									<a href="kaizenView.jsp?kaizen_id=<%=kaizen_id%>"><i class="fa fa-chevron-circle-left fa-2x" style="color: white;"></i></a>
+								</div>
+								
+							</div>
+						 
+						<div class="panel-body">
+						<div align="right">
+						</div>
+						<br>
+							<form action="kaizenManagerInsert" method="post" enctype="multipart/form-data">
+												<input type="hidden" name="kaizen_id"
+											value="<%=kaizen_id%>">
+											<%if(request.getParameter("reject") != null){%>
+											<input type="hidden" name="reject" value="rejectionUpdate">
+									 		<%} %>
+										<!-- /table -->
+										<h3>Department Head Selection</h3>
+										
+											<div class="row">
+												<div class="col-md-4">
+												Select Department Head<p class="help-block">(Select Multiple Department Head)</p></th>
+												</div>
+												
+												<div class="col-md-8">
+												<select class="form-control" name="dept_id" id="dept_id" onChange="test(this.value)">
+												<option value="">---Select Department Head---</option>
+													<%
+													for(DepartmentBean d : listOfDepartment){%>
+													<option value="<%=d.getDepartment_id()%>"><%=d.getDepartment_name() %></option>
+													<%} %>
+													</select>
+			
+													<%for(DepartmentBean d :listOfDepartment){
+														if(d.getDepartment_id() != 0){
+														int dept_id = d.getDepartment_id();
+														List<EmployeeBean> listOfEmployee = allListDAO.getAllEmployeeById(dept_id);
+														if(listOfEmployee.size() != 0){
+														%>
+														<div id="<%=d.getDepartment_id()%>">
+														<div class="row">
+														<div class="col-lg-12">
+															<h5><b><%=d.getDepartment_name() %></b></h5>
+														</div>
+														<% 
+														for(EmployeeBean e : listOfEmployee){
+													%>
+													<div class="col-lg-4">
+															<label><input type="checkbox" class="chkemployee"  name="mngEmployee" id="chkemployee" value="<%=e.getEmployee_master_id()%>"> <%=e.getFirstname()+" "+e.getLastname()%></label>
+														</div>
+													<%}%>
+													</div>
+													</div>	
+													<%} } }%>
+													</div>
+											</div>
+											
+									
+									<!-- /table-responsive -->
+								<input type="hidden" name="redirection">
+								<br>
+								<center>
+								<input type="submit" class="btn btn-primary" id="subm"  name="submit" value="SUBMIT">
+								</center>		
+							</form>
+							<!-- /form -->
+						</div>
+						</div>
+					
+						<!-- /.panel-body -->
+					</div>
+					<!-- /.panel-primary -->	
 				</div>
 				<!-- /.col-lg-12 -->
+				
+				</section>
+					
 			</div>
-
-			<div class="row">
-				<div class="col-lg-12">
-					<div class="panel panel-primary">
-						<div class="panel-heading">CI Member</div>
-						<div class="panel-body">
-						
-						
-						<form action="kaizenMemberInsert" method="post" enctype="multipart/form-data">
-							
-							<input type="hidden" name="kaizen_id" value="<%=kaizen_id%>">
-						
-						<table class="table table-hover">
-						
-						<%for(int i = 0;i<teamMember;i++) { 
-						if(i==0){
-						%>
-						<tr>
-								<td>Team Member <%=i+1%></td>
-								<td>:</td>
-								<td><input list="employee"
-															class="form-control" name="employee_name"
-															placeholder="Search by Employee code Or Name"
-															onchange="replica(this.value)" value="<%=user.getEmployee_code()+","+user.getFirstname().trim()+" "+user.getLastname().trim()%>" required>
-														<datalist id="employee"> 
-														<%
-			  				 								for(EmployeeBean e : listOfEmployee){
-			  				 							%>
-														<option
-															value="<%=e.getEmployee_code()+","+e.getFirstname().trim()+" "+e.getLastname().trim()%>" />
-														<%} %> </datalist></td>
-							</tr>
-						<%}else{ %>
-								<tr>
-								<td>Team Member <%=i+1%></td>
-								<td>:</td>
-								<td><input list="employee"
-															class="form-control" name="employee_name"
-															placeholder="Search by Employee code Or Name"
-															onchange="replica(this.value)" required>
-														<datalist id="employee"> 
-														<%
-			  				 								for(EmployeeBean e : listOfEmployee){
-			  				 							%>
-														<option
-															value="<%=e.getEmployee_code()+","+e.getFirstname().trim()+" "+e.getLastname().trim()%>" />
-														<%} %> </datalist></td>
-							</tr>
-						<%} %>
-						
-						<%} %>
-						
-						</table>
-						
-						<input type="hidden" name="redirection">
-						<center><input type="submit" name="submit" value="Next" class="btn btn-primary"></center>
-						</form>
-						</div>
-					</div>
-				</div>
-			</div>
-
-
-		</div>
+			<!-- /.row -->						
+		
 	</div>
-</div>
-</div>
-</section>
-</div>
-</div>
-</div>
+	<!-- /.page-wrapper -->
+</div>					
 <%@include file="footer.html"%>
     <!-- BEGIN VENDOR JS-->
     <!-- build:js app-assets/js/vendors.min.js-->
@@ -177,5 +195,18 @@ List<EmployeeBean> listOfEmployee = allListDAO.getFullListOfEmployee();
 	  ga('send', 'pageview');
 
 	</script>
-	</body>
+	<script>
+		$(document).ready(function() {
+			for(var a = 1;a<=60;a++){
+			$("#"+a).fadeOut('slow');
+			}
+		});
+		
+		
+		function test(id) {
+			$('#' + id).fadeIn('slow');
+
+		}
+	</script>
+</body>
 </html>

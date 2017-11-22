@@ -3953,6 +3953,37 @@
     <servlet-name>KaizenStatusChangeServlet</servlet-name>
     <url-pattern>/kaizenStatusChange</url-pattern>
   </servlet-mapping>
+   <servlet>
+    <description></description>
+    <display-name>ProblemIndentificationInsertServlet</display-name>
+    <servlet-name>ProblemIndentificationInsertServlet</servlet-name>
+    <servlet-class>com.hrms.kaizen.controller.ProblemIndentificationInsertServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ProblemIndentificationInsertServlet</servlet-name>
+    <url-pattern>/problemIndentificationInsert</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ProblemIndentificationUpdateServlet</display-name>
+    <servlet-name>ProblemIndentificationUpdateServlet</servlet-name>
+    <servlet-class>com.hrms.kaizen.controller.ProblemIndentificationUpdateServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ProblemIndentificationUpdateServlet</servlet-name>
+    <url-pattern>/problemIndentificationUpdate</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ProblemIdentificationDeleteServlet</display-name>
+    <servlet-name>ProblemIdentificationDeleteServlet</servlet-name>
+    <servlet-class>com.hrms.kaizen.controller.ProblemIdentificationDeleteServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ProblemIdentificationDeleteServlet</servlet-name>
+    <url-pattern>/problemIdentificationDelete</url-pattern>
+  </servlet-mapping>
+  
   <servlet>
     <description></description>
     <display-name>DocumentDataListServlet</display-name>
@@ -4096,5 +4127,74 @@
     <servlet-name>MonthlyCheckPayrollDataServlet</servlet-name>
     <url-pattern>/MonthlyCheckPayrollData</url-pattern>
   </servlet-mapping>
-  
+  <servlet>
+    <description></description>
+    <display-name>MeetingDataServlet</display-name>
+    <servlet-name>MeetingDataServlet</servlet-name>
+    <servlet-class>com.hrms.meetingmanagemnet.controller.MeetingDataServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>MeetingDataServlet</servlet-name>
+    <url-pattern>/meetingData</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>MeetingInsertServlet</display-name>
+    <servlet-name>MeetingInsertServlet</servlet-name>
+    <servlet-class>com.hrms.meetingmanagemnet.controller.MeetingInsertServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>MeetingInsertServlet</servlet-name>
+    <url-pattern>/meetingInsert</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>MeetingTimeScheduleCheckServlet</display-name>
+    <servlet-name>MeetingTimeScheduleCheckServlet</servlet-name>
+    <servlet-class>com.hrms.meetingmanagemnet.controller.MeetingTimeScheduleCheckServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>MeetingTimeScheduleCheckServlet</servlet-name>
+    <url-pattern>/meetingTimeScheduleCheck</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>MeetingDataByIdServlet</display-name>
+    <servlet-name>MeetingDataByIdServlet</servlet-name>
+    <servlet-class>com.hrms.meetingmanagemnet.controller.MeetingDataByIdServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>MeetingDataByIdServlet</servlet-name>
+    <url-pattern>/meetingDataById</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>MeetingDeleteServlet</display-name>
+    <servlet-name>MeetingDeleteServlet</servlet-name>
+    <servlet-class>com.hrms.meetingmanagemnet.controller.MeetingDeleteServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>MeetingDeleteServlet</servlet-name>
+    <url-pattern>/meetingDelete</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>FacilityDetailServlet</display-name>
+    <servlet-name>FacilityDetailServlet</servlet-name>
+    <servlet-class>com.hrms.meetingmanagemnet.controller.FacilityDetailServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>FacilityDetailServlet</servlet-name>
+    <url-pattern>/facilityDetail</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>MeetingUpdateServlet</display-name>
+    <servlet-name>MeetingUpdateServlet</servlet-name>
+    <servlet-class>com.hrms.meetingmanagemnet.controller.MeetingUpdateServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>MeetingUpdateServlet</servlet-name>
+    <url-pattern>/meetingUpdate</url-pattern>
+  </servlet-mapping>
 </web-app>

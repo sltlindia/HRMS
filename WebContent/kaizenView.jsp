@@ -14,13 +14,52 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Kaizen View</title>
-<%@include file="header.jsp"%>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <meta name="description" content="Robust admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
+    <meta name="keywords" content="admin template, robust admin template, dashboard template, flat admin template, responsive admin template, web app">
+    <meta name="author" content="PIXINVENT">
+    <title>Kaizen View</title>
+    <link rel="apple-touch-icon" sizes="60x60" href="app-assets/images/ico/apple-icon-60.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="app-assets/images/ico/apple-icon-76.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="app-assets/images/ico/apple-icon-120.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="app-assets/images/ico/apple-icon-152.png">
+    <link rel="shortcut icon" type="image/x-icon" href="https://pixinvent.com/bootstrap-admin-template/robust/app-assets/images/ico/favicon.ico">
+    <link rel="shortcut icon" type="image/png" href="app-assets/images/ico/favicon-32.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-touch-fullscreen" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <!-- BEGIN VENDOR CSS-->
+    <link rel="stylesheet" type="text/css" href="app-assets/css/bootstrap.min.css">
+    <!-- font icons-->
+    <link rel="stylesheet" type="text/css" href="app-assets/fonts/icomoon.css">
+    <link rel="stylesheet" type="text/css" href="app-assets/fonts/flag-icon-css/css/flag-icon.min.css">
+    <link rel="stylesheet" type="text/css" href="app-assets/vendors/css/sliders/slick/slick.css">
+    <link rel="stylesheet" type="text/css" href="app-assets/vendors/css/extensions/pace.css">
+    <link rel="stylesheet" type="text/css" href="app-assets/vendors/css/extensions/sweetalert.css">
+    <!-- END VENDOR CSS-->
+    <!-- BEGIN ROBUST CSS-->
+    <link rel="stylesheet" type="text/css" href="app-assets/css/bootstrap-extended.min.css">
+    <link rel="stylesheet" type="text/css" href="app-assets/css/app.min.css">
+    <link rel="stylesheet" type="text/css" href="app-assets/css/colors.min.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    
+    <!-- END ROBUST CSS-->
+    <!-- BEGIN Page Level CSS-->
+    <link rel="stylesheet" type="text/css" href="app-assets/css/core/menu/menu-types/horizontal-menu.min.css">
+    <link rel="stylesheet" type="text/css" href="app-assets/css/core/menu/menu-types/vertical-overlay-menu.min.css">
+    <!-- END Page Level CSS-->
+    <!-- BEGIN Custom CSS-->
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <link href="offlineDatePicker/1jquery-ui.css" rel="stylesheet">
+
+	<link href="offlinetimepicker/jquerysctipttop.css" rel="stylesheet" type="text/css">
+	<link href="offlinetimepicker/mdtimepicker.css" rel="stylesheet" type="text/css">
+    <!-- END Custom CSS-->
+    <%@include file="header.jsp" %>
 <!-- JS dependencies -->
-    
-    
-    
+   
     <script type="text/javascript">
 var datefield=document.createElement("input")
 datefield.setAttribute("type", "text")
@@ -31,7 +70,7 @@ if (datefield.type!="date"){ //if browser doesn't support input type="date", loa
 }
 </script>
 
-<script>
+<!-- <script>
 if (datefield.type!="date"){ //if browser doesn't support input type="date", initialize date picker widget:
     jQuery(function($){ //on document.ready
         $('#startDate').datepicker({
@@ -43,8 +82,9 @@ if (datefield.type!="date"){ //if browser doesn't support input type="date", ini
     })
 }
 </script>
+ -->
 </head>
-<body>
+<body data-open="hover" data-menu="horizontal-menu" data-col="2-columns" class="horizontal-layout horizontal-menu 2-columns ">
 <%
 int kaizen_id = 0;
 
@@ -86,51 +126,45 @@ for(KaizenManagementApprovalBean k1 : listOfKaizenManagement){
 }
 
 %>
-
-	<div id="wrapper"> 
-		<div id="page-wrapper">
-			<div class="row">
-				<div class="col-lg-12">
-					<h1 class="page-header">CI Detail</h1>
-				</div>
-				<!-- /.col-lg-12 -->
-			</div>
-
-			<div class="row">
-				<div class="col-lg-12">
-					<div class="panel panel-primary">
-						<div class="panel-heading">
-						
-						<div class="row">
-						
-							<div class="col-sm-6 col-md-6 col-lg-6">
-								CI Detail
-							</div>
-							
-							<%if(user.getEmployee_master_id() == kaizenBean.getEmployeeBean().getEmployee_master_id()) {%>
-							<div class="col-sm-6 col-md-6 col-lg-6" align="right">
-								<%if (kaizenBean.getCompletion_status().equalsIgnoreCase("saved") || kaizenBean.getStatus().equalsIgnoreCase("rejected")) {%>
-								<a onclick="changeStatus(<%=kaizen_id%>);"><button class="btn btn-default btn-xs" id="changeStatus">LOCK</button></a>
-								<%} %>
-								<%if (kaizenBean.getCompletion_status().equalsIgnoreCase("submitted") && kaizenBean.getStatus().equalsIgnoreCase("approved")) {%>
-								<a onclick="changeStatusCompleted(<%=kaizen_id%>);"><button class="btn btn-default btn-xs" id="changeStatusCompleted">COMPLETE</button></a>
-								<%} %>
-								<%if (!kaizenBean.getCompletion_status().equalsIgnoreCase("completed")) {%>
-								<a href="kaizenUpdate.jsp?kaizen_id=<%=kaizen_id%>"><button class="btn btn-default btn-xs" id="updateBtn">UPDATE</button></a>
-								<%} %>
-								<a href="kaizenList.jsp"><button class="btn btn-default btn-xs">Go To List</button></a>
-							</div>
-							<%} %>
-							
-							
+<div class="app-content container center-layout mt-2">
+		<div class="content-wrapper">
+			<div class="content-body">
+				<section id="horizontal-form-layouts">
+					<div class="row">
+						<div class="col-lg-12">
+							<h1 class="page-header">CI Detail</h1>
 						</div>
-							
-						
-						
-						</div>
-						<div class="panel-body">
-						
-						<div id="table-responsive">
+						<!-- /.col-lg-12 -->
+					</div>
+
+	<div class="row">
+				<div class="col-lg-12">
+					<div class="card">
+				        	<div class="card-header">
+				        	<div class="card box-shadow-0" data-appear="appear">
+					                <div class="card-header card-inverse" style="background-color: #90A4AE;padding: 0.5rem 0rem 1rem 0rem;height: 50px;">
+					                <div class="col-sm-6">
+					                    <h5 class="card-title">CI Detail</h5></div>
+					                    <%if(user.getEmployee_master_id() == kaizenBean.getEmployeeBean().getEmployee_master_id()) {%>
+											<div class="col-sm-6" align="right">
+												<%if (kaizenBean.getCompletion_status().equalsIgnoreCase("saved") || kaizenBean.getStatus().equalsIgnoreCase("rejected")) {%>
+												<a onclick="changeStatus(<%=kaizen_id%>);"><button class="btn mr-1 mb-1 btn-success" id="changeStatus">LOCK</button></a>
+												<%} %>
+												<%if (kaizenBean.getCompletion_status().equalsIgnoreCase("submitted") && kaizenBean.getStatus().equalsIgnoreCase("approved")) {%>
+												<a onclick="changeStatusCompleted(<%=kaizen_id%>);"><button class="btn btn-primary btn-min-width mr-1 mb-1" id="changeStatusCompleted">COMPLETE</button></a>
+												<%} %>
+												<%if (!kaizenBean.getCompletion_status().equalsIgnoreCase("completed")) {%>
+												<a href="kaizenUpdate.jsp?kaizen_id=<%=kaizen_id%>"><button class="btn mr-1 mb-1 btn-primary" id="updateBtn">UPDATE</button></a>
+												<%} %>
+												<a href="kaizenList.jsp"><button class="btn mr-1 mb-1 btn-warning">Go To List</button></a>
+											</div>
+											 
+											<%} %>	
+					                </div>
+					                
+						<div class="card-body collapse in">
+					              <div class="card-block border-bottom-blue-grey" style="border-left: 2px solid #607D8B;border-right: 2px solid #607D8B;">
+										<div id="table-responsive">
 										<table class="table table-stripped ">
 										
 										
@@ -138,7 +172,7 @@ for(KaizenManagementApprovalBean k1 : listOfKaizenManagement){
 												<th>Problem Description</th>
 												<td>:</td>
 												<td style="white-space: pre-wrap;"><%=kaizenBean.getKaizenProblemIdentificationBean().getProblem_description()%></td>
-
+												
 												<th>Category</th>
 												<td>:</td>
 												<td align="left"><%=kaizenBean.getKaizenProblemIdentificationBean().getCategory()%></td>
@@ -158,7 +192,7 @@ for(KaizenManagementApprovalBean k1 : listOfKaizenManagement){
 											</tr>
 	
 											<tr>
-											    <th>Improvement Plan &emsp; <button type="button" class="btn btn-default btn-xs" name="button" value="RCA" data-toggle="modal" data-target="#rca"><i class="fa fa-thumbs-up"></i> RCA</button></th>
+											    <th>Improvement Plan &emsp; <button type="button" class="btn mr-1 mb-1 btn-primary" name="button" value="RCA" data-toggle="modal" data-target="#rca"><i class="fa fa-thumbs-up"></i> RCA</button></th>
 												<td>:</td>
 												<td style="white-space: pre-wrap;" colspan="4"><%=kaizenBean.getKaizen_desc()%></td>
 											</tr>	
@@ -215,15 +249,12 @@ for(KaizenManagementApprovalBean k1 : listOfKaizenManagement){
 											<tr>
 											<%
 											int numberOfDays = 0;
-											SimpleDateFormat yyyyMMdd = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-											SimpleDateFormat ddMMyyyy = new SimpleDateFormat("dd-MMM-yyyy");
-											SimpleDateFormat yyyyMMdds = new SimpleDateFormat("yyyy-MM-dd");
 											Calendar calKaizenDate = Calendar.getInstance();
 											Calendar calkaizenCompletionDate = Calendar.getInstance();
 											  
 											if(kaizenBean.getCompletion_date() != null){
-											  calKaizenDate.setTime(yyyyMMdd.parse(kaizenBean.getDate()));
-											  calkaizenCompletionDate.setTime(yyyyMMdd.parse(kaizenBean.getCompletion_date())); 
+											  calKaizenDate.setTime(yyyyMMddhh.parse(kaizenBean.getDate()));
+											  calkaizenCompletionDate.setTime(yyyyMMddhh.parse(kaizenBean.getCompletion_date())); 
 											  
 											  while (calKaizenDate.before(calkaizenCompletionDate)) {
 											      numberOfDays++;
@@ -238,10 +269,10 @@ for(KaizenManagementApprovalBean k1 : listOfKaizenManagement){
 												<td>
 												<i class="fa fa-edit" data-toggle="modal" data-target="#dateChange" style="cursor: pointer;"></i>
 												
-												<%=ddMMyyyy.format(yyyyMMdd.parse(kaizenBean.getDate()))%>
+												<%=ddMMMyyyy.format(yyyyMMddhh.parse(kaizenBean.getDate()))%>
 												 <b>to</b> 
 												<%if(kaizenBean.getCompletion_date() != null){ %>
-												<%=ddMMyyyy.format(yyyyMMdd.parse(kaizenBean.getCompletion_date()))%>
+												<%=ddMMMyyyy.format(yyyyMMddhh.parse(kaizenBean.getCompletion_date()))%>
 												<%}else{ %>
 												<font id="cDate">-</font>
 												<%} %> 
@@ -270,10 +301,10 @@ for(KaizenManagementApprovalBean k1 : listOfKaizenManagement){
                                         <div class="modal-body">
                                         <input type="hidden" name="kaizen_id" value="<%=kaizen_id%>"> 
                                         	<label>Start Date</label>
-                                        	<input type="text" name="startDate" id="startDate" class="form-control" value="<%=yyyyMMdds.format(yyyyMMdd.parse(kaizenBean.getDate()))%>">
+                                        	<input type="text" name="startDate" id="startDate" class="form-control" value="<%=yyyyMMdd.format(yyyyMMddhh.parse(kaizenBean.getDate()))%>">
                                         	<%if(kaizenBean.getCompletion_date() != null){ %>
                                         	<label>End Date</label>
-                                        	<input type="text" name="endDate" id="endDate" class="form-control" value="<%=yyyyMMdds.format(yyyyMMdd.parse(kaizenBean.getCompletion_date()))%>">
+                                        	<input type="text" name="endDate" id="endDate" class="form-control" value="<%=yyyyMMdd.format(yyyyMMddhh.parse(kaizenBean.getCompletion_date()))%>">
                                       		<%} %>
                                         </div>
                                         <div class="modal-footer">
@@ -353,7 +384,7 @@ for(KaizenManagementApprovalBean k1 : listOfKaizenManagement){
 
 												<td colspan="3">
 												<div class="panel panel-primary">
-													<table class="table" >
+													<table div class="table" style="border-left: 2px solid #607D8B;border-right: 2px solid #607D8B; border-top: 2px solid #607D8B;border-bottom: 2px solid #607D8B;">
 													<%if(!kaizenBean.getDelivery().equalsIgnoreCase("")){%>
 														<tr id="timeField">
 															<th>Delivery </th>
@@ -418,25 +449,6 @@ for(KaizenManagementApprovalBean k1 : listOfKaizenManagement){
 													
 													int company_id = employeeBean.getCompanyListBean().getCompany_list_id();
 													int emp_code = employeeBean.getEmployee_code();
-													String company_name = null;
-													if(company_id == 1){
-														company_name = "SLTL";
-													}else if(company_id == 2){
-														company_name = "SS";
-													}else if(company_id == 3){
-														company_name = "S.HR";
-													}else if(company_id == 4){
-														company_name = "COSMOS";
-													}else if(company_id == 5){
-														company_name = "CSLASER";
-													}else if(company_id == 6){
-														company_name = "SEZ";
-													}else if(company_id == 7){
-														company_name = "CL";
-													}if(company_id == 8){
-														company_name = "App";
-													}
-												
 													String borderColor = null;
 													
 													if(kaizenBean.getStatus().equalsIgnoreCase("approved") || kaizenBean.getStatus().equalsIgnoreCase("genuine")){
@@ -459,6 +471,7 @@ for(KaizenManagementApprovalBean k1 : listOfKaizenManagement){
 													
 												%>
 												
+												
 												<img src="FileServlet?path=D:\hrms\upload\profilePic\<%=company_name%>\<%=emp_code%>.bmp" style="border: solid 2px; border-color: <%=borderColor%>;"  alt="Sample Image"
 														class="img-circle" id="img<%=kaizenBean.getManager_id()%>" height="40px" width="40px" tabindex="0" data-placement="left" data-toggle="popover" data-trigger="hover" title="Manager Info" data-content="<div class='media'><a href='#' class='pull-left'><img src='FileServlet?path=D:\hrms\upload\profilePic\<%=company_name%>\<%=emp_code%>.bmp' class='img-circle' height='60px' width='60px' alt='Sample Image'></a><div class='media-body'><h4 class='media-heading'><%=employeeBean.getFirstname()+" "+employeeBean.getLastname() %> </h4><p><%=employeeBean.getDepartmentBean().getDepartment_name()%></p><p><%=reason%></p></div></div>"/>  
 												
@@ -479,24 +492,6 @@ for(KaizenManagementApprovalBean k1 : listOfKaizenManagement){
 															String reason = "";
 															
 															int emp_code = k.getEmployeeBean().getEmployee_code();
-															String company_name = null;
-															if(company_id == 1){
-																company_name = "SLTL";
-															}else if(company_id == 2){
-																company_name = "SS";
-															}else if(company_id == 3){
-																company_name = "S.HR";
-															}else if(company_id == 4){
-																company_name = "COSMOS";
-															}else if(company_id == 5){
-																company_name = "CSLASER";
-															}else if(company_id == 6){
-																company_name = "SEZ";
-															}else if(company_id == 7){
-																company_name = "CL";
-															}if(company_id == 8){
-																company_name = "App";
-															}
 														
 															String borderColor = null;
 															
@@ -542,14 +537,13 @@ for(KaizenManagementApprovalBean k1 : listOfKaizenManagement){
 													
 													<%if(user.getEmployee_master_id() == kaizenBean.getEmployeeBean().getEmployee_master_id() && kaizenBean.getCompletion_status().equalsIgnoreCase("saved") && !kaizenBean.getCategory_id().equalsIgnoreCase("A")) {%>
 													
-													<a href="addManagerForKaizen.jsp?kaizen_id=<%=kaizen_id%>"><button class="btn btn-default btn-circle" id="addManager"><i class="fa fa-plus"></i></button></a>
-												
+													<a href="addManagerForKaizen.jsp?kaizen_id=<%=kaizen_id%>" data-target="#myModalManager" id="addManager">&nbsp;<i class="icon-circle-plus" style="color: black;font-size: 20px;padding-top:20px;"></i></a>
 													<%} %>
 													
 													<%if(user.getEmployee_master_id() == kaizenBean.getEmployeeBean().getEmployee_master_id() && kaizenBean.getStatus().equalsIgnoreCase("rejected") && !kaizenBean.getCategory_id().equalsIgnoreCase("A")) {%>
 													
-													<a href="addManagerForKaizen.jsp?kaizen_id=<%=kaizen_id%>"><button class="btn btn-default btn-circle" id="addManager"><i class="fa fa-plus"></i></button></a>
-												
+													
+													<a href="addManagerForKaizen.jsp?kaizen_id=<%=kaizen_id%>" data-target="#myModalManager" id="addManager">&nbsp;<i class="icon-circle-plus" style="color: black;font-size: 20px;padding-top:20px;"></i></a>
 													<%} %>
 													
 												</td>
@@ -565,27 +559,6 @@ for(KaizenManagementApprovalBean k1 : listOfKaizenManagement){
 															
 															int company_id = k.getEmployeeBean().getCompanyListBean().getCompany_list_id();
 															int emp_code = k.getEmployeeBean().getEmployee_code();
-															String company_name = null;
-															if(company_id == 1){
-																company_name = "SLTL";
-															}else if(company_id == 2){
-																company_name = "SS";
-															}else if(company_id == 3){
-																company_name = "S.HR";
-															}else if(company_id == 4){
-																company_name = "COSMOS";
-															}else if(company_id == 5){
-																company_name = "CSLASER";
-															}else if(company_id == 6){
-																company_name = "SEZ";
-															}else if(company_id == 7){
-																company_name = "CL";
-															}if(company_id == 8){
-																company_name = "App";
-															}
-														
-															
-															
 															
 													%>
 													
@@ -606,12 +579,12 @@ for(KaizenManagementApprovalBean k1 : listOfKaizenManagement){
 													<%} %>
 													
 													<%if(user.getEmployee_master_id() == kaizenBean.getEmployeeBean().getEmployee_master_id() && kaizenBean.getCompletion_status().equalsIgnoreCase("saved")) {%>
-													<a href="" data-toggle="modal" data-target="#myModalManager"><button class="btn btn-default btn-circle" id="addEmployee"><i class="fa fa-plus"></i></button></a>
+													<a href="" data-toggle="modal" data-target="#myModalManager">&nbsp;<i class="icon-circle-plus" style="color: black;font-size: 20px;padding-top:20px;"></i></a>
 													<%} %>
 													
 													
 													<%if(user.getEmployee_master_id() == kaizenBean.getEmployeeBean().getEmployee_master_id() && kaizenBean.getStatus().equalsIgnoreCase("rejected")) {%>
-													<a href="" data-toggle="modal" data-target="#myModalManager"><button class="btn btn-default btn-circle" id="addEmployee"><i class="fa fa-plus"></i></button></a>
+													<a href="" data-toggle="modal" data-target="#myModalManager"><i class="icon-circle-plus" style="color: black;font-size: 20px;padding-top:20px;"></i></a>
 													<%} %>
 													
 												</td>
@@ -623,30 +596,9 @@ for(KaizenManagementApprovalBean k1 : listOfKaizenManagement){
 												<td colspan="4">
 													<%
 														for(KaizenManagementApprovalBean k : listOfKaizenManagement){
-															
+															String reason = "";
 															int company_id = k.getEmployeeBean().getCompanyListBean().getCompany_list_id();
 															int emp_code = k.getEmployeeBean().getEmployee_code();
-															String company_name = null;
-															String reason ="";
-															if(company_id == 1){
-																company_name = "SLTL";
-															}else if(company_id == 2){
-																company_name = "SS";
-															}else if(company_id == 3){
-																company_name = "S.HR";
-															}else if(company_id == 4){
-																company_name = "COSMOS";
-															}else if(company_id == 5){
-																company_name = "CSLASER";
-															}else if(company_id == 6){
-																company_name = "SEZ";
-															}else if(company_id == 7){
-																company_name = "CL";
-															}if(company_id == 8){
-																company_name = "App";
-															}
-															
-															
 															String borderColor = null;
 															
 															if(k.getManagement_approval_status().equalsIgnoreCase("approved")){
@@ -676,13 +628,14 @@ for(KaizenManagementApprovalBean k1 : listOfKaizenManagement){
 														<a tabindex="0"  data-toggle="popover" data-trigger="focus" title="" style="color: black;text-decoration: none; cursor: pointer;" data-content="<a href='kaizenRemoveManagemnet?kaizen_management_id=<%=k.getKaizen_management_approval_id()%>&kaizen_id=<%=kaizen_id%>'>Remove</a>"><img src="FileServlet?path=D:\hrms\upload\profilePic\<%=company_name%>\<%=emp_code%>.bmp" style="border: solid 2px; border-color: <%=borderColor%>;"  alt="<%=k.getEmployeeBean().getFirstname()+" "+k.getEmployeeBean().getLastname() %>"
 														class="img-circle" id="img<%=k.getEmployeeBean().getEmployee_master_id()%>" height="40px" width="40px" tabindex="0" data-placement="left" data-toggle="popover" data-trigger="hover" title="Manager Info" data-content="<div class='media'><a href='#' class='pull-left'><img src='FileServlet?path=D:\hrms\upload\profilePic\<%=company_name%>\<%=emp_code%>.bmp' class='img-circle' height='60px' width='60px' alt='<%=k.getEmployeeBean().getFirstname()+" "+k.getEmployeeBean().getLastname() %>'></a><div class='media-body'><h4 class='media-heading'><%=k.getEmployeeBean().getFirstname()+" "+k.getEmployeeBean().getLastname() %> </h4><p><%=k.getEmployeeBean().getDepartmentBean().getDepartment_name()%></p><p><%=reason%></p></div></div>"/>    
 														</a>
+														<!-- <a href="" data-toggle="modal" data-target="#myModalManager">&nbsp;<i class="icon-circle-plus" style="color: black;font-size: 20px;padding-top:20px;"></i></a> -->
 													<%}%>
 										                  	<%if((Double.parseDouble(kaizenBean.getImplementation_cost()) > 5000 )
 										                  			|| (kaizenBean.getCategory_id().equalsIgnoreCase("C"))){ 
 										                  			
 										                  			if(user.getEmployee_master_id() == kaizenBean.getEmployeeBean().getEmployee_master_id()){%>
 										                  			
-										                  			<button class="btn btn-default btn-circle" id="addAuthority" data-toggle="modal" data-target="#addAuthorityModel"><i class="fa fa-plus"></i></button>
+										                  			<!-- <button class="btn btn-default btn-circle" id="addAuthority" data-toggle="modal" data-target="#addAuthorityModel"><i class="fa fa-plus"></i></button> -->
 										                  			
 													<%}} %>
 													
@@ -695,7 +648,7 @@ for(KaizenManagementApprovalBean k1 : listOfKaizenManagement){
 												<td colspan="6"></td>
 											<tr>
 											
-										<div class="modal fade" id="myModalManager" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+							<div class="modal fade" id="myModalManager" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                               	  <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
@@ -733,7 +686,7 @@ for(KaizenManagementApprovalBean k1 : listOfKaizenManagement){
 						</table>
 						<%if(user.getEmployee_master_id() == kaizenBean.getEmployeeBean().getEmployee_master_id() && !kaizenBean.getCompletion_status().equalsIgnoreCase("completed")) {%>
 						<div align="center" id="addPhoto">
-						<a href="kaizenPhotoUpload.jsp?kaizen_id=<%=kaizenBean.getKaizen_id()%>" style="color: black;"><button class="btn btn-outline btn-default btn-xs"><i class="fa fa-photo"></i> Add Photos</button></a>
+						<a href="kaizenPhotoUpload.jsp?kaizen_id=<%=kaizenBean.getKaizen_id()%>" style="color: black;"><button class="btn btn-primary btn-min-width mr-1 mb-1"><i class="fa fa-photo"></i> Add Photos</button></a>
 						</div>
 						<%} %>
 						<%
@@ -745,7 +698,7 @@ for(KaizenManagementApprovalBean k1 : listOfKaizenManagement){
 							<div class="col-sm-6 col-md-6 col-lg-6">
 							
 									<%if(listOfBefore.size() != 0){ %>
-						<div class="panel panel-primary">
+										<div class="panel panel-primary">
 												<div class="panel-body">
 														<h5><b>Before Photo List</b></h5>
 												<%
@@ -762,7 +715,7 @@ for(KaizenManagementApprovalBean k1 : listOfKaizenManagement){
 												<h5><b>Description</b></h5>
 												<p style="white-space: pre-wrap;"><%=kaizenBean.getBefore_description()%></p>								
 												</div>
-						</div>
+										</div>
 						<%} %>
 							
 							</div>
@@ -787,19 +740,12 @@ for(KaizenManagementApprovalBean k1 : listOfKaizenManagement){
 												<h5><b>Description</b></h5>
 												<p style="white-space: pre-wrap;"><%=kaizenBean.getAfter_description()%></p>									
 												</div>
-												</div>
+							</div>
 								<%} %>
 							
 							</div>
 						
 						</div>
-						
-						
-						
-					
-						
-						
-						
 						
 						<%
 						if(flag != null){
@@ -921,44 +867,76 @@ for(KaizenManagementApprovalBean k1 : listOfKaizenManagement){
                                 <!-- /.modal-dialog -->
                   	</div>
                   	<%} }%> --%>
+                 
                   
 									</div>
 									
 									
 									
 						<label>Legends :</label><br>			
-						<img src="img/user.bmp" alt="user" class="img-circle" height="40px" width="40px" style="border: solid 2px; border-color:#F1C40F;"> : <b>Pending</b>
-						<img src="img/user.bmp" alt="user" class="img-circle" height="40px" width="40px" style="border: solid 2px; border-color:green;"> : <b>Approved</b>
-						<img src="img/user.bmp" alt="user" class="img-circle" height="40px" width="40px" style="border: solid 2px; border-color:red;"> : <b>Rejected</b>
-						
+						<img src="img/user.bmp" alt="user" class="mr-1 btn-icon btn btn-outline-primary btn-round" height="40px" width="40px" style="border: solid 2px; border-color:#F1C40F;"> : <b>Pending</b>
+						<img src="img/user.bmp" alt="user" class="mr-1 btn-icon btn btn-outline-primary btn-round" height="40px" width="40px" style="border: solid 2px; border-color:green;"> : <b>Approved</b>
+						<img src="img/user.bmp" alt="user" class="mr-1 btn-icon btn btn-outline-primary btn-round" height="40px" width="40px" style="border: solid 2px; border-color:red;"> : <b>Rejected</b>
+						<br>
+						<br>
+						<label><font color="red">Note:<br></font> 
+						<font color="green">Please click on <button class="btn mr-1 mb-1 btn-success btn-sm">LOCK</button> button for sending your CI to manager's Approval.<br></font>
+						<font color="green">After Approval Please click on <button class="btn mr-1 mb-1 btn-primary btn-sm">COMPLETE</button> button for sending your CI to Billboard scoring.
+						</font>
+						</label>
 						</div>
-						
-					</div>
-				</div>
-			</div>
+						</div>
+							</div>
+							</div>
+							</div>
+							</div>
+							</div>
+							</section>
+							</div>
+							</div>
+							</div>
+							
+			
 
+<%@include file="footer.html"%>
+    <!-- BEGIN VENDOR JS-->
+    <!-- build:js app-assets/js/vendors.min.js-->
+    <script src="app-assets/js/core/libraries/jquery.min.js" type="text/javascript"></script>
+    <script src="app-assets/vendors/js/ui/tether.min.js" type="text/javascript"></script>
+    <script src="app-assets/js/core/libraries/bootstrap.min.js" type="text/javascript"></script>
+    <script src="app-assets/vendors/js/ui/perfect-scrollbar.jquery.min.js" type="text/javascript"></script>
+    <script src="app-assets/vendors/js/ui/unison.min.js" type="text/javascript"></script>
+    <script src="app-assets/vendors/js/ui/blockUI.min.js" type="text/javascript"></script>
+    <script src="app-assets/vendors/js/ui/jquery.matchHeight-min.js" type="text/javascript"></script>
+    <script src="app-assets/vendors/js/ui/jquery-sliding-menu.js" type="text/javascript"></script>
+    <script src="app-assets/vendors/js/sliders/slick/slick.min.js" type="text/javascript"></script>
+    <script src="app-assets/vendors/js/ui/screenfull.min.js" type="text/javascript"></script>
+    <script src="app-assets/vendors/js/extensions/pace.min.js" type="text/javascript"></script>
+    <!-- /build-->
+    <!-- BEGIN VENDOR JS-->
+    <!-- BEGIN PAGE VENDOR JS-->
+    <script type="text/javascript" src="app-assets/vendors/js/ui/jquery.sticky.js"></script>
+    <script src="app-assets/vendors/js/extensions/sweetalert.min.js" type="text/javascript"></script>
+    <!-- END PAGE VENDOR JS-->
+    <!-- BEGIN ROBUST JS-->
+    <!-- build:js app-assets/js/app.min.js-->
+    <script src="app-assets/js/core/app-menu.min.js" type="text/javascript"></script>
+    <script src="app-assets/js/core/app.min.js" type="text/javascript"></script>
+    <script src="app-assets/js/scripts/ui/fullscreenSearch.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="offlineDatePicker/jquery.min.js"></script>
+	<script type="text/javascript" src="offlineDatePicker/jquery-ui.min.js"></script>
+    <!-- /build-->
+    <!-- END ROBUST JS-->
+  	<script>
+	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	  })(window,document,'script','www.google-analytics.com/analytics.js','ga');
 
-		</div>
-	</div>
+	  ga('create', 'UA-96096445-1', 'auto');
+	  ga('send', 'pageview');
 
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-   <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-
-    <!-- bootbox code -->
-    <script src="js/bootbox.min.js"></script>
-
-	<!-- Metis Menu Plugin JavaScript -->
-	<script src="bower_components/metisMenu/dist/metisMenu.min.js"></script>
-
-	<!-- DataTables JavaScript -->
-	<script
-		src="bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
-	<script
-		src="bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js"></script>
-
-	<!-- Custom Theme JavaScript -->
-	<script src="dist/js/sb-admin-2.js"></script>
+	</script>
 	
 	<script>
 	
@@ -997,7 +975,6 @@ for(KaizenManagementApprovalBean k1 : listOfKaizenManagement){
 			$('.approvButton').hide();
 		});
 	}
-	
 	
 	
 	function reject() {
@@ -1082,7 +1059,7 @@ for(KaizenManagementApprovalBean k1 : listOfKaizenManagement){
 		posting.done(function(data) {
 			$('#acceptPanel').modal('hide');
 			
-			dialog.find('.bootbox-body').html('<div class="text-center"><i class="fa fa-check-circle fa-4x"></i></div><div class="text-center"><h4><b>CI Approved<b></h4></div>');
+			dialog.find('.bootbox-body').html('<div class="text-center"><i class="icon-checkmark-circled fa-4x"></i></div><div class="text-center"><h4><b>CI Approved<b></h4></div>');
 			
 			$('#img'+<%=user.getEmployee_master_id()%>).css('border-color', 'green');
 			$('.approvButton').hide();
@@ -1099,7 +1076,7 @@ for(KaizenManagementApprovalBean k1 : listOfKaizenManagement){
 			
 			posting.done(function(data) {
 				$('#rejectionPanel').modal('hide');
-				dialog.find('.bootbox-body').html('<div class="text-center"><i class="fa fa-check-circle fa-4x"></i></div><div class="text-center"><h4><b>CI Rejected<b></h4></div>');
+				dialog.find('.bootbox-body').html('<div class="text-center"><i class="icon-checkmark-circled fa-4x"></i></div><div class="text-center"><h4><b>CI Rejected<b></h4></div>');
 				$('#img'+<%=user.getEmployee_master_id()%>).css('border-color', 'red');
 				$('.approvButton').hide();
 			});
@@ -1112,7 +1089,7 @@ for(KaizenManagementApprovalBean k1 : listOfKaizenManagement){
 	
 	function changeStatus(id) {
 		
-		var dialog = bootbox.dialog({
+			var dialog = bootbox.dialog({
 		    message: '<div class="text-center"><i class="fa fa-spin fa-spinner"></i> Loading...</div>',
 		    onEscape : true,
 		});
@@ -1130,7 +1107,7 @@ for(KaizenManagementApprovalBean k1 : listOfKaizenManagement){
 			$('#changeStatus').hide();
 			$('#addEmployee').hide();
 			$('#addManager').hide();
-			dialog.find('.bootbox-body').html('<div class="text-center"><i class="fa fa-check-circle fa-4x"></i></div><div class="text-center"><h4><b>CI Locked<b></h4></div>');			
+			dialog.find('.bootbox-body').html('<div class="text-center"><i class="icon-checkmark-circled fa-4x"></i></div><div class="text-center"><h4><b>CI Locked<b></h4></div>');			
 		});
 		
 	}
@@ -1169,10 +1146,7 @@ for(KaizenManagementApprovalBean k1 : listOfKaizenManagement){
 		
 	}
 	
-	
-	
 	</script>
-	
 	
 	<script>
 	  $("[data-toggle=popover]")
