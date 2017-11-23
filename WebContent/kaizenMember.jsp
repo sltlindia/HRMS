@@ -70,11 +70,20 @@ List<EmployeeBean> listOfEmployee = allListDAO.getFullListOfEmployee();
 				<!-- /.col-lg-12 -->
 			</div>
 
-			<div class="row">
+		<!-- 	<div class="row">
 				<div class="col-lg-12">
 					<div class="panel panel-primary">
 						<div class="panel-heading">CI Member</div>
-						<div class="panel-body">
+						<div class="panel-body">  -->
+					
+					 <div class="card">
+					<div class="card-header card-inverse" style="background-color: #90A4AE;padding: 0.5rem 0rem 1rem 0rem;height: 50px;">
+				                <h4 class="card-title" id="horz-layout-basic"> &nbsp; CI Form</h4>
+				                <a class="heading-elements-toggle"><i class="icon-ellipsis font-medium-3"></i></a>
+				            </div>
+					<div class="card-body collapse in">
+						<div class="card-block border-bottom-blue-grey" style="border-left: 2px solid #607D8B;border-right: 2px solid #607D8B;">
+							<div class="form-body"> 
 						
 						
 						<form action="kaizenMemberInsert" method="post" enctype="multipart/form-data">
@@ -127,10 +136,12 @@ List<EmployeeBean> listOfEmployee = allListDAO.getFullListOfEmployee();
 						<center><input type="submit" name="submit" value="Next" class="btn btn-primary"></center>
 						</form>
 						</div>
+						
 					</div>
+					
 				</div>
+				
 			</div>
-
 
 		</div>
 	</div>
