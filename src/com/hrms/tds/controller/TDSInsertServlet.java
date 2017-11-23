@@ -215,6 +215,7 @@ public class TDSInsertServlet extends HttpServlet {
 			double payroll_edu_all = 0.0;
 			double payroll_other_all = 0.0;
 			double payroll_adhoc_all = 0.0;
+			double payroll_salary = 0.0;
 			String payroll_date = null;
 			String company_code = null;
 			int employee_code = 0;
@@ -241,6 +242,7 @@ public class TDSInsertServlet extends HttpServlet {
 			payroll_edu_all = Double.parseDouble(request.getParameter("payroll_edu_all"));
 			payroll_other_all = Double.parseDouble(request.getParameter("payroll_other_all"));
 			payroll_adhoc_all = Double.parseDouble(request.getParameter("payroll_adhoc_all"));
+			payroll_salary = Double.parseDouble(request.getParameter("payroll_salary"));
 			payroll_date = request.getParameter("joining_date");
 			company_code = request.getParameter("company_code");
 			employee_code = Integer.parseInt(request.getParameter("employee_code"));
@@ -645,7 +647,7 @@ public class TDSInsertServlet extends HttpServlet {
 				boolean resultHrTotalF = tdsInsertDAO.tdsHrTotalFInsert(hrfBean);
 				
 				
-				String payroll_company_name = null;
+				/*String payroll_company_name = null;
           		if(company_code.equals("SL"))
           		{
           			payroll_company_name = "SLT";
@@ -673,21 +675,22 @@ public class TDSInsertServlet extends HttpServlet {
           		else if(company_code.equals("O"))
           		{
           			payroll_company_name = "App";
-          		}
+          		}*/
 				
 				
-          		List<TDSPayrollBean> tdsPayrollData = tdsListDAO.getTDSPayrollDataByEmpCode(emp_code,payroll_company_name);
+          		/*List<TDSPayrollBean> tdsPayrollData = tdsListDAO.getTDSPayrollDataByEmpCode(emp_code,company_code);
     			if(tdsPayrollData.size() == 0)
     			{
-    				TDSPayrollBean tdsPayroll = new TDSPayrollBean(payroll_company_name, emp_code, payroll_date, payroll_basic_salary, payroll_incentive, payroll_previous_salary, payroll_performance_pay, payroll_conveyance, payroll_hra, payroll_medical, payroll_ltc, payroll_ptax, payroll_epf, payroll_uni_all, payroll_edu_all, payroll_other_all, payroll_adhoc_all);
+    				TDSPayrollBean tdsPayroll = new TDSPayrollBean(company_code, emp_code, payroll_date, payroll_basic_salary, payroll_incentive, payroll_previous_salary, payroll_performance_pay, payroll_conveyance, payroll_hra, payroll_medical, payroll_ltc, payroll_ptax, payroll_epf, payroll_uni_all, payroll_edu_all, payroll_other_all, payroll_adhoc_all, payroll_salary);
     				boolean tdsPayroll1 = tdsInsertDAO.tdsPayrollInsert(tdsPayroll);
     				System.out.println("Data Inserted...");
     			}
     			else
     			{
-					TDSPayrollBean tdsPayrollBean = new TDSPayrollBean(payroll_company_name, employee_code, current_date, payroll_basic_salary, payroll_incentive, payroll_previous_salary, payroll_performance_pay, payroll_conveyance, payroll_hra, payroll_medical, payroll_ltc, payroll_ptax, payroll_epf, payroll_uni_all, payroll_edu_all, payroll_other_all, payroll_adhoc_all);
+					TDSPayrollBean tdsPayrollBean = new TDSPayrollBean(company_code, employee_code, current_date, payroll_basic_salary, payroll_incentive, payroll_previous_salary, payroll_performance_pay, payroll_conveyance, payroll_hra, payroll_medical, payroll_ltc, payroll_ptax, payroll_epf, payroll_uni_all, payroll_edu_all, payroll_other_all, payroll_adhoc_all, payroll_salary);
 					boolean tdsPayrollResult = tdsInsertDAO.tdsPayrollInsert(tdsPayrollBean);
-    			}
+    			}*/
+				
 				MonthBean monthBean = new MonthBean();
 				monthBean.setMonth_id(current_month);
 				TDSTaxBean taxBean = new TDSTaxBean(end_year_int, tax_payable, tdsBean, employeeBean,monthBean);

@@ -172,6 +172,49 @@ public class TDSUpdateDAO {
 		 return true;
 	}
 	
+	public boolean tdsPayrollSalaryDataUpdate(int employee_code, String companyName, double basicSalary, double incentive, double previousSalary, double performancePay, 
+				double conveyance, double hra, double medeical, double ltc, double ptax, double pf, double uniformAllw, double educationAllw, double otherAllw, double adhocAllw,
+				double salary){
+		 Session session = HibernateUtil.openSession();
+		 Transaction tx = null;	
+		 try {
+			 tx = session.getTransaction();
+			 tx.begin();
+			 Query query = session.createQuery("update TDSPayrollSalaryDataBean set basic_salary =:bs, incentive =:i, previous_salary =:ps, performance_pay =:pp, "
+			 					+ "conveyance =:c, hra =:h, medical =:m, ltc =:l, ptax =:p, pf =:pf, uni_allw =:ua, edu_allw =:ea, other_allw =:oa, "
+			 					+ "adhoc_allw =:aa, salary =:s where employee_code =:ec and company_name =:cn");
+			 query.setDouble("bs", basicSalary);
+			 query.setDouble("i", incentive);
+			 query.setDouble("ps", previousSalary);
+			 query.setDouble("pp", performancePay);
+			 query.setDouble("c", conveyance);
+			 query.setDouble("h", hra);
+			 query.setDouble("m", medeical);
+			 query.setDouble("l", ltc);
+			 query.setDouble("p", ptax);
+			 query.setDouble("pf", pf);
+			 query.setDouble("ua", uniformAllw);
+			 query.setDouble("ea", educationAllw);
+			 query.setDouble("oa", otherAllw);
+			 query.setDouble("aa", adhocAllw);
+			 query.setDouble("s", salary);
+			 query.setInteger("ec", employee_code);
+			 query.setString("cn", companyName);
+			 int result = query.executeUpdate();
+			 System.out.println("result :"+result);
+			 tx.commit();
+		 } catch (Exception e) {
+			 if (tx != null) {
+				 tx.rollback();
+			 }
+			 e.printStackTrace();
+		 } finally {
+			 session.close();
+		 }	
+		 return true;
+	}
+	
+	
 	public boolean tdsTotalAUpdate(int tds_id, double annual_gross_salary, double bonus, double gross_salary, double incentive, double prvSalary, double performancePay, double totalA){
 		 Session session = HibernateUtil.openSession();
 		 Transaction tx = null;	
@@ -228,6 +271,29 @@ public class TDSUpdateDAO {
 			 query.setDouble("ptax", annual_ptax);
 			 query.setDouble("uady", annual_uni_allw_during_year);
 			 query.setDouble("dua", d_uni_allw);
+			 query.setInteger("tid", tds_id);
+			 int result = query.executeUpdate();
+			 System.out.println("result :"+result);
+			 tx.commit();
+		 } catch (Exception e) {
+			 if (tx != null) {
+				 tx.rollback();
+			 }
+			 e.printStackTrace();
+		 } finally {
+			 session.close();
+		 }	
+		 return true;
+	}
+	
+	public boolean tdsTotalDUpdate(int tds_id, double pf){
+		 Session session = HibernateUtil.openSession();
+		 Transaction tx = null;	
+		 try {
+			 tx = session.getTransaction();
+			 tx.begin();
+			 Query query = session.createQuery("update TDSTotalDBean set EPF =:e where tds_id =:tid");
+			 query.setDouble("e", pf);
 			 query.setInteger("tid", tds_id);
 			 int result = query.executeUpdate();
 			 System.out.println("result :"+result);

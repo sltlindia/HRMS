@@ -24,7 +24,9 @@ import com.hrms.tds.bean.TDSHrTotalDBean;
 import com.hrms.tds.bean.TDSHrTotalEBean;
 import com.hrms.tds.bean.TDSHrTotalFBean;
 import com.hrms.tds.bean.TDSPayrollBean;
+import com.hrms.tds.bean.TDSPayrollSalaryDataBean;
 import com.hrms.tds.bean.TDSTaxBean;
+import com.hrms.tds.bean.TDSTempBean;
 import com.hrms.tds.bean.TDSTotalABean;
 import com.hrms.tds.bean.TDSTotalBBean;
 import com.hrms.tds.bean.TDSTotalCBean;
@@ -1149,6 +1151,28 @@ public class TDSListDAO {
 	    return listOfTDSPayroll;
 	}
 	
+	public List<TDSPayrollSalaryDataBean> getTDSPayrollSalaryDataByEmpCode(int emp_code,String company_name)
+	{
+	    List<TDSPayrollSalaryDataBean> listOfTDSPayrollSalaryData = new ArrayList<TDSPayrollSalaryDataBean>();
+	    Session session = HibernateUtil.openSession();
+	    Transaction tx = null;        
+	    try {
+	        tx = session.getTransaction();
+	        tx.begin();
+	        String hql = "from TDSPayrollSalaryDataBean where employee_code="+emp_code+" AND company_name = '"+ company_name +"'";
+			 Query query = session.createQuery(hql);
+			 listOfTDSPayrollSalaryData = query.list();
+	        tx.commit();
+	    } catch (Exception e) {
+	        if (tx != null) {
+	            tx.rollback();
+	        }
+	        e.printStackTrace();
+	    } finally {
+	        session.close();
+	    }
+	    return listOfTDSPayrollSalaryData;
+	}
 	
 	public List<TDSDocumentUploadBean> getListOfDocument(int tds_id)
 	{
@@ -1219,4 +1243,50 @@ public class TDSListDAO {
 		}
 		return tdsDocumentUploadBean;
 		}*/
+	
+	public List<TDSPayrollBean> getSizeOfPayrollDataById(int emp_code,String company_name)
+	{
+	    List<TDSPayrollBean> listOfTDSPayrollData = new ArrayList<TDSPayrollBean>();
+	    Session session = HibernateUtil.openSession();
+	    Transaction tx = null;        
+	    try {
+	        tx = session.getTransaction();
+	        tx.begin();
+	        String hql = "from TDSPayrollBean where employee_code="+emp_code+" AND company_name = '"+ company_name +"'";
+			 Query query = session.createQuery(hql);
+			 listOfTDSPayrollData = query.list();
+	        tx.commit();
+	    } catch (Exception e) {
+	        if (tx != null) {
+	            tx.rollback();
+	        }
+	        e.printStackTrace();
+	    } finally {
+	        session.close();
+	    }
+	    return listOfTDSPayrollData;
+	}
+	
+	public List<TDSTempBean> getTDSPayrollSalaryDataByEmpCodeTDS(int emp_code,String company_name)
+	{
+	    List<TDSTempBean> listOfTDSPayrollSalaryData = new ArrayList<TDSTempBean>();
+	    Session session = HibernateUtil.openSession();
+	    Transaction tx = null;        
+	    try {
+	        tx = session.getTransaction();
+	        tx.begin();
+	        String hql = "from TDSTempBean where employee_code="+emp_code+" AND company_name = '"+ company_name +"'";
+			 Query query = session.createQuery(hql);
+			 listOfTDSPayrollSalaryData = query.list();
+	        tx.commit();
+	    } catch (Exception e) {
+	        if (tx != null) {
+	            tx.rollback();
+	        }
+	        e.printStackTrace();
+	    } finally {
+	        session.close();
+	    }
+	    return listOfTDSPayrollSalaryData;
+	}
 }
