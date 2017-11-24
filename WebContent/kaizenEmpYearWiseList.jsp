@@ -90,6 +90,13 @@
 		<div class="content-wrapper">
 			<div class="content-body">
 				<section id="horizontal-form-layouts">
+					<div class="row">
+									<div class="col-lg-12">
+										<h1 class="page-header">CI List</h1>
+									</div>
+									<!-- /.col-lg-12 -->
+								</div>
+				
 				<div class="card">
 					<div class="card-body collapse in">
 						<div class="card-block">
@@ -97,15 +104,6 @@
 
 								<div class="row">
 									<div class="col-lg-12">
-										<h1 class="page-header">CI List</h1>
-									</div>
-									<!-- /.col-lg-12 -->
-								</div>
-
-								<div class="row">
-									<div class="col-lg-12">
-					<div class="card">
-				        	<div class="card-header">
 				        	<div class="card box-shadow-0" data-appear="appear">
 					                <div class="card-header card-inverse" style="background-color: #90A4AE;padding: 0.5rem 0rem 1rem 0rem;height: 50px;">
 					                <div class="col-sm-6">
@@ -127,11 +125,11 @@
 																	String yearDuration = year + "-" + year1;
 															%>
 															<tr class="panel-group">
-																<th><a id="year<%=yearBean.getYear_id()%>"
+																<th style="padding: 3px;"><a id="year<%=yearBean.getYear_id()%>"
 																	style="color: black; text-decoration: none; cursor: pointer;"
 																	onclick="showData(this.id)"><i
 																		class="icon-android-add-circle"></i> <%=year%> - <%=year1%></a></th>
-																<th><div align="right"><button name="button"
+																<th style="padding: 3px;"><div align="right"><button name="button"
 																		onclick="window.open('kaizenBillBoard.jsp?year=<%=yearDuration%>','_blank')"
 																		class="btn btn-primary">
 																		<i class="icon-document-text" align="right"></i> BillBoard
@@ -268,12 +266,10 @@
 
 											</div>
 										</div>
-									</div>
 								</div>
 							</div>
 						</div>
 					</div>
-				</div>
 				</div>
 				</div>
 				</section>

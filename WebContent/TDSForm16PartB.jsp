@@ -88,8 +88,10 @@
 <body>
 <div id="wrapper">
 	<div id="page-wrapper">
-
-	<div align="right"><button type="button" class="btn btn-danger" id="printPageButton" onclick="window.print();">PRINT</button></div>
+	<div class="row">
+			<div align="right" style="padding-right: 20px;"><a href="TDSForm16List.jsp" id="printPageButton"><button type="button" class="btn btn-info" id="printPageButton">BACK</button></a>
+			<button type="button" class="btn btn-danger" id="printPageButton" onclick="window.print();">PRINT</button></div>
+	</div>
 	<br>
 		<div class="row">
 	<div class="col-lg-12">
