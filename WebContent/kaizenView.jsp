@@ -616,15 +616,11 @@ for(KaizenManagementApprovalBean k1 : listOfKaizenManagement){
 																
 															}
 															
-															
-															
 															if(k.getManagement_rejection_reason() != null && !k.getManagement_rejection_reason().equalsIgnoreCase("-") && !k.getManagement_rejection_reason().equalsIgnoreCase("null")){
 																reason = "Reason : " +k.getManagement_rejection_reason();
 															}
 														
-															
 													%>
-													
 													
 														<a tabindex="0" data-toggle="popover" data-trigger="focus" title="" style="color: black;text-decoration: none; cursor: pointer;" data-content="<a href='kaizenRemoveManagemnet?kaizen_management_id=<%=k.getKaizen_management_approval_id()%>&kaizen_id=<%=kaizen_id%>'>Remove</a>"><img src="FileServlet?path=D:\hrms\upload\profilePic\<%=company_name%>\<%=emp_code%>.bmp" style="border: solid 2px; border-radius:20px; border-color: <%=borderColor%>;"  alt="<%=k.getEmployeeBean().getFirstname()+" "+k.getEmployeeBean().getLastname() %>"
 														class="img-circle" id="img<%=k.getEmployeeBean().getEmployee_master_id()%>" height="40px" width="40px" tabindex="0" data-placement="left" data-toggle="popover" data-trigger="hover" title="Manager Info" data-content="<div class='media'><a href='#' class='pull-left'><img src='FileServlet?path=D:\hrms\upload\profilePic\<%=company_name%>\<%=emp_code%>.bmp' class='img-circle' height='60px' width='60px' alt='<%=k.getEmployeeBean().getFirstname()+" "+k.getEmployeeBean().getLastname() %>'></a><div class='media-body'><h4 class='media-heading'><%=k.getEmployeeBean().getFirstname()+" "+k.getEmployeeBean().getLastname() %> </h4><p><%=k.getEmployeeBean().getDepartmentBean().getDepartment_name()%></p><p><%=reason%></p></div></div>"/>    
@@ -640,11 +636,8 @@ for(KaizenManagementApprovalBean k1 : listOfKaizenManagement){
 										                  			
 													<%}} %>
 													
-													
 												</td>
 											</tr>
-											
-											
 											<tr>
 												<td colspan="6"></td>
 											<tr>
@@ -748,6 +741,8 @@ for(KaizenManagementApprovalBean k1 : listOfKaizenManagement){
 							</div>
 						
 						</div>
+						
+						<br>
 						
 						<%
 						if(flag != null){
@@ -958,17 +953,15 @@ if (datefield.type!="date"){ //if browser doesn't support input type="date", loa
 	
 	function approve() {
 		
-		var dialog = bootbox.dialog({
-		    message: '<div class="text-center"><i class="fa fa-spin fa-spinner"></i> Loading...</div>',
-		    onEscape : true,
-		});
+		alert("hiiii");
+		
 		
 		$.ajax({
 		    method: "POST",
 		    url: 'kaizenAcceptReject',
-		    data: {id:<%=kaizen_id%>,value : 'approved',kaizen_manager_id : <%=kaizenBean.getManager_id()%>},
+		    data: {id:<%=kaizen_id%>,value :'approved',kaizen_manager_id : <%=kaizenBean.getManager_id()%>},
 		    success: function (data) {
-		    	//alert(data);
+		    	alert(data);
 		    	<%
 	          	if(flag != null){
 	          	if((flag.equalsIgnoreCase("concernManager")) || !flag.equalsIgnoreCase("concernManager")){%>
@@ -1119,7 +1112,6 @@ if (datefield.type!="date"){ //if browser doesn't support input type="date", loa
 		    	$('#changeStatus').hide();
 				$('#addEmployee').hide();
 				$('#addManager').hide(); 
-				alert("In function");
 				if(data == "null"){
 		    		swal("Error!","Some Error occured !","error")
 		    	}else{

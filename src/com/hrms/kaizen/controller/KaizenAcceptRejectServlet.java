@@ -80,7 +80,7 @@ public class KaizenAcceptRejectServlet extends HttpServlet {
 		
 		if(status.equalsIgnoreCase("approved")){
 			
-			
+			System.err.println("IN APPROVED");
 			
 			if(kaizen_manager_id == manager_id){
 				boolean result = allKaizenUpdateDAO.kaizenMainApproval(kaizen_id, status, reason);
