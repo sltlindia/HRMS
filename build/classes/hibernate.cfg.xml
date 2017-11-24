@@ -392,6 +392,7 @@
 		<mapping class="com.hrms.tds.bean.TDSPayrollBean" />
 		<mapping class="com.hrms.tds.bean.TDSTaxBean" />
 		<mapping class="com.hrms.tds.bean.TDSPayrollSalaryDataBean" />
+		<!-- com.hrms.tds.bean.TDSPayrollSalaryDataBean -->
 		
 		<!-- Meeting Managemnet -->
 		<mapping class="com.hrms.meetingmanagemnet.bean.MeetingBookingDetailBean" />

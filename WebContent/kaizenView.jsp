@@ -44,6 +44,7 @@
     <link rel="stylesheet" type="text/css" href="app-assets/css/app.min.css">
     <link rel="stylesheet" type="text/css" href="app-assets/css/colors.min.css">
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <link rel="stylesheet" type="text/css" href="app-assets/vendors/css/extensions/sweetalert.css">
     
     <!-- END ROBUST CSS-->
     <!-- BEGIN Page Level CSS-->
@@ -902,6 +903,7 @@ for(KaizenManagementApprovalBean k1 : listOfKaizenManagement){
 <%@include file="footer.html"%>
     <!-- BEGIN VENDOR JS-->
     <!-- build:js app-assets/js/vendors.min.js-->
+    <script src="js/bootbox.min.js"></script>
     <script src="app-assets/js/core/libraries/jquery.min.js" type="text/javascript"></script>
     <script src="app-assets/vendors/js/ui/tether.min.js" type="text/javascript"></script>
     <script src="app-assets/js/core/libraries/bootstrap.min.js" type="text/javascript"></script>
@@ -917,7 +919,8 @@ for(KaizenManagementApprovalBean k1 : listOfKaizenManagement){
     <!-- BEGIN VENDOR JS-->
     <!-- BEGIN PAGE VENDOR JS-->
     <script type="text/javascript" src="app-assets/vendors/js/ui/jquery.sticky.js"></script>
-    <script src="app-assets/vendors/js/extensions/sweetalert.min.js" type="text/javascript"></script>
+    <script src="app-assets/js/scripts/extensions/sweet-alerts.min.js" type="text/javascript"></script>
+     <script src="app-assets/vendors/js/extensions/sweetalert.min.js" type="text/javascript"></script>
     <!-- END PAGE VENDOR JS-->
     <!-- BEGIN ROBUST JS-->
     <!-- build:js app-assets/js/app.min.js-->
@@ -926,7 +929,7 @@ for(KaizenManagementApprovalBean k1 : listOfKaizenManagement){
     <script src="app-assets/js/scripts/ui/fullscreenSearch.min.js" type="text/javascript"></script>
     <script type="text/javascript" src="offlineDatePicker/jquery.min.js"></script>
 	<script type="text/javascript" src="offlineDatePicker/jquery-ui.min.js"></script>
-	<script src="js/bootbox.min.js"></script>
+	
     <!-- /build-->
     <!-- END ROBUST JS-->
   	<script>
@@ -952,6 +955,7 @@ if (datefield.type!="date"){ //if browser doesn't support input type="date", loa
 	
 	<script>
 	
+	
 	function approve() {
 		
 		var dialog = bootbox.dialog({
@@ -959,33 +963,40 @@ if (datefield.type!="date"){ //if browser doesn't support input type="date", loa
 		    onEscape : true,
 		});
 		
-		var $form = $(this), url = 'kaizenAcceptReject';
+		$.ajax({
+		    method: "POST",
+		    url: 'kaizenAcceptReject',
+		    data: {id:<%=kaizen_id%>,value : 'approved',kaizen_manager_id : <%=kaizenBean.getManager_id()%>},
+		    success: function (data) {
+		    	//alert(data);
+		    	<%
+	          	if(flag != null){
+	          	if((flag.equalsIgnoreCase("concernManager")) || !flag.equalsIgnoreCase("concernManager")){%>
+	          	if(data == "null"){
+		    		swal("Error!","Some Error occured !","error")
+		    	}else{
+		    		swal("SUCCESS!","CI Approved","success")
+		    	}
+	          	
+	          	//dialog.find('.bootbox-body').html('<div class="text-center"><i class="fa fa-check-circle fa-4x"></i></div><div class="text-center"><h4><b>CI Approved<b></h4></div>');
+				<%}}%>
+				
+				<%
+	          	if(kaizenBean.getStatus().equalsIgnoreCase("rejected")){%>
+	          	if(data == "null"){
+		    		swal("Error!","Some Error occured !","error")
+		    	}else{
+		    		swal("SUCCESS!","CI Re-Activated Successfully","success")
+		    	}
+	          	//dialog.find('.bootbox-body').html('<div class="text-center"><i class="fa fa-check-circle fa-4x"></i></div><div class="text-center"><h4><b>CI Re-Activated Successfully.<b></h4></div>');
+				<%}%>
+				
+				$('#img'+<%=user.getEmployee_master_id()%>).css('border-color', 'green');
+				$('#img'+<%=user.getManagerBean().getManager_id()%>).css('border-color', 'green');
+				$('.approvButton').hide();
+		    }
+		}); 
 		
-
-		var posting = $.post(url, {
-			value : 'approved',
-			id : <%=kaizen_id%>,
-			kaizen_manager_id : <%=kaizenBean.getManager_id()%>
-		});
-		
-		
-		posting.done(function(data) {
-			<%
-          	if(flag != null){
-          	if((flag.equalsIgnoreCase("concernManager")) || !flag.equalsIgnoreCase("concernManager")){%>
-          	dialog.find('.bootbox-body').html('<div class="text-center"><i class="fa fa-check-circle fa-4x"></i></div><div class="text-center"><h4><b>CI Approved<b></h4></div>');
-			<%}}%>
-			
-			<%
-          	if(kaizenBean.getStatus().equalsIgnoreCase("rejected")){%>
-          	
-          	dialog.find('.bootbox-body').html('<div class="text-center"><i class="fa fa-check-circle fa-4x"></i></div><div class="text-center"><h4><b>CI Re-Activated Successfully.<b></h4></div>');
-			<%}%>
-			
-			$('#img'+<%=user.getEmployee_master_id()%>).css('border-color', 'green');
-			$('#img'+<%=user.getManagerBean().getManager_id()%>).css('border-color', 'green');
-			$('.approvButton').hide();
-		});
 	}
 	
 	
@@ -996,26 +1007,25 @@ if (datefield.type!="date"){ //if browser doesn't support input type="date", loa
 		    onEscape : true,
 		});
 		
-		
-		var $form = $(this), url = 'kaizenAcceptReject';
-		
-
-		var posting = $.post(url, {
-			value : 'rejected',
-			reason : $('#reason').val(),
-			id : <%=kaizen_id%>,
-			kaizen_manager_id : <%=kaizenBean.getManager_id()%>
-		});
-		
-		
-		posting.done(function(data) {
-			$('#rejectionPanel').modal('hide');
-			dialog.find('.bootbox-body').html('<div class="text-center"><i class="fa fa-check-circle fa-4x"></i></div><div class="text-center"><h4><b>CI Rejected<b></h4></div>');
-			
-			$('#img'+<%=user.getEmployee_master_id()%>).css('border-color', 'red');
-			$('#img'+<%=user.getManagerBean().getManager_id()%>).css('border-color', 'red');
-			$('.approvButton').hide();
-		});
+		$.ajax({
+		    method: "POST",
+		    url: 'kaizenAcceptReject',
+		    data: {value : 'rejected',reason : $('#reason').val(),id : <%=kaizen_id%>,kaizen_manager_id : <%=kaizenBean.getManager_id()%>},
+		    success: function (data) {
+		    	//alert(data);
+		    	$('#rejectionPanel').modal('hide');
+				if(data == "null"){
+		    		swal("Error!","Some Error occured !","error")
+		    	}else{
+		    		swal("SUCCESS!","CI Rejected","success")
+		    	}
+				//dialog.find('.bootbox-body').html('<div class="text-center"><i class="fa fa-check-circle fa-4x"></i></div><div class="text-center"><h4><b>CI Rejected<b></h4></div>');
+				
+				$('#img'+<%=user.getEmployee_master_id()%>).css('border-color', 'red');
+				$('#img'+<%=user.getManagerBean().getManager_id()%>).css('border-color', 'red');
+				$('.approvButton').hide();
+		    }
+		}); 
 	}
 	
 	
@@ -1029,23 +1039,22 @@ if (datefield.type!="date"){ //if browser doesn't support input type="date", loa
 		    onEscape : true,
 		});
 		
-		var $form = $(this), url = 'kaizenManagementInsert';
+		$.ajax({
+		    method: "POST",
+		    url: 'kaizenManagementInsert',
+		    data: {employee_id : $('#management_id').val(),kaizen_id : <%=kaizen_id%>},
+		    success: function (data) {
+		    	//alert(data);
+		    	$('#acceptPanel').modal('hide');
+				$('#addAuthorityModel').modal('hide');
+				if(data == "null"){
+		    		swal("Error!","Some Error occured !","error")
+		    	}else{
+		    		swal("SUCCESS!","Higher Authority Added Successfully.You need refresh page for show result.","success")
+		    	}
+		    }
+		}); 
 		
-		
-
-		var posting = $.post(url, {
-			employee_id : $('#management_id').val(),
-			kaizen_id : <%=kaizen_id%>,
-		});
-		
-		
-		posting.done(function(data) {
-			$('#acceptPanel').modal('hide');
-			$('#addAuthorityModel').modal('hide');
-			
-			dialog.find('.bootbox-body').html('<div class="text-center"><i class="fa fa-check-circle fa-4x"></i></div><div class="text-center"><h4><b>Higher Authority Added Successfully.You need refresh page for show result.<b></h4></div>');
-			
-		});
 	}
 
 	
@@ -1056,74 +1065,69 @@ if (datefield.type!="date"){ //if browser doesn't support input type="date", loa
 		    onEscape : true,
 		});
 		
-		var $form = $(this), url = 'kaizenManagementApproval';
-		
-		
 		if(value == 1){ 
+			$.ajax({
+			    method: "POST",
+			    url: 'kaizenManagementApproval',
+			    data: {status : "approved",reason : "-",id : <%=kaizen_id%>},
+			    success: function (data) {
+			    	//alert(data);
+			    	$('#acceptPanel').modal('hide');
+					$('#addAuthorityModel').modal('hide');
+					if(data == "null"){
+			    		swal("Error!","Some Error occured !","error")
+			    	}else{
+			    		swal("SUCCESS!","Higher Authority Added Successfully.You need refresh page for show result.","success")
+			    	}
+			    }
+			});
 			
-		var posting = $.post(url, {
-			status : "approved",
-			reason : "-",
-			id : <%=kaizen_id%>,
-		});
-		
-		
-		posting.done(function(data) {
-			$('#acceptPanel').modal('hide');
-			
-			dialog.find('.bootbox-body').html('<div class="text-center"><i class="icon-checkmark-circled fa-4x"></i></div><div class="text-center"><h4><b>CI Approved<b></h4></div>');
-			
-			$('#img'+<%=user.getEmployee_master_id()%>).css('border-color', 'green');
-			$('.approvButton').hide();
-		});
-		
 		}else if(value == 2){
-			
-			var posting = $.post(url, {
-				status : "rejected",
-				reason : $('#reason').val(),
-				id : <%=kaizen_id%>,
+			$.ajax({
+			    method: "POST",
+			    url: 'kaizenManagementApproval',
+			    data: {status : "rejected",reason : $('#reason').val(),id : <%=kaizen_id%>},
+			    success: function (data) {
+			    	//alert(data);
+			    	$('#rejectionPanel').modal('hide');
+					if(data == "null"){
+			    		swal("Error!","Some Error occured !","error")
+			    	}else{
+			    		swal("SUCCESS!","CI Rejected.","success")
+			    	}
+					$('#img'+<%=user.getEmployee_master_id()%>).css('border-color', 'red');
+					$('.approvButton').hide();
+			    }
 			});
-			
-			
-			posting.done(function(data) {
-				$('#rejectionPanel').modal('hide');
-				dialog.find('.bootbox-body').html('<div class="text-center"><i class="icon-checkmark-circled fa-4x"></i></div><div class="text-center"><h4><b>CI Rejected<b></h4></div>');
-				$('#img'+<%=user.getEmployee_master_id()%>).css('border-color', 'red');
-				$('.approvButton').hide();
-			});
-			
 		}
-		
-		
 	}
 	
 	
 	function changeStatus(id) {
 			
-		
 			/* var dialog = bootbox.dialog({
 		    message: '<div class="text-center"><i class="fa fa-spin fa-spinner"></i> Loading...</div>',
 		    onEscape : true,
 		}); */
 
-			alert("hiii");
-		var $form = $(this), url = 'kaizenStatusChange';
-		
-
-		var posting = $.post(url, {
-			id : id,
-			status : "submitted"
+		$.ajax({
+		    method: "POST",
+		    url: 'kaizenStatusChange',
+		    data: {id : id,status : "submitted"},
+		    success: function (data) {
+		    	//alert(data);
+		    	$('#changeStatus').hide();
+				$('#addEmployee').hide();
+				$('#addManager').hide(); 
+				alert("In function");
+				if(data == "null"){
+		    		swal("Error!","Some Error occured !","error")
+		    	}else{
+		    		swal("SUCCESS!","CI Locked","success")
+		    	}
+				//dialog.find('.bootbox-body').html('<div class="text-center"><i class="icon-checkmark-circled fa-4x"></i></div><div class="text-center"><h4><b>CI Locked<b></h4></div>');
+		    }
 		});
-		
-		
-		posting.done(function(data) {
-			$('#changeStatus').hide();
-			$('#addEmployee').hide();
-			$('#addManager').hide();
-			dialog.find('.bootbox-body').html('<div class="text-center"><i class="icon-checkmark-circled fa-4x"></i></div><div class="text-center"><h4><b>CI Locked<b></h4></div>');			
-		});
-		
 	}
 	
 	function changeStatusCompleted(id) {
@@ -1131,30 +1135,37 @@ if (datefield.type!="date"){ //if browser doesn't support input type="date", loa
 		var retVal = confirm("Would you like to add After photos?");
 		if( retVal == true){
 			window.location.replace("kaizenPhotoUpload.jsp?kaizen_id="+<%=kaizen_id%>)
-	}else{
+		}else{
 		
 		var dialog = bootbox.dialog({
 		    message: '<div class="text-center"><i class="fa fa-spin fa-spinner"></i> Loading...</div>',
 		    onEscape : true,
 		});
-		var $form = $(this), url = 'kaizenStatusChange';
 		
-
-		var posting = $.post(url, {
-			id : id,
-			status : "completed"
+		$.ajax({
+		    method: "POST",
+		    url: 'kaizenStatusChange',
+		    data: {id : id,status : "completed"},
+		    success: function (data) {
+		    	//alert(data);
+		    	var split = data.split(",");
+				$('#cDate').text(split[0]);
+				$('#days').text(split[1]+' Day(s)');
+				$('#changeStatusCompleted').hide();
+				$('#addPhoto').hide();
+				$('#updateBtn').hide();
+				
+				if(data == "null"){
+		    		swal("Error!","Some Error occured !","error")
+		    	}else{
+		    		swal("SUCCESS!","CI Completed","success")
+		    	}
+				//dialog.find('.bootbox-body').html('<div class="text-center"><i class="icon-checkmark-circled fa-4x"></i></div><div class="text-center"><h4><b>CI Locked<b></h4></div>');
+		    }
 		});
 		
 		
-		posting.done(function(data) {
-			var split = data.split(",");
-			$('#cDate').text(split[0]);
-			$('#days').text(split[1]+' Day(s)');
-			$('#changeStatusCompleted').hide();
-			$('#addPhoto').hide();
-			$('#updateBtn').hide();
-			dialog.find('.bootbox-body').html('<div class="text-center"><i class="fa fa-check-circle fa-4x"></i></div><div class="text-center"><h4><b>CI Completed<b></h4></div>');			
-		});
+		
 		
 	}
 		

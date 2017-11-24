@@ -101,11 +101,11 @@
 								<table class="table table-stripped ">
 									<thead>
 										<tr>
-											<th>Problem</th>
-											<th>Category</th>
-											<th>Added By</th>
-											<th>Date</th>
-											<th colspan="2">Action</th>
+											<th style="padding : 5px; " ">Problem</th>
+											<th style="padding : 5px; " ">Category</th>
+											<th style="padding : 5px; " ">Added By</th>
+											<th style="padding : 5px; " ">Date</th>
+											<th colspan="2" style="padding : 5px; " ">Action</th>
 										</tr>
 									</thead>
 
@@ -115,11 +115,11 @@
                                     	  KaizenBean kaizenBean = allKaizenListDAO.getDetailOfKaizenByProblemId(kaizenProblemIdentificationBean.getKaizen_problem_identification_id());
                                       %>
 										<tr>
-											<td style="width: 400px"><%=kaizenProblemIdentificationBean.getProblem_description()%></td>
-											<td><%=kaizenProblemIdentificationBean.getCategory()%></td>
-											<td><%=kaizenProblemIdentificationBean.getEmployeeBean().getFirstname()+" "+kaizenProblemIdentificationBean.getEmployeeBean().getLastname()%></td>
-											<td><%=dateFormat.format(dateFormat1.parse(kaizenProblemIdentificationBean.getDate()))%></td>
-											<td>
+											<td style="padding : 5px; " "><%=kaizenProblemIdentificationBean.getProblem_description()%></td>
+											<td style="padding : 5px; " "><%=kaizenProblemIdentificationBean.getCategory()%></td>
+											<td style="padding : 5px; " "><%=kaizenProblemIdentificationBean.getEmployeeBean().getFirstname()+" "+kaizenProblemIdentificationBean.getEmployeeBean().getLastname()%></td>
+											<td style="padding : 5px; " "><%=dateFormat.format(dateFormat1.parse(kaizenProblemIdentificationBean.getDate()))%></td>
+											<td style="padding : 5px; " ">
 											<%if(kaizenProblemIdentificationBean.getEmployeeBean().getEmployee_master_id() == user.getEmployee_master_id()){%>
 											
 												
@@ -134,7 +134,7 @@
 												<%} %>
 												</td>
 
-											<td>
+											<td style="padding : 5px; " ">
 											<%
 											if(kaizenBean != null){
 											%>
