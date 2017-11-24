@@ -60,7 +60,7 @@
     <%@include file="header.jsp" %>
 <!-- JS dependencies -->
    
-    <script type="text/javascript">
+   <!--  <script type="text/javascript">
 var datefield=document.createElement("input")
 datefield.setAttribute("type", "text")
 if (datefield.type!="date"){ //if browser doesn't support input type="date", load files for jQuery UI Date Picker
@@ -69,7 +69,7 @@ if (datefield.type!="date"){ //if browser doesn't support input type="date", loa
     document.write('<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"><\/script>\n')
 }
 </script>
-
+ -->
 <!-- <script>
 if (datefield.type!="date"){ //if browser doesn't support input type="date", initialize date picker widget:
     jQuery(function($){ //on document.ready
@@ -384,7 +384,7 @@ for(KaizenManagementApprovalBean k1 : listOfKaizenManagement){
 
 												<td colspan="3">
 												<div class="panel panel-primary">
-													<table div class="table" style="border-left: 2px solid #607D8B;border-right: 2px solid #607D8B; border-top: 2px solid #607D8B;border-bottom: 2px solid #607D8B;">
+													<table class="table" style="border-left: 2px solid #607D8B;border-right: 2px solid #607D8B; border-top: 2px solid #607D8B;border-bottom: 2px solid #607D8B;">
 													<%if(!kaizenBean.getDelivery().equalsIgnoreCase("")){%>
 														<tr id="timeField">
 															<th>Delivery </th>
@@ -698,22 +698,23 @@ for(KaizenManagementApprovalBean k1 : listOfKaizenManagement){
 							<div class="col-sm-6 col-md-6 col-lg-6">
 							
 									<%if(listOfBefore.size() != 0){ %>
-										<div class="panel panel-primary">
+										<div class="panel panel-primary" style="border-left: 2px solid #607D8B;border-right: 2px solid #607D8B; border-top: 2px solid #607D8B;border-bottom: 2px solid #607D8B; border-radius: 10px;">
 												<div class="panel-body">
-														<h5><b>Before Photo List</b></h5>
+														<h5><b> &nbsp;&nbsp; Before Photo List</b></h5>
 												<%
 												
 												for(KaizenBeforeUploadAttachmentBean kaizenBeforeUploadAttachmentBean : listOfBefore){
 												%>
-													<img
+													 &nbsp;&nbsp; <img
 														src="FileServlet?path=D:\hrms\upload\kaizen\KaizenBefore\<%=kaizenBeforeUploadAttachmentBean.getKaizen_before_uploaded_attachment_name()%>"
 														alt="User Avatar" height="60px" width="60px" style="border: solid 1px;"
 														tabindex="0" data-placement="top" data-toggle="popover" data-trigger="hover" data-content="<div class='media'><a href='#' class='pull-left'><img src='FileServlet?path=D:\hrms\upload\kaizen\KaizenBefore\<%=kaizenBeforeUploadAttachmentBean.getKaizen_before_uploaded_attachment_name()%>' height='250px' width='250px' alt='Sample Image'></a></div>"
 														/>
 												<%} %>
 												
-												<h5><b>Description</b></h5>
-												<p style="white-space: pre-wrap;"><%=kaizenBean.getBefore_description()%></p>								
+												<!-- <hr color="#607D8B"> -->
+												<h5><b> &nbsp;&nbsp; Description</b></h5>
+												<p style="white-space: pre-wrap;"> &nbsp;&nbsp; <%=kaizenBean.getBefore_description()%></p>								
 												</div>
 										</div>
 						<%} %>
@@ -723,22 +724,22 @@ for(KaizenManagementApprovalBean k1 : listOfKaizenManagement){
 							<div class="col-sm-6 col-md-6 col-lg-6">
 							
 								<%if(listOfAfter.size() != 0){ %>
-							<div class="panel panel-primary">
+							<div class="panel panel-primary" style="border-left: 2px solid #607D8B;border-right: 2px solid #607D8B; border-top: 2px solid #607D8B;border-bottom: 2px solid #607D8B; border-radius: 10px;">
 												<div class="panel-body">
-														<h5><b>After Photo List</b></h5>
+														<h5><b> &nbsp;&nbsp; After Photo List</b></h5>
 												<%
 												
 												for(KaizenAfterUploadAttachmentBean kaizenAfterUploadAttachmentBean : listOfAfter){
 												%>
-													<img
+													 &nbsp;&nbsp; <img
 														src="FileServlet?path=D:\hrms\upload\kaizen\KaizenAfter\<%=kaizenAfterUploadAttachmentBean.getKaizen_after_uploaded_attachment_name()%>"
 														alt="User Avatar" height="60px" width="60px" style="border: solid 1px;"
 														tabindex="0" data-placement="top" data-toggle="popover" data-trigger="hover" data-content="<div class='media'><a href='#' class='pull-left'><img src='FileServlet?path=D:\hrms\upload\kaizen\KaizenAfter\<%=kaizenAfterUploadAttachmentBean.getKaizen_after_uploaded_attachment_name()%>' height='250px' width='250px' alt='Sample Image'></a></div>"
 														/>
 												<%} %>
 												
-												<h5><b>Description</b></h5>
-												<p style="white-space: pre-wrap;"><%=kaizenBean.getAfter_description()%></p>									
+												<h5><b> &nbsp;&nbsp; Description</b></h5>
+												<p style="white-space: pre-wrap;"> &nbsp;&nbsp; <%=kaizenBean.getAfter_description()%></p>									
 												</div>
 							</div>
 								<%} %>
@@ -872,8 +873,8 @@ for(KaizenManagementApprovalBean k1 : listOfKaizenManagement){
 									</div>
 									
 									
-									
-						<label>Legends :</label><br>			
+								<br>	
+						<label><b>Legends :</b></label><br>			
 						<img src="img/user.bmp" alt="user" class="mr-1 btn-icon btn btn-outline-primary btn-round" height="40px" width="40px" style="border: solid 2px; border-color:#F1C40F;"> : <b>Pending</b>
 						<img src="img/user.bmp" alt="user" class="mr-1 btn-icon btn btn-outline-primary btn-round" height="40px" width="40px" style="border: solid 2px; border-color:green;"> : <b>Approved</b>
 						<img src="img/user.bmp" alt="user" class="mr-1 btn-icon btn btn-outline-primary btn-round" height="40px" width="40px" style="border: solid 2px; border-color:red;"> : <b>Rejected</b>
@@ -925,6 +926,7 @@ for(KaizenManagementApprovalBean k1 : listOfKaizenManagement){
     <script src="app-assets/js/scripts/ui/fullscreenSearch.min.js" type="text/javascript"></script>
     <script type="text/javascript" src="offlineDatePicker/jquery.min.js"></script>
 	<script type="text/javascript" src="offlineDatePicker/jquery-ui.min.js"></script>
+	<script src="js/bootbox.min.js"></script>
     <!-- /build-->
     <!-- END ROBUST JS-->
   	<script>
@@ -937,6 +939,16 @@ for(KaizenManagementApprovalBean k1 : listOfKaizenManagement){
 	  ga('send', 'pageview');
 
 	</script>
+	
+	<script type="text/javascript">
+var datefield=document.createElement("input")
+datefield.setAttribute("type", "text")
+if (datefield.type!="date"){ //if browser doesn't support input type="date", load files for jQuery UI Date Picker
+    document.write('<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />\n')
+    document.write('<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"><\/script>\n')
+    document.write('<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"><\/script>\n')
+}
+</script>
 	
 	<script>
 	
@@ -1088,12 +1100,14 @@ for(KaizenManagementApprovalBean k1 : listOfKaizenManagement){
 	
 	
 	function changeStatus(id) {
+			
 		
-			var dialog = bootbox.dialog({
+			/* var dialog = bootbox.dialog({
 		    message: '<div class="text-center"><i class="fa fa-spin fa-spinner"></i> Loading...</div>',
 		    onEscape : true,
-		});
+		}); */
 
+			alert("hiii");
 		var $form = $(this), url = 'kaizenStatusChange';
 		
 

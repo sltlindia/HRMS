@@ -121,54 +121,29 @@ if(request.getParameter("before_description") != null){
 				     <div class="card-body collapse in">
 					        <div class="card-block border-bottom-blue-grey" style="border-left: 2px solid #607D8B;border-right: 2px solid #607D8B;">
 						<!-- /.panel-heading -->
-						<ul class="nav nav-tabs nav-linetriangle no-hover-bg">
-        				<%if(openStatus.equalsIgnoreCase("before")){ %>
-        					<li class="nav-item">
-								<a class="nav-link active" id="base-tab" href="#home" aria-expanded="true">Before Photos
-								</a>
+						<ul class="nav nav-tabs nav-linetriangle">
+						<%if(openStatus.equalsIgnoreCase("before")){ %>
+							<li class="nav-item">
+							<a class="nav-link active" id="baseIcon-tab31" data-toggle="tab" aria-controls="tabIcon31" href="#home" aria-expanded="true"> Before Photos</a>
 							</li>
 							<%}else{ %>
 							<li class="nav-item">
-								<a class="nav-link" id="base-tab" href="#home" aria-expanded="true">Before Photos</a>
+							<a class="nav-link" id="baseIcon-tab32" data-toggle="tab" aria-controls="tabIcon32" href="#home" aria-expanded="true"> Before Photos</a>
 							</li>
 							<%} %>
-							<%
-								if(openStatus.equalsIgnoreCase("after")){%>
+							<%if(openStatus.equalsIgnoreCase("after")){%>
 							<li class="nav-item">
-								<a class="nav-link active" id="base-tab" href="#profile" aria-expanded="true">After Photos
-								</a>
+							<a class="nav-link" id="baseIcon-tab33" data-toggle="tab" aria-controls="tabIcon33" href="#profile" aria-expanded="true"> After Photos </a>
 							</li>
 							<%}else{ %>
 							<li class="nav-item">
-								<a class="nav-link" id="base-tab" href="#profile" aria-expanded="true">After Photos</a>
+							<a class="nav-link" id="baseIcon-tab33" data-toggle="tab" aria-controls="tabIcon33" href="#profile" aria-expanded="true"> After Photos </a>
 							</li>
 							<%} %>
 						</ul>
+						
+						
                             <hr>	
-							<!-- Nav tabs -->
-							<%-- <ul class="nav nav-tabs nav-linetriangle no-hover-bg">
-								<%if(openStatus.equalsIgnoreCase("before")){ %>
-								<li class="nav-item">
-								<a class="nav-link active" id="base-tab" href="#home" aria-expanded="true">Before Photos
-								</a>
-							</li>
-								<%}else{ %>
-								<li><a id="base-tab" href="#home" aria-expanded="true">Before Photos</a></li>
-								<%} %>
-								
-								
-								<%
-								if(openStatus.equalsIgnoreCase("after")){%>
-								<li class="nav-item">
-								<a class="nav-link active" id="base-tab" href="#profile" aria-expanded="true">After Photos</a>
-							</li>
-								<%}else{ %>
-								<li><a href="#profile" id="base-tab" href="#profile" aria-expanded="true">After Photos</a></li>
-								<%} %>
-								
-							</ul>
-							<hr> --%>
-
 				
 							<!-- Tab panes -->
 							 <div class="tab-content">
@@ -182,7 +157,7 @@ if(request.getParameter("before_description") != null){
 									<h4>PHOTO UPLOAD - BEFORE CI</h4>
 									<div class="row">
 											<div class="col-lg-12">
-												<form action="kaizenAfterUploadAttachment"
+												<form action="kaizenBeforeUploadAttachment"
 													id="frmFileUpload" class="dropzone" method="post"
 													enctype="multipart/form-data">
 
@@ -297,7 +272,7 @@ if(request.getParameter("before_description") != null){
 									<h4>PHOTO UPLOAD - AFTER CI</h4>
 
 									<div class="row">
-											<div class="panel-body">
+											<div class="col-lg-12">
 												<form action="kaizenAfterUploadAttachment"
 													id="frmFileUpload" class="dropzone" method="post"
 													enctype="multipart/form-data">
@@ -349,21 +324,23 @@ if(request.getParameter("before_description") != null){
 												<br>
 												
 								<div class="card box-shadow-0" data-appear="appear">
-					                <div class="card-header card-inverse" style="background-color: #967ADC;padding: 9px;">
+					                <div class="card-header card-inverse" style="background-color: #90A4AE;padding: 9px;">
 					                    <h5 class="card-title">Photo List</h5>
 					                </div>
 					                <div class="card-body collapse in">
-					                    <div class="card-block border-bottom-blue-grey" style="padding:0;">
+					                    <div class="card-block border-bottom-blue-grey" style="border-left: 2px solid #607D8B;border-right: 2px solid #607D8B;">
 												<%
 												List<KaizenAfterUploadAttachmentBean> listOfAfter = allKaizenListDAO.getListOfAfterUploadAttachment(kaizen_id);
 												for(KaizenAfterUploadAttachmentBean kaizenAfterUploadAttachmentBean : listOfAfter){
 												%>
+													<div class="col-md-1 col-sm-2 col-xs3">
 													<img
 														src="FileServlet?path=D:\hrms\upload\kaizen\KaizenAfter\<%=kaizenAfterUploadAttachmentBean.getKaizen_after_uploaded_attachment_name()%>"
-														alt="User Avatar" height="60px" width="60px" 
+														alt="User Avatar" height="60px" width="60px" style="border: solid 1px;"
 														tabindex="0" data-placement="top" data-toggle="popover" data-trigger="hover" data-content="<div class='media'><a href='#' class='pull-left'><img src='FileServlet?path=D:\hrms\upload\kaizen\KaizenAfter\<%=kaizenAfterUploadAttachmentBean.getKaizen_after_uploaded_attachment_name()%>' height='250px' width='250px' alt='Sample Image'></a></div>"
 														/><br><br>
 														<a href="kaizenAttachmentDelete?attachment_id=<%=kaizenAfterUploadAttachmentBean.getKaizen_after_upload_attachment_id()%>&kaizenAfter=kaizenAfter&kaizen_id=<%=kaizen_id%>"><button class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> Delete</button></a>
+													</div>
 												<%} %>
 												
 								</div>

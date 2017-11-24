@@ -115,12 +115,12 @@
 						<!-- /.col-lg-12 -->
 					</div>
 				<div class="card">
-					<div class="card-header">
-				                <h4 class="card-title" id="horz-layout-basic">CI Form</h4>
+					<div class="card-header card-inverse" style="background-color: #90A4AE;padding: 0.5rem 0rem 1rem 0rem;height: 50px;">
+				                <h4 class="card-title" id="horz-layout-basic"> &nbsp; CI Form</h4>
 				                <a class="heading-elements-toggle"><i class="icon-ellipsis font-medium-3"></i></a>
 				            </div>
 					<div class="card-body collapse in">
-						<div class="card-block">
+						<div class="card-block border-bottom-blue-grey" style="border-left: 2px solid #607D8B;border-right: 2px solid #607D8B;">
 							<div class="form-body">
 			
 			<!-- /.row -->
