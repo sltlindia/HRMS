@@ -32,34 +32,25 @@
     <meta name="apple-touch-fullscreen" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <!-- BEGIN VENDOR CSS-->
-    <link rel="stylesheet" type="text/css" href="app-assets/css/bootstrap.min.css">
-    <!-- font icons-->
-    <link rel="stylesheet" type="text/css" href="app-assets/fonts/icomoon.css">
-    <link rel="stylesheet" type="text/css" href="app-assets/fonts/flag-icon-css/css/flag-icon.min.css">
-    <link rel="stylesheet" type="text/css" href="app-assets/vendors/css/sliders/slick/slick.css">
-    <link rel="stylesheet" type="text/css" href="app-assets/vendors/css/extensions/pace.css">
-    <link rel="stylesheet" type="text/css" href="app-assets/vendors/css/forms/icheck/icheck.css">
-    <link rel="stylesheet" type="text/css" href="app-assets/vendors/css/forms/icheck/custom.css">
-    <link rel="stylesheet" type="text/css" href="app-assets/vendors/js/gallery/photo-swipe/photoswipe.css">
-    <link rel="stylesheet" type="text/css" href="app-assets/vendors/js/gallery/photo-swipe/default-skin/default-skin.css">
-    <link rel="stylesheet" type="text/css" href="app-assets/vendors/css/tables/datatable/dataTables.bootstrap4.min.css">
-    <!-- END VENDOR CSS-->
-    <!-- BEGIN ROBUST CSS-->
-    <link rel="stylesheet" type="text/css" href="app-assets/css/bootstrap-extended.min.css">
-    <link rel="stylesheet" type="text/css" href="app-assets/css/app.min.css">
-    <link rel="stylesheet" type="text/css" href="app-assets/css/colors.min.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-    <!-- END ROBUST CSS-->
-    <!-- BEGIN Page Level CSS-->
-    <link rel="stylesheet" type="text/css" href="app-assets/css/core/menu/menu-types/horizontal-menu.min.css">
-    <link rel="stylesheet" type="text/css" href="app-assets/css/core/menu/menu-types/vertical-overlay-menu.min.css">
-    <link rel="stylesheet" type="text/css" href="app-assets/css/pages/users.min.css">
-    <link rel="stylesheet" type="text/css" href="app-assets/css/pages/timeline.min.css">
-    <!-- END Page Level CSS-->
-    <!-- BEGIN Custom CSS-->
-    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-    <link rel="stylesheet" type="text/css" href="css/dropzone.css">
-    <script src="js/dropzone.js" type="text/javascript"></script>
+    <link href="dist/css/bootstrap/dist/css/bootstrap.min.css"
+	rel="stylesheet">
+
+<!-- MetisMenu CSS -->
+<link href="dist/css/metisMenu/dist/metisMenu.min.css"
+	rel="stylesheet">
+
+<!-- Timeline CSS -->
+<link href="dist/css/timeline.css" rel="stylesheet">
+
+<!-- Custom CSS -->
+<link href="dist/css/sb-admin-2.css" rel="stylesheet">
+
+<!-- Morris Charts CSS -->
+<link href="dist/css/morrisjs/morris.css" rel="stylesheet">
+
+<!-- Custom Fonts -->
+<link href="dist/css/font-awesome/css/font-awesome.min.css"
+	rel="stylesheet" type="text/css">
     <!-- END Custom CSS-->
     <%@include file="header.jsp"%>
 <style type="text/css">
@@ -81,9 +72,28 @@
     display: none;
   }
 }
-  /* ... the rest of the rules ... */
+
+@media (min-width: 768px){
+	#page-wrapper {
+    position: inherit;
+    margin: 0 100px 0 100px;
+    padding: 0 30px;
+    border-left: 1px solid #e7e7e7;
+	}
+}
+#page-wrapper {
+    padding: 0 15px;
+    min-height: 568px;
+    background-color: #fff;
+}
+.break{
+	page-break-before: always;
 }
 </style>
+
+ <!--  /* ... the rest of the rules ... */ -->
+
+
 <!-- <script type="text/javascript">
 $(document).ready(function() {
 
@@ -119,15 +129,17 @@ function calculateSum() {
 </script> -->
 
 </head>
-<body data-open="hover" data-menu="horizontal-menu" data-col="2-columns" class="horizontal-layout horizontal-menu 2-columns ">
+<body>
+<div id="wrapper">
+	<div id="page-wrapper">
 
-<div class="app-content container center-layout mt-2">
-    <div class="content-wrapper">
-	<div align="right"><button type="button" class="btn btn-danger btn-min-width btn-round mr-1 mb-1" id="printPageButton" onclick="window.print();">PRINT</button></div>
+	<div class="row">
+			<div align="right" style="padding-right: 20px;"><a href="TDSForm16List.jsp" id="printPageButton"><button type="button" class="btn btn-info" id="printPageButton">BACK</button></a>
+			<button type="button" class="btn btn-danger" id="printPageButton" onclick="window.print();">PRINT</button></div>
+	</div>
 	<br>
 	<div class="row">
        <div class="col-lg-12">
-                    <div class="panel panel-default">
                         
                        <% int id = Integer.parseInt(request.getParameter("tds_hr_id"));
                        System.out.println("TDS HR ID" + id);
@@ -151,7 +163,7 @@ function calculateSum() {
 				            %>
                         
                         <!-- /.panel-heading -->
-                                <table class="table-responsive table-bordered">
+                                <table rules="all" bordercolor="#D3D2D2" border="1px">
 										
 										<tr>
 											<td colspan="5"><center><b>FORM NO. 16</b></center></td>
@@ -307,7 +319,7 @@ function calculateSum() {
 									
 									<tr>
 										<td colspan="2">
-													<table class="table-responsive table-bordered">
+													<table rules="all" bordercolor="#D3D2D2" border="1px">
 														<tr>
 															<td width="420px;"><center>Allowance</center></td>
 															<td width="180px;"><center>Rs.</center></td>
@@ -400,7 +412,7 @@ function calculateSum() {
 									
 									<tr>
 										<td colspan="2">
-													<table class="table-responsive table-bordered">
+													<table rules="all" bordercolor="#D3D2D2" border="1px">
 														<tr>
 															<td width="420px;"><center>Income</center></td>
 															<td width="180px;"><center>Rs.</center></td>
@@ -627,7 +639,7 @@ function calculateSum() {
 									</tr>
 								</table>
 								 
-								<table class="table-responsive table-bordered">
+								<table rules="all" bordercolor="#D3D2D2" border="1px">
 									<tr>
 										<td width="100%" colspan="3"><center><b>Verification</b></center></td>
 									</tr>

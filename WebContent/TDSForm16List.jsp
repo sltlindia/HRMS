@@ -245,10 +245,10 @@
                                     		if(TEX == 0.0){
                                     		%>
                                     		<a href="TDSForm16PartA.jsp?tds_hr_id=<%=t.getTds_hr_id()%> ">
-                                    		<i class=" glyphicon glyphicon-print" data-toggle="tooltip" data-placement="top" title="Form-16(Part-A)"></i></a>
+                                    		<i class=" icon-printer3" data-toggle="tooltip" data-placement="top" style="color: black" title="Form-16(Part-A)"></i></a>
                                     		<%}else{%>
                                     		<a href="TDSForm16PartB.jsp?tds_hr_id=<%=t.getTds_hr_id()%> ">
-                                    		<i class=" glyphicon glyphicon-print" data-toggle="tooltip" data-placement="top" title="Form-16(Part-B)"></i></a>
+                                    		<i class="icon-printer3" data-toggle="tooltip" data-placement="top" style="color: black" title="Form-16(Part-B)"></i></a>
                                     		<% }%>
                                     		</td>
                                     		<td id="tablePadding"><%=t.getEmployeeBean().getEmployee_code()%></td>
