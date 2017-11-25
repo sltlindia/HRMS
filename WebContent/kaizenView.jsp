@@ -953,7 +953,7 @@ if (datefield.type!="date"){ //if browser doesn't support input type="date", loa
 	
 	function approve() {
 		
-		alert("hiiii");
+		//alert("hiiii");
 		
 		
 		$.ajax({
@@ -995,10 +995,7 @@ if (datefield.type!="date"){ //if browser doesn't support input type="date", loa
 	
 	function reject() {
 		
-		var dialog = bootbox.dialog({
-		    message: '<div class="text-center"><i class="fa fa-spin fa-spinner"></i> Loading...</div>',
-		    onEscape : true,
-		});
+		
 		
 		$.ajax({
 		    method: "POST",
@@ -1027,10 +1024,7 @@ if (datefield.type!="date"){ //if browser doesn't support input type="date", loa
 	function managemnetApprovalInsert() {
 		
 		
-		var dialog = bootbox.dialog({
-		    message: '<div class="text-center"><i class="fa fa-spin fa-spinner"></i> Loading...</div>',
-		    onEscape : true,
-		});
+		
 		
 		$.ajax({
 		    method: "POST",
@@ -1053,10 +1047,7 @@ if (datefield.type!="date"){ //if browser doesn't support input type="date", loa
 	
 	function managemnetApproval(value) {
 		
-		var dialog = bootbox.dialog({
-		    message: '<div class="text-center"><i class="fa fa-spin fa-spinner"></i> Loading...</div>',
-		    onEscape : true,
-		});
+		
 		
 		if(value == 1){ 
 			$.ajax({
@@ -1128,11 +1119,6 @@ if (datefield.type!="date"){ //if browser doesn't support input type="date", loa
 		if( retVal == true){
 			window.location.replace("kaizenPhotoUpload.jsp?kaizen_id="+<%=kaizen_id%>)
 		}else{
-		
-		var dialog = bootbox.dialog({
-		    message: '<div class="text-center"><i class="fa fa-spin fa-spinner"></i> Loading...</div>',
-		    onEscape : true,
-		});
 		
 		$.ajax({
 		    method: "POST",
