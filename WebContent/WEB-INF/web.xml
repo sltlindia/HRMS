@@ -3996,6 +3996,17 @@
   
   <servlet>
     <description></description>
+    <display-name>ContinuousImprovementScoreInsertServlet</display-name>
+    <servlet-name>ContinuousImprovementScoreInsertServlet</servlet-name>
+    <servlet-class>com.hrms.kaizen.controller.ContinuousImprovementScoreInsertServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ContinuousImprovementScoreInsertServlet</servlet-name>
+    <url-pattern>/continuousImprovementScoreInsert</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <description></description>
     <display-name>DocumentDataListServlet</display-name>
     <servlet-name>DocumentDataListServlet</servlet-name>
     <servlet-class>com.hrms.selfservice.controller.DocumentDataListServlet</servlet-class>

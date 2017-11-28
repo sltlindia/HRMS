@@ -544,7 +544,6 @@ KaizenBillboardResultBean kaizenBillboardResultBean = allKaizenListDAO.getDetail
 		var employee_id = <%=employee_id%>;
   	 	var ci_id = $("#ci"+id).val();
   	 	
-  	 	
   	 	var quality = 0;
   	 	var cost = 0;
   	 	var safety = 0;
@@ -552,7 +551,6 @@ KaizenBillboardResultBean kaizenBillboardResultBean = allKaizenListDAO.getDetail
   	 	var productivity = 0;
   	 	var horizontal_deployment = 0;
   	 	var count = 0;
-  	 	
   	 	
   	 	var q = $("input[type='radio'].qua"+id+":checked").val();
   	 	var c = $("input[type='radio'].cost"+id+":checked").val();
