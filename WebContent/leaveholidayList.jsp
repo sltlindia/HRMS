@@ -78,15 +78,21 @@
 				<div class="card-body collapse in">
 					<div class="card-block">
 						<div class="form-body">
-							<div class="row">
+							<div class="row" style="text-align: center;">
 								<img alt="logo" src="img/SLTL.gif" height="169px" width="300px">
 							</div>
 							<div class="row">
-								<div class="col-lg-6">
-									<div class="panel panel-primary">
-										<div class="panel-heading">
-											<h4>SLTL Holiday List - 2017</h4>
-										</div>
+        			<div class="col-xs-12">
+            			<div class="card">
+                			<div class="card-header">
+                    			<div class="card box-shadow-0" data-appear="appear">
+					        		<div class="card-header card-inverse" style="background-color: #90A4AE;padding: 0.5rem 0rem 1rem 0rem;height: 50px;">
+					            		<div class="col-sm-6">
+				               				<h4 class="card-title" id="horz-layout-basic">SLTL Holiday List - 2017</h4>
+				                		</div>
+				            		</div>
+				            		<div class="card-body collapse in">
+	  										<div class="card-block border-bottom-blue-grey" style="border-left: 2px solid #607D8B;border-right: 2px solid #607D8B;">
 										<!-- /.panel-heading -->
 										<div class="panel-body">
 											<div class="dataTable_wrapper">
@@ -160,10 +166,14 @@
 													</tbody>
 												</table>
 											</div>
+										  </div>
 										</div>
+									  </div>
 									</div>
 								</div>
+							  </div>
 							</div>
+						  </div>
 						</div>
 					</div>
 				</div>

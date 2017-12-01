@@ -102,13 +102,20 @@ function goTo()
 					</div>
 					<!-- /.col-lg-12 -->
 				</div>
-				
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="card">
+				       <div class="card-header">
+				        <div class="card box-shadow-0" data-appear="appear">
+					        <div class="card-header card-inverse" style="background-color: #90A4AE;padding: 0.5rem 0rem 1rem 0rem;height: 50px;">
+					            <div class="col-sm-6">
+				               		<h4 class="card-title" id="horz-layout-basic">Meeting Calender</h4>
+				                </div>
+				            </div>
+				                  <div class="card-body collapse in">
+					        <div class="card-block border-bottom-blue-grey" style="border-left: 2px solid #607D8B;border-right: 2px solid #607D8B;">	
 <%AllListMeetingDAO allListMeetingDAO = new AllListMeetingDAO(); %>
-	<div class="row">
-<div class="col-md-12">
-<div class="card">
-<div class="card-body collapse in">
-<div class="card-block">
+	
 <div class="form-body">			
 <form name="frm" method="post">
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -140,6 +147,7 @@ function goTo()
         <td width="73%" align="center"><h3><%=new SimpleDateFormat("MMMM").format(new Date(2008,iMonth,01))%> <%=iYear%></h3></td>
         <td width="6%">Month :</td>
         <td width="8%">
+     
 		<select name="iMonth" onchange="goTo()">
         <%
 		// print month in combo box to change month in calendar
@@ -164,7 +172,8 @@ function goTo()
     </table></td>
   </tr>
   <tr>
-    <td><table align="center" border="1" cellpadding="3" cellspacing="0" width="100%">
+    <td>
+    <br><table align="center" border="1" cellpadding="3" cellspacing="0" width="100%">
       <tbody>
         <tr bgcolor=" #d7dbdd" align="center">
             	<td align="Center" height="40"><b>Sun</b></td>
@@ -230,6 +239,8 @@ function goTo()
 </table>
 
 </form>
+</div>
+</div>
 </div>
 </div>
 </div>

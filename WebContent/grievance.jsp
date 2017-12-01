@@ -105,13 +105,23 @@
     <%@include file="header.jsp"%>
 </head>
 <body data-open="hover" data-menu="horizontal-menu" data-col="2-columns" class="horizontal-layout horizontal-menu 2-columns ">
-	<div class="app-content container center-layout mt-2">
-		<div class="content-wrapper">
-			<div class="content-header row">
-				<div class="content-header-left col-md-6 col-xs-12">
-					<h2 class="content-header-title mb-0">Grievance Management</h2>
-				</div>
-			</div>
+	 <div class="app-content container center-layout mt-2">
+      <div class="content-wrapper">
+        <div class="content-body"><!-- DOM - jQuery events table -->
+<!-- File export table -->
+			<section id="file-export">
+    			<div class="row">
+        			<div class="col-xs-12">
+            			<div class="card">
+                			<div class="card-header">
+                    			<div class="card box-shadow-0" data-appear="appear">
+					        		<div class="card-header card-inverse" style="background-color: #90A4AE;padding: 0.5rem 0rem 1rem 0rem;height: 50px;">
+					            		<div class="col-sm-6">
+				               				<h4 class="card-title" id="horz-layout-basic">Grievance Management</h4>
+				                		</div>
+				            		</div>
+	 <div class="card-body collapse in">
+	  <div class="card-block border-bottom-blue-grey" style="border-left: 2px solid #607D8B;border-right: 2px solid #607D8B;">
 			<div class="content-body">
 				<section id="striped-row-form-layouts">
 				<div class="row">
@@ -201,6 +211,15 @@
 								</div>
 							</div>
 						</div>
+					</div>
+					</div>
+					</section>
+					</div>
+					</div>
+					</div>
+					</div>
+					</div>
+					</div>
 					</div>
 					</div>
 				</section>

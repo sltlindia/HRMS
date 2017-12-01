@@ -80,11 +80,14 @@ SimpleDateFormat mmddyyyy = new SimpleDateFormat("dd/MM/yyyy");
 				    <div class="col-md-12">
 				        <div class="card">
 				        	<div class="card-header">
-				                <h4 class="card-title" id="horz-layout-basic">Complaint Report</h4>
-				                <a class="heading-elements-toggle"><i class="icon-ellipsis font-medium-3"></i></a>
+				               <div class="card box-shadow-0" data-appear="appear">
+					        <div class="card-header card-inverse" style="background-color: #90A4AE;padding: 0.5rem 0rem 1rem 0rem;height: 50px;">
+					            <div class="col-sm-6">
+				               		<h4 class="card-title" id="horz-layout-basic">Meeting Calender</h4>
+				                </div>
 				            </div>
 						<div class="card-body collapse in">
-	               			<div class="card-block">
+					        <div class="card-block border-bottom-blue-grey" style="border-left: 2px solid #607D8B;border-right: 2px solid #607D8B;">
 											<%
 										String fromDate = "";
 										String toDate = "";
@@ -231,6 +234,7 @@ SimpleDateFormat mmddyyyy = new SimpleDateFormat("dd/MM/yyyy");
 											</div>
 											</div>
 											
+											</div>
 											</div>
 											</div>
 											</div>

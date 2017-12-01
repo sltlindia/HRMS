@@ -105,10 +105,20 @@ function goTo()
 						</div>
 						<!-- /.col-lg-12 -->
 					</div>
-							
-<%AllListMeetingDAO allListMeetingDAO = new AllListMeetingDAO(); %>
-	<ul class="nav nav-tabs nav-linetriangle no-hover-bg">
-        			
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="card">
+				       <div class="card-header">
+				        <div class="card box-shadow-0" data-appear="appear">
+					        <div class="card-header card-inverse" style="background-color: #90A4AE;padding: 0.5rem 0rem 1rem 0rem;height: 50px;">
+					            <div class="col-sm-6">
+				               		<h4 class="card-title" id="horz-layout-basic">Meeting History</h4>
+				                </div>
+				            </div>
+			<div class="card-body collapse in">
+				<div class="card-block border-bottom-blue-grey" style="border-left: 2px solid #607D8B;border-right: 2px solid #607D8B;">			
+						<%AllListMeetingDAO allListMeetingDAO = new AllListMeetingDAO(); %>
+						<ul class="nav nav-tabs nav-linetriangle no-hover-bg">
         					<li class="nav-item">
 								<a class="nav-link" id="base-tab" href="meetingBook.jsp" aria-expanded="true">Add Meeting
 								</a>
@@ -119,12 +129,6 @@ function goTo()
 						</ul>
                             <hr>
                             
-                            
-<div class="row">
-<div class="col-md-12">
-<div class="card">
-<div class="card-body collapse in">
-<div class="card-block">
 <div class="form-body">
                             
                             
@@ -182,7 +186,9 @@ function goTo()
     </table></td>
   </tr>
   <tr>
-    <td><table align="center" border="1" cellpadding="3" cellspacing="0" width="100%">
+    <td>
+    <br>
+    <table align="center" border="1" cellpadding="3" cellspacing="0" width="100%">
       <tr bgcolor=" #d7dbdd" align="center">
             	<td align="Center" height="40"><b>Sun</b></td>
             	<td align="Center" height="40"><b>Mon</b></td>
@@ -250,6 +256,8 @@ function goTo()
 </table>
 
 </form>
+</div>
+</div>
 </div>
 </div>
 </div>
