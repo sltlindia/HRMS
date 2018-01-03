@@ -73,7 +73,7 @@
                     			<div class="card box-shadow-0" data-appear="appear">
 					        		<div class="card-header card-inverse" style="background-color: #90A4AE;padding: 0.5rem 0rem 1rem 0rem;height: 50px;">
 					            		<div class="col-sm-6">
-				               				<h4 class="card-title" id="horz-layout-basic">Updated Policy on Attendance, Leave, CO and OT</h4>
+				               				<h4 class="card-title" id="horz-layout-basic">Updated Policy on Attendance, Leave, CO and OD</h4>
 				                		</div>
 				            		</div>
 		 <div class="card-body collapse in">

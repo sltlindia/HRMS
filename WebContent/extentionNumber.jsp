@@ -50,14 +50,8 @@
     <!-- Horizontal navigation-->
     <div class="app-content container center-layout mt-2">
       <div class="content-wrapper">
-        <!-- <div class="content-header row">
-          <div class="content-header-left col-md-6 col-xs-12">
-            <h2 class="content-header-title mb-0">CUG LIST</h2>
-            <p></p>
-          </div>
-        </div> -->
         <div class="content-body">
-        <section id="file-export">
+        <section id="horizontal-form-layouts">
 		<div class="row">
           <div class="col-xs-12">
 			<div class="card">
@@ -280,11 +274,11 @@
 	                                        </tr>
 			                            </tfoot>
 			                        </table>
+			                        </div>
 			                    </div>
 			                </div>
 							</div>
 						</div>
-					</div>
 				</div>
 				</div>
 				</div>

@@ -58,7 +58,7 @@
       <div class="content-wrapper">
         <div class="content-body"><!-- DOM - jQuery events table -->
 <!-- File export table -->
-			<section id="file-export">
+			<section id="horizontal-form-layouts">
 			<div class="row">
         			<div class="col-xs-12">
             			<div class="card">
@@ -280,11 +280,10 @@
 				</div>
 				</div>
 				</div>
+				</section>
 				</div>
-			</section>  
       	</div>
       </div>
-</div>
 
 <%@include file="footer.html"%>
 

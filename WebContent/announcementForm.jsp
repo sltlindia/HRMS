@@ -370,12 +370,29 @@ textarea {
 		}
 	%>
 	<div class="app-content container center-layout mt-2">
+      <div class="content-wrapper">
+        <div class="content-body"><!-- DOM - jQuery events table -->
+<!-- File export table -->
+			<section id="file-export">
+    			<div class="row">
+        			<div class="col-xs-12">
+            			<div class="card">
+                			<div class="card-header">
+                    			<div class="card box-shadow-0" data-appear="appear">
+					        		<div class="card-header card-inverse" style="background-color: #90A4AE;padding: 0.5rem 0rem 1rem 0rem;height: 50px;">
+					            		<div class="col-sm-6">
+				               				<h4 class="card-title" id="horz-layout-basic">Broadcast Form</h4>
+				                		</div>
+				            		</div>
+	<!-- <div class="app-content container center-layout mt-2">
 		<div class="content-wrapper">
 			<div class="content-header row">
 				<div class="content-header-left col-md-6 col-xs-12">
 					<h2 class="content-header-title mb-0">Broadcast Form</h2>
 				</div>
-			</div>
+			</div> -->
+			<div class="card-body collapse in">
+	  			<div class="card-block border-bottom-blue-grey" style="border-left: 2px solid #607D8B;border-right: 2px solid #607D8B;">
 			<div class="content-body">
 				<section id="striped-row-form-layouts">
 				<div class="row">
@@ -386,8 +403,6 @@ textarea {
 									Broadcast</h4>
 							</div>
 
-							<div class="card-body collapse in">
-								<div class="card-block">
 									<form class="form form-horizontal form-bordered"
 										action="announcementInsert" method="post"
 										name="announcement_form" enctype="multipart/form-data">
@@ -648,12 +663,10 @@ textarea {
 											</div>
 										</div>
 									</form>
-								</div>
 
 								<%
 									for (RoleCategoryBean a1 : listOfCategory) {
 								%>
-								<div class="col-lg-4 col-md-6 col-sm-12">
 									<div class="form-group">
 										<!-- Modal -->
 										<div class="modal animated slideInUp text-xs-left"
@@ -697,14 +710,12 @@ textarea {
 											</div>
 										</div>
 									</div>
-								</div>
 								<%
 									}
 								%>
 								<%
 									for (DepartmentBean d : listOfDepartment) {
 								%>
-								<div class="col-lg-4 col-md-6 col-sm-12">
 									<div class="form-group">
 										<!-- Modal -->
 										<div class="modal animated slideInUp text-xs-left"
@@ -748,7 +759,6 @@ textarea {
 											</div>
 										</div>
 									</div>
-								</div>
 								<%
 									}
 								%>
@@ -756,7 +766,6 @@ textarea {
 									for (CompanyListBean c1 : listOfCompany) {
 								%>
 
-								<div class="col-lg-4 col-md-6 col-sm-12">
 									<div class="form-group">
 										<!-- Modal -->
 										<div class="modal animated slideInUp text-xs-left"
@@ -783,9 +792,7 @@ textarea {
 																for (EmployeeBean r : listOfEmployees) {
 														%>
 														
-														<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
 															<i class="icon-user4"></i>&nbsp;<label><%=r.getFirstname() + " " + r.getLastname()%></label><br>
-														</div>
 														<%
 															}
 														%>
@@ -800,13 +807,20 @@ textarea {
 											</div>
 										</div>
 									</div>
-								</div>
 								<%
 									}
 								%>
 								
-							</div>
 						</div>
+					</div>
+					</div>
+					</section>
+					</div>
+					</div>
+					</div>
+					</div>
+					</div>
+					</div>
 					</div>
 				</div>
 				</section>

@@ -301,7 +301,6 @@ AllListExitFormalityDAO allListExitFormalityDAO = new AllListExitFormalityDAO();
         			<div class="col-xs-12">
             			<div class="card">
                 			<div class="card-header">
-                    			<div class="card box-shadow-0" data-appear="appear">
 					        		<div class="card-header card-inverse" style="background-color: #90A4AE;padding: 0.5rem 0rem 1rem 0rem;height: 50px;">
 					            		<div class="col-sm-6">
 				               				<h4 class="card-title" id="horz-layout-basic">Exit Interview Form</h4>
@@ -826,7 +825,6 @@ AllListExitFormalityDAO allListExitFormalityDAO = new AllListExitFormalityDAO();
 		
 </div>
 <!-- /.wrapper -->
-</div>
 </div>
 </div>
 </div>

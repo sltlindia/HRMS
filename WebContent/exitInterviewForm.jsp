@@ -86,7 +86,6 @@
         			<div class="col-xs-12">
             			<div class="card">
                 			<div class="card-header">
-                    			<div class="card box-shadow-0" data-appear="appear">
 					        		<div class="card-header card-inverse" style="background-color: #90A4AE;padding: 0.5rem 0rem 1rem 0rem;height: 50px;">
 					            		<div class="col-sm-6">
 				               				<h4 class="card-title" id="horz-layout-basic">Exit Interview Form</h4>
@@ -225,7 +224,6 @@
 										<hr>
 										<div class="row">
 											<div class="form-group col-md-12 col-xs-12">
-		 									 <div class="table-responsive">
 							                    <table class="table table-bordered">
 							                        <thead>
 							                           <tr>
@@ -274,10 +272,11 @@
 													<div class="form-group col-md-12 col-xs-12">
 													<center><input type="submit" class="btn btn-success btn-min-width mr-1 mb-1" id="subm"  name="submit" value="SAVE" onclick="insertData();"></center>
 													</div>
+													</div>
+													</div>
 												</div>
 												</form>
 							                  </div>
-							                </div>
 							                </div>
 							                </div>
 							                </div>
