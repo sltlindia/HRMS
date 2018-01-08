@@ -11,6 +11,9 @@
     <create creator="new" javascript="IncentiveAjaxDataDAO">
      	 <param name="class" value="com.hrms.incentive.dao.IncentiveAjaxDataDAO" />
     </create>
+     <create creator="new" javascript="TrackingAjaxDataDAO">
+     	 <param name="class" value="com.hrms.vehicletracking.dao.TrackingAjaxDataDAO" />
+    </create>
     
     <convert converter="bean" match="com.hrms.pms.bean.ProjectMasterBean" />
     <convert converter="bean" match="com.hrms.pms.bean.ClientMasterBean" />
@@ -22,6 +25,7 @@
     <convert converter="bean" match="com.hrms.incentive.bean.ClassificationBean" />
     <convert converter="bean" match="com.hrms.incentive.bean.LaserMasterBean" />
     <convert converter="bean" match="com.hrms.incentive.bean.IncentiveDesignationBean" />
+     <convert converter="bean" match="com.hrms.vehicletracking.bean.VehicleTrackingBean" />
     
     
   </allow>

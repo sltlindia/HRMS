@@ -9,6 +9,7 @@ import com.hrms.probation.bean.ProbationAssessmentM2Bean;
 import com.hrms.probation.bean.ProbationAssessmentManagerBean;
 import com.hrms.probation.bean.ProbationAssessmentTerminationBean;
 import com.hrms.probation.bean.ProbationExtendBean;
+import com.hrms.probation.bean.ProbationOpenInfopageBean;
 import com.hrms.probation.bean.ProbationTopManagementApprovalBean;
 
 public class AllInsertProbationDAO {
@@ -156,5 +157,23 @@ public class AllInsertProbationDAO {
 		 return true;
 	}
 
+	public boolean probationOpenInfopageInsert(ProbationOpenInfopageBean probationOpenInfopageBean){
+		Session session = HibernateUtil.openSession();
+		 Transaction tx = null;	
+		 try {
+			 tx = session.getTransaction();
+			 tx.begin();
+			 session.save(probationOpenInfopageBean);
+			 tx.commit();
+		 } catch (Exception e) {
+			 if (tx != null) {
+				 tx.rollback();
+			 }
+			 e.printStackTrace();
+		 } finally {
+			 session.close();
+		 }	
+		 return true;
+	}
 
 }

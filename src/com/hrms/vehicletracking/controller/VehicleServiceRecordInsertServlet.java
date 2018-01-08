@@ -36,14 +36,15 @@ public class VehicleServiceRecordInsertServlet extends HttpServlet {
 		System.out.println("items"+items_change);
 		double amount = Double.parseDouble(request.getParameter("amount"));
 		System.out.println("amount"+amount);
-	
+		int kilometer =Integer.parseInt(request.getParameter("kilometer"));
+		System.out.println("kilometer"+kilometer);
 	 
 		VehicleBean vehicleBean = new VehicleBean();
 		vehicleBean.setVehicle_master_id(vehicle_id);
 		
 		DriverBean driverBean = new DriverBean();
 		driverBean.setDriver_id(driver_id);
-		VehicleServiceRecordBean vehicleServiceRecordBean = new VehicleServiceRecordBean(record_date, items_change, amount, free_service, driverBean, vehicleBean);
+		VehicleServiceRecordBean vehicleServiceRecordBean = new VehicleServiceRecordBean(record_date, items_change, amount, free_service, driverBean, vehicleBean,kilometer);
 		AllInsertVtsDAO allInsertVtsDAO = new AllInsertVtsDAO();
 		allInsertVtsDAO.vehicleServiceRecordInsert(vehicleServiceRecordBean);
 		

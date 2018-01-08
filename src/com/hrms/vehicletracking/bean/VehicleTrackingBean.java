@@ -27,6 +27,7 @@ public class VehicleTrackingBean implements Serializable {
 	private double amount;
 	private double average;
 	private String date;
+	private String attachment;
 	
 	private VehicleBean vehicleBean;
 	private DriverBean driverBean;
@@ -34,7 +35,7 @@ public class VehicleTrackingBean implements Serializable {
 	
 
 	public VehicleTrackingBean(double start_reading, double end_reading, double km, double litre,
-			double amount, double average, String date, VehicleBean vehicleBean, DriverBean driverBean) {
+			double amount, double average, String date, VehicleBean vehicleBean, DriverBean driverBean,String attachment) {
 		super();
 		this.start_reading = start_reading;
 		this.end_reading = end_reading;
@@ -45,11 +46,12 @@ public class VehicleTrackingBean implements Serializable {
 		this.date = date;
 		this.vehicleBean = vehicleBean;
 		this.driverBean = driverBean;
+		this.attachment = attachment;
 	}
 
 	
 	public VehicleTrackingBean(int vehicle_tracking_id, double start_reading, double end_reading, double km,
-			double litre, double amount, double average, String date, VehicleBean vehicleBean, DriverBean driverBean) {
+			double litre, double amount, double average, String date, VehicleBean vehicleBean, DriverBean driverBean,String attachment) {
 		super();
 		this.vehicle_tracking_id = vehicle_tracking_id;
 		this.start_reading = start_reading;
@@ -61,6 +63,7 @@ public class VehicleTrackingBean implements Serializable {
 		this.date = date;
 		this.vehicleBean = vehicleBean;
 		this.driverBean = driverBean;
+		this.attachment = attachment;
 	}
 
 
@@ -160,4 +163,16 @@ public class VehicleTrackingBean implements Serializable {
 	public void setDriverBean(DriverBean driverBean) {
 		this.driverBean = driverBean;
 	}
+
+	@Column(name="attachment")
+	public String getAttachment() {
+		return attachment;
+	}
+
+
+	public void setAttachment(String attachment) {
+		this.attachment = attachment;
+	}
+	
+	
 }

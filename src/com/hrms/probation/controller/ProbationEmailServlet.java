@@ -41,12 +41,12 @@ public class ProbationEmailServlet extends HttpServlet {
 			if(under_manager_id != 0){
 			joining_date = employeeBean.getJoining_date();
 			int emp_id = employeeBean.getEmployee_master_id();
-			System.out.println("manager_id:"+under_manager_id);
 			EmployeeBean employeeBean2 = loginDAO.getEmailId(under_manager_id);
 			manager_email_id = employeeBean2.getEmail_id();
 			String manager_name  = employeeBean2.getFirstname()+" "+employeeBean2.getLastname();
 			String name = employeeBean.getFirstname()+" "+employeeBean.getLastname();
-			String mindate = "2017-01-01";
+			String salutation = employeeBean.getSalutation();
+			String mindate = "2017-10-31";
 			
 			
 			
@@ -96,7 +96,7 @@ public class ProbationEmailServlet extends HttpServlet {
 			
 			Date date = new Date();
 			
-			System.out.println(employeeBean.getFirstname()+" "+employeeBean.getLastname());
+			/*System.out.println(employeeBean.getFirstname()+" "+employeeBean.getLastname());*/
 			/*System.out.println("join_date:"+joining_date);
 			System.out.println("curr_date:"+date);
 			*/
@@ -183,6 +183,7 @@ public class ProbationEmailServlet extends HttpServlet {
 			}
 			String f = monthFinal;
 			if(f != null){
+				
 			new Thread(new Runnable() {
 			    @Override
 			    public void run() {
@@ -190,10 +191,12 @@ public class ProbationEmailServlet extends HttpServlet {
 			    	String to = email;
 			    	String sub = name + "'s Probation Assessment Form Reminder";
 			    	
-			    	Mailer.sendProbationEmail(to, sub, name,f,manager_name);
+			    	Mailer.sendProbationEmail(to, sub, name,f,manager_name,salutation);
 			    	System.out.println("Done");
 			    }
 			}).start();
+			
+			
 			}
 			}
 		

@@ -1,5 +1,6 @@
 package com.hrms.vehicletracking.controller;
 
+import java.io.File;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -25,7 +26,7 @@ public class VehicleInsertServlet extends HttpServlet {
 		EmployeeBean user = (EmployeeBean)session.getAttribute("user");
 		if(user!=null){
 	
-			
+			String filePath= request.getServletContext().getInitParameter("vehicle_tracking");
 			String vehicle_name = request.getParameter("vehicle_name");
 			System.out.println("vehicle_name:"+vehicle_name);
 			String vehicle_no = request.getParameter("vehicle_no");
@@ -39,6 +40,32 @@ public class VehicleInsertServlet extends HttpServlet {
 			VehicleBean vehicleBean = new VehicleBean(vehicle_name, vehicle_no, vehicleTypeBean);
 			AllInsertVtsDAO allInsertVtsDAO = new AllInsertVtsDAO();
 			boolean result = allInsertVtsDAO.vehicleInsert(vehicleBean);
+			String vehicle_name1 = vehicleBean.getVehicle_name();
+			String vehicle_no1 = vehicleBean.getVehicle_no();
+			
+			File file = new File(filePath+"\\"+vehicle_name1+"_"+vehicle_no1+"\\document");
+			File file1 = new File(filePath+"\\"+vehicle_name1+"_"+vehicle_no1+"\\insurance");
+			
+			
+			
+				if (!file.exists()) {
+					System.out.println("file:"+file);
+		            if (file.mkdirs()) {
+		                System.out.println("Multiple directories are created!");
+		            } else {
+		                System.out.println("Failed to create multiple directories!");
+		            }
+		        }
+				
+				if (!file1.exists()) {
+					System.out.println("file:"+file1);
+		            if (file1.mkdirs()) {
+		                System.out.println("Multiple directories are created!");
+		            } else {
+		                System.out.println("Failed to create multiple directories!");
+		            }
+		        }
+				
 	
 			request.getRequestDispatcher("addVehicle.jsp").forward(request, response);
 			}
