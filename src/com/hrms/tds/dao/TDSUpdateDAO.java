@@ -172,32 +172,20 @@ public class TDSUpdateDAO {
 		 return true;
 	}
 	
-	public boolean tdsPayrollSalaryDataUpdate(int employee_code, String companyName, double basicSalary, double incentive, double previousSalary, double performancePay, 
-				double conveyance, double hra, double medeical, double ltc, double ptax, double pf, double uniformAllw, double educationAllw, double otherAllw, double adhocAllw,
-				double salary){
+	public boolean tdsPayrollSalaryDataUpdate(int employee_code, String companyName, double basicSalary, double hra, double conveyance, double medeical,  double educationAllw, double uniformAllw){
 		 Session session = HibernateUtil.openSession();
 		 Transaction tx = null;	
 		 try {
 			 tx = session.getTransaction();
 			 tx.begin();
-			 Query query = session.createQuery("update TDSPayrollSalaryDataBean set basic_salary =:bs, incentive =:i, previous_salary =:ps, performance_pay =:pp, "
-			 					+ "conveyance =:c, hra =:h, medical =:m, ltc =:l, ptax =:p, pf =:pf, uni_allw =:ua, edu_allw =:ea, other_allw =:oa, "
-			 					+ "adhoc_allw =:aa, salary =:s where employee_code =:ec and company_name =:cn");
+			 Query query = session.createQuery("update TDSPayrollSalaryDataBean set basic_salary =:bs, conveyance =:c, hra =:h, medical =:m, uni_allw =:ua, edu_allw =:ea"
+			 		+ "where employee_code =:ec and company_name =:cn");
 			 query.setDouble("bs", basicSalary);
-			 query.setDouble("i", incentive);
-			 query.setDouble("ps", previousSalary);
-			 query.setDouble("pp", performancePay);
 			 query.setDouble("c", conveyance);
 			 query.setDouble("h", hra);
 			 query.setDouble("m", medeical);
-			 query.setDouble("l", ltc);
-			 query.setDouble("p", ptax);
-			 query.setDouble("pf", pf);
 			 query.setDouble("ua", uniformAllw);
 			 query.setDouble("ea", educationAllw);
-			 query.setDouble("oa", otherAllw);
-			 query.setDouble("aa", adhocAllw);
-			 query.setDouble("s", salary);
 			 query.setInteger("ec", employee_code);
 			 query.setString("cn", companyName);
 			 int result = query.executeUpdate();
@@ -247,7 +235,7 @@ public class TDSUpdateDAO {
 	//(tds_id, a_conveyance, d_conveyance, annual_basic_salary, d_non_metro_total_basic, d_metro_total_basic, annual_hra, d_non_metro_hra, d_metro_hra, a_medical, d_medical, lta_during_year, d_lta, annual_ptax, annual_education_allw, annual_uni_allw_during_year, d_uni_allw )
 	public boolean tdsTotalBUpdate(int tds_id, double a_conveyance, double d_conveyance, double annual_basic_salary, double d_non_metro_total_basic, 
 								double d_metro_total_basic, double annual_hra, double d_non_metro_hra, double d_metro_hra, double a_medical, double d_medical, 
-								double lta_during_year, double d_lta, double annual_ptax, double annual_uni_allw_during_year, double d_uni_allw ){
+								double lta_during_year, double d_lta, double annual_ptax, double annual_uni_allw_during_year, double d_uni_allw, double meal_card ){
 		 Session session = HibernateUtil.openSession();
 		 Transaction tx = null;	
 		 try {
@@ -255,7 +243,7 @@ public class TDSUpdateDAO {
 			 tx.begin();
 			 Query query = session.createQuery("update TDSTotalBBean set conveyance =:c, d_conveyance =:dc, a_total_basic =:atb, d_non_metro_total_basic =:nmtb, "
 			 			+ "d_metro_total_basic =:mtb, a_hra =:ah, d_non_metro_hra =:nmh, d_non_metro_hra =:nmh, a_medical =:am, d_medical =:dm, lta_during_year =:ldy, d_lta =:dl, "
-			 		  	+ "ptax =:ptax, uni_allw_during_year =:uady, d_uni_allw =:dua where tds_id =:tid");
+			 		  	+ "ptax =:ptax, uni_allw_during_year =:uady, d_uni_allw =:dua, meal_card =:mc where tds_id =:tid");
 			 query.setDouble("c", a_conveyance);
 			 query.setDouble("dc", d_conveyance);
 			 query.setDouble("atb", annual_basic_salary);
@@ -271,6 +259,7 @@ public class TDSUpdateDAO {
 			 query.setDouble("ptax", annual_ptax);
 			 query.setDouble("uady", annual_uni_allw_during_year);
 			 query.setDouble("dua", d_uni_allw);
+			 query.setDouble("mc", meal_card);
 			 query.setInteger("tid", tds_id);
 			 int result = query.executeUpdate();
 			 System.out.println("result :"+result);
@@ -308,4 +297,123 @@ public class TDSUpdateDAO {
 		 }	
 		 return true;
 	}
+	
+	
+	public boolean tdsTotalFUpdate(int tds_id, double april, double may, double june, double july, 
+			double august, double september, double october, double november, double december, double january, 
+			double february, double march, double tax_paid){
+		Session session = HibernateUtil.openSession();
+		Transaction tx = null;	
+			try {
+			tx = session.getTransaction();
+			tx.begin();
+			Query query = session.createQuery("update TDSTotalFBean set april =:april, may =:may, june =:june, july =:july, "
+					+ "august =:august, september =:september, october =:october, november =:november, december =:december, january =:january, february =:february, "
+				  	+ "march =:march, tax_paid =:tax_paid where tds_id =:tid");
+			query.setDouble("april", april);
+			query.setDouble("may", may);
+			query.setDouble("june", june);
+			query.setDouble("july", july);
+			query.setDouble("august", august);
+			query.setDouble("september", september);
+			query.setDouble("october", october);
+			query.setDouble("november", november);
+			query.setDouble("december", december);
+			query.setDouble("january", january);
+			query.setDouble("february", february);
+			query.setDouble("march", march);
+			query.setDouble("tax_paid", tax_paid);
+			query.setInteger("tid", tds_id);
+			int result = query.executeUpdate();
+			System.out.println("result :"+result);
+			tx.commit();
+			} catch (Exception e) {
+				if (tx != null) {
+					tx.rollback();
+				}
+				e.printStackTrace();
+			} finally {
+				session.close();
+			}	
+		return true;
+	}
+	
+	public boolean tdsPayrollMasterUpdate(int tds_payroll_master_data_id, double annual_salary, double bonus, double leave, double incentive, 
+			double previous_salary, double full_final_bonus, double full_final_leave, double performance, double ltc, double ptax, 
+			double pf, double mealCard){
+			System.err.println("ID :"+tds_payroll_master_data_id);
+			Session session = HibernateUtil.openSession();
+			Transaction tx = null;	
+			try {
+			tx = session.getTransaction();
+			tx.begin();
+			Query query = session.createQuery("update TDSPayrollMasterDataBean set salary =:s, bonus =:b, leave_count =:l, full_final_bonus =:ffb, "
+					+ "full_final_leave =:ffl, incentive =:i, previous_salary =:ps, performance =:p, mealcard =:m, lta =:lta, ptax =:ptax, epf =:pf "
+				  	+ "where tds_payroll_master_data_id =:id");
+			query.setDouble("s", annual_salary);
+			query.setDouble("b", bonus);
+			query.setDouble("l", leave);
+			query.setDouble("ffb", full_final_bonus);
+			query.setDouble("ffl", full_final_leave);
+			query.setDouble("i", incentive);
+			query.setDouble("ps", previous_salary);
+			query.setDouble("p", performance);
+			query.setDouble("m", mealCard);
+			query.setDouble("lta", ltc);
+			query.setDouble("ptax", ptax);
+			query.setDouble("pf", pf);
+			query.setInteger("id", tds_payroll_master_data_id);
+			int result = query.executeUpdate();
+			System.out.println("result :"+result);
+			tx.commit();
+			} catch (Exception e) {
+				if (tx != null) {
+				tx.rollback();
+				}
+				e.printStackTrace();
+				} finally {
+				session.close();
+				}	
+				return true;
+		}
+	
+	
+	public boolean tdsPayrollBasicUpdate(int tds_payroll_id, double basicSalary, double conveyance, double medical, double uniAllw, 
+			double eduAllw, double hra, double annualBasicSalary, double annualConveyance, double annualMedical, double annualUniAllow, 
+			double annualEduAllow, double annualHra){
+			System.err.println("ID :"+tds_payroll_id);
+			Session session = HibernateUtil.openSession();
+			Transaction tx = null;	
+			try {
+			tx = session.getTransaction();
+			tx.begin();
+			Query query = session.createQuery("update TDSPayrollBean set basic_salary =:s, conveyance =:b, medical =:l, uni_allw =:ffb, "
+					+ "edu_allw =:ffl, hra =:i, annual_basic_salary =:ps, annual_conveyance =:p, annual_medical =:m, annual_uni_allw =:lta, annual_edu_allw =:ptax, annual_hra =:pf "
+				  	+ "where tds_payroll_id =:id");
+			query.setDouble("s", basicSalary);
+			query.setDouble("b", conveyance);
+			query.setDouble("l", medical);
+			query.setDouble("ffb", uniAllw);
+			query.setDouble("ffl", eduAllw);
+			query.setDouble("i", hra);
+			query.setDouble("ps", annualBasicSalary);
+			query.setDouble("p", annualConveyance);
+			query.setDouble("m", annualMedical);
+			query.setDouble("lta", annualUniAllow);
+			query.setDouble("ptax", annualEduAllow);
+			query.setDouble("pf", annualHra);
+			query.setInteger("id", tds_payroll_id);
+			int result = query.executeUpdate();
+			System.out.println("result :"+result);
+			tx.commit();
+			} catch (Exception e) {
+				if (tx != null) {
+				tx.rollback();
+				}
+				e.printStackTrace();
+				} finally {
+				session.close();
+				}	
+				return true;
+		}
 }

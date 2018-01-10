@@ -408,15 +408,15 @@
     	  
     	  alert("Document Uploaded Successfully!!!");
     	  
-    	  $(".declare").hide();
+    	  /*$(".declare").hide();
     	  $(".actual").show();
     	  $("#DeclairedTaxSlab").hide();
-    	  $("#ActualTaxSlab").show();
+    	  $("#ActualTaxSlab").show();*/
     	  
     	 //$( "#in" ).load(window.location.href + " #in" );
     		var id = aName+"Table";
-    		  alert(id);
-    		  var sum = 0, attId = 0;
+    		  //alert(id);
+    		  var sum = 0.0, attId = 0;
     		  var lic = 0.0, epf = 0.0, ppf = 0.0, nsc = 0.0, mfv = 0.0, tuition_fees = 0.0, stamp_duty = 0.0, house_loan = 0.0, fix_deposite = 0.0, other = 0.0;
     		  var total = 0.0, totald = 0.0, totale = 0.0, totalf = 0.0;
     		  
@@ -432,14 +432,15 @@
   	        url: "tdsDocumentDataList",
   	        data :{attachment_name : aName},
   	        success: function(data){
+  	        	//alert(data);
   	        	$("#"+id+" tbody tr").detach();
   	        	var json = JSON.parse(data);
-  	        	//alert(aName);
-  	        	alert(json);
-  	   		     $.each(json, function(i, f) {
+  	        	//alert(json);
+  	        	
+  	   		    $.each(json, function(i, f) {
   	   		    attId = f.tds_document_upload_id;
-  	   		    sum = f.amount + sum;
-  	   		    var html = " <tr><td>"+f["monthBean"].month_name+"</td>" +
+  	   		    sum = parseFloat(f.amount) + sum;
+  	   		    var html = " <tr><td>"+f.month+"</td>" +
   	   		    	"<td><a href=\"photo.jsp?attachment="+f.attachment+"\" target=\"_blank\">" +
   	   				"<img src=\"FileServlet?path=D:\\hrms\\upload\\TDSDocument\\"+f.attachment+"\""+
 								"alt=\"User Avatar\" height=\"20px\" width=\"20px\""+ 
@@ -449,6 +450,20 @@
   	   							"<td><i class=\"icon-trash-a\" id=\""+f.tds_document_upload_id+"\" style=\"color : red;\" onclick=\"deleteDocument(id,'"+aName+"');\"></i></td></tr>";
 	
   	   		    	$(html).appendTo("#"+id+" tbody");
+  	   		    	
+  	   		    	var size = f.Size;
+  	   		    	//alert(size);
+		  	   		   if(size == 0){
+			       			$("#DeclairedTaxSlab").show();
+			       			$("#ActualTaxSlab").hide();
+			       			$(".actual").hide();
+			       			$(".declare").show();
+		  	   		   }else{
+			       			$("#DeclairedTaxSlab").hide();
+			       			$("#ActualTaxSlab").show();
+			       			$(".actual").show();
+			       			$(".declare").hide();
+		  	   		   }
   	   		     });
   	        	
   	        	 var html = " <tr><td style=\"width: 10px; height: 10px;text-align: right\" colspan=\"4\">"+sum+"</td>" +

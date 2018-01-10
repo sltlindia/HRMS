@@ -67,6 +67,9 @@
     #tablePadding{
 		padding-left: 3px;
 	}
+	#historyTable{
+		padding: 3px 8px;
+	}
     </style>
 </head>
 <body data-open="hover" data-menu="horizontal-menu" data-col="2-columns" class="horizontal-layout horizontal-menu 2-columns ">
@@ -421,12 +424,6 @@
                                             <th class="hide">House Rant</th>
                                             <th class="hide">A_Medical Allowance</th>
                                             <th class="hide">D_Medical Allowance</th>
-                                            <th class="hide">Yearly Or Monthly</th>
-                                            <th class="hide">Yearly Meal Card</th>
-                                            <th class="hide">Start Date</th>
-                                            <th class="hide">End Date</th>
-                                            <th class="hide">Days</th>
-                                            <th class="hide">Monthly Meal Card</th>
                                             <th class="hide">Meal Card</th>
                                             <th class="hide">LTA During Year</th>
                                             <th class="hide">Actual LTA</th>
@@ -473,9 +470,10 @@
                                             <th class="hide">D_Health CHeckup</th>
                                             <th class="hide">A_Mediclaim</th>
                                             <th class="hide">D_Mediclaim</th>
-                                            <th class="hide">Cash Or Cheque</th>
-                                            <th class="hide">A_Donation</th>
-                                            <th class="hide">D_Donation</th>
+                                            <th class="hide">A_Cash_Donation</th>
+											<th class="hide">D_Cash_Donation</th>
+											<th class="hide">A_Cheque_Donation</th>
+											<th class="hide">D_Cheque_Donation</th>
                                             <th class="hide">Donation</th>
                                             <th class="hide">A_Donation 80GGC</th>
                                             <th class="hide">D_Donation 80GGC</th>
@@ -523,8 +521,8 @@
                                     
                                     %>
                                     	<tr>
-                                    		<td  id="tablePadding"><%=i+1 %></td>
-                                    		<td  id="tablePadding">
+                                    		<td  id="historyTable"><%=i+1 %></td>
+                                    		<td  id="historyTable">
                                     			<a href="TDSHrUpdate.jsp?tds_hr_id=<%=t.getTds_hr_id()%>&status!=<%=t.getStatus()%>"> 
 		                                    		<% if(t.getStatus().equals("LOCK")){ %>
 		                                    			<i class="icon-eye3" data-toggle="tooltip" data-placement="top" title="View TDS" style="font-weight: bold;"></i>
@@ -537,12 +535,12 @@
 																data-placement="top" title="View History" style="font-weight: bold;"></i>
 															</a>
                                     		</td>
-                                    		<td  id="tablePadding"><%=t.getEmployeeBean().getEmployee_code()%></td>
-                                    		<td  id="tablePadding"><%=t.getEmployeeBean().getFirstname()%> <%=t.getEmployeeBean().getLastname()%></td>
-                                    		<td  id="tablePadding"><%=t.getEmployeeBean().getPan_no()%></td>
-                                    		<td  id="tablePadding"><%=t.getPeriod() %></td>
-                                    		<td  id="tablePadding"><%=t.getEmployeeBean().getRoleBean().getRole_type()%></td>
-                                    		<td  id="tablePadding">
+                                    		<td  id="historyTable"><%=t.getEmployeeBean().getEmployee_code()%></td>
+                                    		<td  id="historyTable"><%=t.getEmployeeBean().getFirstname()%> <%=t.getEmployeeBean().getLastname()%></td>
+                                    		<td  id="historyTable"><%=t.getEmployeeBean().getPan_no()%></td>
+                                    		<td  id="historyTable"><%=t.getPeriod() %></td>
+                                    		<td  id="historyTable"><%=t.getEmployeeBean().getRoleBean().getRole_type()%></td>
+                                    		<td  id="historyTable">
                                     			<%if(t.getStatus().equalsIgnoreCase("updated")){%>
                                     			<b><font color="red"><%=t.getStatus() %></font></b>
                                     			<%}else if(t.getStatus().equalsIgnoreCase("view")){ %>
@@ -585,12 +583,6 @@
                                     		<td class="hide"><%=tb.getHouse_rant() %></td>
                                     		<td class="hide"><%=tb.getA_medical()%></td>
                                     		<td class="hide"><%=tb.getD_medical() %></td>
-                                    		<td class="hide"><%=tb.getMonthly_yearly()%></td>
-                                    		<td class="hide"><%=tb.getYearly_mealcard() %></td>
-                                    		<td class="hide"><%=tb.getMonthly_start_date() %></td>
-                                    		<td class="hide"><%=tb.getMonthly_end_date() %></td>
-                                    		<td class="hide"><%=tb.getDays() %></td>
-                                    		<td class="hide"><%=tb.getMonthly_mealcard() %></td>
                                     		<td class="hide"><%=tb.getMeal_card() %></td>
                                     		<td class="hide"><%=tb.getLta_during_year() %></td>
                                     		<td class="hide"><%=tb.getActual_expenditure_lta() %></td>
@@ -637,15 +629,10 @@
                                     		<td class="hide"><%=tf.getD_health_checkup() %></td>
                                     		<td class="hide"><%=tf.getA_mediclaim() %></td>
                                     		<td class="hide"><%=tf.getD_mediclaim() %></td>
-                                    		<td class="hide"><%=tf.getCash_cheque() %></td>
-                                    		<%String donation = tf.getCash_cheque();
-                                    		if(donation.equalsIgnoreCase("Cash")){%>
-                                    			<td class="hide"><%=tf.getA_cash_amount() %></td>
-                                    			<td class="hide"><%=tf.getD_cash_amount() %></td>
-                                    		<%}else{ %>
-                                    			<td class="hide"><%=tf.getA_cheque_amount() %></td>
-                                    			<td class="hide"><%=tf.getD_cheque_amount() %></td>
-                                    		<%} %>
+                                    		<td class="hide"><%=tf.getA_cash_amount() %></td>
+                                    		<td class="hide"><%=tf.getD_cash_amount() %></td>
+                                    		<td class="hide"><%=tf.getA_cheque_amount() %></td>
+                                    		<td class="hide"><%=tf.getD_cheque_amount() %></td>
                                     		<td class="hide"><%=tf.getDonation_80G() %></td>
                                     		<td class="hide"><%=tf.getA_donation_80GGC()%></td>
                                     		<td class="hide"><%=tf.getD_donation_80GGC() %></td>
@@ -743,12 +730,6 @@
                                             <th class="hide">House Rant</th>
                                             <th class="hide">A_Medical Allowance</th>
                                             <th class="hide">D_Medical Allowance</th>
-                                            <th class="hide">Yearly Or Monthly</th>
-                                            <th class="hide">Yearly Meal Card</th>
-                                            <th class="hide">Start Date</th>
-                                            <th class="hide">End Date</th>
-                                            <th class="hide">Days</th>
-                                            <th class="hide">Monthly Meal Card</th>
                                             <th class="hide">Meal Card</th>
                                             <th class="hide">LTA During Year</th>
                                             <th class="hide">Actual LTA</th>
@@ -795,9 +776,10 @@
                                             <th class="hide">D_Health CHeckup</th>
                                             <th class="hide">A_Mediclaim</th>
                                             <th class="hide">D_Mediclaim</th>
-                                            <th class="hide">Cash Or Cheque</th>
-                                            <th class="hide">A_Donation</th>
-                                            <th class="hide">D_Donation</th>
+                                            <th class="hide">A_Cash_Donation</th>
+											<th class="hide">D_Cash_Donation</th>
+											<th class="hide">A_Cheque_Donation</th>
+											<th class="hide">D_Cheque_Donation</th>
                                             <th class="hide">Donation</th>
                                             <th class="hide">A_Donation 80GGC</th>
                                             <th class="hide">D_Donation 80GGC</th>
@@ -832,8 +814,8 @@
                                     
                                     %>
                                     	<tr>
-                                    		<td id="tablePadding"><%=i+1 %></td>
-                                    		<td id="tablePadding">
+                                    		<td id="historyTable"><%=i+1 %></td>
+                                    		<td id="historyTable">
                                     		<%-- <a href="TDSHrForm.jsp?tds_id=<%=t.getTds_id()%>&status=<%=t.getStatus()%>">
 		                                    		<% if(t.getStatus().equals("LOCK")){ %>
 		                                    			<i class=" fa fa-eye" data-toggle="tooltip" data-placement="top" title="View TDS"></i>
@@ -847,12 +829,12 @@
 															</a>
 		                                    		
                                     		</td>
-                                    		<td id="tablePadding"><%=t.getEmployeeBean().getEmployee_code()%></td>
-                                    		<td id="tablePadding"><%=t.getEmployeeBean().getFirstname()%> <%=t.getEmployeeBean().getLastname()%></td>
-                                    		<td id="tablePadding"><%=t.getEmployeeBean().getPan_no()%></td>
-                                    		<td id="tablePadding"><%=t.getPeriod() %></td>
-                                    		<td id="tablePadding"><%=t.getEmployeeBean().getRoleBean().getRole_type()%></td>
-                                    		<td id="tablePadding"><%=t.getEmployeeBean().getGender()%></td>
+                                    		<td id="historyTable"><%=t.getEmployeeBean().getEmployee_code()%></td>
+                                    		<td id="historyTable"><%=t.getEmployeeBean().getFirstname()%> <%=t.getEmployeeBean().getLastname()%></td>
+                                    		<td id="historyTable"><%=t.getEmployeeBean().getPan_no()%></td>
+                                    		<td id="historyTable"><%=t.getPeriod() %></td>
+                                    		<td id="historyTable"><%=t.getEmployeeBean().getRoleBean().getRole_type()%></td>
+                                    		<td id="historyTable"><%=t.getEmployeeBean().getGender()%></td>
                                     		<td class="hide"><%=t.getSubmission_date() %></td>
                                     		<td class="hide"><%=t.getEmployeeBean().getBirth_date()%></td>
                                     		<td class="hide"><%=ta.getAnnual_gross_salary()%></td>
@@ -884,12 +866,6 @@
                                     		<td class="hide"><%=tb.getHouse_rant() %></td>
                                     		<td class="hide"><%=tb.getA_medical()%></td>
                                     		<td class="hide"><%=tb.getD_medical() %></td>
-                                    		<td class="hide"><%=tb.getMonthly_yearly()%></td>
-                                    		<td class="hide"><%=tb.getYearly_mealcard() %></td>
-                                    		<td class="hide"><%=tb.getMonthly_start_date() %></td>
-                                    		<td class="hide"><%=tb.getMonthly_end_date() %></td>
-                                    		<td class="hide"><%=tb.getDays() %></td>
-                                    		<td class="hide"><%=tb.getMonthly_mealcard() %></td>
                                     		<td class="hide"><%=tb.getMeal_card() %></td>
                                     		<td class="hide"><%=tb.getLta_during_year() %></td>
                                     		<td class="hide"><%=tb.getActual_expenditure_lta() %></td>
@@ -936,15 +912,10 @@
                                     		<td class="hide"><%=tf.getD_health_checkup() %></td>
                                     		<td class="hide"><%=tf.getA_mediclaim() %></td>
                                     		<td class="hide"><%=tf.getD_mediclaim() %></td>
-                                    		<td class="hide"><%=tf.getCash_cheque() %></td>
-                                    		<%String donation = tf.getCash_cheque();
-                                    		if(donation.equalsIgnoreCase("Cash")){%>
-                                    			<td class="hide"><%=tf.getA_cash_amount() %></td>
-                                    			<td class="hide"><%=tf.getD_cash_amount() %></td>
-                                    		<%}else{ %>
-                                    			<td class="hide"><%=tf.getA_cheque_amount() %></td>
-                                    			<td class="hide"><%=tf.getD_cheque_amount() %></td>
-                                    		<%} %>
+                                    		<td class="hide"><%=tf.getA_cash_amount() %></td>
+                                    		<td class="hide"><%=tf.getD_cash_amount() %></td>
+                                    		<td class="hide"><%=tf.getA_cheque_amount() %></td>
+                                    		<td class="hide"><%=tf.getD_cheque_amount() %></td>
                                     		<td class="hide"><%=tf.getDonation_80G() %></td>
                                     		<td class="hide"><%=tf.getA_donation_80GGC()%></td>
                                     		<td class="hide"><%=tf.getD_donation_80GGC() %></td>

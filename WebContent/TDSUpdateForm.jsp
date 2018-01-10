@@ -1,3 +1,6 @@
+<%@page import="com.hrms.tds.bean.TDSPayrollBean"%>
+<%@page import="com.hrms.tds.bean.TDSPayrollMasterDataBean"%>
+<%@page import="com.hrms.tds.dao.PayrollList"%>
 <%@page import="com.hrms.tds.bean.TDSTaxBean"%>
 <%@page import="com.hrms.tds.bean.TDSDocumentUploadBean"%>
 <%@page import="com.hrms.pms.bean.MonthBean"%>
@@ -164,6 +167,9 @@ boolean cash = false;
 		$(document).ready(function() {
 			$("#LandlordDetail").hide();
 			$("#IncomeAttachment").hide();
+			$("#HRAAttachment").hide();
+			$("#MedicalAttachment").hide();
+			$("#LTCAttachment").hide();
 			$("#LICAttachment").hide();
 			$("#EPFAttachment").hide();
 			$("#PPFAttachment").hide();
@@ -245,41 +251,54 @@ boolean cash = false;
 			var gender = $("#gender").val();
 			//alert("Gender :"+gender);
 			
-			if(years >= 60)
+			if((years >= 60) && (years < 80))
 			{
 				if(gender == "Female")
 					{
 						$("#adult").hide();
 						$("#senior").hide();
 						$("#female").show();
+						$("#seniorCitizen").hide();
 					}
 				else if(gender == "Male")
 					{
 						$("#adult").hide();
 						$("#senior").show();
 						$("#female").hide();
+						$("#seniorCitizen").hide();
 					}
-			}else if(years < 60)
+			}
+			else if(years < 60)
 			{
 				if(gender == "Female")
 					{
 						$("#senior").hide();
 						$("#adult").hide();
 						$("#female").show();
+						$("#seniorCitizen").hide();
 					}
 				else if(gender == "Male")
 					{
 						$("#senior").hide();
 						$("#adult").show();
 						$("#female").hide();
+						$("#seniorCitizen").hide();
 					}
 				
+			}
+			else if(years >= 80)
+			{
+				$("#senior").hide();
+				$("#adult").hide();
+				$("#female").hide();
+				$("#seniorCitizen").show();
 			}
 		});
 		
 		temp();
 		cal();
 		Redirect() ;
+		
 	}
 	window.onload = codeAddress;
 	
@@ -487,7 +506,7 @@ boolean cash = false;
 			
 	}
 	
-	function MealCard(id) {
+	/* function MealCard(id) {
 		var MealCard = document.getElementById("MealCard1").value;
 		if (MealCard < 300) {
 			var m = (MealCard * 100)
@@ -496,12 +515,7 @@ boolean cash = false;
 			alert("maximum limit 300 days..");
 			document.getElementById("MealCardDeduction").value = 0;
 		}
-		/* if (MealCard >= 15000) {
-			document.getElementById("MealCardDeduction").value = 15000;
-		} else {
-			document.getElementById("MealCardDeduction").value = MealCard;
-		} */
-	}
+	} */
 	
 	function tempLTA(id){
 		tempLTACal();
@@ -604,18 +618,6 @@ boolean cash = false;
 		var MedicalDeduction = document.getElementById("MedicalDeduction").value;
 		document.getElementById("MedicalBill").value = MedicalDeduction;
 
-		var MealCardDeduction = document.getElementById("MealCardDeduction").value;
-		
-		//alert("QWERTTY" +MealCardDeduction );
-		var MealCardDeduction1 = document.getElementById("MealCardDeduction1").value;
-		var result = document.getElementById("result").value;
-	//	alert("Checkbox" + result);
-		if(result == "Yearly"){
-			document.getElementById("MealCard").value = MealCardDeduction;
-		}else{
-			document.getElementById("MealCard").value = MealCardDeduction1;
-		}
-
 		var actualLTABill = document.getElementById("actualLTABill").value;
 		document.getElementById("LTA").value = actualLTABill;
 
@@ -653,6 +655,7 @@ boolean cash = false;
 		Total = parseFloat(TotalGross) - parseFloat(TotalHRA);
 		document.getElementById("TotalAB").value = Total.toFixed(2);
 		document.getElementById("part1").innerHTML = Total.toFixed(2);
+		
 		calculateBasic();
 	}
 
@@ -876,7 +879,7 @@ boolean cash = false;
 		}
 		else if(gender == "Male")
 		{
-			if( age >= 60){
+			if((age >= 60) && (age < 80)){
 				if (totalf <= 300000) {
 					//alert("less than 300000");
 					PayableTax = 0;
@@ -928,6 +931,32 @@ boolean cash = false;
 					PayableTaxRemit = 0;
 					$("#PayableTaxRemit").val(PayableTaxRemit);
 				}
+			}else if(age >= 80){
+				if (totalf <= 250000) {
+					//alert("less than 250000");
+					PayableTax = 0;
+					$("#PayableTax").val(PayableTax.toFixed(2));
+					PayableTaxRemit = 0;
+					$("#PayableTaxRemit").val(PayableTaxRemit);
+				} else if (totalf <= 500000) {
+					//alert("between 250000-500000");
+					PayableTax = 0;
+					$("#PayableTax").val(PayableTax.toFixed(2));
+					PayableTaxRemit = 0;
+					$("#PayableTaxRemit").val(PayableTaxRemit);
+				} else if (totalf > 500000 && totalf <= 1000000) {
+					//alert("between 500000-1000000");
+					PayableTax = (((totalf - 500000) * 20) / 100) + 25000;
+					$("#PayableTax").val(PayableTax.toFixed(2));
+					PayableTaxRemit = 5000;
+					$("#PayableTaxRemit").val(PayableTaxRemit);
+				} else if (totalf > 1000000) {
+					//alert("greater than 1000000");
+					PayableTax = (((totalf - 1000000) * 30) / 100) + 125000;
+					$("#PayableTax").val(PayableTax.toFixed(2));
+					PayableTaxRemit = 0;
+					$("#PayableTaxRemit").val(PayableTaxRemit);
+				}
 			}
 		}
 		
@@ -959,7 +988,19 @@ boolean cash = false;
 		var totalh = (PayableTotalTax + PayableEduCess).toFixed(2);
 		$("#PayableTotalH").val(totalh);
 		
-		Temp();
+		var taxPayable = 0.0;
+		var payableTaxPaid = $("#PayableTaxPaid").val();
+		//alert("payableTaxPaid"+payableTaxPaid);
+		if( totalh >= taxPayable)
+		{
+			taxPayable = totalh - payableTaxPaid ;
+		}
+		else
+		{
+			taxPayable = payableTaxPaid - totalh;
+		}
+		
+		$("#PayableTaxPayable").val(taxPayable.toFixed(2));
 		
 	}
 	
@@ -1241,13 +1282,11 @@ boolean cash = false;
 	{
 		var cashDeduction = document.getElementById("cashDeduction").value;
 		var chequeDeduction = document.getElementById("chequeDeduction").value;
-		var result = document.getElementById("donationResult").value;
-		//alert("Checkbox" + result);
-		if(result == "Cash"){
-			document.getElementById("Donation").value = cashDeduction;
-		}else{
-			document.getElementById("Donation").value = chequeDeduction;
-		}
+		//alert("cashDeduction" + cashDeduction);
+		//alert("chequeDeduction" + chequeDeduction);
+		var result;
+		result = parseFloat(cashDeduction) + parseFloat(chequeDeduction) ;
+		document.getElementById("Donation").value = result;
 		
 		var donationAmount = document.getElementById("donationDeduction").value;
 		document.getElementById("TotalDonation").value = donationAmount;
@@ -1315,7 +1354,7 @@ boolean cash = false;
 			}
 			else if(gender == "Male")
 			{
-				if( age >= 60)
+				if((age >= 60) && (age < 80))
 				{
 					if (TotalTexableValue <= 300000) {
 						//alert("less than 300000");
@@ -1344,6 +1383,26 @@ boolean cash = false;
 					} else if (TotalTexableValue > 250000 && TotalTexableValue <= 500000) {
 						//alert("between 250000-500000");
 						Tax = ((TotalTexableValue - 250000) * 5) / 100;
+						document.getElementById("Tax").value = Tax.toFixed(2);
+					} else if (TotalTexableValue > 500000 && TotalTexableValue <= 1000000) {
+						//alert("between 500000-1000000");
+						Tax = (((TotalTexableValue - 500000) * 20) / 100) + 25000;
+						document.getElementById("Tax").value = Tax.toFixed(2);
+					} else if (TotalTexableValue > 1000000) {
+						//alert("greater than 1000000");
+						Tax = (((TotalTexableValue - 1000000) * 30) / 100) + 125000;
+						document.getElementById("Tax").value = Tax.toFixed(2);
+					}
+				}
+				else if(age >= 80)
+				{
+					if (TotalTexableValue <= 250000) {
+						//alert("less than 250000");
+						Tax = 0;
+						document.getElementById("Tax").value = Tax.toFixed(2);
+					} else if (TotalTexableValue <= 500000) {
+						//alert("between 250000-500000");
+						Tax = 0;
 						document.getElementById("Tax").value = Tax.toFixed(2);
 					} else if (TotalTexableValue > 500000 && TotalTexableValue <= 1000000) {
 						//alert("between 500000-1000000");
@@ -1387,7 +1446,7 @@ boolean cash = false;
 		}
 		else if(gender == "Male")
 		{
-			if( age >= 60)
+			if((age >= 60) && (age < 80))
 			{
 				if (Tax <= 300000) {
 					//alert("taxremit is 0");
@@ -1414,6 +1473,22 @@ boolean cash = false;
 					TaxRemit = 5000.00;
 					document.getElementById("TaxRemit").value = TaxRemit;
 				} else if (Tax > 500001) {
+					//alert("taxremit is 5001");
+					TaxRemit = 0;
+					document.getElementById("TaxRemit").value = TaxRemit;
+				}
+			}
+			else if(age >= 80)
+			{
+				if (Tax <= 500000) {
+					//alert("taxremit is 0");
+					TaxRemit = 0;
+					document.getElementById("TaxRemit").value = TaxRemit;
+				} else if (Tax > 500000 && Tax <= 1000000) {
+					//alert("taxremit is 5000");
+					TaxRemit = 5000.00;
+					document.getElementById("TaxRemit").value = TaxRemit;
+				} else if (Tax > 1000001) {
 					//alert("taxremit is 5001");
 					TaxRemit = 0;
 					document.getElementById("TaxRemit").value = TaxRemit;
@@ -1504,7 +1579,7 @@ boolean cash = false;
 	
 	function Temp(){
 		//alert("hii");
-		var TotalH = 0.0, TaxPaid = 0.0,TaxPayable = 0.0;
+		var TotalH , TaxPaid ,TaxPayable;
 		var docList = $("#docList").val();
 		//alert("Size :"+docList);
 		
@@ -1512,13 +1587,19 @@ boolean cash = false;
 			{
 				//alert("If");
 				TotalH = $("#TotalH").val();
+				TotalH = parseFloat(TotalH);
 				TaxPaid = $("#TaxPaid").val();
+				TaxPaid = parseFloat(TaxPaid);
+				//alert("TotalH :"+TotalH);
+				//alert("tax paid :"+TaxPaid);
 				if(TotalH >= TaxPaid)
 				{
+					//alert("If");
 					TaxPayable = TotalH - TaxPaid ;
 				}
 				else
 				{
+					//alert("else");
 					TaxPayable = TaxPaid - TotalH ;
 				}
 				$("#TaxPayable").val(TaxPayable.toFixed(2));
@@ -1545,13 +1626,14 @@ boolean cash = false;
 	 function Submit() {
 		//alert("Submit");
 		document.getElementById("formSubmit").submit();  
-	}  
+	} 
 </script>
 </head>
 <body data-open="hover" data-menu="horizontal-menu" data-col="2-columns" class="horizontal-layout horizontal-menu 2-columns ">
 
 		<% int id = (Integer)session.getAttribute("tds_id");
 			int emp_id = user.getEmployee_master_id();
+			int emp_code = user.getEmployee_code();
 			session.setAttribute("tds_id", id);
 			TDSListDAO tdsListDAO = new TDSListDAO();
 			List<TDSBean> listOfTDS = tdsListDAO.getAllTdsListByID(id);
@@ -1572,6 +1654,81 @@ boolean cash = false;
             List<TDSDocumentUploadBean> tdsDocumentList = tdsListDAO.getListOfDocument(id);
         	System.out.println("Document Size :"+tdsDocumentList.size());
         
+        	String hrms_company_name = user.getCompanyListBean().getCompany_code();
+        	String payroll_company_name = null;
+  			if(hrms_company_name.equals("SL"))
+      		{
+      			payroll_company_name = "SLTL";
+      		}
+      		else if(hrms_company_name.equals("SE"))
+      		{
+      			payroll_company_name = "SENT";
+      		}
+      		else if(hrms_company_name.equals("SS"))
+      		{
+      			payroll_company_name = "SRI";
+      		}
+      		else if(hrms_company_name.equals("S.HR"))
+      		{
+      			payroll_company_name = "SHR";
+      		}
+      		else if(hrms_company_name.equals("CO"))
+      		{
+      			payroll_company_name = "COSMOS";
+      		}
+      		else if(hrms_company_name.equals("CS"))
+      		{
+      			payroll_company_name = "CSLaser";
+      		}
+      		else if(hrms_company_name.equals("O"))
+      		{
+      			payroll_company_name = "App";
+      		}
+      	System.err.println("COMPANY NAME :"+payroll_company_name); 
+      	
+        	PayrollList payrollList = new PayrollList();
+        	List<TDSPayrollMasterDataBean> lastRecordOfMasterData  = payrollList.getLastRecordOfMasterData(emp_code,payroll_company_name);
+      		System.err.println("SIZE===========>"+lastRecordOfMasterData.size());
+      		
+        	List<TDSPayrollBean> lastrecord  = payrollList.getLastBasicSalary(emp_code,payroll_company_name);
+      		System.err.println("LAst Basic Salary=====> :"+lastrecord);
+      		
+      		double basicSalary = 0.0;
+      		double medical = 0.0 ;
+      		double conveyance = 0.0 ;
+      		double actualHRA = 0.0 ;
+      		double uniAllw = 0.0 ;
+      		double eduAllw = 0.0 ;
+      		String pan_no = null;
+      		String designation = null;
+      		
+      		double monthlyBasicSalary = 0.0;
+      		double monthlyMedical = 0.0 ;
+      		double monthlyConveyance = 0.0 ;
+      		double monthlyActualHRA = 0.0 ;
+      		double monthlyUniAllw = 0.0 ;
+      		double monthlyEduAllw = 0.0 ;
+      		
+      		for(TDSPayrollMasterDataBean masterDataBean : lastRecordOfMasterData){
+      			pan_no = masterDataBean.getPan_no();
+      			designation = masterDataBean.getDesignation();
+      		}
+      		
+      		for(TDSPayrollBean tdsPayrollBean : lastrecord){
+      			basicSalary = tdsPayrollBean.getAnnual_basic_salary();
+      			actualHRA = tdsPayrollBean.getAnnual_hra();
+      			conveyance = tdsPayrollBean.getAnnual_conveyance();
+      			medical = tdsPayrollBean.getAnnual_medical();
+      			uniAllw = tdsPayrollBean.getAnnual_uni_allw();
+      			eduAllw = tdsPayrollBean.getAnnual_edu_allw();
+      			
+      			monthlyBasicSalary = tdsPayrollBean.getBasic_salary();
+      			monthlyActualHRA = tdsPayrollBean.getHra();
+      			monthlyConveyance = tdsPayrollBean.getConveyance();
+      			monthlyMedical = tdsPayrollBean.getMedical();
+      			monthlyUniAllw = tdsPayrollBean.getUni_allw();
+      			monthlyEduAllw = tdsPayrollBean.getEdu_allw();
+      		}
             
             %>
 			<script type="text/javascript">
@@ -1611,7 +1768,7 @@ boolean cash = false;
 					<%}%>
 				</script>
 				
-				<script type="text/javascript">
+				<%-- <script type="text/javascript">
 					<% if(tb.getMonthly_yearly().equals("Monthly"))
 					{
 					%>
@@ -1641,7 +1798,8 @@ boolean cash = false;
 					$("#cheque").show();
 					$("#cash").hide();
 					<%}%>
-				</script>
+				</script> --%>
+				
 <form action="tdsUpdate" method="post" id="formSubmit">
 	<div class="app-content container center-layout mt-2">
       <div class="content-wrapper">
@@ -1674,25 +1832,26 @@ boolean cash = false;
 	               			<div class="card-block">
 
 								<div class="row">
-										<div class="col-lg-6">
-											<div class="col-lg-3">
-												<b>Name :</b>
-											</div>
-											<div class="col-lg-9">
+									<div class="col-lg-3"><b>Name</b></div>
+									<div class="col-lg-3"><b>PAN No</b></div>
+									<div class="col-lg-3"><b>Department</b></div>
+									<div class="col-lg-3"><b>Designation</b></div>
+								</div>
+								
+								<div class="row">
+									<div class="col-lg-3">
 												<input type="text" class="form-control" name="emp_name" id="emp_name" value="<%=t.getEmployeeBean().getFirstname()%> <%=t.getEmployeeBean().getLastname()%>"
 														readonly="readonly">
-											</div>
-										</div>	
-										
-										<div class="col-lg-6">
-											<div class="col-lg-3">
-												<b>PAN No :</b>
-											</div>
-											<div class="col-lg-9">
-												<input type="text" class="form-control" name="pan_no" id="pan_no" value="<%=t.getEmployeeBean().getPan_no() %>" readonly="readonly"
-													placeholder="Enter PAN No.">
-											</div>
-										</div>	
+									</div>
+									<div class="col-lg-3">
+												<input type="text" class="form-control" name="pan_no" id="pan_no" value="<%=pan_no %>" readonly="readonly">
+									</div>
+									<div class="col-lg-3">
+												<input type="text" class="form-control" name="department" id="department" value="<%=t.getEmployeeBean().getDepartmentBean().getDepartment_name()%>" readonly="readonly">
+									</div>
+									<div class="col-lg-3">
+												<input type="text" class="form-control" name="designation" id="designation" value="<%=t.getEmployeeBean().getRoleBean().getRole_type() %>" readonly="readonly">
+									</div>
 								</div>
 				
 									<input type="hidden" name="EMP_MASTER_ID" id="EMP_MASTER_ID" value="<%=t.getEmployeeBean().getEmployee_master_id()%>">
@@ -1712,8 +1871,8 @@ boolean cash = false;
 							 current_year = Integer.parseInt(end_year) ;
 							 final_year = (current_year + 1);
                     	}else{
-                    		 current_year = Integer.parseInt(end_year);
-							 final_year = (current_year - 1);
+                    		current_year = (Integer.parseInt(end_year) - 1);
+							 final_year = Integer.parseInt(end_year);
                     	}
 					%>
 						<div class="card box-shadow-0" data-appear="appear" data-animation="fadeInLeft">
@@ -1937,9 +2096,12 @@ boolean cash = false;
 																					id="HouseRant" value="<%=tb.getHouse_rant()%>" readonly="readonly">
 																			</div>
 																		</th>
-																		<th>
+																		<th width="100px;">
 																				<!-- Button trigger modal -->
-																				<center><a href="" data-toggle="modal" data-target="#myModa3"><i class="icon-android-add-circle" title="CLICK HERE" style="color: black;font-size: 15px;"></i></a></center>
+																				<center>
+																					<a href="" data-toggle="modal" data-target="#myModa3"><i class="icon-android-add-circle" title="CLICK HERE" style="color: black;font-size: 15px;"></i></a>
+																					<a href="" data-toggle="modal" data-target="#HRAModal" id="HRA" onclick="changeName(this.id);"><i class="icon-upload22" title="Upload TDS Document" style="color: black;font-size: 15px;"></i></a>
+																				</center>
 																				<!-- Modal -->
 																				<div class="modal fade" id="myModa3" tabindex="-1"
 																					role="dialog" aria-labelledby="myModalLabel"
@@ -2087,7 +2249,10 @@ boolean cash = false;
 																		</th>
 																		<th>
 																				<!-- Button trigger modal -->
-																				<center><a href="" data-toggle="modal" data-target="#myModal4"><i class="icon-android-add-circle" title="CLICK HERE" style="color: black;font-size: 15px;"></i></a></center>
+																				<center>
+																					<a href="" data-toggle="modal" data-target="#myModal4"><i class="icon-android-add-circle" title="CLICK HERE" style="color: black;font-size: 15px;"></i></a>
+																					<a href="" data-toggle="modal" data-target="#MedicalModal" id="Medical" onclick="changeName(this.id);"><i class="icon-upload22" title="Upload TDS Document" style="color: black;font-size: 15px;"></i></a>
+																				</center>
 																				<!-- Modal -->
 																				<div class="modal fade text-xs-left" id="myModal4" tabindex="-1"
 																					role="dialog" aria-labelledby="myModalLabel"
@@ -2155,7 +2320,8 @@ boolean cash = false;
 																					id="MealCard" value="<%=tb.getMeal_card() %>" readonly="readonly">
 																			</div>
 																		</th>
-																		<th>
+																		<th></th>
+																		<%-- <th>
 							
 																				<!-- Button trigger modal -->
 																				<%if(user.getMealcard().equals("TRUE")) {%>
@@ -2290,7 +2456,7 @@ boolean cash = false;
 																					<!-- /.modal-dialog -->
 																				</div>
 																				<!-- /.modal -->
-																		</th>
+																		</th> --%>
 																	</tr>
 							                                        
 							                                        
@@ -2306,7 +2472,9 @@ boolean cash = false;
 																		</th>
 																		<th>
 																				<!-- Button trigger modal -->
-																				<center><a href="" data-toggle="modal" data-target="#myModal6"><i class="icon-android-add-circle" title="CLICK HERE" style="color: black;font-size: 15px;"></i></a></center>
+																				<center><a href="" data-toggle="modal" data-target="#myModal6"><i class="icon-android-add-circle" title="CLICK HERE" style="color: black;font-size: 15px;"></i></a>
+																					<a href="" data-toggle="modal" data-target="#LTCModal" id="LTC" onclick="changeName(this.id);"><i class="icon-upload22" title="Upload TDS Document" style="color: black;font-size: 15px;"></i></a>
+																				</center>
 																				<!-- Modal -->
 																				<div class="modal fade" id="myModal6" tabindex="-1"
 																					role="dialog" aria-labelledby="myModalLabel"
@@ -3430,7 +3598,7 @@ boolean cash = false;
 																							<h4 class="modal-title" id="myModalLabel">Donation(80 G/ 80 G(5))(Annual)</h4>
 																						</div>
 																						<div class="modal-body">
-																								<div class="form-group">
+																								<%-- <div class="form-group">
 																										<label>Choose</label> &nbsp;&nbsp;&nbsp;&nbsp;
 																										<% if((tf.getCash_cheque()).equals("Cash")){ %>
 																										<label class="radio-inline"> <input type="radio"
@@ -3452,7 +3620,7 @@ boolean cash = false;
 																										</label> 
 																										<%} %>
 																										<input type="hidden" name="donationResult" id="donationResult">
-																									</div>
+																									</div> --%>
 																							<div id="cash">
 																							<table class="table table-striped">
 																								<tr><center><h5><b>Donation Through Cash</b></h5></center></tr>
@@ -3937,6 +4105,42 @@ boolean cash = false;
 						                    </div>
 						                </div>
 						            </div>
+						            
+						            <div class="card box-shadow-0" data-appear="appear" id="seniorCitizen">
+					                <div class="card-header card-inverse" style="background-color: #90A4AE;">
+					                    <h5 class="card-title"><center>Income Tax Slab for Senior Citizens(80 Years Old Or More) (Both Men & Women)</center></h5>
+					                </div>
+					                <div class="card-body collapse in">
+					                    <div class="card-block border-bottom-blue-grey">
+					                        <div class="table-responsive">
+				                                <table class="table table-striped table-bordered table-hover">
+				                                      <tbody>
+				                                        <tr>
+															<th><center>Income Range</center></th>
+															<th><center>Rate</center></th>
+														</tr>
+														<tr>
+															<td><center>Up to Rs. 2,50,000</center></td>
+															<td><center>NIL</center></td>
+														</tr>
+														<tr>
+															<td><center>Up to Rs. 5,00,000</center></td>
+															<td><center>NIL</center></td>
+														</tr>
+														<tr>
+															<td><center>Rs. 5,00,001 to Rs. 10,00,000</center></td>
+															<td><center>20%</center></td>
+														</tr>
+														<tr>
+															<td><center>Rs. 10,00,001 & Above</center></td>
+															<td><center>30%</center></td>
+														</tr>
+				                                    </tbody>
+				                                </table>
+				                            </div>
+						                    </div>
+						                </div>
+						            </div>
 				                    
 				                   <% if(t.getStatus().equals("LOCK")){ %>
 								
@@ -3961,6 +4165,335 @@ boolean cash = false;
 <%	AllListDAO allListDAO = new AllListDAO();
 	List<MonthBean> monthBean = allListDAO.getListOfMonth();
 %>
+<!-- HRA Modal -->
+<div class="modal fade text-xs-left" id="HRAModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="myModalLabel">HRA</h4>
+				</div>
+				<div class="modal-body">
+					<div class="row" id="in">
+						<div class="col-md-6">
+							<form action="tdsDocumentInsert" class="dropzone" method="post"
+								name="" enctype="multipart/form-data">
+								<input type="hidden" name="attachment_name" value="HRA">
+								<input type="hidden" name="attachment_priority" value="0">
+								<input type="hidden" name="tds_id" value="<%=id%>" />
+								<div class="row">
+									<div class="col-md-12">
+										<div class="col-md-4">
+											<b>Month :</b>
+										</div>
+										<div class="col-md-8">
+											<div class="form-group">
+												<select class="form-control" id="monthName"
+													name="monthName">
+													<option>----- Select Month -----</option>
+													<%
+														for (MonthBean bean : monthBean) {
+													%>
+													<option value="<%=bean.getMonth_id()%>"><%=bean.getMonth_name()%></option>
+													<%
+														}
+													%>
+												</select>
+											</div>
+										</div>
+									</div>
+									<div class="col-md-12">
+										<div class="col-md-4">Amount :</div>
+										<div class="col-md-8">
+											<input type="text" class="form-control" name="amount"
+												id="amount" value="0" onchange="showAttachment(value,'HRA')">
+										</div>
+									</div>
+								</div>
+								
+								<div id="HRAAttachment">
+								<div class="row">
+									<div class="col-md-12">
+										<div class="col-md-4">Attachment :</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-12" style="border: 1px solid #D4D4D4;">
+										<div class="dz-message">
+											<div class="col-md-12">
+												<i class="fa fa-upload fa-2x"></i>
+											</div>
+											<h3>Drop files here or click to upload.</h3>
+											<em>(Once you select file(s).Files are automatically
+												uploaded to server.)</em>
+										</div>
+										<div class="fallback">
+											<input name="attachment" type="file" />
+										</div>
+									</div>
+								</div>
+								</div>
+							</form>
+						</div>
+						<div class="col-md-6">
+							<table class="table table-striped table-bordered table-hover" id="HRATable">
+								<thead>
+								<tr>
+									<th>Month</th>
+									<th>Proof</th>
+									<th>Amount</th>
+									<th>Action</th>
+								</tr>
+								</thead>
+								<tbody>
+								<% List<TDSDocumentUploadBean> tdsDocumentUploadForHRA = tdsListDAO.getDocumentList(id, "HRA"); 
+									for(TDSDocumentUploadBean uploadBean : tdsDocumentUploadForHRA){
+								%>
+								<tr>
+									<td><%=uploadBean.getMonthBean().getMonth_name()%></td>
+									<td><a href="photo.jsp?attachment=<%=uploadBean.getAttachment()%>" target="_blank">
+												<img src="FileServlet?path=D:\hrms\upload\TDSDocument\<%=uploadBean.getAttachment() %>"
+														alt="User Avatar" height="15px" width="15px" 
+														tabindex="0" data-placement="left" data-toggle="popover" data-trigger="hover" data-content="<div class='media'><a href='#' class='pull-left'><img src='FileServlet?path=D:\hrms\upload\TDSDocument\<%=uploadBean.getAttachment()%>' height='250px' width='250px' alt='Sample Image'></a></div>"
+														/>
+														</a></td>
+									<td><%=uploadBean.getAmount() %></td>
+									<td><i class="fa fa-trash" id="<%=uploadBean.getTds_document_upload_id() %>" style="color: red;" onclick="deleteDocument(id,'HRA');"></i></td>
+								</tr>
+								<%} %>
+								</tbody>
+							</table>
+
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+		<!-- /.modal -->
+	</div>
+	<!-- Medical Modal -->
+<div class="modal fade text-xs-left" id="MedicalModal" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="myModalLabel">Medical</h4>
+				</div>
+				<div class="modal-body">
+					<div class="row" id="in">
+						<div class="col-md-6">
+							<form action="tdsDocumentInsert" class="dropzone" method="post"
+								name="" enctype="multipart/form-data">
+								<input type="hidden" name="attachment_name" value="Medical">
+								<input type="hidden" name="attachment_priority" value="0">
+								<input type="hidden" name="tds_id" value="<%=id%>" />
+								<div class="row">
+									<div class="col-md-12">
+										<div class="col-md-4">
+											<b>Month :</b>
+										</div>
+										<div class="col-md-8">
+											<div class="form-group">
+												<select class="form-control" id="monthName"
+													name="monthName">
+													<option>----- Select Month -----</option>
+													<%
+														for (MonthBean bean : monthBean) {
+													%>
+													<option value="<%=bean.getMonth_id()%>"><%=bean.getMonth_name()%></option>
+													<%
+														}
+													%>
+												</select>
+											</div>
+										</div>
+									</div>
+									<div class="col-md-12">
+										<div class="col-md-4">Amount :</div>
+										<div class="col-md-8">
+											<input type="text" class="form-control" name="amount"
+												id="amount" value="0" onchange="showAttachment(value,'Medical')">
+										</div>
+									</div>
+								</div>
+								
+								<div id="MedicalAttachment">
+								<div class="row">
+									<div class="col-md-12">
+										<div class="col-md-4">Attachment :</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-12" style="border: 1px solid #D4D4D4;">
+										<div class="dz-message">
+											<div class="col-md-12">
+												<i class="fa fa-upload fa-2x"></i>
+											</div>
+											<h3>Drop files here or click to upload.</h3>
+											<em>(Once you select file(s).Files are automatically
+												uploaded to server.)</em>
+										</div>
+										<div class="fallback">
+											<input name="attachment" type="file" />
+										</div>
+									</div>
+								</div>
+								</div>
+							</form>
+						</div>
+						<div class="col-md-6">
+							<table class="table table-striped table-bordered table-hover" id="MedicalTable">
+								<thead>
+								<tr>
+									<th>Month</th>
+									<th>Proof</th>
+									<th>Amount</th>
+									<th>Action</th>
+								</tr>
+								</thead>
+								<tbody>
+								<% List<TDSDocumentUploadBean> tdsDocumentUploadForMedical = tdsListDAO.getDocumentList(id, "Medical"); 
+									for(TDSDocumentUploadBean uploadBean : tdsDocumentUploadForMedical){
+								%>
+								<tr>
+									<td><%=uploadBean.getMonthBean().getMonth_name()%></td>
+									<td><a href="photo.jsp?attachment=<%=uploadBean.getAttachment()%>" target="_blank">
+												<img src="FileServlet?path=D:\hrms\upload\TDSDocument\<%=uploadBean.getAttachment() %>"
+														alt="User Avatar" height="15px" width="15px" 
+														tabindex="0" data-placement="left" data-toggle="popover" data-trigger="hover" data-content="<div class='media'><a href='#' class='pull-left'><img src='FileServlet?path=D:\hrms\upload\TDSDocument\<%=uploadBean.getAttachment()%>' height='250px' width='250px' alt='Sample Image'></a></div>"
+														/>
+														</a></td>
+									<td><%=uploadBean.getAmount() %></td>
+									<td><i class="fa fa-trash" id="<%=uploadBean.getTds_document_upload_id() %>" style="color: red;" onclick="deleteDocument(id,'Medical');"></i></td>
+								</tr>
+								<%} %>
+								</tbody>
+							</table>
+
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+		<!-- /.modal -->
+	</div>
+<!-- LTC Modal -->
+<div class="modal fade text-xs-left" id="LTCModal" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="myModalLabel">LTC</h4>
+				</div>
+				<div class="modal-body">
+					<div class="row" id="in">
+						<div class="col-md-6">
+							<form action="tdsDocumentInsert" class="dropzone" method="post"
+								name="" enctype="multipart/form-data">
+								<input type="hidden" name="attachment_name" value="LTC">
+								<input type="hidden" name="attachment_priority" value="0">
+								<input type="hidden" name="tds_id" value="<%=id%>" />
+								<div class="row">
+									<div class="col-md-12">
+										<div class="col-md-4">
+											<b>Month :</b>
+										</div>
+										<div class="col-md-8">
+											<div class="form-group">
+												<select class="form-control" id="monthName"
+													name="monthName">
+													<option>----- Select Month -----</option>
+													<%
+														for (MonthBean bean : monthBean) {
+													%>
+													<option value="<%=bean.getMonth_id()%>"><%=bean.getMonth_name()%></option>
+													<%
+														}
+													%>
+												</select>
+											</div>
+										</div>
+									</div>
+									<div class="col-md-12">
+										<div class="col-md-4">Amount :</div>
+										<div class="col-md-8">
+											<input type="text" class="form-control" name="amount"
+												id="amount" value="0" onchange="showAttachment(value,'LTC')">
+										</div>
+									</div>
+								</div>
+								
+								<div id="LTCAttachment">
+								<div class="row">
+									<div class="col-md-12">
+										<div class="col-md-4">Attachment :</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-12" style="border: 1px solid #D4D4D4;">
+										<div class="dz-message">
+											<div class="col-md-12">
+												<i class="fa fa-upload fa-2x"></i>
+											</div>
+											<h3>Drop files here or click to upload.</h3>
+											<em>(Once you select file(s).Files are automatically
+												uploaded to server.)</em>
+										</div>
+										<div class="fallback">
+											<input name="attachment" type="file" />
+										</div>
+									</div>
+								</div>
+								</div>
+							</form>
+						</div>
+						<div class="col-md-6">
+							<table class="table table-striped table-bordered table-hover" id="LTCTable">
+								<thead>
+								<tr>
+									<th>Month</th>
+									<th>Proof</th>
+									<th>Amount</th>
+									<th>Action</th>
+								</tr>
+								</thead>
+								<tbody>
+								<% List<TDSDocumentUploadBean> tdsDocumentUploadForLTC = tdsListDAO.getDocumentList(id, "LTC"); 
+									for(TDSDocumentUploadBean uploadBean : tdsDocumentUploadForLTC){
+								%>
+								<tr>
+									<td><%=uploadBean.getMonthBean().getMonth_name()%></td>
+									<td><a href="photo.jsp?attachment=<%=uploadBean.getAttachment()%>" target="_blank">
+												<img src="FileServlet?path=D:\hrms\upload\TDSDocument\<%=uploadBean.getAttachment() %>"
+														alt="User Avatar" height="15px" width="15px" 
+														tabindex="0" data-placement="left" data-toggle="popover" data-trigger="hover" data-content="<div class='media'><a href='#' class='pull-left'><img src='FileServlet?path=D:\hrms\upload\TDSDocument\<%=uploadBean.getAttachment()%>' height='250px' width='250px' alt='Sample Image'></a></div>"
+														/>
+														</a></td>
+									<td><%=uploadBean.getAmount() %></td>
+									<td><i class="fa fa-trash" id="<%=uploadBean.getTds_document_upload_id() %>" style="color: red;" onclick="deleteDocument(id,'LTC');"></i></td>
+								</tr>
+								<%} %>
+								</tbody>
+							</table>
+
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+		<!-- /.modal -->
+	</div>
 <!-- Income Modal -->
 <div class="modal fade text-xs-left" id="IncomeModal" tabindex="-1"
 		role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -5751,7 +6284,7 @@ boolean cash = false;
 		}
 	</script>
 	
-	<script type="text/javascript">
+	<!-- <script type="text/javascript">
 		function checkDonationRadio() {
 			//alert("SKY");
 
@@ -5779,9 +6312,9 @@ boolean cash = false;
 				}
 			}
 		}
-	</script>
+	</script> -->
 	
-	<script type="text/javascript">
+	<!-- <script type="text/javascript">
 	if(cash == true)
 	{
 		//alert("CASH");
@@ -5796,7 +6329,7 @@ boolean cash = false;
 			$("#cheque").show();
 			document.getElementById("donationResult").value = "Cheque";
 		}
-	</script>
+	</script> -->
 	
 	
 	<script type="text/javascript">
@@ -5923,8 +6456,8 @@ boolean cash = false;
 			  	        	
 			  	        	
 			  	   		     $.each(json, function(i, f) {
-			  	   		    sum = f.amount + sum;
-			  	   		    var html = " <tr><td>"+f["monthBean"].month_name+"</td>" +
+			  	   		    sum = parseFloat(f.amount) + sum;
+			  	   		    var html = " <tr><td>"+f.month+"</td>" +
 			  	   		    	"<td><a href=\"photo.jsp?attachment="+f.attachment+"\" target=\"_blank\">" +
 			  	   				"<img src=\"FileServlet?path=D:\\hrms\\upload\\TDSDocument\\"+f.attachment+"\""+
 											"alt=\"User Avatar\" height=\"20px\" width=\"20px\""+ 
@@ -6207,7 +6740,7 @@ boolean cash = false;
 							 			
 										var mealCard = (DAYS * 100) ;
 										//alert("mealCard"+mealCard);
-										document.getElementById("MealCardDeduction1").value = mealCard;
+										//document.getElementById("MealCardDeduction1").value = mealCard;
 									
 								}
 							});

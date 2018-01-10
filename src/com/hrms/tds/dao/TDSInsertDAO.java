@@ -15,6 +15,7 @@ import com.hrms.tds.bean.TDSHrTotalDBean;
 import com.hrms.tds.bean.TDSHrTotalEBean;
 import com.hrms.tds.bean.TDSHrTotalFBean;
 import com.hrms.tds.bean.TDSPayrollBean;
+import com.hrms.tds.bean.TDSPayrollMasterDataBean;
 import com.hrms.tds.bean.TDSPayrollSalaryDataBean;
 import com.hrms.tds.bean.TDSTaxBean;
 import com.hrms.tds.bean.TDSTotalABean;
@@ -71,6 +72,26 @@ public class TDSInsertDAO {
 		 return true;
 	}
 	
+	public boolean tdsPayrollMsaterDataInsert(TDSPayrollMasterDataBean tdsPayrollMasterDataBean)
+	{
+		 Session session = HibernateUtil.openSession();
+		 Transaction tx = null;	
+		 try {
+			 tx = session.getTransaction();
+			 tx.begin();
+			 session.save(tdsPayrollMasterDataBean);
+			 System.out.println("In TDSPayroll Master Salary Data inserted");
+			 tx.commit();
+		 } catch (Exception e) {
+			 if (tx != null) {
+				 tx.rollback();
+			 }
+			 e.printStackTrace();
+		 } finally {
+			 session.close();
+		 }	
+		 return true;
+	}
 	
 	
 	public boolean tdsInsert(TDSBean tdsBean)
