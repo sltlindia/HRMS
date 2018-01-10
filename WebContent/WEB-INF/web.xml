@@ -36,6 +36,14 @@
     </init-param>
   </servlet>
   <context-param>
+    <param-name>meetingAttachment</param-name>
+    <param-value>d:\\hrms\\upload\\MeetingAttachment</param-value>
+  </context-param>
+  <context-param>
+    <param-name>vehicle_tracking</param-name>
+    <param-value>d:\\hrms\\upload\\vehicle_tracking</param-value>
+  </context-param>
+  <context-param>
     <param-name>kaizen-upload-before</param-name>
     <param-value>d:\\hrms\\upload\\kaizen\\kaizenBefore</param-value>
   </context-param>
@@ -3929,16 +3937,6 @@
   </servlet-mapping>
   <servlet>
     <description></description>
-    <display-name>KaizenAttachmentDeleteServlet</display-name>
-    <servlet-name>KaizenAttachmentDeleteServlet</servlet-name>
-    <servlet-class>com.hrms.kaizen.controller.KaizenAttachmentDeleteServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>KaizenAttachmentDeleteServlet</servlet-name>
-    <url-pattern>/kaizenAttachmentDelete</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
     <display-name>SalesTargetDeleteServlet</display-name>
     <servlet-name>SalesTargetDeleteServlet</servlet-name>
     <servlet-class>com.hrms.incentive.controller.SalesTargetDeleteServlet</servlet-class>
@@ -3967,7 +3965,236 @@
     <servlet-name>KaizenStatusChangeServlet</servlet-name>
     <url-pattern>/kaizenStatusChange</url-pattern>
   </servlet-mapping>
-   <servlet>
+  <servlet>
+    <description></description>
+    <display-name>birthdayNotificationServlet</display-name>
+    <servlet-name>birthdayNotificationServlet</servlet-name>
+    <servlet-class>com.hrms.corehr.controller.birthdayNotificationServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>birthdayNotificationServlet</servlet-name>
+    <url-pattern>/birthdayNotification</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>NewJoineeNotification</display-name>
+    <servlet-name>NewJoineeNotification</servlet-name>
+    <servlet-class>com.hrms.corehr.controller.NewJoineeNotification</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>NewJoineeNotification</servlet-name>
+    <url-pattern>/NewJoineeNotification</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>IncentiveReleasePaidServlet</display-name>
+    <servlet-name>IncentiveReleasePaidServlet</servlet-name>
+    <servlet-class>com.hrms.incentive.controller.IncentiveReleasePaidServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>IncentiveReleasePaidServlet</servlet-name>
+    <url-pattern>/incentiveReleasePaid</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>VehicleInsertServlet</display-name>
+    <servlet-name>VehicleInsertServlet</servlet-name>
+    <servlet-class>com.hrms.vehicletracking.controller.VehicleInsertServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>VehicleInsertServlet</servlet-name>
+    <url-pattern>/vehicleInsert</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>TrackingHistoryInsertServlet</display-name>
+    <servlet-name>TrackingHistoryInsertServlet</servlet-name>
+    <servlet-class>com.hrms.vehicletracking.controller.TrackingHistoryInsertServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>TrackingHistoryInsertServlet</servlet-name>
+    <url-pattern>/trackingHistoryInsert</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>TopManagementApproedByHRServlet</display-name>
+    <servlet-name>TopManagementApproedByHRServlet</servlet-name>
+    <servlet-class>com.hrms.probation.controller.TopManagementApproedByHRServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>TopManagementApproedByHRServlet</servlet-name>
+    <url-pattern>/topManagementApprovedByHR</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ManagerReviewAfterExtendUpdateServlet</display-name>
+    <servlet-name>ManagerReviewAfterExtendUpdateServlet</servlet-name>
+    <servlet-class>com.hrms.probation.controller.ManagerReviewAfterExtendUpdateServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ManagerReviewAfterExtendUpdateServlet</servlet-name>
+    <url-pattern>/managerReviewAfterExtendUpdate</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>TopManagementApprovalServlet</display-name>
+    <servlet-name>TopManagementApprovalServlet</servlet-name>
+    <servlet-class>com.hrms.probation.controller.TopManagementApprovalServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>TopManagementApprovalServlet</servlet-name>
+    <url-pattern>/topManagementApproval</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <display-name>ProbationM1InsertServlet</display-name>
+    <servlet-name>ProbationM1InsertServlet</servlet-name>
+    <servlet-class>com.hrms.probation.controller.ProbationM1InsertServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ProbationM1InsertServlet</servlet-name>
+    <url-pattern>/probationM1Insert</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ProbationM2InsertServlet</display-name>
+    <servlet-name>ProbationM2InsertServlet</servlet-name>
+    <servlet-class>com.hrms.probation.controller.ProbationM2InsertServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ProbationM2InsertServlet</servlet-name>
+    <url-pattern>/probationM2Insert</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ProbationIndirectManagerReviewInsertServlet</display-name>
+    <servlet-name>ProbationIndirectManagerReviewInsertServlet</servlet-name>
+    <servlet-class>com.hrms.probation.controller.ProbationIndirectManagerReviewInsertServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ProbationIndirectManagerReviewInsertServlet</servlet-name>
+    <url-pattern>/probationIndirectManagerReviewInsert</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ProbationIndirectHrReviewInsertServlet</display-name>
+    <servlet-name>ProbationIndirectHrReviewInsertServlet</servlet-name>
+    <servlet-class>com.hrms.probation.controller.ProbationIndirectHrReviewInsertServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ProbationIndirectHrReviewInsertServlet</servlet-name>
+    <url-pattern>/probationIndirectHrReviewInsert</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ProbationIndirectTopManagementReviewInsertServlet</display-name>
+    <servlet-name>ProbationIndirectTopManagementReviewInsertServlet</servlet-name>
+    <servlet-class>com.hrms.probation.controller.ProbationIndirectTopManagementReviewInsertServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ProbationIndirectTopManagementReviewInsertServlet</servlet-name>
+    <url-pattern>/probationIndirectTopManagementReviewInsert</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ProbationIndirectManagerReviewUpdateServlet</display-name>
+    <servlet-name>ProbationIndirectManagerReviewUpdateServlet</servlet-name>
+    <servlet-class>com.hrms.probation.controller.ProbationIndirectManagerReviewUpdateServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ProbationIndirectManagerReviewUpdateServlet</servlet-name>
+    <url-pattern>/probationIndirectManagerReviewUpdate</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ProbationTerminationStatusInsertServlet</display-name>
+    <servlet-name>ProbationTerminationStatusInsertServlet</servlet-name>
+    <servlet-class>com.hrms.probation.controller.ProbationTerminationStatusInsertServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ProbationTerminationStatusInsertServlet</servlet-name>
+    <url-pattern>/probationTerminationStatusInsert</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ProbationTerminationUpdateMonthScoreServlet</display-name>
+    <servlet-name>ProbationTerminationUpdateMonthScoreServlet</servlet-name>
+    <servlet-class>com.hrms.probation.controller.ProbationTerminationUpdateMonthScoreServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ProbationTerminationUpdateMonthScoreServlet</servlet-name>
+    <url-pattern>/probationTerminationUpdateMonthScore</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ProbationScoreCheckServlet</display-name>
+    <servlet-name>ProbationScoreCheckServlet</servlet-name>
+    <servlet-class>com.hrms.probation.controller.ProbationScoreCheckServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ProbationScoreCheckServlet</servlet-name>
+    <url-pattern>/probationScoreCheck</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ProbationEmailServlet</display-name>
+    <servlet-name>ProbationEmailServlet</servlet-name>
+    <servlet-class>com.hrms.probation.controller.ProbationEmailServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ProbationEmailServlet</servlet-name>
+    <url-pattern>/probationEmail</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>VehicleTrackingDeleteServlet</display-name>
+    <servlet-name>VehicleTrackingDeleteServlet</servlet-name>
+    <servlet-class>com.hrms.vehicletracking.controller.VehicleTrackingDeleteServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>VehicleTrackingDeleteServlet</servlet-name>
+    <url-pattern>/vehicleTrackingDelete</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>TrackingHistoryUpdateServlet</display-name>
+    <servlet-name>TrackingHistoryUpdateServlet</servlet-name>
+    <servlet-class>com.hrms.vehicletracking.controller.TrackingHistoryUpdateServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>TrackingHistoryUpdateServlet</servlet-name>
+    <url-pattern>/trackingHistoryUpdate</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ContinuousImprovementScoreInsertServlet</display-name>
+    <servlet-name>ContinuousImprovementScoreInsertServlet</servlet-name>
+    <servlet-class>com.hrms.kaizen.controller.ContinuousImprovementScoreInsertServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ContinuousImprovementScoreInsertServlet</servlet-name>
+    <url-pattern>/continuousImprovementScoreInsert</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>KaizenManagerResultLockServlet</display-name>
+    <servlet-name>KaizenManagerResultLockServlet</servlet-name>
+    <servlet-class>com.hrms.kaizen.controller.KaizenManagerResultLockServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>KaizenManagerResultLockServlet</servlet-name>
+    <url-pattern>/kaizenManagerResultLock</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>KaizenAuthorityScoreInsertServlet</display-name>
+    <servlet-name>KaizenAuthorityScoreInsertServlet</servlet-name>
+    <servlet-class>com.hrms.kaizen.controller.KaizenAuthorityScoreInsertServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>KaizenAuthorityScoreInsertServlet</servlet-name>
+    <url-pattern>/kaizenAuthorityScoreInsert</url-pattern>
+  </servlet-mapping>
+  <servlet>
     <description></description>
     <display-name>ProblemIndentificationInsertServlet</display-name>
     <servlet-name>ProblemIndentificationInsertServlet</servlet-name>
@@ -3976,6 +4203,16 @@
   <servlet-mapping>
     <servlet-name>ProblemIndentificationInsertServlet</servlet-name>
     <url-pattern>/problemIndentificationInsert</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>KaizenRemoveManagemnetServlet</display-name>
+    <servlet-name>KaizenRemoveManagemnetServlet</servlet-name>
+    <servlet-class>com.hrms.kaizen.controller.KaizenRemoveManagemnetServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>KaizenRemoveManagemnetServlet</servlet-name>
+    <url-pattern>/kaizenRemoveManagemnet</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>
@@ -3989,6 +4226,66 @@
   </servlet-mapping>
   <servlet>
     <description></description>
+    <display-name>VehicleServiceRecordInsertServlet</display-name>
+    <servlet-name>VehicleServiceRecordInsertServlet</servlet-name>
+    <servlet-class>com.hrms.vehicletracking.controller.VehicleServiceRecordInsertServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>VehicleServiceRecordInsertServlet</servlet-name>
+    <url-pattern>/vehicleServiceRecordInsert</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>VehicleServiceRecordDeleteServlet</display-name>
+    <servlet-name>VehicleServiceRecordDeleteServlet</servlet-name>
+    <servlet-class>com.hrms.vehicletracking.controller.VehicleServiceRecordDeleteServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>VehicleServiceRecordDeleteServlet</servlet-name>
+    <url-pattern>/vehicleServiceRecordDelete</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>VehicleServiceRecordUpdateServlet</display-name>
+    <servlet-name>VehicleServiceRecordUpdateServlet</servlet-name>
+    <servlet-class>com.hrms.vehicletracking.controller.VehicleServiceRecordUpdateServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>VehicleServiceRecordUpdateServlet</servlet-name>
+    <url-pattern>/vehicleServiceRecordUpdate</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>GatePassStatusMailUpdateServlet</display-name>
+    <servlet-name>GatePassStatusMailUpdateServlet</servlet-name>
+    <servlet-class>com.hrms.lms.controller.GatePassStatusMailUpdateServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GatePassStatusMailUpdateServlet</servlet-name>
+    <url-pattern>/gatePassStatusMailUpdate</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DiwaliLeaveBalcnceAdjustServlet</display-name>
+    <servlet-name>DiwaliLeaveBalcnceAdjustServlet</servlet-name>
+    <servlet-class>com.hrms.lms.controller.DiwaliLeaveBalcnceAdjustServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DiwaliLeaveBalcnceAdjustServlet</servlet-name>
+    <url-pattern>/diwaliLeaveBalcnceAdjust</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>KaizenDateUpdateServlet</display-name>
+    <servlet-name>KaizenDateUpdateServlet</servlet-name>
+    <servlet-class>com.hrms.kaizen.controller.KaizenDateUpdateServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>KaizenDateUpdateServlet</servlet-name>
+    <url-pattern>/kaizenDateUpdate</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
     <display-name>ProblemIdentificationDeleteServlet</display-name>
     <servlet-name>ProblemIdentificationDeleteServlet</servlet-name>
     <servlet-class>com.hrms.kaizen.controller.ProblemIdentificationDeleteServlet</servlet-class>
@@ -3997,20 +4294,86 @@
     <servlet-name>ProblemIdentificationDeleteServlet</servlet-name>
     <url-pattern>/problemIdentificationDelete</url-pattern>
   </servlet-mapping>
-  
   <servlet>
     <description></description>
-    <display-name>DocumentDataListServlet</display-name>
-    <servlet-name>DocumentDataListServlet</servlet-name>
-    <servlet-class>com.hrms.selfservice.controller.DocumentDataListServlet</servlet-class>
+    <display-name>KaizenAttachmentDeleteServlet</display-name>
+    <servlet-name>KaizenAttachmentDeleteServlet</servlet-name>
+    <servlet-class>com.hrms.kaizen.controller.KaizenAttachmentDeleteServlet</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>DocumentDataListServlet</servlet-name>
-    <url-pattern>/documentDataList</url-pattern>
+    <servlet-name>KaizenAttachmentDeleteServlet</servlet-name>
+    <url-pattern>/kaizenAttachmentDelete</url-pattern>
   </servlet-mapping>
-  
-  <!--  TDS -->
-  
+  <servlet>
+    <description></description>
+    <display-name>MeetingDataServlet</display-name>
+    <servlet-name>MeetingDataServlet</servlet-name>
+    <servlet-class>com.hrms.meetingmanagemnet.controller.MeetingDataServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>MeetingDataServlet</servlet-name>
+    <url-pattern>/meetingData</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>MeetingInsertServlet</display-name>
+    <servlet-name>MeetingInsertServlet</servlet-name>
+    <servlet-class>com.hrms.meetingmanagemnet.controller.MeetingInsertServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>MeetingInsertServlet</servlet-name>
+    <url-pattern>/meetingInsert</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>MeetingTimeScheduleCheckServlet</display-name>
+    <servlet-name>MeetingTimeScheduleCheckServlet</servlet-name>
+    <servlet-class>com.hrms.meetingmanagemnet.controller.MeetingTimeScheduleCheckServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>MeetingTimeScheduleCheckServlet</servlet-name>
+    <url-pattern>/meetingTimeScheduleCheck</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>MeetingDataByIdServlet</display-name>
+    <servlet-name>MeetingDataByIdServlet</servlet-name>
+    <servlet-class>com.hrms.meetingmanagemnet.controller.MeetingDataByIdServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>MeetingDataByIdServlet</servlet-name>
+    <url-pattern>/meetingDataById</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>MeetingDeleteServlet</display-name>
+    <servlet-name>MeetingDeleteServlet</servlet-name>
+    <servlet-class>com.hrms.meetingmanagemnet.controller.MeetingDeleteServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>MeetingDeleteServlet</servlet-name>
+    <url-pattern>/meetingDelete</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>FacilityDetailServlet</display-name>
+    <servlet-name>FacilityDetailServlet</servlet-name>
+    <servlet-class>com.hrms.meetingmanagemnet.controller.FacilityDetailServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>FacilityDetailServlet</servlet-name>
+    <url-pattern>/facilityDetail</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>MeetingUpdateServlet</display-name>
+    <servlet-name>MeetingUpdateServlet</servlet-name>
+    <servlet-class>com.hrms.meetingmanagemnet.controller.MeetingUpdateServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>MeetingUpdateServlet</servlet-name>
+    <url-pattern>/meetingUpdate</url-pattern>
+  </servlet-mapping>
   <servlet>
     <description></description>
     <display-name>TDSInsertServlet</display-name>
@@ -4146,6 +4509,7 @@
     <display-name>TDSSalaryDataInsertServlet</display-name>
     <servlet-name>TDSSalaryDataInsertServlet</servlet-name>
     <servlet-class>com.hrms.tds.controller.TDSSalaryDataInsertServlet</servlet-class>
+<<<<<<< HEAD
   </servlet>
   <servlet-mapping>
     <servlet-name>TDSSalaryDataInsertServlet</servlet-name>
@@ -4178,69 +4542,221 @@
     <display-name>MeetingDataServlet</display-name>
     <servlet-name>MeetingDataServlet</servlet-name>
     <servlet-class>com.hrms.meetingmanagemnet.controller.MeetingDataServlet</servlet-class>
+=======
+>>>>>>> b45d2dde3c859d9854df13431529b0a87ab18fe8
   </servlet>
   <servlet-mapping>
-    <servlet-name>MeetingDataServlet</servlet-name>
-    <url-pattern>/meetingData</url-pattern>
+    <servlet-name>TDSSalaryDataInsertServlet</servlet-name>
+    <url-pattern>/tdsSalaryDataInsert</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>
-    <display-name>MeetingInsertServlet</display-name>
-    <servlet-name>MeetingInsertServlet</servlet-name>
-    <servlet-class>com.hrms.meetingmanagemnet.controller.MeetingInsertServlet</servlet-class>
+    <display-name>DataInsertIntoGateInwardServlet</display-name>
+    <servlet-name>DataInsertIntoGateInwardServlet</servlet-name>
+    <servlet-class>com.hrms.appAuthority.controller.DataInsertIntoGateInwardServlet</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>MeetingInsertServlet</servlet-name>
-    <url-pattern>/meetingInsert</url-pattern>
+    <servlet-name>DataInsertIntoGateInwardServlet</servlet-name>
+    <url-pattern>/dataInsertIntoGateInward</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>
-    <display-name>MeetingTimeScheduleCheckServlet</display-name>
-    <servlet-name>MeetingTimeScheduleCheckServlet</servlet-name>
-    <servlet-class>com.hrms.meetingmanagemnet.controller.MeetingTimeScheduleCheckServlet</servlet-class>
+    <display-name>MeetingMomAddServlet</display-name>
+    <servlet-name>MeetingMomAddServlet</servlet-name>
+    <servlet-class>com.hrms.meetingmanagemnet.controller.MeetingMomAddServlet</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>MeetingTimeScheduleCheckServlet</servlet-name>
-    <url-pattern>/meetingTimeScheduleCheck</url-pattern>
+    <servlet-name>MeetingMomAddServlet</servlet-name>
+    <url-pattern>/meetingMomAdd</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>
-    <display-name>MeetingDataByIdServlet</display-name>
-    <servlet-name>MeetingDataByIdServlet</servlet-name>
-    <servlet-class>com.hrms.meetingmanagemnet.controller.MeetingDataByIdServlet</servlet-class>
+    <display-name>DownloadMeetingAttachmentServlet</display-name>
+    <servlet-name>DownloadMeetingAttachmentServlet</servlet-name>
+    <servlet-class>com.hrms.meetingmanagemnet.controller.DownloadMeetingAttachmentServlet</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>MeetingDataByIdServlet</servlet-name>
-    <url-pattern>/meetingDataById</url-pattern>
+    <servlet-name>DownloadMeetingAttachmentServlet</servlet-name>
+    <url-pattern>/downloadMeetingAttachment</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>
-    <display-name>MeetingDeleteServlet</display-name>
-    <servlet-name>MeetingDeleteServlet</servlet-name>
-    <servlet-class>com.hrms.meetingmanagemnet.controller.MeetingDeleteServlet</servlet-class>
+    <display-name>HrInterviewFeedbackInsertServlet</display-name>
+    <servlet-name>HrInterviewFeedbackInsertServlet</servlet-name>
+    <servlet-class>com.hrms.recruitement.controller.HrInterviewFeedbackInsertServlet</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>MeetingDeleteServlet</servlet-name>
-    <url-pattern>/meetingDelete</url-pattern>
+    <servlet-name>HrInterviewFeedbackInsertServlet</servlet-name>
+    <url-pattern>/hrInterviewFeedbackInsert</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>
-    <display-name>FacilityDetailServlet</display-name>
-    <servlet-name>FacilityDetailServlet</servlet-name>
-    <servlet-class>com.hrms.meetingmanagemnet.controller.FacilityDetailServlet</servlet-class>
+    <display-name>FinalSelectionInsertServlet</display-name>
+    <servlet-name>FinalSelectionInsertServlet</servlet-name>
+    <servlet-class>com.hrms.recruitement.controller.FinalSelectionInsertServlet</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>FacilityDetailServlet</servlet-name>
-    <url-pattern>/facilityDetail</url-pattern>
+    <servlet-name>FinalSelectionInsertServlet</servlet-name>
+    <url-pattern>/finalSelectionInsert</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>
-    <display-name>MeetingUpdateServlet</display-name>
-    <servlet-name>MeetingUpdateServlet</servlet-name>
-    <servlet-class>com.hrms.meetingmanagemnet.controller.MeetingUpdateServlet</servlet-class>
+    <display-name>SuggestedResumeDataInsertServlet</display-name>
+    <servlet-name>SuggestedResumeDataInsertServlet</servlet-name>
+    <servlet-class>com.hrms.recruitement.controller.SuggestedResumeDataInsertServlet</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>MeetingUpdateServlet</servlet-name>
-    <url-pattern>/meetingUpdate</url-pattern>
+    <servlet-name>SuggestedResumeDataInsertServlet</servlet-name>
+    <url-pattern>/suggestedResumeDataInsert</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>GenerateAppointmentLetterServlet</display-name>
+    <servlet-name>GenerateAppointmentLetterServlet</servlet-name>
+    <servlet-class>com.hrms.recruitement.controller.GenerateAppointmentLetterServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GenerateAppointmentLetterServlet</servlet-name>
+    <url-pattern>/generateAppointmentLetter</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>updatedateServlet</display-name>
+    <servlet-name>updatedateServlet</servlet-name>
+    <servlet-class>com.hrms.recruitement.controller.updatedateServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>updatedateServlet</servlet-name>
+    <url-pattern>/updatedate</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>Resumedatainsert1Servlet</display-name>
+    <servlet-name>Resumedatainsert1Servlet</servlet-name>
+    <servlet-class>com.hrms.recruitement.controller.Resumedatainsert1Servlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Resumedatainsert1Servlet</servlet-name>
+    <url-pattern>/resumeDataInsert1</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>resumealldatainsertServlet</display-name>
+    <servlet-name>resumealldatainsertServlet</servlet-name>
+    <servlet-class>com.hrms.recruitement.controller.resumealldatainsertServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>resumealldatainsertServlet</servlet-name>
+    <url-pattern>/resumealldatainsert</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DailyCallmultiInsertServlet</display-name>
+    <servlet-name>DailyCallmultiInsertServlet</servlet-name>
+    <servlet-class>com.hrms.recruitement.controller.DailyCallmultiInsertServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DailyCallmultiInsertServlet</servlet-name>
+    <url-pattern>/DailyCallmultiInsert</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>CarDocumentInsertServlet</display-name>
+    <servlet-name>CarDocumentInsertServlet</servlet-name>
+    <servlet-class>com.hrms.vehicletracking.controller.CarDocumentInsertServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CarDocumentInsertServlet</servlet-name>
+    <url-pattern>/carDocumentInsert</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>VehicleDocumentInsertServlet</display-name>
+    <servlet-name>VehicleDocumentInsertServlet</servlet-name>
+    <servlet-class>com.hrms.vehicletracking.controller.VehicleDocumentInsertServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>VehicleDocumentInsertServlet</servlet-name>
+    <url-pattern>/vehicleDocumentInsert</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>probationOpenInfopage</display-name>
+    <servlet-name>probationOpenInfopage</servlet-name>
+    <servlet-class>com.hrms.probation.controller.ProbationOpenInfopageServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>probationOpenInfopage</servlet-name>
+    <url-pattern>/probationOpenInfopage</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>probationOpenInfopageInsert</display-name>
+    <servlet-name>probationOpenInfopageInsert</servlet-name>
+    <servlet-class>com.hrms.probation.controller.ProbationOpenInfopageInsertServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>probationOpenInfopageInsert</servlet-name>
+    <url-pattern>/probationOpenInfopageInsert</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>VehicleDocumentListServlet</display-name>
+    <servlet-name>VehicleDocumentListServlet</servlet-name>
+    <servlet-class>com.hrms.vehicletracking.controller.VehicleDocumentListServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>VehicleDocumentListServlet</servlet-name>
+    <url-pattern>/vehicleDocumentList</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>VehicleDocumentAttachmentDeleteServlet</display-name>
+    <servlet-name>VehicleDocumentAttachmentDeleteServlet</servlet-name>
+    <servlet-class>com.hrms.vehicletracking.controller.VehicleDocumentAttachmentDeleteServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>VehicleDocumentAttachmentDeleteServlet</servlet-name>
+    <url-pattern>/vehicleDocumentAttachmentDelete</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>VehicleDocumentPolicyDeleteServlet</display-name>
+    <servlet-name>VehicleDocumentPolicyDeleteServlet</servlet-name>
+    <servlet-class>com.hrms.vehicletracking.controller.VehicleDocumentPolicyDeleteServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>VehicleDocumentPolicyDeleteServlet</servlet-name>
+    <url-pattern>/vehicleDocumentPolicyDelete</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>VehicleEmailServlet</display-name>
+    <servlet-name>VehicleEmailServlet</servlet-name>
+    <servlet-class>com.hrms.vehicletracking.controller.VehicleEmailServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>VehicleEmailServlet</servlet-name>
+    <url-pattern>/vehicleEmail</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>CarDocumentUpdateServlet</display-name>
+    <servlet-name>CarDocumentUpdateServlet</servlet-name>
+    <servlet-class>com.hrms.vehicletracking.controller.CarDocumentUpdateServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CarDocumentUpdateServlet</servlet-name>
+    <url-pattern>/carDocumentUpdate</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>MultileaveapprovedServlet</display-name>
+    <servlet-name>MultileaveapprovedServlet</servlet-name>
+    <servlet-class>com.hrms.lms.controller.MultileaveapprovedServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>MultileaveapprovedServlet</servlet-name>
+    <url-pattern>/Multileaveapproved</url-pattern>
   </servlet-mapping>
 </web-app>

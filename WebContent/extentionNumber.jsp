@@ -50,20 +50,20 @@
     <!-- Horizontal navigation-->
     <div class="app-content container center-layout mt-2">
       <div class="content-wrapper">
-        <!-- <div class="content-header row">
-          <div class="content-header-left col-md-6 col-xs-12">
-            <h2 class="content-header-title mb-0">CUG LIST</h2>
-            <p></p>
-          </div>
-        </div> -->
         <div class="content-body">
-		<div class="col-xl-12 col-lg-12">
+        <section id="horizontal-form-layouts">
+		<div class="row">
+          <div class="col-xs-12">
 			<div class="card">
 				<div class="card-header">
-					<h4 class="card-title">Extention Number</h4>
-				</div>
-				<div class="card-body">
-					<div class="card-block">
+                    			<div class="card box-shadow-0" data-appear="appear">
+					        		<div class="card-header card-inverse" style="background-color: #90A4AE;padding: 0.5rem 0rem 1rem 0rem;height: 50px;">
+					            		<div class="col-sm-6">
+				               				<h4 class="card-title" id="horz-layout-basic">Extension No.</h4>
+				                		</div>
+				            		</div>
+				<div class="card-body collapse in">
+	  <div class="card-block border-bottom-blue-grey" style="border-left: 2px solid #607D8B;border-right: 2px solid #607D8B;">
 						<ul class="nav nav-tabs nav-linetriangle">
 							<li class="nav-item">
 							<a class="nav-link active" id="baseIcon-tab31" data-toggle="tab" aria-controls="tabIcon31" href="#tabIcon31" aria-expanded="true"><i class="ficon icon-ios-telephone"></i> E - 30</a>
@@ -85,8 +85,6 @@
 						
 						<div class="tab-content px-1 pt-1">
 							<div role="tabpanel" class="tab-pane active" id="tabIcon31" aria-expanded="true" aria-labelledby="baseIcon-tab31">
-								<div class="card-body collapse in">
-			                    <div class="card-block card-dashboard">
 			                        <table class="table table-striped table-bordered comma-decimal-place">
 			                            <thead>
 	                                        <tr bgcolor="#E5E7E9">
@@ -120,8 +118,6 @@
 	                                        </tr>
 			                            </tfoot>
 			                        </table>
-			                    </div>
-			                </div>
 							</div>
 							<div class="tab-pane" id="tabIcon32" aria-labelledby="baseIcon-tab32">
 								<div class="card-body collapse in">
@@ -278,16 +274,18 @@
 	                                        </tr>
 			                            </tfoot>
 			                        </table>
+			                        </div>
 			                    </div>
 			                </div>
 							</div>
 						</div>
-					</div>
+				</div>
+				</div>
 				</div>
 			</div>
 		</div>
-		
-		
+		</div>
+		</section>
 	</div>
 <!-- Vertical Tabs end -->
         </div>

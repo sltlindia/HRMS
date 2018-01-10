@@ -113,6 +113,7 @@
 </head>
 <%
 	int EMPCODE = 0;
+
 	String SELECTCOMPANYCODE = null;
 	String LEAVETYPE = null;
 	AllListDAO allListDAO = new AllListDAO();

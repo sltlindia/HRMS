@@ -1,6 +1,8 @@
 package com.hrms.vehicletracking.controller;
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -13,6 +15,8 @@ import com.hrms.vehicletracking.bean.VehicleBean;
 import com.hrms.vehicletracking.bean.VehicleTrackingBean;
 import com.hrms.vehicletracking.bean.VehicleTypeBean;
 import com.hrms.vehicletracking.dao.AllInsertVtsDAO;
+import com.hrms.vehicletracking.dao.AllListVtsDAO;
+import com.hrms.vehicletracking.dao.AllUpdateVtsDAO;
 
 /**
  * Servlet implementation class TrackingHistoryInsertServlet
@@ -46,7 +50,7 @@ public class TrackingHistoryInsertServlet extends HttpServlet {
 		System.out.println("amount:"+amount);
 		double average = Double.parseDouble(request.getParameter("average"));
 		System.out.println("average:"+average);
-		
+		String attachment = "-";
 
 		VehicleBean vehicleBean = new VehicleBean();
 		vehicleBean.setVehicle_master_id(vehicle_id);
@@ -54,7 +58,16 @@ public class TrackingHistoryInsertServlet extends HttpServlet {
 		DriverBean driverBean = new DriverBean();
 		driverBean.setDriver_id(driver_id);
 		
-		VehicleTrackingBean vehicleTrackingBean = new VehicleTrackingBean(start_reading, end_reading, kilometer, ltr, amount, average, date1, vehicleBean , driverBean);
+		AllListVtsDAO allListVtsDAO3 = new AllListVtsDAO();
+		VehicleTrackingBean vehicleTrackingBean1  = allListVtsDAO3.getListOfVehiclesTrackingEndReadingZeroById(vehicle_id);
+		if(vehicleTrackingBean1 != null){
+			AllUpdateVtsDAO allUpdateVtsDAO = new AllUpdateVtsDAO();
+			double km = end_reading - vehicleTrackingBean1.getStart_reading();
+			double avg = km/vehicleTrackingBean1.getLitre();
+			boolean result = allUpdateVtsDAO.endReadingUpdate(vehicleTrackingBean1.getVehicle_tracking_id(),end_reading,km,avg);
+		}
+		
+		VehicleTrackingBean vehicleTrackingBean = new VehicleTrackingBean(end_reading,0, 0, ltr, amount, 0, date1, vehicleBean , driverBean,attachment);
 		AllInsertVtsDAO allInsertVtsDAO = new AllInsertVtsDAO();
 		boolean result = allInsertVtsDAO.vehicleTrackingInsert(vehicleTrackingBean);
 

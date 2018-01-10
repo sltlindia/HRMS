@@ -18,6 +18,7 @@ import com.hrms.probation.bean.ProbationAssessmentM2Bean;
 import com.hrms.probation.bean.ProbationAssessmentManagerBean;
 import com.hrms.probation.bean.ProbationAssessmentTerminationBean;
 import com.hrms.probation.bean.ProbationExtendBean;
+import com.hrms.probation.bean.ProbationOpenInfopageBean;
 import com.hrms.probation.bean.ProbationTopManagementApprovalBean;
 
 //Author Name :- Ripal Soni
@@ -594,7 +595,7 @@ public class AllListProbationDAO {
 			tx = session.getTransaction();
 			tx.begin();
 			listOfscore = session
-					.createQuery("FROM EmployeeBean where under_manager_id = "+manager_id+"  and  manager_id != 99")
+					.createQuery("FROM EmployeeBean where under_manager_id = "+manager_id+"  and  manager_id != 99 and (joining_date > '2017-10-31')")
 					.list();
 			tx.commit();
 		} catch (Exception e) {
@@ -618,7 +619,7 @@ public class AllListProbationDAO {
 			tx = session.getTransaction();
 			tx.begin();
 			listOfscore = session
-					.createQuery("FROM EmployeeBean where roleBean.role_authority in ('D1','D2','D3','D4') and employeeStatusBean = 1")
+					.createQuery("FROM  where roleBean.role_id in ('2','3','9') and employeeStatusBean = 1")
 					.list();
 			tx.commit();
 		} catch (Exception e) {
@@ -642,7 +643,7 @@ public class AllListProbationDAO {
 			tx = session.getTransaction();
 			tx.begin();
 			listOfscore = session
-					.createQuery("FROM EmployeeBean where under_manager_id = "+manager_id+"  and employee_status_id = 2 and companyListBean.company_list_id != 8")
+					.createQuery("FROM EmployeeBean where under_manager_id = "+manager_id+"  and employee_status_id = 2 and companyListBean.company_list_id != 8 and (joining_date > '2017-10-31')")
 					.list();
 			tx.commit();
 		} catch (Exception e) {
@@ -666,7 +667,7 @@ public class AllListProbationDAO {
 			tx = session.getTransaction();
 			tx.begin();
 			listOfscore = session
-					.createQuery("FROM EmployeeBean where under_manager_id = "+manager_id+"")
+					.createQuery("FROM EmployeeBean where under_manager_id = "+manager_id+" and (joining_date > '2017-10-31')")
 					.list();
 			tx.commit();
 		} catch (Exception e) {
@@ -1112,6 +1113,76 @@ public class AllListProbationDAO {
 		return listOfscore;
 	}
 	
+	
+	//List Method for getting All data from probation_assessment_manager_tbl by employee_id
+		public List<ProbationAssessmentM2Bean> getListOfWarningEmployee(int emp_id) {
+			List<ProbationAssessmentM2Bean> listOfscore = new ArrayList<ProbationAssessmentM2Bean>();
+			Session session = HibernateUtil.openSession();
+			Transaction tx = null;
+			try {
+				tx = session.getTransaction();
+				tx.begin();
+				listOfscore = session
+						.createQuery("FROM ProbationAssessmentM2Bean pm2 where not exists(FROM ProbationAssessmentManagerBean pmb where pm2.employeeBean  = pmb.employeeBean) and pm2.employeeBean = "+emp_id+" and warning_letter = 'warningYes' group by yearBean,monthBean")
+						.list();
+				tx.commit();
+			} catch (Exception e) {
+				if (tx != null) {
+					tx.rollback();
+				}
+				e.printStackTrace();
+			} finally {
+				session.close();
+			}
+			return listOfscore;
+		}
+		
+		//List Method for getting All data from probation_assessment_manager_tbl by employee_id
+				public List<ProbationAssessmentM2Bean> getListOfWarningEmployeeAll() {
+					List<ProbationAssessmentM2Bean> listOfscore = new ArrayList<ProbationAssessmentM2Bean>();
+					Session session = HibernateUtil.openSession();
+					Transaction tx = null;
+					try {
+						tx = session.getTransaction();
+						tx.begin();
+						listOfscore = session
+								.createQuery("FROM ProbationAssessmentM2Bean pm2 where not exists(FROM ProbationAssessmentManagerBean pmb where pm2.employeeBean  = pmb.employeeBean) and warning_letter = 'warningYes' group by yearBean,monthBean")
+								.list();
+						tx.commit();
+					} catch (Exception e) {
+						if (tx != null) {
+							tx.rollback();
+						}
+						e.printStackTrace();
+					} finally {
+						session.close();
+					}
+					return listOfscore;
+				}
+	
+	//List Method for getting All data from probation_assessment_manager_tbl by employee_id all approval;
+	public List<ProbationAssessmentManagerBean> getListOfConfirmation(int emp_id) {
+		List<ProbationAssessmentManagerBean> listOfscore = new ArrayList<ProbationAssessmentManagerBean>();
+		Session session = HibernateUtil.openSession();
+		Transaction tx = null;
+		try {
+			tx = session.getTransaction();
+			tx.begin();
+			listOfscore = session
+					.createQuery("FROM ProbationAssessmentManagerBean where employeeBean = "+emp_id+" and manager_approval = 'approved' and hr_approval = 'approved' and (top_management_approval = 'approved' or top_management_approval = 'hrapproved') and show_view = '0'")
+					.list();
+			tx.commit();
+		} catch (Exception e) {
+			if (tx != null) {
+				tx.rollback();
+			}
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return listOfscore;
+	}
+	
 	//List Method for getting All data from probation_assessment_manager_tbl by employee_id manager_approval=rejected;
 	public List<ProbationAssessmentManagerBean> getListOfScoreByEmpIdRejected(int emp_id) {
 		List<ProbationAssessmentManagerBean> listOfscore = new ArrayList<ProbationAssessmentManagerBean>();
@@ -1460,6 +1531,30 @@ public class AllListProbationDAO {
     return listOfAppraisal;
 		
 }
+	
+	//List Method for getting All data from probation_topmanagement_approval_tbl by probation_manager_id
+		public List<ProbationAssessmentTerminationBean> getListOfAllTerminatedEmployees(){
+		 List<ProbationAssessmentTerminationBean> listOfAppraisal = new ArrayList<ProbationAssessmentTerminationBean>();
+	    Session session = HibernateUtil.openSession();
+	    Transaction tx = null;        
+	    try {
+	        tx = session.getTransaction();
+	        tx.begin();
+	        String hql = "from ProbationAssessmentTerminationBean";
+			 Query query = session.createQuery(hql);
+			 listOfAppraisal = query.list();
+	        tx.commit();
+	    } catch (Exception e) {
+	        if (tx != null) {
+	            tx.rollback();
+	        }
+	        e.printStackTrace();
+	    } finally {
+	        session.close();
+	    }
+	    return listOfAppraisal;
+			
+	}
 	public List<ProbationAssessmentTerminationBean> getListOfTerminatedEmployee(int employee_master_id){
 		 List<ProbationAssessmentTerminationBean> listOfAppraisal = new ArrayList<ProbationAssessmentTerminationBean>();
 	    Session session = HibernateUtil.openSession();
@@ -1725,4 +1820,56 @@ public class AllListProbationDAO {
 		    return listOfAppraisal;
 				
 		}
+		
+		//List Method for getting All data from probation_assessment_manager_tbl
+		public List<ProbationAssessmentManagerBean> getListOfAllReviewsCompleted() {
+			List<ProbationAssessmentManagerBean> listOfscore = new ArrayList<ProbationAssessmentManagerBean>();
+			Session session = HibernateUtil.openSession();
+			Transaction tx = null;
+			
+			 
+			try {
+				tx = session.getTransaction();
+				tx.begin();
+				listOfscore = session
+						.createQuery("FROM ProbationAssessmentManagerBean where to_be_confirmed = 'confirmedYes')")
+						.list();
+				tx.commit();
+			} catch (Exception e) {
+				if (tx != null) {
+					tx.rollback();
+				}
+				e.printStackTrace();
+			} finally {
+				session.close();
+			}
+			return listOfscore;
+
+		}
+		
+		//List Method for getting All data from probation_assessment_manager_tbl
+				public List<ProbationOpenInfopageBean> getProbationOpenInfoPage(int manager_id,int month_id,int year) {
+					List<ProbationOpenInfopageBean> listOfscore = new ArrayList<ProbationOpenInfopageBean>();
+					Session session = HibernateUtil.openSession();
+					Transaction tx = null;
+					
+					 
+					try {
+						tx = session.getTransaction();
+						tx.begin();
+						listOfscore = session
+								.createQuery("FROM ProbationOpenInfopageBean where managerBean = "+manager_id+" and monthBean = "+month_id+" and year = "+year+" ")
+								.list();
+						tx.commit();
+					} catch (Exception e) {
+						if (tx != null) {
+							tx.rollback();
+						}
+						e.printStackTrace();
+					} finally {
+						session.close();
+					}
+					return listOfscore;
+
+				}
 }

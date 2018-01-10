@@ -1,0 +1,1182 @@
+<!-- Author Name :- Ripal Soni
+For Getting data from user
+Jsp for getting data from manager and their Approval
+for indirect employees  -->
+<%@page import="java.util.ArrayList"%>
+<%@page
+	import="com.hrms.probation.bean.ProbationTopManagementApprovalBean"%>
+<%@page import="com.hrms.probation.bean.ProbationAssessmentM2Bean"%>
+<%@page import="com.hrms.probation.bean.AttributeM2Bean"%>
+<%@page import="com.hrms.probation.bean.ProbationExtendBean"%>
+<%@page import="com.hrms.probation.bean.ProbationAssessmentManagerBean"%>
+<%@page import="com.hrms.probation.bean.ProbationAssessmentM1Bean"%>
+<%@page import="java.util.Calendar"%>
+<%@page import="com.hrms.probation.bean.AttributeBean"%>
+<%@page import="com.hrms.probation.dao.AllListProbationDAO"%>
+<%@page import="java.util.List"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+<%@page import="com.hrms.pms.bean.CurrencyBean"%>
+<%@page import="com.hrms.pms.bean.PriorityBean"%>
+<%@page import="com.hrms.pms.bean.ClientMasterBean"%>
+<%@page import="java.text.ParseException"%>
+<%@page import="java.util.Date"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="com.hrms.pms.bean.ManagerBean"%>
+<%@page import="com.hrms.pms.dao.AllListDAO"%>
+<%@page import="com.hrms.pms.bean.YearBean"%>
+<%@page import="com.hrms.pms.bean.MonthBean"%>
+<%@page import="com.hrms.pms.bean.CriteriaPerBean"%>
+<%@page import="com.hrms.pms.dao.CriteriaPerDAO"%>
+<%@page import="com.hrms.pms.bean.ProjectMasterBean"%>
+<%@page import="com.hrms.pms.bean.GradeMasterBean"%>
+<%@page import="com.hrms.pms.bean.SoftskillBean"%>
+<%@page import="com.hrms.pms.bean.TechnicalBean"%>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<%@include file="header.jsp"%>
+<script type="text/javascript">
+	function refresh(id) {
+
+		var employee_master_id = document.getElementById("employee_master_id").value;
+		window.location
+				.replace("probationListByIdIndirect.jsp?employee_master_id="
+						+ employee_master_id);
+
+	}
+
+	function hideMessage() {
+		//document.getElementById("panelbody").style.display="none"; 
+		$('#panelbody').fadeOut('slow');
+	}
+
+	function startTimer() {
+		var tim = window.setTimeout("hideMessage()", 5000); // 5000 milliseconds = 5 seconds
+	}
+</script>
+<script type="text/javascript">
+	function check(id) {
+		if (id == "confirmedNo") {
+			if (document.getElementById("extendedNo").checked == true) {
+				document.getElementById("terminatedYes").checked = true;
+			}
+			if (document.getElementById("terminatedNo").checked == true) {
+				document.getElementById("extendedYes").checked = true;
+			}
+		} else if (id == "extendedNo") {
+			if (document.getElementById("terminatedNo").checked == true) {
+				document.getElementById("confirmedYes").checked = true;
+			}
+			if (document.getElementById("confirmedNo").checked == true) {
+				document.getElementById("terminatedYes").checked = true;
+			}
+		} else if (id == "terminatedNo") {
+			if (document.getElementById("extendedNo").checked == true) {
+				document.getElementById("confirmedYes").checked = true;
+			}
+			if (document.getElementById("confirmedNo").checked == true) {
+				document.getElementById("extendedYes").checked = true;
+			}
+		}
+
+		if (id == "confirmedYes") {
+			document.getElementById("extendedNo").checked = true;
+			document.getElementById("terminatedNo").checked = true;
+		} else if (id == "extendedYes") {
+			document.getElementById("confirmedNo").checked = true;
+			document.getElementById("terminatedNo").checked = true;
+		} else if (id == "terminatedYes") {
+			document.getElementById("extendedNo").checked = true;
+			document.getElementById("confirmedNo").checked = true;
+		}
+
+	}
+</script>
+<script>
+	/* $(document).ready(function() {
+		$("#period_extend").hide();
+
+		$('#extendedYes').on('change', function() {
+			if (this.value == 'extendedYes') {
+				$("#period_extend").show();
+			}
+
+		});
+		$('#extendedNo').on('change', function() {
+			if (this.value == 'extendedNo') {
+				$("#period_extend").hide();
+			}
+		});
+	}); */
+</script>
+<title>SLTL HRMS</title>
+</head>
+<%-- <%HttpSession session1 = request.getSession(); 
+EmployeeBean probation = (EmployeeBean)session1.getAttribute("probationSession");
+if(probation != null){ 
+%> --%>
+<body onload="startTimer()">
+	<div id="wrapper">
+		<div id="page-wrapper">
+			<div class="row">
+				<div class="col-lg-12">
+					<h2 class="page-header">Probation Assessment</h2>
+				</div>
+				<!-- /.col-lg-12 -->
+			</div>
+			<%
+				if (request.getAttribute("Score") != null) {
+			%>
+			<div class="panel-body" id="panelbody">
+				<div class="alert alert-dismissable alert-success ">
+					<button type="button" class="close" data-dismiss="alert"
+						aria-hidden="true">&times;</button>
+					${Score}
+				</div>
+			</div>
+			<%
+				}
+			%>
+			<%
+				int manager_id = user.getManagerBean().getManager_id();
+			int under_manager_id1 = Integer.parseInt(user.getUnder_manager_id());
+				int emp_id = 0;
+
+				if (request.getParameter("employee_master_id") != null) {
+					emp_id = Integer.parseInt(request.getParameter("employee_master_id"));
+				} else {
+					emp_id = (Integer) request.getAttribute("employee_master_id");
+				}
+			%>
+			<form action="probationInfo.jsp" method="get">
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="panel panel-primary">
+							<div class="panel-heading">
+								<b><font size="3px">Confirmation Assessment Form</font></b>
+							</div>
+							<div class="panel-body">
+								<div class="table-responsive">
+									<table class="table table-hover">
+										<tbody>
+											<%
+												LoginDAO loginDAO = new LoginDAO();
+												EmployeeBean employeeBean = loginDAO.getInfoById(emp_id);
+												String authority = employeeBean.getRoleBean().getRole_authority();
+											%>
+											<tr>
+												<td><label>Employee Name :</label></td>
+												<td colspan="2"><font color="blue"><%=employeeBean.getFirstname() + " " + employeeBean.getLastname()%></font></td>
+												<td><label>Employee Code :</label></td>
+												<td colspan="2"><font color="blue"><%=employeeBean.getEmployee_code()%></font></td>
+												<td><label>Reporting Manager Name :</label></td>
+												<%
+													LoginDAO loginDAO2 = new LoginDAO();
+													int id = Integer.parseInt(employeeBean.getUnder_manager_id());
+													EmployeeBean employeeBean2 = loginDAO2.getEmailId(id);
+												%>
+												<td><font color="blue"><%=employeeBean2.getFirstname() + " " + employeeBean2.getLastname()%></font></td>
+											</tr>
+												<%
+													String date = employeeBean.getJoining_date();
+													/* DateFormat inputDF  = new SimpleDateFormat("mm/dd/yy"); */
+													Date date1 = new SimpleDateFormat("yyyy-MM-dd").parse(date);
+													String sd = null;
+													try {
+
+														SimpleDateFormat formater = new SimpleDateFormat("yyyy-MM-dd");
+														Date result = formater.parse(date);
+														SimpleDateFormat AppDateFormat = new SimpleDateFormat("dd-MMM-yyyy");
+														sd = AppDateFormat.format(result);
+
+													} catch (ParseException e1) {
+														e1.printStackTrace();
+													}
+
+													Calendar cal = Calendar.getInstance();
+													cal.setTime(date1);
+													int month_id = cal.get(Calendar.MONTH);
+													int day = cal.get(Calendar.DAY_OF_MONTH);
+													int year_id = cal.get(Calendar.YEAR);
+													month_id = month_id + 1;
+													if (day >= 15) {
+														month_id = month_id + 1;
+													}
+												%>
+												<tr>
+												<td><label>Date Of Joining:</label></td>
+												<td colspan="4"><font color="blue"><%=sd%></font></td>
+												<td><label>Designation :</label></td>
+												<td colspan="3"><font color="blue"><%=employeeBean.getRoleBean().getRole_type()%></font></td>
+											</tr>
+											<tr>
+											<td><label>Department :</label></td>
+											<td colspan="4"><font color="blue"><%=employeeBean.getDepartmentBean().getDepartment_name()%></font></td>
+											<td><label>Sub Department :</label></td>
+											<td colspan="3"><font color="blue"><%=employeeBean.getSub_department()%></font></td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</form>
+			<%
+				AllListProbationDAO allListProbationDAO = new AllListProbationDAO();
+			%>
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="panel panel-primary">
+							<div class="panel-heading">
+									<b><font size="3px">Please rate on scale of 1 to 5</font></b>
+									<h5>5 = Excellent , 4 = Exceeds Expectations , 3 = Fully
+										Achieves Expectations , 2 = Met some but not all expectations
+										, 1 = Unsatisfactory.</h5>
+								</div>
+
+						<%
+							int probation_assessment_manager_id = 0;
+							List<ProbationAssessmentManagerBean> listOfExtended1 = allListProbationDAO.getListOfScoreByEmpId(emp_id);
+							for (ProbationAssessmentManagerBean pm : listOfExtended1) {
+								probation_assessment_manager_id = pm.getProbation_assessment_manager_id();
+							}
+
+							if (listOfExtended1.size() == 0) {
+						%>
+						<form action="probationIndirectManagerReviewInsert" method="get"
+							name="">
+							<%
+								} else {
+							%>
+							<form action="managerReviewAfterExtendUpdate" method="get"
+								name="">
+
+								<%
+									}
+								%>
+								<input type="hidden" name="probation_assessment_manager_id"
+									value="<%=probation_assessment_manager_id%>"> <input
+									type="hidden" name="employee_master_id" value="<%=emp_id%>">
+								<input type="hidden" name="transfer" value="manager1">
+								<div class="panel-body">
+									<div class="table-responsive">
+
+										<table class="table table-striped table-bordered">
+											<thead>
+												<tr>
+													<th>Sr. No.</th>
+													<th>Attributes</th>
+													<%
+														int to_be_extended = 0;
+														List<MonthBean> listOfMonth = allListProbationDAO.getListOfMonth();
+														List<ProbationAssessmentManagerBean> listOfExtended2 = allListProbationDAO.getListOfScoreByEmpId(emp_id);
+														List<ProbationAssessmentM2Bean> listOfExtendedMonths = allListProbationDAO
+																.getListOfScoreByEmpIdGroupbyMonthId(emp_id);
+														for (ProbationAssessmentManagerBean li : listOfExtended2) {
+															int probationmanager_id = li.getProbation_assessment_manager_id();
+
+															List<ProbationExtendBean> listForExtend = allListProbationDAO.getProbationExtend(probationmanager_id);
+															for (ProbationExtendBean p : listForExtend) {
+																String extend_period = p.getExtended_period();
+																to_be_extended = to_be_extended + Integer.parseInt(extend_period);
+
+															}
+														}
+														int size = month_id + 5 + to_be_extended;
+
+														if (size <= 12) {
+															for (int i = month_id; i <= size; i++) {
+																MonthBean m = allListProbationDAO.getInfoById(i);
+																String month = m.getMonth_name();
+													%>
+
+													<th><%=month%>, <%=year_id%></th>
+													<%
+														}
+													%>
+
+													<%
+														} else {
+
+															for (int j = month_id; j <= 12; j++) {
+																MonthBean monthBean = allListProbationDAO.getInfoById(j);
+													%>
+
+													<th><%=monthBean.getMonth_name()%>, <%=year_id%></th>
+													<%
+														}
+
+															int size1 = size - 12;
+															for (int i = 1; i <= size1; i++) {
+																MonthBean m = allListProbationDAO.getInfoById(i);
+																String month = m.getMonth_name();
+													%>
+
+													<th><%=month%>, <%=year_id + 1%></th>
+													<%
+														}
+													%>
+
+													<%
+														}
+													%>
+												</tr>
+											</thead>
+											
+											
+											<%List<AttributeM2Bean> listOfAttribute = null;
+if (authority.equals("W1") || authority.equals("W2") || authority.equals("W3")
+																			|| authority.equals("T1") || authority.equals("T2") || authority.equals("T3")
+																			|| authority.equals("A1") || authority.equals("A2") || authority.equals("A3")
+																			|| authority.equals("A4")) {
+
+																		 listOfAttribute = allListProbationDAO.getListOfAttributeM2Direct();
+}else {
+																	
+														 listOfAttribute = allListProbationDAO.getListOfAttributeM2();
+
+}
+												for (int i = 0; i < listOfAttribute.size(); i++) {
+
+													AttributeM2Bean a = listOfAttribute.get(i);
+													int que_id = a.getProbation_attribute_M2_id();
+											%>
+											<tbody>
+												<tr>
+
+													<td><input type="hidden" name="attribute_id"
+														id="attribute_id<%=i%>"
+														value="<%=a.getProbation_attribute_M2_id()%>"><%=i + 1%></td>
+													<td><%=a.getProbation_attribute_M2_question()%></td>
+													<%
+														AllListProbationDAO allListProbationDAO1 = new AllListProbationDAO();
+															List<MonthBean> listOfMonth1 = allListProbationDAO.getListOfMonth();
+															int size2 = month_id + 5 + to_be_extended;
+
+															if (size2 <= 12) {
+
+																int printYearId = year_id;
+																YearBean yearBean = allListProbationDAO.yearCheck(printYearId);
+																int insert_year_id = yearBean.getYear_id();
+
+																for (int k = month_id; k <= size2; k++) {
+																	MonthBean m = allListProbationDAO.getInfoById(k);
+																	String month = m.getMonth_name();
+																	int monthId = m.getMonth_id();
+																	int employee_master_id = emp_id; 
+
+																	ProbationAssessmentM2Bean pa = allListProbationDAO.testForM2(employee_master_id, monthId,
+																			que_id, insert_year_id);
+													%>
+
+													<td style="width: 100px;"><input type="hidden"
+														name="month_id" value="<%=m.getMonth_id()%>"> <%
+ 	if (pa != null) {
+ %>
+														<input type="text" class="form-control" name="month_score"
+														id="month_score<%=i%><%=k%>"
+														value="<%=pa.getAttribute_m2_score()%>"
+														placeholder="Enter Score" onchange="handleChange(this.id)"
+														disabled="disabled"> <%
+ 	} else {
+ %> <input type="text"
+														class="form-control" name="month_score"
+														id="month_score<%=i%><%=k%>" value="0" disabled="disabled"
+														placeholder="Enter Score" onchange="handleChange(this.id)">
+														<%
+															}
+														%></td>
+													<%
+														}
+															} else {
+
+																for (int l = month_id; l <= 12; l++) {
+
+																	int printYearId = year_id;
+																	YearBean yearBean = allListProbationDAO.yearCheck(printYearId);
+																	int insert_year_id = yearBean.getYear_id();
+
+																	MonthBean monthBean = allListProbationDAO.getInfoById(l);
+																	 int employee_master_id = emp_id;
+																	int monthId = monthBean.getMonth_id();
+																	ProbationAssessmentM2Bean pa1 = allListProbationDAO.testForM2(employee_master_id, monthId,
+																			que_id, insert_year_id);
+
+																	if (pa1 != null) {
+													%>
+													<td style="width: 100px;"><input type="hidden"
+														name="month_id" value="<%=monthBean.getMonth_id()%>"><input
+														type="text" class="form-control" name="month_score"
+														id="month_score<%=i%><%=l%>"
+														value="<%=pa1.getAttribute_m2_score()%>"
+														disabled="disabled" placeholder="Enter Score"
+														onchange="handleChange(this.id)"> <%
+ 	} else {
+ %>
+													<td style="width: 100px;"><input type="hidden"
+														name="month_id" value="<%=monthBean.getMonth_id()%>"><input
+														type="text" class="form-control" name="month_score"
+														id="month_score<%=i%><%=l%>" value="0" disabled="disabled"
+														placeholder="Enter Score" onchange="handleChange(this.id)">
+														<%
+															}
+														%></td>
+													<%
+														}
+
+																int size3 = size2 - 12;
+																for (int k = 1; k <= size3; k++) {
+
+																	int printYearId = year_id + 1;
+																	YearBean yearBean = allListProbationDAO.yearCheck(printYearId);
+																	int insert_year_id = yearBean.getYear_id();
+
+																	MonthBean m = allListProbationDAO.getInfoById(k);
+																	String month = m.getMonth_name();
+																	int monthId = m.getMonth_id();
+																	 int employee_master_id = emp_id; 
+																	ProbationAssessmentM2Bean pa2 = allListProbationDAO.testForM2(employee_master_id, monthId,
+																			que_id, insert_year_id);
+																	if (pa2 != null) {
+													%>
+													<td style="width: 100px;"><input type="hidden"
+														name="month_id" value="<%=m.getMonth_id()%>"><input
+														type="text" class="form-control" name="month_score"
+														id="month_score<%=i%><%=k%>"
+														value="<%=pa2.getAttribute_m2_score()%>"
+														disabled="disabled" placeholder="Enter Score"
+														onchange="handleChange(this.id)"> <%
+ 	} else {
+ %>
+													<td style="width: 100px;"><input type="hidden"
+														name="month_id" value="<%=m.getMonth_id()%>"><input
+														type="text" class="form-control" name="month_score"
+														id="month_score<%=i%><%=k%>" value="0"
+														disabled="disabled" placeholder="Enter Score"
+														onchange="handleChange(this.id)"> <%
+ 	}
+ %></td>
+													<%
+														}
+													%>
+
+													<%
+														}
+													%>
+													<%
+														}
+												int size1 = month_id + 5 + to_be_extended;
+													%>
+
+												</tr>
+
+											<%-- 	<tr>
+													<td colspan="2">Continue for next month(Yes/No)</td>
+													<%
+														int size1 = month_id + 5 + to_be_extended;
+
+														if (size1 <= 12) {
+
+															int printYearId = year_id;
+															YearBean yearBean = allListProbationDAO.yearCheck(printYearId);
+															int insert_year_id = yearBean.getYear_id();
+
+															String nextMonth = "-";
+															for (int i = month_id; i <= size1; i++) {
+																MonthBean m = allListProbationDAO.getInfoById(i);
+																int month = m.getMonth_id();
+
+																ProbationAssessmentM2Bean probationAssessmentM2Bean = allListProbationDAO
+																		.getValueForExtraParmForM2(emp_id, month, insert_year_id);
+																nextMonth = probationAssessmentM2Bean.getContinue_for_next_month();
+
+																if (nextMonth.equalsIgnoreCase("continueYes")) {
+													%>
+													<td>Yes</td>
+													<%
+														} else {
+													%>
+													<td>No</td>
+													<%
+														}
+													%>
+													<%
+														}
+													%>
+
+													<%
+														} else {
+															String nextMonth = "-";
+															for (int j = month_id; j <= 12; j++) {
+
+																int printYearId = year_id;
+																YearBean yearBean = allListProbationDAO.yearCheck(printYearId);
+																int insert_year_id = yearBean.getYear_id();
+																MonthBean monthBean = allListProbationDAO.getInfoById(j);
+
+																int month = monthBean.getMonth_id();
+
+																ProbationAssessmentM2Bean probationAssessmentM2Bean = allListProbationDAO
+																		.getValueForExtraParmForM2(emp_id, month, insert_year_id);
+																nextMonth = probationAssessmentM2Bean.getContinue_for_next_month();
+																if (nextMonth.equalsIgnoreCase("continueYes")) {
+													%>
+													<td>Yes</td>
+													<%
+														} else {
+													%>
+													<td>No</td>
+													<%
+														}
+													%>
+													<%
+														}
+
+															int size11 = size - 12;
+															for (int i = 1; i <= size11; i++) {
+
+																int printYearId = year_id + 1;
+																YearBean yearBean = allListProbationDAO.yearCheck(printYearId);
+																int insert_year_id = yearBean.getYear_id();
+																MonthBean m = allListProbationDAO.getInfoById(i);
+																String month = m.getMonth_name();
+																int monthId = m.getMonth_id();
+																ProbationAssessmentM2Bean probationAssessmentM2Bean = allListProbationDAO
+																		.getValueForExtraParmForM2(emp_id, monthId, insert_year_id);
+																nextMonth = probationAssessmentM2Bean.getContinue_for_next_month();
+																if (nextMonth.equalsIgnoreCase("continueYes")) {
+													%>
+													<td>Yes</td>
+													<%
+														} else {
+													%>
+													<td>No</td>
+													<%
+														}
+													%>
+													<%
+														}
+														}
+													%>
+
+												</tr>
+												<tr>
+													<td colspan="2">Issue warning letter(Yes/No)</td>
+													<%
+														if (size1 <= 12) {
+
+															int printYearId = year_id;
+															YearBean yearBean = allListProbationDAO.yearCheck(printYearId);
+															int insert_year_id = yearBean.getYear_id();
+
+															String warningLetter = "-";
+															for (int i = month_id; i <= size1; i++) {
+																MonthBean m = allListProbationDAO.getInfoById(i);
+																int month = m.getMonth_id();
+
+																ProbationAssessmentM2Bean probationAssessmentM2Bean = allListProbationDAO
+																		.getValueForExtraParmForM2(emp_id, month, insert_year_id);
+																warningLetter = probationAssessmentM2Bean.getWarning_letter();
+																if (warningLetter.equalsIgnoreCase("warningYes")) {
+													%>
+													<td>Yes</td>
+													<%
+														} else {
+													%>
+													<td>No</td>
+													<%
+														}
+													%>
+													<%
+														}
+													%>
+
+													<%
+														} else {
+															String warningLetter = "-";
+															for (int j = month_id; j <= 12; j++) {
+
+																int printYearId = year_id;
+																YearBean yearBean = allListProbationDAO.yearCheck(printYearId);
+																int insert_year_id = yearBean.getYear_id();
+
+																MonthBean monthBean = allListProbationDAO.getInfoById(j);
+
+																int month = monthBean.getMonth_id();
+
+																ProbationAssessmentM2Bean probationAssessmentM2Bean = allListProbationDAO
+																		.getValueForExtraParmForM2(emp_id, month, insert_year_id);
+																warningLetter = probationAssessmentM2Bean.getWarning_letter();
+																if (warningLetter.equalsIgnoreCase("warningYes")) {
+													%>
+													<td>Yes</td>
+													<%
+														} else {
+													%>
+													<td>No</td>
+													<%
+														}
+													%>
+													<%
+														}
+
+															int size11 = size - 12;
+															for (int i = 1; i <= size11; i++) {
+
+																int printYearId = year_id + 1;
+																YearBean yearBean = allListProbationDAO.yearCheck(printYearId);
+																int insert_year_id = yearBean.getYear_id();
+
+																MonthBean m = allListProbationDAO.getInfoById(i);
+																String month = m.getMonth_name();
+																int monthId = m.getMonth_id();
+																ProbationAssessmentM2Bean probationAssessmentM2Bean = allListProbationDAO
+																		.getValueForExtraParmForM2(emp_id, monthId, insert_year_id);
+																warningLetter = probationAssessmentM2Bean.getWarning_letter();
+																if (warningLetter.equalsIgnoreCase("warningYes")) {
+													%>
+													<td>Yes</td>
+													<%
+														} else {
+													%>
+													<td>No</td>
+													<%
+														}
+													%>
+													<%
+														}
+														}
+													%>
+												</tr>
+												<tr>
+													<td colspan="2">Issue termination letter(Yes/No)</td>
+													<%
+														if (size1 <= 12) {
+															String terminatoionLetter = "-";
+															for (int i = month_id; i <= size1; i++) {
+																int printYearId = year_id;
+																YearBean yearBean = allListProbationDAO.yearCheck(printYearId);
+																int insert_year_id = yearBean.getYear_id();
+
+																MonthBean m = allListProbationDAO.getInfoById(i);
+																int month = m.getMonth_id();
+
+																ProbationAssessmentM2Bean probationAssessmentM2Bean = allListProbationDAO
+																		.getValueForExtraParmForM2(emp_id, month, insert_year_id);
+																terminatoionLetter = probationAssessmentM2Bean.getTermination_letter();
+																if (terminatoionLetter.equalsIgnoreCase("terminationYes")) {
+													%>
+													<td>Yes</td>
+													<%
+														} else {
+													%>
+													<td>No</td>
+													<%
+														}
+													%>
+													<%
+														}
+													%>
+
+													<%
+														} else {
+															String terminatoionLetter = "-";
+															for (int j = month_id; j <= 12; j++) {
+																MonthBean monthBean = allListProbationDAO.getInfoById(j);
+																int printYearId = year_id;
+																YearBean yearBean = allListProbationDAO.yearCheck(printYearId);
+																int insert_year_id = yearBean.getYear_id();
+																int month = monthBean.getMonth_id();
+
+																ProbationAssessmentM2Bean probationAssessmentM2Bean = allListProbationDAO
+																		.getValueForExtraParmForM2(emp_id, month, insert_year_id);
+																terminatoionLetter = probationAssessmentM2Bean.getTermination_letter();
+
+																if (terminatoionLetter.equalsIgnoreCase("terminationYes")) {
+													%>
+													<td>Yes</td>
+													<%
+														} else {
+													%>
+													<td>No</td>
+													<%
+														}
+													%>
+													<%
+														}
+
+															int size11 = size - 12;
+															for (int i = 1; i <= size11; i++) {
+																int printYearId = year_id + 1;
+																YearBean yearBean = allListProbationDAO.yearCheck(printYearId);
+																int insert_year_id = yearBean.getYear_id();
+																MonthBean m = allListProbationDAO.getInfoById(i);
+																String month = m.getMonth_name();
+																int monthId = m.getMonth_id();
+																ProbationAssessmentM2Bean probationAssessmentM2Bean = allListProbationDAO
+																		.getValueForExtraParmForM2(emp_id, monthId, insert_year_id);
+																terminatoionLetter = probationAssessmentM2Bean.getTermination_letter();
+																if (terminatoionLetter.equalsIgnoreCase("terminationYes")) {
+													%>
+													<td>Yes</td>
+													<%
+														} else {
+													%>
+													<td>No</td>
+													<%
+														}
+													%>
+													<%
+														}
+														}
+													%>
+												</tr> --%>
+												
+												<tr>
+													<%
+														double average = 0;
+														double ave = 0;
+														double avg_per_attribue = 0;
+														List<Double> listOfSeperateArray = new ArrayList();
+														List<Double> listOfSeperateArrayPerAttrbute = new ArrayList();
+														List<Double> listOfSumByMonth = new ArrayList();
+														List<Double> listOfTwiseMonthAverage = new ArrayList();
+														List<String> listOfComment = new ArrayList();
+														List<Double> listOfFinalPercentage = new ArrayList();
+														String final_result = null;
+													%>
+													<td colspan="2">Total</td>
+													<%
+														if (size1 <= 12) {
+															for (int i = month_id; i <= size1; i++) {
+																MonthBean m = allListProbationDAO.getInfoById(i);
+																int month = m.getMonth_id();
+																int printYearId = year_id;
+																YearBean yearBean = allListProbationDAO.yearCheck(printYearId);
+																int insert_year_id = yearBean.getYear_id();
+																double sum = allListProbationDAO.getSumByMonthForM2(emp_id, month, insert_year_id);
+																average = average + sum;
+																avg_per_attribue = (sum*100)/(listOfAttribute.size()*5);
+																listOfSeperateArray.add(sum/listOfAttribute.size());
+																listOfSeperateArrayPerAttrbute.add(avg_per_attribue);
+																listOfSumByMonth.add(sum);
+													%>
+
+													<th><%=sum%></th>
+													<%
+														}
+													%>
+
+													<%
+														} else {
+
+															for (int j = month_id; j <= 12; j++) {
+																MonthBean monthBean = allListProbationDAO.getInfoById(j);
+																int printYearId = year_id;
+																YearBean yearBean = allListProbationDAO.yearCheck(printYearId);
+																int insert_year_id = yearBean.getYear_id();
+																int month = monthBean.getMonth_id();
+
+																double sum = allListProbationDAO.getSumByMonthForM2(emp_id, month, insert_year_id);
+																average = average + sum;
+																avg_per_attribue = (sum*100)/(listOfAttribute.size() * 5);
+																listOfSeperateArray.add(sum/listOfAttribute.size());
+																listOfSeperateArrayPerAttrbute.add(avg_per_attribue);
+																listOfSumByMonth.add(sum);
+													%>
+
+													<th><%=sum%></th>
+													<%
+														}
+
+															int size11 = size - 12;
+															for (int i = 1; i <= size11; i++) {
+																int printYearId = year_id + 1;
+																YearBean yearBean = allListProbationDAO.yearCheck(printYearId);
+																int insert_year_id = yearBean.getYear_id();
+																MonthBean m = allListProbationDAO.getInfoById(i);
+																String month = m.getMonth_name();
+																int monthId = m.getMonth_id();
+																double sum = allListProbationDAO.getSumByMonthForM2(emp_id, monthId, insert_year_id);
+																average = average + sum;
+																avg_per_attribue = (sum*100)/(listOfAttribute.size() *5);
+																listOfSeperateArray.add(sum/listOfAttribute.size());
+																listOfSeperateArrayPerAttrbute.add(avg_per_attribue);
+																listOfSumByMonth.add(sum);
+													%>
+
+													<th><%=sum%></th>
+													<%
+														}
+													%>
+
+													<%
+														}
+													%>
+												</tr>
+												<tr>
+													<td colspan="2">Total Percentage</td>
+													<%for(Double d: listOfSeperateArrayPerAttrbute){%>
+													<th><%=String.format("%.2f", d)%>%</th>
+													<%} %>
+												</tr>
+												
+												<tr>
+													<td colspan="2">Average Score Per Attribute</td>
+													<%for(Double d: listOfSeperateArray){%>
+													<th><%=String.format("%.2f", d)%></th>
+													<%} %>
+												</tr>
+												
+												<tr>
+													<td colspan="2">Average of Assessment Period</td>
+													<%
+													double twiseMonthSum = 0;
+													String displayOfTwiseMonth = null;
+													
+													for(int i =0;i<listOfSumByMonth.size();i++){
+														
+														ProbationAssessmentM2Bean p = listOfExtendedMonths.get(i);
+														
+														Double d = listOfSumByMonth.get(i);
+														twiseMonthSum = twiseMonthSum + d;
+														if(displayOfTwiseMonth == null){
+															displayOfTwiseMonth = d.toString();
+														}else{
+															displayOfTwiseMonth = displayOfTwiseMonth +"+"+d;
+														}
+														if((i+1) % 2 == 0){
+															
+															
+													%>
+													<th colspan="2"><%=displayOfTwiseMonth%>=<%=twiseMonthSum%>/2 = <%=String.format("%.2f", twiseMonthSum/2)%> 
+													(<%=String.format("%.2f", ((twiseMonthSum/2) * 100 ) / (listOfAttribute.size() * 5))%>%)
+													
+													<%listOfTwiseMonthAverage.add(twiseMonthSum/2);
+													listOfFinalPercentage.add(((twiseMonthSum/2)*100)/(listOfAttribute.size() * 5));
+													%>
+													
+													<%twiseMonthSum = 0;displayOfTwiseMonth=null;%></th>
+													<%} %>
+													<%} %>
+												</tr>
+												
+												<tr>
+													<td colspan="2">Cumulative Average of Assessment Period</td>
+													<%
+													double sumOfAverage = 0;
+													String twiseMonthAverageDisplay = null;
+													for(int i = 0;i<listOfTwiseMonthAverage.size();i++){
+														Double d = listOfTwiseMonthAverage.get(i);
+													 	sumOfAverage = sumOfAverage + d;
+													 	if(twiseMonthAverageDisplay == null){
+													 		twiseMonthAverageDisplay = d.toString();
+													 	}else{
+													 		twiseMonthAverageDisplay = twiseMonthAverageDisplay +"+"+d;
+													 	}
+													 	if(i!=0){
+													%>
+													<th colspan="2"><%=twiseMonthAverageDisplay%>=<%=sumOfAverage%>/<%=i+1%> = <%=String.format("%.2f", sumOfAverage/(i+1))%>
+													(<%=String.format("%.2f", ((sumOfAverage/(i+1)) * 100 ) / (listOfAttribute.size() * 5))%>%)
+													</th>
+													<%} else{%>
+													<th colspan="2">NA</th>
+													<%} %>
+													<%} %>
+												</tr>
+												
+												<tr>
+												<td colspan="2">Comments If Any</td>
+													<%
+														for(int i =0;i<listOfExtendedMonths.size();i++){
+														
+														ProbationAssessmentM2Bean p = listOfExtendedMonths.get(i);
+														if((i+1)%2 == 0){
+													%>
+													<td colspan="2" height ="80px" style="white-space: pre-wrap;"><%=p.getComment_monthly()%></td>
+													<%} }%>
+												</tr>
+													
+												<tr>
+												<td colspan="2">Action As Per Key</td>
+													<%
+													for(int i = 0;i<listOfFinalPercentage.size();i++){
+														Double d = listOfFinalPercentage.get(i);
+														String result = null;
+														
+														if(i==0){
+															if(d<35){
+																result = "Terminate";
+															}else if(d>=35 && d<40){
+																result = "Warn";
+															}else if(d>=40){
+																result = "Retain";
+															}
+														}else if(i==1){
+															if(d<40){
+																result = "Terminate";
+															}else if(d>=40 && d<45){
+																result = "Warn";
+															}else if(d>=45){
+																result = "Retain";
+															}
+														}else if(i==2){
+															
+															if(d<50){
+																result = "Terminate";
+															}else if(d>=50 && d<55){
+																result = "Warn";
+															}else if(d>=55){
+																result = "Retain";
+															}
+															final_result = result;
+														}else {
+															if(d<50){
+																result = "Terminate";
+															}else if(d>=50 && d<55){
+																result = "Warn";
+															}else if(d>=55){
+																result = "Retain";
+															}
+															final_result = result;
+														}
+													%>
+													<td colspan="2"><%=result%></td>
+													<%} %>
+													
+													<%-- <%if((listOfExtendedMonths.size() + 1)%2 == 0 && listOfExtendedMonths.size() >=1 ) {%>
+													
+													<td colspan="2" class="descsion"></td>
+													<%} %> --%>
+												</tr>	
+												
+												<%
+													ave = average / (6 + to_be_extended);
+													String w = String.format("%.2f", ave);
+													double overall = ((ave / 50) * 100);
+													String overall_performance = String.format("%.2f", overall);
+												%>
+													<%-- <tr>
+														<td colspan="<%=8 + to_be_extended%>"></td>
+													</tr> --%>
+													<%-- <tr>
+														<td colspan="<%=8 + to_be_extended%>"><center>
+																<b>Part B (To be filled up)</b>
+															</center></td>
+													</tr>
+												<tr>
+													<td colspan="2">Average</td>
+													<td colspan="<%=to_be_extended + 6%>"><%=w%></td>
+												</tr>
+												<tr>
+													<td colspan="2">Overall Performance(Average Score/50 *
+														100)</td>
+													<td colspan="<%=to_be_extended + 6%>"><%=overall_performance%>
+														%</td>
+												</tr>
+ --%>
+												<input type="hidden" value="<%=w%>" name="average">
+												<input type="hidden"
+													value="<%=user.getEmployee_master_id()%>"
+													name="reviewing_manager_id">
+											</tbody>
+
+										</table>
+									</div>
+									<div class="col-lg-6">
+										<!-- <div class="panel-heading">
+											<h5>Recommendations of the HOD / Manager (Please mention
+												Yes or No)</h5>
+										</div> -->
+										<div class="table-responsive">
+											<table class="table table-bordered">
+												<tr class="hideFile">
+													<td>A. To be Confirmed</td>
+													<td><div class="form-group">
+													<%if(final_result.equals("Retain")){%>
+															<label class="radio-inline"> <input type="radio"
+																name="confirmed" id="confirmedYes" value="confirmedYes"
+																onclick="check(this.id)" checked="checked">Yes
+															</label>
+															<label class="radio-inline"> <input type="radio"
+																name="confirmed" id="confirmedNo"
+																onclick="check(this.id)" value="confirmedNo">No
+															</label>
+													<%}else{ %>
+													<label class="radio-inline"> <input type="radio"
+																name="confirmed" id="confirmedYes" value="confirmedYes"
+																onclick="check(this.id)">Yes
+															</label>
+															 <label class="radio-inline"> <input type="radio"
+																name="confirmed" id="confirmedNo"
+																onclick="check(this.id)" value="confirmedNo" checked="checked">No
+															</label>
+													<%} %>
+														</div></td>
+												</tr>
+												<%if(to_be_extended != 0){ %>
+												<input type="hidden" name="extended" id="extendedNo" value="extendedNo">
+												
+												<%}else{ %>
+												<tr class="hideFile">
+													<td>B. To be Extended</td>
+													<td><div class="form-group">
+													<%if(final_result.equals("Warn")){%>
+															<label class="radio-inline" id="hide"> <input
+																type="radio" name="extended" id="extendedYes"
+																value="extendedYes" checked="checked" onclick="check(this.id)">Yes
+															</label>
+															<label class="radio-inline" id="hide"> <input
+																type="radio" name="extended" id="extendedNo"
+																onclick="check(this.id)" value="extendedNo"
+																>No
+															</label>
+														<%}else{ %>	
+														<label class="radio-inline" id="hide"> <input
+																type="radio" name="extended" id="extendedYes"
+																value="extendedYes" onclick="check(this.id)">Yes
+															</label>
+														 <label class="radio-inline" id="hide"> <input
+																type="radio" name="extended" id="extendedNo"
+																onclick="check(this.id)" value="extendedNo"
+																checked="checked">No
+															</label>
+															<%} %>
+														</div></td>
+												</tr>
+<%} %>
+												<tr class="hideFile">
+													<td>C. To be Terminated</td>
+													<td><div class="form-group">
+														<%if(final_result.equals("Terminate")){%>
+															<label class="radio-inline"> <input type="radio"
+																name="terminated" id="terminatedYes"
+																value="terminatedYes" checked="checked" onclick="check(this.id)">Yes
+															</label>
+															 <label class="radio-inline"> <input type="radio"
+																name="terminated" id="terminatedNo"
+																onclick="check(this.id)" value="terminatedNo"
+																>No
+															</label>
+															<%}else{ %>
+																<label class="radio-inline"> <input type="radio"
+																name="terminated" id="terminatedYes"
+																value="terminatedYes" onclick="check(this.id)">Yes
+															</label>
+															 <label class="radio-inline"> <input type="radio"
+																name="terminated" id="terminatedNo"
+																onclick="check(this.id)" value="terminatedNo"
+																checked="checked">No
+															</label>
+															<%} %>
+														</div></td>
+												</tr>
+											</table>
+										</div>
+									</div>
+									<div class="col-lg-12">
+											<h5><b>Reporting Manager Remarks:</b></h5>
+									<textarea rows="3" cols="90" class="form-control"
+											name="remarks1" placeholder="Enter Your Remarks:" required></textarea>
+									</div>
+									<%if(final_result.equalsIgnoreCase("Warn")){ %>
+									<div class="col-lg-12">
+										<div class="form-group" id="period_extend">
+											<label>Choose periods to be extended</label> <label
+												class="radio-inline"> <input type="radio"
+												name="extended_period" id="2months" value="2" checked>2
+												months
+											</label> <label class="radio-inline"> <input type="radio"
+												name="extended_period" id="4months" value="4">4
+												months
+											</label>
+										</div>
+									</div>
+									<%} %>
+								</div>
+								<%
+								EmployeeBean employeeBean1 = loginDAO.getEmailId(under_manager_id1);
+								
+								String role_authority = employeeBean1.getRoleBean().getRole_authority();
+								if(role_authority.equalsIgnoreCase("D1") || role_authority.equalsIgnoreCase("D2") || role_authority.equalsIgnoreCase("D3") || role_authority.equalsIgnoreCase("D4")){
+									%>
+									<div class="col-lg-12">
+										<div class="form-group">
+											<label style="color: red">&nbsp;&nbsp;If you want to
+												proceed ahead for top Management Approval kindly click below
+												radio button</label>&nbsp;&nbsp; <label class="radio-inline"><input
+												type="radio" name="confirmation_top_management_approval"
+												id="top_management_approvalYes" value="yes">Yes </label> <label
+												class="radio-inline"><input type="radio"
+												name="confirmation_top_management_approval"
+												id="top_management_approvalNo" value="no" checked>No
+											</label>
+										</div>
+									</div>
+									<%} %>
+								<center>
+									<input type="submit" value="Send to Manager"
+										class="btn btn-primary">
+								</center>
+								<br>
+					</div>
+
+					</form>
+					<br>
+				</div>
+			</div>
+		</div>
+
+	</div>
+	<script type='text/javascript' src='/HRMS/dwr/interface/AjaxDataDAO.js'></script>
+	<script type='text/javascript' src='/HRMS/dwr/engine.js'></script>
+	<script type='text/javascript' src='/HRMS/dwr/util.js'></script>
+	<script type="text/javascript">
+		
+	</script>
+
+	<script src="bower_components/jquery/dist/jquery.min.js"></script>
+
+	<!-- Bootstrap Core JavaScript -->
+	<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+	<!-- Metis Menu Plugin JavaScript -->
+	<script src="bower_components/metisMenu/dist/metisMenu.min.js"></script>
+
+	<!-- DataTables JavaScript -->
+	<script
+		src="bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
+	<script
+		src="bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js"></script>
+
+	<!-- Custom Theme JavaScript -->
+	<script src="dist/js/sb-admin-2.js"></script>
+
+	<!-- Page-Level Demo Scripts - Tables - Use for reference -->
+	<script>
+		$(document).ready(function() {
+			$(".hideFile").hide();
+			$('#dataTables-example').DataTable({
+				responsive : true
+			});
+		});
+	</script>
+	<script>
+		// tooltip demo
+		$('.tooltip-demo').tooltip({
+			selector : "[data-toggle=tooltip]",
+			container : "body"
+		})
+
+		// popover demo
+		$("[data-toggle=popover]").popover()
+	</script>
+	<%-- 	<%}else{%>
+	response.sendRedirect("probationInfo.jsp");
+	<%}%> --%>
+</body>
+</html>

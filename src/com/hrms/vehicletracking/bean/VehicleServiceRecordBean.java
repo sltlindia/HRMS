@@ -17,6 +17,7 @@ public class VehicleServiceRecordBean implements Serializable{
 	private String record_date;
 	private String items_change;
 	private double amount;
+	private int kilometer;
 	
 	private String free_service;
 	
@@ -25,7 +26,7 @@ public class VehicleServiceRecordBean implements Serializable{
 			
 
 	public VehicleServiceRecordBean(int vehicle_service_record_id, String record_date, String items_change,
-			double amount, String free_service, DriverBean driverBean,VehicleBean vehicleBean) {
+			double amount, String free_service, DriverBean driverBean,VehicleBean vehicleBean,int kilometer) {
 		super();
 		this.vehicle_service_record_id = vehicle_service_record_id;
 		this.record_date = record_date;
@@ -34,11 +35,12 @@ public class VehicleServiceRecordBean implements Serializable{
 		this.free_service = free_service;
 		this.driverBean = driverBean;
 		this.vehicleBean = vehicleBean;
+		this.kilometer = kilometer;
 	}
 	
 
 	public VehicleServiceRecordBean(String record_date, String items_change,
-			double amount, String free_service, DriverBean driverBean,VehicleBean vehicleBean) {
+			double amount, String free_service, DriverBean driverBean,VehicleBean vehicleBean,int kilometer) {
 		super();
 		this.record_date = record_date;
 		this.items_change = items_change;
@@ -46,6 +48,7 @@ public class VehicleServiceRecordBean implements Serializable{
 		this.free_service = free_service;
 		this.driverBean = driverBean;
 		this.vehicleBean = vehicleBean;
+		this.kilometer = kilometer;
 	}
 
 	
@@ -121,6 +124,16 @@ public class VehicleServiceRecordBean implements Serializable{
 
 	public void setVehicleBean(VehicleBean vehicleBean) {
 		this.vehicleBean = vehicleBean;
+	}
+
+	@Column(name="kilometer")
+	public int getKilometer() {
+		return kilometer;
+	}
+
+
+	public void setKilometer(int kilometer) {
+		this.kilometer = kilometer;
 	}
 
 	

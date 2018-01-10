@@ -1,3 +1,7 @@
+<%@page import="com.hrms.kaizen.bean.KaizenManagementApprovalBean"%>
+<%@page import="com.hrms.kaizen.bean.KaizenManagerBean"%>
+<%@page import="com.hrms.kaizen.bean.KaizenBean"%>
+<%@page import="com.hrms.kaizen.dao.AllKaizenListDAO"%>
 <%@page import="com.hrms.exitformality.bean.HandOverApprovalBean"%>
 <%@page import="com.hrms.exitformality.bean.ExitInterviewEmployeeBean"%>
 <%@page import="com.hrms.exitformality.bean.DetailsOfHandOverFormBean"%>
@@ -761,7 +765,27 @@
 							}
 						}
 					 }		
-					 int exitTotal = listOfExitFormalityFormByEmpId.size() + hrListOfexitfromality + secondHandOver + hrHandOver + announcement_count;
+					 
+					 int kaizenCount = 0 , allKaizen = 0;
+					 AllKaizenListDAO kaizenListDAO = new AllKaizenListDAO();
+						List<KaizenBean> listOfKaizen = kaizenListDAO.getListOfKaizenByEmployeerIdByStatus(emp_id);
+						 kaizenCount = listOfKaizen.size();
+						
+						for(KaizenBean kaizenBean : listOfKaizen){
+							int kaizen_id = kaizenBean.getKaizen_id();
+						}
+						
+						List<KaizenManagerBean> listofAllKaizen = null;
+						List<KaizenBean> lisOfMainKaizen = null;
+						
+						if(manager_id != 99){
+						listofAllKaizen = kaizenListDAO.getListOfManagerBymanagerIdSubmitted(emp_id);
+						lisOfMainKaizen = kaizenListDAO.getListOfKaizenBymanagerIdSubmitted(manager_id);
+						
+						kaizenCount = listOfKaizen.size();
+						allKaizen = lisOfMainKaizen.size() + listofAllKaizen.size();
+						}
+					 int exitTotal = listOfExitFormalityFormByEmpId.size() + hrListOfexitfromality + secondHandOver + hrHandOver + announcement_count + kaizenCount + allKaizen;
 					 
 					 
 					
@@ -950,6 +974,103 @@
 									<% }}} %>
 									
 									
+									
+									<%
+									EmployeeBean employeeBeanForKaizen = null;
+								for(KaizenBean kaizenBean : listOfKaizen){
+									int kaizen_id = kaizenBean.getKaizen_id();
+									
+									int manager_kaizen_id = kaizenBean.getManager_id();
+									employeeBeanForKaizen = loginDAO.getEmailId(manager_kaizen_id);
+									
+									String managerApproval = employeeBeanForKaizen.getFirstname()+" "+employeeBeanForKaizen.getLastname()+" - "+kaizenBean.getStatus()+"\n";
+									
+									List<KaizenManagerBean> listofAllKaizenById = kaizenListDAO.getListOfManagerByKaizenId(kaizen_id);
+									List<KaizenManagementApprovalBean> listOfKaizenManagement = kaizenListDAO.getListOfManagemnet(kaizen_id);
+									
+									for(KaizenManagerBean kaizenManagerBean : listofAllKaizenById){
+									
+									managerApproval = managerApproval +"\n"+" , "+kaizenManagerBean.getEmployeeBean().getFirstname()+" "+kaizenManagerBean.getEmployeeBean().getLastname()+" - "+kaizenManagerBean.getStatus()+"\n";
+									}
+									
+									for(KaizenManagementApprovalBean kaizenManagemnetApprovalBean : listOfKaizenManagement){
+										
+										managerApproval = managerApproval +"\n"+" , "+kaizenManagemnetApprovalBean.getEmployeeBean().getFirstname()+" "+kaizenManagemnetApprovalBean.getEmployeeBean().getLastname()+" - "+kaizenManagemnetApprovalBean.getManagement_approval_status()+"\n";
+										}
+									
+									%>
+										<a href="kaizenView.jsp?kaizen_id=<%=kaizenBean.getKaizen_id()%>" class="list-group-item"> 
+										<div class="media">
+							                <div class="media-left" style="color: black;"><i class="ficon icon-stack3"></i></div>
+							                    <div class="media-body">
+										<h6 class="media-heading info darken-1">Approval Status of <%=kaizenBean.getKaizen_name()%></h6>
+											<p class="notification-text font-small-3 text-muted">( <%=managerApproval%> )</p>
+										</div>
+										</div>
+									</a>
+								<%}%>
+								
+								<%if(manager_id != 99){
+									for(KaizenBean kaizenBean : listOfKaizen){
+										int kaizen_id = kaizenBean.getKaizen_id();
+										
+										int manager_kaizen_id = kaizenBean.getManager_id();
+										employeeBeanForKaizen = loginDAO.getEmailId(manager_kaizen_id);
+										
+										String managerApproval = employeeBean.getFirstname()+" "+employeeBean.getLastname()+" - "+kaizenBean.getStatus()+"\n";
+										
+										List<KaizenManagerBean> listofAllKaizenById = kaizenListDAO.getListOfManagerByKaizenId(kaizen_id);
+										List<KaizenManagementApprovalBean> listOfKaizenManagement = kaizenListDAO.getListOfManagemnet(kaizen_id);
+										
+										for(KaizenManagerBean kaizenManagerBean : listofAllKaizenById){
+										
+										managerApproval = managerApproval +"\n"+" , "+kaizenManagerBean.getEmployeeBean().getFirstname()+" "+kaizenManagerBean.getEmployeeBean().getLastname()+" - "+kaizenManagerBean.getStatus()+"\n";
+										}
+										
+										for(KaizenManagementApprovalBean kaizenManagemnetApprovalBean : listOfKaizenManagement){
+											
+											managerApproval = managerApproval +"\n"+" , "+kaizenManagemnetApprovalBean.getEmployeeBean().getFirstname()+" "+kaizenManagemnetApprovalBean.getEmployeeBean().getLastname()+" - "+kaizenManagemnetApprovalBean.getManagement_approval_status()+"\n";
+											}
+										
+										%>
+										<a href="kaizenView.jsp?kaizen_id=<%=kaizenBean.getKaizen_id()%>" class="list-group-item"> <i class="fa fa-comment fa-fw"></i>
+											<div class="media">
+							                <div class="media-left" style="color: black;"><i class="ficon icon-stack3"></i></div>
+							                    <div class="media-body">
+													<h6 class="media-heading info darken-1">Approval Status of <%=kaizenBean.getKaizen_name()%></h6>
+													<p class="notification-text font-small-3 text-muted">( <%=managerApproval%> )</p>
+											</div>
+											</div>
+										</a>
+									<%}%>
+									
+										
+									<%for(KaizenBean kaizenBean : lisOfMainKaizen){ %>				
+										<a href="kaizenView.jsp?kaizen_id=<%=kaizenBean.getKaizen_id()%>" class="list-group-item">
+											<div class="media">
+							                <div class="media-left" style="color: black;"><i class="ficon icon-stack3"></i></div>
+							                    <div class="media-body">
+							                    <h6 class="media-heading info darken-1">CI submitted by <%=kaizenBean.getEmployeeBean().getFirstname()+" "+kaizenBean.getEmployeeBean().getLastname()%> </h6>
+													<p class="notification-text font-small-3 text-muted">( from <%=kaizenBean.getEmployeeBean().getDepartmentBean().getDepartment_name()%> Department. Kindly Review this. )</p>
+											</div>
+											</div>
+										</a>
+									<%} %>
+									
+									
+									<%for(KaizenManagerBean kaizenManagerBean : listofAllKaizen){ %>				
+										<a href="kaizenView.jsp?kaizen_id=<%=kaizenManagerBean.getKaizenBean().getKaizen_id()%>" class="list-group-item"> 
+										<div class="media">
+							                <div class="media-left" style="color: black;"><i class="ficon icon-stack3"></i></div>
+							                    <div class="media-body">
+							                    <h6 class="media-heading info darken-1">CI submitted by <%=kaizenManagerBean.getKaizenBean().getEmployeeBean().getFirstname()+" "+kaizenManagerBean.getKaizenBean().getEmployeeBean().getLastname()%> </h6>
+													<p class="notification-text font-small-3 text-muted">( from <%=kaizenManagerBean.getKaizenBean().getEmployeeBean().getDepartmentBean().getDepartment_name()%> Department. Kindly Review this. )</p>
+											</div>
+											</div>
+										</a>
+									<%} 	
+									
+									}%>
 							</li>
 							<li class="dropdown-menu-footer"><a
 								href="javascript:void(0)"

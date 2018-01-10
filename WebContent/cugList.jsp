@@ -37,7 +37,7 @@
     <link rel="stylesheet" type="text/css" href="app-assets/css/core/menu/menu-types/vertical-overlay-menu.min.css">
     <!-- END Page Level CSS-->
     <!-- BEGIN Custom CSS-->
-    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+   <!--  <link rel="stylesheet" type="text/css" href="assets/css/style.css"> -->
     <!-- END Custom CSS-->
     <%@include file="header.jsp"%>
   </head>
@@ -50,45 +50,48 @@
 
     <!-- ////////////////////////////////////////////////////////////////////////////-->
 
-    <div class="app-content container center-layout mt-2">
+   <div class="app-content container center-layout mt-2">
       <div class="content-wrapper">
         <div class="content-body"><!-- DOM - jQuery events table -->
 <!-- File export table -->
-<section id="file-export">
-    <div class="row">
-        <div class="col-xs-12">
-            <div class="card">
-                <div class="card-header">
-                    <h4 class="card-title">CUG List</h4>
-                    <a class="heading-elements-toggle"><i class="icon-ellipsis font-medium-3"></i></a>
-                    <div class="heading-elements">
-                        <ul class="list-inline mb-0">
-                            <li><a data-action="collapse"><i class="icon-m	inus4"></i></a></li>
-                            <li><a data-action="reload"><i class="icon-reload"></i></a></li>
-                        </ul>
-                    </div>
-                </div>
-                
+			<section id="horizontal-form-layouts">
+    			<div class="row">
+        			<div class="col-xs-12">
+            			<div class="card">
+                			<div class="card-header">
+                    			<div class="card box-shadow-0" data-appear="appear">
+					        		<div class="card-header card-inverse" style="background-color: #90A4AE;padding: 0.5rem 0rem 1rem 0rem;height: 50px;">
+					            		<div class="col-sm-6">
+				               				<h4 class="card-title" id="horz-layout-basic">CUG List</h4>
+				                		</div>
+				            		</div>
+         <a class="heading-elements-toggle"><i class="icon-ellipsis font-medium-3"></i></a>
+            <div class="heading-elements">
+               <ul class="list-inline mb-0">
+                   <li><a data-action="collapse"><i class="icon-m	inus4"></i></a></li>
+                      <li><a data-action="reload"><i class="icon-reload"></i></a></li>
+               </ul>
+            </div>
                 
                 <%AllListCoreHrDAO allListCoreHrDAO = new AllListCoreHrDAO();
 				List<CUGBean> listOfCugDetails = allListCoreHrDAO.SPgetListOfCugNo();
 				List<EmployeeBean> listOfCugDetailsFromEmployeeMaster = allListCoreHrDAO.SPgetListOfCugNoFromEmployee();%>
 			
-                <div class="card-body collapse in">
-                    <div class="card-block card-dashboard">
-                        <table class="table table-striped table-bordered file-export">
-                            <thead>
-                                <tr>
-                                	 <th>No.</th>
-                                    <th style="width: 150px;">Employee Name</th>
-                                    <th style="width: 150px;">Designation</th>
-                                    <th>Location</th>
-                                    <th>Email-Id</th>
-                                    <th>Mobile Number</th>
-                                    <th>Zone</th>
-                                </tr>
-                            </thead>
-                            <tbody>
+   <div class="card-body collapse in">
+	  <div class="card-block border-bottom-blue-grey" style="border-left: 2px solid #607D8B;border-right: 2px solid #607D8B;">
+         <table class="table table-striped table-bordered file-export">
+            <thead>
+               <tr>
+                 <th>No.</th>
+                 <th style="width: 150px;">Employee Name</th>
+                 <th style="width: 150px;">Designation</th>
+                 <th>Location</th>
+                 <th>Email-Id</th>
+                 <th>Mobile Number</th>
+                 <th>Zone</th>
+                </tr>
+            </thead>
+   						<tbody>
                             <%int i = 1;
                                     for(EmployeeBean c : listOfCugDetailsFromEmployeeMaster){ 
                                     if(c.getCug_num() != null){
@@ -116,25 +119,16 @@
                                             <td><%=c.getBelongto()%></td>
                                         </tr>
                                         <%} %>
-                            </tbody>
-                            <tfoot>
-                                <tr>
-                                	 <th>No.</th>
-                                    <th style="width: 150px;">Employee Name</th>
-                                    <th style="width: 150px;">Designation</th>
-                                    <th>Location</th>
-                                    <th>Email-Id</th>
-                                    <th>Mobile Number</th>
-                                    <th>Zone</th>
-                                </tr>
-                            </tfoot>
-                        </table>
-                    </div>
+                         </tbody>
+         </table>
+      </div>
+   </div>
+             		  </div>
+            		</div>
+            	  </div>
                 </div>
-            </div>
-        </div>
-    </div>
-</section>
+              </div>
+			</section>
 <!-- File export table -->
 
         </div>

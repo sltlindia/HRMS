@@ -423,4 +423,57 @@ public class AllUpdateProbationDAO {
 			 }	
 			 return true;
 		}
+		
+		//Update method for update of probation extend period using ProbationExtendBean into probation_extend_tbl for updating status
+		//Updation Using ProbationExtendBean by particular probation_assessment_manager_id
+		//Return ProbationExtendBean
+			public boolean updateShowViewAndDate(String date,int show_view,int probation_assessment_manager_id){
+				 Session session = HibernateUtil.openSession();
+				 Transaction tx = null;	
+				 try {
+					 tx = session.getTransaction();
+					 tx.begin();
+					 Query query = session.createQuery("update ProbationAssessmentManagerBean set confirmation_date = :date ,show_view = :sv where probation_assessment_manager_id = :pami");
+					 query.setString("date", date);
+					 query.setInteger("sv", show_view);
+					 query.setInteger("pami", probation_assessment_manager_id);
+					 int result = query.executeUpdate();
+					 System.out.println("result :"+result);
+					 tx.commit();
+				 } catch (Exception e) {
+					 if (tx != null) {
+						 tx.rollback();
+					 }
+					 e.printStackTrace();
+				 } finally {
+					 session.close();
+				 }	
+				 return true;
+			}
+			
+			//Update method for update of probation extend period using ProbationExtendBean into probation_extend_tbl for updating status
+			//Updation Using ProbationExtendBean by particular probation_assessment_manager_id
+			//Return ProbationExtendBean
+				public boolean updateShowView(int show_view,int probation_assessment_manager_id){
+					 Session session = HibernateUtil.openSession();
+					 Transaction tx = null;	
+					 try {
+						 tx = session.getTransaction();
+						 tx.begin();
+						 Query query = session.createQuery("update ProbationAssessmentManagerBean set show_view = :sv where probation_assessment_manager_id = :pami");
+						 query.setInteger("sv", show_view);
+						 query.setInteger("pami", probation_assessment_manager_id);
+						 int result = query.executeUpdate();
+						 System.out.println("result :"+result);
+						 tx.commit();
+					 } catch (Exception e) {
+						 if (tx != null) {
+							 tx.rollback();
+						 }
+						 e.printStackTrace();
+					 } finally {
+						 session.close();
+					 }	
+					 return true;
+				}
 }

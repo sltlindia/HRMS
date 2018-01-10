@@ -207,23 +207,21 @@
 		}
 	%>
 	<div class="app-content container center-layout mt-2">
-		<div class="content-wrapper">
-			<div class="content-body">
-				<section id="horizontal-form-layouts">
-				<div class="card">
-					<div class="card-body collapse in">
-						<div class="card-block">
-							<div class="form-body">
-								<div class="row">
-									<div class="col-lg-12">
-										<h1 class="page-header">
-											<%=s%>
-											Leave / CO / OD List
-										</h1>
-									</div>
-									<!-- /.col-lg-12 -->
-								</div>
-								<br>
+      <div class="content-wrapper">
+        <div class="content-body"><!-- DOM - jQuery events table -->
+<!-- File export table -->
+			<section id="file-export">
+    			<div class="row">
+        			<div class="col-xs-12">
+            			<div class="card">
+                			<div class="card-header">
+                    			<div class="card box-shadow-0" data-appear="appear">
+					        		<div class="card-header card-inverse" style="background-color: #90A4AE;padding: 0.5rem 0rem 1rem 0rem;height: 50px;">
+					            		<div class="col-sm-6">
+				               				<h4 class="card-title" id="horz-layout-basic">Pending Leave / CO / OD List</h4>
+				                		</div>
+				            		</div>
+	
 								<%
 									if (request.getAttribute("success") != null) {
 								%>
@@ -251,6 +249,8 @@
 								<%
 									}
 								%>
+			<div class="card-body collapse in">
+	  			<div class="card-block border-bottom-blue-grey" style="border-left: 2px solid #607D8B;border-right: 2px solid #607D8B;">
 								<div class="row">
 									<div class="col-lg-12">
 										<div class="panel panel-primary">
@@ -413,19 +413,37 @@
 										</div>
 									</div>
 								</div>
+								</div>
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
+<div class="app-content container center-layout mt-2">
+      <div class="content-wrapper">
+        <div class="content-body"><!-- DOM - jQuery events table -->
+<!-- File export table -->
+			<section id="file-export">
+    			<div class="row">
+        			<div class="col-xs-12">
+            			<div class="card">
+                			<div class="card-header">
+                    			<div class="card box-shadow-0" data-appear="appear">
+					        		<div class="card-header card-inverse" style="background-color: #90A4AE;padding: 0.5rem 0rem 1rem 0rem;height: 50px;">
+					            		<div class="col-sm-6">
+				               				<h4 class="card-title" id="horz-layout-basic">Pending Leave/CO/OD Status</h4>
+				                		</div>
+				            		</div>
 
-
-				<div class="col-xl-12 col-lg-12">
+				<%-- <div class="col-xl-12 col-lg-12">
 					<div class="card">
 						<div class="card-header">
 							<h4 class="card-title"><%=s%>
 								Leave/CO/OD Status
 							</h4>
-						</div>
+						</div> --%>
+	 	<div class="card-body collapse in">
+	  		<div class="card-block border-bottom-blue-grey" style="border-left: 2px solid #607D8B;border-right: 2px solid #607D8B;">
 						<div class="card-body">
 							<div class="card-block">
 								<ul class="nav nav-tabs">
@@ -921,6 +939,19 @@
 										</div>
 									</div>
 								</div>
+								</div>
+								</div>
+								</div>
+								</div>
+								</div>
+								</div>
+							</div>
+							</div>
+							</div>
+							</section>
+							</div>
+							</div>
+							</div>
 							</div>
 				</section>
 			</div>

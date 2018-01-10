@@ -79,6 +79,8 @@ public class ProbationM2InsertServlet extends HttpServlet {
 				AttributeM2Bean attributeM2Bean = new AttributeM2Bean();
 				MonthBean monthBean = new MonthBean();
 				YearBean yearBean = new YearBean();
+				AllListProbationDAO allListProbationDAO = new AllListProbationDAO();
+				
 				try {
 					items = upload.parseRequest(request);// Parse Request
 					for (int i = 0; i < items.size(); i++) {
@@ -93,6 +95,37 @@ public class ProbationM2InsertServlet extends HttpServlet {
 								System.out.println("employee_master_id:" + employee_master_id);
 								
 								employeeBean.setEmployee_master_id(employee_master_id);
+							}
+							
+							long maxValue = 0;
+							EmployeeBean employeeBeanEmployee = loginDAO.getInfoById(employee_master_id);
+							String authority = employeeBeanEmployee.getRoleBean().getRole_authority();
+							
+							if (authority.equals("W1") || authority.equals("W2") || authority.equals("W3")
+																										|| authority.equals("T1") || authority.equals("T2") || authority.equals("T3")
+																										|| authority.equals("A1") || authority.equals("A2") || authority.equals("A3")
+																										|| authority.equals("A4")) {
+
+								maxValue = allListProbationDAO.getCount(employee_master_id);
+							}else {
+																								
+							maxValue = allListProbationDAO.getCountForM2(employee_master_id);
+
+							}
+							 
+							request.setAttribute("employee_master_id", employee_master_id);
+							
+							int to_be_extended = 0;
+							List<ProbationAssessmentManagerBean> listOfExtended1 = allListProbationDAO.getListOfScoreByEmpIdWithHRApproval(employee_master_id);
+							for(ProbationAssessmentManagerBean li : listOfExtended1){
+								int probationmanager_id = li.getProbation_assessment_manager_id();
+								
+								List<ProbationExtendBean> listForExtend = allListProbationDAO.getProbationExtend(probationmanager_id);
+								for(ProbationExtendBean p : listForExtend){
+									String extend_period = p.getExtended_period();
+									to_be_extended = to_be_extended + Integer.parseInt(extend_period);
+									
+								}
 							}
 
 							if (fieldName.equalsIgnoreCase("attribute_id")) {
@@ -155,8 +188,8 @@ public class ProbationM2InsertServlet extends HttpServlet {
 							}
 							
 								if (fieldName.equalsIgnoreCase("termination_remarks")) {
-									System.out.println("insidessss");
-									if(termination_letter.equalsIgnoreCase("terminationYes")){
+									System.out.println("inside");
+									if(termination_letter.equalsIgnoreCase("terminationYes") && maxValue != (to_be_extended+6)){
 										String manager_status = "pending";
 										
 										if(role_authority.equalsIgnoreCase("D1") || role_authority.equalsIgnoreCase("D2") || role_authority.equalsIgnoreCase("D3") || role_authority.equalsIgnoreCase("D4")){
@@ -176,38 +209,9 @@ public class ProbationM2InsertServlet extends HttpServlet {
 								
 							if(fieldName.equalsIgnoreCase("redirect")) {
 								request.setAttribute("Score", "Score Submitted Successfully....");
-								AllListProbationDAO allListProbationDAO = new AllListProbationDAO();
 								
-								long maxValue = 0;
-								EmployeeBean employeeBeanEmployee = loginDAO.getInfoById(employee_master_id);
-								String authority = employeeBeanEmployee.getRoleBean().getRole_authority();
 								
-								if (authority.equals("W1") || authority.equals("W2") || authority.equals("W3")
-																											|| authority.equals("T1") || authority.equals("T2") || authority.equals("T3")
-																											|| authority.equals("A1") || authority.equals("A2") || authority.equals("A3")
-																											|| authority.equals("A4")) {
-
-									maxValue = allListProbationDAO.getCount(employee_master_id);
-								}else {
-																									
-								maxValue = allListProbationDAO.getCountForM2(employee_master_id);
-
-								}
-								 
-								request.setAttribute("employee_master_id", employee_master_id);
-								
-								int to_be_extended = 0;
-								List<ProbationAssessmentManagerBean> listOfExtended1 = allListProbationDAO.getListOfScoreByEmpIdWithHRApproval(employee_master_id);
-								for(ProbationAssessmentManagerBean li : listOfExtended1){
-									int probationmanager_id = li.getProbation_assessment_manager_id();
-									
-									List<ProbationExtendBean> listForExtend = allListProbationDAO.getProbationExtend(probationmanager_id);
-									for(ProbationExtendBean p : listForExtend){
-										String extend_period = p.getExtended_period();
-										to_be_extended = to_be_extended + Integer.parseInt(extend_period);
-										
-									}
-								}
+							
 								
 								System.out.println("maxValue:"+maxValue);
 								System.out.println("To Be Extended:"+to_be_extended);

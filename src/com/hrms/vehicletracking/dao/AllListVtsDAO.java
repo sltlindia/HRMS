@@ -11,6 +11,9 @@ import com.hrms.pms.bean.MonthBean;
 import com.hrms.timesheet.util.HibernateUtil;
 import com.hrms.vehicletracking.bean.DriverBean;
 import com.hrms.vehicletracking.bean.VehicleBean;
+import com.hrms.vehicletracking.bean.VehicleDocumentAttachmentBean;
+import com.hrms.vehicletracking.bean.VehicleDocumentBean;
+import com.hrms.vehicletracking.bean.VehiclePolicyDocumentBean;
 import com.hrms.vehicletracking.bean.VehicleServiceRecordBean;
 import com.hrms.vehicletracking.bean.VehicleTrackingBean;
 import com.hrms.vehicletracking.bean.VehicleTypeBean;
@@ -62,6 +65,28 @@ public class AllListVtsDAO {
 			return listOfVehicleType;
 
 		}
+		
+		//List Method for getting vehicle details from vehicle_tracking_tbl by vehicle_tracking_id
+		public VehicleBean getVehicleDetailsById(int vehicle_id) {
+	        Session session = HibernateUtil.openSession();
+	        Transaction tx = null;
+	        VehicleBean vehicleBean = null;
+	        try {
+	            tx = session.getTransaction();
+	            tx.begin();
+	            Query query = session.createQuery("from VehicleBean where vehicle_master_id = "+vehicle_id+"");
+	            vehicleBean = (VehicleBean)query.uniqueResult();
+	            tx.commit();
+	        } catch (Exception e) {
+	            if (tx != null) {
+	                tx.rollback();
+	            }
+	            e.printStackTrace();
+	        } finally {
+	            session.close();
+	        }
+	        return vehicleBean;
+	    }
 		
 		public List<VehicleServiceRecordBean> getListOfVehicleService() {
 			List<VehicleServiceRecordBean> listOfVehicleType = new ArrayList<VehicleServiceRecordBean>();
@@ -165,6 +190,28 @@ public class AllListVtsDAO {
 				session.close();
 			}
 			return listOfVehicleTracking;
+
+		}
+		
+		public VehicleTrackingBean getListOfVehiclesTrackingEndReadingZeroById(int vehicle_id) {
+			  Session session = HibernateUtil.openSession();
+		        Transaction tx = null;
+		        VehicleTrackingBean vehicleTrackingBean = null;
+			try {
+				tx = session.getTransaction();
+				tx.begin();
+				 Query query  = session.createQuery("FROM VehicleTrackingBean where vehicleBean = "+vehicle_id+" and end_reading = 0");
+				 vehicleTrackingBean = (VehicleTrackingBean)query.uniqueResult();
+				tx.commit();
+			} catch (Exception e) {
+				if (tx != null) {
+					tx.rollback();
+				}
+				e.printStackTrace();
+			} finally {
+				session.close();
+			}
+			return vehicleTrackingBean;
 
 		}
 		
@@ -456,9 +503,153 @@ public class AllListVtsDAO {
 
 		}
 		
+		public List<VehiclePolicyDocumentBean> getListOfDocuments() {
+			List<VehiclePolicyDocumentBean> listOfDocuments = new ArrayList<VehiclePolicyDocumentBean>();
+			Session session = HibernateUtil.openSession();
+			Transaction tx = null;
+			try {
+				tx = session.getTransaction();
+				tx.begin();
+				listOfDocuments = session.createQuery("FROM VehiclePolicyDocumentBean").list();
+				tx.commit();
+			} catch (Exception e) {
+				if (tx != null) {
+					tx.rollback();
+				}
+				e.printStackTrace();
+			} finally {
+				session.close();
+			}
+			return listOfDocuments;
+
+		}
+		public List<VehiclePolicyDocumentBean> getListOfDocumentsPolicyNull() {
+			List<VehiclePolicyDocumentBean> listOfDocuments = new ArrayList<VehiclePolicyDocumentBean>();
+			Session session = HibernateUtil.openSession();
+			Transaction tx = null;
+			try {
+				tx = session.getTransaction();
+				tx.begin();
+				listOfDocuments = session.createQuery("FROM VehiclePolicyDocumentBean where attachment = '-'").list();
+				tx.commit();
+			} catch (Exception e) {
+				if (tx != null) {
+					tx.rollback();
+				}
+				e.printStackTrace();
+			} finally {
+				session.close();
+			}
+			return listOfDocuments;
+
+		}
 		
+		public List<VehiclePolicyDocumentBean> getListOfDocumentsById(int vehicle_master_id) {
+			List<VehiclePolicyDocumentBean> listOfDocuments = new ArrayList<VehiclePolicyDocumentBean>();
+			Session session = HibernateUtil.openSession();
+			Transaction tx = null;
+			try {
+				tx = session.getTransaction();
+				tx.begin();
+				listOfDocuments = session.createQuery("FROM VehiclePolicyDocumentBean where vehicleBean = "+vehicle_master_id+"").list();
+				tx.commit();
+			} catch (Exception e) {
+				if (tx != null) {
+					tx.rollback();
+				}
+				e.printStackTrace();
+			} finally {
+				session.close();
+			}
+			return listOfDocuments;
+
+		}
+		public List<VehicleDocumentBean> getListOfVehicleDocuments() {
+			List<VehicleDocumentBean> listOfDocuments = new ArrayList<VehicleDocumentBean>();
+			Session session = HibernateUtil.openSession();
+			Transaction tx = null;
+			try {
+				tx = session.getTransaction();
+				tx.begin();
+				listOfDocuments = session.createQuery("FROM VehicleDocumentBean").list();
+				tx.commit();
+			} catch (Exception e) {
+				if (tx != null) {
+					tx.rollback();
+				}
+				e.printStackTrace();
+			} finally {
+				session.close();
+			}
+			return listOfDocuments;
+
+		}
+		
+		public List<VehicleDocumentBean> getListOfVehicleDocumentsById(int vehicle_master_id) {
+			List<VehicleDocumentBean> listOfDocuments = new ArrayList<VehicleDocumentBean>();
+			Session session = HibernateUtil.openSession();
+			Transaction tx = null;
+			try {
+				tx = session.getTransaction();
+				tx.begin();
+				listOfDocuments = session.createQuery("FROM VehicleDocumentBean where vehicleBean = "+vehicle_master_id+"").list();
+				tx.commit();
+			} catch (Exception e) {
+				if (tx != null) {
+					tx.rollback();
+				}
+				e.printStackTrace();
+			} finally {
+				session.close();
+			}
+			return listOfDocuments;
+
+		}
 		
 	
+		public List<VehicleDocumentAttachmentBean> getListOfVehicleDocumentAttachments(int vehicle_document_id) {
+			List<VehicleDocumentAttachmentBean> listOfDocuments = new ArrayList<VehicleDocumentAttachmentBean>();
+			Session session = HibernateUtil.openSession();
+			Transaction tx = null;
+			try {
+				tx = session.getTransaction();
+				tx.begin();
+				listOfDocuments = session.createQuery("FROM VehicleDocumentAttachmentBean where vehicleDocumentBean = "+vehicle_document_id+"").list();
+				tx.commit();
+			} catch (Exception e) {
+				if (tx != null) {
+					tx.rollback();
+				}
+				e.printStackTrace();
+			} finally {
+				session.close();
+			}
+			return listOfDocuments;
+
+		}
+		
+		//List Method for getting vehicle details from vehicle_tracking_tbl by vehicle_tracking_id
+				public VehiclePolicyDocumentBean getVehiclePolicyDocumentById(int vehicle_policy_document_id) {
+			        Session session = HibernateUtil.openSession();
+			        Transaction tx = null;
+			        VehiclePolicyDocumentBean vehiclePolicyDocumentBean = null;
+			        try {
+			            tx = session.getTransaction();
+			            tx.begin();
+			            Query query = session.createQuery("from VehiclePolicyDocumentBean where vehicle_policy_document_id ="+vehicle_policy_document_id+"");
+			            vehiclePolicyDocumentBean = (VehiclePolicyDocumentBean)query.uniqueResult();
+			            tx.commit();
+			        } catch (Exception e) {
+			            if (tx != null) {
+			                tx.rollback();
+			            }
+			            e.printStackTrace();
+			        } finally {
+			            session.close();
+			        }
+			        return vehiclePolicyDocumentBean;
+			    }
+		
 	}
 
 

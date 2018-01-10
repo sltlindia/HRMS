@@ -398,6 +398,27 @@
 		<mapping class="com.hrms.meetingmanagemnet.bean.MeetingBookingDetailBean" />
 		<mapping class="com.hrms.meetingmanagemnet.bean.MeetingRoomDetailBean" />
 		
+		<!--  Probation Module -->
+		<mapping class="com.hrms.probation.bean.AttributeBean"/>
+		<mapping class="com.hrms.probation.bean.AttributeM2Bean"/>
+		<mapping class="com.hrms.probation.bean.ProbationAssessmentM1Bean"/>
+		<mapping class="com.hrms.probation.bean.ProbationAssessmentM2Bean"/>
+		<mapping class="com.hrms.probation.bean.ProbationAssessmentManagerBean"/>
+		<mapping class="com.hrms.probation.bean.ProbationExtendBean"/>
+		<mapping class="com.hrms.probation.bean.ProbationTopManagementApprovalBean"/>
+		<mapping class="com.hrms.probation.bean.ProbationAssessmentTerminationBean"/>
+		<mapping class="com.hrms.probation.bean.ProbationOpenInfopageBean"/>
+		
+		<!-- Vehicle Tracking System -->
+		<mapping class="com.hrms.vehicletracking.bean.VehicleBean"/>
+		<mapping class="com.hrms.vehicletracking.bean.VehicleTypeBean"/>
+		<mapping class="com.hrms.vehicletracking.bean.VehicleTrackingBean"/>
+		<mapping class="com.hrms.vehicletracking.bean.DriverBean"/>
+		<mapping class="com.hrms.vehicletracking.bean.VehicleServiceRecordBean" />
+		<mapping class="com.hrms.vehicletracking.bean.VehicleDocumentAttachmentBean" />
+		<mapping class="com.hrms.vehicletracking.bean.VehicleDocumentBean" />
+		<mapping class="com.hrms.vehicletracking.bean.VehiclePolicyDocumentBean" />
+		
 	</session-factory>
 
 </hibernate-configuration>

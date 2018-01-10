@@ -54,16 +54,30 @@
   </head>
 <body data-open="hover" data-menu="horizontal-menu" data-col="2-columns" class="horizontal-layout horizontal-menu 2-columns ">
 <%int employee_id = user.getEmployee_master_id(); %>
- <div class="app-content container center-layout mt-2">
+<div class="app-content container center-layout mt-2">
       <div class="content-wrapper">
-      	<div class="content-body">
+        <div class="content-body"><!-- DOM - jQuery events table -->
+<!-- File export table -->
 			<section id="horizontal-form-layouts">
-				<div class="row"> 
+			<div class="row">
+        			<div class="col-xs-12">
+            			<div class="card">
+                			<div class="card-header">
+                    			<div class="card box-shadow-0" data-appear="appear">
+					        		<div class="card-header card-inverse" style="background-color: #90A4AE;padding: 0.5rem 0rem 1rem 0rem;height: 50px;">
+					            		<div class="col-sm-6">
+				               				<h4 class="card-title" id="horz-layout-basic">Self services HR</h4>
+				                		</div>
+				            		</div>
+			
+				<!-- <div class="row"> 
 			        <div class="col-xs-12">
 			            <h4>Self Service HR</h4>
 			            <hr>
 			        </div>
-			    </div>
+			    </div> -->
+			    <div class="card-body collapse in">
+	  <div class="card-block border-bottom-blue-grey" style="border-left: 2px solid #607D8B;border-right: 2px solid #607D8B;">
 				<div class="row">
 				    <div class="col-md-6">
 				        <div class="card">
@@ -161,7 +175,7 @@
 				            
 				            <div class="card-body collapse in">
 	               				 <div class="card-block card-dashboard">
-	               				  <div class="table-responsive">
+	               				  <!-- <div class="table-responsive"> -->
 				                        <table class="table table-striped table-bordered" width="100%" id="example">
 				                            <thead>
 				                                <tr>
@@ -260,11 +274,16 @@
 				        </div>
 				    </div>
 				 </div>
-				 
-			</section>  
+				 </div>
+				 </div>
+				</div>
+				</div>
+				</div>
+				</div>
+				</section>
+				</div>
       	</div>
       </div>
-</div>
 
 <%@include file="footer.html"%>
 

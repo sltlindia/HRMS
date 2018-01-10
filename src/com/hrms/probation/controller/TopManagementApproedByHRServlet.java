@@ -1,6 +1,8 @@
 package com.hrms.probation.controller;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -8,6 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.hrms.mailer.Mailer;
+import com.hrms.pms.bean.EmployeeBean;
+import com.hrms.pms.dao.LoginDAO;
 import com.hrms.probation.bean.ProbationAssessmentManagerBean;
 import com.hrms.probation.bean.ProbationExtendBean;
 import com.hrms.probation.dao.AllListProbationDAO;
@@ -30,6 +35,7 @@ public class TopManagementApproedByHRServlet extends HttpServlet {
 	AllListProbationDAO allListProbationDAO = new AllListProbationDAO();
 	AllUpdateProbationDAO allUpdateProbationDAO = new AllUpdateProbationDAO();
 	allUpdateProbationDAO.updateTopApprovalByHR(top_management_approval, employee_master_id);
+	
 	
 	List<ProbationAssessmentManagerBean> listOfExtended = allListProbationDAO.getListOfScoreByEmpIdWithHRApproval(employee_master_id);
 	for(ProbationAssessmentManagerBean li : listOfExtended){

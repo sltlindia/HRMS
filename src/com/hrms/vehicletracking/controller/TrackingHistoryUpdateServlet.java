@@ -48,7 +48,7 @@ public class TrackingHistoryUpdateServlet extends HttpServlet {
 		System.out.println("amount:"+amount);
 		double average = Double.parseDouble(request.getParameter("average"));
 		System.out.println("average:"+average);
-		
+		String attachment = "-";
 
 		VehicleBean vehicleBean = new VehicleBean();
 		vehicleBean.setVehicle_master_id(vehicle_id);
@@ -56,7 +56,7 @@ public class TrackingHistoryUpdateServlet extends HttpServlet {
 		DriverBean driverBean = new DriverBean();
 		driverBean.setDriver_id(driver_id);
 		
-		VehicleTrackingBean vehicleTrackingBean = new VehicleTrackingBean(vehicle_tracking_id, start_reading, end_reading, kilometer, ltr, amount, average,date1, vehicleBean, driverBean);
+		VehicleTrackingBean vehicleTrackingBean = new VehicleTrackingBean(vehicle_tracking_id, start_reading, end_reading, kilometer, ltr, amount, average,date1, vehicleBean, driverBean,attachment);
 		AllInsertVtsDAO allInsertVtsDAO = new AllInsertVtsDAO();
 		boolean result = allInsertVtsDAO.vehicleTrackingInsert(vehicleTrackingBean);
 

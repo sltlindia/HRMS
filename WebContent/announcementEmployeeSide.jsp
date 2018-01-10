@@ -143,10 +143,16 @@
 			        </div>
 			    </div> -->
 				<div class="row">
-				    <div class="col-md-12 col-xs-12">
-				        <div class="card">
-				        	<div class="card-header">
-				                <h4 class="card-title" id="horz-layout-basic">Broadcast List</h4>
+				<div class="col-xs-12">
+            			<div class="card">
+                			<div class="card-header">
+                    			<div class="card box-shadow-0" data-appear="appear">
+					        		<div class="card-header card-inverse" style="background-color: #90A4AE;padding: 0.5rem 0rem 1rem 0rem;height: 50px;">
+					            		<div class="col-sm-6">
+				               				<h4 class="card-title" id="horz-layout-basic">Broadcast List</h4>
+				                		</div>
+				            		</div>
+				   
 				                <a class="heading-elements-toggle"><i class="icon-ellipsis font-medium-3"></i></a>
 			        			<div class="heading-elements">
 				                    <ul class="list-inline mb-0">
@@ -155,8 +161,9 @@
 				                        <li><a data-action="expand"><i class="icon-expand2"></i></a></li>
 				                    </ul>
 				                </div>
-				            </div>
+				            
 				            <div class="card-body collapse in">
+	  						<div class="card-block border-bottom-blue-grey" style="border-left: 2px solid #607D8B;border-right: 2px solid #607D8B;">
 	               				 <div class="card-block card-dashboard">
 	               				 	<div class="table-responsive">
 				                        <table class="table table-striped table-bordered zero-configuration" width="100%">
@@ -518,11 +525,13 @@
 													%>
 				                        </div>
 	               				 </div>
-	               			</div>
+				        </div>
+				        </div>
+				        </div>
 				        </div>
 				    </div>
 				    </div>
-
+				    </div>
 							</section>
 		</div>
 	</div>

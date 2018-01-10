@@ -31,6 +31,8 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <!-- BEGIN VENDOR CSS-->
     <link rel="stylesheet" type="text/css" href="app-assets/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css"
+	href="app-assets/vendors/css/tables/datatable/dataTables.bootstrap4.min.css">
     <!-- font icons-->
     <link rel="stylesheet" type="text/css" href="app-assets/fonts/icomoon.css">
     <link rel="stylesheet" type="text/css" href="app-assets/fonts/flag-icon-css/css/flag-icon.min.css">
@@ -44,6 +46,7 @@
     <link rel="stylesheet" type="text/css" href="app-assets/css/colors.min.css">
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
     
+    
     <!-- END ROBUST CSS-->
     <!-- BEGIN Page Level CSS-->
     <link rel="stylesheet" type="text/css" href="app-assets/css/core/menu/menu-types/horizontal-menu.min.css">
@@ -51,6 +54,8 @@
     <!-- END Page Level CSS-->
     <!-- BEGIN Custom CSS-->
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+        <script src="app-assets/js/core/libraries/jquery.min.js" type="text/javascript"></script>
+    
     <!-- END Custom CSS-->
     <%@include file="header.jsp" %>
   </head>
@@ -91,20 +96,19 @@ List<KaizenBean> lisOfMainRejectedKaizen = allKaizenListDAO.getListOfAllKaizenBy
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                        <div class="row">
-                        	<div class="col-md-6">
-                        	Approved Pending CI List
-                        	</div>
-                        	
-                        </div>
+                        <div class="card-header card-inverse" style="background-color: #90A4AE;padding: 0.5rem 0rem 1rem 0rem;height: 50px;">
+				        		<div class="col-lg-6">
+				               		<h4 class="card-title" id="horz-layout-basic"> Approved Pending CI List</h4>
+				            </div>                   
+				            </div>
                            
                         </div>
                         <!-- /.panel-heading -->
-                        <div class="panel-body">
-                            <div class="dataTable_wrapper">
+                        <div class="card-body collapse in">
+					   <div class="card-block border-bottom-blue-grey" style="border-left: 2px solid #607D8B;border-right: 2px solid #607D8B;">
                                 <table class="table table-striped table-bordered table-hover file-export">
                                     <thead>
-                                        <tr>
+                                        <tr style="background-color: #c3c3c3;">
                                            <th></th>
                                         	<th>CI Name</th>
                                         	<th>Added By</th>
@@ -112,14 +116,14 @@ List<KaizenBean> lisOfMainRejectedKaizen = allKaizenListDAO.getListOfAllKaizenBy
                                         	<th>Action</th>
                                         </tr>
                                     </thead>
-                                    
+                                   
                                      <tbody>
                                      	
                                      	<%for(KaizenBean kaizenBean : lisOfPendingForApprovalCI){
                                      		int kaizen_id = kaizenBean.getKaizen_id();
                                      	%>
 	                                     <tr>
-	                                     <td><a id="kaizen<%=kaizenBean.getKaizen_id()%>" style="color: black;text-decoration: none;cursor: pointer;" onclick="showData1(this.id)"><i class="fa fa-plus-circle"></i></a></td>
+	                                     <td><a id="kaizen<%=kaizenBean.getKaizen_id()%>" style="color: black;text-decoration: none;cursor: pointer;" onclick="showData1(this.id)"><i class="icon-android-add-circle"></i></a></td>
 	                                     	<td><%=kaizenBean.getKaizen_name()%></td>
 	                                     	<td><%=kaizenBean.getEmployeeBean().getFirstname()+" "+kaizenBean.getEmployeeBean().getLastname()%></td>
 	                                     	<td><%=ddMMMyyyy.format(yyyyMMddhh.parse(kaizenBean.getDate()))%></td>
@@ -132,14 +136,14 @@ List<KaizenBean> lisOfMainRejectedKaizen = allKaizenListDAO.getListOfAllKaizenBy
 	                                      <tr class="kaizen<%=kaizenBean.getKaizen_id()%>">
 	                                     <td colspan="6">
 	                                     <div class="col-md-6 col-sm-6 col-lg-6">
-	                                      <div class="panel panel-primary">
+	                                      <div class="panel panel-primary"  style="border-left: 2px solid #607D8B;border-right: 2px solid #607D8B; border-top: 2px solid #607D8B;border-bottom: 2px solid #607D8B; border-radius: 10px;">
 												<div class="panel-body">
 														<h5><b>Before Photo List</b></h5>
 												<%
 												List<KaizenBeforeUploadAttachmentBean> listOfBefore = allKaizenListDAO.getListOfBeforeUploadAttachment(kaizen_id);
 												for(KaizenBeforeUploadAttachmentBean kaizenBeforeUploadAttachmentBean : listOfBefore){
 												%>
-													<img
+													&nbsp;&nbsp; <img
 														src="FileServlet?path=D:\hrms\upload\kaizen\KaizenBefore\<%=kaizenBeforeUploadAttachmentBean.getKaizen_before_uploaded_attachment_name()%>"
 														alt="User Avatar" height="60px" width="60px" style="border: solid 1px;"
 														tabindex="0" data-placement="top" data-toggle="popover" data-trigger="hover" data-content="<div class='media'><a href='#' class='pull-left'><img src='FileServlet?path=D:\hrms\upload\kaizen\KaizenBefore\<%=kaizenBeforeUploadAttachmentBean.getKaizen_before_uploaded_attachment_name()%>' height='250px' width='250px' alt='Sample Image'></a></div>"
@@ -147,18 +151,19 @@ List<KaizenBean> lisOfMainRejectedKaizen = allKaizenListDAO.getListOfAllKaizenBy
 												<%} %>
 																					
 												</div>
+												<br>
 												</div>
 											</div>	
 												
 											  <div class="col-md-6 col-sm-6 col-lg-6">	
-												<div class="panel panel-primary">
+												<div class="panel panel-primary"  style="border-left: 2px solid #607D8B;border-right: 2px solid #607D8B; border-top: 2px solid #607D8B;border-bottom: 2px solid #607D8B; border-radius: 10px;">
 												<div class="panel-body">
 														<h5><b>After Photo List</b></h5>
 												<%
 												List<KaizenAfterUploadAttachmentBean> listOfAfter = allKaizenListDAO.getListOfAfterUploadAttachment(kaizen_id);
 												for(KaizenAfterUploadAttachmentBean kaizenAfterUploadAttachmentBean : listOfAfter){
 												%>
-													<img
+													&nbsp;&nbsp; <img
 														src="FileServlet?path=D:\hrms\upload\kaizen\KaizenBefore\<%=kaizenAfterUploadAttachmentBean.getKaizen_after_uploaded_attachment_name()%>"
 														alt="User Avatar" height="60px" width="60px" style="border: solid 1px;"
 														tabindex="0" data-placement="top" data-toggle="popover" data-trigger="hover" data-content="<div class='media'><a href='#' class='pull-left'><img src='FileServlet?path=D:\hrms\upload\kaizen\KaizenBefore\<%=kaizenAfterUploadAttachmentBean.getKaizen_after_uploaded_attachment_name()%>' height='250px' width='250px' alt='Sample Image'></a></div>"
@@ -166,6 +171,7 @@ List<KaizenBean> lisOfMainRejectedKaizen = allKaizenListDAO.getListOfAllKaizenBy
 												<%} %>
 																					
 												</div>
+												<br>
 												</div>
 												</div>
 	                                     </td>
@@ -178,20 +184,20 @@ List<KaizenBean> lisOfMainRejectedKaizen = allKaizenListDAO.getListOfAllKaizenBy
 	                                     <div class="col-md-6 col-sm-6 col-lg-6">
 	                                      		<b>BillBoard Scoring</b>
 	                                      		<table class="table table-bordered">
-	                                      		<tr bgcolor="#D6DBDF">
-	                                      			<th>Quality</th>
-	                                      			<th>Cost</th>
-	                                      			<th>Safety</th>
-	                                      			<th>Delivery</th>
-	                                      			<th>Horizontal Deployment</th>
-	                                      			<th>Average</th>
+	                                      		<tr bgcolor="#c3c3c3">
+	                                      			<th style="padding: 0px;">Quality</th>
+	                                      			<th style="padding: 0px;">Cost</th>
+	                                      			<th style="padding: 0px;">Safety</th>
+	                                      			<th style="padding: 0px;">Delivery</th>
+	                                      			<th style="padding: 0px;">Horizontal Deployment</th>
+	                                      			<th style="padding: 0px;">Average</th>
 	                                      		</tr>	
 	                                      		<%KaizenManagerScoreBean kaizenManagerScoreBean = allKaizenListDAO.getDetailOfKaizenScoreByempId(kaizen_id, employee_id); 
 	                                      			if(kaizenManagerScoreBean != null){
 	                                      		%>
 	                                      		
 	                                      		<tr>
-	                                      			<td><%=kaizenManagerScoreBean.getQuality()%></td>
+	                                      			<td style="padding-left: 0px;"><%=kaizenManagerScoreBean.getQuality()%></td>
 	                                      			<td><%=kaizenManagerScoreBean.getCost()%></td>
 	                                      			<td><%=kaizenManagerScoreBean.getSafety()%></td>
 	                                      			<td><%=kaizenManagerScoreBean.getDelivery()%></td>
@@ -205,14 +211,14 @@ List<KaizenBean> lisOfMainRejectedKaizen = allKaizenListDAO.getListOfAllKaizenBy
 											  <div class="col-md-6 col-sm-6 col-lg-6">	
 														<b>LeaderBoard Scoring</b>
 	                                      		<table class="table table-bordered">
-	                                      		<tr bgcolor="#D6DBDF">
-	                                      			<th>Authority Name</th>
-	                                      			<th>Quality</th>
-	                                      			<th>Cost</th>
-	                                      			<th>Safety</th>
-	                                      			<th>Delivery</th>
-	                                      			<th>Horizontal Deployment</th>
-	                                      			<th>Average</th>
+	                                      		<tr bgcolor="#c3c3c3">
+	                                      			<th style="padding: 0px;">Authority Name</th>
+	                                      			<th style="padding: 0px;">Quality</th>
+	                                      			<th style="padding: 0px;">Cost</th>
+	                                      			<th style="padding: 0px;">Safety</th>
+	                                      			<th style="padding: 0px;">Delivery</th>
+	                                      			<th style="padding: 0px;">Horizontal Deployment</th>
+	                                      			<th style="padding: 0px;">Average</th>
 	                                      		</tr>	
 	                                      		<%List<KaizenAuthorityScoreBean> listKaizenAuthorityScoreBean = allKaizenListDAO.getListOfAuthorityScoreBykaizenId(kaizen_id); 
 	                                      			for(KaizenAuthorityScoreBean authorityScoreBean : listKaizenAuthorityScoreBean){
@@ -259,27 +265,28 @@ List<KaizenBean> lisOfMainRejectedKaizen = allKaizenListDAO.getListOfAllKaizenBy
                 </div>
                 </div>
                 </div>
-			 
+			 <br>
 			 
 			 
 			 <div class="row">
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                        <div class="row">
+                        <div class="card-header card-inverse" style="background-color: #90A4AE;padding: 0.5rem 0rem 1rem 0rem;height: 50px;">
                         	<div class="col-md-6">
-                        	Approved Completed CI List
+                        	<h5 class="card-title" id="horz-layout-basic"> Approved Completed CI List</h5>
+                        	
                         	</div>
                         	
                         </div>
                            
                         </div>
                         <!-- /.panel-heading -->
-                        <div class="panel-body">
-                            <div class="dataTable_wrapper">
-                                <table class="table table-striped table-bordered table-hover file-export">
+                        <div class="card-body collapse in">
+					   <div class="card-block border-bottom-blue-grey" style="border-left: 2px solid #607D8B;border-right: 2px solid #607D8B;">
+                                <table class="table table-striped table-bordered table-hover">
                                     <thead>
-                                        <tr>
+                                        <tr style="background-color: #c3c3c3;">
                                            <th></th>
                                         	<th>CI Name</th>
                                         	<th>Added By</th>
@@ -318,16 +325,18 @@ List<KaizenBean> lisOfMainRejectedKaizen = allKaizenListDAO.getListOfAllKaizenBy
 												}
 											}
                                      	%>
+                                     	
 	                                     <tr>
+	                                     
 	                                     <td>
-	                                     <a id="kaizen<%=kaizenBean.getKaizen_id()%>" style="color: black;text-decoration: none;cursor: pointer;" onclick="showData1(this.id)"><i class="fa fa-plus-circle"></i></a>
+	                                     <a id="kaizen<%=kaizenBean.getKaizen_id()%>" style="color: black;text-decoration: none;cursor: pointer;" onclick="showData1(this.id)"><i class="icon-android-add-circle"></i></a>
 	                                      <%if(billboard == true) {%>
-	                                     		<i class="fa fa-star" style="color: silver;" data-toggle="tooltip"
+	                                     		<i class="icon-star-full" style="color: #85929E;" data-toggle="tooltip"
 														data-placement="top" title="Billboard Result"></i>
 	                                     <%} %>
 	                                     
 	                                     <%if(leaderboard == true) {%>
-	                                     		<i class="fa fa-star" style="color: gold;" data-toggle="tooltip"
+	                                     		<i class="icon-star-full" style="color: #F1C40F;" data-toggle="tooltip"
 														data-placement="top" title="Leaderboard Result"></i>
 	                                     <%} %>
 	                                     
@@ -335,7 +344,7 @@ List<KaizenBean> lisOfMainRejectedKaizen = allKaizenListDAO.getListOfAllKaizenBy
 	                                     	<td><%=kaizenBean.getKaizen_name()%></td>
 	                                     	<td><%=kaizenBean.getEmployeeBean().getFirstname()+" "+kaizenBean.getEmployeeBean().getLastname()%></td>
 	                                     	<td><%=ddMMMyyyy.format(yyyyMMddhh.parse(kaizenBean.getDate()))%></td>
-	                                     	<td><a href="kaizenView.jsp?kaizen_id=<%=kaizenBean.getKaizen_id()%>" style="color: black;"><button class="btn btn-outline btn-default btn-xs"><i class="fa fa-share-square"></i> Detail</button></a>
+	                                     	<td><a href="kaizenView.jsp?kaizen_id=<%=kaizenBean.getKaizen_id()%>" style="color: black;"><button class="btn btn-outline btn-default btn-xs"><i class="icon-share"></i> Detail</button></a>
 
 	                                     	</td>
 	                                     </tr>
@@ -344,59 +353,60 @@ List<KaizenBean> lisOfMainRejectedKaizen = allKaizenListDAO.getListOfAllKaizenBy
 	                                      <tr class="kaizen<%=kaizenBean.getKaizen_id()%>">
 	                                     <td colspan="6">
 	                                     <div class="col-md-6 col-sm-6 col-lg-6">
-	                                      <div class="panel panel-primary">
+	                                      <div class="panel panel-primary" style="border-left: 2px solid #607D8B;border-right: 2px solid #607D8B; border-top: 2px solid #607D8B;border-bottom: 2px solid #607D8B; border-radius: 10px;">
 												<div class="panel-body">
-														<h5><b>Before Photo List</b></h5>
+														<h5><b>&nbsp;Before Photo List</b></h5>
 												<%
 												List<KaizenBeforeUploadAttachmentBean> listOfBefore = allKaizenListDAO.getListOfBeforeUploadAttachment(kaizen_id);
 												for(KaizenBeforeUploadAttachmentBean kaizenBeforeUploadAttachmentBean : listOfBefore){
 												%>
-													<img
+													&nbsp;&nbsp; <img
 														src="FileServlet?path=D:\hrms\upload\kaizen\KaizenBefore\<%=kaizenBeforeUploadAttachmentBean.getKaizen_before_uploaded_attachment_name()%>"
 														alt="User Avatar" height="60px" width="60px" style="border: solid 1px;"
 														tabindex="0" data-placement="top" data-toggle="popover" data-trigger="hover" data-content="<div class='media'><a href='#' class='pull-left'><img src='FileServlet?path=D:\hrms\upload\kaizen\KaizenBefore\<%=kaizenBeforeUploadAttachmentBean.getKaizen_before_uploaded_attachment_name()%>' height='250px' width='250px' alt='Sample Image'></a></div>"
 														/>
 												<%} %>
-																					
+																				
 												</div>
+												
+												 <br>	
 												</div>
 											</div>	
 												
 											  <div class="col-md-6 col-sm-6 col-lg-6">	
-												<div class="panel panel-primary">
+												<div class="panel panel-primary"  style="border-left: 2px solid #607D8B;border-right: 2px solid #607D8B; border-top: 2px solid #607D8B;border-bottom: 2px solid #607D8B; border-radius: 10px;">
 												<div class="panel-body">
-														<h5><b>After Photo List</b></h5>
+														<h5><b>&nbsp;After Photo List</b></h5>
 												<%
 												List<KaizenAfterUploadAttachmentBean> listOfAfter = allKaizenListDAO.getListOfAfterUploadAttachment(kaizen_id);
 												for(KaizenAfterUploadAttachmentBean kaizenAfterUploadAttachmentBean : listOfAfter){
 												%>
-													<img
+													&nbsp;&nbsp; <img
 														src="FileServlet?path=D:\hrms\upload\kaizen\KaizenBefore\<%=kaizenAfterUploadAttachmentBean.getKaizen_after_uploaded_attachment_name()%>"
 														alt="User Avatar" height="60px" width="60px" style="border: solid 1px;"
 														tabindex="0" data-placement="top" data-toggle="popover" data-trigger="hover" data-content="<div class='media'><a href='#' class='pull-left'><img src='FileServlet?path=D:\hrms\upload\kaizen\KaizenBefore\<%=kaizenAfterUploadAttachmentBean.getKaizen_after_uploaded_attachment_name()%>' height='250px' width='250px' alt='Sample Image'></a></div>"
 														/>
 												<%} %>
-																					
+														 						
 												</div>
+												<br>	
 												</div>
 												</div>
 	                                     </td>
 	                                     </tr>
-	                                     
-	                                     
 	                                     
 	                                     <tr class="kaizen<%=kaizenBean.getKaizen_id()%>">
 	                                     <td colspan="6">
 	                                     <div class="col-md-6 col-sm-6 col-lg-6">
 	                                      		<b>BillBoard Scoring</b>
 	                                      		<table class="table table-bordered">
-	                                      		<tr bgcolor="#D6DBDF">
-	                                      			<th>Quality</th>
-	                                      			<th>Cost</th>
-	                                      			<th>Safety</th>
-	                                      			<th>Delivery</th>
-	                                      			<th>Horizontal Deployment</th>
-	                                      			<th>Average</th>
+	                                      		<tr style="background-color: #c3c3c3;">
+	                                      			<th style="padding: 0px;">&nbsp;Quality</th>
+	                                      			<th style="padding: 0px;">&nbsp;Cost</th>
+	                                      			<th style="padding: 0px;">&nbsp;Safety</th>
+	                                      			<th style="padding: 0px;">&nbsp;Delivery</th>
+	                                      			<th style="padding: 0px;">&nbsp;Horizontal <br>&nbsp;Deployment</th>
+	                                      			<th style="padding: 0px;">&nbsp;Average</th>
 	                                      		</tr>	
 	                                      		<%KaizenManagerScoreBean kaizenManagerScoreBean = allKaizenListDAO.getDetailOfKaizenScoreByempId(kaizen_id, employee_id); 
 	                                      			if(kaizenManagerScoreBean != null){
@@ -417,14 +427,14 @@ List<KaizenBean> lisOfMainRejectedKaizen = allKaizenListDAO.getListOfAllKaizenBy
 											  <div class="col-md-6 col-sm-6 col-lg-6">	
 														<b>LeaderBoard Scoring</b>
 	                                      		<table class="table table-bordered">
-	                                      		<tr bgcolor="#D6DBDF">
-	                                      			<th>Authority Name</th>
-	                                      			<th>Quality</th>
-	                                      			<th>Cost</th>
-	                                      			<th>Safety</th>
-	                                      			<th>Delivery</th>
-	                                      			<th>Horizontal Deployment</th>
-	                                      			<th>Average</th>
+	                                      		<tr style="background-color: #c3c3c3;">
+	                                      			<th style="padding: 0px;">&nbsp;Authority<br>&nbsp;Name</th>
+	                                      			<th style="padding: 0px;">&nbsp;Quality</th>
+	                                      			<th style="padding: 0px;">&nbsp;Cost</th>
+	                                      			<th style="padding: 0px;">&nbsp;Safety</th>
+	                                      			<th style="padding: 0px;">&nbsp;Delivery</th>
+	                                      			<th style="padding: 0px;">&nbsp;Horizontal<br>&nbsp;Deployment</th>
+	                                      			<th style="padding: 0px;">&nbsp;Average</th>
 	                                      		</tr>	
 	                                      		<%List<KaizenAuthorityScoreBean> listKaizenAuthorityScoreBean = allKaizenListDAO.getListOfAuthorityScoreBykaizenId(kaizen_id); 
 	                                      			for(KaizenAuthorityScoreBean authorityScoreBean : listKaizenAuthorityScoreBean){
@@ -455,42 +465,47 @@ List<KaizenBean> lisOfMainRejectedKaizen = allKaizenListDAO.getListOfAllKaizenBy
 												</div>
 	                                     </td>
 	                                     </tr>
-	                                      <script>
+	                                <script>
+										$(document).ready(function(){
+											$(".kaizen"+<%=kaizenBean.getKaizen_id()%>).hide();
+												});
 	
-																$(document).ready(function(){
-																		 $(".kaizen"+<%=kaizenBean.getKaizen_id()%>).hide();
-																});
-	
-															</script>
+									</script>
                                      	<%} %>
+                                     	
                                     </tbody>
+                                   
                                 </table>
+                                <b>NOTE :</b>&nbsp;&nbsp;&nbsp;&nbsp;<i class="icon-star-full" style="color: #85929E;" data-toggle="tooltip"
+														data-placement="top" title="Billboard Result"></i><b> : BillBoard Winner</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="icon-star-full" style="color: #F1C40F;" data-toggle="tooltip"
+														data-placement="top" title="Leaderboard Result"></i><b> : LeaderBoard Winner</b>
+										</div> 
                             </div>
 
                 </div>
                 </div>
                 </div>
                 </div>
-                
+            <br>
                 
                 			 <div class="row">
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                        <div class="row">
+                       <div class="card-header card-inverse" style="background-color: #90A4AE;padding: 0.5rem 0rem 1rem 0rem;height: 50px;">
                         	<div class="col-md-6">
-                        	Approved On-Progress CI List
+                        	<h5 class="card-title" id="horz-layout-basic"> Approved On-Progress CI List</h5>
                         	</div>
                         	
                         </div>
                            
                         </div>
                         <!-- /.panel-heading -->
-                        <div class="panel-body">
-                            <div class="dataTable_wrapper">
-                                <table class="table table-striped table-bordered table-hover file-export">
+                       <div class="card-body collapse in">
+					   <div class="card-block border-bottom-blue-grey" style="border-left: 2px solid #607D8B;border-right: 2px solid #607D8B;">
+                                <table class="table table-striped table-bordered table-hover">
                                     <thead>
-                                        <tr>
+                                        <tr style="background-color: #c3c3c3;">
                                            <th></th>
                                         	<th>CI Name</th>
                                         	<th>Added By</th>
@@ -498,14 +513,13 @@ List<KaizenBean> lisOfMainRejectedKaizen = allKaizenListDAO.getListOfAllKaizenBy
                                         	<th>Action</th>
                                         </tr>
                                     </thead>
-                                    
                                      <tbody>
                                      	
                                      	<%for(KaizenBean kaizenBean : lisOfApprovedOnProgressCI){
                                      		int kaizen_id = kaizenBean.getKaizen_id();
                                      	%>
 	                                     <tr>
-	                                     <td><a id="kaizen<%=kaizenBean.getKaizen_id()%>" style="color: black;text-decoration: none;cursor: pointer;" onclick="showData1(this.id)"><i class="fa fa-plus-circle"></i></a></td>
+	                                     <td><a id="kaizen<%=kaizenBean.getKaizen_id()%>" style="color: black;text-decoration: none;cursor: pointer;" onclick="showData1(this.id)"><i class="icon-android-add-circle"></i></a></td>
 	                                     	<td><%=kaizenBean.getKaizen_name()%></td>
 	                                     	<td><%=kaizenBean.getEmployeeBean().getFirstname()+" "+kaizenBean.getEmployeeBean().getLastname()%></td>
 	                                     	<td><%=ddMMMyyyy.format(yyyyMMddhh.parse(kaizenBean.getDate()))%></td>
@@ -518,14 +532,14 @@ List<KaizenBean> lisOfMainRejectedKaizen = allKaizenListDAO.getListOfAllKaizenBy
 	                                      <tr class="kaizen<%=kaizenBean.getKaizen_id()%>">
 	                                     <td colspan="6">
 	                                     <div class="col-md-6 col-sm-6 col-lg-6">
-	                                      <div class="panel panel-primary">
+	                                      <div class="panel panel-primary"  style="border-left: 2px solid #607D8B;border-right: 2px solid #607D8B; border-top: 2px solid #607D8B;border-bottom: 2px solid #607D8B; border-radius: 10px;">
 												<div class="panel-body">
-														<h5><b>Before Photo List</b></h5>
+														<h5><b>&nbsp;Before Photo List</b></h5>
 												<%
 												List<KaizenBeforeUploadAttachmentBean> listOfBefore = allKaizenListDAO.getListOfBeforeUploadAttachment(kaizen_id);
 												for(KaizenBeforeUploadAttachmentBean kaizenBeforeUploadAttachmentBean : listOfBefore){
 												%>
-													<img
+													&nbsp;&nbsp; <img
 														src="FileServlet?path=D:\hrms\upload\kaizen\KaizenBefore\<%=kaizenBeforeUploadAttachmentBean.getKaizen_before_uploaded_attachment_name()%>"
 														alt="User Avatar" height="60px" width="60px" style="border: solid 1px;"
 														tabindex="0" data-placement="top" data-toggle="popover" data-trigger="hover" data-content="<div class='media'><a href='#' class='pull-left'><img src='FileServlet?path=D:\hrms\upload\kaizen\KaizenBefore\<%=kaizenBeforeUploadAttachmentBean.getKaizen_before_uploaded_attachment_name()%>' height='250px' width='250px' alt='Sample Image'></a></div>"
@@ -533,18 +547,19 @@ List<KaizenBean> lisOfMainRejectedKaizen = allKaizenListDAO.getListOfAllKaizenBy
 												<%} %>
 																					
 												</div>
+												<br>
 												</div>
 											</div>	
 												
 											  <div class="col-md-6 col-sm-6 col-lg-6">	
-												<div class="panel panel-primary">
+												<div class="panel panel-primary"  style="border-left: 2px solid #607D8B;border-right: 2px solid #607D8B; border-top: 2px solid #607D8B;border-bottom: 2px solid #607D8B; border-radius: 10px;">
 												<div class="panel-body">
-														<h5><b>After Photo List</b></h5>
+														<h5><b>&nbsp;After Photo List</b></h5>
 												<%
 												List<KaizenAfterUploadAttachmentBean> listOfAfter = allKaizenListDAO.getListOfAfterUploadAttachment(kaizen_id);
 												for(KaizenAfterUploadAttachmentBean kaizenAfterUploadAttachmentBean : listOfAfter){
 												%>
-													<img
+													&nbsp;&nbsp; <img
 														src="FileServlet?path=D:\hrms\upload\kaizen\KaizenBefore\<%=kaizenAfterUploadAttachmentBean.getKaizen_after_uploaded_attachment_name()%>"
 														alt="User Avatar" height="60px" width="60px" style="border: solid 1px;"
 														tabindex="0" data-placement="top" data-toggle="popover" data-trigger="hover" data-content="<div class='media'><a href='#' class='pull-left'><img src='FileServlet?path=D:\hrms\upload\kaizen\KaizenBefore\<%=kaizenAfterUploadAttachmentBean.getKaizen_after_uploaded_attachment_name()%>' height='250px' width='250px' alt='Sample Image'></a></div>"
@@ -552,15 +567,15 @@ List<KaizenBean> lisOfMainRejectedKaizen = allKaizenListDAO.getListOfAllKaizenBy
 												<%} %>
 																					
 												</div>
+												<br>
 												</div>
 												</div>
 	                                     </td>
 	                                     </tr>
 	                                     
 	                                      <script>
-	
-																$(document).ready(function(){
-																		 $(".kaizen"+<%=kaizenBean.getKaizen_id()%>).hide();
+	                                      $(document).ready(function(){
+											$(".kaizen"+<%=kaizenBean.getKaizen_id()%>).hide();
 																});
 	
 															</script>
@@ -574,25 +589,25 @@ List<KaizenBean> lisOfMainRejectedKaizen = allKaizenListDAO.getListOfAllKaizenBy
                 </div>
                 </div>
                 
-
+<br>
 			 <div class="row">
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                        <div class="row">
+                        <div class="card-header card-inverse" style="background-color: #90A4AE;padding: 0.5rem 0rem 1rem 0rem;height: 50px;">
                         	<div class="col-md-6">
-                        	Rejected CI List
+                        	<h5 class="card-title" id="horz-layout-basic"> Rejected CI List</h5>
                         	</div>
                         	
                         </div>
                            
                         </div>
                         <!-- /.panel-heading -->
-                        <div class="panel-body">
-                            <div class="dataTable_wrapper">
-                                <table class="table table-striped table-bordered table-hover file-export">
+                        <div class="card-body collapse in">
+					   <div class="card-block border-bottom-blue-grey" style="border-left: 2px solid #607D8B;border-right: 2px solid #607D8B;">
+                                <table class="table table-striped table-bordered table-hover">
                                     <thead>
-                                        <tr>
+                                        <tr style="background-color: #c3c3c3;">
                                            <th></th>
                                         	<th>CI Name</th>
                                         	<th>Added By</th>
@@ -607,7 +622,7 @@ List<KaizenBean> lisOfMainRejectedKaizen = allKaizenListDAO.getListOfAllKaizenBy
                                      		int kaizen_id = kaizenBean.getKaizen_id();
                                      	%>
 	                                     <tr>
-	                                     <td><a id="kaizen<%=kaizenBean.getKaizen_id()%>" style="color: black;text-decoration: none;cursor: pointer;" onclick="showData1(this.id)"><i class="fa fa-plus-circle"></i></a></td>
+	                                     <td><a id="kaizen<%=kaizenBean.getKaizen_id()%>" style="color: black;text-decoration: none;cursor: pointer;" onclick="showData1(this.id)"><i class="icon-android-add-circle"></i></a></td>
 	                                     	<td><%=kaizenBean.getKaizen_name()%></td>
 	                                     	<td><%=kaizenBean.getEmployeeBean().getFirstname()+" "+kaizenBean.getEmployeeBean().getLastname()%></td>
 	                                     	<td><%=ddMMMyyyy.format(yyyyMMddhh.parse(kaizenBean.getDate()))%></td>
@@ -620,14 +635,14 @@ List<KaizenBean> lisOfMainRejectedKaizen = allKaizenListDAO.getListOfAllKaizenBy
 	                                      <tr class="kaizen<%=kaizenBean.getKaizen_id()%>">
 	                                     <td colspan="6">
 	                                     <div class="col-md-6 col-sm-6 col-lg-6">
-	                                      <div class="panel panel-primary">
+	                                      <div class="panel panel-primary"  style="border-left: 2px solid #607D8B;border-right: 2px solid #607D8B; border-top: 2px solid #607D8B;border-bottom: 2px solid #607D8B; border-radius: 10px;">
 												<div class="panel-body">
-														<h5><b>Before Photo List</b></h5>
+														<h5><b>&nbsp;Before Photo List</b></h5>
 												<%
 												List<KaizenBeforeUploadAttachmentBean> listOfBefore = allKaizenListDAO.getListOfBeforeUploadAttachment(kaizen_id);
 												for(KaizenBeforeUploadAttachmentBean kaizenBeforeUploadAttachmentBean : listOfBefore){
 												%>
-													<img
+													&nbsp;&nbsp; <img
 														src="FileServlet?path=D:\hrms\upload\kaizen\KaizenBefore\<%=kaizenBeforeUploadAttachmentBean.getKaizen_before_uploaded_attachment_name()%>"
 														alt="User Avatar" height="60px" width="60px" style="border: solid 1px;"
 														tabindex="0" data-placement="top" data-toggle="popover" data-trigger="hover" data-content="<div class='media'><a href='#' class='pull-left'><img src='FileServlet?path=D:\hrms\upload\kaizen\KaizenBefore\<%=kaizenBeforeUploadAttachmentBean.getKaizen_before_uploaded_attachment_name()%>' height='250px' width='250px' alt='Sample Image'></a></div>"
@@ -635,18 +650,19 @@ List<KaizenBean> lisOfMainRejectedKaizen = allKaizenListDAO.getListOfAllKaizenBy
 												<%} %>
 																					
 												</div>
+												 <br>
 												</div>
 											</div>	
 												
 											  <div class="col-md-6 col-sm-6 col-lg-6">	
-												<div class="panel panel-primary">
+												<div class="panel panel-primary"  style="border-left: 2px solid #607D8B;border-right: 2px solid #607D8B; border-top: 2px solid #607D8B;border-bottom: 2px solid #607D8B; border-radius: 10px;">
 												<div class="panel-body">
-														<h5><b>After Photo List</b></h5>
+														<h5><b>&nbsp;After Photo List</b></h5>
 												<%
 												List<KaizenAfterUploadAttachmentBean> listOfAfter = allKaizenListDAO.getListOfAfterUploadAttachment(kaizen_id);
 												for(KaizenAfterUploadAttachmentBean kaizenAfterUploadAttachmentBean : listOfAfter){
 												%>
-													<img
+													&nbsp;&nbsp; <img
 														src="FileServlet?path=D:\hrms\upload\kaizen\KaizenBefore\<%=kaizenAfterUploadAttachmentBean.getKaizen_after_uploaded_attachment_name()%>"
 														alt="User Avatar" height="60px" width="60px" style="border: solid 1px;"
 														tabindex="0" data-placement="top" data-toggle="popover" data-trigger="hover" data-content="<div class='media'><a href='#' class='pull-left'><img src='FileServlet?path=D:\hrms\upload\kaizen\KaizenBefore\<%=kaizenAfterUploadAttachmentBean.getKaizen_after_uploaded_attachment_name()%>' height='250px' width='250px' alt='Sample Image'></a></div>"
@@ -654,11 +670,12 @@ List<KaizenBean> lisOfMainRejectedKaizen = allKaizenListDAO.getListOfAllKaizenBy
 												<%} %>
 																					
 												</div>
+												 <br>
 												</div>
 												</div>
 	                                     </td>
 	                                     </tr>
-	                                     
+	                                    
 	                                      <script>
 	
 																$(document).ready(function(){
@@ -675,8 +692,6 @@ List<KaizenBean> lisOfMainRejectedKaizen = allKaizenListDAO.getListOfAllKaizenBy
                 </div>
                 </div>
                 </div>
-
-
                 </div>
                 </div>
                 </div>
@@ -689,7 +704,6 @@ List<KaizenBean> lisOfMainRejectedKaizen = allKaizenListDAO.getListOfAllKaizenBy
 <%@include file="footer.html"%>
     <!-- BEGIN VENDOR JS-->
     <!-- build:js app-assets/js/vendors.min.js-->
-    <script src="app-assets/js/core/libraries/jquery.min.js" type="text/javascript"></script>
     <script src="app-assets/vendors/js/ui/tether.min.js" type="text/javascript"></script>
     <script src="app-assets/js/core/libraries/bootstrap.min.js" type="text/javascript"></script>
     <script src="app-assets/vendors/js/ui/perfect-scrollbar.jquery.min.js" type="text/javascript"></script>
@@ -713,17 +727,7 @@ List<KaizenBean> lisOfMainRejectedKaizen = allKaizenListDAO.getListOfAllKaizenBy
     <script src="app-assets/js/scripts/ui/fullscreenSearch.min.js" type="text/javascript"></script>
     <!-- /build-->
     <!-- END ROBUST JS-->
-  	<script>
-	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	  })(window,document,'script','www.google-analytics.com/analytics.js','ga');
-
-	  ga('create', 'UA-96096445-1', 'auto');
-	  ga('send', 'pageview');
-
-	</script>
-    <!-- BEGIN PAGE VENDOR JS-->
+     <!-- BEGIN PAGE VENDOR JS-->
     <script type="text/javascript" src="app-assets/vendors/js/ui/jquery.sticky.js"></script>
     <script src="app-assets/vendors/js/tables/jquery.dataTables.min.js" type="text/javascript"></script>
     <script src="app-assets/vendors/js/tables/datatable/dataTables.bootstrap4.min.js" type="text/javascript"></script>
@@ -738,6 +742,41 @@ List<KaizenBean> lisOfMainRejectedKaizen = allKaizenListDAO.getListOfAllKaizenBy
     
       <!-- BEGIN PAGE LEVEL JS-->
     <script src="app-assets/js/scripts/tables/datatables/datatable-advanced.min.js" type="text/javascript"></script>
+  	<script>
+	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	  })(window,document,'script','www.google-analytics.com/analytics.js','ga');
+
+	  ga('create', 'UA-96096445-1', 'auto');
+	  ga('send', 'pageview');
+
+	</script>
+   
     <!-- END PAGE LEVEL JS-->
+    <script>
+    $(document).ready(function() {
+        $('#dataTables-example').DataTable({
+                responsive: true
+        });
+    });
+    function showData(id){
+		 $("."+id).slideToggle(2);
+	     $("i", "#"+id).toggleClass("icon-android-add-circle icon-android-remove-circle");
+	}
+    function showData1(id){
+		 $("."+id).slideToggle(2);
+	     $("i", "#"+id).toggleClass("icon-android-add-circle icon-android-remove-circle");
+	}
+    
+    </script>
+    <script>
+	  $("[data-toggle=popover]")
+	    .popover({html:true})
+	    
+	    $('.popover-dismiss').popover({
+	  	trigger: 'focus'
+		})
+	</script>
 </body>
 </html>

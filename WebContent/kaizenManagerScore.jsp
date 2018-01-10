@@ -536,12 +536,13 @@ KaizenBillboardResultBean kaizenBillboardResultBean = allKaizenListDAO.getDetail
       
       
       function insertData(id) {
+    	  
+      	alert("hii");
 		var sumOfvalue = 0
 		
   	 	var kaizen_id = id;
 		var employee_id = <%=employee_id%>;
   	 	var ci_id = $("#ci"+id).val();
-  	 	
   	 	
   	 	var quality = 0;
   	 	var cost = 0;
@@ -550,7 +551,6 @@ KaizenBillboardResultBean kaizenBillboardResultBean = allKaizenListDAO.getDetail
   	 	var productivity = 0;
   	 	var horizontal_deployment = 0;
   	 	var count = 0;
-  	 	
   	 	
   	 	var q = $("input[type='radio'].qua"+id+":checked").val();
   	 	var c = $("input[type='radio'].cost"+id+":checked").val();
@@ -592,7 +592,27 @@ KaizenBillboardResultBean kaizenBillboardResultBean = allKaizenListDAO.getDetail
   	 	sumOfvalue = parseInt(quality) + parseInt(cost) + parseInt(safety) + parseInt(productivity) + parseInt(horizontal_deployment) + parseInt(delivery);
   	 	
   	 	var ave = (sumOfvalue/count).toFixed(2);
-  		var $form = $(this), url = 'continuousImprovementScoreInsert';
+  	 	
+  	 	alert("HIIIIIII");
+  	 	$.ajax({
+		    method: "POST",
+		    url: 'continuousImprovementScoreInsert',
+		    data: {kaizen_id : kaizen_id,employee_id : employee_id,quality : quality,cost : cost,safety : safety,
+		    		productivity : productivity,delivery : delivery,horizontal_deployment : horizontal_deployment,ave:ave},
+		    
+		    success: function (data) {
+		    	alert(data);
+		    	$(".sum"+id).html(ave);
+				if(data == "null"){
+		    		swal("Error!","Some Error occured !","error")
+		    	}else{
+		    		swal("SUCCESS!","Rating Successfully Saved!","success")
+		    	}
+		    }
+		}); 
+  	 	
+  	 	
+  		/* var $form = $(this), url = 'continuousImprovementScoreInsert';
   		
 
   		 var posting = $.post(url, {
@@ -611,7 +631,7 @@ KaizenBillboardResultBean kaizenBillboardResultBean = allKaizenListDAO.getDetail
   		posting.done(function(data) {
   			$(".sum"+id).html(ave);
   			Materialize.toast('Rating Successfully Saved!', 2000);
-  		});
+  		}); */
   		
   		
   	}	

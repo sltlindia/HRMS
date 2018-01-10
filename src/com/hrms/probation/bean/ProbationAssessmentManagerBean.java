@@ -33,7 +33,9 @@ public class ProbationAssessmentManagerBean {
 	private String top_management_rejection_remarks;
 	private EmployeeBean employeeBean;
 	private boolean show_view;
-	private String manager_suggestion; 
+	private String manager_suggestion;
+	private String confirmation_date;
+	
 	
 	public ProbationAssessmentManagerBean() {
 		super();
@@ -107,7 +109,7 @@ public class ProbationAssessmentManagerBean {
 		this.hr_approval = hr_approval;
 		this.hr_rejection_remarks = hr_rejection_remarks;
 	}
-
+	
 	@Id
 	@Column(name="probation_assessment_manager_id")
 	@GeneratedValue
@@ -279,6 +281,7 @@ public class ProbationAssessmentManagerBean {
 	public void setShow_view(boolean show_view) {
 		this.show_view = show_view;
 	}
+
 	
 	/**
 	 * @return the manager_suggestion
@@ -292,4 +295,15 @@ public class ProbationAssessmentManagerBean {
 	public void setManager_suggestion(String manager_suggestion) {
 		this.manager_suggestion = manager_suggestion;
 	}
+
+
+	public String getConfirmation_date() {
+		return confirmation_date;
+	}
+
+
+	public void setConfirmation_date(String confirmation_date) {
+		this.confirmation_date = confirmation_date;
+	}
+	
 }

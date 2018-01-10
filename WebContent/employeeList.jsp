@@ -86,7 +86,9 @@ if(request.getParameter("dept_id") != null){
         <div class="col-xs-12">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title">Department Wise Employee List</h4>
+                <div class="card box-shadow-0" data-appear="appear">
+                <div class="card-header card-inverse" style="background-color: #90A4AE;padding: 0.5rem 0rem 1rem 0rem;height: 50px;">
+                    <h4 class="card-title">&nbsp;Department Wise Employee List</h4>
                     <a class="heading-elements-toggle"><i class="icon-ellipsis font-medium-3"></i></a>
                     <div class="heading-elements">
                         <ul class="list-inline mb-0">
@@ -129,8 +131,8 @@ if(request.getParameter("dept_id") != null){
 </form>
 <%} %>
                <!-- /.panel-heading -->
-                 <div class="card-body collapse in">
-                    <div class="card-block card-dashboard">
+                <div class="card-body collapse in">
+	  <div class="card-block border-bottom-blue-grey" style="border-left: 2px solid #607D8B;border-right: 2px solid #607D8B;">
                         <div class="table-responsive">
                                 <table class="table table-striped table-bordered file-export">
                                     <thead>
@@ -270,6 +272,8 @@ if(request.getParameter("dept_id") != null){
                                 </div>
                                 
                             </div>
+                          </div>  
+                        </div>    
 				</div>
 </div>
 </div>
