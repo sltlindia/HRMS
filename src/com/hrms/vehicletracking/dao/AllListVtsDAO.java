@@ -66,6 +66,28 @@ public class AllListVtsDAO {
 
 		}
 		
+		//List Method for getting vehicle details from vehicle_tracking_tbl by vehicle_tracking_id
+		public VehicleBean getVehicleDetailsById(int vehicle_id) {
+	        Session session = HibernateUtil.openSession();
+	        Transaction tx = null;
+	        VehicleBean vehicleBean = null;
+	        try {
+	            tx = session.getTransaction();
+	            tx.begin();
+	            Query query = session.createQuery("from VehicleBean where vehicle_master_id = "+vehicle_id+"");
+	            vehicleBean = (VehicleBean)query.uniqueResult();
+	            tx.commit();
+	        } catch (Exception e) {
+	            if (tx != null) {
+	                tx.rollback();
+	            }
+	            e.printStackTrace();
+	        } finally {
+	            session.close();
+	        }
+	        return vehicleBean;
+	    }
+		
 		public List<VehicleServiceRecordBean> getListOfVehicleService() {
 			List<VehicleServiceRecordBean> listOfVehicleType = new ArrayList<VehicleServiceRecordBean>();
 			Session session = HibernateUtil.openSession();
@@ -168,6 +190,28 @@ public class AllListVtsDAO {
 				session.close();
 			}
 			return listOfVehicleTracking;
+
+		}
+		
+		public VehicleTrackingBean getListOfVehiclesTrackingEndReadingZeroById(int vehicle_id) {
+			  Session session = HibernateUtil.openSession();
+		        Transaction tx = null;
+		        VehicleTrackingBean vehicleTrackingBean = null;
+			try {
+				tx = session.getTransaction();
+				tx.begin();
+				 Query query  = session.createQuery("FROM VehicleTrackingBean where vehicleBean = "+vehicle_id+" and end_reading = 0");
+				 vehicleTrackingBean = (VehicleTrackingBean)query.uniqueResult();
+				tx.commit();
+			} catch (Exception e) {
+				if (tx != null) {
+					tx.rollback();
+				}
+				e.printStackTrace();
+			} finally {
+				session.close();
+			}
+			return vehicleTrackingBean;
 
 		}
 		
@@ -605,9 +649,7 @@ public class AllListVtsDAO {
 			        }
 			        return vehiclePolicyDocumentBean;
 			    }
-			
 		
-	
 	}
 
 

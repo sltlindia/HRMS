@@ -1,3 +1,4 @@
+<%@page import="com.hrms.tds.bean.TDSPayrollMasterDataBean"%>
 <%@page import="com.hrms.tds.dao.TDSListDAO"%>
 <%@page import="com.hrms.tds.bean.TDSPayrollSalaryDataBean"%>
 <%@page import="com.hrms.tds.bean.TDSPayrollBean"%>
@@ -161,7 +162,7 @@ ArrayList<String> holidayDate = new ArrayList<String>();
 			$("#metroDeduction").hide();
 		});
 		
-		$(document).ready(function() {
+		<%-- $(document).ready(function() {
 			
 			<%
 			 if(user.getMealcard().equals("TRUE"))
@@ -181,11 +182,11 @@ ArrayList<String> holidayDate = new ArrayList<String>();
 			document.getElementById("MealCardDeduction").value = 0;
 			
 		<%}%>
-		});
+		}); --%>
 		
 		$(document).ready(function() {
-			$("#cash").hide();
-			$("#cheque").hide();
+			//$("#cash").hide();
+			//$("#cheque").hide();
 			$("#DoneeDetail").hide();
 			
 		});
@@ -224,9 +225,9 @@ ArrayList<String> holidayDate = new ArrayList<String>();
 			totalBasicNonMetro = ((basicSalary * 40) / 100);
 			totalBasicMetro = ((basicSalary * 50) / 100);
 			
-			totalRentNonMetro1 = ((basicSalary * 10) / 100);
+			/* totalRentNonMetro1 = ((basicSalary * 10) / 100);
 			document.getElementById("rentSlipNonMetro").value = totalRentNonMetro1;
-			document.getElementById("rentSlipMetro").value = totalRentNonMetro1;
+			document.getElementById("rentSlipMetro").value = totalRentNonMetro1; */
 
 			document.getElementById("totalBasicNonMetro").value = totalBasicNonMetro;
 			document.getElementById("totalBasicMetro").value = totalBasicMetro;
@@ -315,35 +316,47 @@ ArrayList<String> holidayDate = new ArrayList<String>();
 			var gender = $("#gender").val();
 			//alert("Gender :"+gender);
 			
-			if(years >= 60)
+			if((years >= 60) && (years < 80))
 			{
 				if(gender == "Female")
 					{
 						$("#adult").hide();
 						$("#senior").hide();
 						$("#female").show();
+						$("#seniorCitizen").hide();
 					}
 				else if(gender == "Male")
 					{
 						$("#adult").hide();
 						$("#senior").show();
 						$("#female").hide();
+						$("#seniorCitizen").hide();
 					}
-			}else if(years < 60)
+			}
+			else if(years < 60)
 			{
 				if(gender == "Female")
 					{
 						$("#senior").hide();
 						$("#adult").hide();
 						$("#female").show();
+						$("#seniorCitizen").hide();
 					}
 				else if(gender == "Male")
 					{
 						$("#senior").hide();
 						$("#adult").show();
 						$("#female").hide();
+						$("#seniorCitizen").hide();
 					}
 				
+			}
+			else if(years >= 80)
+			{
+				$("#senior").hide();
+				$("#adult").hide();
+				$("#female").hide();
+				$("#seniorCitizen").show();
 			}
 		});
 		temp();
@@ -681,7 +694,7 @@ ArrayList<String> holidayDate = new ArrayList<String>();
 		var MedicalDeduction = document.getElementById("MedicalDeduction").value;
 		document.getElementById("MedicalBill").value = MedicalDeduction;
 
-		var MealCardDeduction = document.getElementById("MealCardDeduction").value;
+		/* var MealCardDeduction = document.getElementById("MealCardDeduction").value;
 		
 		//alert("QWERTTY" +MealCardDeduction );
 		var MealCardDeduction1 = document.getElementById("MealCardDeduction1").value;
@@ -691,7 +704,7 @@ ArrayList<String> holidayDate = new ArrayList<String>();
 			document.getElementById("MealCard").value = MealCardDeduction;
 		}else{
 			document.getElementById("MealCard").value = MealCardDeduction1;
-		}
+		} */
 
 		var actualLTABill = document.getElementById("actualLTABill").value;
 		document.getElementById("LTA").value = actualLTABill;
@@ -1106,13 +1119,11 @@ ArrayList<String> holidayDate = new ArrayList<String>();
 	{
 		var cashDeduction = document.getElementById("cashDeduction").value;
 		var chequeDeduction = document.getElementById("chequeDeduction").value;
-		var result = document.getElementById("donationResult").value;
-		//alert("Checkbox" + result);
-		if(result == "Cash"){
-			document.getElementById("Donation").value = cashDeduction;
-		}else{
-			document.getElementById("Donation").value = chequeDeduction;
-		}
+		//alert("cashDeduction" + cashDeduction);
+		//alert("chequeDeduction" + chequeDeduction);
+		var result;
+		result = parseFloat(cashDeduction) + parseFloat(chequeDeduction) ;
+		document.getElementById("Donation").value = result;
 		
 		var donationAmount = document.getElementById("donationDeduction").value;
 		document.getElementById("TotalDonation").value = donationAmount;
@@ -1180,7 +1191,7 @@ ArrayList<String> holidayDate = new ArrayList<String>();
 			}
 			else if(gender == "Male")
 			{
-				if( age >= 60)
+				if((age >= 60) && (age < 80))
 				{
 					if (TotalTexableValue <= 300000) {
 						//alert("less than 300000");
@@ -1200,7 +1211,7 @@ ArrayList<String> holidayDate = new ArrayList<String>();
 						document.getElementById("Tax").value = Tax.toFixed(2);
 					}
 				}
-				else if( age < 60)
+				else if(age < 60)
 				{
 					if (TotalTexableValue <= 250000) {
 						//alert("less than 250000");
@@ -1209,6 +1220,26 @@ ArrayList<String> holidayDate = new ArrayList<String>();
 					} else if (TotalTexableValue > 250000 && TotalTexableValue <= 500000) {
 						//alert("between 250000-500000");
 						Tax = ((TotalTexableValue - 250000) * 5) / 100;
+						document.getElementById("Tax").value = Tax.toFixed(2);
+					} else if (TotalTexableValue > 500000 && TotalTexableValue <= 1000000) {
+						//alert("between 500000-1000000");
+						Tax = (((TotalTexableValue - 500000) * 20) / 100) + 25000;
+						document.getElementById("Tax").value = Tax.toFixed(2);
+					} else if (TotalTexableValue > 1000000) {
+						//alert("greater than 1000000");
+						Tax = (((TotalTexableValue - 1000000) * 30) / 100) + 125000;
+						document.getElementById("Tax").value = Tax.toFixed(2);
+					}
+				}
+				else if(age >= 80)
+				{
+					if (TotalTexableValue <= 250000) {
+						//alert("less than 250000");
+						Tax = 0;
+						document.getElementById("Tax").value = Tax.toFixed(2);
+					} else if (TotalTexableValue <= 500000) {
+						//alert("between 250000-500000");
+						Tax = 0;
 						document.getElementById("Tax").value = Tax.toFixed(2);
 					} else if (TotalTexableValue > 500000 && TotalTexableValue <= 1000000) {
 						//alert("between 500000-1000000");
@@ -1252,7 +1283,7 @@ ArrayList<String> holidayDate = new ArrayList<String>();
 		}
 		else if(gender == "Male")
 		{
-			if( age >= 60)
+			if((age >= 60) && (age < 80))
 			{
 				if (Tax <= 300000) {
 					//alert("taxremit is 0");
@@ -1279,6 +1310,22 @@ ArrayList<String> holidayDate = new ArrayList<String>();
 					TaxRemit = 5000.00;
 					document.getElementById("TaxRemit").value = TaxRemit;
 				} else if (Tax > 500001) {
+					//alert("taxremit is 5001");
+					TaxRemit = 0;
+					document.getElementById("TaxRemit").value = TaxRemit;
+				}
+			}
+			else if(age >= 80)
+			{
+				if (Tax <= 500000) {
+					//alert("taxremit is 0");
+					TaxRemit = 0;
+					document.getElementById("TaxRemit").value = TaxRemit;
+				} else if (Tax > 500000 && Tax <= 1000000) {
+					//alert("taxremit is 5000");
+					TaxRemit = 5000.00;
+					document.getElementById("TaxRemit").value = TaxRemit;
+				} else if (Tax > 1000001) {
 					//alert("taxremit is 5001");
 					TaxRemit = 0;
 					document.getElementById("TaxRemit").value = TaxRemit;
@@ -1376,7 +1423,7 @@ ArrayList<String> holidayDate = new ArrayList<String>();
           		String payroll_company_name = null;
           			if(hrms_company_name.equals("SL"))
 	          		{
-	          			payroll_company_name = "SLT";
+	          			payroll_company_name = "SLTL";
 	          		}
 	          		else if(hrms_company_name.equals("SE"))
 	          		{
@@ -1407,6 +1454,10 @@ ArrayList<String> holidayDate = new ArrayList<String>();
 	          	PayrollList payrollList = new PayrollList();
           		List<TDSPayrollSalaryDataBean> payrollBean = tdsListDAO.getTDSPayrollSalaryDataByEmpCode(emp_id, payroll_company_name);
 	          	
+          		
+          		List<TDSPayrollMasterDataBean> lastRecordOfMasterData  = payrollList.getLastRecordOfMasterData(emp_id,payroll_company_name);
+          		System.err.println("SIZE===========>"+lastRecordOfMasterData.size());
+          		
           		String joiningDate = null ;
           		double basicSalary = 0.0;
           		double medical = 0.0 ;
@@ -1430,13 +1481,26 @@ ArrayList<String> holidayDate = new ArrayList<String>();
           		double performancePay = 0.0 ;
           		double salary = 0.0;
           		double Incentive = 0.0;
+          		double interest = 0.0;
+          		double fullFinalBonus = 0.0;
+          		double fullFinalLeave = 0.0;
+          		double meal_card = 0.0;
+          		String pan_no = null;
+          		String designation = null;
           		
-          		double lastBasicSalary = 0.0;
-          		double lastMedical = 0.0 ;
-          		double lastConveyance = 0.0 ;
-          		double lastActualHRA = 0.0 ;
-          		double lastUniAllw = 0.0 ;
-          		double lastEduAllw = 0.0 ;
+          		double dueBasicSalary = 0.0;
+          		double dueMedical = 0.0 ;
+          		double dueConveyance = 0.0 ;
+          		double dueActualHRA = 0.0 ;
+          		double dueUniAllw = 0.0 ;
+          		double dueEduAllw = 0.0 ;
+          		
+          		double monthlyBasicSalary = 0.0;
+          		double monthlyMedical = 0.0 ;
+          		double monthlyConveyance = 0.0 ;
+          		double monthlyActualHRA = 0.0 ;
+          		double monthlyUniAllw = 0.0 ;
+          		double monthlyEduAllw = 0.0 ;
           		double lastOtherAllw = 0.0 ;
           		double lastAdhocAllw = 0.0 ;
           		double lastLtc = 0.0 ;
@@ -1444,14 +1508,45 @@ ArrayList<String> holidayDate = new ArrayList<String>();
           		double lastSalary = 0.0;
           		
           		
-          		for(TDSPayrollSalaryDataBean bean : payrollBean){
-          			joiningDate = bean.getDate();
+          		for(TDSPayrollMasterDataBean masterDataBean : lastRecordOfMasterData){
+          			annual_gross_salary = masterDataBean.getSalary();
+          			bonus = masterDataBean.getBonus();
+          			leave = masterDataBean.getLeave_count();
+          			interest = masterDataBean.getInterest();
+          			fullFinalBonus = masterDataBean.getFull_final_bonus();
+          			fullFinalLeave = masterDataBean.getFull_final_leave();
+          			Incentive = masterDataBean.getIncentive();
+          			prvSalary = masterDataBean.getPrevious_salary();
+          			performancePay = masterDataBean.getPerformance();
+          			ptax = masterDataBean.getPtax();
+          			pf = masterDataBean.getEpf();
+          			joiningDate = masterDataBean.getJoining_date();
+          			pan_no = masterDataBean.getPan_no();
+          			ltc = masterDataBean.getLta();
+          			designation = masterDataBean.getDesignation();
+          			meal_card = masterDataBean.getMealcard();
           		}
           		
-          		SimpleDateFormat yyyyMMdd1 = new SimpleDateFormat("yyyy-MM-dd");
+          		
+          		/* List<TDSPayrollBean> listOfData  = payrollList.getListOfDataByEmpCode(emp_id,payroll_company_name);
+          		System.err.println("Monthly SIZE===========>"+listOfData.size());
+          		for(TDSPayrollBean tdsPayrollBean : listOfData)
+          		{
+          			dueBasicSalary = dueBasicSalary + (tdsPayrollBean.getBasic_salary());
+          			dueConveyance = dueConveyance + (tdsPayrollBean.getConveyance());
+          			dueActualHRA = dueActualHRA + (tdsPayrollBean.getHra());								(sum of total data which is available in database)
+          			dueMedical = dueMedical + (tdsPayrollBean.getMedical());
+          			dueEduAllw = dueEduAllw + (tdsPayrollBean.getEdu_allw());
+          			dueUniAllw = dueUniAllw + (tdsPayrollBean.getUni_allw());
+          		} */
+          		
+          		/* for(TDSPayrollSalaryDataBean bean : payrollBean){
+          			joiningDate = bean.getDate();
+          		} */
+          		
         		Calendar calJoiningDate = Calendar.getInstance();
 	          	Calendar calCurrDate = Calendar.getInstance();
-	          	calJoiningDate.setTime(yyyyMMdd1.parse(joiningDate));
+	          	calJoiningDate.setTime(yyyyMMdd.parse(joiningDate));
 	          	calCurrDate.setTime(current_date);
 	          	int currentYear = calCurrDate.get(Calendar.YEAR);
 	          	int joiningYear = calJoiningDate.get(Calendar.YEAR);
@@ -1472,8 +1567,36 @@ ArrayList<String> holidayDate = new ArrayList<String>();
 	          		total_month = (3 - currentMonth) + 1 ; 
 	          	}
           		
-          		
-          		double dueMonthBasicSalary = payrollList.getDueMonthBasicSalary(emp_id, payroll_company_name);
+	          	List<TDSPayrollBean> lastrecord  = payrollList.getLastBasicSalary(emp_id,payroll_company_name);
+	      		System.err.println("LAst Basic Salary=====> :"+lastrecord);
+	      		
+	      		for(TDSPayrollBean tdsPayrollBean : lastrecord){
+	      			basicSalary = tdsPayrollBean.getAnnual_basic_salary();
+	      			actualHRA = tdsPayrollBean.getAnnual_hra();
+	      			conveyance = tdsPayrollBean.getAnnual_conveyance();
+	      			medical = tdsPayrollBean.getAnnual_medical();
+	      			uniAllw = tdsPayrollBean.getAnnual_uni_allw();
+	      			eduAllw = tdsPayrollBean.getAnnual_edu_allw();
+	      			
+	      			monthlyBasicSalary = tdsPayrollBean.getBasic_salary();
+	      			monthlyActualHRA = tdsPayrollBean.getHra();
+	      			monthlyConveyance = tdsPayrollBean.getConveyance();
+	      			monthlyMedical = tdsPayrollBean.getMedical();
+	      			monthlyUniAllw = tdsPayrollBean.getUni_allw();
+	      			monthlyEduAllw = tdsPayrollBean.getEdu_allw();
+	      		}
+	          	
+	      		/* basicSalary = dueBasicSalary + (lastBasicSalary * total_month);
+	      		actualHRA = dueActualHRA + (lastActualHRA * total_month);
+	          	conveyance = dueConveyance + (lastConveyance * total_month);
+	          	medical = dueMedical + (lastMedical * total_month);
+	          	uniAllw = dueUniAllw + (lastUniAllw * total_month);
+	          	eduAllw = dueEduAllw + (lastEduAllw * total_month); */
+	          	
+/*---------------------------------------For one excel get last data nd multiply that with remaining month---------------------------------  */
+
+
+          		/* double dueMonthBasicSalary = payrollList.getDueMonthBasicSalary(emp_id, payroll_company_name);
           		double dueMonthHRA = payrollList.getDueMonthHRA(emp_id, payroll_company_name);
           		double dueMonthConveyance = payrollList.getDueMonthConveyance(emp_id, payroll_company_name);
           		double dueMonthLTC = payrollList.getDueMonthLTC(emp_id, payroll_company_name);
@@ -1507,8 +1630,9 @@ ArrayList<String> holidayDate = new ArrayList<String>();
           			lastSalary = tdsPayrollBean.getSalary();
           		}
           		
+          		/*---------------------------------------For one excel get max data nd multiply that with remaining month---------------------------------  */ 	
           		
-          		double maxBasicSalary = payrollList.getMaxBasicSalary(emp_id, payroll_company_name);
+          		/* double maxBasicSalary = payrollList.getMaxBasicSalary(emp_id, payroll_company_name);
           		double maxHRA = payrollList.getMaxHRA(emp_id, payroll_company_name);
           		double maxConveyance = payrollList.getMaxConveyance(emp_id, payroll_company_name);
           		double maxLTC = payrollList.getMaxLTC(emp_id, payroll_company_name);
@@ -1523,9 +1647,11 @@ ArrayList<String> holidayDate = new ArrayList<String>();
           		//double maxPF = payrollList.getDueMonthPF(emp_id, payroll_company_name);
           		//double maxPreviousSalary = payrollList.getMaxPreviousSalary(emp_id, payroll_company_name);
           		double maxPerformancePay = payrollList.getMaxPerformancePay(emp_id, payroll_company_name);
-          		//double maxLeave = payrollList.getMaxLeave(emp_id, payroll_company_name);
+          		//double maxLeave = payrollList.getMaxLeave(emp_id, payroll_company_name);  */
           		
+          		/*---------------------------------------For one excel get max data nd multiply that with remaining month---------------------------------  */ 
           		
+/*---------------------------------------For one excel get last data nd multiply that with remaining month---------------------------------  */    		
           		
           		
           		/* SimpleDateFormat ddMMyyyy = new SimpleDateFormat("YYYY-MM-dd HH:mm:ss");
@@ -1572,7 +1698,10 @@ ArrayList<String> holidayDate = new ArrayList<String>();
 	          	}
 	          	else{ */
 	          		
-	          	basicSalary = dueMonthBasicSalary + (lastBasicSalary * total_month);
+/*---------------------------------------For one excel get last data nd multiply that with remaining month---------------------------------  */
+	          		
+	          		
+	          	/* basicSalary = dueMonthBasicSalary + (lastBasicSalary * total_month);
 	          	actualHRA = dueMonthHRA + (lastActualHRA * total_month);
 	          	conveyance = dueMonthConveyance + (lastConveyance * total_month);
 	          	ltc = dueMonthLTC + (lastLtc * total_month);
@@ -1587,7 +1716,9 @@ ArrayList<String> holidayDate = new ArrayList<String>();
 	          	performancePay = dueMonthPerformancePay + (lastPerformancePay * total_month);
 	          	ptax = dueMonthPTAX;
 	          	pf = dueMonthPF;
-	          	leave = dueMonthLeave;
+	          	leave = dueMonthLeave; */
+	          	
+/*---------------------------------------For one excel get last data nd multiply that with remaining month---------------------------------  */
 	          	
 	          	
 	          	System.err.println("Basic Salary :"+basicSalary);
@@ -1652,6 +1783,8 @@ ArrayList<String> holidayDate = new ArrayList<String>();
 	          	double totalA = annual_gross_salary + prvSalary + performancePay + bonus + leave + Incentive ;
           	%>
           	
+          	
+          	
           	<div class="row">
 				    <div class="col-md-12">
 				        <div class="card">
@@ -1685,27 +1818,27 @@ ArrayList<String> holidayDate = new ArrayList<String>();
 											<input type="hidden" name="employee_code" id="employee_code" value="<%=employee_code%>">
 											<input type="hidden" name="gender" id="gender" value="<%=user.getGender()%>">
 									
+								<div class="row">
+									<div class="col-lg-3"><b>Name</b></div>
+									<div class="col-lg-3"><b>PAN No</b></div>
+									<div class="col-lg-3"><b>Department</b></div>
+									<div class="col-lg-3"><b>Designation</b></div>
+								</div>
 								
 								<div class="row">
-										<div class="col-lg-6">
-											<div class="col-lg-3">
-												<b>Name :</b>
-											</div>
-											<div class="col-lg-9">
+									<div class="col-lg-3">
 												<input type="text" class="form-control" name="emp_name" id="emp_name" value="<%=user.getFirstname()%> <%=user.getLastname()%>"
 														readonly="readonly">
-											</div>
-										</div>	
-										
-										<div class="col-lg-6">
-											<div class="col-lg-3">
-												<b>PAN No :</b>
-											</div>
-											<div class="col-lg-9">
-												<input type="text" class="form-control" name="pan_no" id="pan_no" value="<%=user.getPan_no() %>" readonly="readonly"
-													placeholder="Enter PAN No.">
-											</div>
-										</div>	
+									</div>
+									<div class="col-lg-3">
+												<input type="text" class="form-control" name="pan_no" id="pan_no" value="<%=user.getPan_no() %>" readonly="readonly">
+									</div>
+									<div class="col-lg-3">
+												<input type="text" class="form-control" name="department" id="department" value="<%=user.getDepartmentBean().getDepartment_name()%>" readonly="readonly">
+									</div>
+									<div class="col-lg-3">
+												<input type="text" class="form-control" name="designation" id="designation" value="<%=user.getRoleBean().getRole_type() %>" readonly="readonly">
+									</div>
 								</div>
 					<br> 
 					<% SimpleDateFormat formatNowYear = new SimpleDateFormat("yyyy");
@@ -1731,7 +1864,8 @@ ArrayList<String> holidayDate = new ArrayList<String>();
 								</center>
 			                    </h5>
 			                </div>
-			                <div class="card-body collapse in">
+			                
+			                <!-- <div class="card-body collapse in">
 			                    <div class="card-block border-bottom-blue-grey">
 			                      <h5>
 									<b>General Deductions</b>
@@ -1741,9 +1875,13 @@ ArrayList<String> holidayDate = new ArrayList<String>();
 									<b>Exempted Allowance U/S 10 Of The Income Tax</b>
 								</h5>
 			                    </div>
-			                </div>
+			                </div> -->
+			                
 			            </div>
 						
+						<b><font size="4px;">General Deductions</font></b>
+						
+			                
 			<div class="row">
 			<div class="col-lg-12">
 				<div id="accordionWrap1" role="tablist" aria-multiselectable="true">
@@ -1753,7 +1891,7 @@ ArrayList<String> holidayDate = new ArrayList<String>();
 					<a data-toggle="collapse" data-parent="#accordionWrap1" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne" class="card-title lead info">
 					<div class="row">
 						<div class="col-lg-12">
-                         <div class="col-md-10" align="left">(1) Gross Income And HRA Calculation(Annual)</div>
+                         <div class="col-md-10" align="left">(1) Exempted Allowance U/S 10(Annual)</div>
                          <div class="col-md-2">
                          	<div class="col-md-1">Rs.</div> 
                         	 <div class="col-md-1" id="part1"></div>
@@ -1808,12 +1946,12 @@ ArrayList<String> holidayDate = new ArrayList<String>();
 																									<tr>
 																										<th id="modalPadding">Leave</th>
 																										<td id="modalPadding"><input type="text" class="form-control"
-																											id="Leave" name="Leave" value="<%=lastSalary %>" readonly="readonly" onchange="temp();"></td>
+																											id="Leave" name="Leave" value="<%=leave %>" readonly="readonly" onchange="temp();"></td>
 																									</tr>
 																									<tr>
 																										<th id="modalPadding">Incentive</th>
 																										<td id="modalPadding"><input type="text" class="form-control"
-																											id="Incentive" name="Incentive" value="<%=incentive %>" readonly="readonly"
+																											id="Incentive" name="Incentive" value="<%=Incentive %>" readonly="readonly"
 																											onchange="temp();"></td>
 																									</tr>
 																									<tr>
@@ -2156,7 +2294,8 @@ ArrayList<String> holidayDate = new ArrayList<String>();
 																					id="MealCard" value="0" readonly="readonly">
 																			</div>
 																		</th>
-																		<th>
+																		<th></th>
+																		<%-- <th>
 							
 																				<!-- Button trigger modal -->
 																				<%if(user.getMealcard().equals("TRUE")) {%>
@@ -2259,7 +2398,7 @@ ArrayList<String> holidayDate = new ArrayList<String>();
 																					<!-- /.modal-dialog -->
 																				</div>
 																				<!-- /.modal -->
-																		</th>
+																		</th> --%>
 																	</tr>
 							                                        
 							                                        
@@ -2885,7 +3024,7 @@ ArrayList<String> holidayDate = new ArrayList<String>();
 					<a data-toggle="collapse" data-parent="#accordionWrap1" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour" class="card-title lead info collapsed">
 						<div class="row">
 							<div class="col-lg-12">
-								<div class="col-md-8" align="left">(4) NPS And RGESS(Annual)</div>
+								<div class="col-md-8" align="left">(4) Section 80 CCD(1) & 80 CCG(Annual)</div>
 								<div class="col-md-2">
 									<div class="col-md-1">Rs.</div>
 									<div class="col-md-1" id="part4self"></div>
@@ -3228,7 +3367,7 @@ ArrayList<String> holidayDate = new ArrayList<String>();
 																							<h4 class="modal-title" id="myModalLabel">Donation(80 G/ 80 G(5))(Annual)</h4>
 																						</div>
 																						<div class="modal-body">
-																								<div class="form-group">
+																								<!-- <div class="form-group">
 																										<label>Choose</label> &nbsp;&nbsp;&nbsp;&nbsp;
 																										<label class="radio-inline"> <input type="radio"
 																											name="donationRadio" id="0" 
@@ -3238,7 +3377,7 @@ ArrayList<String> holidayDate = new ArrayList<String>();
 																											type="radio" name="donationRadio"
 																											id="1" value="cheque" onchange="checkDonationRadio()">Cheque
 																										</label> <input type="hidden" name="donationResult" id="donationResult">
-																									</div>
+																									</div> -->
 																							<div id="cash">
 																							<table class="table table-striped">
 																								<tr><center><h5><b>Donation Through Cash</b></h5></center></tr>
@@ -3463,13 +3602,13 @@ ArrayList<String> holidayDate = new ArrayList<String>();
 					                    <div class="card-block border-bottom-blue-grey">
 					                        <div class="row">
 	                               				 <div class="col-lg-3">
-		                                            <label><b>TotalF(Taxable Income)</b></label>
+		                                            <label><b>Total Income</b></label>
 		                                            <b><input class="form-control" name="TaxableIncome"
 															id="TaxableIncome" value="0" readonly="readonly"></b>
 		                                         </div>
 		                                        
 		                                         <div class="col-lg-3">
-		                                            <label><b>Tax</b></label>
+		                                            <label><b>Tax On Total Income</b></label>
 		                                            <b><input class="form-control" name="Tax" id="Tax"
 																value="0" readonly="readonly"></b>
 		                                         </div>
@@ -3481,7 +3620,7 @@ ArrayList<String> holidayDate = new ArrayList<String>();
 		                                         </div>
 		                                        
 		                                         <div class="col-lg-3">
-		                                            <label><b>Total Tax</b></label>
+		                                            <label><b>Tax On Tax Remit</b></label>
 		                                            <b><input class="form-control" name="TotalTax" id="TotalTax"
 																value="0" readonly="readonly"></b>
 		                                         </div>
@@ -3495,7 +3634,7 @@ ArrayList<String> holidayDate = new ArrayList<String>();
 		                                         </div>
 		                                        
 		                                         <div class="col-lg-3">
-		                                            <label><b>TotalH</b></label>
+		                                            <label><b>Tax Payable</b></label>
 		                                            <b><input class="form-control" name="TotalH" id="TotalH"
 																value="0" readonly="readonly"></b>
 		                                         </div>
@@ -3616,6 +3755,42 @@ ArrayList<String> holidayDate = new ArrayList<String>();
 						                    </div>
 						                </div>
 						            </div>
+						            
+						            <div class="card box-shadow-0" data-appear="appear" id="seniorCitizen">
+					                <div class="card-header card-inverse" style="background-color: #90A4AE;">
+					                    <h5 class="card-title"><center>Income Tax Slab for Senior Citizens(80 Years Old Or More) (Both Men & Women)</center></h5>
+					                </div>
+					                <div class="card-body collapse in">
+					                    <div class="card-block border-bottom-blue-grey">
+					                        <div class="table-responsive">
+				                                <table class="table table-striped table-bordered table-hover">
+				                                      <tbody>
+				                                        <tr>
+															<th><center>Income Range</center></th>
+															<th><center>Rate</center></th>
+														</tr>
+														<tr>
+															<td><center>Up to Rs. 2,50,000</center></td>
+															<td><center>NIL</center></td>
+														</tr>
+														<tr>
+															<td><center>Up to Rs. 5,00,000</center></td>
+															<td><center>NIL</center></td>
+														</tr>
+														<tr>
+															<td><center>Rs. 5,00,001 to Rs. 10,00,000</center></td>
+															<td><center>20%</center></td>
+														</tr>
+														<tr>
+															<td><center>Rs. 10,00,001 & Above</center></td>
+															<td><center>30%</center></td>
+														</tr>
+				                                    </tbody>
+				                                </table>
+				                            </div>
+						                    </div>
+						                </div>
+						            </div>
 				
 								<center>
 
@@ -3674,7 +3849,7 @@ ArrayList<String> holidayDate = new ArrayList<String>();
 		}
 	</script>
 	
-	<script type="text/javascript">
+	<!-- <script type="text/javascript">
 		function checkDonationRadio() {
 			//alert("SKY");
 
@@ -3702,7 +3877,7 @@ ArrayList<String> holidayDate = new ArrayList<String>();
 				}
 			}
 		}
-	</script>
+	</script> -->
 	
 	<script type="text/javascript">
 		function check() {

@@ -10,6 +10,7 @@ import org.hibernate.Transaction;
 import com.hrms.pms.util.HibernateUtil;
 import com.hrms.tds.bean.TDSDocumentUploadBean;
 import com.hrms.tds.bean.TDSPayrollBean;
+import com.hrms.tds.bean.TDSPayrollMasterDataBean;
 
 public class PayrollList {
 	
@@ -747,7 +748,7 @@ public class PayrollList {
 	        tx = session.getTransaction();
 	        tx.begin();
             
-            Query query1 = session.createQuery("from TDSPayrollBean where employee_code = '"+emp_code+"' and company_name = '"+ company_code+"' and (date BETWEEN '2017-04-01' AND '2018-03-31') ORDER BY tds_payroll_id DESC");
+            Query query1 = session.createQuery("from TDSPayrollBean where employee_code = '"+emp_code+"' and company_name = '"+ company_code+"' ORDER BY tds_payroll_id DESC");
             query1.setMaxResults(1);
             listOfDocument =  query1.list();
             
@@ -762,6 +763,53 @@ public class PayrollList {
             session.close();
         }
         return listOfDocument;
+    }
+	
+	public List<TDSPayrollMasterDataBean> getLastRecordOfMasterData(int emp_code, String company_code)
+	{
+	    List<TDSPayrollMasterDataBean> listOfData = new ArrayList<TDSPayrollMasterDataBean>();
+	    Session session = HibernateUtil.openSession();
+	    Transaction tx = null;
+	    try {
+	        tx = session.getTransaction();
+	        tx.begin();
+            
+            Query query1 = session.createQuery("from TDSPayrollMasterDataBean where employee_code = '"+emp_code+"' and company_name = '"+ company_code+"' ORDER BY tds_payroll_master_data_id DESC");
+            query1.setMaxResults(1);
+            listOfData =  query1.list();
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return listOfData;
+    }
+	
+	public List<TDSPayrollBean> getListOfDataByEmpCode(int emp_code, String company_code)
+	{
+	    List<TDSPayrollBean> listOfData = new ArrayList<TDSPayrollBean>();
+	    Session session = HibernateUtil.openSession();
+	    Transaction tx = null;
+	    try {
+	        tx = session.getTransaction();
+	        tx.begin();
+            
+            Query query1 = session.createQuery("from TDSPayrollBean where employee_code = '"+emp_code+"' and company_name = '"+ company_code+"'");
+            listOfData =  query1.list();
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return listOfData;
     }
 	
 	/*public List<TDSPayrollBean> getLastBasicSalary(int tds_id)

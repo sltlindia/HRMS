@@ -25,7 +25,6 @@ public class TDSTotalFBean implements Serializable{
 	private double d_health_checkup;
 	private double a_mediclaim;
 	private double d_mediclaim;
-	private String cash_cheque;
 	private double a_cash_amount;
 	private double d_cash_amount;
 	private double a_cheque_amount;
@@ -49,6 +48,18 @@ public class TDSTotalFBean implements Serializable{
 	private double payable_total_tax;
 	private double payable_edu_cess;
 	private double payable_total_h;
+	private double april;
+	private double may;
+	private double june;
+	private double july;
+	private double august;
+	private double september;
+	private double october;
+	private double november;
+	private double december;
+	private double january;
+	private double february;
+	private double march;
 	
 	private TDSBean tdsBean;
 	
@@ -56,57 +67,18 @@ public class TDSTotalFBean implements Serializable{
 		// TODO Auto-generated constructor stub
 	}
 
-	public TDSTotalFBean(double a_self, double d_self, String father_birthdate, double a_parents, double d_parents,
-			double a_health_checkup, double d_health_checkup, double a_mediclaim, double d_mediclaim,
-			String cash_cheque, double a_cash_amount, double d_cash_amount, double a_cheque_amount,
-			double d_cheque_amount, double donation_80g, double a_donation_80GGC, double d_donation_80GGC,
-			double education_loan, double total_80egd, double total_f, double tax, double tax_remit, double total_tax,
-			double edu_cess, double total_h, double tax_paid, double tax_payable, double payable_total_f, double payable_tax, double payable_tax_remit,
-			double payable_total_tax, double payable_edu_cess, double payable_total_h, TDSBean tdsBean) {
-		super();
-		this.a_self = a_self;
-		this.d_self = d_self;
-		this.father_birthdate = father_birthdate;
-		this.a_parents = a_parents;
-		this.d_parents = d_parents;
-		this.a_health_checkup = a_health_checkup;
-		this.d_health_checkup = d_health_checkup;
-		this.a_mediclaim = a_mediclaim;
-		this.d_mediclaim = d_mediclaim;
-		this.cash_cheque = cash_cheque;
-		this.a_cash_amount = a_cash_amount;
-		this.d_cash_amount = d_cash_amount;
-		this.a_cheque_amount = a_cheque_amount;
-		this.d_cheque_amount = d_cheque_amount;
-		donation_80G = donation_80g;
-		this.a_donation_80GGC = a_donation_80GGC;
-		this.d_donation_80GGC = d_donation_80GGC;
-		this.education_loan = education_loan;
-		total_80EGD = total_80egd;
-		this.total_f = total_f;
-		this.tax = tax;
-		this.tax_remit = tax_remit;
-		this.total_tax = total_tax;
-		this.edu_cess = edu_cess;
-		this.total_h = total_h;
-		this.tax_paid = tax_paid;
-		this.tax_payable = tax_payable;
-		this.payable_total_f = payable_total_f;
-		this.payable_tax = payable_tax;
-		this.payable_tax_remit = payable_tax_remit;
-		this.payable_total_tax = payable_total_tax;
-		this.payable_edu_cess = payable_edu_cess;
-		this.payable_total_h = payable_total_h;
-		this.tdsBean = tdsBean;
-	}
+	
 
 	public TDSTotalFBean(int tds_totalf_id, double a_self, double d_self, String father_birthdate, double a_parents,
 			double d_parents, double a_health_checkup, double d_health_checkup, double a_mediclaim, double d_mediclaim,
-			String cash_cheque, double a_cash_amount, double d_cash_amount, double a_cheque_amount,
+			double a_cash_amount, double d_cash_amount, double a_cheque_amount,
 			double d_cheque_amount, double donation_80g, double a_donation_80GGC, double d_donation_80GGC,
 			double education_loan, double total_80egd, double total_f, double tax, double tax_remit, double total_tax,
-			double edu_cess, double total_h, double tax_paid, double tax_payable, double payable_total_f, double payable_tax, double payable_tax_remit,
-			double payable_total_tax, double payable_edu_cess, double payable_total_h, TDSBean tdsBean) {
+			double edu_cess, double total_h, double tax_paid, double tax_payable, double payable_total_f,
+			double payable_tax, double payable_tax_remit, double payable_total_tax, double payable_edu_cess,
+			double payable_total_h, double april, double may, double june, double july, double august, double september,
+			double october, double november, double december, double january, double february, double march,
+			TDSBean tdsBean) {
 		super();
 		this.tds_totalf_id = tds_totalf_id;
 		this.a_self = a_self;
@@ -118,7 +90,6 @@ public class TDSTotalFBean implements Serializable{
 		this.d_health_checkup = d_health_checkup;
 		this.a_mediclaim = a_mediclaim;
 		this.d_mediclaim = d_mediclaim;
-		this.cash_cheque = cash_cheque;
 		this.a_cash_amount = a_cash_amount;
 		this.d_cash_amount = d_cash_amount;
 		this.a_cheque_amount = a_cheque_amount;
@@ -142,8 +113,81 @@ public class TDSTotalFBean implements Serializable{
 		this.payable_total_tax = payable_total_tax;
 		this.payable_edu_cess = payable_edu_cess;
 		this.payable_total_h = payable_total_h;
+		this.april = april;
+		this.may = may;
+		this.june = june;
+		this.july = july;
+		this.august = august;
+		this.september = september;
+		this.october = october;
+		this.november = november;
+		this.december = december;
+		this.january = january;
+		this.february = february;
+		this.march = march;
 		this.tdsBean = tdsBean;
 	}
+
+
+	public TDSTotalFBean(double a_self, double d_self, String father_birthdate, double a_parents, double d_parents,
+			double a_health_checkup, double d_health_checkup, double a_mediclaim, double d_mediclaim,
+			double a_cash_amount, double d_cash_amount, double a_cheque_amount,
+			double d_cheque_amount, double donation_80g, double a_donation_80GGC, double d_donation_80GGC,
+			double education_loan, double total_80egd, double total_f, double tax, double tax_remit, double total_tax,
+			double edu_cess, double total_h, double tax_paid, double tax_payable, double payable_total_f,
+			double payable_tax, double payable_tax_remit, double payable_total_tax, double payable_edu_cess,
+			double payable_total_h, double april, double may, double june, double july, double august, double september,
+			double october, double november, double december, double january, double february, double march,
+			TDSBean tdsBean) {
+		super();
+		this.a_self = a_self;
+		this.d_self = d_self;
+		this.father_birthdate = father_birthdate;
+		this.a_parents = a_parents;
+		this.d_parents = d_parents;
+		this.a_health_checkup = a_health_checkup;
+		this.d_health_checkup = d_health_checkup;
+		this.a_mediclaim = a_mediclaim;
+		this.d_mediclaim = d_mediclaim;
+		this.a_cash_amount = a_cash_amount;
+		this.d_cash_amount = d_cash_amount;
+		this.a_cheque_amount = a_cheque_amount;
+		this.d_cheque_amount = d_cheque_amount;
+		donation_80G = donation_80g;
+		this.a_donation_80GGC = a_donation_80GGC;
+		this.d_donation_80GGC = d_donation_80GGC;
+		this.education_loan = education_loan;
+		total_80EGD = total_80egd;
+		this.total_f = total_f;
+		this.tax = tax;
+		this.tax_remit = tax_remit;
+		this.total_tax = total_tax;
+		this.edu_cess = edu_cess;
+		this.total_h = total_h;
+		this.tax_paid = tax_paid;
+		this.tax_payable = tax_payable;
+		this.payable_total_f = payable_total_f;
+		this.payable_tax = payable_tax;
+		this.payable_tax_remit = payable_tax_remit;
+		this.payable_total_tax = payable_total_tax;
+		this.payable_edu_cess = payable_edu_cess;
+		this.payable_total_h = payable_total_h;
+		this.april = april;
+		this.may = may;
+		this.june = june;
+		this.july = july;
+		this.august = august;
+		this.september = september;
+		this.october = october;
+		this.november = november;
+		this.december = december;
+		this.january = january;
+		this.february = february;
+		this.march = march;
+		this.tdsBean = tdsBean;
+	}
+
+
 
 	@Id
 	@Column(name="tds_totalf_id")
@@ -226,14 +270,6 @@ public class TDSTotalFBean implements Serializable{
 
 	public void setD_mediclaim(double d_mediclaim) {
 		this.d_mediclaim = d_mediclaim;
-	}
-
-	public String getCash_cheque() {
-		return cash_cheque;
-	}
-
-	public void setCash_cheque(String cash_cheque) {
-		this.cash_cheque = cash_cheque;
 	}
 
 	public double getA_cash_amount() {
@@ -419,6 +455,102 @@ public class TDSTotalFBean implements Serializable{
 
 	public void setPayable_total_h(double payable_total_h) {
 		this.payable_total_h = payable_total_h;
+	}
+
+	public double getApril() {
+		return april;
+	}
+
+	public void setApril(double april) {
+		this.april = april;
+	}
+
+	public double getMay() {
+		return may;
+	}
+
+	public void setMay(double may) {
+		this.may = may;
+	}
+
+	public double getJune() {
+		return june;
+	}
+
+	public void setJune(double june) {
+		this.june = june;
+	}
+
+	public double getJuly() {
+		return july;
+	}
+
+	public void setJuly(double july) {
+		this.july = july;
+	}
+
+	public double getAugust() {
+		return august;
+	}
+
+	public void setAugust(double august) {
+		this.august = august;
+	}
+
+	public double getSeptember() {
+		return september;
+	}
+
+	public void setSeptember(double september) {
+		this.september = september;
+	}
+
+	public double getOctober() {
+		return october;
+	}
+
+	public void setOctober(double october) {
+		this.october = october;
+	}
+
+	public double getNovember() {
+		return november;
+	}
+
+	public void setNovember(double november) {
+		this.november = november;
+	}
+
+	public double getDecember() {
+		return december;
+	}
+
+	public void setDecember(double december) {
+		this.december = december;
+	}
+
+	public double getJanuary() {
+		return january;
+	}
+
+	public void setJanuary(double january) {
+		this.january = january;
+	}
+
+	public double getFebruary() {
+		return february;
+	}
+
+	public void setFebruary(double february) {
+		this.february = february;
+	}
+
+	public double getMarch() {
+		return march;
+	}
+
+	public void setMarch(double march) {
+		this.march = march;
 	}
 
 	@ManyToOne

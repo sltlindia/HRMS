@@ -41,6 +41,8 @@
     <link rel="stylesheet" type="text/css" href="app-assets/vendors/css/sliders/slick/slick.css">
     <link rel="stylesheet" type="text/css" href="app-assets/vendors/css/extensions/pace.css">
     <link rel="stylesheet" type="text/css" href="app-assets/vendors/css/extensions/sweetalert.css">
+    <link rel="stylesheet" type="text/css"
+	href="app-assets/vendors/css/tables/datatable/dataTables.bootstrap4.min.css">
     <!-- END VENDOR CSS-->
     <!-- BEGIN ROBUST CSS-->
     <link rel="stylesheet" type="text/css" href="app-assets/css/bootstrap-extended.min.css">
@@ -55,8 +57,9 @@
     <!-- END Page Level CSS-->
     <!-- BEGIN Custom CSS-->
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <script src="app-assets/js/core/libraries/jquery.min.js" type="text/javascript"></script>
     <!-- END Custom CSS-->
-<%@include file="header.jsp"%>
+    <%@include file="header.jsp" %>
 </head>
 
 <!-- <script src="bower_components/jquery/dist/jquery.min.js"></script>
@@ -320,8 +323,7 @@
 						<div class="panel-body">
 
 							<div class="dataTable_wrapper">
-							<div class ="table-responsive">
-								<table class="table table-striped table-bordered table-hover"
+ 								<table class="table table-striped table-bordered table-hover"
 									id="datatable-buttons">
 									<thead>
 																<tr>
@@ -356,15 +358,15 @@
 																	<td>
 																		<a
 														href="vehicleServiceRecordFormUpdate.jsp?vehicle_service_id=<%=v.getVehicle_service_record_id()%>"><i
-															class="glyphicon glyphicon-edit" data-toggle="tooltip"
+															class="icon-edit2" data-toggle="tooltip"
 															data-placement="top" title="Edit Data"></i></a>&nbsp;<a
 														href="vehicleServiceRecordDelete?vehicle_service_id=<%=v.getVehicle_service_record_id()%>"><i
-															class="glyphicon glyphicon-trash" data-toggle="tooltip"
+															class="icon-trash2" data-toggle="tooltip"
 															data-placement="top" title="Delete Data"
 															onclick="return confSubmit()" style="color: red;"></i></a>
 															<a
 														href="vehicleServiceRecordView.jsp?vehicle_service_id=<%=v.getVehicle_service_record_id()%>"><i
-															class="glyphicon glyphicon-eye-open" data-toggle="tooltip"
+															class="icon-eye4" data-toggle="tooltip"
 															data-placement="top" title="View Data"
 															onclick="return confSubmit()"></i></a>
 																	</td>
@@ -375,7 +377,6 @@
 																%>
 									</tbody>
 								</table>
-</div>
 							</div>
 							<!-- /.modal-content -->
 						</div>
@@ -432,6 +433,20 @@
 	  ga('send', 'pageview');
 
 	</script>
+	<script type="text/javascript" src="app-assets/vendors/js/ui/jquery.sticky.js"></script>
+    <script src="app-assets/vendors/js/tables/jquery.dataTables.min.js" type="text/javascript"></script>
+    <script src="app-assets/vendors/js/tables/datatable/dataTables.bootstrap4.min.js" type="text/javascript"></script>
+    <script src="app-assets/vendors/js/tables/datatable/dataTables.buttons.min.js" type="text/javascript"></script>
+    <script src="app-assets/vendors/js/tables/buttons.flash.min.js" type="text/javascript"></script>
+    <script src="app-assets/vendors/js/tables/jszip.min.js" type="text/javascript"></script>
+    <script src="app-assets/vendors/js/tables/pdfmake.min.js" type="text/javascript"></script>
+    <script src="app-assets/vendors/js/tables/vfs_fonts.js" type="text/javascript"></script>
+    <script src="app-assets/vendors/js/tables/buttons.html5.min.js" type="text/javascript"></script>
+    <script src="app-assets/vendors/js/tables/buttons.print.min.js" type="text/javascript"></script> 
+    <!-- END PAGE VENDOR JS-->
+    
+      <!-- BEGIN PAGE LEVEL JS-->
+    <script src="app-assets/js/scripts/tables/datatables/datatable-advanced.min.js" type="text/javascript"></script>
 	<script>
           var handleDataTableButtons = function() {
               "use strict";

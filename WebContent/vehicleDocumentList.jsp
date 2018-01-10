@@ -18,7 +18,7 @@
     <meta name="description" content="Robust admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
     <meta name="keywords" content="admin template, robust admin template, dashboard template, flat admin template, responsive admin template, web app">
     <meta name="author" content="PIXINVENT">
-    <title>Sweet Alerts - Robust Bootstrap Admin Template</title>
+    <title>SLTL HRMS</title>
     <link rel="apple-touch-icon" sizes="60x60" href="app-assets/images/ico/apple-icon-60.png">
     <link rel="apple-touch-icon" sizes="76x76" href="app-assets/images/ico/apple-icon-76.png">
     <link rel="apple-touch-icon" sizes="120x120" href="app-assets/images/ico/apple-icon-120.png">
@@ -36,6 +36,8 @@
     <link rel="stylesheet" type="text/css" href="app-assets/vendors/css/sliders/slick/slick.css">
     <link rel="stylesheet" type="text/css" href="app-assets/vendors/css/extensions/pace.css">
     <link rel="stylesheet" type="text/css" href="app-assets/vendors/css/extensions/sweetalert.css">
+    <link rel="stylesheet" type="text/css"
+	href="app-assets/vendors/css/tables/datatable/dataTables.bootstrap4.min.css">
     <!-- END VENDOR CSS-->
     <!-- BEGIN ROBUST CSS-->
     <link rel="stylesheet" type="text/css" href="app-assets/css/bootstrap-extended.min.css">
@@ -50,8 +52,10 @@
     <!-- END Page Level CSS-->
     <!-- BEGIN Custom CSS-->
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <script src="app-assets/js/core/libraries/jquery.min.js" type="text/javascript"></script>
     <!-- END Custom CSS-->
     <%@include file="header.jsp" %>
+    </head>
 <body data-open="hover" data-menu="horizontal-menu" data-col="2-columns" class="horizontal-layout horizontal-menu 2-columns ">
 <div class="app-content container center-layout mt-2">
 <div class="content-wrapper">
@@ -65,7 +69,7 @@
 
 <%SimpleDateFormat yyyymmdd = new SimpleDateFormat("yyyy-MM-dd");
 SimpleDateFormat ddmmyyyy = new SimpleDateFormat("dd-MM-yyyy"); %>
-<div class="row">
+		<div class="row">
 				    <div class="col-md-12">
 				        <div class="card">
 				        	 <div class="card-header">
@@ -184,7 +188,7 @@ SimpleDateFormat ddmmyyyy = new SimpleDateFormat("dd-MM-yyyy"); %>
 								</td>
 								<td><a
 														href="vehicleDocumentListVehicleWise.jsp?vehicle_document_id=<%=t.getVehicle_document_id()%>"><i
-															class="glyphicon glyphicon-eye-open" data-toggle="tooltip"
+															class="icon-eye4" data-toggle="tooltip"
 															data-placement="top" title="View Data"
 															onclick="return confSubmit()"></i></a></td>								
 																	</tr>
@@ -251,6 +255,20 @@ SimpleDateFormat ddmmyyyy = new SimpleDateFormat("dd-MM-yyyy"); %>
 	  ga('send', 'pageview');
 
 	</script>
+	<script type="text/javascript" src="app-assets/vendors/js/ui/jquery.sticky.js"></script>
+    <script src="app-assets/vendors/js/tables/jquery.dataTables.min.js" type="text/javascript"></script>
+    <script src="app-assets/vendors/js/tables/datatable/dataTables.bootstrap4.min.js" type="text/javascript"></script>
+    <script src="app-assets/vendors/js/tables/datatable/dataTables.buttons.min.js" type="text/javascript"></script>
+    <script src="app-assets/vendors/js/tables/buttons.flash.min.js" type="text/javascript"></script>
+    <script src="app-assets/vendors/js/tables/jszip.min.js" type="text/javascript"></script>
+    <script src="app-assets/vendors/js/tables/pdfmake.min.js" type="text/javascript"></script>
+    <script src="app-assets/vendors/js/tables/vfs_fonts.js" type="text/javascript"></script>
+    <script src="app-assets/vendors/js/tables/buttons.html5.min.js" type="text/javascript"></script>
+    <script src="app-assets/vendors/js/tables/buttons.print.min.js" type="text/javascript"></script> 
+    <!-- END PAGE VENDOR JS-->
+    
+      <!-- BEGIN PAGE LEVEL JS-->
+    <script src="app-assets/js/scripts/tables/datatables/datatable-advanced.min.js" type="text/javascript"></script>
         <script>
           var handleDataTableButtons = function() {
               "use strict";

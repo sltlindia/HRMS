@@ -52,6 +52,7 @@
     <!-- END Page Level CSS-->
     <!-- BEGIN Custom CSS-->
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+      
     <!-- END Custom CSS-->
     <%@include file="header.jsp" %>
 </head>
@@ -211,6 +212,7 @@
 	  ga('send', 'pageview');
 
 	</script>
+	
 	<!-- Page-Level Demo Scripts - Tables - Use for reference -->
 
 	<!-- <script>

@@ -76,22 +76,7 @@
 	<% double TEX = 0.0; 
 		int tds_id = 0;
 	%>
-	 <div class="app-content container center-layout mt-2">
-      <div class="content-wrapper">
-        <div class="content-body"><!-- DOM - jQuery events table -->
-<!-- File export table -->
-			<section id="file-export">
-    			<div class="row">
-        			<div class="col-xs-12">
-            			<div class="card">
-                			<div class="card-header">
-                    			<div class="card box-shadow-0" data-appear="appear">
-					        		<div class="card-header card-inverse" style="background-color: #90A4AE;padding: 0.5rem 0rem 1rem 0rem;height: 50px;">
-					            		<div class="col-sm-6">
-				               				<h4 class="card-title" id="horz-layout-basic">List Of TDS Declaration Forms</h4>
-				                		</div>
-				            		</div>
-	<!-- <div class="app-content container center-layout mt-2">
+	<div class="app-content container center-layout mt-2">
       <div class="content-wrapper">
       	<div class="content-body">
 				<div class="row"> 
@@ -99,9 +84,8 @@
 			            <h4>List Of TDS Declaration Forms</h4>
 			            <hr>
 			        </div>
-			    </div> -->
-<div class="card-body collapse in">
-	  <div class="card-block border-bottom-blue-grey" style="border-left: 2px solid #607D8B;border-right: 2px solid #607D8B;">
+			    </div>
+
 			<div class="row">
 				    <div class="col-md-12">
 				        <div class="card">
@@ -162,12 +146,6 @@
 											<th class="hide">House Rant</th>
 											<th class="hide">A_Medical Allowance</th>
 											<th class="hide">D_Medical Allowance</th>
-											<th class="hide">Yearly Or Monthly</th>
-											<th class="hide">Yearly Meal Card</th>
-											<th class="hide">Start Date</th>
-											<th class="hide">End Date</th>
-											<th class="hide">Days</th>
-											<th class="hide">Monthly Meal Card</th>
 											<th class="hide">Meal Card</th>
 											<th class="hide">LTA During Year</th>
 											<th class="hide">Actual LTA</th>
@@ -214,9 +192,10 @@
 											<th class="hide">D_Health CHeckup</th>
 											<th class="hide">A_Mediclaim</th>
 											<th class="hide">D_Mediclaim</th>
-											<th class="hide">Cash Or Cheque</th>
-											<th class="hide">A_Donation</th>
-											<th class="hide">D_Donation</th>
+											<th class="hide">A_Cash_Donation</th>
+											<th class="hide">D_Cash_Donation</th>
+											<th class="hide">A_Cheque_Donation</th>
+											<th class="hide">D_Cheque_Donation</th>
 											<th class="hide">Donation</th>
 											<th class="hide">A_Donation 80GGC</th>
 											<th class="hide">D_Donation 80GGC</th>
@@ -299,12 +278,6 @@
 											<td class="hide"><%=tb.getHouse_rant() %></td>
 											<td class="hide"><%=tb.getA_medical()%></td>
 											<td class="hide"><%=tb.getD_medical() %></td>
-											<td class="hide"><%=tb.getMonthly_yearly()%></td>
-											<td class="hide"><%=tb.getYearly_mealcard() %></td>
-											<td class="hide"><%=tb.getMonthly_start_date() %></td>
-											<td class="hide"><%=tb.getMonthly_end_date() %></td>
-											<td class="hide"><%=tb.getDays() %></td>
-											<td class="hide"><%=tb.getMonthly_mealcard() %></td>
 											<td class="hide"><%=tb.getMeal_card() %></td>
 											<td class="hide"><%=tb.getLta_during_year() %></td>
 											<td class="hide"><%=tb.getActual_expenditure_lta() %></td>
@@ -351,15 +324,10 @@
 											<td class="hide"><%=tf.getD_health_checkup() %></td>
 											<td class="hide"><%=tf.getA_mediclaim() %></td>
 											<td class="hide"><%=tf.getD_mediclaim() %></td>
-											<td class="hide"><%=tf.getCash_cheque() %></td>
-											<%String donation = tf.getCash_cheque();
-                                    		if(donation.equalsIgnoreCase("Cash")){%>
 											<td class="hide"><%=tf.getA_cash_amount() %></td>
 											<td class="hide"><%=tf.getD_cash_amount() %></td>
-											<%}else{ %>
 											<td class="hide"><%=tf.getA_cheque_amount() %></td>
 											<td class="hide"><%=tf.getD_cheque_amount() %></td>
-											<%} %>
 											<td class="hide"><%=tf.getDonation_80G() %></td>
 											<td class="hide"><%=tf.getA_donation_80GGC()%></td>
 											<td class="hide"><%=tf.getD_donation_80GGC() %></td>
@@ -438,12 +406,6 @@
 											<th class="hide">House Rant</th>
 											<th class="hide">A_Medical Allowance</th>
 											<th class="hide">D_Medical Allowance</th>
-											<th class="hide">Yearly Or Monthly</th>
-											<th class="hide">Yearly Meal Card</th>
-											<th class="hide">Start Date</th>
-											<th class="hide">End Date</th>
-											<th class="hide">Days</th>
-											<th class="hide">Monthly Meal Card</th>
 											<th class="hide">Meal Card</th>
 											<th class="hide">LTA During Year</th>
 											<th class="hide">Actual LTA</th>
@@ -475,12 +437,25 @@
 											<th class="hide">80C Other</th>
 											<th class="hide">Total D</th>
 											<th class="hide">80C Total</th>
+											<th class="hide">Payable LIC</th>
+											<th class="hide">Payable EPF</th>
+											<th class="hide">Payable PPF</th>
+											<th class="hide">Payable NSC</th>
+											<th class="hide">Payable MF</th>
+											<th class="hide">Payable Tuition Fees</th>
+											<th class="hide">Payable House Loan Principal</th>
+											<th class="hide">Payable Stamp Duty And Registration Charge</th>
+											<th class="hide">Payable Fixed Deposit</th>
+											<th class="hide">Payable 80C Other</th>
+											<th class="hide">Payable Total D</th>
+											<th class="hide">Payable 80C Total</th>
 											<th class="hide">A_NPS</th>
 											<th class="hide">D_NPS</th>
 											<th class="hide">A_RGESS</th>
 											<th class="hide">D_RGESS</th>
 											<th class="hide">Total NPS RGESS</th>
 											<th class="hide">Total E</th>
+											<th class="hide">Payable Total E</th>
 											<th class="hide">A_Self</th>
 											<th class="hide">D_Self</th>
 											<th class="hide">Father's Birhtdate</th>
@@ -490,9 +465,10 @@
 											<th class="hide">D_Health CHeckup</th>
 											<th class="hide">A_Mediclaim</th>
 											<th class="hide">D_Mediclaim</th>
-											<th class="hide">Cash Or Cheque</th>
-											<th class="hide">A_Donation</th>
-											<th class="hide">D_Donation</th>
+											<th class="hide">A_Cash_Donation</th>
+											<th class="hide">D_Cash_Donation</th>
+											<th class="hide">A_Chaque_Donation</th>
+											<th class="hide">D_Chaque_Donation</th>
 											<th class="hide">Donation</th>
 											<th class="hide">A_Donation 80GGC</th>
 											<th class="hide">D_Donation 80GGC</th>
@@ -504,6 +480,26 @@
 											<th class="hide">Total Tax</th>
 											<th class="hide">Edu cess</th>
 											<th class="hide">Total H</th>
+											<th class="hide">Tax Paid</th>
+											<th class="hide">Tax Payable</th>
+											<th class="hide">Payable Total F</th>
+											<th class="hide">Payable Tax</th>
+											<th class="hide">Payable Tax Remit</th>
+											<th class="hide">Payable Total Tax</th>
+											<th class="hide">Payable Edu Cess</th>
+											<th class="hide">Payable Total H</th>
+											<th class="hide">April</th>
+											<th class="hide">May</th>
+											<th class="hide">June</th>
+											<th class="hide">July</th>
+											<th class="hide">August</th>
+											<th class="hide">September</th>
+											<th class="hide">October</th>
+											<th class="hide">November</th>
+											<th class="hide">December</th>
+											<th class="hide">January</th>
+											<th class="hide">February</th>
+											<th class="hide">March</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -550,12 +546,6 @@
 											<td class="hide"><%=tds.getHouse_rant() %></td>
 											<td class="hide"><%=tds.getA_medical()%></td>
 											<td class="hide"><%=tds.getD_medical() %></td>
-											<td class="hide"><%=tds.getMonthly_yearly()%></td>
-											<td class="hide"><%=tds.getYearly_mealcard() %></td>
-											<td class="hide"><%=tds.getMonthly_start_date() %></td>
-											<td class="hide"><%=tds.getMonthly_end_date() %></td>
-											<td class="hide"><%=tds.getDays() %></td>
-											<td class="hide"><%=tds.getMonthly_mealcard() %></td>
 											<td class="hide"><%=tds.getMeal_card() %></td>
 											<td class="hide"><%=tds.getLta_during_year() %></td>
 											<td class="hide"><%=tds.getActual_expenditure_lta() %></td>
@@ -587,12 +577,25 @@
 											<td class="hide"><%=tds.getOther() %></td>
 											<td class="hide"><%=tds.getA_total_d() %></td>
 											<td class="hide"><%=tds.getD_total_d() %></td>
+											<td class="hide"><%=tds.getPayable_lic() %></td>
+											<td class="hide"><%=tds.getPayable_epf() %></td>
+											<td class="hide"><%=tds.getPayable_ppf() %></td>
+											<td class="hide"><%=tds.getPayable_nsc() %></td>
+											<td class="hide"><%=tds.getPayable_mf() %></td>
+											<td class="hide"><%=tds.getPayable_tuition_fees() %></td>
+											<td class="hide"><%=tds.getPayable_stamp_duty() %></td>
+											<td class="hide"><%=tds.getPayable_house_loan() %></td>
+											<td class="hide"><%=tds.getPayable_fix_deposite() %></td>
+											<td class="hide"><%=tds.getPayable_other() %></td>
+											<td class="hide"><%=tds.getPayable_a_total_d() %></td>
+											<td class="hide"><%=tds.getPayable_d_total_d() %></td>
 											<td class="hide"><%=tds.getA_NPS() %></td>
 											<td class="hide"><%=tds.getD_NPS()%></td>
 											<td class="hide"><%=tds.getA_RGESS() %></td>
 											<td class="hide"><%=tds.getD_RGESS() %></td>
 											<td class="hide"><%=tds.getTotal_NPS_RGESS() %></td>
 											<td class="hide"><%=tds.getTotal_e() %></td>
+											<td class="hide"><%=tds.getPayable_total_e() %></td>
 											<td class="hide"><%=tds.getA_self() %></td>
 											<td class="hide"><%=tds.getD_self() %></td>
 											<td class="hide"><%=tds.getFather_birthdate() %></td>
@@ -602,15 +605,10 @@
 											<td class="hide"><%=tds.getD_health_checkup() %></td>
 											<td class="hide"><%=tds.getA_mediclaim() %></td>
 											<td class="hide"><%=tds.getD_mediclaim() %></td>
-											<td class="hide"><%=tds.getCash_cheque() %></td>
-											<%String donation1 = tds.getCash_cheque();
-								                                    		if(donation1.equalsIgnoreCase("Cash")){%>
 											<td class="hide"><%=tds.getA_cash_amount() %></td>
 											<td class="hide"><%=tds.getD_cash_amount() %></td>
-											<%}else{ %>
 											<td class="hide"><%=tds.getA_cheque_amount() %></td>
 											<td class="hide"><%=tds.getD_cheque_amount() %></td>
-											<%} %>
 											<td class="hide"><%=tds.getDonation_80G() %></td>
 											<td class="hide"><%=tds.getA_donation_80GGC()%></td>
 											<td class="hide"><%=tds.getD_donation_80GGC() %></td>
@@ -622,6 +620,26 @@
 											<td class="hide"><%=tds.getTotal_tax() %></td>
 											<td class="hide"><%=tds.getEdu_cess() %></td>
 											<td class="hide"><%=tds.getTotal_h() %></td>
+											<td class="hide"><%=tds.getTax_paid() %></td>
+											<td class="hide"><%=tds.getTax_payable() %></td>
+											<td class="hide"><%=tds.getPayable_total_f() %></td>
+											<td class="hide"><%=tds.getPayable_tax()%></td>
+											<td class="hide"><%=tds.getPayable_tax_remit() %></td>
+											<td class="hide"><%=tds.getPayable_total_tax() %></td>
+											<td class="hide"><%=tds.getPayable_edu_cess() %></td>
+											<td class="hide"><%=tds.getPayable_total_h() %></td>
+											<td class="hide"><%=tds.getApril() %></td>
+											<td class="hide"><%=tds.getMay()%></td>
+											<td class="hide"><%=tds.getJune() %></td>
+											<td class="hide"><%=tds.getJuly() %></td>
+											<td class="hide"><%=tds.getAugust() %></td>
+											<td class="hide"><%=tds.getSeptember() %></td>
+											<td class="hide"><%=tds.getOctober() %></td>
+											<td class="hide"><%=tds.getNovember()%></td>
+											<td class="hide"><%=tds.getDecember() %></td>
+											<td class="hide"><%=tds.getJanuary()%></td>
+											<td class="hide"><%=tds.getFebruary()%></td>
+											<td class="hide"><%=tds.getMarch() %></td>
 										</tr>
 
 
@@ -636,18 +654,12 @@
 						</div>
 					</div>
 				</div>
-			  </div>
 			</div>
-		  </div>
 		</div>
 	</div>
+	
 	</div>
-</div>
-</div>
-</section>
-</div>
-</div>
-</div>
+	
 	<%@include file="footer.html"%>
 	
     <script src="app-assets/js/core/libraries/jquery.min.js" type="text/javascript"></script>
