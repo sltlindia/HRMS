@@ -106,16 +106,6 @@ SimpleDateFormat ddmmyyyy = new SimpleDateFormat("dd-MM-yyyy"); %>
 			
 			<br>
 			<!-- /.row -->
-			
-			
-	<!-- <div id="wrapper">
-		<div id="page-wrapper">
-			<div class="row">
-				<div class="col-lg-12">
-					<h3 class="page-header">Vehicle Service Record System</h3>
-				</div>
-				/.col-lg-12
-			</div> -->
 			<%AllListVtsDAO allListVtsDAO = new AllListVtsDAO();
 			 int current_month = Calendar.getInstance().get(Calendar.MONTH)+1;
 			 AllListDAO allListDAO = new AllListDAO();

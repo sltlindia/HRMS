@@ -146,7 +146,7 @@ SimpleDateFormat ddmmyyyy = new SimpleDateFormat("dd-MM-yyyy"); %>
 								</td>
 								<td><a
 														href="vehicleDocumentAttachmentDelete?vehicle_document_attachment_id=<%=t.getVehicle_document_attachment_id()%>"><i
-															class="glyphicon glyphicon-trash" data-toggle="tooltip"
+															class="icon-trash2" data-toggle="tooltip"
 															data-placement="top" title="View Data"
 															onclick="return confSubmit()"></i></a></td>								
 																	</tr>

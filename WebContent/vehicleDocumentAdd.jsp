@@ -74,19 +74,6 @@
 				<!-- /.col-lg-12 -->
 			
 			<br>
-	<!-- <div id="wrapper">
-		<div id="page-wrapper">
-			<div class="row">
-				<div class="col-lg-12">
-					<h1 class="page-header">Vehicle Document</h1>
-				</div>
-				/.col-lg-12
-			</div> -->
-			<!-- /.row -->
-			<!-- <div class="row">
-				<div class="col-lg-12">
-					<div class="panel panel-primary">
-						<div class="panel-heading">Add Vehicle Document</div> -->
 						<div class="row">
 				    <div class="col-md-12">
 				        <div class="card">
