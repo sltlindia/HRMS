@@ -1871,8 +1871,8 @@ boolean cash = false;
 							 current_year = Integer.parseInt(end_year) ;
 							 final_year = (current_year + 1);
                     	}else{
-                    		 current_year = Integer.parseInt(end_year);
-							 final_year = (current_year - 1);
+                    		current_year = (Integer.parseInt(end_year) - 1);
+							 final_year = Integer.parseInt(end_year);
                     	}
 					%>
 						<div class="card box-shadow-0" data-appear="appear" data-animation="fadeInLeft">

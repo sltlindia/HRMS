@@ -1,3 +1,5 @@
+<%@page import="com.hrms.tds.bean.TDSPayrollMasterDataBean"%>
+<%@page import="com.hrms.tds.dao.PayrollList"%>
 <%@page import="com.hrms.tds.bean.TDSTaxBean"%>
 <%@page import="com.hrms.tds.bean.TDSDocumentUploadBean"%>
 <%@page import="com.hrms.pms.bean.MonthBean"%>
@@ -211,35 +213,47 @@ boolean cash = false;
 			var gender = $("#gender").val();
 			//alert("Gender :"+gender);
 			
-			if(years >= 60)
+			if((years >= 60) && (years < 80))
 			{
 				if(gender == "Female")
 					{
 						$("#adult").hide();
 						$("#senior").hide();
 						$("#female").show();
+						$("#seniorCitizen").hide();
 					}
 				else if(gender == "Male")
 					{
 						$("#adult").hide();
 						$("#senior").show();
 						$("#female").hide();
+						$("#seniorCitizen").hide();
 					}
-			}else if(years < 60)
+			}
+			else if(years < 60)
 			{
 				if(gender == "Female")
 					{
 						$("#senior").hide();
 						$("#adult").hide();
 						$("#female").show();
+						$("#seniorCitizen").hide();
 					}
 				else if(gender == "Male")
 					{
 						$("#senior").hide();
 						$("#adult").show();
 						$("#female").hide();
+						$("#seniorCitizen").hide();
 					}
 				
+			}
+			else if(years >= 80)
+			{
+				$("#senior").hide();
+				$("#adult").hide();
+				$("#female").hide();
+				$("#seniorCitizen").show();
 			}
 			
 			Temp();
@@ -452,7 +466,7 @@ boolean cash = false;
 			
 	}
 	
-	function MealCard(id) {
+	/* function MealCard(id) {
 		var MealCard = document.getElementById("MealCard1").value;
 		if (MealCard < 300) {
 			var m = (MealCard * 100)
@@ -461,12 +475,7 @@ boolean cash = false;
 			alert("maximum limit 300 days..");
 			document.getElementById("MealCardDeduction").value = 0;
 		}
-		/* if (MealCard >= 15000) {
-			document.getElementById("MealCardDeduction").value = 15000;
-		} else {
-			document.getElementById("MealCardDeduction").value = MealCard;
-		} */
-	}
+	} */
 	
 	function tempLTA(id){
 		tempLTACal();
@@ -568,18 +577,6 @@ boolean cash = false;
 
 		var MedicalDeduction = document.getElementById("MedicalDeduction").value;
 		document.getElementById("MedicalBill").value = MedicalDeduction;
-
-		var MealCardDeduction = document.getElementById("MealCardDeduction").value;
-		
-		//alert("QWERTTY" +MealCardDeduction );
-		var MealCardDeduction1 = document.getElementById("MealCardDeduction1").value;
-		var result = document.getElementById("result").value;
-	//	alert("Checkbox" + result);
-		if(result == "Yearly"){
-			document.getElementById("MealCard").value = MealCardDeduction;
-		}else{
-			document.getElementById("MealCard").value = MealCardDeduction1;
-		}
 
 		var actualLTABill = document.getElementById("actualLTABill").value;
 		document.getElementById("LTA").value = actualLTABill;
@@ -833,7 +830,7 @@ boolean cash = false;
 		}
 		else if(gender == "Male")
 		{
-			if( age >= 60){
+			if((age >= 60) && (age < 80)){
 				if (totalf <= 300000) {
 					//alert("less than 300000");
 					PayableTax = 0;
@@ -877,6 +874,32 @@ boolean cash = false;
 					PayableTax = (((totalf - 500000) * 20) / 100) + 25000;
 					$("#PayableTax").val(PayableTax.toFixed(2));
 					PayableTaxRemit = 0;
+					$("#PayableTaxRemit").val(PayableTaxRemit);
+				} else if (totalf > 1000000) {
+					//alert("greater than 1000000");
+					PayableTax = (((totalf - 1000000) * 30) / 100) + 125000;
+					$("#PayableTax").val(PayableTax.toFixed(2));
+					PayableTaxRemit = 0;
+					$("#PayableTaxRemit").val(PayableTaxRemit);
+				}
+			}else if(age >= 80){
+				if (totalf <= 250000) {
+					//alert("less than 250000");
+					PayableTax = 0;
+					$("#PayableTax").val(PayableTax.toFixed(2));
+					PayableTaxRemit = 0;
+					$("#PayableTaxRemit").val(PayableTaxRemit);
+				} else if (totalf <= 500000) {
+					//alert("between 250000-500000");
+					PayableTax = 0;
+					$("#PayableTax").val(PayableTax.toFixed(2));
+					PayableTaxRemit = 0;
+					$("#PayableTaxRemit").val(PayableTaxRemit);
+				} else if (totalf > 500000 && totalf <= 1000000) {
+					//alert("between 500000-1000000");
+					PayableTax = (((totalf - 500000) * 20) / 100) + 25000;
+					$("#PayableTax").val(PayableTax.toFixed(2));
+					PayableTaxRemit = 5000;
 					$("#PayableTaxRemit").val(PayableTaxRemit);
 				} else if (totalf > 1000000) {
 					//alert("greater than 1000000");
@@ -1197,13 +1220,11 @@ boolean cash = false;
 	{
 		var cashDeduction = document.getElementById("cashDeduction").value;
 		var chequeDeduction = document.getElementById("chequeDeduction").value;
-		var result = document.getElementById("donationResult").value;
-		//alert("Checkbox" + result);
-		if(result == "Cash"){
-			document.getElementById("Donation").value = cashDeduction;
-		}else{
-			document.getElementById("Donation").value = chequeDeduction;
-		}
+		//alert("cashDeduction" + cashDeduction);
+		//alert("chequeDeduction" + chequeDeduction);
+		var result;
+		result = parseFloat(cashDeduction) + parseFloat(chequeDeduction) ;
+		document.getElementById("Donation").value = result;
 		
 		var donationAmount = document.getElementById("donationDeduction").value;
 		document.getElementById("TotalDonation").value = donationAmount;
@@ -1271,7 +1292,7 @@ boolean cash = false;
 			}
 			else if(gender == "Male")
 			{
-				if( age >= 60)
+				if((age >= 60) && (age < 80))
 				{
 					if (TotalTexableValue <= 300000) {
 						//alert("less than 300000");
@@ -1300,6 +1321,26 @@ boolean cash = false;
 					} else if (TotalTexableValue > 250000 && TotalTexableValue <= 500000) {
 						//alert("between 250000-500000");
 						Tax = ((TotalTexableValue - 250000) * 5) / 100;
+						document.getElementById("Tax").value = Tax.toFixed(2);
+					} else if (TotalTexableValue > 500000 && TotalTexableValue <= 1000000) {
+						//alert("between 500000-1000000");
+						Tax = (((TotalTexableValue - 500000) * 20) / 100) + 25000;
+						document.getElementById("Tax").value = Tax.toFixed(2);
+					} else if (TotalTexableValue > 1000000) {
+						//alert("greater than 1000000");
+						Tax = (((TotalTexableValue - 1000000) * 30) / 100) + 125000;
+						document.getElementById("Tax").value = Tax.toFixed(2);
+					}
+				}
+				else if(age >= 80)
+				{
+					if (TotalTexableValue <= 250000) {
+						//alert("less than 250000");
+						Tax = 0;
+						document.getElementById("Tax").value = Tax.toFixed(2);
+					} else if (TotalTexableValue <= 500000) {
+						//alert("between 250000-500000");
+						Tax = 0;
 						document.getElementById("Tax").value = Tax.toFixed(2);
 					} else if (TotalTexableValue > 500000 && TotalTexableValue <= 1000000) {
 						//alert("between 500000-1000000");
@@ -1343,7 +1384,7 @@ boolean cash = false;
 		}
 		else if(gender == "Male")
 		{
-			if( age >= 60)
+			if((age >= 60) && (age < 80))
 			{
 				if (Tax <= 300000) {
 					//alert("taxremit is 0");
@@ -1370,6 +1411,22 @@ boolean cash = false;
 					TaxRemit = 5000.00;
 					document.getElementById("TaxRemit").value = TaxRemit;
 				} else if (Tax > 500001) {
+					//alert("taxremit is 5001");
+					TaxRemit = 0;
+					document.getElementById("TaxRemit").value = TaxRemit;
+				}
+			}
+			else if(age >= 80)
+			{
+				if (Tax <= 500000) {
+					//alert("taxremit is 0");
+					TaxRemit = 0;
+					document.getElementById("TaxRemit").value = TaxRemit;
+				} else if (Tax > 500000 && Tax <= 1000000) {
+					//alert("taxremit is 5000");
+					TaxRemit = 5000.00;
+					document.getElementById("TaxRemit").value = TaxRemit;
+				} else if (Tax > 1000001) {
 					//alert("taxremit is 5001");
 					TaxRemit = 0;
 					document.getElementById("TaxRemit").value = TaxRemit;
@@ -1498,7 +1555,7 @@ boolean cash = false;
 		}
 	
 	 function Submit() {
-		alert("Submit");
+		//alert("Submit");
 		document.getElementById("formSubmit").submit();  
 	} 
 	 
@@ -1538,8 +1595,51 @@ boolean cash = false;
         	tds_id = tds.getTds_id();
         	System.err.println("TDS ID :"+tds_id);
         	
-        	 List<TDSDocumentUploadBean> tdsDocumentList = tdsListDAO.getListOfDocument(tds_id);
+        	List<TDSDocumentUploadBean> tdsDocumentList = tdsListDAO.getListOfDocument(tds_id);
         	System.out.println("Document Size :"+tdsDocumentList.size());
+        	
+        	int emp_code = t.getEmployeeBean().getEmployee_code();
+        	String hrms_company_name = t.getEmployeeBean().getCompanyListBean().getCompany_code();
+        	String payroll_company_name = null;
+  			if(hrms_company_name.equals("SL"))
+      		{
+      			payroll_company_name = "SLTL";
+      		}
+      		else if(hrms_company_name.equals("SE"))
+      		{
+      			payroll_company_name = "SENT";
+      		}
+      		else if(hrms_company_name.equals("SS"))
+      		{
+      			payroll_company_name = "SRI";
+      		}
+      		else if(hrms_company_name.equals("S.HR"))
+      		{
+      			payroll_company_name = "SHR";
+      		}
+      		else if(hrms_company_name.equals("CO"))
+      		{
+      			payroll_company_name = "COSMOS";
+      		}
+      		else if(hrms_company_name.equals("CS"))
+      		{
+      			payroll_company_name = "CSLaser";
+      		}
+      		else if(hrms_company_name.equals("O"))
+      		{
+      			payroll_company_name = "App";
+      		}
+      	System.err.println("COMPANY NAME :"+payroll_company_name); 
+      	
+        	PayrollList payrollList = new PayrollList();
+        	List<TDSPayrollMasterDataBean> lastRecordOfMasterData  = payrollList.getLastRecordOfMasterData(emp_code,payroll_company_name);
+        	String pan_no = null;
+        	String designation = null;
+        	for(TDSPayrollMasterDataBean masterDataBean : lastRecordOfMasterData){
+        		
+      			pan_no = masterDataBean.getPan_no();
+      			designation = masterDataBean.getDesignation();
+      		}
         	
         %>
 			<script type="text/javascript">
@@ -1579,7 +1679,7 @@ boolean cash = false;
 					<%}%>
 				</script>
 				
-				<script type="text/javascript">
+				<%-- <script type="text/javascript">
 					<% if(tb.getMonthly_yearly().equals("Monthly"))
 					{
 					%>
@@ -1609,7 +1709,7 @@ boolean cash = false;
 					$("#cheque").show();
 					$("#cash").hide();
 					<%}%>
-				</script>
+				</script> --%>
 <form action="tdsHrUpdate" method="post" id="formSubmit">
 	<div class="app-content container center-layout mt-2">
       <div class="content-wrapper">
@@ -1646,25 +1746,26 @@ boolean cash = false;
 	               			<div class="card-block">
 
 								<div class="row">
-										<div class="col-lg-6">
-											<div class="col-lg-3">
-												<b>Name :</b>
-											</div>
-											<div class="col-lg-9">
+									<div class="col-lg-3"><b>Name</b></div>
+									<div class="col-lg-3"><b>PAN No</b></div>
+									<div class="col-lg-3"><b>Department</b></div>
+									<div class="col-lg-3"><b>Designation</b></div>
+								</div>
+								
+								<div class="row">
+									<div class="col-lg-3">
 												<input type="text" class="form-control" name="emp_name" id="emp_name" value="<%=t.getEmployeeBean().getFirstname()%> <%=t.getEmployeeBean().getLastname()%>"
 														readonly="readonly">
-											</div>
-										</div>	
-										
-										<div class="col-lg-6">
-											<div class="col-lg-3">
-												<b>PAN No :</b>
-											</div>
-											<div class="col-lg-9">
-												<input type="text" class="form-control" name="pan_no" id="pan_no" value="<%=t.getEmployeeBean().getPan_no() %>" readonly="readonly"
-													placeholder="Enter PAN No.">
-											</div>
-										</div>	
+									</div>
+									<div class="col-lg-3">
+												<input type="text" class="form-control" name="pan_no" id="pan_no" value="<%=pan_no %>" readonly="readonly">
+									</div>
+									<div class="col-lg-3">
+												<input type="text" class="form-control" name="department" id="department" value="<%=t.getEmployeeBean().getDepartmentBean().getDepartment_name()%>" readonly="readonly">
+									</div>
+									<div class="col-lg-3">
+												<input type="text" class="form-control" name="designation" id="designation" value="<%=t.getEmployeeBean().getRoleBean().getRole_type() %>" readonly="readonly">
+									</div>
 								</div>
 							
 							
@@ -1716,8 +1817,8 @@ boolean cash = false;
 							 current_year = Integer.parseInt(end_year) ;
 							 final_year = (current_year + 1);
                     	}else{
-                    		 current_year = Integer.parseInt(end_year);
-							 final_year = (current_year - 1);
+                    		 current_year = (Integer.parseInt(end_year) - 1);
+							 final_year = Integer.parseInt(end_year);
                     	}
 					%>
 						<div class="card box-shadow-0" data-appear="appear" data-animation="fadeInLeft">
@@ -1728,7 +1829,7 @@ boolean cash = false;
 								</center>
 			                    </h5>
 			                </div>
-			                <div class="card-body collapse in">
+			                <!-- <div class="card-body collapse in">
 			                    <div class="card-block border-bottom-blue-grey">
 			                      <h5>
 									<b>General Deductions</b>
@@ -1738,8 +1839,10 @@ boolean cash = false;
 									<b>Exempted Allowance U/S 10 Of The Income Tax</b>
 								</h5>
 			                    </div>
-			                </div>
+			                </div> -->
 			            </div>
+			            
+			            <b><font size="4px;">General Deductions</font></b>
 			            
 			<div class="row">
 			<div class="col-lg-12">
@@ -1750,7 +1853,7 @@ boolean cash = false;
 							<a data-toggle="collapse" data-parent="#accordionWrap1" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne" class="card-title lead info">
 							<div class="row">
 								<div class="col-lg-12">
-		                         <div class="col-md-10" align="left">(1) Gross Income And HRA Calculation(Annual)</div>
+		                         <div class="col-md-10" align="left">(1) Exempted Allowance U/S 10(Annual)</div>
 		                         <div class="col-md-2">
 		                         	<div class="col-md-1">Rs.</div> 
 		                        	 <div class="col-md-1" id="part1"><%=tb.getTotal_b() %></div>
@@ -2160,7 +2263,8 @@ boolean cash = false;
 																					id="MealCard" value="<%=tb.getMeal_card() %>" readonly="readonly">
 																			</div>
 																		</th>
-																		<th>
+																		<th></th>
+																		<%-- <th>
 							
 																				<!-- Button trigger modal -->
 																				<%if(t.getEmployeeBean().getMealcard().equals("TRUE")) {%>
@@ -2294,7 +2398,7 @@ boolean cash = false;
 																					<!-- /.modal-dialog -->
 																				</div>
 																				<!-- /.modal -->
-																		</th>
+																		</th> --%>
 																	</tr>
 							                                        
 							                                        
@@ -2555,10 +2659,17 @@ boolean cash = false;
 										<div class="row">
 										<div class="col-lg-12">
 					                          <div class="col-md-8" align="left">(2) Other Income(Annual)</div>
-					                          <div class="col-md-2" >
-					                               <div class="col-md-1">Rs.</div> 
-					                               <div class="col-md-1" id="part2self"><%=tc.getOther_income() - tc.getD_house_loan() %></div>
-					                          </div>
+					                         <% if(tc.getOther_income() >= tc.getD_house_loan()){%>
+                                            	<div class="col-md-2" >
+                                            		<div class="col-md-1">Rs.</div> 
+                                            		<div class="col-md-1" id="part2self"><%=tc.getOther_income() - tc.getD_house_loan() %></div>
+                                            	</div>
+                                            	<%}else if(tc.getD_house_loan() > tc.getOther_income()){ %>
+                                            	<div class="col-md-2" >
+                                            		<div class="col-md-1">Rs.</div> 
+                                            		<div class="col-md-1" id="part2self"><%=tc.getD_house_loan() - tc.getOther_income()%></div>
+                                            	</div>
+                                            	<%} %>
 					                          <div class="col-md-2" >
 					                               <div class="col-md-1">Rs.</div> 
 					                               <div class="col-md-1" id="part2"><%=tc.getTotal_c() %></div>
@@ -2673,6 +2784,18 @@ boolean cash = false;
 																		</th>
 																	</tr>
 							                                        
+							                                        <% 	double diff = 0.0;
+							                                        	diff = tc.getOther_income() - tc.getD_house_loan();
+							                                        	if(diff <= 0)
+							                                        	{
+							                                        		System.err.println("-VE");
+							                                        		diff = -(diff);
+							                                        	}else
+							                                        	{
+							                                        		diff = diff;
+							                                        	}
+							                                        %>
+							                                        
 							                                        <tr>
 							                                        	<th><center>3</center></th>
 																		<th><center>Total (1 & 2) </center></th>
@@ -2680,7 +2803,7 @@ boolean cash = false;
 																				<div class="input-group">
 																					<span class="input-group-addon">Rs.</span> <input
 																						type="text" class="form-control" name="totalc"
-																						id="totalc" value="<%=tc.getOther_income() - tc.getD_house_loan() %>" readonly="readonly">
+																						id="totalc" value="<%=diff %>" readonly="readonly">
 																				</div>
 																			</center></th>
 																		<th></th>
@@ -3357,7 +3480,7 @@ boolean cash = false;
 																								<table class="table table-striped">
 						
 																									<input type="hidden" name="birth" id="birth"
-																										value="<%=user.getBirth_date()%>"
+																										value="<%=t.getEmployeeBean().getBirth_date()%>"
 																										onclick="getAge();">
 																									<input type="hidden" name="age" id="age" value="0"
 																										readonly="readonly">
@@ -3482,7 +3605,7 @@ boolean cash = false;
 																							<h4 class="modal-title" id="myModalLabel">Donation(80 G/ 80 G(5))(Annual)</h4>
 																						</div>
 																						<div class="modal-body">
-																								<div class="form-group">
+																								<%-- <div class="form-group">
 																										<label>Choose</label> &nbsp;&nbsp;&nbsp;&nbsp;
 																										<% if((tf.getCash_cheque()).equals("Cash")){ %>
 																										<label class="radio-inline"> <input type="radio"
@@ -3504,7 +3627,7 @@ boolean cash = false;
 																										</label> 
 																										<%} %>
 																										<input type="hidden" name="donationResult" id="donationResult">
-																									</div>
+																									</div> --%>
 																							<div id="cash">
 																							<table class="table table-striped">
 																								<tr><center><h5><b>Donation Through Cash</b></h5></center></tr>
@@ -4097,13 +4220,48 @@ boolean cash = false;
 				                    	</div>
 				                    </div>
 				                    </div>
+				                    
+				                    <div class="card box-shadow-0" data-appear="appear" id="seniorCitizen">
+					                <div class="card-header card-inverse" style="background-color: #90A4AE;">
+					                    <h5 class="card-title"><center>Income Tax Slab for Senior Citizens(80 Years Old Or More) (Both Men & Women)</center></h5>
+					                </div>
+					                <div class="card-body collapse in">
+					                    <div class="card-block border-bottom-blue-grey">
+					                        <div class="table-responsive">
+				                                <table class="table table-striped table-bordered table-hover">
+				                                      <tbody>
+				                                        <tr>
+															<th><center>Income Range</center></th>
+															<th><center>Rate</center></th>
+														</tr>
+														<tr>
+															<td><center>Up to Rs. 2,50,000</center></td>
+															<td><center>NIL</center></td>
+														</tr>
+														<tr>
+															<td><center>Up to Rs. 5,00,000</center></td>
+															<td><center>NIL</center></td>
+														</tr>
+														<tr>
+															<td><center>Rs. 5,00,001 to Rs. 10,00,000</center></td>
+															<td><center>20%</center></td>
+														</tr>
+														<tr>
+															<td><center>Rs. 10,00,001 & Above</center></td>
+															<td><center>30%</center></td>
+														</tr>
+				                                    </tbody>
+				                               	 </table>
+				                            </div>
+				                    	</div>
+				                    </div>
+				                    </div>
 								
 								<% if(t.getStatus().equals("LOCK")){ %>
 								
 								<%}else{ %>
 								<center>
 									<input type="button" value="SAVE" class="btn btn-primary" onclick="Submit();">
-									<input type="reset" value="CANCLE" class="btn btn-danger">
 									<input type="button" value="LOCK" class="btn btn-success" onclick="tempLock();">
 								</center>
 								<%} %>
@@ -5090,7 +5248,7 @@ boolean cash = false;
 	<!-- /#wrapper -->
 	
 	
-	<script type="text/javascript">
+	<!-- <script type="text/javascript">
 		function checkRadio() {
 			//alert("SKY");
 
@@ -5122,7 +5280,7 @@ boolean cash = false;
 				}
 			}
 		}
-	</script>
+	</script> -->
 	
 	<script type="text/javascript">
 	if(monthly == true)
@@ -5141,7 +5299,7 @@ boolean cash = false;
 		}
 	</script>
 	
-	<script type="text/javascript">
+	<!-- <script type="text/javascript">
 		function checkDonationRadio() {
 			//alert("SKY");
 
@@ -5169,9 +5327,9 @@ boolean cash = false;
 				}
 			}
 		}
-	</script>
+	</script> -->
 	
-	<script type="text/javascript">
+	<!-- <script type="text/javascript">
 	if(cash == true)
 	{
 		//alert("CASH");
@@ -5186,7 +5344,7 @@ boolean cash = false;
 			$("#cheque").show();
 			document.getElementById("donationResult").value = "Cheque";
 		}
-	</script>
+	</script> -->
 	
 	
 	<script type="text/javascript">

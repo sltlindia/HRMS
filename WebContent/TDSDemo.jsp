@@ -67,6 +67,9 @@
     #tablePadding{
 		padding-left: 3px;
 	}
+	#historyTable{
+		padding: 3px 8px;
+	}
     </style>
 </head>
 <body data-open="hover" data-menu="horizontal-menu" data-col="2-columns" class="horizontal-layout horizontal-menu 2-columns ">
@@ -518,8 +521,8 @@
                                     
                                     %>
                                     	<tr>
-                                    		<td  id="tablePadding"><%=i+1 %></td>
-                                    		<td  id="tablePadding">
+                                    		<td  id="historyTable"><%=i+1 %></td>
+                                    		<td  id="historyTable">
                                     			<a href="TDSHrUpdate.jsp?tds_hr_id=<%=t.getTds_hr_id()%>&status!=<%=t.getStatus()%>"> 
 		                                    		<% if(t.getStatus().equals("LOCK")){ %>
 		                                    			<i class="icon-eye3" data-toggle="tooltip" data-placement="top" title="View TDS" style="font-weight: bold;"></i>
@@ -532,12 +535,12 @@
 																data-placement="top" title="View History" style="font-weight: bold;"></i>
 															</a>
                                     		</td>
-                                    		<td  id="tablePadding"><%=t.getEmployeeBean().getEmployee_code()%></td>
-                                    		<td  id="tablePadding"><%=t.getEmployeeBean().getFirstname()%> <%=t.getEmployeeBean().getLastname()%></td>
-                                    		<td  id="tablePadding"><%=t.getEmployeeBean().getPan_no()%></td>
-                                    		<td  id="tablePadding"><%=t.getPeriod() %></td>
-                                    		<td  id="tablePadding"><%=t.getEmployeeBean().getRoleBean().getRole_type()%></td>
-                                    		<td  id="tablePadding">
+                                    		<td  id="historyTable"><%=t.getEmployeeBean().getEmployee_code()%></td>
+                                    		<td  id="historyTable"><%=t.getEmployeeBean().getFirstname()%> <%=t.getEmployeeBean().getLastname()%></td>
+                                    		<td  id="historyTable"><%=t.getEmployeeBean().getPan_no()%></td>
+                                    		<td  id="historyTable"><%=t.getPeriod() %></td>
+                                    		<td  id="historyTable"><%=t.getEmployeeBean().getRoleBean().getRole_type()%></td>
+                                    		<td  id="historyTable">
                                     			<%if(t.getStatus().equalsIgnoreCase("updated")){%>
                                     			<b><font color="red"><%=t.getStatus() %></font></b>
                                     			<%}else if(t.getStatus().equalsIgnoreCase("view")){ %>
@@ -811,8 +814,8 @@
                                     
                                     %>
                                     	<tr>
-                                    		<td id="tablePadding"><%=i+1 %></td>
-                                    		<td id="tablePadding">
+                                    		<td id="historyTable"><%=i+1 %></td>
+                                    		<td id="historyTable">
                                     		<%-- <a href="TDSHrForm.jsp?tds_id=<%=t.getTds_id()%>&status=<%=t.getStatus()%>">
 		                                    		<% if(t.getStatus().equals("LOCK")){ %>
 		                                    			<i class=" fa fa-eye" data-toggle="tooltip" data-placement="top" title="View TDS"></i>
@@ -826,12 +829,12 @@
 															</a>
 		                                    		
                                     		</td>
-                                    		<td id="tablePadding"><%=t.getEmployeeBean().getEmployee_code()%></td>
-                                    		<td id="tablePadding"><%=t.getEmployeeBean().getFirstname()%> <%=t.getEmployeeBean().getLastname()%></td>
-                                    		<td id="tablePadding"><%=t.getEmployeeBean().getPan_no()%></td>
-                                    		<td id="tablePadding"><%=t.getPeriod() %></td>
-                                    		<td id="tablePadding"><%=t.getEmployeeBean().getRoleBean().getRole_type()%></td>
-                                    		<td id="tablePadding"><%=t.getEmployeeBean().getGender()%></td>
+                                    		<td id="historyTable"><%=t.getEmployeeBean().getEmployee_code()%></td>
+                                    		<td id="historyTable"><%=t.getEmployeeBean().getFirstname()%> <%=t.getEmployeeBean().getLastname()%></td>
+                                    		<td id="historyTable"><%=t.getEmployeeBean().getPan_no()%></td>
+                                    		<td id="historyTable"><%=t.getPeriod() %></td>
+                                    		<td id="historyTable"><%=t.getEmployeeBean().getRoleBean().getRole_type()%></td>
+                                    		<td id="historyTable"><%=t.getEmployeeBean().getGender()%></td>
                                     		<td class="hide"><%=t.getSubmission_date() %></td>
                                     		<td class="hide"><%=t.getEmployeeBean().getBirth_date()%></td>
                                     		<td class="hide"><%=ta.getAnnual_gross_salary()%></td>

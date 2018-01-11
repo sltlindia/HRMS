@@ -4509,6 +4509,41 @@
     <display-name>TDSSalaryDataInsertServlet</display-name>
     <servlet-name>TDSSalaryDataInsertServlet</servlet-name>
     <servlet-class>com.hrms.tds.controller.TDSSalaryDataInsertServlet</servlet-class>
+<<<<<<< HEAD
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>TDSSalaryDataInsertServlet</servlet-name>
+    <url-pattern>/tdsSalaryDataInsert</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>UpdatePayrollMasterDataServlet</display-name>
+    <servlet-name>UpdatePayrollMasterDataServlet</servlet-name>
+    <servlet-class>com.hrms.tds.controller.UpdatePayrollMasterDataServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UpdatePayrollMasterDataServlet</servlet-name>
+    <url-pattern>/updatePayrollMasterData</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>UpdatePayrollBasicDataServlet</display-name>
+    <servlet-name>UpdatePayrollBasicDataServlet</servlet-name>
+    <servlet-class>com.hrms.tds.controller.UpdatePayrollBasicDataServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UpdatePayrollBasicDataServlet</servlet-name>
+    <url-pattern>/updatePayrollBasicData</url-pattern>
+  </servlet-mapping>
+  
+  
+  <servlet>
+    <description></description>
+    <display-name>MeetingDataServlet</display-name>
+    <servlet-name>MeetingDataServlet</servlet-name>
+    <servlet-class>com.hrms.meetingmanagemnet.controller.MeetingDataServlet</servlet-class>
+=======
+>>>>>>> b45d2dde3c859d9854df13431529b0a87ab18fe8
   </servlet>
   <servlet-mapping>
     <servlet-name>TDSSalaryDataInsertServlet</servlet-name>

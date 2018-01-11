@@ -1712,6 +1712,7 @@
 							</ul>
 						</li>
 
+						<%if(manager_id == 4 || manager_id == 117 ){%>
 						<li data-mega-col="col-md-2" class="col-md-2">
 							<h6 data-toggle="dropdown"
 								class="dropdown-menu-header text-uppercase">
@@ -1720,20 +1721,18 @@
 							<ul class="drilldown-menu">
 								<li class="menu-list">
 									<ul class="mega-menu-sub">
-										<li><a href="jquery-ui-interactions.html"
-											class="dropdown-item"><i class="undefined"></i>Rules</a></li>
-										<li><a href="TDSCalculation.jsp"
-											class="dropdown-item"><i class="undefined"></i>Declaration
-												Form</a></li>
-										<li><a href="TDSDemo.jsp" class="dropdown-item"><i class="undefined"></i>Declaration
-												Form List</a></li>
-										<li><a href="jquery-ui-buttons-select.html"
-											class="dropdown-item"><i class="undefined"></i>Investment
-												Proof List</a></li>
+										<li><a href="TDSSalaryDataUpload.jsp"
+											class="dropdown-item"><i class="undefined"></i>Upload Salary Data</a></li>
+										<li><a href="TDSUploadedSalaryData.jsp"
+											class="dropdown-item"><i class="undefined"></i>Uploaded Salary Data</a></li>
+										<li><a href="TDSDemo.jsp" class="dropdown-item"><i class="undefined"></i>List Of TDS Declaration Forms</a></li>
+										<li><a href="TDSForm16List.jsp" class="dropdown-item"><i class="undefined"></i>
+												Form 16 List</a></li>
 									</ul>
 								</li>
 							</ul>
 						</li>
+						<%} %>
 
 						<li data-mega-col="col-md-2" class="col-md-2">
 							<h6 data-toggle="dropdown"
