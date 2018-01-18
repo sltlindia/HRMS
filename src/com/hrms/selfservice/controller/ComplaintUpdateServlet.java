@@ -45,13 +45,14 @@ public class ComplaintUpdateServlet extends HttpServlet {
 			int problem_nature_id = Integer.parseInt(request.getParameter("problem_nature"));
 			String location = request.getParameter("location");
 			String description = request.getParameter("problem_desc");
+			int cartigeCount = Integer.parseInt(request.getParameter("cartigeCount"));
 			String status = "pending";
 			EmployeeBean employeeBean = new EmployeeBean();
 			employeeBean.setEmployee_master_id(employee_master_id);
 			ProblemNatureBean problemNatureBean = new ProblemNatureBean();
 			problemNatureBean.setProblem_nature_id(problem_nature_id);
 			
-			ComplaintBean complaintBean = new ComplaintBean(complaint_id, location, extension, description, date, status, employeeBean, problemNatureBean);
+			ComplaintBean complaintBean = new ComplaintBean(complaint_id, location, extension, description, date, status, employeeBean, problemNatureBean,cartigeCount);
 			AllUpdateSelfServiceDAO allUpdateSelfServiceDAO = new AllUpdateSelfServiceDAO();
 			boolean result = allUpdateSelfServiceDAO.complaintUpdate(complaintBean);
 			request.getRequestDispatcher("complaint.jsp").forward(request, response);

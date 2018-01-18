@@ -146,7 +146,7 @@ public class KaizenBeforeUploadAttachmentServlet extends HttpServlet {
 				}
 			
 	}else{
-		
+		request.getRequestDispatcher("login.jsp").forward(request, response);
 	}
 		
 	}

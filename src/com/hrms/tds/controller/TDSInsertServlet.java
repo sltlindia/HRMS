@@ -56,7 +56,7 @@ public class TDSInsertServlet extends HttpServlet {
 			String status = "submit";
 			double annual_gross_salary = 0;
 			double bonus = 0.0;
-			double leave = 0.0;
+			double leave_count = 0.0;
 			double incentive = 0.0;
 			double previous_employeed_salary = 0.0;
 			double performance_pay = 0.0;
@@ -85,6 +85,12 @@ public class TDSInsertServlet extends HttpServlet {
 			double a_medical = 0.0;
 			double provided_medical_bills = 0.0;
 			double d_medical = 0.0;
+			String monthly_yearly = "";
+			double yearly_mealcard = 0.0;
+			String monthly_start_date = null;
+			String monthly_end_date = null;
+			int days = 0;
+			double monthly_mealcard = 0.0;
 			double meal_card = 0.0;
 			double lta_during_year = 0.0;
 			double actual_expenditure_lta = 0.0;
@@ -274,8 +280,8 @@ public class TDSInsertServlet extends HttpServlet {
 			System.out.println("totalBasic:"+annual_gross_salary);
 			bonus = Double.parseDouble(request.getParameter("Bonus"));
 			System.out.println("Bonus:"+bonus);
-			leave = Double.parseDouble(request.getParameter("Leave"));
-			System.out.println("Leave:"+leave);
+			leave_count = Double.parseDouble(request.getParameter("Leave"));
+			System.out.println("Leave:"+leave_count);
 			incentive = Double.parseDouble(request.getParameter("Incentive"));
 			System.out.println("Incentive:"+incentive);
 			previous_employeed_salary = Double.parseDouble(request.getParameter("PreviousSalary"));
@@ -339,8 +345,50 @@ public class TDSInsertServlet extends HttpServlet {
 			System.out.println("provided_medical_bills :"+provided_medical_bills);
 			d_medical = Double.parseDouble(request.getParameter("MedicalBill"));
 			System.out.println("Medical Deduction:"+d_medical);
+			
+			if(user.getMealcard().equalsIgnoreCase("TRUE")) {
+				
+			monthly_yearly = request.getParameter("result");
+			System.out.println("result:"+monthly_yearly);
+			if(monthly_yearly.equals("Yearly"))
+			{
+				yearly_mealcard = Double.parseDouble(request.getParameter("MealCardDeduction"));
+				System.out.println("yearly_mealCard:"+yearly_mealcard);
+				
+			}
+			else
+			{
+				if((request.getParameter("startDatePicker1") != null) && (request.getParameter("endDatePicker1") != null)){
+				monthly_start_date = request.getParameter("startDatePicker1");
+				monthly_end_date = request.getParameter("endDatePicker1");
+				SimpleDateFormat s_date = new SimpleDateFormat("yyyy-MM-dd");
+				SimpleDateFormat s1_date = new SimpleDateFormat("dd/MM/yyyy");
+				Date sDate = null;
+				Date eDate = null;
+				try {
+					 
+					sDate = s1_date.parse(monthly_start_date);
+					monthly_start_date = s_date.format(sDate);
+					eDate = s1_date.parse(monthly_end_date);
+					monthly_end_date = s_date.format(eDate);
+					
+					 System.out.println("Start Date:"+monthly_start_date);
+					 System.out.println("End Date:"+monthly_end_date);
+				} catch (ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				days = Integer.parseInt(request.getParameter("days"));
+				System.out.println("Days:"+days);
+				
+				monthly_mealcard = Double.parseDouble(request.getParameter("MealCardDeduction1"));
+				System.out.println("monthly_mealCard:"+monthly_mealcard);
+				}
+			}
 			meal_card = Double.parseDouble(request.getParameter("MealCard"));
 			System.out.println("Meal Card:"+meal_card);
+			}
+			
 			lta_during_year = Double.parseDouble(request.getParameter("LTABillSalary"));
 			System.out.println("lta_during_year:"+lta_during_year);
 			actual_expenditure_lta = Double.parseDouble(request.getParameter("LTABill"));
@@ -470,14 +518,22 @@ public class TDSInsertServlet extends HttpServlet {
 			d_mediclaim = Double.parseDouble(request.getParameter("TotalDeduction"));
 			System.out.println("d_mediclaim:"+d_mediclaim);
 						
-			a_cash_amount = Double.parseDouble(request.getParameter("cashAmount"));
-			System.out.println("a_cash_amount:"+a_cash_amount);
-			d_cash_amount = Double.parseDouble(request.getParameter("cashDeduction"));
-			System.out.println("d_cash_amount:"+d_cash_amount);
-			a_cheque_amount = Double.parseDouble(request.getParameter("chequeAmount"));
-			System.out.println("a_cheque_amount:"+a_cheque_amount);
-			d_cheque_amount = Double.parseDouble(request.getParameter("chequeDeduction"));
-			System.out.println("d_cheque_amount:"+d_cheque_amount);
+			cash_cheque = request.getParameter("donationResult");
+			System.out.println("donation_80g:"+cash_cheque);
+			if(cash_cheque.equals("Cash"))
+			{
+				a_cash_amount = Double.parseDouble(request.getParameter("cashAmount"));
+				System.out.println("a_cash_amount:"+a_cash_amount);
+				d_cash_amount = Double.parseDouble(request.getParameter("cashDeduction"));
+				System.out.println("d_cash_amount:"+d_cash_amount);
+			}
+			else
+			{
+				a_cheque_amount = Double.parseDouble(request.getParameter("chequeAmount"));
+				System.out.println("a_cheque_amount:"+a_cheque_amount);
+				d_cheque_amount = Double.parseDouble(request.getParameter("chequeDeduction"));
+				System.out.println("d_cheque_amount:"+d_cheque_amount);
+			}
 			donation_80G = Double.parseDouble(request.getParameter("Donation"));
 			System.out.println("Donation:"+donation_80G);
 			
@@ -553,12 +609,12 @@ public class TDSInsertServlet extends HttpServlet {
 				System.out.println("TDS ID" + tdsId);
 				tdsBean.setTds_id(tdsId);
 				
-				TDSTotalABean aBean = new TDSTotalABean(annual_gross_salary, bonus, leave, incentive, previous_employeed_salary, performance_pay, full_final_leave, full_final_bonus, total_a, tdsBean);
-				TDSTotalBBean bBean = new TDSTotalBBean(conveyance, d_conveyance, metro_non_metro, a_total_basic, d_non_metro_total_basic, d_metro_total_basic, a_rent_slip, d_non_metro_rent_slip, d_metro_rent_slip, a_hra, d_non_metro_hra, d_metro_hra, hra_non_metro_deduction, hra_metro_deduction, house_rant, landlord_name, landlord_pan_no, a_medical, provided_medical_bills, d_medical, meal_card, lta_during_year, actual_expenditure_lta, d_lta, ptax, no_of_child, d_education_allw, uni_allw_during_year, actual_expenditure_uni_allw, d_uni_allw, total_hra, total_b, tdsBean);
+				TDSTotalABean aBean = new TDSTotalABean(annual_gross_salary, bonus, leave_count, incentive, previous_employeed_salary, performance_pay, full_final_leave, full_final_bonus, total_a, tdsBean);
+				TDSTotalBBean bBean = new TDSTotalBBean(conveyance, d_conveyance, metro_non_metro, a_total_basic, d_non_metro_total_basic, d_metro_total_basic, a_rent_slip, d_non_metro_rent_slip, d_metro_rent_slip, a_hra, d_non_metro_hra, d_metro_hra, hra_non_metro_deduction, hra_metro_deduction, house_rant, landlord_name, landlord_pan_no, a_medical, provided_medical_bills, d_medical, monthly_yearly, yearly_mealcard, monthly_start_date, monthly_end_date, days, monthly_mealcard, meal_card, lta_during_year, actual_expenditure_lta, d_lta, ptax, no_of_child, d_education_allw, uni_allw_during_year, actual_expenditure_uni_allw, d_uni_allw, total_hra, total_b, tdsBean);
 				TDSTotalCBean cBean = new TDSTotalCBean(other_income, a_house_loan, d_house_loan, bank_name, bank_pan_no, bank_address, total_c, tdsBean);
 				TDSTotalDBean dBean = new TDSTotalDBean(life_insurance, ePF, pPF, nSC, mF, tuition_fees, stamp_duty, house_loan_principal, tax_saver_deposite, other_document, other, a_total_d, d_total_d, total_d, payable_lic, payable_epf, payable_ppf, payable_nsc, payable_mf, payable_tuition_fees, payable_stamp_duty, payable_house_loan, payable_fix_deposite, payable_other, payable_a_total_d, payable_d_total_d, payable_total_d, tdsBean);
 				TDSTotalEBean eBean = new TDSTotalEBean(a_NPS, d_NPS, a_RGESS, d_RGESS, total_NPS_RGESS, total_e, payable_total_e, tdsBean);
-				TDSTotalFBean fBean = new TDSTotalFBean(a_self, d_self, father_birthdate, a_parents, d_parents, a_health_checkup, d_health_checkup, a_mediclaim, d_mediclaim, a_cash_amount, d_cash_amount, a_cheque_amount, d_cheque_amount, donation_80G, a_donation_80GGC, d_donation_80GGC, education_loan, total_80egd, total_f, tax, tax_remit, total_tax, edu_cess, total_h, tax_paid, tax_payable, payable_total_f, payable_tax, payable_tax_remit, payable_total_tax, payable_edu_cess, payable_total_h, april, may, june, july, august, september, october, november, december, january, february, march, tdsBean);
+				TDSTotalFBean fBean = new TDSTotalFBean(a_self, d_self, father_birthdate, a_parents, d_parents, a_health_checkup, d_health_checkup, a_mediclaim, d_mediclaim, cash_cheque, a_cash_amount, d_cash_amount, a_cheque_amount, d_cheque_amount, donation_80G, a_donation_80GGC, d_donation_80GGC, education_loan, total_80egd, total_f, tax, tax_remit, total_tax, edu_cess, total_h, tax_paid, tax_payable, payable_total_f, payable_tax, payable_tax_remit, payable_total_tax, payable_edu_cess, payable_total_h, tdsBean);
 				
 				boolean resultTotalA = tdsInsertDAO.tdsTotalAInsert(aBean);
 				boolean resultTotalB = tdsInsertDAO.tdsTotalBInsert(bBean);
@@ -576,12 +632,12 @@ public class TDSInsertServlet extends HttpServlet {
 				session.setAttribute("tds_hr_id", tdsHrId);
 				tdsHrBean.setTds_hr_id(tdsHrId);
 				
-				TDSHrTotalABean hraBean = new TDSHrTotalABean(annual_gross_salary, bonus, leave, incentive, previous_employeed_salary, performance_pay, full_final_leave, full_final_bonus, total_a, tdsHrBean);
-				TDSHrTotalBBean hrbBean = new TDSHrTotalBBean(conveyance, d_conveyance, metro_non_metro, a_total_basic, d_non_metro_total_basic, d_metro_total_basic, a_rent_slip, d_non_metro_rent_slip, d_metro_rent_slip, a_hra, d_non_metro_hra, d_metro_hra, hra_non_metro_deduction, hra_metro_deduction, house_rant, landlord_name, landlord_pan_no, a_medical, provided_medical_bills , d_medical, meal_card, lta_during_year, actual_expenditure_lta, d_lta, ptax, no_of_child, d_education_allw, uni_allw_during_year, actual_expenditure_uni_allw, d_uni_allw, total_hra, total_b, tdsHrBean);
+				TDSHrTotalABean hraBean = new TDSHrTotalABean(annual_gross_salary, bonus, leave_count, incentive, previous_employeed_salary, performance_pay, full_final_leave, full_final_bonus, total_a, tdsHrBean);
+				TDSHrTotalBBean hrbBean = new TDSHrTotalBBean(conveyance, d_conveyance, metro_non_metro, a_total_basic, d_non_metro_total_basic, d_metro_total_basic, a_rent_slip, d_non_metro_rent_slip, d_metro_rent_slip, a_hra, d_non_metro_hra, d_metro_hra, hra_non_metro_deduction, hra_metro_deduction, house_rant, landlord_name, landlord_pan_no, a_medical, provided_medical_bills , d_medical, monthly_yearly, yearly_mealcard, monthly_start_date, monthly_end_date, days, monthly_mealcard, meal_card, lta_during_year, actual_expenditure_lta, d_lta, ptax, no_of_child, d_education_allw, uni_allw_during_year, actual_expenditure_uni_allw, d_uni_allw, total_hra, total_b, tdsHrBean);
 				TDSHrTotalCBean hrcBean = new TDSHrTotalCBean(other_income, a_house_loan, d_house_loan, bank_name, bank_pan_no, bank_address, total_c, tdsHrBean);
 				TDSHrTotalDBean hrdBean = new TDSHrTotalDBean(life_insurance, ePF, pPF, nSC, mF, tuition_fees, stamp_duty, house_loan_principal, tax_saver_deposite, other_document, other, a_total_d, d_total_d, total_d, payable_lic, payable_epf, payable_ppf, payable_nsc, payable_mf, payable_tuition_fees, payable_stamp_duty, payable_house_loan, payable_fix_deposite, payable_other, payable_a_total_d, payable_d_total_d, payable_total_d, tdsHrBean);
 				TDSHrTotalEBean hreBean = new TDSHrTotalEBean(a_NPS, d_NPS, a_RGESS, d_RGESS, total_NPS_RGESS, total_e, payable_total_e, tdsHrBean);
-				TDSHrTotalFBean hrfBean = new TDSHrTotalFBean(a_self, d_self, father_birthdate, a_parents, d_parents, a_health_checkup, d_health_checkup, a_mediclaim, d_mediclaim, a_cash_amount, d_cash_amount, a_cheque_amount, d_cheque_amount, donation_80G, a_donation_80GGC, d_donation_80GGC, education_loan, total_80egd, total_f, tax, tax_remit, total_tax, edu_cess, total_h, payable_total_f, payable_tax, payable_tax_remit, payable_total_tax, payable_edu_cess, payable_total_h, tdsHrBean, april, may, june, july, august, september, october, november, december, january, february, march, tax_paid, tax_payable);
+				TDSHrTotalFBean hrfBean = new TDSHrTotalFBean(a_self, d_self, father_birthdate, a_parents, d_parents, a_health_checkup, d_health_checkup, a_mediclaim, d_mediclaim, cash_cheque, a_cash_amount, d_cash_amount, a_cheque_amount, d_cheque_amount, donation_80G, a_donation_80GGC, d_donation_80GGC, education_loan, total_80egd, total_f, tax, tax_remit, total_tax, edu_cess, total_h, payable_total_f, payable_tax, payable_tax_remit, payable_total_tax, payable_edu_cess, payable_total_h, tdsHrBean, april, may, june, july, august, september, october, november, december, january, february, march, tax_paid, tax_payable);
 				
 				boolean resultHrTotalA = tdsInsertDAO.tdsHrTotalAInsert(hraBean);
 				boolean resultHrTotalB = tdsInsertDAO.tdsHrTotalBInsert(hrbBean);

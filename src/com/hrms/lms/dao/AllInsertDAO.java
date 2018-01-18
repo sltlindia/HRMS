@@ -15,6 +15,7 @@ import com.hrms.lms.bean.LeaveCancelRequestBean;
 import com.hrms.lms.bean.LeaveHRBean;
 import com.hrms.lms.bean.LeaveODBean;
 import com.hrms.lms.bean.LeavecutBalance;
+import com.hrms.lms.bean.NopunchBean;
 import com.hrms.lms.util.HibernateUtil;
 import com.hrms.pms.bean.RoleBean;
 import com.hrms.timesheet.bean.HolidayBean;
@@ -295,5 +296,33 @@ public class AllInsertDAO
 		 }	
 		 return true;
 	}
+	
+	
+	
+	
+	
+	
+	public boolean leaveInsertformultiple(NopunchBean nopunchBean)
+	{
+		 Session session = HibernateUtil.openSession();
+		 Transaction tx = null;	
+		 try {
+			 tx = session.getTransaction();
+			 tx.begin();
+			 session.saveOrUpdate(nopunchBean);
+			 System.out.println("inserted");
+			 tx.commit();
+		 } catch (Exception e) {
+			 if (tx != null) {
+				 tx.rollback();
+			 }
+			 e.printStackTrace();
+		 } finally {
+			 session.close();
+		 }	
+		 return true;
+	}
+	
+	
 
 }

@@ -73,8 +73,9 @@ public class ComplaintInsertServlet extends HttpServlet {
 			employeeBean.setEmployee_master_id(employee_master_id);
 			ProblemNatureBean problemNatureBean = new ProblemNatureBean();
 			problemNatureBean.setProblem_nature_id(problem_nature_id);
+			int cartigeCount = Integer.parseInt(request.getParameter("cartigeCount")); 
 			
-			ComplaintBean complaintBean = new ComplaintBean(location, extension, description, date, status, employeeBean, problemNatureBean);
+			ComplaintBean complaintBean = new ComplaintBean(location, extension, description, date, status, employeeBean, problemNatureBean,cartigeCount);
 			AllInsertSelfServiceDAO allInsertSelfServiceDAO = new AllInsertSelfServiceDAO();
 			boolean result = allInsertSelfServiceDAO.complaintInsert(complaintBean);
 			complaint_id = complaintBean.getComplaint_id();

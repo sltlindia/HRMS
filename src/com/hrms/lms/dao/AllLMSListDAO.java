@@ -14,12 +14,14 @@ import com.hrms.lms.bean.GatePassBean;
 import com.hrms.lms.bean.IntervieweeBean;
 import com.hrms.lms.bean.LeaveAdjustBalanceBean;
 import com.hrms.lms.bean.LeaveBalanceBean;
+import com.hrms.lms.bean.LeaveBalanceYearWiseBean;
 import com.hrms.lms.bean.LeaveBean;
 import com.hrms.lms.bean.LeaveCOBean;
 import com.hrms.lms.bean.LeaveCancelRequestBean;
 import com.hrms.lms.bean.LeaveODBean;
 import com.hrms.lms.bean.LeaveTypeBean;
 import com.hrms.lms.bean.LeavecutBalance;
+import com.hrms.lms.bean.NopunchBean;
 import com.hrms.lms.util.HibernateUtil;
 import com.hrms.pms.bean.DepartmentBean;
 import com.hrms.pms.bean.EmployeeBean;
@@ -332,7 +334,7 @@ public class AllLMSListDAO {
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<LeaveBean> getLeavefromtodate(String Leave_From, String Leave_To, int emp_id) {
+	public List<LeaveBean> getLeavefromtodate(String a, String a1, int emp_id) {
 
 		List<LeaveBean> listOfLeave = new ArrayList<LeaveBean>();
 		Session session = HibernateUtil.openSession();
@@ -344,7 +346,7 @@ public class AllLMSListDAO {
 			tx = session.getTransaction();
 			tx.begin();
 			Query query = session.createQuery("from LeaveBean where employeeBean ='" + emp_id
-					+ "' and (Leave_From BETWEEN '" + Leave_From + "' AND '" + Leave_To + "') and status='approved'");
+					+ "' and ('"+a+"' BETWEEN Leave_From AND Leave_To) and status='approved'");
 			listOfLeave = query.list();
 			tx.commit();
 		} catch (Exception e) {
@@ -417,7 +419,31 @@ public class AllLMSListDAO {
 		try {
 			tx = session.getTransaction();
 			tx.begin();
-			listOfLeave = session.createQuery("FROM HolidayBean ORDER BY holiday_date").list();
+			listOfLeave = session.createQuery("FROM HolidayBean WHERE location = 'Gujarat' AND IsVisible = 1 ORDER BY holiday_date").list();
+			tx.commit();
+		} catch (Exception e) {
+			if (tx != null) {
+				tx.rollback();
+			}
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return listOfLeave;
+
+	}
+	
+	
+	
+	@SuppressWarnings("unchecked")
+	public List<HolidayBean> getListOfHolidaybyshowattdenace() {
+		List<HolidayBean> listOfLeave = new ArrayList<HolidayBean>();
+		Session session = HibernateUtil.openSession();
+		Transaction tx = null;
+		try {
+			tx = session.getTransaction();
+			tx.begin();
+			listOfLeave = session.createQuery("FROM HolidayBean WHERE location = 'Gujarat' ORDER BY holiday_date").list();
 			tx.commit();
 		} catch (Exception e) {
 			if (tx != null) {
@@ -440,6 +466,30 @@ public class AllLMSListDAO {
 			tx.begin();
 			Query query = session.createQuery("FROM LeaveBalanceBean WHERE employeeBean='" + emp_id + "'");
 			leaveBalanceBean = (LeaveBalanceBean) query.uniqueResult();
+			tx.commit();
+		} catch (Exception e) {
+			if (tx != null) {
+				tx.rollback();
+			}
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return leaveBalanceBean;
+
+	}
+	
+	
+	
+	public LeaveBalanceYearWiseBean getleaveListbyEMPYearWise(int emp_id) {
+		Session session = HibernateUtil.openSession();
+		Transaction tx = null;
+		LeaveBalanceYearWiseBean leaveBalanceBean = null;
+		try {
+			tx = session.getTransaction();
+			tx.begin();
+			Query query = session.createQuery("FROM LeaveBalanceYearWiseBean WHERE employeeBean='" + emp_id + "'");
+			leaveBalanceBean = (LeaveBalanceYearWiseBean) query.uniqueResult();
 			tx.commit();
 		} catch (Exception e) {
 			if (tx != null) {
@@ -760,7 +810,7 @@ public class AllLMSListDAO {
 			tx = session.getTransaction();
 			tx.begin();
 			Query query = session
-					.createQuery("from LeaveCOBean WHERE employeeBean='" + emp_id + "' order by CO_ID DESC ");
+					.createQuery("from LeaveCOBean WHERE employeeBean='" + emp_id + "' and CO_date between '2017-10-01' and '2018-09-31' order by CO_ID DESC ");
 			listOfLeave = query.list();
 			tx.commit();
 		} catch (Exception e) {
@@ -773,6 +823,32 @@ public class AllLMSListDAO {
 		}
 		return listOfLeave;
 	}
+	
+	
+	public List<LeaveCOBean> getCOByEmpIdandYearwise(int emp_id) {
+
+		List<LeaveCOBean> listOfLeave = new ArrayList<LeaveCOBean>();
+		Session session = HibernateUtil.openSession();
+		Transaction tx = null;
+
+		try {
+			tx = session.getTransaction();
+			tx.begin();
+			Query query = session
+					.createQuery("from LeaveCOBean WHERE employeeBean='" + emp_id + "' and CO_date between '2017-10-01' and '2018-09-31' order by CO_ID DESC ");
+			listOfLeave = query.list();
+			tx.commit();
+		} catch (Exception e) {
+			if (tx != null) {
+				tx.rollback();
+			}
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return listOfLeave;
+	}
+	
 
 	public List<LeaveCOBean> getPendingCO() {
 
@@ -832,6 +908,33 @@ public class AllLMSListDAO {
 			tx.begin();
 			Query query = session
 					.createQuery("from LeaveODBean WHERE employeeBean='" + emp_id + "' order by OD_ID DESC ");
+			listOfLeave = query.list();
+			tx.commit();
+		} catch (Exception e) {
+			if (tx != null) {
+				tx.rollback();
+			}
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return listOfLeave;
+	}
+	
+	
+	
+	
+	@SuppressWarnings("unchecked")
+	public List<LeaveODBean> getODByEmpIdandYearwise(int emp_id) {
+
+		List<LeaveODBean> listOfLeave = new ArrayList<LeaveODBean>();
+		Session session = HibernateUtil.openSession();
+		Transaction tx = null;
+		try {
+			tx = session.getTransaction();
+			tx.begin();
+			Query query = session
+					.createQuery("from LeaveODBean WHERE employeeBean='" + emp_id + "' and OD_StartDate between '2017-10-01' and '2018-09-31' order by OD_ID DESC ");
 			listOfLeave = query.list();
 			tx.commit();
 		} catch (Exception e) {
@@ -1194,6 +1297,32 @@ public class AllLMSListDAO {
 		}
 		return listOfLeave;
 	}
+	
+	
+	public List<LeaveBean> getLeaveByEmpIdAndYearWise(int emp_id) {
+
+		List<LeaveBean> listOfLeave = new ArrayList<LeaveBean>();
+		Session session = HibernateUtil.openSession();
+		Transaction tx = null;
+
+		try {
+			tx = session.getTransaction();
+			tx.begin();
+			Query query = session
+					.createQuery("from LeaveBean WHERE employeeBean='" + emp_id + "' and Leave_From between '2017-10-01' and '2018-09-31' order by leave_id desc");
+			listOfLeave = query.list();
+			tx.commit();
+		} catch (Exception e) {
+			if (tx != null) {
+				tx.rollback();
+			}
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return listOfLeave;
+	}
+	
 
 	public List<LeaveBean> getListOfEmployeeLeave(int manager_id) {
 
@@ -1208,6 +1337,34 @@ public class AllLMSListDAO {
 			tx.begin();
 			Query query = session.createQuery(
 					"from LeaveBean where employeeBean.under_manager_id ='" + manager_id + "' and status='approved'");
+			listOfLeave = query.list();
+			tx.commit();
+		} catch (Exception e) {
+			if (tx != null) {
+				tx.rollback();
+			}
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return listOfLeave;
+	}
+	
+	
+	
+	public List<LeaveBean> getListOfEmployeeLeaveBetween(int manager_id,String fromDate,String toDate) {
+
+		List<LeaveBean> listOfLeave = new ArrayList<LeaveBean>();
+		Session session = HibernateUtil.openSession();
+		Transaction tx = null;
+		@SuppressWarnings("unused")
+		LeaveBean leaveBean = null;
+		;
+		try {
+			tx = session.getTransaction();
+			tx.begin();
+			Query query = session.createQuery(
+					"from LeaveBean where employeeBean.under_manager_id ='" + manager_id + "' and status='approved' and  ((Leave_From  between '" + fromDate + "' and '"+ toDate +"') OR (Leave_To  between '" + fromDate + "' and '"+ toDate +"'))");
 			listOfLeave = query.list();
 			tx.commit();
 		} catch (Exception e) {
@@ -1352,7 +1509,9 @@ public class AllLMSListDAO {
 		}
 		return listOfLeave;
 	}
-
+	
+	
+	
 	public List<LeaveBean> getListOfApprovedEmployeeLeaveForSurat(String fromDate, String toDate, String Status,
 			int companyId) {
 
@@ -1367,12 +1526,11 @@ public class AllLMSListDAO {
 			tx.begin();
 			Query query = null;
 			if (companyId != 0) {
-				query = session.createQuery("from LeaveBean where  status ='" + Status
-						+ "' and employeeBean.companyListBean = '" + companyId + "' and Leave_From between '" + fromDate
-						+ "' and '" + toDate + "' and employeeBean.location = 'Surat' ");
-			} else if (fromDate == null) {
 				query = session.createQuery(
-						"from LeaveBean where  status ='" + Status + "' and employeeBean.location = 'Surat'");
+						"from LeaveBean where  status ='" + Status + "' and employeeBean.companyListBean = '"
+								+ companyId + "' and Leave_From between '" + fromDate + "' and '" + toDate + "' and employeeBean.location = 'Surat' ");
+			} else if (fromDate == null) {
+				query = session.createQuery("from LeaveBean where  status ='" + Status + "' and employeeBean.location = 'Surat'");
 			} else {
 				query = session.createQuery("from LeaveBean where status ='" + Status + "' and Leave_From between '"
 						+ fromDate + "' and '" + toDate + "' and employeeBean.location = 'Surat' ");
@@ -1389,7 +1547,9 @@ public class AllLMSListDAO {
 		}
 		return listOfLeave;
 	}
-
+	
+	
+	
 	public List<LeaveBean> getListOfApprovedEmployeeLeaveForA8DeptWise(String fromDate, String toDate, String Status,
 			int companyId) {
 
@@ -1404,12 +1564,11 @@ public class AllLMSListDAO {
 			tx.begin();
 			Query query = null;
 			if (companyId != 0) {
-				query = session.createQuery("from LeaveBean where  status ='" + Status
-						+ "' and employeeBean.companyListBean = '" + companyId + "' and Leave_From between '" + fromDate
-						+ "' and '" + toDate + "' and employeeBean.departmentBean In  (41,42,43) ");
+				query = session.createQuery(
+						"from LeaveBean where  status ='" + Status + "' and employeeBean.companyListBean = '"
+								+ companyId + "' and Leave_From between '" + fromDate + "' and '" + toDate + "' and employeeBean.departmentBean In  (41,42,43) ");
 			} else if (fromDate == null) {
-				query = session.createQuery("from LeaveBean where  status ='" + Status
-						+ "' and employeeBean.departmentBean In  (41,42,43)");
+				query = session.createQuery("from LeaveBean where  status ='" + Status + "' and employeeBean.departmentBean In  (41,42,43)");
 			} else {
 				query = session.createQuery("from LeaveBean where status ='" + Status + "' and Leave_From between '"
 						+ fromDate + "' and '" + toDate + "' and employeeBean.departmentBean In  (41,42,43) ");
@@ -1426,6 +1585,85 @@ public class AllLMSListDAO {
 		}
 		return listOfLeave;
 	}
+
+	
+	
+	public List<LeaveBean> getListOfApprovedEmployeeLeaveForA8EMPWise(String fromDate, String toDate, String Status,
+			int companyId) {
+
+		List<LeaveBean> listOfLeave = new ArrayList<LeaveBean>();
+		Session session = HibernateUtil.openSession();
+		Transaction tx = null;
+		@SuppressWarnings("unused")
+		LeaveBean leaveBean = null;
+		;
+		try {
+			tx = session.getTransaction();
+			tx.begin();
+			Query query = null;
+			if (companyId != 0) {
+				query = session.createQuery(
+						"from LeaveBean where  status ='" + Status + "' and employeeBean.companyListBean = '"
+								+ companyId + "' and Leave_From between '" + fromDate + "' and '" + toDate + "' and employeeBean In  (979,2018,2000,1431,1429,1199)");
+			} else if (fromDate == null) {
+				query = session.createQuery("from LeaveBean where  status ='" + Status + "' and employeeBean In  (979,2018,2000,1431,1429,1199)");
+			} else {
+				query = session.createQuery("from LeaveBean where status ='" + Status + "' and Leave_From between '"
+						+ fromDate + "' and '" + toDate + "' and employeeBean In  (979,2018,2000,1431,1429,1199) ");
+			}
+			listOfLeave = query.list();
+			tx.commit();
+		} catch (Exception e) {
+			if (tx != null) {
+				tx.rollback();
+			}
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return listOfLeave;
+	}
+	
+	
+	
+	public List<LeaveBean> getListOfApprovedEmployeeLeaveForNYDeptWise(String fromDate, String toDate, String Status,
+			int companyId) {
+
+		List<LeaveBean> listOfLeave = new ArrayList<LeaveBean>();
+		Session session = HibernateUtil.openSession();
+		Transaction tx = null;
+		@SuppressWarnings("unused")
+		LeaveBean leaveBean = null;
+		;
+		try {
+			tx = session.getTransaction();
+			tx.begin();
+			Query query = null;
+			if (companyId != 0) {
+				query = session.createQuery(
+						"from LeaveBean where  status ='" + Status + "' and employeeBean.companyListBean = '"
+								+ companyId + "' and Leave_From between '" + fromDate + "' and '" + toDate + "' and employeeBean.departmentBean = 27 ");
+			} else if (fromDate == null) {
+				query = session.createQuery("from LeaveBean where  status ='" + Status + "' and employeeBean.departmentBean = 27");
+			} else {
+				query = session.createQuery("from LeaveBean where status ='" + Status + "' and Leave_From between '"
+						+ fromDate + "' and '" + toDate + "' and employeeBean.departmentBean = 27");
+			}
+			listOfLeave = query.list();
+			tx.commit();
+		} catch (Exception e) {
+			if (tx != null) {
+				tx.rollback();
+			}
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return listOfLeave;
+	}
+	
+	
+	
 
 	public List<LeaveCOBean> getApprovedCO(String fromDate, String toDate, String Status, int companyId) {
 
@@ -1461,7 +1699,8 @@ public class AllLMSListDAO {
 		}
 		return listOfLeave;
 	}
-
+	
+	
 	public List<LeaveCOBean> getApprovedCOSurat(String fromDate, String toDate, String Status, int companyId) {
 
 		List<LeaveCOBean> listOfLeave = new ArrayList<LeaveCOBean>();
@@ -1474,12 +1713,11 @@ public class AllLMSListDAO {
 
 			Query query = null;
 			if (companyId != 0) {
-				query = session.createQuery("from LeaveCOBean where  status ='" + Status
-						+ "' and employeeBean.companyListBean = '" + companyId + "' and CO_date between '" + fromDate
-						+ "' and '" + toDate + "' and employeeBean.location = 'Surat'");
-			} else if (fromDate == null) {
 				query = session.createQuery(
-						"from LeaveCOBean WHERE  status ='" + Status + "' and employeeBean.location = 'Surat'");
+						"from LeaveCOBean where  status ='" + Status + "' and employeeBean.companyListBean = '"
+								+ companyId + "' and CO_date between '" + fromDate + "' and '" + toDate + "' and employeeBean.location = 'Surat'");
+			} else if (fromDate == null) {
+				query = session.createQuery("from LeaveCOBean WHERE  status ='" + Status + "' and employeeBean.location = 'Surat'");
 			} else {
 				query = session.createQuery("from LeaveCOBean WHERE status ='" + Status + "' and CO_date between '"
 						+ fromDate + "' and '" + toDate + "' and employeeBean.location = 'Surat'");
@@ -1497,8 +1735,11 @@ public class AllLMSListDAO {
 		}
 		return listOfLeave;
 	}
-
-	public List<LeaveCOBean> getApprovedCOA8DeptWise(String fromDate, String toDate, String Status, int companyId) {
+	
+	
+	
+			
+		public List<LeaveCOBean> getApprovedCOA8DeptWise(String fromDate, String toDate, String Status, int companyId) {
 
 		List<LeaveCOBean> listOfLeave = new ArrayList<LeaveCOBean>();
 		Session session = HibernateUtil.openSession();
@@ -1507,19 +1748,21 @@ public class AllLMSListDAO {
 		try {
 			tx = session.getTransaction();
 			tx.begin();
-
+			
+			
 			Query query = null;
 			if (companyId != 0) {
-				query = session.createQuery("from LeaveCOBean where  status ='" + Status
-						+ "' and employeeBean.companyListBean = '" + companyId + "' and CO_date between '" + fromDate
-						+ "' and '" + toDate + "' and employeeBean.departmentBean In  (41,42,43)");
+				query = session.createQuery(
+						"from LeaveCOBean where  status ='" + Status + "' and employeeBean.companyListBean = '"
+								+ companyId + "' and CO_date between '" + fromDate + "' and '" + toDate + "' and employeeBean.departmentBean In  (41,42,43)");
 			} else if (fromDate == null) {
-				query = session.createQuery("from LeaveCOBean WHERE  status ='" + Status
-						+ "' and employeeBean.departmentBean In  (41,42,43)");
+				query = session.createQuery("from LeaveCOBean WHERE  status ='" + Status + "' and employeeBean.departmentBean In  (41,42,43)");
 			} else {
 				query = session.createQuery("from LeaveCOBean WHERE status ='" + Status + "' and CO_date between '"
 						+ fromDate + "' and '" + toDate + "' and employeeBean.departmentBean In  (41,42,43)");
 			}
+
+			
 
 			listOfLeave = query.list();
 			tx.commit();
@@ -1533,6 +1776,81 @@ public class AllLMSListDAO {
 		}
 		return listOfLeave;
 	}
+		
+		
+		public List<LeaveCOBean> getApprovedCOA8EMPWise(String fromDate, String toDate, String Status, int companyId) {
+
+			List<LeaveCOBean> listOfLeave = new ArrayList<LeaveCOBean>();
+			Session session = HibernateUtil.openSession();
+			Transaction tx = null;
+
+			try {
+				tx = session.getTransaction();
+				tx.begin();
+
+				Query query = null;
+				if (companyId != 0) {
+					query = session.createQuery(
+							"from LeaveCOBean where  status ='" + Status + "' and employeeBean.companyListBean = '"
+									+ companyId + "' and CO_date between '" + fromDate + "' and '" + toDate + "' and employeeBean In  (979,2018,2000,1431,1429,1199)");
+				} else if (fromDate == null) {
+					query = session.createQuery("from LeaveCOBean WHERE  status ='" + Status + "' and employeeBean In  (979,2018,2000,1431,1429,1199)");
+				} else {
+					query = session.createQuery("from LeaveCOBean WHERE status ='" + Status + "' and CO_date between '"
+							+ fromDate + "' and '" + toDate + "' and employeeBean In  (979,2018,2000,1431,1429,1199)");
+				}
+
+				listOfLeave = query.list();
+				tx.commit();
+			} catch (Exception e) {
+				if (tx != null) {
+					tx.rollback();
+				}
+				e.printStackTrace();
+			} finally {
+				session.close();
+			}
+			return listOfLeave;
+		}
+		
+		
+		
+		public List<LeaveCOBean> getApprovedCONYDeptWise(String fromDate, String toDate, String Status, int companyId) {
+
+			List<LeaveCOBean> listOfLeave = new ArrayList<LeaveCOBean>();
+			Session session = HibernateUtil.openSession();
+			Transaction tx = null;
+
+			try {
+				tx = session.getTransaction();
+				tx.begin();
+
+				Query query = null;
+				if (companyId != 0) {
+					query = session.createQuery(
+							"from LeaveCOBean where  status ='" + Status + "' and employeeBean.companyListBean = '"
+									+ companyId + "' and CO_date between '" + fromDate + "' and '" + toDate + "' and employeeBean.departmentBean = 27");
+				} else if (fromDate == null) {
+					query = session.createQuery("from LeaveCOBean WHERE  status ='" + Status + "' and employeeBean.departmentBean = 27");
+				} else {
+					query = session.createQuery("from LeaveCOBean WHERE status ='" + Status + "' and CO_date between '"
+							+ fromDate + "' and '" + toDate + "' and employeeBean.departmentBean = 27");
+				}
+
+				listOfLeave = query.list();
+				tx.commit();
+			} catch (Exception e) {
+				if (tx != null) {
+					tx.rollback();
+				}
+				e.printStackTrace();
+			} finally {
+				session.close();
+			}
+			return listOfLeave;
+		}
+		
+	
 
 	@SuppressWarnings("unchecked")
 	public List<LeaveODBean> getApprovedOD(String fromDate, String toDate, String Status, int companyId) {
@@ -1569,7 +1887,9 @@ public class AllLMSListDAO {
 		}
 		return listOfLeave;
 	}
-
+	
+	
+	
 	@SuppressWarnings("unchecked")
 	public List<LeaveODBean> getApprovedODSurat(String fromDate, String toDate, String Status, int companyId) {
 
@@ -1583,16 +1903,14 @@ public class AllLMSListDAO {
 			Query query = null;
 
 			if (companyId != 0) {
-				query = session.createQuery("from LeaveODBean where  status ='" + Status
-						+ "' and employeeBean.companyListBean = '" + companyId + "' and  OD_StartDate between '"
-						+ fromDate + "' and '" + toDate + "' and employeeBean.location = 'Surat'");
-			} else if (fromDate == null) {
 				query = session.createQuery(
-						"from LeaveODBean WHERE status ='" + Status + "' and employeeBean.location = 'Surat' ");
+						"from LeaveODBean where  status ='" + Status + "' and employeeBean.companyListBean = '"
+								+ companyId + "' and  OD_StartDate between '" + fromDate + "' and '" + toDate + "' and employeeBean.location = 'Surat'");
+			} else if (fromDate == null) {
+				query = session.createQuery("from LeaveODBean WHERE status ='" + Status + "' and employeeBean.location = 'Surat' ");
 			} else {
-				query = session
-						.createQuery("from LeaveODBean WHERE status ='" + Status + "' and  OD_StartDate between '"
-								+ fromDate + "' and '" + toDate + "' and employeeBean.location = 'Surat'");
+				query = session.createQuery("from LeaveODBean WHERE status ='" + Status
+						+ "' and  OD_StartDate between '" + fromDate + "' and '" + toDate + "' and employeeBean.location = 'Surat'");
 			}
 
 			listOfLeave = query.list();
@@ -1607,7 +1925,9 @@ public class AllLMSListDAO {
 		}
 		return listOfLeave;
 	}
-
+	
+	
+	
 	@SuppressWarnings("unchecked")
 	public List<LeaveODBean> getApprovedODA8DeptWise(String fromDate, String toDate, String Status, int companyId) {
 
@@ -1621,16 +1941,14 @@ public class AllLMSListDAO {
 			Query query = null;
 
 			if (companyId != 0) {
-				query = session.createQuery("from LeaveODBean where  status ='" + Status
-						+ "' and employeeBean.companyListBean = '" + companyId + "' and  OD_StartDate between '"
-						+ fromDate + "' and '" + toDate + "' and employeeBean.departmentBean In  (41,42,43)");
+				query = session.createQuery(
+						"from LeaveODBean where  status ='" + Status + "' and employeeBean.companyListBean = '"
+								+ companyId + "' and  OD_StartDate between '" + fromDate + "' and '" + toDate + "' and employeeBean.departmentBean In  (41,42,43)");
 			} else if (fromDate == null) {
-				query = session.createQuery("from LeaveODBean WHERE status ='" + Status
-						+ "' and employeeBean.departmentBean In  (41,42,43) ");
+				query = session.createQuery("from LeaveODBean WHERE status ='" + Status + "' and employeeBean.departmentBean In  (41,42,43) ");
 			} else {
-				query = session
-						.createQuery("from LeaveODBean WHERE status ='" + Status + "' and  OD_StartDate between '"
-								+ fromDate + "' and '" + toDate + "' and employeeBean.departmentBean In  (41,42,43)");
+				query = session.createQuery("from LeaveODBean WHERE status ='" + Status
+						+ "' and  OD_StartDate between '" + fromDate + "' and '" + toDate + "' and employeeBean.departmentBean In  (41,42,43)");
 			}
 
 			listOfLeave = query.list();
@@ -1645,7 +1963,84 @@ public class AllLMSListDAO {
 		}
 		return listOfLeave;
 	}
+	
+	
+	@SuppressWarnings("unchecked")
+	public List<LeaveODBean> getApprovedODA8EMPWise(String fromDate, String toDate, String Status, int companyId) {
 
+		List<LeaveODBean> listOfLeave = new ArrayList<LeaveODBean>();
+		Session session = HibernateUtil.openSession();
+		Transaction tx = null;
+		try {
+			tx = session.getTransaction();
+			tx.begin();
+
+			Query query = null;
+
+			if (companyId != 0) {
+				query = session.createQuery(
+						"from LeaveODBean where  status ='" + Status + "' and employeeBean.companyListBean = '"
+								+ companyId + "' and  OD_StartDate between '" + fromDate + "' and '" + toDate + "' and employeeBean In  (979,2018,2000,1431,1429,1199)");
+			} else if (fromDate == null) {
+				query = session.createQuery("from LeaveODBean WHERE status ='" + Status + "' and employeeBean In  (979,2018,2000,1431,1429,1199) ");
+			} else {
+				query = session.createQuery("from LeaveODBean WHERE status ='" + Status
+						+ "' and  OD_StartDate between '" + fromDate + "' and '" + toDate + "' and employeeBean In  (979,2018,2000,1431,1429,1199)");
+			}
+
+			listOfLeave = query.list();
+			tx.commit();
+		} catch (Exception e) {
+			if (tx != null) {
+				tx.rollback();
+			}
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return listOfLeave;
+	}
+	
+
+	
+	@SuppressWarnings("unchecked")
+	public List<LeaveODBean> getApprovedODNYDeptWise(String fromDate, String toDate, String Status, int companyId) {
+
+		List<LeaveODBean> listOfLeave = new ArrayList<LeaveODBean>();
+		Session session = HibernateUtil.openSession();
+		Transaction tx = null;
+		try {
+			tx = session.getTransaction();
+			tx.begin();
+
+			Query query = null;
+
+			if (companyId != 0) {
+				query = session.createQuery(
+						"from LeaveODBean where  status ='" + Status + "' and employeeBean.companyListBean = '"
+								+ companyId + "' and  OD_StartDate between '" + fromDate + "' and '" + toDate + "' and employeeBean.departmentBean = 27");
+			} else if (fromDate == null) {
+				query = session.createQuery("from LeaveODBean WHERE status ='" + Status + "' and employeeBean.departmentBean = 27 ");
+			} else {
+				query = session.createQuery("from LeaveODBean WHERE status ='" + Status
+						+ "' and  OD_StartDate between '" + fromDate + "' and '" + toDate + "' and employeeBean.departmentBean = 27");
+			}
+
+			listOfLeave = query.list();
+			tx.commit();
+		} catch (Exception e) {
+			if (tx != null) {
+				tx.rollback();
+			}
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return listOfLeave;
+	}
+	
+	
+	
 	@SuppressWarnings("unchecked")
 	public List<LeaveBean> getLeave(int i) {
 
@@ -1657,10 +2052,10 @@ public class AllLMSListDAO {
 			tx = session.getTransaction();
 			tx.begin();
 			Query query = null;
-			if (i == 1) {
-				query = session.createQuery("from LeaveBean where mail_view = 0");
-			} else {
-				query = session.createQuery("from LeaveBean where status = 'pending'");
+			if(i==1){
+			query = session.createQuery("from LeaveBean where mail_view = 0");
+			}else{
+			query = session.createQuery("from LeaveBean where status = 'pending'");
 			}
 			listOfLeave = query.list();
 			tx.commit();
@@ -1686,12 +2081,12 @@ public class AllLMSListDAO {
 			tx = session.getTransaction();
 			tx.begin();
 			Query query = null;
-			if (i == 1) {
-				query = session.createQuery("from LeaveCOBean where mail_view = 0");
-			} else {
-				query = session.createQuery("from LeaveCOBean where status = 'pending'");
+			if(i == 1){
+				 query = session.createQuery("from LeaveCOBean where mail_view = 0");
+			}else{
+				 query = session.createQuery("from LeaveCOBean where status = 'pending'");
 			}
-
+			
 			listOfCo = query.list();
 			tx.commit();
 		} catch (Exception e) {
@@ -1715,15 +2110,16 @@ public class AllLMSListDAO {
 		try {
 			tx = session.getTransaction();
 			tx.begin();
-
+			
 			Query query = null;
-
-			if (i == 1) {
-				query = session.createQuery("from LeaveODBean where mail_view = 0");
-			} else {
-				query = session.createQuery("from LeaveODBean where Status = 'pending'");
+			
+			if(i == 1){
+				 query = session.createQuery("from LeaveODBean where mail_view = 0");
+			}else{
+				 query = session.createQuery("from LeaveODBean where Status = 'pending'");
 			}
-
+			
+			
 			listOfOD = query.list();
 			tx.commit();
 		} catch (Exception e) {
@@ -1967,15 +2363,15 @@ public class AllLMSListDAO {
 		try {
 			tx = session.getTransaction();
 			tx.begin();
-
+			
 			Query query = null;
-
-			if (i == 1) {
-				query = session.createQuery("from LeaveCancelRequestBean where mail_view = 0");
-			} else {
-				query = session.createQuery("from LeaveCancelRequestBean where approved_status = 'pending'");
+			
+			if(i==1){
+				 query = session.createQuery("from LeaveCancelRequestBean where mail_view = 0");
+			}else{
+				 query = session.createQuery("from LeaveCancelRequestBean where approved_status = 'pending'");
 			}
-
+			
 			listOfCancelLeave = query.list();
 			tx.commit();
 		} catch (Exception e) {
@@ -2548,7 +2944,7 @@ public class AllLMSListDAO {
 		return gatePassAuthorityBean;
 	}
 
-	public List<LeaveBean> getAllPlanLeaveForExcel(String fromDate, String toDate, String status) {
+	public List<LeaveBean> getAllPlanLeaveForExcel(String fromDate, String toDate,String status) {
 
 		List<LeaveBean> listOfLeave = new ArrayList<LeaveBean>();
 		Session session = HibernateUtil.openSession();
@@ -2559,8 +2955,8 @@ public class AllLMSListDAO {
 		try {
 			tx = session.getTransaction();
 			tx.begin();
-			Query query = session.createQuery("from LeaveBean where (Leave_From  between '" + fromDate + "' and '"
-					+ toDate + "') and status='" + status + "' and  Day_count not like '%.5' and LeaveType_ID = 1");
+			Query query = session.createQuery("from LeaveBean where ((Leave_From  between '" + fromDate + "' and '"
+					+ toDate + "') OR (Leave_To  between '" + fromDate + "' and '"+ toDate +"'))  and status='"+status+"' and  Day_count not like '%.5' and LeaveType_ID = 1");
 			listOfLeave = query.list();
 			tx.commit();
 		} catch (Exception e) {
@@ -2574,7 +2970,7 @@ public class AllLMSListDAO {
 		return listOfLeave;
 	}
 
-	public List<LeaveBean> getAllUnPlanLeaveForExcel(String fromDate, String toDate, String status) {
+	public List<LeaveBean> getAllUnPlanLeaveForExcel(String fromDate, String toDate,String status) {
 
 		List<LeaveBean> listOfLeave = new ArrayList<LeaveBean>();
 		Session session = HibernateUtil.openSession();
@@ -2585,8 +2981,8 @@ public class AllLMSListDAO {
 		try {
 			tx = session.getTransaction();
 			tx.begin();
-			Query query = session.createQuery("from LeaveBean where (Leave_From  between '" + fromDate + "' and '"
-					+ toDate + "') and status='" + status + "' and  Day_count not like '%.5' and LeaveType_ID = 5");
+			Query query = session.createQuery("from LeaveBean where ((Leave_From  between '" + fromDate + "' and '"
+					+ toDate + "') OR (Leave_To  between '" + fromDate + "' and '"+ toDate +"')) and status='"+status+"' and  Day_count not like '%.5' and LeaveType_ID = 5");
 			listOfLeave = query.list();
 			tx.commit();
 		} catch (Exception e) {
@@ -2600,7 +2996,7 @@ public class AllLMSListDAO {
 		return listOfLeave;
 	}
 
-	public List<LeaveBean> getAllHalfLeaveForExcel(String fromDate, String toDate, String status) {
+	public List<LeaveBean> getAllHalfLeaveForExcel(String fromDate, String toDate,String status) {
 
 		List<LeaveBean> listOfLeave = new ArrayList<LeaveBean>();
 		Session session = HibernateUtil.openSession();
@@ -2611,8 +3007,8 @@ public class AllLMSListDAO {
 		try {
 			tx = session.getTransaction();
 			tx.begin();
-			Query query = session.createQuery("from LeaveBean where (Leave_From  between '" + fromDate + "' and '"
-					+ toDate + "') and status='" + status + "' and  Day_count  like '%.5'");
+			Query query = session.createQuery("from LeaveBean where ((Leave_From  between '" + fromDate + "' and '"
+					+ toDate + "') OR (Leave_To  between '" + fromDate + "' and '"+ toDate +"')) and status='"+status+"' and  Day_count  like '%.5'");
 			listOfLeave = query.list();
 			tx.commit();
 		} catch (Exception e) {
@@ -2626,7 +3022,7 @@ public class AllLMSListDAO {
 		return listOfLeave;
 	}
 
-	public List<LeaveCOBean> getAllFullCOForExcel(String fromDate, String toDate, String status) {
+	public List<LeaveCOBean> getAllFullCOForExcel(String fromDate, String toDate,String status) {
 
 		List<LeaveCOBean> listOfLeave = new ArrayList<LeaveCOBean>();
 		Session session = HibernateUtil.openSession();
@@ -2637,8 +3033,9 @@ public class AllLMSListDAO {
 		try {
 			tx = session.getTransaction();
 			tx.begin();
-			Query query = session.createQuery("from LeaveCOBean  where status='" + status
-					+ "' and (Total_Hours > 4) and (CO_date between '" + fromDate + "' and '" + toDate + "')");
+			Query query = session.createQuery(
+					"from LeaveCOBean  where status='"+status+"' and (Total_Hours > 4) and (CO_date between '" + fromDate
+							+ "' and '" + toDate + "')");
 			listOfLeave = query.list();
 			tx.commit();
 		} catch (Exception e) {
@@ -2652,20 +3049,20 @@ public class AllLMSListDAO {
 		return listOfLeave;
 	}
 
-	public List<LeaveCOBean> getAllHalfCOForExcel(String fromDate, String toDate, String status) {
+	public List<LeaveCOBean> getAllHalfCOForExcel(String fromDate, String toDate,String status) {
 
 		List<LeaveCOBean> listOfLeave = new ArrayList<LeaveCOBean>();
 		Session session = HibernateUtil.openSession();
 		Transaction tx = null;
 
 		LeaveBean leaveBean = null;
-
+	
 		try {
 			tx = session.getTransaction();
 			tx.begin();
-			Query query = session.createQuery("from LeaveCOBean  where status='" + status
-					+ "' and (Total_Hours > 2 and  Total_Hours <= 4) and (CO_date between '" + fromDate + "' and '"
-					+ toDate + "')");
+			Query query = session.createQuery(
+					"from LeaveCOBean  where status='"+status+"' and (Total_Hours > 2 and  Total_Hours <= 4) and (CO_date between '"
+							+ fromDate + "' and '" + toDate + "')");
 			listOfLeave = query.list();
 			tx.commit();
 		} catch (Exception e) {
@@ -2679,7 +3076,7 @@ public class AllLMSListDAO {
 		return listOfLeave;
 	}
 
-	public List<LeaveODBean> getAllODForExcel(String fromDate, String toDate, String status) {
+	public List<LeaveODBean> getAllODForExcel(String fromDate, String toDate,String status) {
 
 		List<LeaveODBean> listOfLeave = new ArrayList<LeaveODBean>();
 		Session session = HibernateUtil.openSession();
@@ -2690,8 +3087,8 @@ public class AllLMSListDAO {
 		try {
 			tx = session.getTransaction();
 			tx.begin();
-			Query query = session.createQuery("from LeaveODBean where Status='" + status
-					+ "' and OD_StartDate between '" + fromDate + "' and '" + toDate + "'");
+			Query query = session.createQuery("from LeaveODBean where Status='"+status+"' and ((OD_StartDate between '"
+					+ fromDate + "' and '" + toDate + "' ) OR (OD_EndDate between '"+fromDate+"' and '"+toDate+"'))");
 			listOfLeave = query.list();
 			tx.commit();
 		} catch (Exception e) {
@@ -2714,8 +3111,9 @@ public class AllLMSListDAO {
 		try {
 			tx = session.getTransaction();
 			tx.begin();
-			Query query = session.createQuery("from GatePassBean where employeeBean ='" + emp_id
-					+ "' and submission_date_time like '" + GatePassDate + "%'  And  status='Out' ");
+			Query query = session.createQuery(
+					"from GatePassBean where employeeBean ='" + emp_id + "' and submission_date_time like '"
+							+ GatePassDate + "%'  And  status='Out' ");
 			listOfLeave = query.list();
 			tx.commit();
 		} catch (Exception e) {
@@ -2728,6 +3126,33 @@ public class AllLMSListDAO {
 		}
 		return listOfLeave;
 	}
+	
+	
+	public GatePassBean getGatePassDetail(int gate_id) {
+
+		GatePassBean gatePassBean = null;
+		Session session = HibernateUtil.openSession();
+		Transaction tx = null;
+
+		try {
+			tx = session.getTransaction();
+			tx.begin();
+			Query query = session.createQuery(
+					"from GatePassBean where gate_pass_id = '"+gate_id+"' ");
+			gatePassBean = (GatePassBean)query.uniqueResult();
+			tx.commit();
+		} catch (Exception e) {
+			if (tx != null) {
+				tx.rollback();
+			}
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return gatePassBean;
+	}
+	
+	
 
 	@SuppressWarnings("unchecked")
 	public List<LeaveODBean> getSUNHOLICO(int emp_id) {
@@ -3177,7 +3602,8 @@ public class AllLMSListDAO {
 		}
 		return listOfLeave;
 	}
-
+	
+	
 	@SuppressWarnings("unchecked")
 	public List<LeaveODBean> getODForHDSL(String STARTDATE, String ENDDATE, int emp_id) {
 
@@ -3203,6 +3629,7 @@ public class AllLMSListDAO {
 		}
 		return listOfLeave;
 	}
+	
 
 	@SuppressWarnings("unchecked")
 	public List<LeaveCOBean> getCODupicateWithOD(String DATE, int emp_id) {
@@ -3230,260 +3657,472 @@ public class AllLMSListDAO {
 	}
 	
 	
+	@SuppressWarnings("unchecked")
+	public List<NopunchBean> getLeavefornopunch(String LeaveDate , int employeemasterid , int under_manager_id) {
+
+		List<NopunchBean> listOfLeave = new ArrayList<NopunchBean>();
+		Session session = HibernateUtil.openSession();
+		Transaction tx = null;
+		try {
+			tx = session.getTransaction();
+			tx.begin();
+			Query query = session.createQuery("FROM NopunchBean where employee_master_id = '" + employeemasterid  + "' AND nopunch_date = '" + LeaveDate+ "' AND under_manager_id = '" + under_manager_id + "'");
+			listOfLeave = query.list();
+			tx.commit();
+		} catch (Exception e) {
+			if (tx != null) {
+				tx.rollback();
+			}
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return listOfLeave;
+	}
+	@SuppressWarnings("unchecked")
+	public List<HolidayBean> getListOfHolidayGujarat() {
+		List<HolidayBean> listOfLeave = new ArrayList<HolidayBean>();
+		Session session = HibernateUtil.openSession();
+		Transaction tx = null;
+		try {
+			tx = session.getTransaction();
+			tx.begin();
+			listOfLeave = session.createQuery("FROM HolidayBean WHERE location = 'Gujarat' AND IsVisible = 1 ORDER BY holiday_date").list();
+			tx.commit();
+		} catch (Exception e) {
+			if (tx != null) {
+				tx.rollback();
+			}
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return listOfLeave;
+
+	}
 	
 	
+	@SuppressWarnings("unchecked")
+	public List<HolidayBean> getListOfHolidaySurat() {
+		List<HolidayBean> listOfLeave = new ArrayList<HolidayBean>();
+		Session session = HibernateUtil.openSession();
+		Transaction tx = null;
+		try {
+			tx = session.getTransaction();
+			tx.begin();
+			listOfLeave = session.createQuery("FROM HolidayBean WHERE location = 'Surat' AND IsVisible = 1 ORDER BY holiday_date").list();
+			tx.commit();
+		} catch (Exception e) {
+			if (tx != null) {
+				tx.rollback();
+			}
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return listOfLeave;
+
+	}
+	
+	
+	
+	@SuppressWarnings("unchecked")
+	public List<HolidayBean> getListOfHolidayDelhi() {
+		List<HolidayBean> listOfLeave = new ArrayList<HolidayBean>();
+		Session session = HibernateUtil.openSession();
+		Transaction tx = null;
+		try {
+			tx = session.getTransaction();
+			tx.begin();
+			listOfLeave = session.createQuery("FROM HolidayBean WHERE location = 'Delhi' AND IsVisible = 1 ORDER BY holiday_date").list();
+			tx.commit();
+		} catch (Exception e) {
+			if (tx != null) {
+				tx.rollback();
+			}
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return listOfLeave;
+
+	}
+	
+	
+
+	@SuppressWarnings("unchecked")
+	public List<HolidayBean> getListOfHolidaykerala() {
+		List<HolidayBean> listOfLeave = new ArrayList<HolidayBean>();
+		Session session = HibernateUtil.openSession();
+		Transaction tx = null;
+		try {
+			tx = session.getTransaction();
+			tx.begin();
+			listOfLeave = session.createQuery("FROM HolidayBean WHERE location = 'kerala' AND IsVisible = 1 ORDER BY holiday_date").list();
+			tx.commit();
+		} catch (Exception e) {
+			if (tx != null) {
+				tx.rollback();
+			}
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return listOfLeave;
+
+	}
+
+	
+	
+
+	@SuppressWarnings("unchecked")
+	public List<HolidayBean> getListOfHolidaykarnataka() {
+		List<HolidayBean> listOfLeave = new ArrayList<HolidayBean>();
+		Session session = HibernateUtil.openSession();
+		Transaction tx = null;
+		try {
+			tx = session.getTransaction();
+			tx.begin();
+			listOfLeave = session.createQuery("FROM HolidayBean WHERE location = 'karnataka' AND IsVisible = 1 ORDER BY holiday_date").list();
+			tx.commit();
+		} catch (Exception e) {
+			if (tx != null) {
+				tx.rollback();
+			}
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return listOfLeave;
+
+	}
+
+	
+	
+
+	@SuppressWarnings("unchecked")
+	public List<HolidayBean> getListOfHolidayAndraPradesh() {
+		List<HolidayBean> listOfLeave = new ArrayList<HolidayBean>();
+		Session session = HibernateUtil.openSession();
+		Transaction tx = null;
+		try {
+			tx = session.getTransaction();
+			tx.begin();
+			listOfLeave = session.createQuery("FROM HolidayBean WHERE location = 'Andra Pradesh' AND IsVisible = 1 ORDER BY holiday_date").list();
+			tx.commit();
+		} catch (Exception e) {
+			if (tx != null) {
+				tx.rollback();
+			}
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return listOfLeave;
+
+	}
+
+	
+
+	@SuppressWarnings("unchecked")
+	public List<HolidayBean> getListOfHolidayTamilNadu() {
+		List<HolidayBean> listOfLeave = new ArrayList<HolidayBean>();
+		Session session = HibernateUtil.openSession();
+		Transaction tx = null;
+		try {
+			tx = session.getTransaction();
+			tx.begin();
+			listOfLeave = session.createQuery("FROM HolidayBean WHERE location = 'Tamil Nadu' AND IsVisible = 1 ORDER BY holiday_date").list();
+			tx.commit();
+		} catch (Exception e) {
+			if (tx != null) {
+				tx.rollback();
+			}
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return listOfLeave;
+
+	}
+
+	
+	
+
+	@SuppressWarnings("unchecked")
+	public List<HolidayBean> getListOfHolidayMumbai() {
+		List<HolidayBean> listOfLeave = new ArrayList<HolidayBean>();
+		Session session = HibernateUtil.openSession();
+		Transaction tx = null;
+		try {
+			tx = session.getTransaction();
+			tx.begin();
+			listOfLeave = session.createQuery("FROM HolidayBean WHERE location = 'Mumbai' AND IsVisible = 1 ORDER BY holiday_date").list();
+			tx.commit();
+		} catch (Exception e) {
+			if (tx != null) {
+				tx.rollback();
+			}
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return listOfLeave;
+
+	}
+
+
 	//Store Procedure For Levae By Manager 
-		@SuppressWarnings("unchecked")
-		public List<LeaveBean> SPgetLeaveByManagerId(int manager_id) {
+			@SuppressWarnings("unchecked")
+			public List<LeaveBean> SPgetLeaveByManagerId(int manager_id) {
 
-			List<LeaveBean> listOfLeave = new ArrayList<LeaveBean>();
-			Session session = HibernateUtil.openSession();
-			Transaction tx = null;
-			try {
-				tx = session.getTransaction();
-				tx.begin();
-				
-				SQLQuery query = (SQLQuery) session.createSQLQuery("CALL leaveByManagerId(:managerId)")
-	                    .addEntity(LeaveBean.class)
-	                    .setParameter("managerId",manager_id);
-				listOfLeave = query.list();
-				tx.commit();
-			} catch (Exception e) {
-				if (tx != null) {
-					tx.rollback();
+				List<LeaveBean> listOfLeave = new ArrayList<LeaveBean>();
+				Session session = HibernateUtil.openSession();
+				Transaction tx = null;
+				try {
+					tx = session.getTransaction();
+					tx.begin();
+					
+					SQLQuery query = (SQLQuery) session.createSQLQuery("CALL leaveByManagerId(:managerId)")
+		                    .addEntity(LeaveBean.class)
+		                    .setParameter("managerId",manager_id);
+					listOfLeave = query.list();
+					tx.commit();
+				} catch (Exception e) {
+					if (tx != null) {
+						tx.rollback();
+					}
+					e.printStackTrace();
+				} finally {
+					session.close();
 				}
-				e.printStackTrace();
-			} finally {
-				session.close();
+				return listOfLeave;
 			}
-			return listOfLeave;
-		}
-		
-		
-		@SuppressWarnings("unchecked")
-		public List<LeaveBean> SPgetLeaveByEmpId(int emp_id) {
+			
+			
+			@SuppressWarnings("unchecked")
+			public List<LeaveBean> SPgetLeaveByEmpId(int emp_id) {
 
-			List<LeaveBean> listOfLeave = new ArrayList<LeaveBean>();
-			Session session = HibernateUtil.openSession();
-			Transaction tx = null;
+				List<LeaveBean> listOfLeave = new ArrayList<LeaveBean>();
+				Session session = HibernateUtil.openSession();
+				Transaction tx = null;
 
-			try {
-				tx = session.getTransaction();
-				tx.begin();
-				
-				SQLQuery query = (SQLQuery) session.createSQLQuery("CALL leaveByEmpId(:empId)")
-	                    .addEntity(LeaveBean.class)
-	                    .setParameter("empId",emp_id);
-				
-				listOfLeave = query.list();
-				tx.commit();
-			} catch (Exception e) {
-				if (tx != null) {
-					tx.rollback();
+				try {
+					tx = session.getTransaction();
+					tx.begin();
+					
+					SQLQuery query = (SQLQuery) session.createSQLQuery("CALL leaveByEmpId(:empId)")
+		                    .addEntity(LeaveBean.class)
+		                    .setParameter("empId",emp_id);
+					
+					listOfLeave = query.list();
+					tx.commit();
+				} catch (Exception e) {
+					if (tx != null) {
+						tx.rollback();
+					}
+					e.printStackTrace();
+				} finally {
+					session.close();
 				}
-				e.printStackTrace();
-			} finally {
-				session.close();
+				return listOfLeave;
 			}
-			return listOfLeave;
-		}
-		
-		
-		
-		// Store Procedure For Co By Manager coByManager
-		@SuppressWarnings("unchecked")
-		public List<LeaveCOBean> SPgetCOByManagerId(int manager_id) {
+			
+			
+			
+			// Store Procedure For Co By Manager coByManager
+			@SuppressWarnings("unchecked")
+			public List<LeaveCOBean> SPgetCOByManagerId(int manager_id) {
 
-			List<LeaveCOBean> listOfLeave = new ArrayList<LeaveCOBean>();
-			Session session = HibernateUtil.openSession();
-			Transaction tx = null;
-			@SuppressWarnings("unused")
-			LeaveBean leaveBean = null;
-			;
-			try {
-				tx = session.getTransaction();
-				tx.begin();
-				SQLQuery query = (SQLQuery) session.createSQLQuery("CALL coByManagerId(:managerId)")
-	                    .addEntity(LeaveCOBean.class)
-	                    .setParameter("managerId",manager_id);
-				listOfLeave = query.list();
-				tx.commit();
-			} catch (Exception e) {
-				if (tx != null) {
-					tx.rollback();
+				List<LeaveCOBean> listOfLeave = new ArrayList<LeaveCOBean>();
+				Session session = HibernateUtil.openSession();
+				Transaction tx = null;
+				@SuppressWarnings("unused")
+				LeaveBean leaveBean = null;
+				;
+				try {
+					tx = session.getTransaction();
+					tx.begin();
+					SQLQuery query = (SQLQuery) session.createSQLQuery("CALL coByManagerId(:managerId)")
+		                    .addEntity(LeaveCOBean.class)
+		                    .setParameter("managerId",manager_id);
+					listOfLeave = query.list();
+					tx.commit();
+				} catch (Exception e) {
+					if (tx != null) {
+						tx.rollback();
+					}
+					e.printStackTrace();
+				} finally {
+					session.close();
 				}
-				e.printStackTrace();
-			} finally {
-				session.close();
+				return listOfLeave;
 			}
-			return listOfLeave;
-		}
-		
-		
-		@SuppressWarnings("unchecked")
-		public List<LeaveCOBean> SPgetCOByEmpId(int emp_id) {
+			
+			
+			@SuppressWarnings("unchecked")
+			public List<LeaveCOBean> SPgetCOByEmpId(int emp_id) {
 
-			List<LeaveCOBean> listOfLeave = new ArrayList<LeaveCOBean>();
-			Session session = HibernateUtil.openSession();
-			Transaction tx = null;
+				List<LeaveCOBean> listOfLeave = new ArrayList<LeaveCOBean>();
+				Session session = HibernateUtil.openSession();
+				Transaction tx = null;
 
-			try {
-				tx = session.getTransaction();
-				tx.begin();
-				SQLQuery query = (SQLQuery) session.createSQLQuery("CALL coByEmpId(:empId)")
-	                    .addEntity(LeaveCOBean.class)
-	                    .setParameter("empId",emp_id);
-				listOfLeave = query.list();
-				tx.commit();
-			} catch (Exception e) {
-				if (tx != null) {
-					tx.rollback();
+				try {
+					tx = session.getTransaction();
+					tx.begin();
+					SQLQuery query = (SQLQuery) session.createSQLQuery("CALL coByEmpId(:empId)")
+		                    .addEntity(LeaveCOBean.class)
+		                    .setParameter("empId",emp_id);
+					listOfLeave = query.list();
+					tx.commit();
+				} catch (Exception e) {
+					if (tx != null) {
+						tx.rollback();
+					}
+					e.printStackTrace();
+				} finally {
+					session.close();
 				}
-				e.printStackTrace();
-			} finally {
-				session.close();
+				return listOfLeave;
 			}
-			return listOfLeave;
-		}
-		
-		
-		@SuppressWarnings("unchecked")
-		public List<LeaveODBean> SPgetODByEmpId(int emp_id) {
+			
+			
+			@SuppressWarnings("unchecked")
+			public List<LeaveODBean> SPgetODByEmpId(int emp_id) {
 
-			List<LeaveODBean> listOfLeave = new ArrayList<LeaveODBean>();
-			Session session = HibernateUtil.openSession();
-			Transaction tx = null;
-			try {
-				tx = session.getTransaction();
-				tx.begin();
-				
-				SQLQuery query = (SQLQuery) session.createSQLQuery("CALL odByEmpId(:empId)")
-	                    .addEntity(LeaveODBean.class)
-	                    .setParameter("empId",emp_id);
-				
-				listOfLeave = query.list();
-				tx.commit();
-			} catch (Exception e) {
-				if (tx != null) {
-					tx.rollback();
+				List<LeaveODBean> listOfLeave = new ArrayList<LeaveODBean>();
+				Session session = HibernateUtil.openSession();
+				Transaction tx = null;
+				try {
+					tx = session.getTransaction();
+					tx.begin();
+					
+					SQLQuery query = (SQLQuery) session.createSQLQuery("CALL odByEmpId(:empId)")
+		                    .addEntity(LeaveODBean.class)
+		                    .setParameter("empId",emp_id);
+					
+					listOfLeave = query.list();
+					tx.commit();
+				} catch (Exception e) {
+					if (tx != null) {
+						tx.rollback();
+					}
+					e.printStackTrace();
+				} finally {
+					session.close();
 				}
-				e.printStackTrace();
-			} finally {
-				session.close();
+				return listOfLeave;
 			}
-			return listOfLeave;
-		}
-		
-		
-		// Store Procedure For OD By Manager 
-		@SuppressWarnings("unchecked")
-		public List<LeaveODBean> SPgetODByManagerId(int manager_id) {
+			
+			
+			// Store Procedure For OD By Manager 
+			@SuppressWarnings("unchecked")
+			public List<LeaveODBean> SPgetODByManagerId(int manager_id) {
 
-			List<LeaveODBean> listOfLeave = new ArrayList<LeaveODBean>();
-			Session session = HibernateUtil.openSession();
-			Transaction tx = null;
+				List<LeaveODBean> listOfLeave = new ArrayList<LeaveODBean>();
+				Session session = HibernateUtil.openSession();
+				Transaction tx = null;
 
-			try {
-				tx = session.getTransaction();
-				tx.begin();
-				SQLQuery query = (SQLQuery) session.createSQLQuery("CALL odByManagerId(:managerId)")
-	                    .addEntity(LeaveODBean.class)
-	                    .setParameter("managerId",manager_id);
-				listOfLeave = query.list();
-				tx.commit();
-			} catch (Exception e) {
-				if (tx != null) {
-					tx.rollback();
+				try {
+					tx = session.getTransaction();
+					tx.begin();
+					SQLQuery query = (SQLQuery) session.createSQLQuery("CALL odByManagerId(:managerId)")
+		                    .addEntity(LeaveODBean.class)
+		                    .setParameter("managerId",manager_id);
+					listOfLeave = query.list();
+					tx.commit();
+				} catch (Exception e) {
+					if (tx != null) {
+						tx.rollback();
+					}
+					e.printStackTrace();
+				} finally {
+					session.close();
 				}
-				e.printStackTrace();
-			} finally {
-				session.close();
+				return listOfLeave;
 			}
-			return listOfLeave;
-		}
-		
-		
-		//Store Procedure for cancel leave list for manager
-		public List<LeaveCancelRequestBean> SPgetLeaveForCancelByManagerId(int manager_id) {
+			
+			
+			//Store Procedure for cancel leave list for manager
+			public List<LeaveCancelRequestBean> SPgetLeaveForCancelByManagerId(int manager_id) {
 
-			List<LeaveCancelRequestBean> listOfLeave = new ArrayList<LeaveCancelRequestBean>();
-			Session session = HibernateUtil.openSession();
-			Transaction tx = null;
+				List<LeaveCancelRequestBean> listOfLeave = new ArrayList<LeaveCancelRequestBean>();
+				Session session = HibernateUtil.openSession();
+				Transaction tx = null;
 
-			try {
-				tx = session.getTransaction();
-				tx.begin();
-				
-				
-				SQLQuery query = (SQLQuery) session.createSQLQuery("CALL leaveForCancelByManagerId(:managerId)")
-	                    .addEntity(LeaveCancelRequestBean.class)
-	                    .setParameter("managerId",manager_id);
-				
-				listOfLeave = query.list();
-				tx.commit();
-			} catch (Exception e) {
-				if (tx != null) {
-					tx.rollback();
+				try {
+					tx = session.getTransaction();
+					tx.begin();
+					
+					
+					SQLQuery query = (SQLQuery) session.createSQLQuery("CALL leaveForCancelByManagerId(:managerId)")
+		                    .addEntity(LeaveCancelRequestBean.class)
+		                    .setParameter("managerId",manager_id);
+					
+					listOfLeave = query.list();
+					tx.commit();
+				} catch (Exception e) {
+					if (tx != null) {
+						tx.rollback();
+					}
+					e.printStackTrace();
+				} finally {
+					session.close();
 				}
-				e.printStackTrace();
-			} finally {
-				session.close();
+				return listOfLeave;
 			}
-			return listOfLeave;
-		}
-		
-		
-		
-		//Store procedure Gate pass List
-		public List<GatePassBean> SPgetListOfPendingGatePassManagerWithOtherId(int manager_id) {
+			
+			
+			
+			//Store procedure Gate pass List
+			public List<GatePassBean> SPgetListOfPendingGatePassManagerWithOtherId(int manager_id) {
 
-			List<GatePassBean> listOfGatePass = new ArrayList<GatePassBean>();
-			Session session = HibernateUtil.openSession();
-			Transaction tx = null;
-			try {
-				tx = session.getTransaction();
-				tx.begin();
-				
-				SQLQuery query = (SQLQuery) session.createSQLQuery("CALL listOfPendingGatePassManagerWithOtherId(:managerId)")
-	                    .addEntity(GatePassBean.class)
-	                    .setParameter("managerId",manager_id);
-				
-				listOfGatePass = query.list();
-				tx.commit();
-			} catch (Exception e) {
-				if (tx != null) {
-					tx.rollback();
+				List<GatePassBean> listOfGatePass = new ArrayList<GatePassBean>();
+				Session session = HibernateUtil.openSession();
+				Transaction tx = null;
+				try {
+					tx = session.getTransaction();
+					tx.begin();
+					
+					SQLQuery query = (SQLQuery) session.createSQLQuery("CALL listOfPendingGatePassManagerWithOtherId(:managerId)")
+		                    .addEntity(GatePassBean.class)
+		                    .setParameter("managerId",manager_id);
+					
+					listOfGatePass = query.list();
+					tx.commit();
+				} catch (Exception e) {
+					if (tx != null) {
+						tx.rollback();
+					}
+					e.printStackTrace();
+				} finally {
+					session.close();
 				}
-				e.printStackTrace();
-			} finally {
-				session.close();
+				return listOfGatePass;
 			}
-			return listOfGatePass;
-		}
-		
-		
-		
-		public List<GrievanceQueryBean> SPgetListOfGrievanceQuery() {
+			
+			
+			
+			public List<GrievanceQueryBean> SPgetListOfGrievanceQuery() {
 
-			List<GrievanceQueryBean> listOfGrienvance = new ArrayList<GrievanceQueryBean>();
-			Session session = HibernateUtil.openSession();
-			Transaction tx = null;
-			try {
-				tx = session.getTransaction();
-				tx.begin();
-				SQLQuery query = (SQLQuery) session.createSQLQuery("CALL listOfGrievanceQuery()")
-	                    .addEntity(GrievanceQueryBean.class);
-				listOfGrienvance = query.list();
-				tx.commit();
-			} catch (Exception e) {
-				if (tx != null) {
-					tx.rollback();
+				List<GrievanceQueryBean> listOfGrienvance = new ArrayList<GrievanceQueryBean>();
+				Session session = HibernateUtil.openSession();
+				Transaction tx = null;
+				try {
+					tx = session.getTransaction();
+					tx.begin();
+					SQLQuery query = (SQLQuery) session.createSQLQuery("CALL listOfGrievanceQuery()")
+		                    .addEntity(GrievanceQueryBean.class);
+					listOfGrienvance = query.list();
+					tx.commit();
+				} catch (Exception e) {
+					if (tx != null) {
+						tx.rollback();
+					}
+					e.printStackTrace();
+				} finally {
+					session.close();
 				}
-				e.printStackTrace();
-			} finally {
-				session.close();
+				return listOfGrienvance;
 			}
-			return listOfGrienvance;
-		}
-
 }

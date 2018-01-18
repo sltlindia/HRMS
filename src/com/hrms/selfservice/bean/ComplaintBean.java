@@ -12,7 +12,6 @@ import com.hrms.pms.bean.EmployeeBean;
 
 @Entity
 @Table(name="complaint_tbl")
-
 public class ComplaintBean {
 
 	private int complaint_id;
@@ -26,6 +25,7 @@ public class ComplaintBean {
 	private int verified_by;
 	private String remarks;
 	private String date_of_resolve;
+	private int cartigeCount;
 	
 	
 	
@@ -46,7 +46,7 @@ public class ComplaintBean {
 	}
 	
 	public ComplaintBean(String location, int extension, String description, String date, String status, EmployeeBean employeeBean,
-			ProblemNatureBean problemNatureBean) {
+			ProblemNatureBean problemNatureBean,int cartigeCount) {
 		super();
 		this.location = location;
 		this.extension = extension;
@@ -55,11 +55,12 @@ public class ComplaintBean {
 		this.status = status;
 		this.employeeBean = employeeBean;
 		this.problemNatureBean = problemNatureBean;
+		this.cartigeCount = cartigeCount;
 	}
 
 
 	public ComplaintBean(int complaint_id, String location, int extension, String description, String date,
-			String status, EmployeeBean employeeBean, ProblemNatureBean problemNatureBean) {
+			String status, EmployeeBean employeeBean, ProblemNatureBean problemNatureBean,int cartigeCount) {
 		super();
 		this.complaint_id = complaint_id;
 		this.location = location;
@@ -69,6 +70,7 @@ public class ComplaintBean {
 		this.status = status;
 		this.employeeBean = employeeBean;
 		this.problemNatureBean = problemNatureBean;
+		this.cartigeCount = cartigeCount;
 	}
 
 	public ComplaintBean() {
@@ -180,6 +182,14 @@ public class ComplaintBean {
 	}
 	public void setProblemNatureBean(ProblemNatureBean problemNatureBean) {
 		this.problemNatureBean = problemNatureBean;
+	}
+
+	public int getCartigeCount() {
+		return cartigeCount;
+	}
+
+	public void setCartigeCount(int cartigeCount) {
+		this.cartigeCount = cartigeCount;
 	}
 	
 	

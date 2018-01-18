@@ -66,7 +66,6 @@ public class TDSDocumentInsertServlet extends HttpServlet {
 			int month_id = 0;
 			int year = 0;
 			int tds_id = 0;
-			int attachment_priority = 0;
 			double amount = 0.0;
 			MonthBean monthBean = null;
 			TDSBean tdsBean = null;
@@ -94,11 +93,6 @@ public class TDSDocumentInsertServlet extends HttpServlet {
 							attachment_name = fieldValue;
 							output = attachment_name;
 							System.out.println("Attachment Name :"+attachment_name);
-						}
-						
-						if(fieldName.equalsIgnoreCase("attachment_priority")) {
-							attachment_priority = Integer.parseInt(fieldValue);
-							System.out.println("Attachment Priority :"+attachment_priority);
 						}
 						
 						if(fieldName.equalsIgnoreCase("amount")) {
@@ -151,7 +145,7 @@ public class TDSDocumentInsertServlet extends HttpServlet {
 								request.setAttribute("uploadAttachment", attachment.getName());
 								System.out.println("Document:"+uploadAttachment);
 								String status = "Uploaded";
-								TDSDocumentUploadBean documentUploadBean = new TDSDocumentUploadBean(uploadAttachment, attachment_name, amount, status, attachment_priority, year, monthBean, tdsBean, employeeBean);
+								TDSDocumentUploadBean documentUploadBean = new TDSDocumentUploadBean(uploadAttachment, attachment_name, amount, year, status, monthBean, tdsBean, employeeBean);
 								TDSInsertDAO insertDAO = new TDSInsertDAO();
 								boolean result = insertDAO.tdsDocumentInsert(documentUploadBean);
 						}

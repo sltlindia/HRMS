@@ -503,7 +503,7 @@ public class AllUpdateDAO
 	}
 	
 	
-	public boolean LeaveCOUpdateStatus(String status ,int CO_ID)
+	public boolean LeaveCOUpdateStatus(String status , String apdate , int CO_ID)
 	{
 		 Session session = HibernateUtil.openSession();
 		 Transaction tx = null;	
@@ -513,8 +513,9 @@ public class AllUpdateDAO
 			 tx = session.getTransaction();
 			 tx.begin();
 			// Query query = session.createQuery("update EmployeeBean set Privilege_Leave = :pl where employee_master_id = :empid");
-			 Query query = session.createQuery("update LeaveCOBean set status = :st, mail_view = :mv where CO_ID = :CO_ID ");
+			 Query query = session.createQuery("update LeaveCOBean set status = :st, mail_view = :mv , approval_rejected_date =:ap  where CO_ID = :CO_ID ");
 			 query.setString("st" ,status);
+			 query.setString("ap" ,apdate);
 			 query.setInteger("mv",0);
 			 query.setInteger("CO_ID",CO_ID);
 			 int result = query.executeUpdate();
@@ -533,7 +534,7 @@ public class AllUpdateDAO
 	}
 	
 	
-	public boolean ODApprovedStatus(String status ,int OD_ID)
+	public boolean ODApprovedStatus(String status , String apdate , int OD_ID)
 	{
 		 Session session = HibernateUtil.openSession();
 		 Transaction tx = null;	
@@ -541,9 +542,10 @@ public class AllUpdateDAO
 			
 			 tx = session.getTransaction();
 			 tx.begin();
-			 Query query = session.createQuery("update LeaveODBean set status = :st,mail_view = :mv where OD_ID = :OD_ID");
+			 Query query = session.createQuery("update LeaveODBean set status = :st,mail_view = :mv, approval_rejected_date =:ap where OD_ID = :OD_ID");
 			 query.setString("st" ,status);
 			 query.setInteger("mv",0);
+			 query.setString("ap" ,apdate);
 			 query.setInteger("OD_ID",OD_ID);
 			 int result = query.executeUpdate();
 			 System.out.println("result :"+result);

@@ -73,6 +73,7 @@ public class KaizenInsertServlet extends HttpServlet {
 				String category = null;
 				int memberCount = 0;
 				int kaizen_id = 0;
+				boolean flag = false;
 				String affectingmanager = "";
 				String completion_status = "saved"; 
 				int problem_id = 0;
@@ -123,6 +124,10 @@ public class KaizenInsertServlet extends HttpServlet {
 								String value = fieldValue;
 								under_manager_id = Integer.parseInt(value);
 								System.out.println("under_manager_id:"+description);
+								
+								if(under_manager_id == 28) {
+									flag = true;
+								}
 							}
 
 							
@@ -236,6 +241,9 @@ public class KaizenInsertServlet extends HttpServlet {
 								boolean result = allKaizenInsertDAO.kaizenManagerInsert(kaizenManagerBean);
 								affectingmanager = affectingmanager+","+bean2.getFirstname()+" "+bean2.getLastname();
 								
+								if(value == 1018) {
+									flag = true;
+								}
 								
 							}	
 							
@@ -249,6 +257,7 @@ public class KaizenInsertServlet extends HttpServlet {
 								}
 							}
 							
+							
 							if (fieldName.equalsIgnoreCase("rcaAns2")) {
 								String value = fieldValue;
 								System.out.println("rcaAns2:"+value);
@@ -257,6 +266,8 @@ public class KaizenInsertServlet extends HttpServlet {
 									boolean result = allKaizenInsertDAO.kaizenRCAInsert(kaizenRCABean);
 								}
 							}
+							
+							
 							
 							if (fieldName.equalsIgnoreCase("rcaAns3")) {
 								String value = fieldValue;
@@ -289,6 +300,15 @@ public class KaizenInsertServlet extends HttpServlet {
 							
 							
 							if (fieldName.equalsIgnoreCase("redirection")) {
+								if(user.getDepartmentBean().getDepartment_id() == 42 || user.getDepartmentBean().getDepartment_id() == 43) {
+									System.out.println("IN");
+									if(flag == false) {
+										employeeBean.setEmployee_master_id(1018);
+										KaizenManagerBean kaizenManagerBean = new KaizenManagerBean(status, employeeBean, kaizenBean);
+										boolean result = allKaizenInsertDAO.kaizenManagerInsert(kaizenManagerBean);
+									}
+								}
+								
 								request.setAttribute("memberCount", memberCount);
 								request.setAttribute("kaizen_id", kaizen_id);
 								request.getRequestDispatcher("kaizenMember.jsp").forward(request, response);

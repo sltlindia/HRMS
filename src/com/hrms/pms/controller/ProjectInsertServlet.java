@@ -17,6 +17,7 @@ import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 import com.hrms.pms.dao.AllListDAO;
+import com.hrms.pms.dao.LoginDAO;
 import com.hrms.pms.bean.ClientMasterBean;
 import com.hrms.pms.bean.CostFeasibilityBean;
 import com.hrms.pms.bean.CurrencyBean;
@@ -137,9 +138,10 @@ public class ProjectInsertServlet extends HttpServlet {
 					}
 					
 					if (fieldName.equalsIgnoreCase("keyword")) {
+						System.out.println("akash");
 						String value = fieldValue;
 						keyword_id = Integer.parseInt(value);
-						System.out.println("project_code:"+projectCode);
+						System.out.println("keyword_id:"+keyword_id);
 						
 					}
 					
@@ -152,6 +154,9 @@ public class ProjectInsertServlet extends HttpServlet {
 									if(keyword_id == 4){keyword = "Electronics";}else
 										if(keyword_id == 5){keyword = "Welding";}else
 											if(keyword_id == 6){keyword = "Miscellaneous";}
+						if(keyword_id == 7){keyword = "Diamond";}
+						if(keyword_id == 8){keyword = "Development";}
+						if(keyword_id == 9){keyword = "SheetStacker";}
 						
 						projectName = keyword+"-"+fieldValue;
 						System.out.println("projectName:"+projectName);
@@ -177,8 +182,25 @@ public class ProjectInsertServlet extends HttpServlet {
 						approver_name = fieldValue;
 						System.out.println("approver_name:"+approver_name);
 						
-						String[] splitName = approver_name.split(",");
-						approver_id = Integer.parseInt(splitName[1]);
+						
+						
+						String[] split = approver_name.split(",");
+						int emp_code = Integer.parseInt(split[0]);
+						String name = split[1];
+						
+						String[] splitName = name.split(" ");
+						String firstName = splitName[0];
+						String lastName = splitName[1];
+						
+						
+						LoginDAO loginDAO = new LoginDAO();
+						EmployeeBean employeeBean1 = loginDAO.getUserByUserCodeAndName(emp_code, firstName, lastName);
+						
+						 approver_id = employeeBean1.getEmployee_master_id();
+						
+						
+						
+						
 						
 						ProjectMasterBean projectMasterBean1 = new ProjectMasterBean(projectName, projectCode, project_desc, plannedStartDate , plannedEndDate, hold_date, hold_reason, resume_date, project_cost, machine_cost, resources, duration, actual_end, actual_start, misc_Project, billable, billing_type, billingCost, billing_frequency, projectStatusBean, managerBean, priorityBean, clientMasterBean, currencyBean,deliverable,status,approver_id);
 						boolean result = allInsertDAO.projectInsert(projectMasterBean1);

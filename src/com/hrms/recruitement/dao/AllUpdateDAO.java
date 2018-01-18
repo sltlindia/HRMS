@@ -167,8 +167,8 @@ public class AllUpdateDAO {
 		try {
 			tx = session.getTransaction();
 			tx.begin();
-			Query query = session
-					.createQuery("update ResumeShareBean set status = :s,reply_date=:rd where resume_data_id = :rdi and employee_master_id = :emp");
+			Query query = session.createQuery(
+					"update ResumeShareBean set status = :s,reply_date=:rd where resume_data_id = :rdi and employee_master_id = :emp");
 			query.setString("s", status);
 			query.setInteger("rdi", id);
 			query.setString("rd", date);
@@ -187,7 +187,7 @@ public class AllUpdateDAO {
 		return true;
 	}
 
-	public boolean resumeStatusUpdate(String status, int id) {
+	public boolean resumeStatusUpdate(String status, int id, int employee_master_id) {
 		Session session = HibernateUtil.openSession();
 		Transaction tx = null;
 		try {
@@ -196,8 +196,97 @@ public class AllUpdateDAO {
 			System.out.println(status);
 			System.out.println(id);
 
-			Query query = session.createQuery("update ResumeDataBean set status = :s where resume_data_id = :ri ");
+			Query query = session.createQuery(
+					"update ResumeShareBean set status = :s where resume_data_id = :ri and employee_master_id = :eid");
 			query.setString("s", status);
+			query.setInteger("ri", id);
+			query.setInteger("eid", employee_master_id);
+			int result = query.executeUpdate();
+			System.out.println("result :" + result);
+			tx.commit();
+		} catch (Exception e) {
+			if (tx != null) {
+				tx.rollback();
+			}
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return true;
+	}
+	
+	// used at notifytocandidateinsertservlet
+	
+	public boolean resumeStatusUpdateAtNotify(String status, int id) {
+		Session session = HibernateUtil.openSession();
+		Transaction tx = null;
+		try {
+			tx = session.getTransaction();
+			tx.begin();
+			System.out.println(status);
+			System.out.println(id);
+
+			Query query = session.createQuery(
+					"update ResumeDataBean set status = :s where resume_data_id = :ri");
+			query.setString("s", status);
+			query.setInteger("ri", id);
+			int result = query.executeUpdate();
+			System.out.println("result :" + result);
+			tx.commit();
+		} catch (Exception e) {
+			if (tx != null) {
+				tx.rollback();
+			}
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return true;
+	}
+
+	// used at resumeshareinsertservlet 
+	
+	public boolean resumeShareUpdate(String status, int id) {
+		Session session = HibernateUtil.openSession();
+		Transaction tx = null;
+		try {
+			tx = session.getTransaction();
+			tx.begin();
+			System.out.println(status);
+			System.out.println(id);
+
+			Query query = session.createQuery(
+					"update ResumeDataBean set status = :s where resume_data_id = :ri");
+			query.setString("s", status);
+			query.setInteger("ri", id);
+			int result = query.executeUpdate();
+			System.out.println("result :" + result);
+			tx.commit();
+		} catch (Exception e) {
+			if (tx != null) {
+				tx.rollback();
+			}
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return true;
+	}
+	
+	// For Update Daily Calling Status
+
+	public boolean dailyCallingStatusUpdate(int status, int id) {
+		Session session = HibernateUtil.openSession();
+		Transaction tx = null;
+		try {
+			tx = session.getTransaction();
+			tx.begin();
+			System.out.println(status);
+			System.out.println(id);
+
+			Query query = session
+					.createQuery("update ResumeDataBean set daily_calling_status_id = :s where resume_data_id = :ri ");
+			query.setInteger("s", status);
 			query.setInteger("ri", id);
 			int result = query.executeUpdate();
 			System.out.println("result :" + result);
@@ -261,20 +350,24 @@ public class AllUpdateDAO {
 		return true;
 	}
 
-	public boolean interviewTimeUpdate(int id, String first, String second, String third,String status) {
+	public boolean interviewTimeUpdate(int id, String first, String second, String third, String status,
+			String first_type, String second_type, String third_type) {
 		Session session = HibernateUtil.openSession();
 		Transaction tx = null;
 		try {
 			tx = session.getTransaction();
 			tx.begin();
 			Query query = session.createQuery(
-					"update ResumeShareBean set first_date_time =:fdt,second_date_time =:sdt,third_date_time =:tdt,show_view =:sv,status=:st  where resume_share_id =:iti");
+					"update ResumeShareBean set first_date_time =:fdt,second_date_time =:sdt,third_date_time =:tdt,show_view =:sv,status=:stt,first_interview_type=:ft,second_interview_type=:st,third_interview_type=:tt  where resume_share_id =:iti");
 			query.setString("fdt", first);
 			query.setString("sdt", second);
 			query.setString("tdt", third);
 			query.setInteger("iti", id);
 			query.setInteger("sv", 1);
-			query.setString("st", status);
+			query.setString("stt", status);
+			query.setString("ft", first_type);
+			query.setString("st", second_type);
+			query.setString("tt", third_type);
 			int result = query.executeUpdate();
 			System.out.println("result :" + result);
 			tx.commit();
@@ -289,6 +382,8 @@ public class AllUpdateDAO {
 		return true;
 	}
 
+	// used at offerletterinsertservlet
+	
 	public boolean feedbackUpdate(int id) {
 		Session session = HibernateUtil.openSession();
 		Transaction tx = null;
@@ -297,7 +392,7 @@ public class AllUpdateDAO {
 			tx.begin();
 
 			Query query = session
-					.createQuery("update InterviewFeedbackBean set decision=:dec where interview_feedback_id = :ifi ");
+					.createQuery("update FinalSelectionBean set decision=:dec where final_selection_id = :ifi ");
 			query.setString("dec", "Offer Letter");
 			query.setInteger("ifi", id);
 			int result = query.executeUpdate();
@@ -313,6 +408,33 @@ public class AllUpdateDAO {
 		}
 		return true;
 	}
+	
+	// used at offerletterinsertservlet 
+	
+		public boolean resumeStatusUpdateAtOfferLetter(int id) {
+			Session session = HibernateUtil.openSession();
+			Transaction tx = null;
+			try {
+				tx = session.getTransaction();
+				tx.begin();
+
+				Query query = session
+						.createQuery("update ResumeDataBean set status=:dec where resume_data_id = :ifi ");
+				query.setString("dec", "Offer Letter");
+				query.setInteger("ifi", id);
+				int result = query.executeUpdate();
+				System.out.println("result :" + result);
+				tx.commit();
+			} catch (Exception e) {
+				if (tx != null) {
+					tx.rollback();
+				}
+				e.printStackTrace();
+			} finally {
+				session.close();
+			}
+			return true;
+		}
 
 	public boolean addRolesAuthoritySkillsInsert(DesignationTemplateBean designationTemplateBean) {
 		Session session = HibernateUtil.openSession();
@@ -531,15 +653,14 @@ public class AllUpdateDAO {
 		}
 		return true;
 	}
-	
+
 	public boolean inviteStatusUpdate(int id, String status) {
 		Session session = HibernateUtil.openSession();
 		Transaction tx = null;
 		try {
 			tx = session.getTransaction();
 			tx.begin();
-			Query query = session
-					.createQuery("update ResumeShareBean set status = :s where resume_data_id = :rdi ");
+			Query query = session.createQuery("update ResumeShareBean set status = :s where resume_data_id = :rdi ");
 			query.setString("s", status);
 			query.setInteger("rdi", id);
 			int result = query.executeUpdate();
@@ -556,5 +677,28 @@ public class AllUpdateDAO {
 		return true;
 	}
 	
+	public boolean interviewdateupdate(int id, String date) {
+		Session session = HibernateUtil.openSession();
+		Transaction tx = null;
+		try {
+			tx = session.getTransaction();
+			tx.begin();
+			Query query = session.createQuery("update NotifyToCandidateBean set update_interview_date = :s where resume_data_id = :rdi ");
+			query.setString("s", date);
+			query.setInteger("rdi", id);
+			int result = query.executeUpdate();
+			System.out.println("result :" + result);
+			tx.commit();
+		} catch (Exception e) {
+			if (tx != null) {
+				tx.rollback();
+			}
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return true;
+	}
 	
+
 }

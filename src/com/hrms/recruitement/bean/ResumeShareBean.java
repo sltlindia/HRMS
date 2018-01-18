@@ -27,6 +27,9 @@ public class ResumeShareBean implements Serializable{
 	private String second_date_time;
 	private String third_date_time;
 	private String show_view;
+	private String first_interview_type;
+	private String second_interview_type;
+	private String third_interview_type;
 	
 	
 	
@@ -133,10 +136,34 @@ public class ResumeShareBean implements Serializable{
 	public void setShow_view(String show_view) {
 		this.show_view = show_view;
 	}
+	
+	public String getFirst_interview_type() {
+		return first_interview_type;
+	}
+
+	public void setFirst_interview_type(String first_interview_type) {
+		this.first_interview_type = first_interview_type;
+	}
+
+	public String getSecond_interview_type() {
+		return second_interview_type;
+	}
+
+	public void setSecond_interview_type(String second_interview_type) {
+		this.second_interview_type = second_interview_type;
+	}
+
+	public String getThird_interview_type() {
+		return third_interview_type;
+	}
+
+	public void setThird_interview_type(String third_interview_type) {
+		this.third_interview_type = third_interview_type;
+	}
 
 	public ResumeShareBean(ResumeDataBean resumeDataBean, EmployeeBean employeeBean, String status, String reason,
 			String shared_date, String reply_date, String first_date_time, String second_date_time,
-			String third_date_time, String show_view) {
+			String third_date_time, String show_view, String first_interview_type, String second_interview_type, String third_interview_type) {
 		super();
 		this.resumeDataBean = resumeDataBean;
 		this.employeeBean = employeeBean;

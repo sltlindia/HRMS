@@ -24,7 +24,6 @@ public class TDSDocumentUploadBean implements Serializable{
 	private String attachment_name;
 	private double amount;
 	private String status;
-	private int attachment_priority;
 	
 	private int year;
 	private MonthBean monthBean;
@@ -35,15 +34,14 @@ public class TDSDocumentUploadBean implements Serializable{
 		// TODO Auto-generated constructor stub
 	}
 
-	public TDSDocumentUploadBean(String attachment, String attachment_name, double amount, String status,
-			int attachment_priority, int year, MonthBean monthBean, TDSBean tdsBean, EmployeeBean employeeBean) {
+	public TDSDocumentUploadBean(String attachment, String attachment_name, double amount,int year, String status, MonthBean monthBean,
+			TDSBean tdsBean, EmployeeBean employeeBean) {
 		super();
 		this.attachment = attachment;
 		this.attachment_name = attachment_name;
 		this.amount = amount;
-		this.status = status;
-		this.attachment_priority = attachment_priority;
 		this.year = year;
+		this.status = status;
 		this.monthBean = monthBean;
 		this.tdsBean = tdsBean;
 		this.employeeBean = employeeBean;
@@ -110,14 +108,6 @@ public class TDSDocumentUploadBean implements Serializable{
 		this.amount = amount;
 	}
 	
-	public int getAttachment_priority() {
-		return attachment_priority;
-	}
-
-	public void setAttachment_priority(int attachment_priority) {
-		this.attachment_priority = attachment_priority;
-	}
-
 	@ManyToOne
 	@JoinColumn(name="tds_id")
 	public TDSBean getTdsBean() {

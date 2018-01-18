@@ -51,6 +51,13 @@ public class ForwardVacancyToHrServlet extends HttpServlet {
 		}
 		
 		int vacancy_id = Integer.parseInt(request.getParameter("vacancy_id"));
+		String Remark = "";
+		
+		Remark = request.getParameter("remark");
+		
+		System.out.println("REMARK " + Remark);
+		
+		
 		String[] chkEmp = request.getParameterValues("chkHrName");
 		int show_view = 0;
 		
@@ -63,7 +70,7 @@ public class ForwardVacancyToHrServlet extends HttpServlet {
 		for(String employee : chkEmp ){
 			int id = Integer.parseInt(employee);
 			employeeBean.setEmployee_master_id(id);
-			VacancyAllocationBean allocationBean = new VacancyAllocationBean(vacancyFormBean, employeeBean,show_view,date2);
+			VacancyAllocationBean allocationBean = new VacancyAllocationBean(vacancyFormBean, employeeBean,show_view,date2 , Remark);
 			boolean result = allInsertDAO.vacancyAllocationInsert(allocationBean);
 			
 		}

@@ -11,10 +11,12 @@
     <create creator="new" javascript="IncentiveAjaxDataDAO">
      	 <param name="class" value="com.hrms.incentive.dao.IncentiveAjaxDataDAO" />
     </create>
-     <create creator="new" javascript="TrackingAjaxDataDAO">
+    <create creator="new" javascript="TrackingAjaxDataDAO">
      	 <param name="class" value="com.hrms.vehicletracking.dao.TrackingAjaxDataDAO" />
     </create>
-    
+     <create creator="new" javascript="RecruitmentAjaxDataDAO">
+     <param name="class" value="com.hrms.recruitement.dao.RecruitmentAjaxDataDAO" />
+    </create>
     <convert converter="bean" match="com.hrms.pms.bean.ProjectMasterBean" />
     <convert converter="bean" match="com.hrms.pms.bean.ClientMasterBean" />
     <convert converter="bean" match="com.hrms.pms.bean.TaskMasterBean" />
@@ -25,8 +27,14 @@
     <convert converter="bean" match="com.hrms.incentive.bean.ClassificationBean" />
     <convert converter="bean" match="com.hrms.incentive.bean.LaserMasterBean" />
     <convert converter="bean" match="com.hrms.incentive.bean.IncentiveDesignationBean" />
-     <convert converter="bean" match="com.hrms.vehicletracking.bean.VehicleTrackingBean" />
-    
+    <convert converter="bean" match="com.hrms.vehicletracking.bean.VehicleTrackingBean" />
+     <convert converter="bean" match="com.hrms.recruitement.bean.ManagerForVacancyBean" />
+  	<convert converter="bean" match="com.hrms.recruitement.bean.CityBean" />
+  	<convert converter="bean" match="com.hrms.recruitement.bean.StateBean" />
+  	<convert converter="bean" match="com.hrms.recruitement.bean.UnderGraduateSpecificationBean" />
+  	<convert converter="bean" match="com.hrms.recruitement.bean.UnderGraduateQualificationBean" />
+  	<convert converter="bean" match="com.hrms.recruitement.bean.PostGraduateSpecificationBean" />
+  	<convert converter="bean" match="com.hrms.recruitement.bean.PostGraduateQualificationBean" />
     
   </allow>
 </dwr>

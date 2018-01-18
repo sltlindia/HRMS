@@ -350,13 +350,15 @@ SimpleDateFormat ddmmyyyy = new SimpleDateFormat("dd-MM-yyyy"); %>
 									<div class="row">
 				    <div class="col-md-12">
 				        <div class="card box-shadow-0" data-appear="appear">
-					        <div class="card-header card-inverse" style="background-color: #90A4AE;padding: 0.5rem 0rem 1rem 0rem;height: 40px; border-radius: 4px;">
+					         <div class="card-header card-inverse" style="background-color: #d2d9dc;padding: 0.5rem 0rem 1rem 0rem;height: 40px; border-left: 1px solid #607D8B;border-right: 1px solid #607D8B;  
+					        						   border-bottom: 1px solid #607D8B; border-top: 1px solid #607D8B;">
 					            <div class="col-sm-6">	
-				               		<h4 class="card-title" id="horz-layout-basic">End Reading Remain History</h4>
+				               		<h4 class="card-title" id="horz-layout-basic" style="color: #000000;">End Reading Remain History</h4>
 				                </div>
 				            </div>
 				               <div class="card-body collapse in">
-					                <div class="card-block border-bottom-blue-grey" style="border-left: 2px solid #607D8B;border-right: 2px solid #607D8B;">
+					                <div class="card-block" style="border-left: 1px solid #607D8B;border-right: 1px solid #607D8B;
+					                					border-bottom: 1px solid #607D8B;">
 									<!-- <div class="row">
 										<div class="col-lg-12">
 											<div class="panel panel-danger">
@@ -439,13 +441,15 @@ SimpleDateFormat ddmmyyyy = new SimpleDateFormat("dd-MM-yyyy"); %>
 								<div class="row">
 				    <div class="col-md-12">
 				        <div class="card box-shadow-0" data-appear="appear">
-					        <div class="card-header card-inverse" style="background-color: #90A4AE;padding: 0.5rem 0rem 1rem 0rem;height: 40px; border-radius: 4px;">
+					         <div class="card-header card-inverse" style="background-color: #d2d9dc;padding: 0.5rem 0rem 1rem 0rem;height: 40px; border-left: 1px solid #607D8B;border-right: 1px solid #607D8B;  
+					        						   border-bottom: 1px solid #607D8B; border-top: 1px solid #607D8B;">
 					            <div class="col-sm-6">	
-				               		<h4 class="card-title" id="horz-layout-basic">Add Vehicle</h4>
+				               		<h4 class="card-title" id="horz-layout-basic" style="color: #000000;">Add Vehicle</h4>
 				                </div>
 				            </div>
 				               <div class="card-body collapse in">
-					                <div class="card-block border-bottom-blue-grey" style="border-left: 2px solid #607D8B;border-right: 2px solid #607D8B;">
+					                <div class="card-block" style="border-left: 1px solid #607D8B;border-right: 1px solid #607D8B;
+					                					border-bottom: 1px solid #607D8B;">
 									
 										<div class="panel-body">
 										<form action="vehicleInsert" melabelod="post">

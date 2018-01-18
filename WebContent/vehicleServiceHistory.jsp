@@ -62,52 +62,7 @@
     <%@include file="header.jsp" %>
 </head>
 
-<!-- <script src="bower_components/jquery/dist/jquery.min.js"></script>
-<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-<title>Interview Report</title>
-<script type="text/javascript" src="offlineDatePicker/jquery.min.js"></script>
-<script type="text/javascript" src="offlineDatePicker/jquery-ui.min.js"></script>
-<link href="offlineDatePicker/1jquery-ui.css" rel="stylesheet">
 
-<link href="js/datatables/jquery.dataTables.min.css" rel="stylesheet"
-	type="text/css" />
-<link href="js/datatables/buttons.bootstrap.min.css" rel="stylesheet"
-	type="text/css" />
-<link href="js/datatables/fixedHeader.bootstrap.min.css"
-	rel="stylesheet" type="text/css" />
-<link href="js/datatables/responsive.bootstrap.min.css" rel="stylesheet"
-	type="text/css" />
-<link href="js/datatables/scroller.bootstrap.min.css" rel="stylesheet"
-	type="text/css" /> -->
-
-<script type="text/javascript">
-		 $(document).ready(function()
-				 {
-				     var $datepicker1 =  $( "#fromDate" );
-				     var $datepicker2 =  $( "#toDate" );
-				     
-				   
-				      $datepicker1.datepicker({		
-				 			dateFormat: 'yy-mm-dd' , 
-				 			 onSelect: function(dateStr)
-				 			 {
-				 				 if($('#toDate').val() == ""){
-				 				 $('#toDate').val(this.value);
-				 				 }
-				 			 }
-				      
-				 		});
-				      
-				      $datepicker2.datepicker({		
-				 			dateFormat: 'yy-mm-dd' , 
-				 		});
-				      
-				 });
-		
-
-
-
-</script>
 <body data-open="hover" data-menu="horizontal-menu" data-col="2-columns" class="horizontal-layout horizontal-menu 2-columns ">
 		<div class="app-content container center-layout mt-2">
 		<%SimpleDateFormat yyyymmdd = new SimpleDateFormat("yyyy-MM-dd");
@@ -447,6 +402,7 @@
     
       <!-- BEGIN PAGE LEVEL JS-->
     <script src="app-assets/js/scripts/tables/datatables/datatable-advanced.min.js" type="text/javascript"></script>
+  
 	<script>
           var handleDataTableButtons = function() {
               "use strict";
@@ -512,5 +468,29 @@
 		// popover demo
 		$("[data-toggle=popover]").popover()
 	</script>
+	  <script type="text/javascript">
+		 $(document).ready(function()
+				 {
+				     var $datepicker1 =  $( "#fromDate" );
+				     var $datepicker2 =  $( "#toDate" );
+				     
+				   
+				      $datepicker1.datepicker({		
+				 			dateFormat: 'yy-mm-dd' , 
+				 			 onSelect: function(dateStr)
+				 			 {
+				 				 if($('#toDate').val() == ""){
+				 				 $('#toDate').val(this.value);
+				 				 }
+				 			 }
+				      
+				 		});
+				      
+				      $datepicker2.datepicker({		
+				 			dateFormat: 'yy-mm-dd' , 
+				 		});
+				      
+				 });
+		</script>
 </body>
 </html>

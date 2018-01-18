@@ -118,7 +118,7 @@ public class QueryReplyInsertServlet extends HttpServlet {
 						}	
 					
 					if (fieldName.equalsIgnoreCase("redirect")) {
-						request.getRequestDispatcher("allGrievanceList.jsp").forward(request, response);
+						request.getRequestDispatcher("allGrievanceHrList.jsp").forward(request, response);
 					}
 					
 					

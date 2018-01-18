@@ -105,12 +105,12 @@ public List<TaskMasterBean> getAllTask(String project_id,int dept_id,int employe
         
         if(employee_master_id == 1166 || employee_master_id == 1494){
         	dept_id = 18;
-        	hql = "from TaskMasterBean t where (not exists (from ProjectAllocationBean p where p.projectMasterBean ="+project_id+" and p.employeeBean = "+employee_master_id+" and t.task_master_id = p.taskMasterBean ) and exists(from EmployeeBean e where e.managerBean = t.managerBean and (e.departmentBean = '"+dept_id+"' or e.managerBean = '"+under_manager_id+"'))) and projectMasterBean='"+project_id+"' and location='E2' and master_task_or_not = 0";
+        	hql = "from TaskMasterBean t where (not exists (from ProjectAllocationBean p where p.projectMasterBean ="+project_id+" and p.employeeBean = "+employee_master_id+" and t.task_master_id = p.taskMasterBean ) and exists(from EmployeeBean e where (e.managerBean = t.managerBean or e.employee_master_id = t.emp_id) and (e.departmentBean = '"+dept_id+"' or e.managerBean = '"+under_manager_id+"'))) and projectMasterBean='"+project_id+"' and location='E2' and master_task_or_not = 0";
         }else if(employee_master_id == 1836){
         	dept_id = 18;
-        	hql = "from TaskMasterBean t where (not exists (from ProjectAllocationBean p where p.projectMasterBean ="+project_id+" and p.employeeBean = "+employee_master_id+" and t.task_master_id = p.taskMasterBean ) and exists(from EmployeeBean e where e.managerBean = t.managerBean and (e.departmentBean = '"+dept_id+"' or e.managerBean = '"+under_manager_id+"'))) and projectMasterBean='"+project_id+"' and location='A8' and master_task_or_not = 0";
+        	hql = "from TaskMasterBean t where (not exists (from ProjectAllocationBean p where p.projectMasterBean ="+project_id+" and p.employeeBean = "+employee_master_id+" and t.task_master_id = p.taskMasterBean ) and exists(from EmployeeBean e where (e.managerBean = t.managerBean or e.employee_master_id = t.emp_id) and (e.departmentBean = '"+dept_id+"' or e.managerBean = '"+under_manager_id+"'))) and projectMasterBean='"+project_id+"' and location='A8' and master_task_or_not = 0";
         }else{
-        	hql = "from TaskMasterBean t where (not exists (from ProjectAllocationBean p where p.projectMasterBean ="+project_id+" and p.employeeBean = "+employee_master_id+" and t.task_master_id = p.taskMasterBean ) and exists(from EmployeeBean e where e.managerBean = t.managerBean and (e.departmentBean = '"+dept_id+"' or e.managerBean = '"+under_manager_id+"'))) and projectMasterBean='"+project_id+"' and master_task_or_not = 0";
+        	hql = "from TaskMasterBean t where (not exists (from ProjectAllocationBean p where p.projectMasterBean ="+project_id+" and p.employeeBean = "+employee_master_id+" and t.task_master_id = p.taskMasterBean ) and exists(from EmployeeBean e where (e.managerBean = t.managerBean or e.employee_master_id = t.emp_id) and (e.departmentBean = '"+dept_id+"' or e.managerBean = '"+under_manager_id+"'))) and projectMasterBean='"+project_id+"' and master_task_or_not = 0";
         }
         
         Query query = session.createQuery(hql);

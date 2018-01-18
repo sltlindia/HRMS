@@ -119,8 +119,18 @@ public class ResumeDataUpdateServlet extends HttpServlet {
 						}
 						
 						/*request.getRequestDispatcher("criteriaChecklist.jsp").forward(request, response);*/
-						response.sendRedirect("viewAllResumeListForManager.jsp");
-					}
+						
+						if(approved.equalsIgnoreCase("Shortlist")){
+							request.setAttribute("resume_data_id", resume_data_id);
+							request.setAttribute("employee_master_id", employee_master_id);
+							request.getRequestDispatcher("interviewTiming.jsp").forward(request, response);
+						}
+						else
+						{
+							response.sendRedirect("viewAllResumeListForManager.jsp");
+						}
+						}
+						
 					
 					/*if(fieldName.equalsIgnoreCase("resume_data_id"))
 					{

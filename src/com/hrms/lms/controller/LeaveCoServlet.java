@@ -76,6 +76,10 @@ public class LeaveCoServlet extends HttpServlet {
 			EmployeeBean employeeBean = new EmployeeBean();
 			LeaveCOBean leaveCOBean = new LeaveCOBean();
 			
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			Date date11 = new Date();
+			String date1 = sdf.format(date11);
+			
 			try {
 				items = upload.parseRequest(request);// Parse Request
 				for (int i = 0; i < items.size(); i++) {
@@ -165,9 +169,9 @@ public class LeaveCoServlet extends HttpServlet {
 							
 							
 							
-							if(duplicateODDATE.size() == 0 || sunday.equalsIgnoreCase("NO"))
+						/*	if(duplicateODDATE.size() == 0 || sunday.equalsIgnoreCase("NO"))
 							{
-								System.out.println("Between Date Co NOT Already Exit");
+								System.out.println("Between Date Co NOT Already Exit");*/
 							
 							if(duplicate.size() == 0)
 							{
@@ -175,17 +179,17 @@ public class LeaveCoServlet extends HttpServlet {
 								if(totalhours <= 2.0)
 								{
 									System.out.println("Leave From Date And To Date Already exit");
-									request.setAttribute("LeavefromtodateExist", "You Are Not Eligible For CO");
+									request.setAttribute("NotEligible", "You Are Not Eligible For CO");
 									request.getRequestDispatcher("leaveCO.jsp").forward(request, response);
 								}
 								else
 								{
 						
 									employeeBean.setEmployee_master_id(employee_code);
-									leaveCOBean = new LeaveCOBean(employeeBean , describe , date , StartTime , Endtime , totalhours , Manager_id , status , sunday,mail_view);
+									leaveCOBean = new LeaveCOBean(employeeBean , describe , date , StartTime , Endtime , totalhours , Manager_id , status , sunday,mail_view,date1);
 									boolean result = allInsertDAO.leaveCOInsert(leaveCOBean);
 									
-									
+								
 									int ManagerID =  Manager_id;
 									String Name = user.getFirstname() + " " + user.getLastname();
 									String Leavetype = "Co";
@@ -227,8 +231,8 @@ public class LeaveCoServlet extends HttpServlet {
 										System.out.println("CO Insert Successfully");
 										request.setAttribute("openStatus", "co");
 										request.setAttribute("success", "CO Applied Successfully");
-										response.sendRedirect("leavesuccess.jsp");
-										//request.getRequestDispatcher("leavesuccess.jsp").forward(request, response);
+										//response.sendRedirect("leavesuccess.jsp");
+										request.getRequestDispatcher("leavesuccess.jsp").forward(request, response);
 									}
 								}	
 							}
@@ -238,13 +242,13 @@ public class LeaveCoServlet extends HttpServlet {
 								request.setAttribute("LeavefromtodateExist", "CO This Date Already Exists");
 								request.getRequestDispatcher("leaveCO.jsp").forward(request, response);
 							}
-						}
-						else
+						/*}*/
+						/*else
 						{
 								System.out.println("Between Date Co Already Exit");
 								request.setAttribute("LeavefromtodateExist", "OD of Sunday is automatically consider as CO and OD also. So, CO of this date is already exist.");
 								request.getRequestDispatcher("leaveCO.jsp").forward(request, response);
-						}
+						}*/
 									
 						}
 					}

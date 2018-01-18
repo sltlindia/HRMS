@@ -24,20 +24,13 @@ public class ResumeDataSearchEngineServlet extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String skill = request.getParameter("skill");
-		String experience = request.getParameter("experience");
-		int expected_salary =Integer.parseInt(request.getParameter("expectedSalary"));
-		
 		
 		System.out.println(skill);
-		System.out.println(experience);
-		System.out.println(expected_salary);
 		
 		AllRecruitmentListDAO AllRecruitmentListDAO = new AllRecruitmentListDAO();
-		List<ResumeDataBean> searchengine = AllRecruitmentListDAO.getListOfResumeDataSearchEngine(skill, experience, expected_salary);
+		List<ResumeDataBean> searchengine = AllRecruitmentListDAO.getListOfResumeDataSearchEngine(skill);
 		request.setAttribute("searchengine", searchengine);
 		request.setAttribute("skill", skill);
-		request.setAttribute("experience", experience);
-		request.setAttribute("expectedsalary", expected_salary);
 		
 		request.getRequestDispatcher("resumeDataSearchEngineWithData.jsp").forward(request, response);
 		if(searchengine.size()==0){

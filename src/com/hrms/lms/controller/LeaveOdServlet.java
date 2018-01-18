@@ -240,7 +240,6 @@ public class LeaveOdServlet extends HttpServlet {
 								employeeBean.setEmployee_master_id(employee_code);
 								leaveODBean = new LeaveODBean(employeeBean , Startdate , Enddate , StartTime , Endtime , totalday , Manager_id , status,describe , sundaycoadd , holidayCOadd , coDates2);
 								boolean result = allInsertDAO.leaveODInsert(leaveODBean);
-								
 								int ManagerID =  Manager_id;
 								String Name = user.getFirstname() + " " + user.getLastname();
 								String Leavetype = "OD";

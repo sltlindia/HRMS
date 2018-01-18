@@ -191,7 +191,9 @@ public class SundayServlet extends HttpServlet {
        	System.out.println(day);
        }
        request.setAttribute("sundays", sundays);
-       request.getRequestDispatcher("defaulterReportDateWise.jsp").forward(request, response);
+      
+    	   request.getRequestDispatcher("defaulterReportDateWise.jsp").forward(request, response);
+      
 			}
 		
 		

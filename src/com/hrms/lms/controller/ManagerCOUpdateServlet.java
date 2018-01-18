@@ -51,6 +51,9 @@ public class ManagerCOUpdateServlet extends HttpServlet {
 		ServletFileUpload upload = new ServletFileUpload(factory);
 		response.setContentType("text/html;charset=UTF-8");
 		 PrintWriter out = response.getWriter();
+		 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			Date date2 = new Date();
+			String approvalDate = sdf.format(date2);
 		if(user!=null)
 		{
 			List<FileItem> items = null;
@@ -205,7 +208,7 @@ public class ManagerCOUpdateServlet extends HttpServlet {
 									CO1  = 0.0;
 									SUMCO = CO + CO1;
 									System.out.println("Sum CO  : "+ SUMCO);
-									boolean result = allUpdateDAO.LeaveCOUpdateStatus(Status, CO_ID);
+									boolean result = allUpdateDAO.LeaveCOUpdateStatus(Status, approvalDate,CO_ID);
 									boolean result1 = allUpdateDAO.COUpdateManager(SUMCO, emp_id);
 									if(result == true)
 									{
@@ -240,7 +243,7 @@ public class ManagerCOUpdateServlet extends HttpServlet {
 									CO1  = 0.5;
 									SUMCO = CO + CO1;
 									System.out.println("Sum CO  : "+ SUMCO);
-									boolean result = allUpdateDAO.LeaveCOUpdateStatus(Status, CO_ID);
+									boolean result = allUpdateDAO.LeaveCOUpdateStatus(Status, approvalDate,CO_ID);
 									boolean result1 = allUpdateDAO.COUpdateManager(SUMCO, emp_id);
 									
 									
@@ -279,7 +282,7 @@ public class ManagerCOUpdateServlet extends HttpServlet {
 									CO1  = 1.0;
 									SUMCO = CO + CO1;
 									System.out.println("Sum CO  : "+ SUMCO);
-									boolean result = allUpdateDAO.LeaveCOUpdateStatus(Status, CO_ID);
+									boolean result = allUpdateDAO.LeaveCOUpdateStatus(Status, approvalDate,CO_ID);
 									boolean result1 = allUpdateDAO.COUpdateManager(SUMCO, emp_id);
 									leaveHRBean = new LeaveHRBean(LeaveType, employeeBean, date, date, Approval_Date, code, leaveCOBean);
 									allInsertDAO.leaveHRInsert(leaveHRBean);

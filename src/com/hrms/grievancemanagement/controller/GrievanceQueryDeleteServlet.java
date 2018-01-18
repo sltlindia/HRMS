@@ -21,7 +21,7 @@ public class GrievanceQueryDeleteServlet extends HttpServlet {
 		}else{
 			request.setAttribute("delete", "Query Not Deleted.");
 		}
-		request.getRequestDispatcher("allGrievanceList.jsp").forward(request, response);
+		request.getRequestDispatcher("allGrievanceHrList.jsp").forward(request, response);
 	
 	}
 

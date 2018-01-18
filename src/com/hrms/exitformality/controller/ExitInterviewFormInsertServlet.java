@@ -62,7 +62,7 @@ public class ExitInterviewFormInsertServlet extends HttpServlet {
 				String exit_attribute_name = null;
 				String score = null;
 				String comments = "null";
-				SimpleDateFormat formater = new SimpleDateFormat("yyyy-MM-dd");
+				SimpleDateFormat formater = new SimpleDateFormat("dd-MM-yyyy");
 				SimpleDateFormat formater1 = new SimpleDateFormat("yyyy-MM-dd");
 				
 				
@@ -84,6 +84,16 @@ public class ExitInterviewFormInsertServlet extends HttpServlet {
 							
 							if (fieldName.equalsIgnoreCase("termination_date")) {
 								termination_date = fieldValue;
+								
+								try {
+									
+									Date date = formater.parse(termination_date);
+									termination_date = formater1.format(date);
+								
+								} catch (ParseException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								}
 								
 								System.out.println("termination_date:"+termination_date);
 							}

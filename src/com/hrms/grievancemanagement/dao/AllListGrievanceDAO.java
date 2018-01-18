@@ -3,9 +3,11 @@ package com.hrms.grievancemanagement.dao;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import com.hrms.exitformality.bean.ExitInterviewManagerCommentsBean;
 import com.hrms.grievancemanagement.bean.GrievanceQueryBean;
 import com.hrms.grievancemanagement.bean.GrievanceQueryTypeBean;
 import com.hrms.grievancemanagement.bean.HrmsMailBean;
@@ -247,5 +249,29 @@ public class AllListGrievanceDAO {
 	    return listOfAllMail;
 	    
 	}
+	
+	
+	public GrievanceQueryBean getGrivenceById(int grievanceId) {
+	    Session session = HibernateUtil.openSession();
+	    Transaction tx = null;
+	    GrievanceQueryBean grievanceQueryBean = null;
+	    try {
+	        tx = session.getTransaction();
+	        tx.begin();
+	        Query query = session.createQuery("from GrievanceQueryBean where grievance_query_id = "+grievanceQueryBean+"");
+	        grievanceQueryBean = (GrievanceQueryBean)query.uniqueResult();
+	        tx.commit();
+	    } catch (Exception e) {
+	        if (tx != null) {
+	            tx.rollback();
+	        }
+	        e.printStackTrace();
+	    } finally {
+	        session.close();
+	    }
+	    return grievanceQueryBean;
+	}
+	
+	
 
 }

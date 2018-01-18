@@ -67,7 +67,9 @@ public class SpecialHRCOApprovalServlet extends HttpServlet {
 			EmployeeBean employeeBean = new EmployeeBean();
 			LeaveCOBean leaveCOBean = new LeaveCOBean();
 			int mail_view = 1;
-			
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			Date date11 = new Date();
+			String date1 = sdf.format(date11);
 			try {
 				items = upload.parseRequest(request);// Parse Request
 				for (int i = 0; i < items.size(); i++) {
@@ -119,7 +121,7 @@ public class SpecialHRCOApprovalServlet extends HttpServlet {
 						if (fieldName.equalsIgnoreCase("totalhours"))
 						{
 							String value = fieldValue;
-							totalhours = Integer.parseInt(value);
+							totalhours = (int) Double.parseDouble(value);
 							System.out.println("Total hours : "+ totalhours);	
 						}
 						
@@ -154,7 +156,8 @@ public class SpecialHRCOApprovalServlet extends HttpServlet {
 							{
 							
 								employeeBean.setEmployee_master_id(employee_code);
-								leaveCOBean = new LeaveCOBean(employeeBean , describe , date , StartTime , Endtime , totalhours , Manager_id , status , sunday,mail_view);
+								leaveCOBean = new LeaveCOBean(employeeBean , describe , date , StartTime , Endtime , totalhours , Manager_id , status , sunday,mail_view , date1);
+							
 								boolean result = allInsertDAO.leaveCOInsert(leaveCOBean);
 								 CO_ID = leaveCOBean.getCO_ID();
 								 System.out.println("CO _ID " + CO_ID);

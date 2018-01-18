@@ -488,7 +488,57 @@ public class AllIncentiveListDAO {
 		try {
 			tx = session.getTransaction();
 			tx.begin();
-			String hql = "from IncentiveBean where po_date like '" + year + "%'";
+			String hql = "from IncentiveBean where YEAR(sjo_date)='" + year + "'";
+			Query query = session.createQuery(hql);
+			listOfAllIncentive = query.list();
+			tx.commit();
+		} catch (Exception e) {
+			if (tx != null) {					
+				tx.rollback();
+			}
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return listOfAllIncentive;
+
+	}
+	
+	
+	
+	public List<IncentiveBean> getListOfIncentiveByYearId(String year,int fromMont,int toMonth) {
+		List<IncentiveBean> listOfAllIncentive = new ArrayList<IncentiveBean>();
+		Session session = HibernateUtil.openSession();
+		Transaction tx = null;
+		try {
+			tx = session.getTransaction();
+			tx.begin();
+			String hql = "from IncentiveBean where YEAR(sjo_date)='" + year + "' and (MONTH(sjo_date) between "+fromMont+" and "+toMonth+")";
+			Query query = session.createQuery(hql);
+			listOfAllIncentive = query.list();
+			tx.commit();
+		} catch (Exception e) {
+			if (tx != null) {					
+				tx.rollback();
+			}
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return listOfAllIncentive;
+
+	}
+	
+	
+	
+	public List<IncentiveBean> getListOfIncentiveByCustomerCode(String customerCode) {
+		List<IncentiveBean> listOfAllIncentive = new ArrayList<IncentiveBean>();
+		Session session = HibernateUtil.openSession();
+		Transaction tx = null;
+		try {
+			tx = session.getTransaction();
+			tx.begin();
+			String hql = "from IncentiveBean where customer_code = '"+customerCode+"'";
 			Query query = session.createQuery(hql);
 			listOfAllIncentive = query.list();
 			tx.commit();
@@ -536,7 +586,9 @@ public class AllIncentiveListDAO {
 			tx.begin();
 			String hql = null;
 			
-			if(month_id<10){
+			
+			
+			/*if(month_id<10){
 			hql = "from IncentiveBean where salespersonBean = '" + sales_id + "' and po_date like '%-0"
 					+ month_id + "-%'  and po_date like '" + year_id + "%' and productMasterBean = '" + product_id
 					+ "'";
@@ -544,7 +596,20 @@ public class AllIncentiveListDAO {
 				hql = "from IncentiveBean where salespersonBean = '" + sales_id + "' and po_date like '%-"
 						+ month_id + "-%'  and po_date like '" + year_id + "%' and productMasterBean = '" + product_id
 						+ "'";
-			}
+			}*/
+			
+			
+			
+			if(month_id<10){
+				hql = "from IncentiveBean where salespersonBean = '" + sales_id + "' and sjo_date like '%-0"
+						+ month_id + "-%'  and po_date like '" + year_id + "%' and productMasterBean = '" + product_id
+						+ "'";
+				}else{
+					hql = "from IncentiveBean where salespersonBean = '" + sales_id + "' and sjo_date like '%-"
+							+ month_id + "-%'  and sjo_date like '" + year_id + "%' and productMasterBean = '" + product_id
+							+ "'";
+				}
+			
 			Query query = session.createQuery(hql);
 			listOfAllIncentive = query.list();
 			tx.commit();
@@ -571,7 +636,7 @@ public class AllIncentiveListDAO {
 			String hql = null;
 			
 			
-			if(month_id<10){
+			/*if(month_id<10){
 			hql = "from IncentiveSalesPersonListBean isplb where salespersonBean = '" + sales_id + "' and incentiveBean.po_date like '%-0"
 					+ month_id + "-%'  and incentiveBean.po_date like '" + year_id + "%' and incentiveBean.productMasterBean = '" + product_id
 					+ "' and salespersonBean != incentiveBean.salespersonBean";
@@ -579,7 +644,20 @@ public class AllIncentiveListDAO {
 				hql = "from IncentiveSalesPersonListBean isplb where salespersonBean = '" + sales_id + "' and incentiveBean.po_date like '%-"
 						+ month_id + "-%'  and incentiveBean.po_date like '" + year_id + "%' and incentiveBean.productMasterBean = '" + product_id
 						+ "' and salespersonBean != incentiveBean.salespersonBean";
-			}
+			}*/
+			
+			
+			
+			if(month_id<10){
+				hql = "from IncentiveSalesPersonListBean isplb where salespersonBean = '" + sales_id + "' and incentiveBean.sjo_date like '%-0"
+						+ month_id + "-%'  and incentiveBean.sjo_date like '" + year_id + "%' and incentiveBean.productMasterBean = '" + product_id
+						+ "' and salespersonBean != incentiveBean.salespersonBean";
+				}else{
+					hql = "from IncentiveSalesPersonListBean isplb where salespersonBean = '" + sales_id + "' and incentiveBean.sjo_date like '%-"
+							+ month_id + "-%'  and incentiveBean.sjo_date like '" + year_id + "%' and incentiveBean.productMasterBean = '" + product_id
+							+ "' and salespersonBean != incentiveBean.salespersonBean";
+				}
+			
 			Query query = session.createQuery(hql);
 			listOfAllIncentive = query.list();
 			tx.commit();
@@ -622,6 +700,59 @@ public class AllIncentiveListDAO {
 	}
 	
 	
+	public List<IncentiveSalesPersonListBean> getListOfAllIncentiveBySalespersonListBetweenMonth(String year,int fromMont,int toMonth) {
+		List<IncentiveSalesPersonListBean> listOfAllIncentive = new ArrayList<IncentiveSalesPersonListBean>();
+		Session session = HibernateUtil.openSession();
+		Transaction tx = null;
+		try {
+			tx = session.getTransaction();
+			tx.begin();
+			String hql = null;
+			
+			hql = "from IncentiveSalesPersonListBean where YEAR(incentiveBean.sjo_date)='" + year + "' and (MONTH(incentiveBean.sjo_date) between "+fromMont+" and "+toMonth+")";
+			Query query = session.createQuery(hql);
+			listOfAllIncentive = query.list();
+			tx.commit();
+		} catch (Exception e) {
+			if (tx != null) {
+				tx.rollback();
+			}
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return listOfAllIncentive;
+
+	}
+	
+	
+	
+	public List<IncentiveSalesPersonListBean> getListOfAllIncentiveBySalespersonListByCustomerCode(String customerCode) {
+		List<IncentiveSalesPersonListBean> listOfAllIncentive = new ArrayList<IncentiveSalesPersonListBean>();
+		Session session = HibernateUtil.openSession();
+		Transaction tx = null;
+		try {
+			tx = session.getTransaction();
+			tx.begin();
+			String hql = null;
+			
+			hql = "from IncentiveSalesPersonListBean where incentiveBean.customer_code = '"+customerCode+"'";
+			Query query = session.createQuery(hql);
+			listOfAllIncentive = query.list();
+			tx.commit();
+		} catch (Exception e) {
+			if (tx != null) {
+				tx.rollback();
+			}
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return listOfAllIncentive;
+
+	}
+	
+	
 	public List<IncentiveSalesPersonListBean> getListOfAllIncentiveBySalespersonIdList(int sales_id,int month_id,int year,int product_id) {
 		List<IncentiveSalesPersonListBean> listOfAllIncentive = new ArrayList<IncentiveSalesPersonListBean>();
 		Session session = HibernateUtil.openSession();
@@ -631,7 +762,7 @@ public class AllIncentiveListDAO {
 			tx.begin();
 			String hql = null;
 			
-			if(month_id<10){
+			/*if(month_id<10){
 				hql = "from IncentiveSalesPersonListBean isplb where salespersonBean = '" + sales_id + "' and incentiveBean.po_date like '%-0"
 						+ month_id + "-%'  and incentiveBean.po_date like '" + year + "%' and incentiveBean.productMasterBean = '" + product_id
 						+ "'";
@@ -639,7 +770,20 @@ public class AllIncentiveListDAO {
 					hql = "from IncentiveSalesPersonListBean isplb where salespersonBean = '" + sales_id + "' and incentiveBean.po_date like '%-"
 							+ month_id + "-%'  and incentiveBean.po_date like '" + year + "%' and incentiveBean.productMasterBean = '" + product_id
 							+ "'";
+				}*/
+			
+			
+			if(month_id<10){
+				hql = "from IncentiveSalesPersonListBean isplb where salespersonBean = '" + sales_id + "' and incentiveBean.sjo_date like '%-0"
+						+ month_id + "-%'  and incentiveBean.sjo_date like '" + year + "%' and incentiveBean.productMasterBean = '" + product_id
+						+ "'";
+				}else{
+					hql = "from IncentiveSalesPersonListBean isplb where salespersonBean = '" + sales_id + "' and incentiveBean.sjo_date like '%-"
+							+ month_id + "-%'  and incentiveBean.sjo_date like '" + year + "%' and incentiveBean.productMasterBean = '" + product_id
+							+ "'";
 				}
+			
+			
 			Query query = session.createQuery(hql);
 			listOfAllIncentive = query.list();
 			tx.commit();

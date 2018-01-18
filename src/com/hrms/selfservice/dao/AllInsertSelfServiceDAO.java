@@ -16,6 +16,8 @@ import com.hrms.selfservice.bean.DownloadBean;
 import com.hrms.selfservice.bean.MarqueeBean;
 import com.hrms.selfservice.bean.ProblemNatureBean;
 import com.hrms.selfservice.bean.SelfServiceQuerybean;
+import com.hrms.selfservice.bean.SoftwareComplaintBean;
+import com.hrms.selfservice.bean.SoftwareNatureBean;
 
 public class AllInsertSelfServiceDAO implements Serializable {
 	
@@ -202,6 +204,24 @@ public class AllInsertSelfServiceDAO implements Serializable {
 			 }	
 			 return true;
 		}
+		public boolean softwareNatureInsert(SoftwareNatureBean softwareNatureBean){
+			 Session session = HibernateUtil.openSession();
+			 Transaction tx = null;	
+			 try {
+				 tx = session.getTransaction();
+				 tx.begin();
+				 session.saveOrUpdate(softwareNatureBean);
+				 tx.commit();
+			 } catch (Exception e) {
+				 if (tx != null) {
+					 tx.rollback();
+				 }
+				 e.printStackTrace();
+			 } finally {
+				 session.close();
+			 }	
+			 return true;
+		}
 		public boolean complaintVerifiedByInsert(ComplaintVerifiedByBean complaintVerifiedByBean){
 			 Session session = HibernateUtil.openSession();
 			int id =0;
@@ -210,6 +230,25 @@ public class AllInsertSelfServiceDAO implements Serializable {
 				 tx = session.getTransaction();
 				 tx.begin();
 				 session.saveOrUpdate(complaintVerifiedByBean);
+				 tx.commit();
+			 } catch (Exception e) {
+				 if (tx != null) {
+					 tx.rollback();
+				 }
+				 e.printStackTrace();
+			 } finally {
+				 session.close();
+			 }	
+			 return true;
+		}
+		
+		public boolean softwareComplaintInsert(SoftwareComplaintBean softwareComplaintBean){
+			 Session session = HibernateUtil.openSession();
+			 Transaction tx = null;	
+			 try {
+				 tx = session.getTransaction();
+				 tx.begin();
+				 session.saveOrUpdate(softwareComplaintBean);
 				 tx.commit();
 			 } catch (Exception e) {
 				 if (tx != null) {

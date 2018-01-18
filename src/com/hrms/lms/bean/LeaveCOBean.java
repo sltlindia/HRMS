@@ -28,6 +28,7 @@ public class LeaveCOBean
 	private String reason;
 	private String sundayholiday;
 	private int mail_view;
+	private String submission_date;
 	
 	
 	public LeaveCOBean()
@@ -36,7 +37,9 @@ public class LeaveCOBean
 	}
 
 	
-	public LeaveCOBean(EmployeeBean employeeBean , String decripction, String CO_date , String Start_time , String End_time , double Total_Hours , int under_manager_id , String status , String sundayholiday,int mail_view)
+	public LeaveCOBean(EmployeeBean employeeBean , String decripction, String CO_date , String Start_time ,
+			String End_time , double Total_Hours , int under_manager_id , String status ,
+			String sundayholiday,int mail_view, String submission_date)
 	{
 		this.employeeBean = employeeBean;
 		this.decripction = decripction;
@@ -48,6 +51,7 @@ public class LeaveCOBean
 		this.status = status;
 		this.sundayholiday = sundayholiday;
 		this.mail_view = mail_view;
+		this.submission_date = submission_date;
 	}
 	
 	
@@ -174,6 +178,16 @@ public class LeaveCOBean
 
 	public void setMail_view(int mail_view) {
 		this.mail_view = mail_view;
+	}
+
+
+	public String getSubmission_date() {
+		return submission_date;
+	}
+
+
+	public void setSubmission_date(String submission_date) {
+		this.submission_date = submission_date;
 	}
 	
 	

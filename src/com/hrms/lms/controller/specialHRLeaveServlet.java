@@ -30,9 +30,19 @@ public class specialHRLeaveServlet extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-		int empcode = Integer.parseInt(request.getParameter("empcode"));
+	/*	int empcode = Integer.parseInt(request.getParameter("empcode"));
+		int companyId = Integer.parseInt(request.getParameter("companyId"));*/
+		
+		
+		String employee_name = request.getParameter("employee_name");
 		String leavetypeselect = request.getParameter("leavetypeselect");
-		int companyId = Integer.parseInt(request.getParameter("companyId"));
+		
+		String[] split = employee_name.split(",");
+		int empcode = Integer.parseInt(split[0]);
+		String ename = split[1];
+		int companyId = Integer.parseInt(split[2]);
+		
+
 		
 		System.out.println("Emp Code" + empcode);
 		

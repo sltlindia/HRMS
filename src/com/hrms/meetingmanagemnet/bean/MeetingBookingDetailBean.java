@@ -56,6 +56,16 @@ public class MeetingBookingDetailBean implements Serializable{
 		this.meetingRoomDetailBean = meetingRoomDetailBean;
 	}
 	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	public MeetingBookingDetailBean(String employee_name, String meeting_name, String meeting_purpose,
 			int participant_no, Date date, Date from_time, Date to_time, EmployeeBean employeeBean,
 			DepartmentBean departmentBean, MeetingRoomDetailBean meetingRoomDetailBean) {
@@ -71,6 +81,14 @@ public class MeetingBookingDetailBean implements Serializable{
 		this.departmentBean = departmentBean;
 		this.meetingRoomDetailBean = meetingRoomDetailBean;
 	}
+
+
+
+
+
+
+
+
 
 
 
@@ -152,5 +170,10 @@ public class MeetingBookingDetailBean implements Serializable{
 	public void setMeetingRoomDetailBean(MeetingRoomDetailBean meetingRoomDetailBean) {
 		this.meetingRoomDetailBean = meetingRoomDetailBean;
 	}
+	
+	
+	
+	
+	
 	
 }

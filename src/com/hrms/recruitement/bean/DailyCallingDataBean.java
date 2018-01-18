@@ -24,6 +24,7 @@ public class DailyCallingDataBean implements Serializable{
 	//private String position;
 	//private String department;
 	private String candidate_name;
+	private String gender;
 	private String current_location;
 	private String mobile_number;
 	private String email_id;
@@ -39,7 +40,7 @@ public class DailyCallingDataBean implements Serializable{
 	private String offered_gross;
 	private String offered_CTC;
 	private String joining_date;
-	
+	private String upload_resume;
 	private DepartmentBean departmentBean;
 	private VacancyFormBean vacancyFormBean;
 	private SourceOfResumeBean sourceOfResumeBean;
@@ -47,7 +48,7 @@ public class DailyCallingDataBean implements Serializable{
 	
 	public DailyCallingDataBean() {}
 	
-	public DailyCallingDataBean(String submission_date, String candidate_name, String current_location,
+	public DailyCallingDataBean(String upload_resume , String submission_date, String candidate_name, String gender, String current_location,
 			String mobile_number, String email_id, String current_designation, String total_experience,
 			String highest_qualification, String current_CTC, String expected_CTC, String notice_period, String status,
 			String remarks, String offered_gross, String offered_CTC, String joining_date,
@@ -55,6 +56,7 @@ public class DailyCallingDataBean implements Serializable{
 		super();
 		this.submission_date = submission_date;
 		this.candidate_name = candidate_name;
+		this.gender = gender;
 		this.current_location = current_location;
 		this.mobile_number = mobile_number;
 		this.email_id = email_id;
@@ -73,6 +75,7 @@ public class DailyCallingDataBean implements Serializable{
 		this.vacancyFormBean = vacancyFormBean;
 		this.sourceOfResumeBean = sourceOfResumeBean;
 		this.employeeBean = employeeBean;
+		this.upload_resume = upload_resume;
 	}
 
 
@@ -98,6 +101,19 @@ public class DailyCallingDataBean implements Serializable{
 	public void setCandidate_name(String candidate_name) {
 		this.candidate_name = candidate_name;
 	}
+	
+	
+	
+	
+	
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+
 	public String getCurrent_location() {
 		return current_location;
 	}
@@ -218,6 +234,14 @@ public class DailyCallingDataBean implements Serializable{
 
 	public void setEmployeeBean(EmployeeBean employeeBean) {
 		this.employeeBean = employeeBean;
+	}
+
+	public String getUpload_resume() {
+		return upload_resume;
+	}
+
+	public void setUpload_resume(String upload_resume) {
+		this.upload_resume = upload_resume;
 	}
 	
 	

@@ -29,8 +29,10 @@ public class GenerateOfferLetterServlet extends HttpServlet {
 		System.out.println("offerletterid:"+offerletterid);
 		AllRecruitmentListDAO AllRecruitmentListDAO = new AllRecruitmentListDAO();
 		List<OfferLetterBean> listofofferletter = AllRecruitmentListDAO.getListOfOfferLetter(offerletterid);
+	
 		request.setAttribute("offerletterid", offerletterid);
 		request.setAttribute("listofofferletter", listofofferletter);
+		
 		if(request.getParameter("action") != null){
 			request.getRequestDispatcher("offerLetterWordExport.jsp").forward(request, response);
 		}else{

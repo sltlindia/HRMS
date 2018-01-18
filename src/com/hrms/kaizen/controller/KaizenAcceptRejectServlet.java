@@ -13,6 +13,8 @@ import com.hrms.kaizen.bean.KaizenBean;
 import com.hrms.kaizen.bean.KaizenManagementApprovalBean;
 import com.hrms.kaizen.bean.KaizenManagerBean;
 import com.hrms.kaizen.bean.KaizenMemberBean;
+import com.hrms.kaizen.bean.KaizenReactivationRemarkBean;
+import com.hrms.kaizen.dao.AllKaizenInsertDAO;
 import com.hrms.kaizen.dao.AllKaizenListDAO;
 import com.hrms.kaizen.dao.AllKaizenUpdateDAO;
 import com.hrms.lms.dao.AllUpdateDAO;
@@ -80,7 +82,7 @@ public class KaizenAcceptRejectServlet extends HttpServlet {
 		
 		if(status.equalsIgnoreCase("approved")){
 			
-			System.err.println("IN APPROVED");
+			
 			
 			if(kaizen_manager_id == manager_id){
 				boolean result = allKaizenUpdateDAO.kaizenMainApproval(kaizen_id, status, reason);
@@ -136,10 +138,14 @@ public class KaizenAcceptRejectServlet extends HttpServlet {
 				
 				
 			}else if(kaizenBean.getEmployeeBean().getEmployee_master_id() == user.getEmployee_master_id()) {
-				System.err.println("ripal");
+				
 				boolean result = allKaizenUpdateDAO.kaizenMainApprovalRejetcion(kaizen_id,"pending");
+				String reactivationRemark = request.getParameter("reactivationRemark");
 				
+				AllKaizenInsertDAO allKaizenInsertDAO = new AllKaizenInsertDAO();
 				
+				KaizenReactivationRemarkBean kaizenReactivationRemarkBean = new KaizenReactivationRemarkBean(reactivationRemark, kaizenBean);
+				boolean result1 = allKaizenInsertDAO.kaizenReactivatkionInsert(kaizenReactivationRemarkBean);
 				
 				new Thread(new Runnable() {
 				    @Override
@@ -155,6 +161,8 @@ public class KaizenAcceptRejectServlet extends HttpServlet {
 				    	
 				    }
 				}).start();
+				
+				
 				return;
 				
 				

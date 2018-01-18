@@ -12,11 +12,16 @@ import com.hrms.recruitement.bean.CandidateExamScoreBean;
 import com.hrms.recruitement.bean.DailyCallingDataBean;
 import com.hrms.recruitement.bean.DepartmentDesignationBean;
 import com.hrms.recruitement.bean.DesignationTemplateBean;
+import com.hrms.recruitement.bean.FinalSelectionBean;
+import com.hrms.recruitement.bean.HRInterviewFeedbackBean;
+import com.hrms.recruitement.bean.HrSuggestBean;
 import com.hrms.recruitement.bean.InductionFeedbackBean;
 import com.hrms.recruitement.bean.InductionQABean;
+import com.hrms.grievancemanagement.bean.GrievanceEmailBean;
 import com.hrms.pms.bean.DepartmentBean;
 import com.hrms.pms.bean.EmployeeBean;
 import com.hrms.recruitement.bean.InterviewFeedbackBean;
+import com.hrms.recruitement.bean.InterviewManagerEmailBean;
 import com.hrms.recruitement.bean.InterviewQaWithResumeidBean;
 import com.hrms.recruitement.bean.InterviewQuestionBean;
 import com.hrms.recruitement.bean.InterviewTimingBean;
@@ -157,6 +162,25 @@ public class AllInsertDAO {
 			 tx = session.getTransaction();
 			 tx.begin();
 			 session.save(interviewFeedbackBean);
+			 tx.commit();
+		 } catch (Exception e) {
+			 if (tx != null) {
+				 tx.rollback();
+			 }
+			 e.printStackTrace();
+		 } finally {
+			 session.close();
+		 }	
+		 return true;
+	}
+	
+	public boolean hrinterviewfeedbackInsert(HRInterviewFeedbackBean hrInterviewFeedbackBean){
+		 Session session = HibernateUtil.openSession();
+		 Transaction tx = null;	
+		 try {
+			 tx = session.getTransaction();
+			 tx.begin();
+			 session.save(hrInterviewFeedbackBean);
 			 tx.commit();
 		 } catch (Exception e) {
 			 if (tx != null) {
@@ -759,5 +783,69 @@ public class AllInsertDAO {
 		 }	
 		 return true;
 	}
+	
+	// used for email to interviewer 
+	
+	public boolean interviewManagerEmailInsert(InterviewManagerEmailBean interviewManagerEmailBean){
+		 Session session = HibernateUtil.openSession();
+		 Transaction tx = null;	
+		 try {
+			 tx = session.getTransaction();
+			 tx.begin();
+			 session.saveOrUpdate(interviewManagerEmailBean);
+			 tx.commit();
+		 } catch (Exception e) {
+			 if (tx != null) {
+				 tx.rollback();
+			 }
+			 e.printStackTrace();
+		 } finally {
+			 session.close();
+		 }	
+		 return true;
+	}
+	
+	// final selection of candidate
+	
+	public boolean finalSelectionInsert(FinalSelectionBean finalSelectionBean){
+		 Session session = HibernateUtil.openSession();
+		 Transaction tx = null;	
+		 try {
+			 tx = session.getTransaction();
+			 tx.begin();
+			 session.saveOrUpdate(finalSelectionBean);
+			 tx.commit();
+		 } catch (Exception e) {
+			 if (tx != null) {
+				 tx.rollback();
+			 }
+			 e.printStackTrace();
+		 } finally {
+			 session.close();
+		 }	
+		 return true;
+	}
+	
+	
+	// insert into hr_suggest_tbl
+	
+		public boolean hrSuggestInsert(HrSuggestBean hrSuggestBean){
+			 Session session = HibernateUtil.openSession();
+			 Transaction tx = null;	
+			 try {
+				 tx = session.getTransaction();
+				 tx.begin();
+				 session.saveOrUpdate(hrSuggestBean);
+				 tx.commit();
+			 } catch (Exception e) {
+				 if (tx != null) {
+					 tx.rollback();
+				 }
+				 e.printStackTrace();
+			 } finally {
+				 session.close();
+			 }	
+			 return true;
+		}
 	
 }

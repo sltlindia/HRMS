@@ -124,7 +124,7 @@ public class EmployeeInsertServlet extends HttpServlet {
 			allInsertDAO.leaveBalanceCSVInsert(leaveBalanceCSVUploadBean);
 			
 			request.setAttribute("employee_master_id", emp_master_id );
-			request.getRequestDispatcher("employeeAccountDetail").forward(request, response);
+			request.getRequestDispatcher("newEmployee.jsp").forward(request, response);
 		
 		}
 	

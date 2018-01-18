@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.hrms.lms.bean.GatePassBean;
+import com.hrms.lms.dao.AllLMSListDAO;
 import com.hrms.lms.dao.AllUpdateDAO;
 
 /**
@@ -24,8 +26,18 @@ public class GatePassStatusMailUpdateServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		
 		int gate_pass_id = Integer.parseInt(request.getParameter("gate_pass_id"));
+		
+		AllLMSListDAO allLMSListDAO = new AllLMSListDAO();
+		
+		GatePassBean gatePassBean = allLMSListDAO.getGatePassDetail(gate_pass_id);
+		
 		String status = request.getParameter("status");
 		String reason = "-";
+		
+		if(gatePassBean.getStatus().equalsIgnoreCase("approved") || gatePassBean.getStatus().equalsIgnoreCase("out")) {
+			request.setAttribute("success", "Gate Pass already Approved by gate person...");
+			request.getRequestDispatcher("emailSuccess.jsp").forward(request, response);
+		}else {
 		
 		if(status.equalsIgnoreCase("rejected")) {
 			reason = "Email Rejection so Please concern to your manager for this rejection";
@@ -57,6 +69,7 @@ public class GatePassStatusMailUpdateServlet extends HttpServlet {
 					request.setAttribute("error", "Gate Pass Rejected Successfully...");
 					request.getRequestDispatcher("emailSuccess.jsp").forward(request, response);
 				}
+		}
 		}
 		
 	}

@@ -2715,7 +2715,7 @@ public class LeaveInsertServlet extends HttpServlet {
 																				CO = 0;
 																				
 																			}
-																			
+		 																	
 																		}		
 																	}		
 																}
@@ -2783,6 +2783,7 @@ public class LeaveInsertServlet extends HttpServlet {
 					
 						if (fieldName.equalsIgnoreCase("Mailredirect"))
 						{
+							
 							int ManagerID =  Manager_id;
 							String Name = user.getFirstname() + " " + user.getLastname();
 							String Leavetype = "Leave";
@@ -2809,6 +2810,7 @@ public class LeaveInsertServlet extends HttpServlet {
 
 						            // close the print stream
 						            ps.close();
+						            System.err.println("fcm DONE");
 						      }
 							 catch (MalformedURLException  e1)
 							 {    
@@ -2818,19 +2820,6 @@ public class LeaveInsertServlet extends HttpServlet {
 							 {
 								 e2.printStackTrace();
 							 }
-							
-							
-							
-							
-							
-							
-							
-							
-							
-							
-							
-							
-							
 							
 							if(lff != null){
 							 String no = Number;
@@ -2868,7 +2857,7 @@ public class LeaveInsertServlet extends HttpServlet {
 
 							int lId = leave_id;
 							
-							
+							String imprtantMsg = "";
 							new Thread(new Runnable() {
 								    @Override
 								    public void run() {
@@ -2884,7 +2873,7 @@ public class LeaveInsertServlet extends HttpServlet {
 								    
 								    	System.out.println("test");
 								    	
-								    	Mailer.send(to, sub, leavefrom, leaveto, days, emp_code,mobileNo,alert1,lId,name);
+								    	Mailer.send(to, sub, leavefrom, leaveto, days, emp_code,mobileNo,alert1,lId,name,imprtantMsg);
 								    	boolean result = allUpdateDAO.LeaveMailUpdate(lId,mail_view);
 								    	
 								    }

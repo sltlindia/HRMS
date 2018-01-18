@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.hrms.meetingmanagemnet.bean.MeetingBookingDetailBean;
+import com.hrms.meetingmanagemnet.bean.MeetingMOMBean;
 import com.hrms.meetingmanagemnet.dao.AllListMeetingDAO;
 
 /**
@@ -31,6 +32,7 @@ public class MeetingDataByIdServlet extends HttpServlet {
 		
 		AllListMeetingDAO allListMeetingDAO = new AllListMeetingDAO();
 		MeetingBookingDetailBean meetingBookingDetailBean = allListMeetingDAO.getBookinDetail(id);
+		MeetingMOMBean meetingMOMBean = allListMeetingDAO.getMeetingMOM(id);
 		
 		SimpleDateFormat HHmmaa = new SimpleDateFormat("hh:mm aa");
 		String fromTime = HHmmaa.format(meetingBookingDetailBean.getFrom_time());
@@ -48,14 +50,19 @@ public class MeetingDataByIdServlet extends HttpServlet {
 		
 		System.out.println(currTime);
 		boolean flag = false;
+		boolean mom = false;
+		
 		
 		if(date.after(calenderDate)) {
-			if(currTime.after(meetingBookingDetailBean.getFrom_time())) {
 				flag = true;
-			}
 		}
 		
-		String	jsonArray =   "{ \"meetingName\":\"" + meetingBookingDetailBean.getMeeting_name() +"\",\"from_time\":\"" +fromTime+"\" ,\"to_time\":\"" +toTime+"\" ,\"departmentName\":\"" +meetingBookingDetailBean.getDepartmentBean().getDepartment_name()+"\" ,\"meetingPurpose\":\"" +meetingBookingDetailBean.getMeeting_purpose()+"\" ,\"facility\":\"" +meetingBookingDetailBean.getMeetingRoomDetailBean().getFacility_name()+"\" ,\"capacity\":\"" +meetingBookingDetailBean.getMeetingRoomDetailBean().getCapacity()+"\" ,\"no\":\"" +meetingBookingDetailBean.getParticipant_no()+"\" ,\"resources\":\"" +meetingBookingDetailBean.getMeetingRoomDetailBean().getResources()+"\" ,\"meeting_booking_detail_id\":\"" +meetingBookingDetailBean.getMeeting_booking_detail_id()+"\" ,\"flag\":\"" +flag+"\"}";
+		
+		if(meetingMOMBean != null) {
+			mom = true;
+		}
+		
+		String	jsonArray =   "{ \"meetingName\":\"" + meetingBookingDetailBean.getMeeting_name() +"\",\"from_time\":\"" +fromTime+"\" ,\"to_time\":\"" +toTime+"\" ,\"departmentName\":\"" +meetingBookingDetailBean.getDepartmentBean().getDepartment_name()+"\" ,\"meetingPurpose\":\"" +meetingBookingDetailBean.getMeeting_purpose()+"\" ,\"facility\":\"" +meetingBookingDetailBean.getMeetingRoomDetailBean().getFacility_name()+"\" ,\"capacity\":\"" +meetingBookingDetailBean.getMeetingRoomDetailBean().getCapacity()+"\" ,\"no\":\"" +meetingBookingDetailBean.getParticipant_no()+"\" ,\"resources\":\"" +meetingBookingDetailBean.getMeetingRoomDetailBean().getResources()+"\" ,\"meeting_booking_detail_id\":\"" +meetingBookingDetailBean.getMeeting_booking_detail_id()+"\" ,\"flag\":\"" +flag+"\" ,\"mom\":\"" +mom+"\"}";
 		
 		response.getWriter().print(jsonArray);
 		

@@ -72,8 +72,8 @@
             </div>
         </div>
     </div>
-</div>
-/ Sales stats
+</div> -->
+<!-- <!-- / Sales stats
 Sales by Campaigns & Year
 <div class="row">
     <div class="col-xl-8 col-lg-12">
@@ -479,12 +479,12 @@ most selling products
             </div>
         </div>
     </div>
-</div>
-/ most selling products
+</div>  -->
+<!--/ most selling products-->
 
         </div>
       </div>
-    </div> -->
+    </div>
 <%@include file="footer.html"%>
 <!-- BEGIN VENDOR JS-->
 	<!-- build:js app-assets/js/vendors.min.js-->

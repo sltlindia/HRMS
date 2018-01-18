@@ -29,6 +29,7 @@ public class VacancyFormBean implements Serializable {
 	private String payment_type;
 	private String salary_range;
 	private String vacancy_period;
+	private String company_branch;
 
 	/* private String interviewed_by; */
 
@@ -48,7 +49,7 @@ public class VacancyFormBean implements Serializable {
 	private String key_performance_indicator;
 	private String bill_limit;
 	private String country;
-
+	private String key_skills;
 	private DepartmentBean departmentBean;
 	private ManagerBean managerBean;
 	private EmployeeBean employeeBean;
@@ -68,16 +69,16 @@ public class VacancyFormBean implements Serializable {
 	}
 
 	public VacancyFormBean(int no_of_vacancy, int reporting_manager, String tentative_joining_date,
-			String required_experience, String salary_range, String skillandcompetencies,
-			String approved_status, String submission_date, String reason_for_hire, String vacancy_type,
-			String replacement_of, String title_of_position, String role_objective, String span_of_control,
-			String internal_operating_network, String external_operating_network, String personal_competencies,
-			String key_performance_indicator, String bill_limit, DepartmentBean departmentBean, ManagerBean managerBean,
-			EmployeeBean employeeBean, StateBean stateBean,
-			CityBean cityBean, UnderGraduateQualificationBean underGraduateQualificationBean,
+			String required_experience, String salary_range, String skillandcompetencies, String approved_status,
+			String submission_date, String reason_for_hire, String vacancy_type, String replacement_of,
+			String title_of_position, String role_objective, String span_of_control, String internal_operating_network,
+			String external_operating_network, String personal_competencies, String key_performance_indicator,
+			String bill_limit, DepartmentBean departmentBean, ManagerBean managerBean, EmployeeBean employeeBean,
+			StateBean stateBean, CityBean cityBean, UnderGraduateQualificationBean underGraduateQualificationBean,
 			UnderGraduateSpecificationBean underGraduateSpecificationBean,
 			PostGraduateQualificationBean postGraduateQualificationBean,
-			PostGraduateSpecificationBean postGraduateSpecificationBean, String country, String role_description) {
+			PostGraduateSpecificationBean postGraduateSpecificationBean, String country, String role_description,
+			String company_branch, String key_skills) {
 
 		this.no_of_vacancy = no_of_vacancy;
 		this.reporting_manager = reporting_manager;
@@ -109,6 +110,8 @@ public class VacancyFormBean implements Serializable {
 		this.postGraduateSpecificationBean = postGraduateSpecificationBean;
 		this.country = country;
 		this.role_description = role_description;
+		this.company_branch = company_branch;
+		this.key_skills = key_skills;
 	}
 
 	public VacancyFormBean(int no_of_vacancy, String salary_range, String reason, String approved_status,
@@ -139,7 +142,6 @@ public class VacancyFormBean implements Serializable {
 		this.no_of_vacancy = no_of_vacancy;
 	}
 
-
 	public String getTentative_joining_date() {
 		return tentative_joining_date;
 	}
@@ -157,7 +159,6 @@ public class VacancyFormBean implements Serializable {
 	public void setDepartmentBean(DepartmentBean departmentBean) {
 		this.departmentBean = departmentBean;
 	}
-
 
 	public String getRequired_experience() {
 		return required_experience;
@@ -182,7 +183,6 @@ public class VacancyFormBean implements Serializable {
 	public void setSalary_range(String salary_range) {
 		this.salary_range = salary_range;
 	}
-
 
 	public String getVacancy_period() {
 		return vacancy_period;
@@ -404,10 +404,24 @@ public class VacancyFormBean implements Serializable {
 		return role_description;
 	}
 
+	public String getCompany_branch() {
+		return company_branch;
+	}
+
+	public void setCompany_branch(String company_branch) {
+		this.company_branch = company_branch;
+	}
+
 	public void setRole_description(String role_description) {
 		this.role_description = role_description;
 	}
-	
-	
+
+	public String getKey_skills() {
+		return key_skills;
+	}
+
+	public void setKey_skills(String key_skills) {
+		this.key_skills = key_skills;
+	}
 
 }

@@ -40,6 +40,7 @@ import com.hrms.recruitement.bean.VacancyBenefitsBean;
 import com.hrms.recruitement.bean.VacancyFormBean;
 import com.hrms.recruitement.bean.VacancyGradeLevelBean;
 import com.hrms.recruitement.bean.VacancyPayrollHrInfoBean;
+import com.hrms.recruitement.bean.VacancytitleBean;
 import com.hrms.recruitement.util.HibernateUtil;
 import com.hrms.recruitement.bean.AcademicDetailCheckBean;
 import com.hrms.recruitement.bean.AppointmentLetterBean;
@@ -47,9 +48,14 @@ import com.hrms.recruitement.bean.BenefitsBean;
 import com.hrms.recruitement.bean.CandidateExamInfoBean;
 import com.hrms.recruitement.bean.CandidateExamScoreBean;
 import com.hrms.recruitement.bean.DailyCallingDataBean;
+import com.hrms.recruitement.bean.DailyCallingStatusBean;
 import com.hrms.recruitement.bean.DepartmentDesignationBean;
 import com.hrms.recruitement.bean.DesignationTemplateBean;
 import com.hrms.recruitement.bean.EducationalQualificationBean;
+import com.hrms.recruitement.bean.FinalSelectionBean;
+import com.hrms.recruitement.bean.HRInterviewFeedbackBean;
+import com.hrms.recruitement.bean.HrSuggestBean;
+import com.hrms.recruitement.bean.HrresumeBean;
 import com.hrms.recruitement.bean.InductionFeedbackBean;
 import com.hrms.recruitement.bean.InductionQABean;
 import com.hrms.recruitement.bean.InterviewFeedbackBean;
@@ -79,6 +85,8 @@ public class AllRecruitmentListDAO {
 		return listOfEmployee;
 
 	}
+
+	// Used at vacancyForm.jsp
 
 	public List<BenefitsBean> getListOfBenefits() {
 		List<BenefitsBean> listOfBenefits = new ArrayList<BenefitsBean>();
@@ -251,72 +259,6 @@ public class AllRecruitmentListDAO {
 
 	}
 
-	public List<VacancyFormBean> getListOfMdApprovance(int dept_id) {
-		List<VacancyFormBean> listOfvacancymanager = new ArrayList<VacancyFormBean>();
-		Session session = HibernateUtil.openSession();
-		Transaction tx = null;
-		try {
-			tx = session.getTransaction();
-			tx.begin();
-			listOfvacancymanager = session
-					.createQuery("FROM VacancyFormBean WHERE director_approval=1 and director_status='pending'").list();
-			tx.commit();
-		} catch (Exception e) {
-			if (tx != null) {
-				tx.rollback();
-			}
-			e.printStackTrace();
-		} finally {
-			session.close();
-		}
-		return listOfvacancymanager;
-
-	}
-
-	public List<VacancyFormBean> getListOfCEOApprovance() {
-		List<VacancyFormBean> listOfvacancymanager = new ArrayList<VacancyFormBean>();
-		Session session = HibernateUtil.openSession();
-		Transaction tx = null;
-		try {
-			tx = session.getTransaction();
-			tx.begin();
-			listOfvacancymanager = session
-					.createQuery("FROM VacancyFormBean WHERE ceo_approval= 1 and ceo_status='pending'").list();
-			tx.commit();
-		} catch (Exception e) {
-			if (tx != null) {
-				tx.rollback();
-			}
-			e.printStackTrace();
-		} finally {
-			session.close();
-		}
-		return listOfvacancymanager;
-
-	}
-
-	public List<VacancyFormBean> getListOfHODApprovance() {
-		List<VacancyFormBean> listOfvacancymanager = new ArrayList<VacancyFormBean>();
-		Session session = HibernateUtil.openSession();
-		Transaction tx = null;
-		try {
-			tx = session.getTransaction();
-			tx.begin();
-			listOfvacancymanager = session
-					.createQuery("FROM VacancyFormBean WHERE hod_approval= 1 and hod_status='pending'").list();
-			tx.commit();
-		} catch (Exception e) {
-			if (tx != null) {
-				tx.rollback();
-			}
-			e.printStackTrace();
-		} finally {
-			session.close();
-		}
-		return listOfvacancymanager;
-
-	}
-
 	public List<EmployeeBean> getFullListOfEmployee(int manager_id) {
 		List<EmployeeBean> listOfEmployee = new ArrayList<EmployeeBean>();
 		Session session = HibernateUtil.openSession();
@@ -378,96 +320,6 @@ public class AllRecruitmentListDAO {
 			session.close();
 		}
 		return NameOfManager;
-	}
-
-	public List<VacancyFormBean> getListOfMdUpdated(int dept_id) {
-		List<VacancyFormBean> listOfvacancymanager = new ArrayList<VacancyFormBean>();
-		Session session = HibernateUtil.openSession();
-		Transaction tx = null;
-		try {
-			tx = session.getTransaction();
-			tx.begin();
-			listOfvacancymanager = session
-					.createQuery("FROM VacancyFormBean WHERE director_approval=1 and director_status='updated'").list();
-			tx.commit();
-		} catch (Exception e) {
-			if (tx != null) {
-				tx.rollback();
-			}
-			e.printStackTrace();
-		} finally {
-			session.close();
-		}
-		return listOfvacancymanager;
-
-	}
-
-	public List<VacancyFormBean> getListOfHrUpdated() {
-		List<VacancyFormBean> listOfvacancymanager = new ArrayList<VacancyFormBean>();
-		Session session = HibernateUtil.openSession();
-		Transaction tx = null;
-		try {
-			tx = session.getTransaction();
-			tx.begin();
-			listOfvacancymanager = session
-					.createQuery("FROM VacancyFormBean WHERE hr_approval=1 and hr_status='updated'").list();
-			tx.commit();
-		} catch (Exception e) {
-			if (tx != null) {
-				tx.rollback();
-			}
-			e.printStackTrace();
-		} finally {
-			session.close();
-		}
-		return listOfvacancymanager;
-
-	}
-
-	public List<VacancyFormBean> getListOfCEOUpdated() {
-		List<VacancyFormBean> listOfvacancymanager = new ArrayList<VacancyFormBean>();
-		Session session = HibernateUtil.openSession();
-		Transaction tx = null;
-		try {
-			tx = session.getTransaction();
-			tx.begin();
-			listOfvacancymanager = session
-					.createQuery("FROM VacancyFormBean WHERE ceo_approval= 1 and ceo_status='updated'").list();
-			tx.commit();
-		} catch (Exception e) {
-			if (tx != null) {
-				tx.rollback();
-			}
-			e.printStackTrace();
-		} finally {
-			session.close();
-		}
-		return listOfvacancymanager;
-
-	}
-
-	public List<VacancyFormBean> getListOfHODUpdated(int dept_id) {
-		List<VacancyFormBean> listOfvacancymanager = new ArrayList<VacancyFormBean>();
-		Session session = HibernateUtil.openSession();
-		Transaction tx = null;
-		try {
-			tx = session.getTransaction();
-			tx.begin();
-			listOfvacancymanager = session
-					.createQuery("FROM VacancyFormBean WHERE hod_approval= 1 and departmentBean ='" + dept_id
-							+ "' and hod_status='updated'")
-					.list();
-			tx.commit();
-		} catch (Exception e) {
-			if (tx != null) {
-				tx.rollback();
-			}
-			e.printStackTrace();
-		} finally {
-			session.close();
-		}
-		return listOfvacancymanager;
-
 	}
 
 	public List<VacancyFormBean> getListOfVacancy() {
@@ -586,9 +438,8 @@ public class AllRecruitmentListDAO {
 		try {
 			tx = session.getTransaction();
 			tx.begin();
-			listOfCandidate = session
-					.createQuery("FROM ResumeShareBean where resume_data_id= " + resume_data_id + " and employee_master_id= " + employee_master_id + " and status='pending'")
-					.list();
+			listOfCandidate = session.createQuery("FROM ResumeShareBean where resume_data_id= " + resume_data_id
+					+ " and employee_master_id= " + employee_master_id + " and status='pending'").list();
 			tx.commit();
 		} catch (Exception e) {
 			if (tx != null) {
@@ -740,7 +591,9 @@ public class AllRecruitmentListDAO {
 			tx = session.getTransaction();
 			tx.begin();
 			listOfCandidate = session
-					.createQuery("FROM ResumeShareBean where resumeDataBean.vacancyFormBean.managerBean='" + employee_master_id + "'").list();
+					.createQuery("FROM ResumeShareBean where resumeDataBean.vacancyFormBean.managerBean='"
+							+ employee_master_id + "'")
+					.list();
 			tx.commit();
 		} catch (Exception e) {
 			if (tx != null) {
@@ -776,6 +629,8 @@ public class AllRecruitmentListDAO {
 		return listOfCandidate;
 	}
 
+	// used at aalInterviewFeedback.jsp for notified candidate
+
 	public List<ResumeDataBean> getListOfAllocatedCandidate() {
 		List<ResumeDataBean> ListOfAllocatedCandidate = new ArrayList<ResumeDataBean>();
 		Session session = HibernateUtil.openSession();
@@ -804,7 +659,7 @@ public class AllRecruitmentListDAO {
 		try {
 			tx = session.getTransaction();
 			tx.begin();
-			ListOfAllocatedCandidate = session.createQuery("FROM ResumeDataBean where status='time given'").list();
+			ListOfAllocatedCandidate = session.createQuery("FROM ResumeDataBean where status='shared'").list();
 			tx.commit();
 		} catch (Exception e) {
 			if (tx != null) {
@@ -818,7 +673,9 @@ public class AllRecruitmentListDAO {
 
 	}
 
-	public List<ResumeDataBean> getListOfResumeDataSearchEngine(String skill, String experience, int expected_salary) {
+	// for searching specific data String from resume data
+	
+	public List<ResumeDataBean> getListOfResumeDataSearchEngine(String skill) {
 		List<ResumeDataBean> listOfResumeData = new ArrayList<ResumeDataBean>();
 		Session session = HibernateUtil.openSession();
 		Transaction tx = null;
@@ -826,8 +683,7 @@ public class AllRecruitmentListDAO {
 			tx = session.getTransaction();
 			tx.begin();
 			listOfResumeData = session
-					.createQuery("FROM ResumeDataBean where  key_skills  LIKE '%" + skill + "%' AND experience='"
-							+ experience + "' AND expected_salary <='" + expected_salary + "' AND status != 'pending'")
+					.createQuery("FROM ResumeDataBean where  key_skills  LIKE '%" + skill + "%'")
 					.list();
 			tx.commit();
 		} catch (Exception e) {
@@ -841,6 +697,51 @@ public class AllRecruitmentListDAO {
 		return listOfResumeData;
 	}
 
+	
+	public List<HrresumeBean> getListOfResumeDataSearchEnginebyhr(String skill) {
+		List<HrresumeBean> listOfResumeData = new ArrayList<HrresumeBean>();
+		Session session = HibernateUtil.openSession();
+		Transaction tx = null;
+		try {
+			tx = session.getTransaction();
+			tx.begin();
+			listOfResumeData = session
+					.createQuery("FROM HrresumeBean where  key_skills  LIKE '%" + skill + "%'")
+					.list();
+			tx.commit();
+		} catch (Exception e) {
+			if (tx != null) {
+				tx.rollback();
+			}
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return listOfResumeData;
+	}
+	
+	public List<HrresumeBean> getListOfgetallResumeData(int id) {
+		List<HrresumeBean> listOfResumeData = new ArrayList<HrresumeBean>();
+		Session session = HibernateUtil.openSession();
+		Transaction tx = null;
+		try {
+			tx = session.getTransaction();
+			tx.begin();
+			listOfResumeData = session
+					.createQuery("FROM HrresumeBean where hr_resume_id = '" + id + "' ")
+					.list();
+			tx.commit();
+		} catch (Exception e) {
+			if (tx != null) {
+				tx.rollback();
+			}
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return listOfResumeData;
+	}
+	
 	public List<EmployeeBean> getListOfinterviewer() {
 		List<EmployeeBean> listOfInterviewer = new ArrayList<EmployeeBean>();
 		Session session = HibernateUtil.openSession();
@@ -1050,6 +951,29 @@ public class AllRecruitmentListDAO {
 			session.close();
 		}
 		return listofOfferLetter;
+	}
+	
+	// used at automaticappointmentletter.jsp and GenerateAppointmentletterservlet
+	
+	public List<AppointmentLetterBean> getListOfAppointment(int appointment_letter_id) {
+		List<AppointmentLetterBean> listofAppointment = new ArrayList<AppointmentLetterBean>();
+		Session session = HibernateUtil.openSession();
+		Transaction tx = null;
+		try {
+			tx = session.getTransaction();
+			tx.begin();
+			listofAppointment = session
+					.createQuery("from AppointmentLetterBean where appointment_letter_id = '" + appointment_letter_id+ "'").list();
+			tx.commit();
+		} catch (Exception e) {
+			if (tx != null) {
+				tx.rollback();
+			}
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return listofAppointment;
 	}
 
 	public List<PreEmploymentArrangementBean> getListOfPreEmploymentArrangement(int pre_employment_arrangement_id) {
@@ -1635,7 +1559,28 @@ public class AllRecruitmentListDAO {
 		return listOfInterviewer;
 	}
 
-	public List<InterviewTimingBean> getListOfInterviewByEmployeeID1(int employee_id) {
+	public List<ResumeShareBean> getListOfInterviewByEmployeeID1(int employee_id) {
+		List<ResumeShareBean> listOfInterviewer = new ArrayList<ResumeShareBean>();
+		Session session = HibernateUtil.openSession();
+		Transaction tx = null;
+		try {
+			tx = session.getTransaction();
+			tx.begin();
+			listOfInterviewer = session.createQuery("FROM ResumeShareBean where employeeBean = '" + employee_id + "'")
+					.list();
+			tx.commit();
+		} catch (Exception e) {
+			if (tx != null) {
+				tx.rollback();
+			}
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return listOfInterviewer;
+	}
+
+	public List<InterviewTimingBean> getListOfInterviewByEmployeeID2(int employee_id) {
 		List<InterviewTimingBean> listOfInterviewer = new ArrayList<InterviewTimingBean>();
 		Session session = HibernateUtil.openSession();
 		Transaction tx = null;
@@ -1643,9 +1588,7 @@ public class AllRecruitmentListDAO {
 			tx = session.getTransaction();
 			tx.begin();
 			listOfInterviewer = session
-					.createQuery(
-							"FROM InterviewTimingBean where employeeBean = '" + employee_id + "'")
-					.list();
+					.createQuery("FROM InterviewTimingBean where employeeBean = '" + employee_id + "'").list();
 			tx.commit();
 		} catch (Exception e) {
 			if (tx != null) {
@@ -1687,8 +1630,8 @@ public class AllRecruitmentListDAO {
 		try {
 			tx = session.getTransaction();
 			tx.begin();
-			listOfInterviewer = session
-					.createQuery("FROM ResumeShareBean where resumeDataBean = '" + resume_id + "'").list();
+			listOfInterviewer = session.createQuery("FROM ResumeShareBean where resumeDataBean = '" + resume_id + "'")
+					.list();
 			tx.commit();
 		} catch (Exception e) {
 			if (tx != null) {
@@ -1743,6 +1686,50 @@ public class AllRecruitmentListDAO {
 		return listOfInterviewer;
 	}
 
+	
+	public List<ResumeDataBean> getListOfupdateinterviewdate(int resume_id) {
+		List<ResumeDataBean> listOfInterviewer = new ArrayList<ResumeDataBean>();
+		Session session = HibernateUtil.openSession();
+		Transaction tx = null;
+		try {
+			tx = session.getTransaction();
+			tx.begin();
+			listOfInterviewer = session
+					.createQuery("FROM ResumeDataBean where vacancyFormBean = '" + resume_id + "'").list();
+			tx.commit();
+		} catch (Exception e) {
+			if (tx != null) {
+				tx.rollback();
+			}
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return listOfInterviewer;
+	}
+	
+	public List<ResumeDataBean> getListOfupdateinterviewdate23(int resume_id) {
+		List<ResumeDataBean> listOfInterviewer = new ArrayList<ResumeDataBean>();
+		Session session = HibernateUtil.openSession();
+		Transaction tx = null;
+		try {
+			tx = session.getTransaction();
+			tx.begin();
+			listOfInterviewer = session
+					.createQuery("FROM NotifyToCandidateBean where resumeDataBean = '" + resume_id + "'").list();
+			tx.commit();
+		} catch (Exception e) {
+			if (tx != null) {
+				tx.rollback();
+			}
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return listOfInterviewer;
+	}
+	
+	
 	public List<InterviewFeedbackBean> getListOfAllInterviewFeedbackByResumeId(int vacancy_id) {
 		List<InterviewFeedbackBean> listOfAllInterviewFeedback = new ArrayList<InterviewFeedbackBean>();
 		Session session = HibernateUtil.openSession();
@@ -1917,8 +1904,7 @@ public class AllRecruitmentListDAO {
 			tx = session.getTransaction();
 			tx.begin();
 			listOfresume = session
-					.createQuery(
-							"FROM ResumeDataBean where vacancyFormBean= " + vacancy_id + " and status ='time given'")
+					.createQuery("FROM ResumeDataBean where vacancyFormBean= " + vacancy_id + " and status ='Invited'")
 					.list();
 			tx.commit();
 		} catch (Exception e) {
@@ -1932,15 +1918,15 @@ public class AllRecruitmentListDAO {
 		return listOfresume;
 	}
 
-	public List<InterviewTimingBean> getListOfInterviewByVacncyId1(int resume_id) {
-		List<InterviewTimingBean> listOfInterviewer = new ArrayList<InterviewTimingBean>();
+	public List<ResumeShareBean> getListOfInterviewByVacncyId1(int resume_id) {
+		List<ResumeShareBean> listOfInterviewer = new ArrayList<ResumeShareBean>();
 		Session session = HibernateUtil.openSession();
 		Transaction tx = null;
 		try {
 			tx = session.getTransaction();
 			tx.begin();
-			listOfInterviewer = session
-					.createQuery("FROM InterviewTimingBean where resumeDataBean = '" + resume_id + "'").list();
+			listOfInterviewer = session.createQuery("FROM ResumeShareBean where resumeDataBean = '" + resume_id + "'")
+					.list();
 			tx.commit();
 		} catch (Exception e) {
 			if (tx != null) {
@@ -2301,8 +2287,9 @@ public class AllRecruitmentListDAO {
 		try {
 			tx = session.getTransaction();
 			tx.begin();
-			listOfAllResumeByEmployeeId = session
-					.createQuery("FROM ResumeDataBean where employee_master_id = '" + employee_master_id + "' and status='pending' ").list();
+			listOfAllResumeByEmployeeId = session.createQuery(
+					"FROM ResumeDataBean where employee_master_id = '" + employee_master_id + "' and status='pending' ")
+					.list();
 			tx.commit();
 		} catch (Exception e) {
 			if (tx != null) {
@@ -2377,6 +2364,8 @@ public class AllRecruitmentListDAO {
 		}
 		return listofPhilTest;
 	}
+
+	// Used at vacancyForm.jsp for interviewer
 
 	public List<EmployeeBean> getFullListOfEmployee() {
 		List<EmployeeBean> listOfEmployee = new ArrayList<EmployeeBean>();
@@ -2482,6 +2471,8 @@ public class AllRecruitmentListDAO {
 		return listForVacancyNotification;
 	}
 
+	// used at vacancyForm.jsp for State dropdown
+
 	public List<StateBean> getListOfState() {
 		List<StateBean> listOfState = new ArrayList<StateBean>();
 		Session session = HibernateUtil.openSession();
@@ -2501,6 +2492,8 @@ public class AllRecruitmentListDAO {
 		}
 		return listOfState;
 	}
+
+	// used at vacancyForm.jsp for list of undergraduate Qualification
 
 	public List<UnderGraduateQualificationBean> getListOfUnderGraduateQualification() {
 		List<UnderGraduateQualificationBean> listOfUnderGraduateQualification = new ArrayList<UnderGraduateQualificationBean>();
@@ -2522,6 +2515,8 @@ public class AllRecruitmentListDAO {
 		return listOfUnderGraduateQualification;
 	}
 
+	// used at vacancyForm.jsp for list of undergraduate Specialization
+
 	public List<UnderGraduateSpecificationBean> getListOfUnderGraduateSpecification() {
 		List<UnderGraduateSpecificationBean> listOfUnderGraduateSpecification = new ArrayList<UnderGraduateSpecificationBean>();
 		Session session = HibernateUtil.openSession();
@@ -2542,6 +2537,8 @@ public class AllRecruitmentListDAO {
 		return listOfUnderGraduateSpecification;
 	}
 
+	// used at vacancyForm.jsp for list of Post Graduate Qualification
+
 	public List<PostGraduateQualificationBean> getListOfPostGraduateQualification() {
 		List<PostGraduateQualificationBean> listOfPostGraduateQualification = new ArrayList<PostGraduateQualificationBean>();
 		Session session = HibernateUtil.openSession();
@@ -2561,6 +2558,8 @@ public class AllRecruitmentListDAO {
 		}
 		return listOfPostGraduateQualification;
 	}
+
+	// used at vacancyForm.jsp for list of Post Graduate Specialization
 
 	public List<PostGraduateSpecificationBean> getListOfPostGraduateSpecification() {
 		List<PostGraduateSpecificationBean> listOfPostGraduateSpecification = new ArrayList<PostGraduateSpecificationBean>();
@@ -2655,7 +2654,7 @@ public class AllRecruitmentListDAO {
 			tx = session.getTransaction();
 			tx.begin();
 			listForVacancyNotification = session.createQuery("FROM VacancyApprovalBean WHERE vacancy_id= '" + vacancy_id
-					+ "' and approval_number = '1' and approval_status = 'approved'").list();
+					+ "' and approval_number = '0' and approval_status = 'approved'").list();
 			tx.commit();
 		} catch (Exception e) {
 			if (tx != null) {
@@ -2856,7 +2855,7 @@ public class AllRecruitmentListDAO {
 		}
 		return listForVacancyNotification;
 	}
-	
+
 	public List<ResumeDataBean> getListOfSharedResumeByEmployee(int employee_master_id) {
 		List<ResumeDataBean> listOfAllResumeByEmployeeId = new ArrayList<ResumeDataBean>();
 		Session session = HibernateUtil.openSession();
@@ -2864,8 +2863,9 @@ public class AllRecruitmentListDAO {
 		try {
 			tx = session.getTransaction();
 			tx.begin();
-			listOfAllResumeByEmployeeId = session
-					.createQuery("FROM ResumeDataBean where employee_master_id = '" + employee_master_id + "' and status='shared'").list();
+			listOfAllResumeByEmployeeId = session.createQuery(
+					"FROM ResumeDataBean where employee_master_id = '" + employee_master_id + "' and status='shared'")
+					.list();
 			tx.commit();
 		} catch (Exception e) {
 			if (tx != null) {
@@ -2877,7 +2877,7 @@ public class AllRecruitmentListDAO {
 		}
 		return listOfAllResumeByEmployeeId;
 	}
-	
+
 	public List<ResumeShareBean> getListOfResumeForApproveReject(int employee_master_id) {
 		List<ResumeShareBean> listOfAllResumeByEmployeeId = new ArrayList<ResumeShareBean>();
 		Session session = HibernateUtil.openSession();
@@ -2885,8 +2885,9 @@ public class AllRecruitmentListDAO {
 		try {
 			tx = session.getTransaction();
 			tx.begin();
-			listOfAllResumeByEmployeeId = session
-					.createQuery("FROM ResumeShareBean where employee_master_id = '" + employee_master_id + "' and status='pending'").list();
+			listOfAllResumeByEmployeeId = session.createQuery(
+					"FROM ResumeShareBean where employee_master_id = '" + employee_master_id + "' and status='pending'")
+					.list();
 			tx.commit();
 		} catch (Exception e) {
 			if (tx != null) {
@@ -2898,7 +2899,7 @@ public class AllRecruitmentListDAO {
 		}
 		return listOfAllResumeByEmployeeId;
 	}
-	
+
 	public List<ResumeShareBean> getListOfResumeShare() {
 		List<ResumeShareBean> listOfAllResumeByEmployeeId = new ArrayList<ResumeShareBean>();
 		Session session = HibernateUtil.openSession();
@@ -2906,8 +2907,7 @@ public class AllRecruitmentListDAO {
 		try {
 			tx = session.getTransaction();
 			tx.begin();
-			listOfAllResumeByEmployeeId = session
-					.createQuery("FROM ResumeShareBean").list();
+			listOfAllResumeByEmployeeId = session.createQuery("FROM ResumeShareBean").list();
 			tx.commit();
 		} catch (Exception e) {
 			if (tx != null) {
@@ -2919,7 +2919,7 @@ public class AllRecruitmentListDAO {
 		}
 		return listOfAllResumeByEmployeeId;
 	}
-	
+
 	public List<ResumeShareBean> getListOfCandidateWithResumeId(int resume_data_id) {
 		List<ResumeShareBean> listOfCandidate = new ArrayList<ResumeShareBean>();
 		Session session = HibernateUtil.openSession();
@@ -2927,8 +2927,8 @@ public class AllRecruitmentListDAO {
 		try {
 			tx = session.getTransaction();
 			tx.begin();
-			listOfCandidate = session
-					.createQuery("FROM ResumeShareBean where resume_data_id= " + resume_data_id + "").list();
+			listOfCandidate = session.createQuery("FROM ResumeShareBean where resume_data_id= " + resume_data_id + "")
+					.list();
 			tx.commit();
 		} catch (Exception e) {
 			if (tx != null) {
@@ -2941,6 +2941,504 @@ public class AllRecruitmentListDAO {
 		return listOfCandidate;
 
 	}
+
+	// used at vacancyForm.jsp and viewResumeDataForManager.jsp for list of
+	// Daily calling status
+
+	public List<DailyCallingStatusBean> getListOfDailyCallingStatus() {
+		List<DailyCallingStatusBean> listOfStatus = new ArrayList<DailyCallingStatusBean>();
+		Session session = HibernateUtil.openSession();
+		Transaction tx = null;
+		try {
+			tx = session.getTransaction();
+			tx.begin();
+			listOfStatus = session.createQuery("FROM DailyCallingStatusBean order by daily_calling_status_name asc")
+					.list();
+			tx.commit();
+		} catch (Exception e) {
+			if (tx != null) {
+				tx.rollback();
+			}
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return listOfStatus;
+	}
+
+	// Used at allResumeList.jsp for list of all the resume filled by employee.
+
+	public List<ResumeDataBean> getListOfAllResumeByEmployee(int employee_master_id) {
+		List<ResumeDataBean> listOfAllResumeByEmployeeId = new ArrayList<ResumeDataBean>();
+		Session session = HibernateUtil.openSession();
+		Transaction tx = null;
+		try {
+			tx = session.getTransaction();
+			tx.begin();
+			listOfAllResumeByEmployeeId = session
+					.createQuery("FROM ResumeDataBean where employee_master_id = '" + employee_master_id + "'").list();
+			tx.commit();
+		} catch (Exception e) {
+			if (tx != null) {
+				tx.rollback();
+			}
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return listOfAllResumeByEmployeeId;
+	}
+
+	// used at interviewfeedback.jsp
+
+	public List<HRInterviewFeedbackBean> getListOfHrInterview(int resume_data_id) {
+		List<HRInterviewFeedbackBean> listOfAllResumeByEmployeeId = new ArrayList<HRInterviewFeedbackBean>();
+		Session session = HibernateUtil.openSession();
+		Transaction tx = null;
+		try {
+			tx = session.getTransaction();
+			tx.begin();
+			listOfAllResumeByEmployeeId = session
+					.createQuery("FROM HRInterviewFeedbackBean where resume_data_id = '" + resume_data_id + "'").list();
+			tx.commit();
+		} catch (Exception e) {
+			if (tx != null) {
+				tx.rollback();
+			}
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return listOfAllResumeByEmployeeId;
+	}
+
+	// used at resumeSharedWith.jsp for knowing resume shared with
+
+	public List<ResumeShareBean> getListOfSharedPerson(int resume_data_id) {
+		List<ResumeShareBean> ListOfAllocatedCandidate = new ArrayList<ResumeShareBean>();
+		Session session = HibernateUtil.openSession();
+		Transaction tx = null;
+		try {
+			tx = session.getTransaction();
+			tx.begin();
+			ListOfAllocatedCandidate = session
+					.createQuery("FROM ResumeShareBean where resume_data_id='" + resume_data_id + "'").list();
+			tx.commit();
+		} catch (Exception e) {
+			if (tx != null) {
+				tx.rollback();
+			}
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return ListOfAllocatedCandidate;
+	}
+
+	// used at resumeSharedWith.jsp for interview feedback form
+
+	public List<InterviewFeedbackBean> getListOfPerticularInterview(int resume_data_id, int employee_master_id) {
+		List<InterviewFeedbackBean> ListOfAllocatedCandidate = new ArrayList<InterviewFeedbackBean>();
+		Session session = HibernateUtil.openSession();
+		Transaction tx = null;
+		try {
+			tx = session.getTransaction();
+			tx.begin();
+			ListOfAllocatedCandidate = session
+					.createQuery("FROM InterviewFeedbackBean where resume_data_id='" + resume_data_id + "' and employee_master_id = '"+employee_master_id+"'").list();
+			tx.commit();
+		} catch (Exception e) {
+			if (tx != null) {
+				tx.rollback();
+			}
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return ListOfAllocatedCandidate;
+	}
 	
+	// used at resumeDataSearchEngineWithData.jsp 
+
+		public List<HrSuggestBean> getListOfSuggestedResume(int vacancy_id) {
+			List<HrSuggestBean> ListOfAllocatedCandidate = new ArrayList<HrSuggestBean>();
+			Session session = HibernateUtil.openSession();
+			Transaction tx = null;
+			try {
+				tx = session.getTransaction();
+				tx.begin();
+				ListOfAllocatedCandidate = session
+						.createQuery("FROM HrSuggestBean where vacancy_id = '"+vacancy_id+"'").list();
+				tx.commit();
+			} catch (Exception e) {
+				if (tx != null) {
+					tx.rollback();
+				}
+				e.printStackTrace();
+			} finally {
+				session.close();
+			}
+			return ListOfAllocatedCandidate;
+		}
+		
+		
+		
+		// used at offerletterViaFeedback.jsp 
+
+				public List<FinalSelectionBean> getListOfSelectedResume() {
+					List<FinalSelectionBean> ListOfAllocatedCandidate = new ArrayList<FinalSelectionBean>();
+					Session session = HibernateUtil.openSession();
+					Transaction tx = null;
+					try {
+						tx = session.getTransaction();
+						tx.begin();
+						ListOfAllocatedCandidate = session
+								.createQuery("FROM FinalSelectionBean where decision = 'selected'").list();
+						tx.commit();
+					} catch (Exception e) {
+						if (tx != null) {
+							tx.rollback();
+						}
+						e.printStackTrace();
+					} finally {
+						session.close();
+					}
+					return ListOfAllocatedCandidate;
+				}	
+				
+				
+				// used at offerletterViaFeedback.jsp 
+
+				public List<FinalSelectionBean> getListOfFinalSelection(int final_selection_id) {
+					List<FinalSelectionBean> ListOfAllocatedCandidate = new ArrayList<FinalSelectionBean>();
+					Session session = HibernateUtil.openSession();
+					Transaction tx = null;
+					try {
+						tx = session.getTransaction();
+						tx.begin();
+						ListOfAllocatedCandidate = session
+								.createQuery("FROM FinalSelectionBean where final_selection_id = '"+final_selection_id +"'").list();
+						tx.commit();
+					} catch (Exception e) {
+						if (tx != null) {
+							tx.rollback();
+						}
+						e.printStackTrace();
+					} finally {
+						session.close();
+					}
+					return ListOfAllocatedCandidate;
+				}	
+				
+				
+				 // used to update Interview Date for HR Side
+				
+				public List<ResumeDataBean> getListuseforupdateinterviewDate(int vac_id) {
+					List<ResumeDataBean> ListOfAllocatedCandidate = new ArrayList<ResumeDataBean>();
+					Session session = HibernateUtil.openSession();
+					Transaction tx = null;
+					try {
+						tx = session.getTransaction();
+						tx.begin();
+						ListOfAllocatedCandidate = session
+								.createQuery("FROM ResumeDataBean where vacancyFormBean = '"+ vac_id  +"'").list();
+						tx.commit();
+					} catch (Exception e) {
+						if (tx != null) {
+							tx.rollback();
+						}
+						e.printStackTrace();
+					} finally {
+						session.close();
+					}
+					return ListOfAllocatedCandidate;
+				}		
+				
+				 // used to update Interview Date for HR Side 1
+				public List<NotifyToCandidateBean> getListuseforupdateinterviewDate1(int vac_id) {
+					List<NotifyToCandidateBean> ListOfAllocatedCandidate = new ArrayList<NotifyToCandidateBean>();
+					Session session = HibernateUtil.openSession();
+					Transaction tx = null;
+					System.out.println("akash");
+					try {
+						tx = session.getTransaction();
+						tx.begin();
+						ListOfAllocatedCandidate = session
+								.createQuery("FROM NotifyToCandidateBean where resumeDataBean = '"+ vac_id  +"'").list();
+						System.out.println(ListOfAllocatedCandidate.size());
+						tx.commit();
+					} catch (Exception e) {
+						if (tx != null) {
+							tx.rollback();
+						}
+						e.printStackTrace();
+					} finally {
+						session.close();
+					}
+					return ListOfAllocatedCandidate;
+				}		
+				
+				
+				public ResumeDataBean getResumeDetailByResumeId(int resume_id)
+				{
+			        Session session = HibernateUtil.openSession();
+			        Transaction tx = null;  
+			        ResumeDataBean resumeDataBean = null;
+			        try {
+			            tx = session.getTransaction();
+			            tx.begin();
+			            Query query= session.createQuery("FROM ResumeDataBean WHERE resume_data_id='"+resume_id+"'");
+			            resumeDataBean = (ResumeDataBean)query.uniqueResult();
+			            tx.commit();
+			        } catch (Exception e) {
+			            if (tx != null) {
+			                tx.rollback();
+			            }
+			            e.printStackTrace();
+			        } finally {
+			            session.close();
+			        }
+			        return resumeDataBean;
+			        
+				}
+				
+				
+				public List<VacancyFormBean> getVacancyList() {
+					List<VacancyFormBean> ListOfVacancy = new ArrayList<VacancyFormBean>();
+					Session session = HibernateUtil.openSession();
+					Transaction tx = null;
+					System.out.println("akash");
+					try {
+						tx = session.getTransaction();
+						tx.begin();
+						ListOfVacancy = session
+								.createQuery("FROM VacancyFormBean where approved_status = 'pending'").list();
+						System.out.println(ListOfVacancy.size());
+						tx.commit();
+					} catch (Exception e) {
+						if (tx != null) {
+							tx.rollback();
+						}
+						e.printStackTrace();
+					} finally {
+						session.close();
+					}
+					return ListOfVacancy;
+				}
+				
+				
+				
+				public List<VacancytitleBean> getVacancyListforname() {
+					List<VacancytitleBean> ListOfVacancy = new ArrayList<VacancytitleBean>();
+					Session session = HibernateUtil.openSession();
+					Transaction tx = null;
+					System.out.println("akash");
+					try {
+						tx = session.getTransaction();
+						tx.begin();
+						ListOfVacancy = session
+								.createQuery("FROM VacancytitleBean").list();
+						System.out.println(ListOfVacancy.size());
+						tx.commit();
+					} catch (Exception e) {
+						if (tx != null) {
+							tx.rollback();
+						}
+						e.printStackTrace();
+					} finally {
+						session.close();
+					}
+					return ListOfVacancy;
+				}
+				
+				
+				public List<DailyCallingDataBean> getListdailycalllist() {
+					List<DailyCallingDataBean> listOfResumeData = new ArrayList<DailyCallingDataBean>();
+					Session session = HibernateUtil.openSession();
+					Transaction tx = null;
+					try {
+						tx = session.getTransaction();
+						tx.begin();
+						listOfResumeData = session
+								.createQuery("FROM DailyCallingDataBean") //key_skills  LIKE '%" + skill + "%'
+								.list();
+						tx.commit();
+					} catch (Exception e) {
+						if (tx != null) {
+							tx.rollback();
+						}
+						e.printStackTrace();
+					} finally {
+						session.close();
+					}
+					return listOfResumeData;
+				}
+				
+				
+				public List<DailyCallingDataBean> getListdailycalllforinsert(int dailyid) {
+					List<DailyCallingDataBean> listOfResumeData = new ArrayList<DailyCallingDataBean>();
+					Session session = HibernateUtil.openSession();
+					Transaction tx = null;
+					try {
+						tx = session.getTransaction();
+						tx.begin();
+						listOfResumeData = session
+								.createQuery("FROM DailyCallingDataBean where daily_calling_data_id = " + dailyid + "") //key_skills  LIKE '%" + skill + "%'
+								.list();
+						tx.commit();
+					} catch (Exception e) {
+						if (tx != null) {
+							tx.rollback();
+						}
+						e.printStackTrace();
+					} finally {
+						session.close();
+					}
+					return listOfResumeData;
+				}
+				
+				public List<VacancyFormBean> getVacancyListfordeshbord() {
+					List<VacancyFormBean> ListOfVacancy = new ArrayList<VacancyFormBean>();
+					Session session = HibernateUtil.openSession();
+					Transaction tx = null;
+					System.out.println("akash");
+					try {
+						tx = session.getTransaction();
+						tx.begin();
+						ListOfVacancy = session
+								.createQuery("FROM VacancyFormBean").list();
+						System.out.println(ListOfVacancy.size());
+						tx.commit();
+					} catch (Exception e) {
+						if (tx != null) {
+							tx.rollback();
+						}
+						e.printStackTrace();
+					} finally {
+						session.close();
+					}
+					return ListOfVacancy;
+				}
+				
+
+
+public List<VacancyFormBean> getVacancyListalowd() {
+					List<VacancyFormBean> ListOfVacancy = new ArrayList<VacancyFormBean>();
+					Session session = HibernateUtil.openSession();
+					Transaction tx = null;
+					System.out.println("akash");
+					try {
+						tx = session.getTransaction();
+						tx.begin();
+						ListOfVacancy = session
+								.createQuery("FROM VacancyFormBean where approved_status = 'allocated'").list();
+						System.out.println(ListOfVacancy.size());
+						tx.commit();
+					} catch (Exception e) {
+						if (tx != null) {
+							tx.rollback();
+						}
+						e.printStackTrace();
+					} finally {
+						session.close();
+					}
+					return ListOfVacancy;
+				}
+public List<VacancyFormBean> getVacancyListpending() {
+					List<VacancyFormBean> ListOfVacancy = new ArrayList<VacancyFormBean>();
+					Session session = HibernateUtil.openSession();
+					Transaction tx = null;
+					System.out.println("akash");
+					try {
+						tx = session.getTransaction();
+						tx.begin();
+						ListOfVacancy = session
+								.createQuery("FROM VacancyFormBean where approved_status = 'pending'").list();
+						System.out.println(ListOfVacancy.size());
+						tx.commit();
+					} catch (Exception e) {
+						if (tx != null) {
+							tx.rollback();
+						}
+						e.printStackTrace();
+					} finally {
+						session.close();
+					}
+					return ListOfVacancy;
+				}
+
+
+public List<DailyCallingDataBean> getVacancyalsource(int vid) {
+					List<DailyCallingDataBean> ListOfVacancy = new ArrayList<DailyCallingDataBean>();
+					Session session = HibernateUtil.openSession();
+					Transaction tx = null;
+					System.out.println("akash");
+					try {
+						tx = session.getTransaction();
+						tx.begin();
+						ListOfVacancy = session
+								.createQuery("FROM DailyCallingDataBean where vacancy_id = " + vid + "").list();
+						System.out.println(ListOfVacancy.size());
+						tx.commit();
+					} catch (Exception e) {
+						if (tx != null) {
+							tx.rollback();
+						}
+						e.printStackTrace();
+					} finally {
+						session.close();
+					}
+					return ListOfVacancy;
+				}
+				
+				
+
+public List<ResumeDataBean> getVacancyListoffer(int vid) {
+					List<ResumeDataBean> ListOfVacancy = new ArrayList<ResumeDataBean>();
+					Session session = HibernateUtil.openSession();
+					Transaction tx = null;
+					System.out.println("akash");
+					try {
+						tx = session.getTransaction();
+						tx.begin();
+						ListOfVacancy = session
+								.createQuery("FROM ResumeDataBean where vacancy_id = '"+vid+"' AND status = 'Offer Letter'").list();
+						System.out.println(ListOfVacancy.size());
+						tx.commit();
+					} catch (Exception e) {
+						if (tx != null) {
+							tx.rollback();
+						}
+						e.printStackTrace();
+					} finally {
+						session.close();
+					}
+					return ListOfVacancy;
+				}
+
+
+public List<VacancyAllocationBean> getVacancyalw(int vid) {
+					List<VacancyAllocationBean> ListOfVacancy = new ArrayList<VacancyAllocationBean>();
+					Session session = HibernateUtil.openSession();
+					Transaction tx = null;
+					System.out.println("akash");
+					try {
+						tx = session.getTransaction();
+						tx.begin();
+						ListOfVacancy = session
+								.createQuery("FROM VacancyAllocationBean where vacancy_id = " + vid + "").list();
+						System.out.println(ListOfVacancy.size());
+						tx.commit();
+					} catch (Exception e) {
+						if (tx != null) {
+							tx.rollback();
+						}
+						e.printStackTrace();
+					} finally {
+						session.close();
+					}
+					return ListOfVacancy;
+				}
+
 
 }

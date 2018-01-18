@@ -19,7 +19,7 @@ public class KaizenAttachmentDeleteServlet extends HttpServlet {
 	 */
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		System.out.println("------------------------------In Attachment Delete-----------------------");
+		
 		int attachment_id = Integer.parseInt(request.getParameter("attachment_id"));
 		
 		AllKaizenDeleteDAO allKaizenDeleteDAO = new AllKaizenDeleteDAO();

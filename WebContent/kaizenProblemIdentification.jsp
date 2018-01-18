@@ -104,8 +104,8 @@
 											<th style="padding : 5px; " ">Problem</th>
 											<th style="padding : 5px; " ">Category</th>
 											<th style="padding : 5px; " ">Added By</th>
-											<th style="padding : 5px; " ">Date</th>
-											<th colspan="2" style="padding : 5px; " ">Action</th>
+											<th style=" padding: 0.4rem; width: 86.8px;">Date</th>
+											<th colspan="2" style=" padding: 0.4rem; width: 45.8px;">Action</th>
 										</tr>
 									</thead>
 
@@ -118,17 +118,18 @@
 											<td style="padding : 5px; " "><%=kaizenProblemIdentificationBean.getProblem_description()%></td>
 											<td style="padding : 5px; " "><%=kaizenProblemIdentificationBean.getCategory()%></td>
 											<td style="padding : 5px; " "><%=kaizenProblemIdentificationBean.getEmployeeBean().getFirstname()+" "+kaizenProblemIdentificationBean.getEmployeeBean().getLastname()%></td>
-											<td style="padding : 5px; " "><%=dateFormat.format(dateFormat1.parse(kaizenProblemIdentificationBean.getDate()))%></td>
-											<td style="padding : 5px; " ">
+											<td style=" padding: 0.4rem; width: 86.8px;"><%=dateFormat.format(dateFormat1.parse(kaizenProblemIdentificationBean.getDate()))%></td>
+											<td style=" padding: 0.4rem; width: 45.8px;">
 											<%if(kaizenProblemIdentificationBean.getEmployeeBean().getEmployee_master_id() == user.getEmployee_master_id()){%>
 											
 												
 												<%if(kaizenBean == null) {%>
 												<button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#edit<%=kaizenProblemIdentificationBean.getKaizen_problem_identification_id()%>">
-													Edit <i class="fa fa-edit"></i>
+													Edit <i class="icon-edit2"></i>
 												</button>
-													<a href="problemIdentificationDelete?problem_id=<%=kaizenProblemIdentificationBean.getKaizen_problem_identification_id()%>" style="text-decoration: none;color: black;"><button type="button" class="btn btn-default btn-xs">
-													Delete <i class="fa fa-trash"></i></button></a>
+													<a href="problemIdentificationDelete?problem_id=<%=kaizenProblemIdentificationBean.getKaizen_problem_identification_id()%>" style="text-decoration: none;color: black;">
+													<button type="button" class="btn btn-default btn-xs">
+													Delete <i class="icon-trash2"></i></button></a>
 												
 												<%} %>
 												<%} %>

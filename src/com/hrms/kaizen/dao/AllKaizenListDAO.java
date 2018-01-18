@@ -1,6 +1,5 @@
 package com.hrms.kaizen.dao;
 
-import java.time.Year;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,12 +20,12 @@ import com.hrms.kaizen.bean.KaizenManagerBean;
 import com.hrms.kaizen.bean.KaizenManagerScoreBean;
 import com.hrms.kaizen.bean.KaizenMemberBean;
 import com.hrms.kaizen.bean.KaizenProblemIdentificationBean;
+import com.hrms.kaizen.bean.KaizenReactivationRemarkBean;
 import com.hrms.kaizen.bean.kaizenRCABean;
+import com.hrms.pms.dao.AllListDAO;
 import com.hrms.lms.util.HibernateUtil;
 import com.hrms.pms.bean.EmployeeBean;
 import com.hrms.pms.bean.YearBean;
-import com.hrms.pms.dao.AllListDAO;
-import com.hrms.vehicletracking.bean.VehicleTrackingBean;
 
 public class AllKaizenListDAO {
 
@@ -308,7 +307,13 @@ public class AllKaizenListDAO {
 			tx = session.getTransaction();
 			tx.begin();
 			String hql = null;
-			hql = "from KaizenBean where manager_id = '"+manager_id+"' and YEAR(date)='"+year+"' AND MONTH(date)='"+month+"' and status = '"+status+"' and completion_status = '"+cStatus+"'";
+			
+			if(cStatus.equalsIgnoreCase("approved")) {
+				hql = "from KaizenBean where (manager_id = '"+manager_id+"' or employeeBean.managerBean='"+manager_id+"' or employeeBean.under_manager_id = '"+manager_id+"') and YEAR(date)='"+year+"' AND MONTH(date)='"+month+"' and status = '"+status+"' and completion_status = '"+cStatus+"'";
+			}else {
+				hql = "from KaizenBean where (manager_id = '"+manager_id+"' or employeeBean.managerBean='"+manager_id+"' or employeeBean.under_manager_id = '"+manager_id+"') and YEAR(completion_date)='"+year+"' AND MONTH(completion_date)='"+month+"' and status = '"+status+"' and completion_status = '"+cStatus+"'";
+			}
+			
 			
 			
 			Query query = session.createQuery(hql);
@@ -362,9 +367,9 @@ public class AllKaizenListDAO {
 			tx.begin();
 			String hql = null;
 			if(month<=9) {
-				 hql = "from KaizenBean where manager_id = '"+manager_id+"' and date like '"+year+"%' and date like '%-0"+month+"-%' and status = 'rejected'";
+				 hql = "from KaizenBean where (manager_id = '"+manager_id+"' or employeeBean.managerBean='"+manager_id+"') and date like '"+year+"%' and date like '%-0"+month+"-%' and status = 'rejected'";
 			}else {
-				 hql = "from KaizenBean where manager_id = '"+manager_id+"' and date like '"+year+"%' and date like '%-"+month+"-%' and status = 'rejected'";
+				 hql = "from KaizenBean where (manager_id = '"+manager_id+"' or employeeBean.managerBean='"+manager_id+"') and date like '"+year+"%' and date like '%-"+month+"-%' and status = 'rejected'";
 			}
 			
 			
@@ -737,6 +742,29 @@ public class AllKaizenListDAO {
 	
 	
 	
+	public KaizenManagerScoreBean getDetailOfKaizenScoreByKaizenid(int kaizen_id) {
+		Session session = HibernateUtil.openSession();
+		Transaction tx = null;
+		KaizenManagerScoreBean kaizenManagerScoreBean = null;
+		try {
+			tx = session.getTransaction();
+			tx.begin();
+			Query query = session.createQuery("from KaizenManagerScoreBean where kaizenBean = '"+kaizen_id+"'");
+			kaizenManagerScoreBean = (KaizenManagerScoreBean) query.uniqueResult();
+			tx.commit();
+		} catch (Exception e) {
+			if (tx != null) {
+				tx.rollback();
+			}
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return kaizenManagerScoreBean;
+	}
+	
+	
+	
 	public KaizenAuthorityScoreBean getDetailOfKaizenAuthorityScoreByempId(int kaizen_id,int emplopyee_id) {
 		Session session = HibernateUtil.openSession();
 		Transaction tx = null;
@@ -966,6 +994,37 @@ public class AllKaizenListDAO {
 			}
 			
 			
+			
+			
+			public List<KaizenProblemIdentificationBean> getListOfProblemByDeptIdAndManagerID(int dept_id,int managerID) {
+				List<KaizenProblemIdentificationBean> listOfProblem = new ArrayList<KaizenProblemIdentificationBean>();
+				Session session = HibernateUtil.openSession();
+				Transaction tx = null;
+				try {
+					tx = session.getTransaction();
+					tx.begin();
+					if(managerID != 99) {
+						listOfProblem = session.createQuery("FROM KaizenProblemIdentificationBean where employeeBean.departmentBean = '"+dept_id+"' or employeeBean.managerBean = '"+managerID+"' or employeeBean.under_manager_id ='"+managerID+"' order by kaizen_problem_identification_id DESC").list();
+					}else {
+						listOfProblem = session.createQuery("FROM KaizenProblemIdentificationBean where employeeBean.departmentBean = '"+dept_id+"' or employeeBean.managerBean = '"+managerID+"' or employeeBean.under_manager_id ='"+managerID+"' order by kaizen_problem_identification_id DESC").list();
+					}
+					
+					System.out.println(listOfProblem.size());
+					tx.commit();
+				} catch (Exception e) {
+					if (tx != null) {
+						tx.rollback();
+					}
+					e.printStackTrace();
+				} finally {
+					session.close();
+				}
+				return listOfProblem;
+			}
+			
+			
+			
+			
 			public List<KaizenProblemIdentificationBean> getListOfProblemByDeptIdWithMonthYear(int dept_id,int month,int year) {
 				List<KaizenProblemIdentificationBean> listOfProblem = new ArrayList<KaizenProblemIdentificationBean>();
 				Session session = HibernateUtil.openSession();
@@ -1156,7 +1215,7 @@ public class AllKaizenListDAO {
 				try {
 					tx = session.getTransaction();
 					tx.begin();
-					String hql = "from KaizenBean where status = 'pending' and (((MONTH(date) between 4 and 12) and YEAR(date) = '"+year+"') or ((MONTH(date) between 1 and 3) and YEAR(date) = '"+year1+"'))";
+					String hql = "from KaizenBean where (status = 'pending' or status = 'Genuine') and (((MONTH(date) between 4 and 12) and YEAR(date) = '"+year+"') or ((MONTH(date) between 1 and 3) and YEAR(date) = '"+year1+"'))";
 					Query query = session.createQuery(hql);
 					listOfKaizenByEmployeeId = query.list();
 					tx.commit();
@@ -1359,7 +1418,9 @@ public class AllKaizenListDAO {
 		        }
 		        return maxvalue;
 		    }
-	
+			
+			
+			
 			public List<KaizenBean> getListOfReportKaizen(String year_id,String month_id,String dept_id,int count) {
 				String v1 = null;
 				String v2 = null;
@@ -1434,5 +1495,30 @@ public class AllKaizenListDAO {
 				return listOfKaizen;
 
 			}
+	
+			
+			public List<KaizenReactivationRemarkBean> getListOfReactivationRemarks(int kaizenId) {
+				List<KaizenReactivationRemarkBean> listOfRemarks = new ArrayList<KaizenReactivationRemarkBean>();
+				Session session = HibernateUtil.openSession();
+				Transaction tx = null;
+				try {
+					tx = session.getTransaction();
+					tx.begin();
+					String hql = "from KaizenReactivationRemarkBean where kaizenBean = '"+kaizenId+"'";
+					Query query = session.createQuery(hql);
+					listOfRemarks = query.list();
+					tx.commit();
+				} catch (Exception e) {
+					if (tx != null) {
+						tx.rollback();
+					}
+					e.printStackTrace();
+				} finally {
+					session.close();
+				}
+				return listOfRemarks;
+
+			}
+			
 			
 }

@@ -18,6 +18,7 @@ import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 import com.hrms.pms.bean.EmployeeBean;
+import com.hrms.recruitement.bean.DailyCallingStatusBean;
 import com.hrms.recruitement.bean.ResumeDataBean;
 import com.hrms.recruitement.bean.SourceOfResumeBean;
 import com.hrms.recruitement.bean.VacancyFormBean;
@@ -76,11 +77,12 @@ public class ResumeDataInsertServlet extends HttpServlet {
 		String graduate_qualification = null;
 		String post_graduate_qualification = null;
 		String phd_qualification = null;
+		int daily_calling_status_id = 0;
 		
 		
 		VacancyFormBean vacancyFormBean = new VacancyFormBean();
-		ResumeDataBean resumeDataBean1 = new ResumeDataBean();
 		SourceOfResumeBean sourceOfResumeBean = new SourceOfResumeBean();
+		DailyCallingStatusBean dailyCallingStatusBean = new DailyCallingStatusBean();
 		
 		try {
 			items = upload.parseRequest(request);// Parse Request
@@ -139,7 +141,6 @@ public class ResumeDataInsertServlet extends HttpServlet {
 						String value = fieldValue;
 						expected_salary = Integer.parseInt(value);
 						System.out.println("expectedSalary:" + expected_salary);
-						
 					}
 					
 					if (fieldName.equalsIgnoreCase("currentSalary"))
@@ -244,7 +245,6 @@ public class ResumeDataInsertServlet extends HttpServlet {
 						String value = fieldValue;
 						employee_code = Integer.parseInt(value);
 						System.out.println("employeeCode:" + employee_code);
-						
 					}
 					
 					if (fieldName.equalsIgnoreCase("submission_date")) {
@@ -259,7 +259,13 @@ public class ResumeDataInsertServlet extends HttpServlet {
 						System.out.println("resource_id:" + resource_id);
 					}
 					
-
+						
+					if (fieldName.equalsIgnoreCase("dailyCallingStatus"))
+					{
+						String value = fieldValue;
+						daily_calling_status_id = Integer.parseInt(value);
+						System.out.println("dailyCallingStatus :" + daily_calling_status_id);
+					}
 					
 					}
 					else{
@@ -292,6 +298,7 @@ public class ResumeDataInsertServlet extends HttpServlet {
 									
 									vacancyFormBean.setVacancy_id(vacancy_id);
 									sourceOfResumeBean.setSource_of_resume_id(resource_id);
+									dailyCallingStatusBean.setDaily_calling_status_id(daily_calling_status_id);
 									AllInsertDAO allInsertDAO = new AllInsertDAO();
 									ResumeDataBean resumeDataBean = new ResumeDataBean(name, gender, 
 											date_of_birth, residing_country, current_location, current_contact_no,
@@ -301,7 +308,7 @@ public class ResumeDataInsertServlet extends HttpServlet {
 											upload_resume, vacancyFormBean, ex_employee, employee_code, 
 											expected_salary, current_salary, notice_period, submission_date,
 											speciality, sourceOfResumeBean,employeeBean,graduate_qualification,post_graduate_qualification
-											,phd_qualification);
+											,phd_qualification, dailyCallingStatusBean);
 									boolean result = allInsertDAO.resumedataInsert(resumeDataBean);
 									if(result == true)
 									{
@@ -346,13 +353,14 @@ public class ResumeDataInsertServlet extends HttpServlet {
 										AllInsertDAO allInsertDAO = new AllInsertDAO();
 										vacancyFormBean.setVacancy_id(vacancy_id);
 										sourceOfResumeBean.setSource_of_resume_id(resource_id);
+										dailyCallingStatusBean.setDaily_calling_status_id(daily_calling_status_id);
 										ResumeDataBean resumeDataBean = new ResumeDataBean(name, gender, date_of_birth, residing_country, current_location,
 												current_contact_no, email, educational_qualification, specialization, 
 												experience, current_company_name, functional_area_appying_for, role_as, 
 												current_functional_area, current_role, key_skills,status,fileName, vacancyFormBean,
 												ex_employee,employee_code,expected_salary,current_salary,notice_period, submission_date,speciality,
 												sourceOfResumeBean,employeeBean,graduate_qualification,post_graduate_qualification
-												,phd_qualification);
+												,phd_qualification, dailyCallingStatusBean);
 										boolean result = allInsertDAO.resumedataInsert(resumeDataBean);
 										if(result == true)
 										{

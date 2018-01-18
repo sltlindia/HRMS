@@ -310,7 +310,7 @@ public class AllListDAO
         try {
             tx = session.getTransaction();
             tx.begin();
-            listOfLeave = session.createQuery("FROM HolidayBean ORDER BY holiday_date").list();                        
+            listOfLeave = session.createQuery("FROM HolidayBean FROM HolidayBean WHERE IsVisible = 1 ORDER BY holiday_date").list();                        
             tx.commit();
         } catch (Exception e) {
             if (tx != null) {

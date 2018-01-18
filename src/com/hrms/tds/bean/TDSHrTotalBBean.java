@@ -35,6 +35,12 @@ public class TDSHrTotalBBean implements Serializable{
 	private double a_medical;
 	private double provided_medical_bills;
 	private double d_medical;
+	private String monthly_yearly;
+	private double yearly_mealcard;
+	private String monthly_start_date;
+	private String monthly_end_date;
+	private int days;
+	private double monthly_mealcard;
 	private double meal_card;
 	private double lta_during_year;
 	private double actual_expenditure_lta;
@@ -57,7 +63,8 @@ public class TDSHrTotalBBean implements Serializable{
 			double d_non_metro_rent_slip, double d_metro_rent_slip, double a_hra, double d_non_metro_hra,
 			double d_metro_hra, double hra_non_metro_deduction, double hra_metro_deduction, double house_rant,
 			String landlord_name, String landlord_pan_no, double a_medical, double provided_medical_bills,
-			double d_medical, double meal_card, double lta_during_year,
+			double d_medical, String monthly_yearly, double yearly_mealcard, String monthly_start_date,
+			String monthly_end_date, int days, double monthly_mealcard, double meal_card, double lta_during_year,
 			double actual_expenditure_lta, double d_lta, double ptax, int no_of_child, double d_education_allw,
 			double uni_allw_during_year, double actual_expenditure_uni_allw, double d_uni_allw, double total_hra,
 			double total_b, TDSHrBean tdsHrBean) {
@@ -82,6 +89,12 @@ public class TDSHrTotalBBean implements Serializable{
 		this.a_medical = a_medical;
 		this.provided_medical_bills = provided_medical_bills;
 		this.d_medical = d_medical;
+		this.monthly_yearly = monthly_yearly;
+		this.yearly_mealcard = yearly_mealcard;
+		this.monthly_start_date = monthly_start_date;
+		this.monthly_end_date = monthly_end_date;
+		this.days = days;
+		this.monthly_mealcard = monthly_mealcard;
 		this.meal_card = meal_card;
 		this.lta_during_year = lta_during_year;
 		this.actual_expenditure_lta = actual_expenditure_lta;
@@ -102,7 +115,8 @@ public class TDSHrTotalBBean implements Serializable{
 			double d_non_metro_rent_slip, double d_metro_rent_slip, double a_hra, double d_non_metro_hra,
 			double d_metro_hra, double hra_non_metro_deduction, double hra_metro_deduction, double house_rant,
 			String landlord_name, String landlord_pan_no, double a_medical, double provided_medical_bills,
-			double d_medical, double meal_card, double lta_during_year,
+			double d_medical, String monthly_yearly, double yearly_mealcard, String monthly_start_date,
+			String monthly_end_date, int days, double monthly_mealcard, double meal_card, double lta_during_year,
 			double actual_expenditure_lta, double d_lta, double ptax, int no_of_child, double d_education_allw,
 			double uni_allw_during_year, double actual_expenditure_uni_allw, double d_uni_allw, double total_hra,
 			double total_b, TDSHrBean tdsHrBean) {
@@ -128,6 +142,12 @@ public class TDSHrTotalBBean implements Serializable{
 		this.a_medical = a_medical;
 		this.provided_medical_bills = provided_medical_bills;
 		this.d_medical = d_medical;
+		this.monthly_yearly = monthly_yearly;
+		this.yearly_mealcard = yearly_mealcard;
+		this.monthly_start_date = monthly_start_date;
+		this.monthly_end_date = monthly_end_date;
+		this.days = days;
+		this.monthly_mealcard = monthly_mealcard;
 		this.meal_card = meal_card;
 		this.lta_during_year = lta_during_year;
 		this.actual_expenditure_lta = actual_expenditure_lta;
@@ -313,6 +333,54 @@ public class TDSHrTotalBBean implements Serializable{
 
 	public void setD_medical(double d_medical) {
 		this.d_medical = d_medical;
+	}
+
+	public String getMonthly_yearly() {
+		return monthly_yearly;
+	}
+
+	public void setMonthly_yearly(String monthly_yearly) {
+		this.monthly_yearly = monthly_yearly;
+	}
+
+	public double getYearly_mealcard() {
+		return yearly_mealcard;
+	}
+
+	public void setYearly_mealcard(double yearly_mealcard) {
+		this.yearly_mealcard = yearly_mealcard;
+	}
+
+	public String getMonthly_start_date() {
+		return monthly_start_date;
+	}
+
+	public void setMonthly_start_date(String monthly_start_date) {
+		this.monthly_start_date = monthly_start_date;
+	}
+
+	public String getMonthly_end_date() {
+		return monthly_end_date;
+	}
+
+	public void setMonthly_end_date(String monthly_end_date) {
+		this.monthly_end_date = monthly_end_date;
+	}
+
+	public int getDays() {
+		return days;
+	}
+
+	public void setDays(int days) {
+		this.days = days;
+	}
+
+	public double getMonthly_mealcard() {
+		return monthly_mealcard;
+	}
+
+	public void setMonthly_mealcard(double monthly_mealcard) {
+		this.monthly_mealcard = monthly_mealcard;
 	}
 
 	public double getMeal_card() {

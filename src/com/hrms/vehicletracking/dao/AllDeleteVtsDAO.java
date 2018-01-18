@@ -1,6 +1,7 @@
 package com.hrms.vehicletracking.dao;
 
 import org.hibernate.Session;
+
 import org.hibernate.Transaction;
 
 import com.hrms.pms.util.HibernateUtil;
@@ -57,7 +58,7 @@ public class AllDeleteVtsDAO {
 		 }	
 		 return result;
 	}	
-	
+
 	public boolean vehicleDocumentAttachmentDelete(int vehicle_document_attachment_id){
 		boolean result = false;
 		 Session session = HibernateUtil.openSession();

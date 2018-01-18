@@ -179,8 +179,8 @@ SimpleDateFormat ddmmyyyy = new SimpleDateFormat("dd-MM-yyyy"); %>
 								if(t1.getVehicle_attachment_name() != null){
 								%>
 								 <a target="_blank" href="FileServlet?path=D:\hrms\upload\vehicle_tracking\<%=t.getVehicleBean().getVehicle_name()%>_<%=t.getVehicleBean().getVehicle_no()%>\document\<%=t1.getVehicle_attachment_name()%>">
-      <img src="FileServlet?path=D:\hrms\upload\vehicle_tracking\<%=t.getVehicleBean().getVehicle_name()%>_<%=t.getVehicleBean().getVehicle_no()%>\document\<%=t1.getVehicle_attachment_name()%>" alt="<%=t1.getVehicle_attachment_name()%>" width="60" height="60">
-    </a>
+      						<img src="FileServlet?path=D:\hrms\upload\vehicle_tracking\<%=t.getVehicleBean().getVehicle_name()%>_<%=t.getVehicleBean().getVehicle_no()%>\document\<%=t1.getVehicle_attachment_name()%>" alt="<%=t1.getVehicle_attachment_name()%>" width="60" height="60">
+    								</a>
 								<%} 
 								else { %>
 								<a>-</a>

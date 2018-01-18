@@ -6245,217 +6245,6 @@ public static void approveMail(String to, String subject, String leavefrom, Stri
 	
 	}
 	
-	public static void sendProbationEmail(String to, String subject, String name,String date,String manager_name) {      // MAIL FOR PROBATION
-		// Sender's email ID needs to be mentioned
-	     String from = "hrms@sltl.com";
-	     String pass ="hrms#123";
-	    // Recipient's email ID needs to be mentioned.
-	   String host = "smtp.gmail.com";
-	   
-	   System.out.println("akash");
-	   
-	   
-	// 1st step) Get the session object
-			Properties props = new Properties();
-			// props.put("mail.smtp.starttls.enable", "true");
-			props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
-			props.setProperty("mail.transport.protocol", "smtps");
-			props.put("mail.smtp.starttls.enable", "true");
-			props.put("mail.smtp.host", host);
-			props.put("mail.smtp.port", "587");
-			props.put("mail.smtp.auth", "true");
-			
-			
-			   
-			   
-			   
-		props.put("mail.smtp.socketFactory.port", "587");  
-		props.put("mail.smtp.starttls.enable", "true");
-		props.put("mail.smtp.socketFactory.class", "javax.net.SocketFactory");
-		props.put("mail.smtp.ssl.enable", "false");
-		props.put("mail.smtp.ssl.trust", host);
-			   
-
-			Session session = Session.getInstance(props, new javax.mail.Authenticator() {
-			    protected PasswordAuthentication getPasswordAuthentication() {
-			        return new PasswordAuthentication(from, pass);
-			    }
-			
-			});
-			// 2nd step)compose message
-			String body = "Sahajanand Laser Technology Ltd.";                     
-			String body1 = "E-30, Electronics Estate, G.I.D.C., Sector-26,";
-			String body2 = "GANDHINAGAR - 382028, Gujarat, INDIA.";
-			String body3 = "Contact:( O): 079-2328 7461-68 Fax No.: 079-2328 7470.";
-			String body4 = "www.sahajanandlaser.com";
-			String link = "http://192.168.182.58:6018/HRMS/";
-	        
-			try {
-				MimeMessage message = new MimeMessage(session);
-				message.setFrom(new InternetAddress(from));// From Address
-				message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));// To
-				
-				message.setSubject(subject);// MSG Subject
-				// This mail has 2 part, the BODY and the embedded image
-		         MimeMultipart multipart = new MimeMultipart("related");
-
-		         // first part (the html)
-		         BodyPart messageBodyPart = new MimeBodyPart();
-		         BodyPart messageBodyPart1 = new MimeBodyPart();
-		         
-		         /**/
-		         
-		          String  htmlText = "<html>";
-		          
-		          htmlText += "<head>";
-		          htmlText += "<link href=\"https://fonts.googleapis.com/icon?family=Material+Icons\"\r\n rel=\"stylesheet\">";
-		          htmlText += "</head>";
-		          
-		          
-		          htmlText += "<body>";
-		          htmlText += "<br>";
-		          htmlText += "<table cellpadding=\"0\" cellspacing=\"15\" border=\"0\" bgcolor=\"#f0f4f5\" width=\"100%\"	style=\"margin: 0 auto; max-width: 550px; font-family: arial\">";
-		          htmlText += "<tbody>";
-		          htmlText += "<tr bgcolor=\"#ffffff\">";
-		          htmlText += "<td>";
-		          htmlText += "<table cellpadding=\"15\" cellspacing=\"0\" border=\"0\" width=\"100%\">";
-		          htmlText += "<tbody>";
-		          htmlText += "<tr>";
-		          htmlText += "<td valign=\"middle\"><a href=\"http://www.sahajanandlaser.com\"><img src=\"http://www.sltl.com/images/sltllogo.png\" alt=\"sltllogo\" width=\"106\" style=\"vertical-align: middle\" class=\"CToWUd\"></a></td>";
-		          htmlText += "<td align=\"right\"><img src=\"https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQjJkNWrO_pXGhZoAvyStzhRr70iS-ZdCO7JUoQivdyMWqbV0HtLQ\"\r\n" + 
-		          		"								height=\"40px\" width=\"40px\"\r\n" + 
-		          		"								class=\"CToWUd\"></td>";
-		          htmlText += "</tr>";
-		          htmlText += "</tbody>";
-		          htmlText += "</table>";
-		          htmlText += "</td>";
-		          htmlText += "</tr>";
-		          htmlText += "<tr bgcolor=\"#ffffff\">";
-		          htmlText += "<td>";
-		          htmlText += "<table cellpadding=\"0\" cellspacing=\"0\" border=\"0\">";
-		          htmlText += "<tbody>";
-		          htmlText += "<tr>";
-		          htmlText += "<td><div class=\"a6S\" dir=\"ltr\" style=\"opacity: 0.01; left: 521.5px; top: 236px;\"> <div id=\":13q\" class=\"T-I J-J5-Ji aQv T-I-ax7 L3 a5q\"" + 
-		          		"role=\"button\" tabindex=\"0\" aria-label=\"Download attachment \" data-tooltip-class=\"a1V\" data-tooltip=\"Download\"> <div class=\"aSK J-J5-Ji aYr\"></div>" + 
-		          		"</div> </div></td>";
-		          htmlText += "</tr>";
-		          htmlText += "<tr>";
-		          htmlText += "<td>";
-		          htmlText += "<table cellpadding=\"15\" cellspacing=\"0\" border=\"0\" width=\"100%\">";
-		          htmlText += "<tbody>";
-		          htmlText += "<tr>";
-		          htmlText += "<td> <p style=\"margin: 0; padding: 0px; font-family: arial; font-size: 13px; color: #121212; line-height: 18px; padding-bottom: 10px\">" + 
-		          		" Respected Sir / Ma'am <b>"+manager_name+"</b> ,</p> "
-		          		+ "<p style=\"margin: 0; padding: 0px; font-family: arial; font-size: 13px; color: #121212; line-height: 18px\">" + 
-		          		" &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; It is to remind that Probation review of your team mate, Mr./Ms./Mrs. <b>"+name+"</b> is due for the month of <b>"+date+"</b></p><br>"
-		          		+ "<p style=\"margin: 0; padding: 0px; font-family: arial; font-size: 13px; color: #121212; line-height: 18px\">" + 
-		          		" &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; You are requested to provide appropriate ratings & submit it within two days from the receipt of this notification.</p><br>"
-		          		+ "<p style=\"margin: 0; paddin	g: 0px; font-family: arial; font-size: 13px; color: #121212; line-height: 18px\">" + 
-		          		" &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Please visit SLTL HRMS Module for rating submission.</p>"
-		          		;
-		          htmlText += "</tr>";
-		          htmlText += "</tbody>";
-		          htmlText += "</table>";
-		          htmlText += "</td>";
-		          htmlText += "</tr>";
-		          htmlText += "</tbody>";
-		          htmlText += "</table>";
-		          htmlText += "</td>";
-		          htmlText += "</tr>";
-		          htmlText += "<tr bgcolor=\"#ffffff\">";
-		          htmlText += "<td>";
-		          htmlText += "<table cellpadding=\"20\" cellspacing=\"0\" border=\"0\" width=\"100%\">";
-		          htmlText += "<tbody>";
-		          htmlText += "<tr>";
-		          htmlText += "<td>";
-		          htmlText += "<p style=\"font-size: 13px; padding: 0px; margin: 0px; padding-left: 5px; line-height: 20px; color: #121212; text-align: center\">For Login into HRMS <a href=\"http://192.168.182.58:6018/HRMS/\"><button style=\" background-color: white; color: black; border: 2px solid #337ab7;\">Login</button></a> </p>";
-		          htmlText += "<br>";
-		          htmlText += "<p align=\"center\" style=\"font-size: 11px; padding: 0px; margin: 0px; line-height: 13px; color: red; padding-bottom: 10px\"><b>Note : This button will work only when you are connected to SLTL Intranet.</b></p>";
-		          htmlText += "</td>";
-		          htmlText += "</tr>";
-		          htmlText += "</tbody>";
-		          htmlText += "</table>";
-		          htmlText += "</td>";
-		          htmlText += "</tr>";
-		          htmlText += "<tr bgcolor=\"#ffffff\">";
-		          htmlText += "<td>";
-		          htmlText += "<table cellpadding=\"0\" cellspacing=\"0\" border=\"0\">";
-		          htmlText += "<tbody>";
-		          htmlText += "<tr>";
-		          htmlText += "<td>";
-		          htmlText += "<table cellpadding=\"0\" cellspacing=\"0\" border=\"0\" width=\"100%\">";
-		          htmlText += "<tbody>";
-		          htmlText += "<tr bgcolor=\"#ffffff\">";
-		          htmlText += "<td>";
-		          htmlText += "<table cellpadding=\"15\" cellspacing=\"0\" border=\"0\">";
-		          htmlText += "<tbody>";
-		          htmlText += "<tr>";
-		          htmlText += "<td>";
-		          htmlText += "<table cellpadding=\"0\" cellspacing=\"0\" border=\"0\" width=\"100%\">";
-		          htmlText += "<tbody>";
-		          htmlText += "<tr>";
-		          htmlText += "<td><p style=\"margin: 0; padding: 0px; font-family: arial; font-size: 13px; color: #121212; line-height: 20px; padding-bottom: 10px\"> For any queries or concerns, contact us on <b>313</b>.</p></td>";
-		          htmlText += "</tr>";
-		          htmlText += "<tr>";
-		          htmlText += "<td>";
-		          htmlText += "<p style=\"margin: 0; padding: 0px; font-family: arial; font-size: 13px; color: #121212; line-height: 20px\"> Regards,<br> Team HRMS </p>";
-		          htmlText += "<br><p style=\"margin: 0; padding: 0px; font-family: arial; font-size: 11px; color: #333; line-height: 20px; font-style: italic\">* This is an automated e-mail alert to help you to know about your leave. Hence, Please do not reply to this e-mail.</p>";
-		          htmlText += "</td>";
-		          htmlText += "</tr>";
-		          htmlText += "</tbody>";
-		          htmlText += "</table>";
-		          htmlText += "</td>";
-		          htmlText += "</tr>";
-		          htmlText += "</tbody>";
-		          htmlText += "</table>";
-		          htmlText += "</td>";
-		          htmlText += "</tr>";
-		          htmlText += "</tbody>";
-		          htmlText += "</table>";
-		          htmlText += "</td>";
-		          htmlText += "</tr>";
-		          htmlText += "</tbody>";
-		          htmlText += "</table>";
-		          htmlText += "</td>";
-		          htmlText += "</tr>";
-		          htmlText += "</tbody>";
-		          htmlText += "</table>";
-		          htmlText += "</body>";
-		          htmlText += "</html>";
-		          
-		        /* String htmlText = type+"<br>"+query+"<br>"+code;*/
-		        //  htmlText += "<br><br><br>";
-		        // htmlText += "<img src=\"cid:image\"><br><b>"+body+"</b><br><b>"+body1+"</b><br><b>"+body2+"</b><br><b>"+body3+"</b><br><b>"+body4+"</b>";
-		         messageBodyPart.setContent(htmlText, "text/html");
-		         // add it
-		         multipart.addBodyPart(messageBodyPart);
-
-		         // second part (the image)
-		         messageBodyPart = new MimeBodyPart();
-		         DataSource fds = new FileDataSource(
-		            "D:/hrms/upload/img/sltllogo.png");
-
-		         messageBodyPart.setDataHandler(new DataHandler(fds));
-		         messageBodyPart.setHeader("Content-ID", "<image>");
-
-		         // add image to the multipart
-		         multipart.addBodyPart(messageBodyPart);
-		         
-		        
-		         message.setContent(multipart);
-		         
-				// 3rd step)send message
-				Transport.send(message);
-
-				System.out.println("Done : "+to);
-
-			} catch (MessagingException e) {
-				throw new RuntimeException(e);
-			}
-			
-			
-	
-	}
 	
 	
 	public static void kaizenManagerReminder(String to, String subject,String emp_name,String manager_name, String kaizen_name ,String kaizen_desc ,String department,String affecting_manager) {      // Kaizen Manager Reminder for Approval
@@ -8021,4 +7810,1709 @@ public static void approveMail(String to, String subject, String leavefrom, Stri
 		 
 	 }
 	
+	public static void sendProbationEmail(String to, String subject, String name,String date,String manager_name,String salutation) {      // MAIL FOR PROBATION
+		// Sender's email ID needs to be mentioned
+	     String from = "hrms@sltl.com";
+	     String pass ="hrms#123";
+	    // Recipient's email ID needs to be mentioned.
+	   String host = "smtp.gmail.com";
+	   
+	   System.out.println("akash");
+	   
+	   
+	// 1st step) Get the session object
+			Properties props = new Properties();
+			// props.put("mail.smtp.starttls.enable", "true");
+			props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+			props.setProperty("mail.transport.protocol", "smtps");
+			props.put("mail.smtp.starttls.enable", "true");
+			props.put("mail.smtp.host", host);
+			props.put("mail.smtp.port", "587");
+			props.put("mail.smtp.auth", "true");
+			
+			
+			   
+			   
+			   
+		props.put("mail.smtp.socketFactory.port", "587");  
+		props.put("mail.smtp.starttls.enable", "true");
+		props.put("mail.smtp.socketFactory.class", "javax.net.SocketFactory");
+		props.put("mail.smtp.ssl.enable", "false");
+		props.put("mail.smtp.ssl.trust", host);
+			   
+
+			Session session = Session.getInstance(props, new javax.mail.Authenticator() {
+			    protected PasswordAuthentication getPasswordAuthentication() {
+			        return new PasswordAuthentication(from, pass);
+			    }
+			
+			});
+			// 2nd step)compose message
+			String body = "Sahajanand Laser Technology Ltd.";                     
+			String body1 = "E-30, Electronics Estate, G.I.D.C., Sector-26,";
+			String body2 = "GANDHINAGAR - 382028, Gujarat, INDIA.";
+			String body3 = "Contact:( O): 079-2328 7461-68 Fax No.: 079-2328 7470.";
+			String body4 = "www.sahajanandlaser.com";
+			String link = "http://192.168.182.58:6018/HRMS/";
+	        
+			try {
+				MimeMessage message = new MimeMessage(session);
+				message.setFrom(new InternetAddress(from));// From Address
+				message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));// To
+				
+				message.setSubject(subject);// MSG Subject
+				// This mail has 2 part, the BODY and the embedded image
+		         MimeMultipart multipart = new MimeMultipart("related");
+
+		         // first part (the html)
+		         BodyPart messageBodyPart = new MimeBodyPart();
+		         BodyPart messageBodyPart1 = new MimeBodyPart();
+		         
+		         
+		         
+		          String  htmlText = "<html>";
+		          
+		          htmlText += "<head>";
+		          htmlText += "<link href=\"https://fonts.googleapis.com/icon?family=Material+Icons\"\r\n rel=\"stylesheet\">";
+		          htmlText += "</head>";
+		          
+		          
+		          htmlText += "<body>";
+		          htmlText += "<br>";
+		          htmlText += "<table cellpadding=\"0\" cellspacing=\"15\" border=\"0\" bgcolor=\"#f0f4f5\" width=\"100%\"	style=\"margin: 0 auto; max-width: 550px; font-family: arial\">";
+		          htmlText += "<tbody>";
+		          htmlText += "<tr bgcolor=\"#ffffff\">";
+		          htmlText += "<td>";
+		          htmlText += "<table cellpadding=\"15\" cellspacing=\"0\" border=\"0\" width=\"100%\">";
+		          htmlText += "<tbody>";
+		          htmlText += "<tr>";
+		          htmlText += "<td valign=\"middle\"><a href=\"http://www.sahajanandlaser.com\"><img src=\"http://www.sltl.com/images/sltllogo.png\" alt=\"sltllogo\" width=\"106\" style=\"vertical-align: middle\" class=\"CToWUd\"></a></td>";
+		          htmlText += "<td align=\"right\"><img src=\"https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQjJkNWrO_pXGhZoAvyStzhRr70iS-ZdCO7JUoQivdyMWqbV0HtLQ\"\r\n" + 
+		          		"								height=\"40px\" width=\"40px\"\r\n" + 
+		          		"								class=\"CToWUd\"></td>";
+		          htmlText += "</tr>";
+		          htmlText += "</tbody>";
+		          htmlText += "</table>";
+		          htmlText += "</td>";
+		          htmlText += "</tr>";
+		          htmlText += "<tr bgcolor=\"#ffffff\">";
+		          htmlText += "<td>";
+		          htmlText += "<table cellpadding=\"0\" cellspacing=\"0\" border=\"0\">";
+		          htmlText += "<tbody>";
+		          htmlText += "<tr>";
+		          htmlText += "<td><div class=\"a6S\" dir=\"ltr\" style=\"opacity: 0.01; left: 521.5px; top: 236px;\"> <div id=\":13q\" class=\"T-I J-J5-Ji aQv T-I-ax7 L3 a5q\"" + 
+		          		"role=\"button\" tabindex=\"0\" aria-label=\"Download attachment \" data-tooltip-class=\"a1V\" data-tooltip=\"Download\"> <div class=\"aSK J-J5-Ji aYr\"></div>" + 
+		          		"</div> </div></td>";
+		          htmlText += "</tr>";
+		          htmlText += "<tr>";
+		          htmlText += "<td>";
+		          htmlText += "<table cellpadding=\"15\" cellspacing=\"0\" border=\"0\" width=\"100%\">";
+		          htmlText += "<tbody>";
+		          htmlText += "<tr>";
+		          htmlText += "<td> <p style=\"margin: 0; padding: 0px; font-family: arial; font-size: 13px; color: #121212; line-height: 18px; padding-bottom: 10px\">" + 
+		          		" Respected Sir / Ma'am <b>"+manager_name+"</b> ,</p> "
+		          		+ "<p style=\"margin: 0; padding: 0px; font-family: arial; font-size: 13px; color: #121212; line-height: 18px\">" + 
+		          		" &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; It is to remind that Probation review of your team mate, "+salutation+" <b>"+name+"</b> is due for the month of <b>"+date+"</b></p><br>"
+		          		+ "<p style=\"margin: 0; padding: 0px; font-family: arial; font-size: 13px; color: #121212; line-height: 18px\">" + 
+		          		" &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; You are requested to provide appropriate ratings & submit it within two days from the receipt of this notification.</p><br>"
+		          		+ "<p style=\"margin: 0; paddin	g: 0px; font-family: arial; font-size: 13px; color: #121212; line-height: 18px\">" + 
+		          		" &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Please visit SLTL HRMS Probation Module for rating submission.</p>"
+		          		;
+		          htmlText += "</tr>";
+		          htmlText += "</tbody>";
+		          htmlText += "</table>";
+		          htmlText += "</td>";
+		          htmlText += "</tr>";
+		          htmlText += "</tbody>";
+		          htmlText += "</table>";
+		          htmlText += "</td>";
+		          htmlText += "</tr>";
+		          htmlText += "<tr bgcolor=\"#ffffff\">";
+		          htmlText += "<td>";
+		          htmlText += "<table cellpadding=\"20\" cellspacing=\"0\" border=\"0\" width=\"100%\">";
+		          htmlText += "<tbody>";
+		          htmlText += "<tr>";
+		          htmlText += "<td>";
+		          htmlText += "<p style=\"font-size: 13px; padding: 0px; margin: 0px; padding-left: 5px; line-height: 20px; color: #121212; text-align: center\">For Login into HRMS <a href=\"http://192.168.182.58:6018/HRMS/\"><button style=\" background-color: white; color: black; border: 2px solid #337ab7;\">Login</button></a> </p>";
+		          htmlText += "<br>";
+		          htmlText += "<p align=\"center\" style=\"font-size: 11px; padding: 0px; margin: 0px; line-height: 13px; color: red; padding-bottom: 10px\"><b>Note : This button will work only when you are connected to SLTL Intranet.</b></p>";
+		          htmlText += "</td>";
+		          htmlText += "</tr>";
+		          htmlText += "</tbody>";
+		          htmlText += "</table>";
+		          htmlText += "</td>";
+		          htmlText += "</tr>";
+		          htmlText += "<tr bgcolor=\"#ffffff\">";
+		          htmlText += "<td>";
+		          htmlText += "<table cellpadding=\"0\" cellspacing=\"0\" border=\"0\">";
+		          htmlText += "<tbody>";
+		          htmlText += "<tr>";
+		          htmlText += "<td>";
+		          htmlText += "<table cellpadding=\"0\" cellspacing=\"0\" border=\"0\" width=\"100%\">";
+		          htmlText += "<tbody>";
+		          htmlText += "<tr bgcolor=\"#ffffff\">";
+		          htmlText += "<td>";
+		          htmlText += "<table cellpadding=\"15\" cellspacing=\"0\" border=\"0\">";
+		          htmlText += "<tbody>";
+		          htmlText += "<tr>";
+		          htmlText += "<td>";
+		          htmlText += "<table cellpadding=\"0\" cellspacing=\"0\" border=\"0\" width=\"100%\">";
+		          htmlText += "<tbody>";
+		          htmlText += "<tr>";
+		          htmlText += "<td><p style=\"margin: 0; padding: 0px; font-family: arial; font-size: 13px; color: #121212; line-height: 20px; padding-bottom: 10px\"> For any queries or concerns, contact us on <b>313</b>.</p></td>";
+		          htmlText += "</tr>";
+		          htmlText += "<tr>";
+		          htmlText += "<td>";
+		          htmlText += "<p style=\"margin: 0; padding: 0px; font-family: arial; font-size: 13px; color: #121212; line-height: 20px\"> Regards,<br> Team HRMS </p>";
+		          htmlText += "<br><p style=\"margin: 0; padding: 0px; font-family: arial; font-size: 11px; color: #333; line-height: 20px; font-style: italic\">* This is an automated e-mail alert to help you to know about your leave. Hence, Please do not reply to this e-mail.</p>";
+		          htmlText += "</td>";
+		          htmlText += "</tr>";
+		          htmlText += "</tbody>";
+		          htmlText += "</table>";
+		          htmlText += "</td>";
+		          htmlText += "</tr>";
+		          htmlText += "</tbody>";
+		          htmlText += "</table>";
+		          htmlText += "</td>";
+		          htmlText += "</tr>";
+		          htmlText += "</tbody>";
+		          htmlText += "</table>";
+		          htmlText += "</td>";
+		          htmlText += "</tr>";
+		          htmlText += "</tbody>";
+		          htmlText += "</table>";
+		          htmlText += "</td>";
+		          htmlText += "</tr>";
+		          htmlText += "</tbody>";
+		          htmlText += "</table>";
+		          htmlText += "</body>";
+		          htmlText += "</html>";
+		          
+		         /*htmlText = type+"<br>"+query+"<br>"+code;*/
+		        //  htmlText += "<br><br><br>";
+		        // htmlText += "<img src=\"cid:image\"><br><b>"+body+"</b><br><b>"+body1+"</b><br><b>"+body2+"</b><br><b>"+body3+"</b><br><b>"+body4+"</b>";
+		         messageBodyPart.setContent(htmlText, "text/html");
+		         // add it
+		         multipart.addBodyPart(messageBodyPart);
+
+		         // second part (the image)
+		         messageBodyPart = new MimeBodyPart();
+		         DataSource fds = new FileDataSource(
+		            "D:/hrms/upload/img/sltllogo.png");
+
+		         messageBodyPart.setDataHandler(new DataHandler(fds));
+		         messageBodyPart.setHeader("Content-ID", "<image>");
+
+		         // add image to the multipart
+		         multipart.addBodyPart(messageBodyPart);
+		         
+		        
+		         message.setContent(multipart);
+		         
+				// 3rd step)send message
+				Transport.send(message);
+
+				System.out.println("Done : "+to);
+
+			} catch (MessagingException e) {
+				throw new RuntimeException(e);
+			}
+			
+			
+	
+	}
+	
+	
+	public static void sendProbationEmailEmployeeMonth(String to, String subject, String employeename,String salutation,String companyname,String rolename,int to_be_extended) {      // MAIL FOR PROBATION
+		// Sender's email ID needs to be mentioned
+	     String from = "hrms@sltl.com";
+	     String pass ="hrms#123";
+	    // Recipient's email ID needs to be mentioned.
+	   String host = "smtp.gmail.com";
+	   
+	   System.out.println("akash");
+	   
+	   
+	// 1st step) Get the session object
+			Properties props = new Properties();
+			// props.put("mail.smtp.starttls.enable", "true");
+			props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+			props.setProperty("mail.transport.protocol", "smtps");
+			props.put("mail.smtp.starttls.enable", "true");
+			props.put("mail.smtp.host", host);
+			props.put("mail.smtp.port", "587");
+			props.put("mail.smtp.auth", "true");
+			
+			
+			   
+			   
+			   
+		props.put("mail.smtp.socketFactory.port", "587");  
+		props.put("mail.smtp.starttls.enable", "true");
+		props.put("mail.smtp.socketFactory.class", "javax.net.SocketFactory");
+		props.put("mail.smtp.ssl.enable", "false");
+		props.put("mail.smtp.ssl.trust", host);
+			   
+
+			Session session = Session.getInstance(props, new javax.mail.Authenticator() {
+			    protected PasswordAuthentication getPasswordAuthentication() {
+			        return new PasswordAuthentication(from, pass);
+			    }
+			
+			});
+			// 2nd step)compose message
+			String body = "Sahajanand Laser Technology Ltd.";                     
+			String body1 = "E-30, Electronics Estate, G.I.D.C., Sector-26,";
+			String body2 = "GANDHINAGAR - 382028, Gujarat, INDIA.";
+			String body3 = "Contact:( O): 079-2328 7461-68 Fax No.: 079-2328 7470.";
+			String body4 = "www.sahajanandlaser.com";
+			String link = "http://192.168.182.58:6018/HRMS/";
+	        
+			try {
+				MimeMessage message = new MimeMessage(session);
+				message.setFrom(new InternetAddress(from));// From Address
+				message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));// To
+				
+				message.setSubject(subject);// MSG Subject
+				// This mail has 2 part, the BODY and the embedded image
+		         MimeMultipart multipart = new MimeMultipart("related");
+
+		         // first part (the html)
+		         BodyPart messageBodyPart = new MimeBodyPart();
+		         BodyPart messageBodyPart1 = new MimeBodyPart();
+		         
+		         /**/
+		         
+		          String  htmlText = "<html>";
+		          
+		          htmlText += "<head>";
+		          htmlText += "<link href=\"https://fonts.googleapis.com/icon?family=Material+Icons\"\r\n rel=\"stylesheet\">";
+		          htmlText += "</head>";
+		          
+		          
+		          htmlText += "<body>";
+		          htmlText += "<br>";
+		          htmlText += "<table cellpadding=\"0\" cellspacing=\"15\" border=\"0\" bgcolor=\"#f0f4f5\" width=\"100%\"	style=\"margin: 0 auto; max-width: 550px; font-family: arial\">";
+		          htmlText += "<tbody>";
+		          htmlText += "<tr bgcolor=\"#ffffff\">";
+		          htmlText += "<td>";
+		          htmlText += "<table cellpadding=\"15\" cellspacing=\"0\" border=\"0\" width=\"100%\">";
+		          htmlText += "<tbody>";
+		          htmlText += "<tr>";
+		          htmlText += "<td valign=\"middle\"><a href=\"http://www.sahajanandlaser.com\"><img src=\"http://www.sltl.com/images/sltllogo.png\" alt=\"sltllogo\" width=\"106\" style=\"vertical-align: middle\" class=\"CToWUd\"></a></td>";
+		          htmlText += "<td align=\"right\"><img src=\"https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQjJkNWrO_pXGhZoAvyStzhRr70iS-ZdCO7JUoQivdyMWqbV0HtLQ\"\r\n" + 
+		          		"								height=\"40px\" width=\"40px\"\r\n" + 
+		          		"								class=\"CToWUd\"></td>";
+		          htmlText += "</tr>";
+		          htmlText += "</tbody>";
+		          htmlText += "</table>";
+		          htmlText += "</td>";
+		          htmlText += "</tr>";
+		          htmlText += "<tr bgcolor=\"#ffffff\">";
+		          htmlText += "<td>";
+		          htmlText += "<table cellpadding=\"0\" cellspacing=\"0\" border=\"0\">";
+		          htmlText += "<tbody>";
+		          htmlText += "<tr>";
+		          htmlText += "<td><div class=\"a6S\" dir=\"ltr\" style=\"opacity: 0.01; left: 521.5px; top: 236px;\"> <div id=\":13q\" class=\"T-I J-J5-Ji aQv T-I-ax7 L3 a5q\"" + 
+		          		"role=\"button\" tabindex=\"0\" aria-label=\"Download attachment \" data-tooltip-class=\"a1V\" data-tooltip=\"Download\"> <div class=\"aSK J-J5-Ji aYr\"></div>" + 
+		          		"</div> </div></td>";
+		          htmlText += "</tr>";
+		          htmlText += "<tr>";
+		          htmlText += "<td>";
+		          htmlText += "<table cellpadding=\"15\" cellspacing=\"0\" border=\"0\" width=\"100%\">";
+		          htmlText += "<tbody>";
+		          htmlText += "<tr>";
+		          htmlText += "<td> <p style=\"margin: 0; padding: 0px; font-family: arial; font-size: 13px; color: #121212; line-height: 18px; padding-bottom: 10px\">" + 
+		          		"<b>Dear "+salutation+" "+employeename+"</b> ,</p> "
+		          		+ "<p style=\"margin: 0; padding: 0px; font-family: arial; font-size: 13px; color: #121212; line-height: 18px\">" + 
+		          		" &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Following completion of your "+to_be_extended+" months probation period at <b>"+companyname+"</b>, we have reviewed your performance and found the same to be satisfactory.</p><br>"
+		          		+ "<p style=\"margin: 0; padding: 0px; font-family: arial; font-size: 13px; color: #121212; line-height: 18px\">" + 
+		          		" &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; In view of the above, we are pleased to inform you that you have been confirmed to the position of <b>"+rolename+"</b> at <b>"+companyname+"</b>.</p><br>"
+		          		+ "<p style=\"margin: 0; padding: 0px; font-family: arial; font-size: 13px; color: #121212; line-height: 18px\">" + 
+		          		" &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; All other terms and conditions of your appointment will remain the same.</p><br>"
+		          		+ "<p style=\"margin: 0; paddin	g: 0px; font-family: arial; font-size: 13px; color: #121212; line-height: 18px\">" + 
+		          		" &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>"+companyname+"</b> congratulates you on your confirmation and wishes you well in your position.</p>"
+		          		+ "<p style=\"margin: 0; paddin	g: 0px; font-family: arial; font-size: 13px; color: #121212; line-height: 18px\">" + 
+		          		" &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>Separate probation confirmation letter will issue to you shortly.</b></p>"
+		          		;
+		          htmlText += "</tr>";
+		          htmlText += "<tr>";
+		          htmlText += "<td>";
+		          htmlText += "<p style=\"margin: 0; padding: 0px; font-family: arial; font-size: 13px; color: #121212; line-height: 20px\"> Sincerely,<br> <b>Team HRD</b></p>";
+		          htmlText += "</td>";
+		          htmlText += "</tr>";
+		          htmlText += "</tbody>";
+		          htmlText += "</table>";
+		          htmlText += "</td>";
+		          htmlText += "</tr>";
+		          htmlText += "</tbody>";
+		          htmlText += "</table>";
+		          htmlText += "</td>";
+		          htmlText += "</tr>";
+		          htmlText += "<tr bgcolor=\"#ffffff\">";
+		          htmlText += "<td>";
+		          htmlText += "<table cellpadding=\"20\" cellspacing=\"0\" border=\"0\" width=\"100%\">";
+		          htmlText += "<tbody>";
+		          htmlText += "<tr>";
+		          htmlText += "<td>";
+		          htmlText += "<p style=\"font-size: 13px; padding: 0px; margin: 0px; padding-left: 5px; line-height: 20px; color: #121212; text-align: center\">For Login into HRMS <a href=\"http://192.168.182.58:6018/HRMS/\"><button style=\" background-color: white; color: black; border: 2px solid #337ab7;\">Login</button></a> </p>";
+		          htmlText += "<br>";
+		          htmlText += "<p align=\"center\" style=\"font-size: 11px; padding: 0px; margin: 0px; line-height: 13px; color: red; padding-bottom: 10px\"><b>Note : This button will work only when you are connected to SLTL Intranet.</b></p>";
+		          htmlText += "</td>";
+		          htmlText += "</tr>";
+		          htmlText += "</tbody>";
+		          htmlText += "</table>";
+		          htmlText += "</td>";
+		          htmlText += "</tr>";
+		          htmlText += "<tr bgcolor=\"#ffffff\">";
+		          htmlText += "<td>";
+		          htmlText += "<table cellpadding=\"0\" cellspacing=\"0\" border=\"0\">";
+		          htmlText += "<tbody>";
+		          htmlText += "<tr>";
+		          htmlText += "<td>";
+		          htmlText += "<table cellpadding=\"0\" cellspacing=\"0\" border=\"0\" width=\"100%\">";
+		          htmlText += "<tbody>";
+		          htmlText += "<tr bgcolor=\"#ffffff\">";
+		          htmlText += "<td>";
+		          htmlText += "<table cellpadding=\"15\" cellspacing=\"0\" border=\"0\">";
+		          htmlText += "<tbody>";
+		          htmlText += "<tr>";
+		          htmlText += "<td>";
+		          htmlText += "<table cellpadding=\"0\" cellspacing=\"0\" border=\"0\" width=\"100%\">";
+		          htmlText += "<tbody>";
+		          htmlText += "<tr>";
+		          htmlText += "<td><p style=\"margin: 0; padding: 0px; font-family: arial; font-size: 13px; color: #121212; line-height: 20px; padding-bottom: 10px\"> For any queries or concerns, contact us on <b>313</b>.</p></td>";
+		          htmlText += "</tr>";
+		          htmlText += "<tr>";
+		          htmlText += "<td>";
+		          htmlText += "<p style=\"margin: 0; padding: 0px; font-family: arial; font-size: 13px; color: #121212; line-height: 20px\"> Regards,<br> Team HRMS </p>";
+		          htmlText += "<br><p style=\"margin: 0; padding: 0px; font-family: arial; font-size: 11px; color: #333; line-height: 20px; font-style: italic\">* This is an automated e-mail alert to help you to know about your leave. Hence, Please do not reply to this e-mail.</p>";
+		          htmlText += "</td>";
+		          htmlText += "</tr>";
+		          htmlText += "</tbody>";
+		          htmlText += "</table>";
+		          htmlText += "</td>";
+		          htmlText += "</tr>";
+		          htmlText += "</tbody>";
+		          htmlText += "</table>";
+		          htmlText += "</td>";
+		          htmlText += "</tr>";
+		          htmlText += "</tbody>";
+		          htmlText += "</table>";
+		          htmlText += "</td>";
+		          htmlText += "</tr>";
+		          htmlText += "</tbody>";
+		          htmlText += "</table>";
+		          htmlText += "</td>";
+		          htmlText += "</tr>";
+		          htmlText += "</tbody>";
+		          htmlText += "</table>";
+		          htmlText += "</body>";
+		          htmlText += "</html>";
+		          
+		        /* String htmlText = type+"<br>"+query+"<br>"+code;*/
+		        //  htmlText += "<br><br><br>";
+		        // htmlText += "<img src=\"cid:image\"><br><b>"+body+"</b><br><b>"+body1+"</b><br><b>"+body2+"</b><br><b>"+body3+"</b><br><b>"+body4+"</b>";
+		         messageBodyPart.setContent(htmlText, "text/html");
+		         // add it
+		         multipart.addBodyPart(messageBodyPart);
+
+		         // second part (the image)
+		         messageBodyPart = new MimeBodyPart();
+		         DataSource fds = new FileDataSource(
+		            "D:/hrms/upload/img/sltllogo.png");
+
+		         messageBodyPart.setDataHandler(new DataHandler(fds));
+		         messageBodyPart.setHeader("Content-ID", "<image>");
+
+		         // add image to the multipart
+		         multipart.addBodyPart(messageBodyPart);
+		         
+		        
+		         message.setContent(multipart);
+		         
+				// 3rd step)send message
+				Transport.send(message);
+
+				System.out.println("Done : "+to);
+
+			} catch (MessagingException e) {
+				throw new RuntimeException(e);
+			}
+			
+			
+	
+	}
+
+	public static void sendPolicyDocument(String to,String subject,String Vehicle_name,String Registration_no,String Policy_no,String Policy_issued_on,String Period_of_insurance) {      // MAIL FOR PROBATION
+		// Sender's email ID needs to be mentioned
+	     String from = "hrms@sltl.com";
+	     String pass ="hrms#123";
+	    // Recipient's email ID needs to be mentioned.
+	   String host = "smtp.gmail.com";
+	   
+	   System.out.println("akash");
+	   
+	   
+	// 1st step) Get the session object
+			Properties props = new Properties();
+			// props.put("mail.smtp.starttls.enable", "true");
+			props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+			props.setProperty("mail.transport.protocol", "smtps");
+			props.put("mail.smtp.starttls.enable", "true");
+			props.put("mail.smtp.host", host);
+			props.put("mail.smtp.port", "587");
+			props.put("mail.smtp.auth", "true");
+			
+			
+			   
+			   
+			   
+		props.put("mail.smtp.socketFactory.port", "587");  
+		props.put("mail.smtp.starttls.enable", "true");
+		props.put("mail.smtp.socketFactory.class", "javax.net.SocketFactory");
+		props.put("mail.smtp.ssl.enable", "false");
+		props.put("mail.smtp.ssl.trust", host);
+			   
+
+			Session session = Session.getInstance(props, new javax.mail.Authenticator() {
+			    protected PasswordAuthentication getPasswordAuthentication() {
+			        return new PasswordAuthentication(from, pass);
+			    }
+			
+			});
+			// 2nd step)compose message
+			String body = "Sahajanand Laser Technology Ltd.";                     
+			String body1 = "E-30, Electronics Estate, G.I.D.C., Sector-26,";
+			String body2 = "GANDHINAGAR - 382028, Gujarat, INDIA.";
+			String body3 = "Contact:( O): 079-2328 7461-68 Fax No.: 079-2328 7470.";
+			String body4 = "www.sahajanandlaser.com";
+			String link = "http://192.168.182.58:6018/HRMS/";
+	        
+			try {
+				MimeMessage message = new MimeMessage(session);
+				message.setFrom(new InternetAddress(from));// From Address
+				message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));// To
+				
+				message.setSubject(subject);// MSG Subject
+				// This mail has 2 part, the BODY and the embedded image
+		         MimeMultipart multipart = new MimeMultipart("related");
+
+		         // first part (the html)
+		         BodyPart messageBodyPart = new MimeBodyPart();
+		         BodyPart messageBodyPart1 = new MimeBodyPart();
+		         
+		         /**/
+		         
+		          String  htmlText = "<html>";
+		          
+		          htmlText += "<head>";
+		          htmlText += "<link href=\"https://fonts.googleapis.com/icon?family=Material+Icons\"\r\n rel=\"stylesheet\">";
+		          htmlText += "</head>";
+		          
+		          
+		          htmlText += "<body>";
+		          htmlText += "<br>";
+		          htmlText += "<table cellpadding=\"0\" cellspacing=\"15\" border=\"0\" bgcolor=\"#f0f4f5\" width=\"100%\"	style=\"margin: 0 auto; max-width: 550px; font-family: arial\">";
+		          htmlText += "<tbody>";
+		          htmlText += "<tr bgcolor=\"#ffffff\">";
+		          htmlText += "<td>";
+		          htmlText += "<table cellpadding=\"15\" cellspacing=\"0\" border=\"0\" width=\"100%\">";
+		          htmlText += "<tbody>";
+		          htmlText += "<tr>";
+		          htmlText += "<td valign=\"middle\"><a href=\"http://www.sahajanandlaser.com\"><img src=\"http://www.sltl.com/images/sltllogo.png\" alt=\"sltllogo\" width=\"106\" style=\"vertical-align: middle\" class=\"CToWUd\"></a></td>";
+		          htmlText += "<td align=\"right\"><img src=\"https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQjJkNWrO_pXGhZoAvyStzhRr70iS-ZdCO7JUoQivdyMWqbV0HtLQ\"\r\n" + 
+		          		"								height=\"40px\" width=\"40px\"\r\n" + 
+		          		"								class=\"CToWUd\"></td>";
+		          htmlText += "</tr>";
+		          htmlText += "</tbody>";
+		          htmlText += "</table>";
+		          htmlText += "</td>";
+		          htmlText += "</tr>";
+		          htmlText += "<tr bgcolor=\"#ffffff\">";
+		          htmlText += "<td>";
+		          htmlText += "<table cellpadding=\"0\" cellspacing=\"0\" border=\"0\">";
+		          htmlText += "<tbody>";
+		          htmlText += "<tr>";
+		          htmlText += "<td><div class=\"a6S\" dir=\"ltr\" style=\"opacity: 0.01; left: 521.5px; top: 236px;\"> <div id=\":13q\" class=\"T-I J-J5-Ji aQv T-I-ax7 L3 a5q\"" + 
+		          		"role=\"button\" tabindex=\"0\" aria-label=\"Download attachment \" data-tooltip-class=\"a1V\" data-tooltip=\"Download\"> <div class=\"aSK J-J5-Ji aYr\"></div>" + 
+		          		"</div> </div></td>";
+		          htmlText += "</tr>";
+		          htmlText += "<tr>";
+		          htmlText += "<td>";
+		          htmlText += "<table cellpadding=\"15\" cellspacing=\"0\" border=\"0\" width=\"100%\">";
+		          htmlText += "<tbody>";
+		          htmlText += "<tr>";
+		          htmlText += "<td> <p style=\"margin: 0; padding: 0px; font-family: arial; font-size: 13px; color: #121212; line-height: 18px; padding-bottom: 10px\">" + 
+		          		"<b>Dear Ma'am/Sir,</b> ,</p> "
+		          		+ "<p style=\"margin: 0; padding: 0px; font-family: arial; font-size: 13px; color: #121212; line-height: 18px\">" + 
+		          		" &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Insurance Policy Document for "+Vehicle_name+"_"+Registration_no+" is not submitted yet.</b></p><br>"
+		          		;
+		          htmlText += "</tr>";
+		          htmlText += "<tr>";
+		          htmlText += "<td>";
+		          htmlText += "<p style=\"margin: 0; padding: 0px; font-family: arial; font-size: 13px; color: #121212; line-height: 20px\"> Sincerely,<br> <b>Team HRD</b></p>";
+		          htmlText += "</td>";
+		          htmlText += "</tr>";
+		          
+		          
+		          htmlText += "<tr bgcolor=\"#ffffff\">";
+		          htmlText += "<td>";
+		          htmlText += "<table cellpadding=\"0\" cellspacing=\"15\" border=\"0\" width=\"100%\">";
+		          htmlText += "<tbody>";
+		          
+		          htmlText += " <tr><td><img src=\"http://www.letk.ee/img/document.png\" style=\"color: black;\" height=\"20px\" width=\"20px\" class=\"CToWUd\"><b>&nbsp; CI Detail </b><hr>"
+			          		+ "</td> </tr>";
+		          htmlText += "<tr>";
+		          htmlText += "<td>";
+		          htmlText += "<table cellpadding=\"10\" cellspacing=\"0\" border=\"0\" width=\"100%\" style=\"border: solid #f4f4f4 1px\">";
+		          htmlText += "<tbody>";
+		          htmlText += "<tr>";
+		          htmlText += "<td style=\"border-right: solid #f4f4f4 1px; border-bottom: solid #f4f4f4 1px\"> <p style=\"margin: 0; padding: 0px; font-family: arial; font-size: 12px; color: #121212; line-height: 13px\">" + 
+		          		" <strong>Vehicle Name </strong> </p> </td>";
+		          htmlText += "<td style=\"border-bottom: solid #f4f4f4 1px\"> <p style=\"margin: 0; padding: 0px; font-family: arial; font-size: 14px; color: #121212; line-height: 13px\">"+Vehicle_name+"</p></td>";
+		          htmlText += "</tr>";
+		          htmlText += "<tr>";
+		          htmlText += "<td style=\"border-right: solid #f4f4f4 1px; border-bottom: solid #f4f4f4 1px\"> <p style=\"margin: 0; padding: 0px; font-family: arial; font-size: 12px; color: #121212; line-height: 13px\">" + 
+		          		" <strong>CI Name </strong> </p> </td>";
+		          htmlText += "<td style=\"border-bottom: solid #f4f4f4 1px\"> <p style=\"margin: 0; padding: 0px; font-family: arial; font-size: 14px; color: #121212; line-height: 13px\">"+Registration_no+"</p></td>";
+		          htmlText += "</tr>";
+		          htmlText += "<tr>";
+		          htmlText += "<td style=\"border-right: solid #f4f4f4 1px; border-bottom: solid #f4f4f4 1px\"> <p style=\"margin: 0; padding: 0px; font-family: arial; font-size: 12px; color: #121212; line-height: 13px\">\r\n" + 
+		          		"<strong>CI Description</strong> </p> </td>";
+		          htmlText += "<td style=\"border-bottom: solid #f4f4f4 1px\"> <p style=\"margin: 0; padding: 0px; font-family: arial; font-size: 12px; color: #121212; line-height: 13px\">\r\n" + 
+		          		""+Policy_issued_on+"</p> </td>";
+		          htmlText += "</tr>";
+		          htmlText += "<tr>";
+		          htmlText += "<td style=\"border-right: solid #f4f4f4 1px; border-bottom: solid #f4f4f4 1px\"> <p style=\"margin: 0; padding: 0px; font-family: arial; font-size: 12px; color: #121212; line-height: 13px\">\r\n" + 
+		          		" <strong>Team Members</strong> </p> </td>";
+		          htmlText += "<td style=\"border-bottom: solid #f4f4f4 1px\"> <p style=\"margin: 0; padding: 0px; font-family: arial; font-size: 12px; color: #121212; line-height: 13px\">\r\n" + 
+		          		" "+Period_of_insurance+"</p> </td>";
+		          htmlText += "</tr>";
+		          
+		          htmlText += "</tbody>";
+		          htmlText += "</table>";
+		          htmlText += "</td>";
+		          htmlText += "</tr>";
+		          htmlText += "</tbody>";
+		          htmlText += "</table>";
+		          htmlText += "</td>";
+		          htmlText += "</tr>";
+		          htmlText += "<tr bgcolor=\"#ffffff\">";
+		          htmlText += "<td>";
+		          htmlText += "<table cellpadding=\"20\" cellspacing=\"0\" border=\"0\" width=\"100%\">";
+		          htmlText += "<tbody>";
+		          htmlText += "<tr>";
+		          htmlText += "<td>";
+		          htmlText += "<p style=\"font-size: 13px; padding: 0px; margin: 0px; padding-left: 5px; line-height: 20px; color: #121212; text-align: center\">For Login into HRMS <a href=\"http://192.168.182.58:6018/HRMS/\"><button style=\" background-color: white; color: black; border: 2px solid #337ab7;\">Login</button></a> </p>";
+		          htmlText += "<br>";
+		          htmlText += "<p align=\"center\" style=\"font-size: 11px; padding: 0px; margin: 0px; line-height: 13px; color: red; padding-bottom: 10px\"><b>Note : This button will work only when you are connected to SLTL Intranet.</b></p>";
+		          htmlText += "</td>";
+		          htmlText += "</tr>";
+		          htmlText += "</tbody>";
+		          htmlText += "</table>";
+		          htmlText += "</td>";
+		          htmlText += "</tr>";
+		          htmlText += "<tr bgcolor=\"#ffffff\">";
+		          htmlText += "<td>";
+		          htmlText += "<table cellpadding=\"0\" cellspacing=\"0\" border=\"0\">";
+		          htmlText += "<tbody>";
+		          htmlText += "<tr>";
+		          htmlText += "<td>";
+		          htmlText += "<table cellpadding=\"0\" cellspacing=\"0\" border=\"0\" width=\"100%\">";
+		          htmlText += "<tbody>";
+		          htmlText += "<tr bgcolor=\"#ffffff\">";
+		          htmlText += "<td>";
+		          htmlText += "<table cellpadding=\"15\" cellspacing=\"0\" border=\"0\">";
+		          htmlText += "<tbody>";
+		          htmlText += "<tr>";
+		          htmlText += "<td>";
+		          htmlText += "<table cellpadding=\"0\" cellspacing=\"0\" border=\"0\" width=\"100%\">";
+		          htmlText += "<tbody>";
+		          htmlText += "<tr>";
+		          htmlText += "<td><p style=\"margin: 0; padding: 0px; font-family: arial; font-size: 13px; color: #121212; line-height: 20px; padding-bottom: 10px\"> For any queries or concerns, contact us on <b>313</b>.</p></td>";
+		          htmlText += "</tr>";
+		          htmlText += "<tr>";
+		          htmlText += "<td>";
+		          htmlText += "<p style=\"margin: 0; padding: 0px; font-family: arial; font-size: 13px; color: #121212; line-height: 20px\"> Regards,<br> Team HRMS </p>";
+		          htmlText += "<br><p style=\"margin: 0; padding: 0px; font-family: arial; font-size: 11px; color: #333; line-height: 20px; font-style: italic\">* This is an automated e-mail alert to help you to know about your leave. Hence, Please do not reply to this e-mail.</p>";
+		          htmlText += "</td>";
+		          htmlText += "</tr>";
+		          htmlText += "</tbody>";
+		          htmlText += "</table>";
+		          htmlText += "</td>";
+		          htmlText += "</tr>";
+		          htmlText += "</tbody>";
+		          htmlText += "</table>";
+		          htmlText += "</td>";
+		          htmlText += "</tr>";
+		          htmlText += "</tbody>";
+		          htmlText += "</table>";
+		          htmlText += "</td>";
+		          htmlText += "</tr>";
+		          htmlText += "</tbody>";
+		          htmlText += "</table>";
+		          htmlText += "</td>";
+		          htmlText += "</tr>";
+		          htmlText += "</tbody>";
+		          htmlText += "</table>";
+		          htmlText += "</body>";
+		          htmlText += "</html>";
+		          
+		        /* String htmlText = type+"<br>"+query+"<br>"+code;*/
+		        //  htmlText += "<br><br><br>";
+		        // htmlText += "<img src=\"cid:image\"><br><b>"+body+"</b><br><b>"+body1+"</b><br><b>"+body2+"</b><br><b>"+body3+"</b><br><b>"+body4+"</b>";
+		         messageBodyPart.setContent(htmlText, "text/html");
+		         // add it
+		         multipart.addBodyPart(messageBodyPart);
+
+		         // second part (the image)
+		         messageBodyPart = new MimeBodyPart();
+		         DataSource fds = new FileDataSource(
+		            "D:/hrms/upload/img/sltllogo.png");
+
+		         messageBodyPart.setDataHandler(new DataHandler(fds));
+		         messageBodyPart.setHeader("Content-ID", "<image>");
+
+		         // add image to the multipart
+		         multipart.addBodyPart(messageBodyPart);
+		         
+		        
+		         message.setContent(multipart);
+		         
+				// 3rd step)send message
+				Transport.send(message);
+
+				System.out.println("Done : "+to);
+
+			} catch (MessagingException e) {
+				throw new RuntimeException(e);
+			}
+			
+			
+	
+	}
+	public static void sendPolicyExpired30Day(String to,String subject,String Vehicle_name,String Registration_no,String Policy_no,String Policy_issued_on,String Period_of_insurance,String date) {      // MAIL FOR PROBATION
+		// Sender's email ID needs to be mentioned
+	     String from = "hrms@sltl.com";
+	     String pass ="hrms#123";
+	    // Recipient's email ID needs to be mentioned.
+	   String host = "smtp.gmail.com";
+	   
+	   System.out.println("akash");
+	   
+	   
+	// 1st step) Get the session object
+			Properties props = new Properties();
+			// props.put("mail.smtp.starttls.enable", "true");
+			props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+			props.setProperty("mail.transport.protocol", "smtps");
+			props.put("mail.smtp.starttls.enable", "true");
+			props.put("mail.smtp.host", host);
+			props.put("mail.smtp.port", "587");
+			props.put("mail.smtp.auth", "true");
+			
+			
+			   
+			   
+			   
+		props.put("mail.smtp.socketFactory.port", "587");  
+		props.put("mail.smtp.starttls.enable", "true");
+		props.put("mail.smtp.socketFactory.class", "javax.net.SocketFactory");
+		props.put("mail.smtp.ssl.enable", "false");
+		props.put("mail.smtp.ssl.trust", host);
+			   
+
+			Session session = Session.getInstance(props, new javax.mail.Authenticator() {
+			    protected PasswordAuthentication getPasswordAuthentication() {
+			        return new PasswordAuthentication(from, pass);
+			    }
+			
+			});
+			// 2nd step)compose message
+			String body = "Sahajanand Laser Technology Ltd.";                     
+			String body1 = "E-30, Electronics Estate, G.I.D.C., Sector-26,";
+			String body2 = "GANDHINAGAR - 382028, Gujarat, INDIA.";
+			String body3 = "Contact:( O): 079-2328 7461-68 Fax No.: 079-2328 7470.";
+			String body4 = "www.sahajanandlaser.com";
+			String link = "http://192.168.182.58:6018/HRMS/";
+	        
+			try {
+				MimeMessage message = new MimeMessage(session);
+				message.setFrom(new InternetAddress(from));// From Address
+				message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));// To
+				
+				message.setSubject(subject);// MSG Subject
+				// This mail has 2 part, the BODY and the embedded image
+		         MimeMultipart multipart = new MimeMultipart("related");
+
+		         // first part (the html)
+		         BodyPart messageBodyPart = new MimeBodyPart();
+		         BodyPart messageBodyPart1 = new MimeBodyPart();
+		         
+		         /**/
+		         
+		          String  htmlText = "<html>";
+		          
+		          htmlText += "<head>";
+		          htmlText += "<link href=\"https://fonts.googleapis.com/icon?family=Material+Icons\"\r\n rel=\"stylesheet\">";
+		          htmlText += "</head>";
+		          
+		          
+		          htmlText += "<body>";
+		          htmlText += "<br>";
+		          htmlText += "<table cellpadding=\"0\" cellspacing=\"15\" border=\"0\" bgcolor=\"#f0f4f5\" width=\"100%\"	style=\"margin: 0 auto; max-width: 550px; font-family: arial\">";
+		          htmlText += "<tbody>";
+		          htmlText += "<tr bgcolor=\"#ffffff\">";
+		          htmlText += "<td>";
+		          htmlText += "<table cellpadding=\"15\" cellspacing=\"0\" border=\"0\" width=\"100%\">";
+		          htmlText += "<tbody>";
+		          htmlText += "<tr>";
+		          htmlText += "<td valign=\"middle\"><a href=\"http://www.sahajanandlaser.com\"><img src=\"http://www.sltl.com/images/sltllogo.png\" alt=\"sltllogo\" width=\"106\" style=\"vertical-align: middle\" class=\"CToWUd\"></a></td>";
+		          htmlText += "<td align=\"right\"><img src=\"https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQjJkNWrO_pXGhZoAvyStzhRr70iS-ZdCO7JUoQivdyMWqbV0HtLQ\"\r\n" + 
+		          		"								height=\"40px\" width=\"40px\"\r\n" + 
+		          		"								class=\"CToWUd\"></td>";
+		          htmlText += "</tr>";
+		          htmlText += "</tbody>";
+		          htmlText += "</table>";
+		          htmlText += "</td>";
+		          htmlText += "</tr>";
+		          htmlText += "<tr bgcolor=\"#ffffff\">";
+		          htmlText += "<td>";
+		          htmlText += "<table cellpadding=\"0\" cellspacing=\"0\" border=\"0\">";
+		          htmlText += "<tbody>";
+		          htmlText += "<tr>";
+		          htmlText += "<td><div class=\"a6S\" dir=\"ltr\" style=\"opacity: 0.01; left: 521.5px; top: 236px;\"> <div id=\":13q\" class=\"T-I J-J5-Ji aQv T-I-ax7 L3 a5q\"" + 
+		          		"role=\"button\" tabindex=\"0\" aria-label=\"Download attachment \" data-tooltip-class=\"a1V\" data-tooltip=\"Download\"> <div class=\"aSK J-J5-Ji aYr\"></div>" + 
+		          		"</div> </div></td>";
+		          htmlText += "</tr>";
+		          htmlText += "<tr>";
+		          htmlText += "<td>";
+		          htmlText += "<table cellpadding=\"15\" cellspacing=\"0\" border=\"0\" width=\"100%\">";
+		          htmlText += "<tbody>";
+		          htmlText += "<tr>";
+		          htmlText += "<td> <p style=\"margin: 0; padding: 0px; font-family: arial; font-size: 13px; color: #121212; line-height: 18px; padding-bottom: 10px\">" + 
+		          		"<b>Dear Ma'am/Sir,</b> ,</p> "
+		          		+ "<p style=\"margin: 0; padding: 0px; font-family: arial; font-size: 13px; color: #121212; line-height: 18px\">" + 
+		          		" &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Insurance Policy of "+Vehicle_name+" "+Registration_no+" is expired after 30 day("+date+").</b></p><br>"
+		          		;
+		          htmlText += "</tr>";
+		          htmlText += "<tr>";
+		          htmlText += "<td>";
+		          htmlText += "<p style=\"margin: 0; padding: 0px; font-family: arial; font-size: 13px; color: #121212; line-height: 20px\"> Sincerely,<br> <b>Team HRD</b></p>";
+		          htmlText += "</td>";
+		          htmlText += "</tr>";
+		          
+		          
+		          
+		          
+		          
+		          htmlText += "<tr bgcolor=\"#ffffff\">";
+		          htmlText += "<td>";
+		          htmlText += "<table cellpadding=\"0\" cellspacing=\"15\" border=\"0\" width=\"100%\">";
+		          htmlText += "<tbody>";
+		          
+		          htmlText += " <tr><td><img src=\"http://www.letk.ee/img/document.png\" style=\"color: black;\" height=\"20px\" width=\"20px\" class=\"CToWUd\"><b>&nbsp; CI Detail </b><hr>"
+			          		+ "</td> </tr>";
+		          htmlText += "<tr>";
+		          htmlText += "<td>";
+		          htmlText += "<table cellpadding=\"10\" cellspacing=\"0\" border=\"0\" width=\"100%\" style=\"border: solid #f4f4f4 1px\">";
+		          htmlText += "<tbody>";
+		          htmlText += "<tr>";
+		          htmlText += "<td style=\"border-right: solid #f4f4f4 1px; border-bottom: solid #f4f4f4 1px\"> <p style=\"margin: 0; padding: 0px; font-family: arial; font-size: 12px; color: #121212; line-height: 13px\">" + 
+		          		" <strong>Vehicle Name </strong> </p> </td>";
+		          htmlText += "<td style=\"border-bottom: solid #f4f4f4 1px\"> <p style=\"margin: 0; padding: 0px; font-family: arial; font-size: 14px; color: #121212; line-height: 13px\">"+Vehicle_name+"</p></td>";
+		          htmlText += "</tr>";
+		          htmlText += "<tr>";
+		          htmlText += "<td style=\"border-right: solid #f4f4f4 1px; border-bottom: solid #f4f4f4 1px\"> <p style=\"margin: 0; padding: 0px; font-family: arial; font-size: 12px; color: #121212; line-height: 13px\">" + 
+		          		" <strong>CI Name </strong> </p> </td>";
+		          htmlText += "<td style=\"border-bottom: solid #f4f4f4 1px\"> <p style=\"margin: 0; padding: 0px; font-family: arial; font-size: 14px; color: #121212; line-height: 13px\">"+Registration_no+"</p></td>";
+		          htmlText += "</tr>";
+		          htmlText += "<tr>";
+		          htmlText += "<td style=\"border-right: solid #f4f4f4 1px; border-bottom: solid #f4f4f4 1px\"> <p style=\"margin: 0; padding: 0px; font-family: arial; font-size: 12px; color: #121212; line-height: 13px\">\r\n" + 
+		          		"<strong>CI Description</strong> </p> </td>";
+		          htmlText += "<td style=\"border-bottom: solid #f4f4f4 1px\"> <p style=\"margin: 0; padding: 0px; font-family: arial; font-size: 12px; color: #121212; line-height: 13px\">\r\n" + 
+		          		""+Policy_issued_on+"</p> </td>";
+		          htmlText += "</tr>";
+		          htmlText += "<tr>";
+		          htmlText += "<td style=\"border-right: solid #f4f4f4 1px; border-bottom: solid #f4f4f4 1px\"> <p style=\"margin: 0; padding: 0px; font-family: arial; font-size: 12px; color: #121212; line-height: 13px\">\r\n" + 
+		          		" <strong>Team Members</strong> </p> </td>";
+		          htmlText += "<td style=\"border-bottom: solid #f4f4f4 1px\"> <p style=\"margin: 0; padding: 0px; font-family: arial; font-size: 12px; color: #121212; line-height: 13px\">\r\n" + 
+		          		" "+Period_of_insurance+"</p> </td>";
+		          htmlText += "</tr>";
+		          htmlText += "<tr>";
+		          htmlText += "<td style=\"border-right: solid #f4f4f4 1px; border-bottom: solid #f4f4f4 1px\"> <p style=\"margin: 0; padding: 0px; font-family: arial; font-size: 12px; color: #121212; line-height: 13px\">\r\n" + 
+		          		" <strong>Department</strong> </p> </td>";
+		          htmlText += "<td style=\"border-bottom: solid #f4f4f4 1px\"> <p style=\"margin: 0; padding: 0px; font-family: arial; font-size: 12px; color: #121212; line-height: 13px\">\r\n" + 
+		          		" "+date+"</p> </td>";
+		          htmlText += "</tr>";
+		          
+		          
+		          
+		          
+		          htmlText += "</tbody>";
+		          htmlText += "</table>";
+		          htmlText += "</td>";
+		          htmlText += "</tr>";
+		          htmlText += "</tbody>";
+		          htmlText += "</table>";
+		          htmlText += "</td>";
+		          htmlText += "</tr>";
+		          htmlText += "<tr bgcolor=\"#ffffff\">";
+		          htmlText += "<td>";
+		          htmlText += "<table cellpadding=\"20\" cellspacing=\"0\" border=\"0\" width=\"100%\">";
+		          htmlText += "<tbody>";
+		          htmlText += "<tr>";
+		          htmlText += "<td>";
+		          htmlText += "<p style=\"font-size: 13px; padding: 0px; margin: 0px; padding-left: 5px; line-height: 20px; color: #121212; text-align: center\">For Login into HRMS <a href=\"http://192.168.182.58:6018/HRMS/\"><button style=\" background-color: white; color: black; border: 2px solid #337ab7;\">Login</button></a> </p>";
+		          htmlText += "<br>";
+		          htmlText += "<p align=\"center\" style=\"font-size: 11px; padding: 0px; margin: 0px; line-height: 13px; color: red; padding-bottom: 10px\"><b>Note : This button will work only when you are connected to SLTL Intranet.</b></p>";
+		          htmlText += "</td>";
+		          htmlText += "</tr>";
+		          htmlText += "</tbody>";
+		          htmlText += "</table>";
+		          htmlText += "</td>";
+		          htmlText += "</tr>";
+		          htmlText += "<tr bgcolor=\"#ffffff\">";
+		          htmlText += "<td>";
+		          htmlText += "<table cellpadding=\"0\" cellspacing=\"0\" border=\"0\">";
+		          htmlText += "<tbody>";
+		          htmlText += "<tr>";
+		          htmlText += "<td>";
+		          htmlText += "<table cellpadding=\"0\" cellspacing=\"0\" border=\"0\" width=\"100%\">";
+		          htmlText += "<tbody>";
+		          htmlText += "<tr bgcolor=\"#ffffff\">";
+		          htmlText += "<td>";
+		          htmlText += "<table cellpadding=\"15\" cellspacing=\"0\" border=\"0\">";
+		          htmlText += "<tbody>";
+		          htmlText += "<tr>";
+		          htmlText += "<td>";
+		          htmlText += "<table cellpadding=\"0\" cellspacing=\"0\" border=\"0\" width=\"100%\">";
+		          htmlText += "<tbody>";
+		          htmlText += "<tr>";
+		          htmlText += "<td><p style=\"margin: 0; padding: 0px; font-family: arial; font-size: 13px; color: #121212; line-height: 20px; padding-bottom: 10px\"> For any queries or concerns, contact us on <b>313</b>.</p></td>";
+		          htmlText += "</tr>";
+		          htmlText += "<tr>";
+		          htmlText += "<td>";
+		          htmlText += "<p style=\"margin: 0; padding: 0px; font-family: arial; font-size: 13px; color: #121212; line-height: 20px\"> Regards,<br> Team HRMS </p>";
+		          htmlText += "<br><p style=\"margin: 0; padding: 0px; font-family: arial; font-size: 11px; color: #333; line-height: 20px; font-style: italic\">* This is an automated e-mail alert to help you to know about your leave. Hence, Please do not reply to this e-mail.</p>";
+		          htmlText += "</td>";
+		          htmlText += "</tr>";
+		          htmlText += "</tbody>";
+		          htmlText += "</table>";
+		          htmlText += "</td>";
+		          htmlText += "</tr>";
+		          htmlText += "</tbody>";
+		          htmlText += "</table>";
+		          htmlText += "</td>";
+		          htmlText += "</tr>";
+		          htmlText += "</tbody>";
+		          htmlText += "</table>";
+		          htmlText += "</td>";
+		          htmlText += "</tr>";
+		          htmlText += "</tbody>";
+		          htmlText += "</table>";
+		          htmlText += "</td>";
+		          htmlText += "</tr>";
+		          htmlText += "</tbody>";
+		          htmlText += "</table>";
+		          htmlText += "</body>";
+		          htmlText += "</html>";
+		          
+		        /* String htmlText = type+"<br>"+query+"<br>"+code;*/
+		        //  htmlText += "<br><br><br>";
+		        // htmlText += "<img src=\"cid:image\"><br><b>"+body+"</b><br><b>"+body1+"</b><br><b>"+body2+"</b><br><b>"+body3+"</b><br><b>"+body4+"</b>";
+		         messageBodyPart.setContent(htmlText, "text/html");
+		         // add it
+		         multipart.addBodyPart(messageBodyPart);
+
+		         // second part (the image)
+		         messageBodyPart = new MimeBodyPart();
+		         DataSource fds = new FileDataSource(
+		            "D:/hrms/upload/img/sltllogo.png");
+
+		         messageBodyPart.setDataHandler(new DataHandler(fds));
+		         messageBodyPart.setHeader("Content-ID", "<image>");
+
+		         // add image to the multipart
+		         multipart.addBodyPart(messageBodyPart);
+		         
+		        
+		         message.setContent(multipart);
+		         
+				// 3rd step)send message
+				Transport.send(message);
+
+				System.out.println("Done : "+to);
+
+			} catch (MessagingException e) {
+				throw new RuntimeException(e);
+			}
+			
+			
+	
+	}
+	public static void sendPolicyExpired15Day(String to,String subject,String Vehicle_name,String Registration_no,String Policy_no,String Policy_issued_on,String Period_of_insurance,String date) {      // MAIL FOR PROBATION
+		// Sender's email ID needs to be mentioned
+	     String from = "hrms@sltl.com";
+	     String pass ="hrms#123";
+	    // Recipient's email ID needs to be mentioned.
+	   String host = "smtp.gmail.com";
+	   
+	   System.out.println("akash");
+	   
+	   
+	// 1st step) Get the session object
+			Properties props = new Properties();
+			// props.put("mail.smtp.starttls.enable", "true");
+			props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+			props.setProperty("mail.transport.protocol", "smtps");
+			props.put("mail.smtp.starttls.enable", "true");
+			props.put("mail.smtp.host", host);
+			props.put("mail.smtp.port", "587");
+			props.put("mail.smtp.auth", "true");
+			
+			
+			   
+			   
+			   
+		props.put("mail.smtp.socketFactory.port", "587");  
+		props.put("mail.smtp.starttls.enable", "true");
+		props.put("mail.smtp.socketFactory.class", "javax.net.SocketFactory");
+		props.put("mail.smtp.ssl.enable", "false");
+		props.put("mail.smtp.ssl.trust", host);
+			   
+
+			Session session = Session.getInstance(props, new javax.mail.Authenticator() {
+			    protected PasswordAuthentication getPasswordAuthentication() {
+			        return new PasswordAuthentication(from, pass);
+			    }
+			
+			});
+			// 2nd step)compose message
+			String body = "Sahajanand Laser Technology Ltd.";                     
+			String body1 = "E-30, Electronics Estate, G.I.D.C., Sector-26,";
+			String body2 = "GANDHINAGAR - 382028, Gujarat, INDIA.";
+			String body3 = "Contact:( O): 079-2328 7461-68 Fax No.: 079-2328 7470.";
+			String body4 = "www.sahajanandlaser.com";
+			String link = "http://192.168.182.58:6018/HRMS/";
+	        
+			try {
+				MimeMessage message = new MimeMessage(session);
+				message.setFrom(new InternetAddress(from));// From Address
+				message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));// To
+				
+				message.setSubject(subject);// MSG Subject
+				// This mail has 2 part, the BODY and the embedded image
+		         MimeMultipart multipart = new MimeMultipart("related");
+
+		         // first part (the html)
+		         BodyPart messageBodyPart = new MimeBodyPart();
+		         BodyPart messageBodyPart1 = new MimeBodyPart();
+		         
+		         /**/
+		         
+		          String  htmlText = "<html>";
+		          
+		          htmlText += "<head>";
+		          htmlText += "<link href=\"https://fonts.googleapis.com/icon?family=Material+Icons\"\r\n rel=\"stylesheet\">";
+		          htmlText += "</head>";
+		          
+		          
+		          htmlText += "<body>";
+		          htmlText += "<br>";
+		          htmlText += "<table cellpadding=\"0\" cellspacing=\"15\" border=\"0\" bgcolor=\"#f0f4f5\" width=\"100%\"	style=\"margin: 0 auto; max-width: 550px; font-family: arial\">";
+		          htmlText += "<tbody>";
+		          htmlText += "<tr bgcolor=\"#ffffff\">";
+		          htmlText += "<td>";
+		          htmlText += "<table cellpadding=\"15\" cellspacing=\"0\" border=\"0\" width=\"100%\">";
+		          htmlText += "<tbody>";
+		          htmlText += "<tr>";
+		          htmlText += "<td valign=\"middle\"><a href=\"http://www.sahajanandlaser.com\"><img src=\"http://www.sltl.com/images/sltllogo.png\" alt=\"sltllogo\" width=\"106\" style=\"vertical-align: middle\" class=\"CToWUd\"></a></td>";
+		          htmlText += "<td align=\"right\"><img src=\"https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQjJkNWrO_pXGhZoAvyStzhRr70iS-ZdCO7JUoQivdyMWqbV0HtLQ\"\r\n" + 
+		          		"								height=\"40px\" width=\"40px\"\r\n" + 
+		          		"								class=\"CToWUd\"></td>";
+		          htmlText += "</tr>";
+		          htmlText += "</tbody>";
+		          htmlText += "</table>";
+		          htmlText += "</td>";
+		          htmlText += "</tr>";
+		          htmlText += "<tr bgcolor=\"#ffffff\">";
+		          htmlText += "<td>";
+		          htmlText += "<table cellpadding=\"0\" cellspacing=\"0\" border=\"0\">";
+		          htmlText += "<tbody>";
+		          htmlText += "<tr>";
+		          htmlText += "<td><div class=\"a6S\" dir=\"ltr\" style=\"opacity: 0.01; left: 521.5px; top: 236px;\"> <div id=\":13q\" class=\"T-I J-J5-Ji aQv T-I-ax7 L3 a5q\"" + 
+		          		"role=\"button\" tabindex=\"0\" aria-label=\"Download attachment \" data-tooltip-class=\"a1V\" data-tooltip=\"Download\"> <div class=\"aSK J-J5-Ji aYr\"></div>" + 
+		          		"</div> </div></td>";
+		          htmlText += "</tr>";
+		          htmlText += "<tr>";
+		          htmlText += "<td>";
+		          htmlText += "<table cellpadding=\"15\" cellspacing=\"0\" border=\"0\" width=\"100%\">";
+		          htmlText += "<tbody>";
+		          htmlText += "<tr>";
+		          htmlText += "<td> <p style=\"margin: 0; padding: 0px; font-family: arial; font-size: 13px; color: #121212; line-height: 18px; padding-bottom: 10px\">" + 
+		          		"<b>Dear Ma'am/Sir,</b> ,</p> "
+		          		+ "<p style=\"margin: 0; padding: 0px; font-family: arial; font-size: 13px; color: #121212; line-height: 18px\">" + 
+		          		" &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Insurance Policy of "+Vehicle_name+" "+Registration_no+" is expired after 15 day("+date+").</b></p><br>"
+		          		;
+		          htmlText += "</tr>";
+		          htmlText += "<tr>";
+		          htmlText += "<td>";
+		          htmlText += "<p style=\"margin: 0; padding: 0px; font-family: arial; font-size: 13px; color: #121212; line-height: 20px\"> Sincerely,<br> <b>Team HRD</b></p>";
+		          htmlText += "</td>";
+		          htmlText += "</tr>";
+		          
+		          htmlText += "<tr bgcolor=\"#ffffff\">";
+		          htmlText += "<td>";
+		          htmlText += "<table cellpadding=\"0\" cellspacing=\"15\" border=\"0\" width=\"100%\">";
+		          htmlText += "<tbody>";
+		          
+		          htmlText += " <tr><td><img src=\"http://www.letk.ee/img/document.png\" style=\"color: black;\" height=\"20px\" width=\"20px\" class=\"CToWUd\"><b>&nbsp; CI Detail </b><hr>"
+			          		+ "</td> </tr>";
+		          htmlText += "<tr>";
+		          htmlText += "<td>";
+		          htmlText += "<table cellpadding=\"10\" cellspacing=\"0\" border=\"0\" width=\"100%\" style=\"border: solid #f4f4f4 1px\">";
+		          htmlText += "<tbody>";
+		          htmlText += "<tr>";
+		          htmlText += "<td style=\"border-right: solid #f4f4f4 1px; border-bottom: solid #f4f4f4 1px\"> <p style=\"margin: 0; padding: 0px; font-family: arial; font-size: 12px; color: #121212; line-height: 13px\">" + 
+		          		" <strong>Vehicle Name </strong> </p> </td>";
+		          htmlText += "<td style=\"border-bottom: solid #f4f4f4 1px\"> <p style=\"margin: 0; padding: 0px; font-family: arial; font-size: 14px; color: #121212; line-height: 13px\">"+Vehicle_name+"</p></td>";
+		          htmlText += "</tr>";
+		          htmlText += "<tr>";
+		          htmlText += "<td style=\"border-right: solid #f4f4f4 1px; border-bottom: solid #f4f4f4 1px\"> <p style=\"margin: 0; padding: 0px; font-family: arial; font-size: 12px; color: #121212; line-height: 13px\">" + 
+		          		" <strong>CI Name </strong> </p> </td>";
+		          htmlText += "<td style=\"border-bottom: solid #f4f4f4 1px\"> <p style=\"margin: 0; padding: 0px; font-family: arial; font-size: 14px; color: #121212; line-height: 13px\">"+Registration_no+"</p></td>";
+		          htmlText += "</tr>";
+		          htmlText += "<tr>";
+		          htmlText += "<td style=\"border-right: solid #f4f4f4 1px; border-bottom: solid #f4f4f4 1px\"> <p style=\"margin: 0; padding: 0px; font-family: arial; font-size: 12px; color: #121212; line-height: 13px\">\r\n" + 
+		          		"<strong>CI Description</strong> </p> </td>";
+		          htmlText += "<td style=\"border-bottom: solid #f4f4f4 1px\"> <p style=\"margin: 0; padding: 0px; font-family: arial; font-size: 12px; color: #121212; line-height: 13px\">\r\n" + 
+		          		""+Policy_issued_on+"</p> </td>";
+		          htmlText += "</tr>";
+		          htmlText += "<tr>";
+		          htmlText += "<td style=\"border-right: solid #f4f4f4 1px; border-bottom: solid #f4f4f4 1px\"> <p style=\"margin: 0; padding: 0px; font-family: arial; font-size: 12px; color: #121212; line-height: 13px\">\r\n" + 
+		          		" <strong>Team Members</strong> </p> </td>";
+		          htmlText += "<td style=\"border-bottom: solid #f4f4f4 1px\"> <p style=\"margin: 0; padding: 0px; font-family: arial; font-size: 12px; color: #121212; line-height: 13px\">\r\n" + 
+		          		" "+Period_of_insurance+"</p> </td>";
+		          htmlText += "</tr>";
+		          htmlText += "<tr>";
+		          htmlText += "<td style=\"border-right: solid #f4f4f4 1px; border-bottom: solid #f4f4f4 1px\"> <p style=\"margin: 0; padding: 0px; font-family: arial; font-size: 12px; color: #121212; line-height: 13px\">\r\n" + 
+		          		" <strong>Department</strong> </p> </td>";
+		          htmlText += "<td style=\"border-bottom: solid #f4f4f4 1px\"> <p style=\"margin: 0; padding: 0px; font-family: arial; font-size: 12px; color: #121212; line-height: 13px\">\r\n" + 
+		          		" "+date+"</p> </td>";
+		          htmlText += "</tr>";
+		          
+		          
+		          
+		          
+		          htmlText += "</tbody>";
+		          htmlText += "</table>";
+		          htmlText += "</td>";
+		          htmlText += "</tr>";
+		          htmlText += "</tbody>";
+		          htmlText += "</table>";
+		          htmlText += "</td>";
+		          htmlText += "</tr>";
+		          htmlText += "<tr bgcolor=\"#ffffff\">";
+		          htmlText += "<td>";
+		          htmlText += "<table cellpadding=\"20\" cellspacing=\"0\" border=\"0\" width=\"100%\">";
+		          htmlText += "<tbody>";
+		          htmlText += "<tr>";
+		          htmlText += "<td>";
+		          htmlText += "<p style=\"font-size: 13px; padding: 0px; margin: 0px; padding-left: 5px; line-height: 20px; color: #121212; text-align: center\">For Login into HRMS <a href=\"http://192.168.182.58:6018/HRMS/\"><button style=\" background-color: white; color: black; border: 2px solid #337ab7;\">Login</button></a> </p>";
+		          htmlText += "<br>";
+		          htmlText += "<p align=\"center\" style=\"font-size: 11px; padding: 0px; margin: 0px; line-height: 13px; color: red; padding-bottom: 10px\"><b>Note : This button will work only when you are connected to SLTL Intranet.</b></p>";
+		          htmlText += "</td>";
+		          htmlText += "</tr>";
+		          htmlText += "</tbody>";
+		          htmlText += "</table>";
+		          htmlText += "</td>";
+		          htmlText += "</tr>";
+		          htmlText += "<tr bgcolor=\"#ffffff\">";
+		          htmlText += "<td>";
+		          htmlText += "<table cellpadding=\"0\" cellspacing=\"0\" border=\"0\">";
+		          htmlText += "<tbody>";
+		          htmlText += "<tr>";
+		          htmlText += "<td>";
+		          htmlText += "<table cellpadding=\"0\" cellspacing=\"0\" border=\"0\" width=\"100%\">";
+		          htmlText += "<tbody>";
+		          htmlText += "<tr bgcolor=\"#ffffff\">";
+		          htmlText += "<td>";
+		          htmlText += "<table cellpadding=\"15\" cellspacing=\"0\" border=\"0\">";
+		          htmlText += "<tbody>";
+		          htmlText += "<tr>";
+		          htmlText += "<td>";
+		          htmlText += "<table cellpadding=\"0\" cellspacing=\"0\" border=\"0\" width=\"100%\">";
+		          htmlText += "<tbody>";
+		          htmlText += "<tr>";
+		          htmlText += "<td><p style=\"margin: 0; padding: 0px; font-family: arial; font-size: 13px; color: #121212; line-height: 20px; padding-bottom: 10px\"> For any queries or concerns, contact us on <b>313</b>.</p></td>";
+		          htmlText += "</tr>";
+		          htmlText += "<tr>";
+		          htmlText += "<td>";
+		          htmlText += "<p style=\"margin: 0; padding: 0px; font-family: arial; font-size: 13px; color: #121212; line-height: 20px\"> Regards,<br> Team HRMS </p>";
+		          htmlText += "<br><p style=\"margin: 0; padding: 0px; font-family: arial; font-size: 11px; color: #333; line-height: 20px; font-style: italic\">* This is an automated e-mail alert to help you to know about your leave. Hence, Please do not reply to this e-mail.</p>";
+		          htmlText += "</td>";
+		          htmlText += "</tr>";
+		          htmlText += "</tbody>";
+		          htmlText += "</table>";
+		          htmlText += "</td>";
+		          htmlText += "</tr>";
+		          htmlText += "</tbody>";
+		          htmlText += "</table>";
+		          htmlText += "</td>";
+		          htmlText += "</tr>";
+		          htmlText += "</tbody>";
+		          htmlText += "</table>";
+		          htmlText += "</td>";
+		          htmlText += "</tr>";
+		          htmlText += "</tbody>";
+		          htmlText += "</table>";
+		          htmlText += "</td>";
+		          htmlText += "</tr>";
+		          htmlText += "</tbody>";
+		          htmlText += "</table>";
+		          htmlText += "</body>";
+		          htmlText += "</html>";
+		          
+		        /* String htmlText = type+"<br>"+query+"<br>"+code;*/
+		        //  htmlText += "<br><br><br>";
+		        // htmlText += "<img src=\"cid:image\"><br><b>"+body+"</b><br><b>"+body1+"</b><br><b>"+body2+"</b><br><b>"+body3+"</b><br><b>"+body4+"</b>";
+		         messageBodyPart.setContent(htmlText, "text/html");
+		         // add it
+		         multipart.addBodyPart(messageBodyPart);
+
+		         // second part (the image)
+		         messageBodyPart = new MimeBodyPart();
+		         DataSource fds = new FileDataSource(
+		            "D:/hrms/upload/img/sltllogo.png");
+
+		         messageBodyPart.setDataHandler(new DataHandler(fds));
+		         messageBodyPart.setHeader("Content-ID", "<image>");
+
+		         // add image to the multipart
+		         multipart.addBodyPart(messageBodyPart);
+		         
+		        
+		         message.setContent(multipart);
+		         
+				// 3rd step)send message
+				Transport.send(message);
+
+				System.out.println("Done : "+to);
+
+			} catch (MessagingException e) {
+				throw new RuntimeException(e);
+			}
+			
+			
+	
+	}
+	public static void sendPolicyExpired7Day(String to,String subject,String Vehicle_name,String Registration_no,String Policy_no,String Policy_issued_on,String Period_of_insurance,String date) {      // MAIL FOR PROBATION
+		// Sender's email ID needs to be mentioned
+	     String from = "hrms@sltl.com";
+	     String pass ="hrms#123";
+	    // Recipient's email ID needs to be mentioned.
+	   String host = "smtp.gmail.com";
+	   
+	   System.out.println("akash");
+	   
+	   
+	// 1st step) Get the session object
+			Properties props = new Properties();
+			// props.put("mail.smtp.starttls.enable", "true");
+			props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+			props.setProperty("mail.transport.protocol", "smtps");
+			props.put("mail.smtp.starttls.enable", "true");
+			props.put("mail.smtp.host", host);
+			props.put("mail.smtp.port", "587");
+			props.put("mail.smtp.auth", "true");
+			
+			
+			   
+			   
+			   
+		props.put("mail.smtp.socketFactory.port", "587");  
+		props.put("mail.smtp.starttls.enable", "true");
+		props.put("mail.smtp.socketFactory.class", "javax.net.SocketFactory");
+		props.put("mail.smtp.ssl.enable", "false");
+		props.put("mail.smtp.ssl.trust", host);
+			   
+
+			Session session = Session.getInstance(props, new javax.mail.Authenticator() {
+			    protected PasswordAuthentication getPasswordAuthentication() {
+			        return new PasswordAuthentication(from, pass);
+			    }
+			
+			});
+			// 2nd step)compose message
+			String body = "Sahajanand Laser Technology Ltd.";                     
+			String body1 = "E-30, Electronics Estate, G.I.D.C., Sector-26,";
+			String body2 = "GANDHINAGAR - 382028, Gujarat, INDIA.";
+			String body3 = "Contact:( O): 079-2328 7461-68 Fax No.: 079-2328 7470.";
+			String body4 = "www.sahajanandlaser.com";
+			String link = "http://192.168.182.58:6018/HRMS/";
+	        
+			try {
+				MimeMessage message = new MimeMessage(session);
+				message.setFrom(new InternetAddress(from));// From Address
+				message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));// To
+				
+				message.setSubject(subject);// MSG Subject
+				// This mail has 2 part, the BODY and the embedded image
+		         MimeMultipart multipart = new MimeMultipart("related");
+
+		         // first part (the html)
+		         BodyPart messageBodyPart = new MimeBodyPart();
+		         BodyPart messageBodyPart1 = new MimeBodyPart();
+		         
+		         /**/
+		         
+		          String  htmlText = "<html>";
+		          
+		          htmlText += "<head>";
+		          htmlText += "<link href=\"https://fonts.googleapis.com/icon?family=Material+Icons\"\r\n rel=\"stylesheet\">";
+		          htmlText += "</head>";
+		          
+		          
+		          htmlText += "<body>";
+		          htmlText += "<br>";
+		          htmlText += "<table cellpadding=\"0\" cellspacing=\"15\" border=\"0\" bgcolor=\"#f0f4f5\" width=\"100%\"	style=\"margin: 0 auto; max-width: 550px; font-family: arial\">";
+		          htmlText += "<tbody>";
+		          htmlText += "<tr bgcolor=\"#ffffff\">";
+		          htmlText += "<td>";
+		          htmlText += "<table cellpadding=\"15\" cellspacing=\"0\" border=\"0\" width=\"100%\">";
+		          htmlText += "<tbody>";
+		          htmlText += "<tr>";
+		          htmlText += "<td valign=\"middle\"><a href=\"http://www.sahajanandlaser.com\"><img src=\"http://www.sltl.com/images/sltllogo.png\" alt=\"sltllogo\" width=\"106\" style=\"vertical-align: middle\" class=\"CToWUd\"></a></td>";
+		          htmlText += "<td align=\"right\"><img src=\"https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQjJkNWrO_pXGhZoAvyStzhRr70iS-ZdCO7JUoQivdyMWqbV0HtLQ\"\r\n" + 
+		          		"								height=\"40px\" width=\"40px\"\r\n" + 
+		          		"								class=\"CToWUd\"></td>";
+		          htmlText += "</tr>";
+		          htmlText += "</tbody>";
+		          htmlText += "</table>";
+		          htmlText += "</td>";
+		          htmlText += "</tr>";
+		          htmlText += "<tr bgcolor=\"#ffffff\">";
+		          htmlText += "<td>";
+		          htmlText += "<table cellpadding=\"0\" cellspacing=\"0\" border=\"0\">";
+		          htmlText += "<tbody>";
+		          htmlText += "<tr>";
+		          htmlText += "<td><div class=\"a6S\" dir=\"ltr\" style=\"opacity: 0.01; left: 521.5px; top: 236px;\"> <div id=\":13q\" class=\"T-I J-J5-Ji aQv T-I-ax7 L3 a5q\"" + 
+		          		"role=\"button\" tabindex=\"0\" aria-label=\"Download attachment \" data-tooltip-class=\"a1V\" data-tooltip=\"Download\"> <div class=\"aSK J-J5-Ji aYr\"></div>" + 
+		          		"</div> </div></td>";
+		          htmlText += "</tr>";
+		          htmlText += "<tr>";
+		          htmlText += "<td>";
+		          htmlText += "<table cellpadding=\"15\" cellspacing=\"0\" border=\"0\" width=\"100%\">";
+		          htmlText += "<tbody>";
+		          htmlText += "<tr>";
+		          htmlText += "<td> <p style=\"margin: 0; padding: 0px; font-family: arial; font-size: 13px; color: #121212; line-height: 18px; padding-bottom: 10px\">" + 
+		          		"<b>Dear Ma'am/Sir,</b> ,</p> "
+		          		+ "<p style=\"margin: 0; padding: 0px; font-family: arial; font-size: 13px; color: #121212; line-height: 18px\">" + 
+		          		" &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Insurance Policy of "+Vehicle_name+" "+Registration_no+" is expired after 7 day("+date+").</b></p><br>"
+		          		;
+		          htmlText += "</tr>";
+		          htmlText += "<tr>";
+		          htmlText += "<td>";
+		          htmlText += "<p style=\"margin: 0; padding: 0px; font-family: arial; font-size: 13px; color: #121212; line-height: 20px\"> Sincerely,<br> <b>Team HRD</b></p>";
+		          htmlText += "</td>";
+		          htmlText += "</tr>";
+		          
+		          
+		          htmlText += "<tr bgcolor=\"#ffffff\">";
+		          htmlText += "<td>";
+		          htmlText += "<table cellpadding=\"0\" cellspacing=\"15\" border=\"0\" width=\"100%\">";
+		          htmlText += "<tbody>";
+		          
+		          htmlText += " <tr><td><img src=\"http://www.letk.ee/img/document.png\" style=\"color: black;\" height=\"20px\" width=\"20px\" class=\"CToWUd\"><b>&nbsp; CI Detail </b><hr>"
+			          		+ "</td> </tr>";
+		          htmlText += "<tr>";
+		          htmlText += "<td>";
+		          htmlText += "<table cellpadding=\"10\" cellspacing=\"0\" border=\"0\" width=\"100%\" style=\"border: solid #f4f4f4 1px\">";
+		          htmlText += "<tbody>";
+		          htmlText += "<tr>";
+		          htmlText += "<td style=\"border-right: solid #f4f4f4 1px; border-bottom: solid #f4f4f4 1px\"> <p style=\"margin: 0; padding: 0px; font-family: arial; font-size: 12px; color: #121212; line-height: 13px\">" + 
+		          		" <strong>Vehicle Name </strong> </p> </td>";
+		          htmlText += "<td style=\"border-bottom: solid #f4f4f4 1px\"> <p style=\"margin: 0; padding: 0px; font-family: arial; font-size: 14px; color: #121212; line-height: 13px\">"+Vehicle_name+"</p></td>";
+		          htmlText += "</tr>";
+		          htmlText += "<tr>";
+		          htmlText += "<td style=\"border-right: solid #f4f4f4 1px; border-bottom: solid #f4f4f4 1px\"> <p style=\"margin: 0; padding: 0px; font-family: arial; font-size: 12px; color: #121212; line-height: 13px\">" + 
+		          		" <strong>CI Name </strong> </p> </td>";
+		          htmlText += "<td style=\"border-bottom: solid #f4f4f4 1px\"> <p style=\"margin: 0; padding: 0px; font-family: arial; font-size: 14px; color: #121212; line-height: 13px\">"+Registration_no+"</p></td>";
+		          htmlText += "</tr>";
+		          htmlText += "<tr>";
+		          htmlText += "<td style=\"border-right: solid #f4f4f4 1px; border-bottom: solid #f4f4f4 1px\"> <p style=\"margin: 0; padding: 0px; font-family: arial; font-size: 12px; color: #121212; line-height: 13px\">\r\n" + 
+		          		"<strong>CI Description</strong> </p> </td>";
+		          htmlText += "<td style=\"border-bottom: solid #f4f4f4 1px\"> <p style=\"margin: 0; padding: 0px; font-family: arial; font-size: 12px; color: #121212; line-height: 13px\">\r\n" + 
+		          		""+Policy_issued_on+"</p> </td>";
+		          htmlText += "</tr>";
+		          htmlText += "<tr>";
+		          htmlText += "<td style=\"border-right: solid #f4f4f4 1px; border-bottom: solid #f4f4f4 1px\"> <p style=\"margin: 0; padding: 0px; font-family: arial; font-size: 12px; color: #121212; line-height: 13px\">\r\n" + 
+		          		" <strong>Team Members</strong> </p> </td>";
+		          htmlText += "<td style=\"border-bottom: solid #f4f4f4 1px\"> <p style=\"margin: 0; padding: 0px; font-family: arial; font-size: 12px; color: #121212; line-height: 13px\">\r\n" + 
+		          		" "+Period_of_insurance+"</p> </td>";
+		          htmlText += "</tr>";
+		          htmlText += "<tr>";
+		          htmlText += "<td style=\"border-right: solid #f4f4f4 1px; border-bottom: solid #f4f4f4 1px\"> <p style=\"margin: 0; padding: 0px; font-family: arial; font-size: 12px; color: #121212; line-height: 13px\">\r\n" + 
+		          		" <strong>Department</strong> </p> </td>";
+		          htmlText += "<td style=\"border-bottom: solid #f4f4f4 1px\"> <p style=\"margin: 0; padding: 0px; font-family: arial; font-size: 12px; color: #121212; line-height: 13px\">\r\n" + 
+		          		" "+date+"</p> </td>";
+		          htmlText += "</tr>";
+		          
+		          
+		          htmlText += "</tbody>";
+		          htmlText += "</table>";
+		          htmlText += "</td>";
+		          htmlText += "</tr>";
+		          htmlText += "</tbody>";
+		          htmlText += "</table>";
+		          htmlText += "</td>";
+		          htmlText += "</tr>";
+		          htmlText += "<tr bgcolor=\"#ffffff\">";
+		          htmlText += "<td>";
+		          htmlText += "<table cellpadding=\"20\" cellspacing=\"0\" border=\"0\" width=\"100%\">";
+		          htmlText += "<tbody>";
+		          htmlText += "<tr>";
+		          htmlText += "<td>";
+		          htmlText += "<p style=\"font-size: 13px; padding: 0px; margin: 0px; padding-left: 5px; line-height: 20px; color: #121212; text-align: center\">For Login into HRMS <a href=\"http://192.168.182.58:6018/HRMS/\"><button style=\" background-color: white; color: black; border: 2px solid #337ab7;\">Login</button></a> </p>";
+		          htmlText += "<br>";
+		          htmlText += "<p align=\"center\" style=\"font-size: 11px; padding: 0px; margin: 0px; line-height: 13px; color: red; padding-bottom: 10px\"><b>Note : This button will work only when you are connected to SLTL Intranet.</b></p>";
+		          htmlText += "</td>";
+		          htmlText += "</tr>";
+		          htmlText += "</tbody>";
+		          htmlText += "</table>";
+		          htmlText += "</td>";
+		          htmlText += "</tr>";
+		          htmlText += "<tr bgcolor=\"#ffffff\">";
+		          htmlText += "<td>";
+		          htmlText += "<table cellpadding=\"0\" cellspacing=\"0\" border=\"0\">";
+		          htmlText += "<tbody>";
+		          htmlText += "<tr>";
+		          htmlText += "<td>";
+		          htmlText += "<table cellpadding=\"0\" cellspacing=\"0\" border=\"0\" width=\"100%\">";
+		          htmlText += "<tbody>";
+		          htmlText += "<tr bgcolor=\"#ffffff\">";
+		          htmlText += "<td>";
+		          htmlText += "<table cellpadding=\"15\" cellspacing=\"0\" border=\"0\">";
+		          htmlText += "<tbody>";
+		          htmlText += "<tr>";
+		          htmlText += "<td>";
+		          htmlText += "<table cellpadding=\"0\" cellspacing=\"0\" border=\"0\" width=\"100%\">";
+		          htmlText += "<tbody>";
+		          htmlText += "<tr>";
+		          htmlText += "<td><p style=\"margin: 0; padding: 0px; font-family: arial; font-size: 13px; color: #121212; line-height: 20px; padding-bottom: 10px\"> For any queries or concerns, contact us on <b>313</b>.</p></td>";
+		          htmlText += "</tr>";
+		          htmlText += "<tr>";
+		          htmlText += "<td>";
+		          htmlText += "<p style=\"margin: 0; padding: 0px; font-family: arial; font-size: 13px; color: #121212; line-height: 20px\"> Regards,<br> Team HRMS </p>";
+		          htmlText += "<br><p style=\"margin: 0; padding: 0px; font-family: arial; font-size: 11px; color: #333; line-height: 20px; font-style: italic\">* This is an automated e-mail alert to help you to know about your leave. Hence, Please do not reply to this e-mail.</p>";
+		          htmlText += "</td>";
+		          htmlText += "</tr>";
+		          htmlText += "</tbody>";
+		          htmlText += "</table>";
+		          htmlText += "</td>";
+		          htmlText += "</tr>";
+		          htmlText += "</tbody>";
+		          htmlText += "</table>";
+		          htmlText += "</td>";
+		          htmlText += "</tr>";
+		          htmlText += "</tbody>";
+		          htmlText += "</table>";
+		          htmlText += "</td>";
+		          htmlText += "</tr>";
+		          htmlText += "</tbody>";
+		          htmlText += "</table>";
+		          htmlText += "</td>";
+		          htmlText += "</tr>";
+		          htmlText += "</tbody>";
+		          htmlText += "</table>";
+		          htmlText += "</body>";
+		          htmlText += "</html>";
+		          
+		        /* String htmlText = type+"<br>"+query+"<br>"+code;*/
+		        //  htmlText += "<br><br><br>";
+		        // htmlText += "<img src=\"cid:image\"><br><b>"+body+"</b><br><b>"+body1+"</b><br><b>"+body2+"</b><br><b>"+body3+"</b><br><b>"+body4+"</b>";
+		         messageBodyPart.setContent(htmlText, "text/html");
+		         // add it
+		         multipart.addBodyPart(messageBodyPart);
+
+		         // second part (the image)
+		         messageBodyPart = new MimeBodyPart();
+		         DataSource fds = new FileDataSource(
+		            "D:/hrms/upload/img/sltllogo.png");
+
+		         messageBodyPart.setDataHandler(new DataHandler(fds));
+		         messageBodyPart.setHeader("Content-ID", "<image>");
+
+		         // add image to the multipart
+		         multipart.addBodyPart(messageBodyPart);
+		         
+		        
+		         message.setContent(multipart);
+		         
+				// 3rd step)send message
+				Transport.send(message);
+
+				System.out.println("Done : "+to);
+
+			} catch (MessagingException e) {
+				throw new RuntimeException(e);
+			}
+			
+			
+	
+	}
+	public static void sendPolicyExpiredToday(String to,String subject,String Vehicle_name,String Registration_no,String Policy_no,String Policy_issued_on,String Period_of_insurance,String date) {      // MAIL FOR PROBATION
+		// Sender's email ID needs to be mentioned
+	     String from = "hrms@sltl.com";
+	     String pass ="hrms#123";
+	    // Recipient's email ID needs to be mentioned.
+	   String host = "smtp.gmail.com";
+	   
+	   System.out.println("akash");
+	   
+	   
+	// 1st step) Get the session object
+			Properties props = new Properties();
+			// props.put("mail.smtp.starttls.enable", "true");
+			props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+			props.setProperty("mail.transport.protocol", "smtps");
+			props.put("mail.smtp.starttls.enable", "true");
+			props.put("mail.smtp.host", host);
+			props.put("mail.smtp.port", "587");
+			props.put("mail.smtp.auth", "true");
+			
+			
+			   
+			   
+			   
+		props.put("mail.smtp.socketFactory.port", "587");  
+		props.put("mail.smtp.starttls.enable", "true");
+		props.put("mail.smtp.socketFactory.class", "javax.net.SocketFactory");
+		props.put("mail.smtp.ssl.enable", "false");
+		props.put("mail.smtp.ssl.trust", host);
+			   
+
+			Session session = Session.getInstance(props, new javax.mail.Authenticator() {
+			    protected PasswordAuthentication getPasswordAuthentication() {
+			        return new PasswordAuthentication(from, pass);
+			    }
+			
+			});
+			// 2nd step)compose message
+			String body = "Sahajanand Laser Technology Ltd.";                     
+			String body1 = "E-30, Electronics Estate, G.I.D.C., Sector-26,";
+			String body2 = "GANDHINAGAR - 382028, Gujarat, INDIA.";
+			String body3 = "Contact:( O): 079-2328 7461-68 Fax No.: 079-2328 7470.";
+			String body4 = "www.sahajanandlaser.com";
+			String link = "http://192.168.182.58:6018/HRMS/";
+	        
+			try {
+				MimeMessage message = new MimeMessage(session);
+				message.setFrom(new InternetAddress(from));// From Address
+				message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));// To
+				
+				message.setSubject(subject);// MSG Subject
+				// This mail has 2 part, the BODY and the embedded image
+		         MimeMultipart multipart = new MimeMultipart("related");
+
+		         // first part (the html)
+		         BodyPart messageBodyPart = new MimeBodyPart();
+		         BodyPart messageBodyPart1 = new MimeBodyPart();
+		         
+		         /**/
+		         
+		          String  htmlText = "<html>";
+		          
+		          htmlText += "<head>";
+		          htmlText += "<link href=\"https://fonts.googleapis.com/icon?family=Material+Icons\"\r\n rel=\"stylesheet\">";
+		          htmlText += "</head>";
+		          
+		          
+		          htmlText += "<body>";
+		          htmlText += "<br>";
+		          htmlText += "<table cellpadding=\"0\" cellspacing=\"15\" border=\"0\" bgcolor=\"#f0f4f5\" width=\"100%\"	style=\"margin: 0 auto; max-width: 550px; font-family: arial\">";
+		          htmlText += "<tbody>";
+		          htmlText += "<tr bgcolor=\"#ffffff\">";
+		          htmlText += "<td>";
+		          htmlText += "<table cellpadding=\"15\" cellspacing=\"0\" border=\"0\" width=\"100%\">";
+		          htmlText += "<tbody>";
+		          htmlText += "<tr>";
+		          htmlText += "<td valign=\"middle\"><a href=\"http://www.sahajanandlaser.com\"><img src=\"http://www.sltl.com/images/sltllogo.png\" alt=\"sltllogo\" width=\"106\" style=\"vertical-align: middle\" class=\"CToWUd\"></a></td>";
+		          htmlText += "<td align=\"right\"><img src=\"https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQjJkNWrO_pXGhZoAvyStzhRr70iS-ZdCO7JUoQivdyMWqbV0HtLQ\"\r\n" + 
+		          		"								height=\"40px\" width=\"40px\"\r\n" + 
+		          		"								class=\"CToWUd\"></td>";
+		          htmlText += "</tr>";
+		          htmlText += "</tbody>";
+		          htmlText += "</table>";
+		          htmlText += "</td>";
+		          htmlText += "</tr>";
+		          htmlText += "<tr bgcolor=\"#ffffff\">";
+		          htmlText += "<td>";
+		          htmlText += "<table cellpadding=\"0\" cellspacing=\"0\" border=\"0\">";
+		          htmlText += "<tbody>";
+		          htmlText += "<tr>";
+		          htmlText += "<td><div class=\"a6S\" dir=\"ltr\" style=\"opacity: 0.01; left: 521.5px; top: 236px;\"> <div id=\":13q\" class=\"T-I J-J5-Ji aQv T-I-ax7 L3 a5q\"" + 
+		          		"role=\"button\" tabindex=\"0\" aria-label=\"Download attachment \" data-tooltip-class=\"a1V\" data-tooltip=\"Download\"> <div class=\"aSK J-J5-Ji aYr\"></div>" + 
+		          		"</div> </div></td>";
+		          htmlText += "</tr>";
+		          htmlText += "<tr>";
+		          htmlText += "<td>";
+		          htmlText += "<table cellpadding=\"15\" cellspacing=\"0\" border=\"0\" width=\"100%\">";
+		          htmlText += "<tbody>";
+		          htmlText += "<tr>";
+		          htmlText += "<td> <p style=\"margin: 0; padding: 0px; font-family: arial; font-size: 13px; color: #121212; line-height: 18px; padding-bottom: 10px\">" + 
+		          		"<b>Dear Ma'am/Sir,</b> ,</p> "
+		          		+ "<p style=\"margin: 0; padding: 0px; font-family: arial; font-size: 13px; color: #121212; line-height: 18px\">" + 
+		          		" &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Insurance Policy of "+Vehicle_name+" "+Registration_no+" is expired today("+date+").</b></p><br>"
+		          		;
+		          htmlText += "</tr>";
+		          htmlText += "<tr>";
+		          htmlText += "<td>";
+		          htmlText += "<p style=\"margin: 0; padding: 0px; font-family: arial; font-size: 13px; color: #121212; line-height: 20px\"> Sincerely,<br> <b>Team HRD</b></p>";
+		          htmlText += "</td>";
+		          htmlText += "</tr>";
+		          
+		          htmlText += "<tr bgcolor=\"#ffffff\">";
+		          htmlText += "<td>";
+		          htmlText += "<table cellpadding=\"0\" cellspacing=\"15\" border=\"0\" width=\"100%\">";
+		          htmlText += "<tbody>";
+		          
+		          htmlText += " <tr><td><img src=\"http://www.letk.ee/img/document.png\" style=\"color: black;\" height=\"20px\" width=\"20px\" class=\"CToWUd\"><b>&nbsp; CI Detail </b><hr>"
+			          		+ "</td> </tr>";
+		          htmlText += "<tr>";
+		          htmlText += "<td>";
+		          htmlText += "<table cellpadding=\"10\" cellspacing=\"0\" border=\"0\" width=\"100%\" style=\"border: solid #f4f4f4 1px\">";
+		          htmlText += "<tbody>";
+		          htmlText += "<tr>";
+		          htmlText += "<td style=\"border-right: solid #f4f4f4 1px; border-bottom: solid #f4f4f4 1px\"> <p style=\"margin: 0; padding: 0px; font-family: arial; font-size: 12px; color: #121212; line-height: 13px\">" + 
+		          		" <strong>Vehicle Name </strong> </p> </td>";
+		          htmlText += "<td style=\"border-bottom: solid #f4f4f4 1px\"> <p style=\"margin: 0; padding: 0px; font-family: arial; font-size: 14px; color: #121212; line-height: 13px\">"+Vehicle_name+"</p></td>";
+		          htmlText += "</tr>";
+		          htmlText += "<tr>";
+		          htmlText += "<td style=\"border-right: solid #f4f4f4 1px; border-bottom: solid #f4f4f4 1px\"> <p style=\"margin: 0; padding: 0px; font-family: arial; font-size: 12px; color: #121212; line-height: 13px\">" + 
+		          		" <strong>CI Name </strong> </p> </td>";
+		          htmlText += "<td style=\"border-bottom: solid #f4f4f4 1px\"> <p style=\"margin: 0; padding: 0px; font-family: arial; font-size: 14px; color: #121212; line-height: 13px\">"+Registration_no+"</p></td>";
+		          htmlText += "</tr>";
+		          htmlText += "<tr>";
+		          htmlText += "<td style=\"border-right: solid #f4f4f4 1px; border-bottom: solid #f4f4f4 1px\"> <p style=\"margin: 0; padding: 0px; font-family: arial; font-size: 12px; color: #121212; line-height: 13px\">\r\n" + 
+		          		"<strong>CI Description</strong> </p> </td>";
+		          htmlText += "<td style=\"border-bottom: solid #f4f4f4 1px\"> <p style=\"margin: 0; padding: 0px; font-family: arial; font-size: 12px; color: #121212; line-height: 13px\">\r\n" + 
+		          		""+Policy_issued_on+"</p> </td>";
+		          htmlText += "</tr>";
+		          htmlText += "<tr>";
+		          htmlText += "<td style=\"border-right: solid #f4f4f4 1px; border-bottom: solid #f4f4f4 1px\"> <p style=\"margin: 0; padding: 0px; font-family: arial; font-size: 12px; color: #121212; line-height: 13px\">\r\n" + 
+		          		" <strong>Team Members</strong> </p> </td>";
+		          htmlText += "<td style=\"border-bottom: solid #f4f4f4 1px\"> <p style=\"margin: 0; padding: 0px; font-family: arial; font-size: 12px; color: #121212; line-height: 13px\">\r\n" + 
+		          		" "+Period_of_insurance+"</p> </td>";
+		          htmlText += "</tr>";
+		          htmlText += "<tr>";
+		          htmlText += "<td style=\"border-right: solid #f4f4f4 1px; border-bottom: solid #f4f4f4 1px\"> <p style=\"margin: 0; padding: 0px; font-family: arial; font-size: 12px; color: #121212; line-height: 13px\">\r\n" + 
+		          		" <strong>Department</strong> </p> </td>";
+		          htmlText += "<td style=\"border-bottom: solid #f4f4f4 1px\"> <p style=\"margin: 0; padding: 0px; font-family: arial; font-size: 12px; color: #121212; line-height: 13px\">\r\n" + 
+		          		" "+date+"</p> </td>";
+		          htmlText += "</tr>";
+		          htmlText += "</tbody>";
+		          htmlText += "</table>";
+		          htmlText += "</td>";
+		          htmlText += "</tr>";
+		          htmlText += "</tbody>";
+		          htmlText += "</table>";
+		          htmlText += "</td>";
+		          htmlText += "</tr>";
+		          htmlText += "<tr bgcolor=\"#ffffff\">";
+		          htmlText += "<td>";
+		          htmlText += "<table cellpadding=\"20\" cellspacing=\"0\" border=\"0\" width=\"100%\">";
+		          htmlText += "<tbody>";
+		          htmlText += "<tr>";
+		          htmlText += "<td>";
+		          htmlText += "<p style=\"font-size: 13px; padding: 0px; margin: 0px; padding-left: 5px; line-height: 20px; color: #121212; text-align: center\">For Login into HRMS <a href=\"http://192.168.182.58:6018/HRMS/\"><button style=\" background-color: white; color: black; border: 2px solid #337ab7;\">Login</button></a> </p>";
+		          htmlText += "<br>";
+		          htmlText += "<p align=\"center\" style=\"font-size: 11px; padding: 0px; margin: 0px; line-height: 13px; color: red; padding-bottom: 10px\"><b>Note : This button will work only when you are connected to SLTL Intranet.</b></p>";
+		          htmlText += "</td>";
+		          htmlText += "</tr>";
+		          htmlText += "</tbody>";
+		          htmlText += "</table>";
+		          htmlText += "</td>";
+		          htmlText += "</tr>";
+		          htmlText += "<tr bgcolor=\"#ffffff\">";
+		          htmlText += "<td>";
+		          htmlText += "<table cellpadding=\"0\" cellspacing=\"0\" border=\"0\">";
+		          htmlText += "<tbody>";
+		          htmlText += "<tr>";
+		          htmlText += "<td>";
+		          htmlText += "<table cellpadding=\"0\" cellspacing=\"0\" border=\"0\" width=\"100%\">";
+		          htmlText += "<tbody>";
+		          htmlText += "<tr bgcolor=\"#ffffff\">";
+		          htmlText += "<td>";
+		          htmlText += "<table cellpadding=\"15\" cellspacing=\"0\" border=\"0\">";
+		          htmlText += "<tbody>";
+		          htmlText += "<tr>";
+		          htmlText += "<td>";
+		          htmlText += "<table cellpadding=\"0\" cellspacing=\"0\" border=\"0\" width=\"100%\">";
+		          htmlText += "<tbody>";
+		          htmlText += "<tr>";
+		          htmlText += "<td><p style=\"margin: 0; padding: 0px; font-family: arial; font-size: 13px; color: #121212; line-height: 20px; padding-bottom: 10px\"> For any queries or concerns, contact us on <b>313</b>.</p></td>";
+		          htmlText += "</tr>";
+		          htmlText += "<tr>";
+		          htmlText += "<td>";
+		          htmlText += "<p style=\"margin: 0; padding: 0px; font-family: arial; font-size: 13px; color: #121212; line-height: 20px\"> Regards,<br> Team HRMS </p>";
+		          htmlText += "<br><p style=\"margin: 0; padding: 0px; font-family: arial; font-size: 11px; color: #333; line-height: 20px; font-style: italic\">* This is an automated e-mail alert to help you to know about your leave. Hence, Please do not reply to this e-mail.</p>";
+		          htmlText += "</td>";
+		          htmlText += "</tr>";
+		          htmlText += "</tbody>";
+		          htmlText += "</table>";
+		          htmlText += "</td>";
+		          htmlText += "</tr>";
+		          htmlText += "</tbody>";
+		          htmlText += "</table>";
+		          htmlText += "</td>";
+		          htmlText += "</tr>";
+		          htmlText += "</tbody>";
+		          htmlText += "</table>";
+		          htmlText += "</td>";
+		          htmlText += "</tr>";
+		          htmlText += "</tbody>";
+		          htmlText += "</table>";
+		          htmlText += "</td>";
+		          htmlText += "</tr>";
+		          htmlText += "</tbody>";
+		          htmlText += "</table>";
+		          htmlText += "</body>";
+		          htmlText += "</html>";
+		          
+		        /* String htmlText = type+"<br>"+query+"<br>"+code;*/
+		        //  htmlText += "<br><br><br>";
+		        // htmlText += "<img src=\"cid:image\"><br><b>"+body+"</b><br><b>"+body1+"</b><br><b>"+body2+"</b><br><b>"+body3+"</b><br><b>"+body4+"</b>";
+		         messageBodyPart.setContent(htmlText, "text/html");
+		         // add it
+		         multipart.addBodyPart(messageBodyPart);
+
+		         // second part (the image)
+		         messageBodyPart = new MimeBodyPart();
+		         DataSource fds = new FileDataSource(
+		            "D:/hrms/upload/img/sltllogo.png");
+
+		         messageBodyPart.setDataHandler(new DataHandler(fds));
+		         messageBodyPart.setHeader("Content-ID", "<image>");
+
+		         // add image to the multipart
+		         multipart.addBodyPart(messageBodyPart);
+		         
+		        
+		         message.setContent(multipart);
+		         
+				// 3rd step)send message
+				Transport.send(message);
+
+				System.out.println("Done : "+to);
+
+			} catch (MessagingException e) {
+				throw new RuntimeException(e);
+			}
+			
+			
+	
+	}
 }

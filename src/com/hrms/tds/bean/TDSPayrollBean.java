@@ -22,21 +22,25 @@ public class TDSPayrollBean	implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	private int tds_payroll_id;
-	private int employee_code;
 	private String company_name;
+	private int employee_code;
+	private String date;
 	private double basic_salary;
-	private double annual_basic_salary;
+	private double incentive;
+	private double previous_salary;
+	private double performance_pay;
 	private double conveyance;
-	private double annual_conveyance;
 	private double hra;
-	private double annual_hra;
 	private double medical;
-	private double annual_medical;
+	private double ltc;
+	private double ptax;
+	private double pf;
 	private double uni_allw;
-	private double annual_uni_allw;
 	private double edu_allw;
-	private double annual_edu_allw;
-	
+	private double other_allw;
+	private double adhoc_allw;
+	private double salary;
+	private double leave_count;
 	
 	private MonthBean monthBean;
 	private YearBean yearBean;
@@ -45,27 +49,32 @@ public class TDSPayrollBean	implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 	
+	
 
-
-	public TDSPayrollBean(int employee_code, String company_name, double basic_salary, double annual_basic_salary,
-			double conveyance, double annual_conveyance, double hra, double annual_hra, double medical,
-			double annual_medical, double uni_allw, double annual_uni_allw, double edu_allw, double annual_edu_allw,
-			MonthBean monthBean, YearBean yearBean) {
+	public TDSPayrollBean(String company_name, int employee_code, String date, double basic_salary, double incentive,
+			double previous_salary, double performance_pay, double conveyance, double hra, double medical, double ltc,
+			double ptax, double pf, double uni_allw, double edu_allw, double other_allw, double adhoc_allw, double salary,
+			double leave_count, MonthBean monthBean, YearBean yearBean) {
 		super();
-		this.employee_code = employee_code;
 		this.company_name = company_name;
+		this.employee_code = employee_code;
+		this.date = date;
 		this.basic_salary = basic_salary;
-		this.annual_basic_salary = annual_basic_salary;
+		this.incentive = incentive;
+		this.previous_salary = previous_salary;
+		this.performance_pay = performance_pay;
 		this.conveyance = conveyance;
-		this.annual_conveyance = annual_conveyance;
 		this.hra = hra;
-		this.annual_hra = annual_hra;
 		this.medical = medical;
-		this.annual_medical = annual_medical;
+		this.ltc = ltc;
+		this.ptax = ptax;
+		this.pf = pf;
 		this.uni_allw = uni_allw;
-		this.annual_uni_allw = annual_uni_allw;
 		this.edu_allw = edu_allw;
-		this.annual_edu_allw = annual_edu_allw;
+		this.other_allw = other_allw;
+		this.adhoc_allw = adhoc_allw;
+		this.salary = salary;
+		this.leave_count = leave_count;
 		this.monthBean = monthBean;
 		this.yearBean = yearBean;
 	}
@@ -82,176 +91,158 @@ public class TDSPayrollBean	implements Serializable {
 	public void setTds_payroll_id(int tds_payroll_id) {
 		this.tds_payroll_id = tds_payroll_id;
 	}
-
 	
-	
-	public int getEmployee_code() {
-		return employee_code;
-	}
-
-
-
-	public void setEmployee_code(int employee_code) {
-		this.employee_code = employee_code;
-	}
-
-
-
 	public String getCompany_name() {
 		return company_name;
 	}
-
-
 
 	public void setCompany_name(String company_name) {
 		this.company_name = company_name;
 	}
 
+	public int getEmployee_code() {
+		return employee_code;
+	}
 
+	public void setEmployee_code(int employee_code) {
+		this.employee_code = employee_code;
+	}
+	
+	public String getDate() {
+		return date;
+	}
 
+	public void setDate(String date) {
+		this.date = date;
+	}
+	
 	public double getBasic_salary() {
 		return basic_salary;
 	}
-
-
 
 	public void setBasic_salary(double basic_salary) {
 		this.basic_salary = basic_salary;
 	}
 
-
-
-	public double getAnnual_basic_salary() {
-		return annual_basic_salary;
+	public double getIncentive() {
+		return incentive;
 	}
 
-
-
-	public void setAnnual_basic_salary(double annual_basic_salary) {
-		this.annual_basic_salary = annual_basic_salary;
+	public void setIncentive(double incentive) {
+		this.incentive = incentive;
 	}
 
+	public double getPrevious_salary() {
+		return previous_salary;
+	}
 
+	public void setPrevious_salary(double previous_salary) {
+		this.previous_salary = previous_salary;
+	}
+
+	public double getPerformance_pay() {
+		return performance_pay;
+	}
+
+	public void setPerformance_pay(double performance_pay) {
+		this.performance_pay = performance_pay;
+	}
 
 	public double getConveyance() {
 		return conveyance;
 	}
 
-
-
 	public void setConveyance(double conveyance) {
 		this.conveyance = conveyance;
 	}
-
-
-
-	public double getAnnual_conveyance() {
-		return annual_conveyance;
-	}
-
-
-
-	public void setAnnual_conveyance(double annual_conveyance) {
-		this.annual_conveyance = annual_conveyance;
-	}
-
-
 
 	public double getHra() {
 		return hra;
 	}
 
-
-
 	public void setHra(double hra) {
 		this.hra = hra;
 	}
-
-
-
-	public double getAnnual_hra() {
-		return annual_hra;
-	}
-
-
-
-	public void setAnnual_hra(double annual_hra) {
-		this.annual_hra = annual_hra;
-	}
-
-
 
 	public double getMedical() {
 		return medical;
 	}
 
-
-
 	public void setMedical(double medical) {
 		this.medical = medical;
 	}
 
-
-
-	public double getAnnual_medical() {
-		return annual_medical;
+	public double getLtc() {
+		return ltc;
 	}
 
-
-
-	public void setAnnual_medical(double annual_medical) {
-		this.annual_medical = annual_medical;
+	public void setLtc(double ltc) {
+		this.ltc = ltc;
 	}
 
+	public double getPtax() {
+		return ptax;
+	}
 
+	public void setPtax(double ptax) {
+		this.ptax = ptax;
+	}
+	
+	public double getPf() {
+		return pf;
+	}
+
+	public void setPf(double pf) {
+		this.pf = pf;
+	}
 
 	public double getUni_allw() {
 		return uni_allw;
 	}
 
-
-
 	public void setUni_allw(double uni_allw) {
 		this.uni_allw = uni_allw;
 	}
-
-
-
-	public double getAnnual_uni_allw() {
-		return annual_uni_allw;
-	}
-
-
-
-	public void setAnnual_uni_allw(double annual_uni_allw) {
-		this.annual_uni_allw = annual_uni_allw;
-	}
-
-
 
 	public double getEdu_allw() {
 		return edu_allw;
 	}
 
-
-
 	public void setEdu_allw(double edu_allw) {
 		this.edu_allw = edu_allw;
 	}
 
-
-
-	public double getAnnual_edu_allw() {
-		return annual_edu_allw;
+	public double getOther_allw() {
+		return other_allw;
 	}
 
-
-
-	public void setAnnual_edu_allw(double annual_edu_allw) {
-		this.annual_edu_allw = annual_edu_allw;
+	public void setOther_allw(double other_allw) {
+		this.other_allw = other_allw;
 	}
 
+	public double getAdhoc_allw() {
+		return adhoc_allw;
+	}
 
+	public void setAdhoc_allw(double adhoc_allw) {
+		this.adhoc_allw = adhoc_allw;
+	}
+
+	public double getSalary() {
+		return salary;
+	}
+
+	public void setSalary(double salary) {
+		this.salary = salary;
+	}
+
+	public double getLeave_count() {
+		return leave_count;
+	}
+
+	public void setLeave_count(double leave_count) {
+		this.leave_count = leave_count;
+	}
 
 	@ManyToOne
 	@JoinColumn(name="month_id")
@@ -272,4 +263,5 @@ public class TDSPayrollBean	implements Serializable {
 	public void setYearBean(YearBean yearBean) {
 		this.yearBean = yearBean;
 	}
+
 }

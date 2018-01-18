@@ -10,26 +10,43 @@
 		<property name="hibernate.connection.password">chirag</property> -->
 		
 		
-		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-		<property name="hibernate.connection.url">jdbc:mysql://192.168.182.94:3306/hrms</property>
-		<property name="hibernate.connection.username">shruti</property>
-		<property name="hibernate.connection.password">shruti</property>
-		 
+	<!-- 	<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+		<property name="hibernate.connection.url">jdbc:mysql://192.168.182.66:3306/hrms</property>
+		<property name="hibernate.connection.username">akashpatel</property>
+		<property name="hibernate.connection.password">akashpatel</property>
+ -->		 
+		
+		<!-- <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+		<property name="hibernate.connection.url">jdbc:mysql://hrmsserver:3306/hrms</property>
+		<property name="hibernate.connection.username">hrmsserver</property>
+		<property name="hibernate.connection.password">hostserver</property> -->
+		
 		
 	<!-- 	<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+		<property name="hibernate.connection.url">jdbc:mysql://192.168.182.66:3306/hrms</property>
+		<property name="hibernate.connection.username">akashpatel</property>
+		<property name="hibernate.connection.password">akashpatel</property> -->
+		
+<!-- 
+	 	<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+		<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/hrms</property>
+		<property name="hibernate.connection.username">root</property>
+		<property name="hibernate.connection.password">root</property>  -->
+		   
+		<!--  <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
 		<property name="hibernate.connection.url">jdbc:mysql://192.168.182.58:3306/hrms</property>
 		<property name="hibernate.connection.username">hrmsserver</property>
 		<property name="hibernate.connection.password">hostserver</property> -->
 		
-	
-
-	 	<!-- <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-		<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/hrms</property>
-		<property name="hibernate.connection.username">root</property>    
-		<property name="hibernate.connection.password">root</property> -->    
-
+		
+		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+		<property name="hibernate.connection.url">jdbc:mysql://192.168.182.94:3306/hrms</property>
+		<property name="hibernate.connection.username">shruti</property>
+		<property name="hibernate.connection.password">shruti</property>
+		   
 	    <property name="show_sql">true</property>
 		<property name="hbm2ddl.auto">create/update</property>
+		
 		<!-- performance bean -->
 		
 		<mapping class="com.hrms.pms.bean.EmployeeBean" />
@@ -139,10 +156,6 @@
 		<mapping class="com.hrms.timesheet.bean.ProjectAllocationBean" />
 		<mapping class="com.hrms.timesheet.bean.UnplanProjectBean" />
 		
-		
-		
-		
-		
 		<!-- <mapping class="com.hrms.recruitement.bean.VacancyFormBean" />
         <mapping class="com.hrms.recruitement.bean.BenefitsBean" />
         <mapping class="com.hrms.recruitement.bean.VacancyBenefitsBean" />
@@ -232,6 +245,13 @@
 		<mapping class="com.hrms.recruitement.bean.VacancyPayrollHrInfoBean"/>
 		<mapping class="com.hrms.recruitement.bean.DailyCallingDataBean"/>
 		<mapping class="com.hrms.recruitement.bean.ResumeShareBean"/>
+		<mapping class="com.hrms.recruitement.bean.DailyCallingStatusBean"/>
+		<mapping class="com.hrms.recruitement.bean.InterviewManagerEmailBean"/>
+		<mapping class="com.hrms.recruitement.bean.HRInterviewFeedbackBean"/>
+		<mapping class="com.hrms.recruitement.bean.FinalSelectionBean"/>
+		<mapping class="com.hrms.recruitement.bean.HrSuggestBean"/> 
+		<mapping class="com.hrms.recruitement.bean.HrresumeBean"/>
+		<mapping class="com.hrms.recruitement.bean.VacancytitleBean"/>
 		
 		
 		 <!--  Leave bean -->
@@ -251,6 +271,7 @@
 		<mapping class="com.hrms.lms.bean.GatePassAuthorityBean"/>
         <mapping class="com.hrms.lms.bean.GateLoationBean"/>
 		<mapping class="com.hrms.lms.bean.IntervieweeBean"/>
+		<mapping class="com.hrms.lms.bean.LeaveBalanceYearWiseBean"/>
 
 
 
@@ -294,6 +315,10 @@
 		<mapping class="com.hrms.selfservice.bean.ProblemNatureReplyBean"/>
 		<mapping class="com.hrms.selfservice.bean.ComplaintVerifiedByBean"/>
 		<mapping class="com.hrms.corehr.bean.InterviewTrackerDesignationBean"/>
+		<mapping class="com.hrms.selfservice.bean.VideoBean"/>
+		<mapping class="com.hrms.selfservice.bean.SoftwareNatureBean"/>
+		<mapping class="com.hrms.selfservice.bean.SoftwareComplaintBean"/>
+		
 		
 		<!-- Exit Interview Formality bean -->
 		
@@ -340,6 +365,12 @@
 		<mapping class="com.hrms.incentive.bean.IncentiveDesignationBean"/>
 		<mapping class="com.hrms.incentive.bean.IncentiveSalesPersonListBean"/>
 		
+		
+		
+		
+		
+		
+		
 		<!-- Asset Management -->
 		<mapping class="com.hrms.assetmanagement.bean.AssetMasterBean"/>
 		<mapping class="com.hrms.assetmanagement.bean.AssetConfigurationBean"/>
@@ -355,8 +386,15 @@
 		<mapping class="com.hrms.assetmanagement.bean.MachineCheckPointsDefaultBean"/>
 		<mapping class="com.hrms.assetmanagement.bean.MachineSystemDefaultBean"/>
 		
-		
-		
+			<!-- Vehicle Tracking System -->
+		<mapping class="com.hrms.vehicletracking.bean.VehicleBean"/>
+			<mapping class="com.hrms.vehicletracking.bean.VehicleTypeBean"/>
+				<mapping class="com.hrms.vehicletracking.bean.VehicleTrackingBean"/>
+			<mapping class="com.hrms.vehicletracking.bean.DriverBean"/>
+			<mapping class="com.hrms.vehicletracking.bean.VehicleServiceRecordBean" />
+		<mapping class="com.hrms.vehicletracking.bean.VehicleDocumentAttachmentBean" />
+			<mapping class="com.hrms.vehicletracking.bean.VehicleDocumentBean" />
+			<mapping class="com.hrms.vehicletracking.bean.VehiclePolicyDocumentBean" />
 		<!-- Kaizen Management -->
 		<mapping class="com.hrms.kaizen.bean.KaizenBean"/>
 		<mapping class="com.hrms.kaizen.bean.KaizenManagerBean"/>
@@ -369,9 +407,23 @@
 		<mapping class="com.hrms.kaizen.bean.KaizenAuthorityScoreBean" />
 		<mapping class="com.hrms.kaizen.bean.KaizenProblemIdentificationBean" />
 		<mapping class="com.hrms.kaizen.bean.kaizenRCABean" />
+		<mapping class="com.hrms.kaizen.bean.KaizenReactivationRemarkBean" />
 		
 		
-		<!-- TDS -->
+		<!-- Meeting Managemnet -->
+		<mapping class="com.hrms.meetingmanagemnet.bean.MeetingBookingDetailBean" />
+		<mapping class="com.hrms.meetingmanagemnet.bean.MeetingRoomDetailBean" />
+		<mapping class="com.hrms.meetingmanagemnet.bean.MeetingMOMBean" />
+		<mapping class="com.hrms.meetingmanagemnet.bean.MeetingAttachmentBean" />
+		
+		
+		
+		<mapping class="com.hrms.PayrollBalance.PayrolldatainsertBean" />
+		<mapping class="com.hrms.lms.bean.NopunchBean" />
+		<mapping class="com.hrms.appAuthority.bean.AppAuthorityBean" />
+		
+		
+		<!-- TDS Calculation -->
 		<mapping class="com.hrms.tds.bean.TDSBean" />
 		<mapping class="com.hrms.tds.bean.TDSTotalABean" />
 		<mapping class="com.hrms.tds.bean.TDSTotalBBean" />
@@ -392,12 +444,9 @@
 		<mapping class="com.hrms.tds.bean.TDSPayrollBean" />
 		<mapping class="com.hrms.tds.bean.TDSTaxBean" />
 		<mapping class="com.hrms.tds.bean.TDSPayrollSalaryDataBean" />
-		<mapping class="com.hrms.tds.bean.TDSPayrollMasterDataBean" />
 		
-		<!-- Meeting Managemnet -->
-		<mapping class="com.hrms.meetingmanagemnet.bean.MeetingBookingDetailBean" />
-		<mapping class="com.hrms.meetingmanagemnet.bean.MeetingRoomDetailBean" />
 		
+			
 		<!--  Probation Module -->
 		<mapping class="com.hrms.probation.bean.AttributeBean"/>
 		<mapping class="com.hrms.probation.bean.AttributeM2Bean"/>
@@ -408,17 +457,6 @@
 		<mapping class="com.hrms.probation.bean.ProbationTopManagementApprovalBean"/>
 		<mapping class="com.hrms.probation.bean.ProbationAssessmentTerminationBean"/>
 		<mapping class="com.hrms.probation.bean.ProbationOpenInfopageBean"/>
-		
-		<!-- Vehicle Tracking System -->
-		<mapping class="com.hrms.vehicletracking.bean.VehicleBean"/>
-		<mapping class="com.hrms.vehicletracking.bean.VehicleTypeBean"/>
-		<mapping class="com.hrms.vehicletracking.bean.VehicleTrackingBean"/>
-		<mapping class="com.hrms.vehicletracking.bean.DriverBean"/>
-		<mapping class="com.hrms.vehicletracking.bean.VehicleServiceRecordBean" />
-		<mapping class="com.hrms.vehicletracking.bean.VehicleDocumentAttachmentBean" />
-		<mapping class="com.hrms.vehicletracking.bean.VehicleDocumentBean" />
-		<mapping class="com.hrms.vehicletracking.bean.VehiclePolicyDocumentBean" />
-		
 	</session-factory>
 
 </hibernate-configuration>

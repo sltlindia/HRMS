@@ -74,8 +74,8 @@
             </div>
                 
                 <%AllListCoreHrDAO allListCoreHrDAO = new AllListCoreHrDAO();
-				List<CUGBean> listOfCugDetails = allListCoreHrDAO.SPgetListOfCugNo();
-				List<EmployeeBean> listOfCugDetailsFromEmployeeMaster = allListCoreHrDAO.SPgetListOfCugNoFromEmployee();%>
+				List<CUGBean> listOfCugDetails = allListCoreHrDAO.getListOfCugNo();
+				List<EmployeeBean> listOfCugDetailsFromEmployeeMaster = allListCoreHrDAO.getListOfCugNoFromEmployee();%>
 			
    <div class="card-body collapse in">
 	  <div class="card-block border-bottom-blue-grey" style="border-left: 2px solid #607D8B;border-right: 2px solid #607D8B;">

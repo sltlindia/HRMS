@@ -22,7 +22,6 @@ public class ContinuousImprovementScoreInsertServlet extends HttpServlet {
 	 */
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		System.err.println("IN SCORE SAVE");
 		int kaizen_id = Integer.parseInt(request.getParameter("kaizen_id"));
 		int employee_id = Integer.parseInt(request.getParameter("employee_id"));
 		int quality = Integer.parseInt(request.getParameter("quality"));

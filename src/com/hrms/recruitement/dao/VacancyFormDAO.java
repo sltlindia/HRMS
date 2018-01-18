@@ -48,7 +48,8 @@ public class VacancyFormDAO {
 			String external_operating_network, String personal_competencies, String key_performance_indicator, 
 			int department_id, int manager_id, int state_id, int city_id, int under_graduate_qualification_id, 
 			int under_graduate_specification_id,int post_graduate_qualification_id, int post_graduate_specification_id,
-			String country, String role_description, int vacancy_id, String bill_limit, String submission_date, int employee_master_id) 
+			String country, String role_description, int vacancy_id, String bill_limit, String submission_date, 
+			int employee_master_id, String company_branch, String status) 
 	{
 		Session session = HibernateUtil.openSession();
 		Transaction tx = null;
@@ -116,6 +117,8 @@ public class VacancyFormDAO {
 			vacancyFormBean.setBill_limit(bill_limit);
 			vacancyFormBean.setSubmission_date(submission_date);
 			vacancyFormBean.setEmployeeBean(employeeBean);
+			vacancyFormBean.setCompany_branch(company_branch);
+			vacancyFormBean.setApproved_status(status);
 			
 			session.update(vacancyFormBean);
 			tx.commit();

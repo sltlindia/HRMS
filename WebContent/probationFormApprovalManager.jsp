@@ -54,6 +54,8 @@ Jsp for displaying data at manager side  -->
     <link rel="stylesheet" type="text/css" href="app-assets/vendors/css/sliders/slick/slick.css">
     <link rel="stylesheet" type="text/css" href="app-assets/vendors/css/extensions/pace.css">
     <link rel="stylesheet" type="text/css" href="app-assets/vendors/css/extensions/sweetalert.css">
+    <link rel="stylesheet" type="text/css"
+	href="app-assets/vendors/css/tables/datatable/dataTables.bootstrap4.min.css">
     <!-- END VENDOR CSS-->
     <!-- BEGIN ROBUST CSS-->
     <link rel="stylesheet" type="text/css" href="app-assets/css/bootstrap-extended.min.css">
@@ -68,6 +70,7 @@ Jsp for displaying data at manager side  -->
     <!-- END Page Level CSS-->
     <!-- BEGIN Custom CSS-->
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <script src="app-assets/js/core/libraries/jquery.min.js" type="text/javascript"></script>
     <!-- END Custom CSS-->
     <%@include file="header.jsp" %>
 </head>
@@ -105,10 +108,21 @@ if(probation != null){
 								.getListOfUnderEmployeepProbation(manager_id);
 						if (listForUnderCheckProbation.size() != 0) {
 					%>
-					<div class="panel panel-primary">
+					 <div class="col-md-12">
+				        <div class="card">
+				        	 <div class="card-header">
+				        <div class="card box-shadow-0" data-appear="appear">
+					        <div class="card-header card-inverse" style="background-color: #90A4AE;padding: 0.5rem 0rem 1rem 0rem;height: 50px;">
+					            <div class="col-sm-6">	
+				               		<h4 class="card-title" id="horz-layout-basic">Probation Form(Employees)</h4>
+				                </div>
+				            </div>
+				               <div class="card-body collapse in">
+					                <div class="card-block border-bottom-blue-grey" style="border-left: 2px solid #607D8B;border-right: 2px solid #607D8B;">
+					<!-- <div class="panel panel-primary">
 						<div class="panel-heading">
 							<b><font size="3px">Probation Form(Employees)</font></b>
-						</div>
+						</div> -->
 						<!-- /.panel-heading -->
 						<div class="panel-body">
 							<table class="table table-striped table-bordered table-hover"
@@ -126,7 +140,7 @@ if(probation != null){
 								</thead>
 								<%
 									for (EmployeeBean p : listForUnderCheckProbation) {
-											/* int employee_master_id = p.getEmployee_master_id(); */
+											int employee_master_id_emp = p.getEmployee_master_id();
 											int to_be_extended = 0;
 											int extended_month = 0;
 											LoginDAO loginDAO = new LoginDAO();
@@ -143,7 +157,7 @@ if(probation != null){
 											} catch (ParseException e1) {
 												e1.printStackTrace();
 											}
-											EmployeeBean employeeBean = loginDAO.getInfoById(employee_master_id);
+											EmployeeBean employeeBean = loginDAO.getInfoById(employee_master_id_emp);
 											String authority = employeeBean.getRoleBean().getRole_authority();
 											long maxValue = 0;
 											
@@ -157,7 +171,7 @@ if(probation != null){
 												maxValue = allListProbationDAO1.getCount(employee_master_id);
 												flag = false;
 											}else{
-												maxValue = allListProbationDAO1.getCountForM2(employee_master_id);
+												maxValue = allListProbationDAO1.getCountForM2(employee_master_id_emp);
 												flag=true;
 											}
 											
@@ -165,7 +179,7 @@ if(probation != null){
 											
 											AllListProbationDAO allListProbationDAO = new AllListProbationDAO();
 											List<ProbationAssessmentManagerBean> listOfExtended1 = allListProbationDAO
-													.getListOfScoreByEmpId(employee_master_id);
+													.getListOfScoreByEmpId(employee_master_id_emp);
 											for (ProbationAssessmentManagerBean li : listOfExtended1) {	
 											int probationmanager_id = li.getProbation_assessment_manager_id();
 											List<ProbationExtendBean> listForExtend = allListProbationDAO
@@ -195,7 +209,7 @@ if(probation != null){
 									<%
 									List<ProbationAssessmentTerminationBean> listOfTermination = allListProbationDAO1.getAllListOfTerminatedEmployeesPending(employee_master_id);
 										List<ProbationAssessmentManagerBean> listForCheck = allListProbationDAO1
-														.getListOfScoreByEmpId(employee_master_id);
+														.getListOfScoreByEmpId(employee_master_id_emp);
 										String statusPrint = null; 
 												if (listForCheck.size() != 0) {
 													for (ProbationAssessmentManagerBean probationAssessmentManagerBean : listForCheck) {
@@ -229,7 +243,7 @@ if(probation != null){
 									<td><%=statusPrint%>(Extended)</td>
 									<td><a
 										href="probationOpenInfopage?employee_master_id=<%=p.getEmployee_master_id()%>"><i
-											class="fa fa-plus-circle" data-toggle="tooltip"
+											class="icon-plus-circled" data-toggle="tooltip"
 											data-placement="top" title="Add Review"></i></a></td>
 									<%
 										} else if (probationAssessmentManagerBean.getTo_be_extended().equalsIgnoreCase("extendedNo")
@@ -237,7 +251,7 @@ if(probation != null){
 									<td><%=statusPrint%></td>
 									<td><a
 										href="probationListByIdIndirectApprovalView.jsp?employee_master_id=<%=p.getEmployee_master_id()%>"><i
-											class="glyphicon glyphicon-eye-open" data-toggle="tooltip"
+											class="icon-eye4" data-toggle="tooltip"
 											data-placement="top" title="Show View"></i></a></td>
 
 									<%}else if(maxValue == 6){ %>
@@ -245,7 +259,7 @@ if(probation != null){
 									<td><%=statusPrint%></td>
 									<td><a
 										href="probationListByIdIndirectApprovalView.jsp?employee_master_id=<%=p.getEmployee_master_id()%>"><i
-											class="glyphicon glyphicon-eye-open" data-toggle="tooltip"
+											class="icon-eye4" data-toggle="tooltip"
 											data-placement="top" title="Show View"></i></a></td>
 
 									<%}else{		
@@ -260,14 +274,14 @@ if(probation != null){
 												 if(listOfTermination.size() == 0){
 												%> <td><a
 										href="probationListByIdIndirect.jsp?employee_master_id=<%=p.getEmployee_master_id()%>"><i
-											class="glyphicon glyphicon-edit" data-toggle="tooltip"
+											class="icon-edit2" data-toggle="tooltip"
 											data-placement="top" title="Edit Data"></i></a></td> <%}
 												 else{%>
 													 <td>Termination Approval Pending</td>
 												 <%}
 											 }else{ %> <td><a
 										href="probationListByIdIndirectApprovalView.jsp?employee_master_id=<%=p.getEmployee_master_id()%>"><i
-											class="glyphicon glyphicon-eye-open" data-toggle="tooltip"
+											class="icon-eye4" data-toggle="tooltip"
 											data-placement="top" title="Show View"></i></a></td> <%} %> 
 
 									</td>
@@ -276,7 +290,7 @@ if(probation != null){
 									<td>
 										 <a
 										href="probationListByIdIndirectApprovalView.jsp?employee_master_id=<%=p.getEmployee_master_id()%>"><i
-											class="glyphicon glyphicon-eye-open" data-toggle="tooltip"
+											class="icon-eye4" data-toggle="tooltip"
 											data-placement="top" title="Show View"></i></a>
 
 
@@ -291,7 +305,7 @@ if(probation != null){
 									<td>
 										 <a
 										href="probationListByIdIndirectUpdate.jsp?employee_master_id=<%=p.getEmployee_master_id()%>"><i
-											class="glyphicon glyphicon-edit" data-toggle="tooltip"
+											class="icon-edit2" data-toggle="tooltip"
 											data-placement="top" title="Edit Data"></i></a> 
 
 									</td>
@@ -302,7 +316,7 @@ if(probation != null){
 									<td>
 										 <a
 										href="probationListByIdIndirectApprovalView.jsp?employee_master_id=<%=p.getEmployee_master_id()%>"><i
-											class="glyphicon glyphicon-eye-open" data-toggle="tooltip"
+											class="icon-eye4" data-toggle="tooltip"
 											data-placement="top" title="Show View"></i></a>
 
 									</td>
@@ -325,7 +339,7 @@ if(probation != null){
 									<td>
 										<a
 										href="probationListByIdIndirect.jsp?employee_master_id=<%=p.getEmployee_master_id()%>"><i
-											class="glyphicon glyphicon-edit" data-toggle="tooltip"
+											class="icon-edit2" data-toggle="tooltip"
 											data-placement="top" title="Edit Data"></i></a> 
 									</td>
 									<%
@@ -336,7 +350,7 @@ if(probation != null){
 									<td>Review to be filled</td>
 									<td><a
 										href="probationOpenInfopage?employee_master_id=<%=p.getEmployee_master_id()%>"><i
-											class="fa fa-plus-circle" data-toggle="tooltip"
+											class="icon-plus-circled" data-toggle="tooltip"
 											data-placement="top" title="Add Review"></i></a></td>
 									<%
 										}
@@ -345,20 +359,17 @@ if(probation != null){
 										}
 									%>
 								</tr>
-
-
-
 								<%
 									}
 								%>
 </tbody>
 							</table>
 			 <font size="3px;" color="#337ab7"><b>Legends
-					:&nbsp;</b></font> <i class="glyphicon glyphicon-eye-open"
+					:&nbsp;</b></font> <i class="icon-eye4"
 				style="color: #337ab7;"></i><b> : View Employee's Review </b>
-			&nbsp;&nbsp;&nbsp;<i class="fa fa-plus-circle"
+			&nbsp;&nbsp;&nbsp;<i class="icon-plus-circled"
 				style="color: #337ab7;"></i><b> : Add Review</b> &nbsp;&nbsp;&nbsp;<i
-				class=" glyphicon glyphicon-edit" style="color: #337ab7;"></i><b>
+				class=" icon-edit2" style="color: #337ab7;"></i><b>
 				: Update Review</b> &nbsp;&nbsp;&nbsp;
 				</div>
 				</div>
@@ -461,7 +472,7 @@ if(probation != null){
 									<%List<ProbationAssessmentManagerBean> listOfEmployee1 = allListProbationDAO.getListOfScoreByEmpId(emp_id); %>
 									<%for(ProbationAssessmentManagerBean p1 : listOfEmployee1){
 																String manager_approval = p1.getManager_approval();
-																/* int employee_master_id = p1.getEmployeeBean().getEmployee_master_id(); */
+																int employee_master_id_emp = p1.getEmployeeBean().getEmployee_master_id();
 																String status1 = p1.getManager_approval();
 																String hr_status = p1.getHr_approval();
 																String top_management_status = p1.getTop_management_approval();
@@ -482,7 +493,7 @@ if(probation != null){
 																else{
 																	status1 = "pending";
 																}
-										List<ProbationAssessmentTerminationBean> listOfTerminationEmployee = allListProbationDAO.getAllListOfTerminatedEmployeesPending(employee_master_id);
+										List<ProbationAssessmentTerminationBean> listOfTerminationEmployee = allListProbationDAO.getAllListOfTerminatedEmployeesPending(employee_master_id_emp);
 																%>
 																
 <tbody>
@@ -496,7 +507,7 @@ if(probation != null){
 											<%if(listOfTerminationEmployee.size() == 0){ %>
 										<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a
 											href="probationListByIdIndirectApproval.jsp?employee_master_id=<%=emp_id%>&&reviewing_manager_id=<%=employee_id%>"><i
-												class="glyphicon glyphicon-edit" data-toggle="tooltip"
+												class="icon-edit2" data-toggle="tooltip"
 												data-placement="top" title="Edit Data"></i></a></td> <%}
 											else{%>
 												<td>Termination Approval Pending</td>
@@ -506,7 +517,7 @@ if(probation != null){
 																		if(maxValue == extended){%>
 																		 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a
 											href="probationListByIdIndirectApprovalView.jsp?employee_master_id=<%=emp_id%>&&reviewing_manager_id=<%=employee_id%>"><i
-												class="glyphicon glyphicon-eye-open" data-toggle="tooltip"
+												class="icon-eye4" data-toggle="tooltip"
 												data-placement="top" title="Show View"></i></a></td>  <%}
 																		else{%>
 																			<td>Extended</td>
@@ -535,11 +546,11 @@ if(probation != null){
 										</div>
 			</div>
  <font size="3px;" color="#337ab7"><b>Legends
-					:&nbsp;</b></font> <i class="glyphicon glyphicon-eye-open"
+					:&nbsp;</b></font> <i class="icon-eye4"
 				style="color: #337ab7;"></i><b> : View Employee's Review </b>
-			&nbsp;&nbsp;&nbsp;<i class="fa fa-plus-circle"
+			&nbsp;&nbsp;&nbsp;<i class="icon-plus-circled"
 				style="color: #337ab7;"></i><b> : Add Review</b> &nbsp;&nbsp;&nbsp;<i
-				class=" glyphicon glyphicon-edit" style="color: #337ab7;"></i><b>
+				class=" icon-edit2" style="color: #337ab7;"></i><b>
 				: Update Review</b> &nbsp;&nbsp;&nbsp;
 				
 			
@@ -547,8 +558,6 @@ if(probation != null){
 			<%}%>
 			<div class="row">
 				    <div class="col-md-12">
-				        <div class="card">
-				        	 <div class="card-header">
 				        <div class="card box-shadow-0" data-appear="appear">
 					        <div class="card-header card-inverse" style="background-color: #90A4AE;padding: 0.5rem 0rem 1rem 0rem;height: 50px;">
 					            <div class="col-sm-6">
@@ -585,7 +594,7 @@ if(probation != null){
 								<td>
 								<a
 									href="probationTerminatedUpdate.jsp?employee_master_id=<%=patb.getEmployeeBean().getEmployee_master_id()%>&month_id=<%=patb.getMonthBean().getMonth_id()%>&year_id=<%=patb.getYearBean().getYear_id()%>&reviewing_manager_id=<%=patb.getReviewing_manager_id()%>&probation_assessment_termination_id=<%=patb.getProbation_assessment_termination_id()%>"><i
-										class="glyphicon glyphicon-edit" data-toggle="tooltip"
+										class="icon-edit2" data-toggle="tooltip"
 										data-placement="top" title="Show View"></i></a>
 								
 								</td>
@@ -605,12 +614,12 @@ if(probation != null){
 								<%if(patb.getManager_status().equalsIgnoreCase("pending")){ %>
 								<td><a
 									href="probationTerminationListById.jsp?employee_master_id=<%=patb.getEmployeeBean().getEmployee_master_id()%>"><i
-										class="glyphicon glyphicon-edit" data-toggle="tooltip"
+										class="icon-edit2" data-toggle="tooltip"
 										data-placement="top" title="Show View"></i></a></td>
 								<%}else{ %>
 								<td><a
 									href="probationTerminationListByIdView.jsp?employee_master_id=<%=patb.getEmployeeBean().getEmployee_master_id()%>"><i
-										class="glyphicon glyphicon-eye-open" data-toggle="tooltip"
+										class="icon-eye4" data-toggle="tooltip"
 										data-placement="top" title="Show View"></i></a></td>
 								<%} %>
 							</tr>
@@ -627,6 +636,9 @@ if(probation != null){
 					</div>
 					<!-- /#page-wrapper -->
 				</div>
+			</div>
+			</div>
+			</div>
 			</div>
 			</div>
 </div>
@@ -674,6 +686,20 @@ if(probation != null){
 	  ga('send', 'pageview');
 
 	</script>
+	<script type="text/javascript" src="app-assets/vendors/js/ui/jquery.sticky.js"></script>
+    <script src="app-assets/vendors/js/tables/jquery.dataTables.min.js" type="text/javascript"></script>
+    <script src="app-assets/vendors/js/tables/datatable/dataTables.bootstrap4.min.js" type="text/javascript"></script>
+    <script src="app-assets/vendors/js/tables/datatable/dataTables.buttons.min.js" type="text/javascript"></script>
+    <script src="app-assets/vendors/js/tables/buttons.flash.min.js" type="text/javascript"></script>
+    <script src="app-assets/vendors/js/tables/jszip.min.js" type="text/javascript"></script>
+    <script src="app-assets/vendors/js/tables/pdfmake.min.js" type="text/javascript"></script>
+    <script src="app-assets/vendors/js/tables/vfs_fonts.js" type="text/javascript"></script>
+    <script src="app-assets/vendors/js/tables/buttons.html5.min.js" type="text/javascript"></script>
+    <script src="app-assets/vendors/js/tables/buttons.print.min.js" type="text/javascript"></script> 
+    <!-- END PAGE VENDOR JS-->
+    
+      <!-- BEGIN PAGE LEVEL JS-->
+    <script src="app-assets/js/scripts/tables/datatables/datatable-advanced.min.js" type="text/javascript"></script>
 		<script>
 		$(document).ready(function() {
 

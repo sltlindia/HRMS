@@ -37,7 +37,7 @@ public class KaizenStatusChangeServlet extends HttpServlet {
 		int under_manager_id = Integer.parseInt(user.getUnder_manager_id());
 		LoginDAO loginDAO = new LoginDAO();
 		
-		EmployeeBean bean = loginDAO.getEmailId(under_manager_id);
+		
 		
 		int kaizen_id = Integer.parseInt(request.getParameter("id"));
 		String status = request.getParameter("status");
@@ -45,6 +45,7 @@ public class KaizenStatusChangeServlet extends HttpServlet {
 		AllKaizenUpdateDAO allKaizenUpdateDAO = new AllKaizenUpdateDAO();
 		AllKaizenListDAO allKaizenListDAO = new AllKaizenListDAO();
 		KaizenBean kaizenBean = allKaizenListDAO.getDetailOfKaizenById(kaizen_id);
+		EmployeeBean bean = loginDAO.getEmailId(kaizenBean.getManager_id());
 		List<KaizenManagerBean> listOfManager = allKaizenListDAO.getListOfManagerByKaizenId(kaizen_id);
 		
 		String affectingmanager = "";
@@ -58,7 +59,6 @@ public class KaizenStatusChangeServlet extends HttpServlet {
 		
 		
 		if(status.equalsIgnoreCase("submitted")) {
-			/*System.err.println("---------------- STATUS ----------------------");*/
 		boolean result = allKaizenUpdateDAO.kaizenStatusUpdate(kaizen_id, status);
 		String managerList = affectingmanager;
 		new Thread(new Runnable() {

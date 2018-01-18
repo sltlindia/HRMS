@@ -69,7 +69,7 @@
                             </div>
                     </div>
                 </div> -->
-                <a class="quick-btn" href="#kaizen" data-toggle="tab" style="text-decoration: none;"> <%
+                <%-- <a class="quick-btn" href="#kaizen" data-toggle="tab" style="text-decoration: none;"> <%
 							AllKaizenListDAO kaizenListDAO = new AllKaizenListDAO();
                 List<KaizenManagerBean> listofAllKaizen = kaizenListDAO.getListOfManagerBymanagerIdSubmitted(employee_id);
 				List<KaizenBean> lisOfMainKaizen = kaizenListDAO.getListOfKaizenBymanagerIdSubmitted(manager_id);
@@ -91,9 +91,9 @@
 					
 					
 					
-					</a>
+					</a> --%>
 					
-<div class="tab-pane fade" id="kaizen">
+<%-- <div class="tab-pane fade" id="kaizen">
 							<div class="panel panel-default">
 								<div class="panel-heading">
 									<h4 class="panel-title">
@@ -171,7 +171,7 @@
 							</div>
 								
 								</div>
-								</div>
+								</div> --%>
 <!-- BEGIN VENDOR JS-->
 	<!-- build:js app-assets/js/vendors.min.js-->
 	<%@include file="footer.html"%>

@@ -758,6 +758,31 @@ public class AllListDAO {
 		}
 		return listOfEmployee;
 	}
+	
+	
+	
+	public List<EmployeeBean> departmentList(int deptId) {
+		List<EmployeeBean> listOfEmployee = new ArrayList<EmployeeBean>();
+		Session session = HibernateUtil.openSession();
+		Transaction tx = null;
+		try {
+			tx = session.getTransaction();
+			tx.begin();
+			String hql = "from EmployeeBean where departmentBean =" + deptId + "";
+			Query query = session.createQuery(hql);
+			listOfEmployee = query.list();
+			System.out.println(listOfEmployee.size());
+			tx.commit();
+		} catch (Exception e) {
+			if (tx != null) {
+				tx.rollback();
+			}
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return listOfEmployee;
+	}
 
 	public List<EmployeeBean> underManagerList1(int dept_id) {
 		List<EmployeeBean> listOfEmployee = new ArrayList<EmployeeBean>();
@@ -1152,20 +1177,20 @@ public class AllListDAO {
 				dept_id = 18;
 				hql = "from TaskMasterBean t where (not exists (from ProjectAllocationBean p where p.projectMasterBean ="
 						+ project_id + " and p.employeeBean = " + employee_master_id
-						+ " and t.task_master_id = p.taskMasterBean ) and exists(from EmployeeBean e where e.managerBean = t.managerBean and (e.departmentBean = '"
+						+ " and t.task_master_id = p.taskMasterBean ) and exists(from EmployeeBean e where (e.managerBean = t.managerBean or e.employee_master_id = t.emp_id) and (e.departmentBean = '"
 						+ dept_id + "' or e.managerBean = '" + under_manager_id + "') )) and projectMasterBean='"
 						+ project_id + "' and location='E2' and master_task_or_not = 0";
 			} else if (employee_master_id == 1836) {
 				dept_id = 18;
 				hql = "from TaskMasterBean t where (not exists (from ProjectAllocationBean p where p.projectMasterBean ="
 						+ project_id + " and p.employeeBean = " + employee_master_id
-						+ " and t.task_master_id = p.taskMasterBean ) and exists(from EmployeeBean e where e.managerBean = t.managerBean and (e.departmentBean = '"
+						+ " and t.task_master_id = p.taskMasterBean ) and exists(from EmployeeBean e where (e.managerBean = t.managerBean or e.employee_master_id = t.emp_id) and (e.departmentBean = '"
 						+ dept_id + "' or e.managerBean = '" + under_manager_id + "') )) and projectMasterBean='"
 						+ project_id + "' and location='A8' and master_task_or_not = 0";
 			} else {
 				hql = "from TaskMasterBean t where (not exists (from ProjectAllocationBean p where p.projectMasterBean ="
 						+ project_id + " and p.employeeBean = " + employee_master_id
-						+ " and t.task_master_id = p.taskMasterBean ) and exists(from EmployeeBean e where e.managerBean = t.managerBean and (e.departmentBean = '"
+						+ " and t.task_master_id = p.taskMasterBean ) and exists(from EmployeeBean e where (e.managerBean = t.managerBean or e.employee_master_id = t.emp_id) and (e.departmentBean = '"
 						+ dept_id + "' or e.managerBean = '" + under_manager_id + "') )) and projectMasterBean='"
 						+ project_id + "' and master_task_or_not = 0";
 			}
@@ -2494,6 +2519,50 @@ public class AllListDAO {
 		return listOfProject;
 
 	}
+	
+	
+	public List<ProjectManagerListBean> listOfAllProjectWithActiveStatus() {
+		List<ProjectManagerListBean> listOfProject = new ArrayList<ProjectManagerListBean>();
+		Session session = HibernateUtil.openSession();
+		Transaction tx = null;
+		try {
+			tx = session.getTransaction();
+			tx.begin();
+			listOfProject = session.createQuery("FROM ProjectManagerListBean where  projectMasterBean.projectStatusBean = 3").list();
+			tx.commit();
+		} catch (Exception e) {
+			if (tx != null) {
+				tx.rollback();
+			}
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return listOfProject;
+
+	}
+	
+	public List<ProjectMasterBean> listOfAllProject() {
+		List<ProjectMasterBean> listOfProject = new ArrayList<ProjectMasterBean>();
+		Session session = HibernateUtil.openSession();
+		Transaction tx = null;
+		try {
+			tx = session.getTransaction();
+			tx.begin();
+			listOfProject = session.createQuery("FROM ProjectMasterBean where  projectStatusBean = 3").list();
+			tx.commit();
+		} catch (Exception e) {
+			if (tx != null) {
+				tx.rollback();
+			}
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return listOfProject;
+
+	}
+	
 
 	public ProjectAllocationPercentageBean getDetailsOfProjectALlocastion(int project_id, int emp_id) {
 		Session session = HibernateUtil.openSession();

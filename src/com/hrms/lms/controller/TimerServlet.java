@@ -21,7 +21,8 @@ public class TimerServlet extends HttpServlet {
 		   Timer timer = new Timer();
 		      
 		   // scheduling the task at interval
-		   timer.schedule(tasknew,100,90000);  
+		   timer.schedule(tasknew,100,90000); 
+		   
 	}
 
 

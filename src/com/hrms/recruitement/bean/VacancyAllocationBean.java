@@ -26,7 +26,7 @@ public class VacancyAllocationBean implements Serializable {
 	private VacancyFormBean vacancyFormBean;
 	private EmployeeBean employeeBean;
 	private String allocated_date;
-	
+	private String remark;
 	public VacancyAllocationBean() {
 		// TODO Auto-generated constructor stub
 	}
@@ -35,13 +35,14 @@ public class VacancyAllocationBean implements Serializable {
 	
 	
 	
-	public VacancyAllocationBean(VacancyFormBean vacancyFormBean, EmployeeBean employeeBean, int show_view, String allocated_date)
+	public VacancyAllocationBean(VacancyFormBean vacancyFormBean, EmployeeBean employeeBean, int show_view, String allocated_date, String remark)
 	{
 		super();
 		this.show_view = show_view;
 		this.vacancyFormBean = vacancyFormBean;
 		this.employeeBean = employeeBean;
 		this.allocated_date = allocated_date;
+		this.remark = remark;
 	}
 
 
@@ -102,6 +103,22 @@ public class VacancyAllocationBean implements Serializable {
 
 	public void setAllocated_date(String allocated_date) {
 		this.allocated_date = allocated_date;
+	}
+
+
+
+
+
+	public String getRemark() {
+		return remark;
+	}
+
+
+
+
+
+	public void setRemark(String remark) {
+		this.remark = remark;
 	}
 	
 	

@@ -52,11 +52,9 @@ public class VacancyFinalUpdateServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		EmployeeBean user = (EmployeeBean) session.getAttribute("user");
 		if (user != null) {
-			String filePath = getServletContext().getInitParameter("file-upload");
 			FileItemFactory factory = new DiskFileItemFactory();
 			ServletFileUpload upload = new ServletFileUpload(factory);
 			response.setContentType("text/html;charset=UTF-8");
-			PrintWriter out = response.getWriter();
 			/* EmployeeBean user = session.getAttribute("user"); */
 			List<FileItem> items = null;
 			String fieldName = null;
@@ -74,9 +72,9 @@ public class VacancyFinalUpdateServlet extends HttpServlet {
 			String salary_range = null;
 			int v_id = 0;
 			/* String rejected = "Rejected"; */
-			String reason = null;
 			String skillAndCompetencies = null;
 			String bill_limit = null;
+			String company_branch = null;
 			/*
 			 * String director_status = "pending"; String hod_status =
 			 * "pending"; String ceo_status = "pending"; String hr_status =
@@ -94,7 +92,6 @@ public class VacancyFinalUpdateServlet extends HttpServlet {
 			int under_graduate_specification_id = 0;
 			int post_graduate_qualification_id = 0;
 			int post_graduate_specification_id = 0;
-			int reportingManager = 0;
 			String role_objective = null;
 			String span_of_control = null;
 			String role_description = null;
@@ -103,21 +100,20 @@ public class VacancyFinalUpdateServlet extends HttpServlet {
 			String personal_competencies = null;
 			String key_performance_indicator = null;
 			int vacancy_id = 0;
-			int employee_master_id = user.getEmployee_master_id();
+			String status = "pending";
+			
+			int manager_id1 = user.getManagerBean().getManager_id();
+			int under_manager_id = Integer.parseInt(user.getUnder_manager_id());
 			
 
 			DepartmentBean departmentBean = new DepartmentBean();
 			VacancyFormBean vacancyFormBean = new VacancyFormBean();
-			BenefitsBean benefitsBean = new BenefitsBean();
 			ManagerBean managerBean = new ManagerBean();
-			StateBean stateBean = new StateBean();
-			CityBean cityBean = new CityBean();
 			
 
 			DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 			Date date1 = new Date();
 			System.out.println(dateFormat.format(date1));
-			String date = dateFormat.format(date1);
 			/* v_id = Integer.parseInt(request.getParameter("v_id")); */
 			/* v_id = 181; */
 
@@ -299,6 +295,13 @@ public class VacancyFinalUpdateServlet extends HttpServlet {
 							System.out.println("techSkills:" + skillAndCompetencies);
 						}
 
+						if (fieldName.equalsIgnoreCase("companyLocation")) {
+							company_branch = fieldValue;
+							System.out.println("companyLocation :" + company_branch);
+						}
+						
+						
+						
 						if (fieldName.equalsIgnoreCase("submission_date")) {
 							submission_date = fieldValue;
 							System.out.println("submission_date:" + submission_date);
@@ -398,7 +401,7 @@ public class VacancyFinalUpdateServlet extends HttpServlet {
 									personal_competencies, key_performance_indicator, department_id, manager_id,
 									state_id, city_id, under_graduate_qualification_id, under_graduate_specification_id,
 									post_graduate_qualification_id, post_graduate_specification_id, country,
-									role_description, vacancy_id, bill_limit, submission_date, employee_master_id);
+									role_description, vacancy_id, bill_limit, submission_date, employee_id, company_branch, status);
 							if (result == true) {
 								/*
 								 * System.out.println("Successful"); v_id =
@@ -413,10 +416,26 @@ public class VacancyFinalUpdateServlet extends HttpServlet {
 								String role = user.getRoleBean().getRole_type();
 								System.out.println(role);
 								
-								if (person.equalsIgnoreCase("M5")) {
-									response.sendRedirect("hrHome.jsp");
+								if (manager_id1 != 99) {
+									if (manager_id1 == 1 || manager_id1 == 2 || manager_id1 == 3) {
+										System.out.println("sltl");
+										response.sendRedirect("sltlAdmin.jsp");
+									} else if (manager_id1 == 4 || manager_id1 == 117 || under_manager_id == 4 || under_manager_id == 117) {
+										response.sendRedirect("hrHome.jsp");
+										System.out.println("hr");
+									} else {
+										System.out.println("manager");
+										response.sendRedirect("managerHome.jsp");
+
+									}
 								} else {
-									response.sendRedirect("managerHome.jsp");
+									if (under_manager_id == 4 || under_manager_id == 117) {
+										response.sendRedirect("hrHome.jsp");
+										System.out.println("hr");
+									} else {
+										response.sendRedirect("empHome.jsp");
+										System.out.println("emp");
+									}
 								}
 
 							}

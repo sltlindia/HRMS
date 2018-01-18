@@ -52,7 +52,9 @@ public class ManagerODUpdateServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		EmployeeBean user = (EmployeeBean)session.getAttribute("user");
 		
-		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		Date date2 = new Date();
+		String approvalDate = sdf.format(date2);
 		FileItemFactory factory = new DiskFileItemFactory();
 		ServletFileUpload upload = new ServletFileUpload(factory);
 		response.setContentType("text/html;charset=UTF-8");
@@ -81,6 +83,9 @@ public class ManagerODUpdateServlet extends HttpServlet {
 			LeaveCOBean leaveCOBean = new LeaveCOBean();
 			DateFormat mmddyyyy = new SimpleDateFormat("dd-MM-yyyy");
 			SimpleDateFormat ddmmyyyy = new SimpleDateFormat("yyyy-MM-dd");
+			
+			Date date11 = new Date();
+			String subDate = sdf.format(date11);
 			try {
 				items = upload.parseRequest(request);// Parse Request
 				for (int i = 0; i < items.size(); i++) {
@@ -221,7 +226,7 @@ public class ManagerODUpdateServlet extends HttpServlet {
 								}	
 								
 								
-								boolean result = allUpdateDAO.ODApprovedStatus(Status, OD_ID);
+								boolean result = allUpdateDAO.ODApprovedStatus(Status, approvalDate,OD_ID);
 								leaveHRBean = new LeaveHRBean(LeaveType, employeeBean, FromDate, ToDate, Approval_Date, code, leaveODBean);
 								allInsertDAO.leaveHRInsert(leaveHRBean);
 								
@@ -253,10 +258,10 @@ public class ManagerODUpdateServlet extends HttpServlet {
 											// TODO: handle exception
 										}
 									
-										System.out.println("CO DATE " + co);
+										/*System.out.println("CO DATE " + co);
 										employeeBean.setEmployee_master_id(emp_id);
-										leaveCOBean = new LeaveCOBean(employeeBean , describe , co , STARTTIME , ENDTIME , totalhours , Approval_By , Status , sunday,mail_view);
-										boolean result1 = allInsertDAO.leaveCOInsert(leaveCOBean);
+										leaveCOBean = new LeaveCOBean(employeeBean , describe , co , STARTTIME , ENDTIME , totalhours , Approval_By , Status , sunday,mail_view,subDate);
+										boolean result1 = allInsertDAO.leaveCOInsert(leaveCOBean);*/
 									}
 								
 								}

@@ -29,44 +29,13 @@ public class TDSDocumentDataList extends HttpServlet {
 		tds_id = (Integer)session.getAttribute("tds_id");
 		TDSListDAO tdsListDAO = new TDSListDAO();
 		List<TDSDocumentUploadBean> documentUploadBean = tdsListDAO.getLastAddedData(tds_id, attachment_name);
-		System.err.println("Document List=====>>"+documentUploadBean.size());
-		int GETCOUNT = documentUploadBean.size();
-		int COUNTER = 0;
-		String output ="" , jString= "";
-		for(TDSDocumentUploadBean bean : documentUploadBean)
-		{
-			COUNTER++;
-			String month = bean.getMonthBean().getMonth_name();
-			String attachment = bean.getAttachment();
-			double amount = bean.getAmount();
-			int tds_document_upload_id = bean.getTds_document_upload_id();
-			
-			List<TDSDocumentUploadBean> tdsDocumentList = tdsListDAO.getListOfDocument(tds_id);
-			System.err.println("Priority List=====>>"+tdsDocumentList.size());
-			
-			if(GETCOUNT == COUNTER)
-			{
-				output =  output + "{\"month\":\"" +month +"\",\"attachment\":\"" + attachment +"\",\"amount\":\""+ amount + "\",\"tds_document_upload_id\":\""+ tds_document_upload_id + "\",\"Size\":\""+ tdsDocumentList.size() + "\"}";
-			     
-			}
-			else
-			{
-				output =  output + "{\"month\":\"" +month +"\",\"attachment\":\"" + attachment +"\",\"amount\":\""+ amount + "\",\"tds_document_upload_id\":\""+ tds_document_upload_id + "\",\"Size\":\""+ tdsDocumentList.size() + "\"},";
-			}
-		}
 		
-	
-		jString = "["+""+ output +""+"]";
-		System.err.println("OUTPUT"  + jString);
-		response.getWriter().print(jString);
-		
-		/*Gson gson = new GsonBuilder().setPrettyPrinting().create();
+		Gson gson = new GsonBuilder().setPrettyPrinting().create();
 		String jsonArray = gson.toJson(documentUploadBean);
 
-		//System.out.println(jsonArray);
+		System.out.println(jsonArray);
 
-		response.getWriter().print(jsonArray);*/
-		
+		response.getWriter().print(jsonArray);
 	}
 
 }

@@ -49,6 +49,12 @@ public class TDSHrHistoryBean implements Serializable {
 	private double a_medical;
 	private double provided_medical_bills;
 	private double d_medical;
+	private String monthly_yearly;
+	private double yearly_mealcard;
+	private String monthly_start_date;
+	private String monthly_end_date;
+	private int days;
+	private double monthly_mealcard;
 	private double meal_card;
 	private double lta_during_year;
 	private double actual_expenditure_lta;
@@ -81,25 +87,12 @@ public class TDSHrHistoryBean implements Serializable {
 	private double other;
 	private double a_total_d;
 	private double d_total_d;
-	private double payable_lic;
-	private double payable_epf;
-	private double payable_ppf;
-	private double payable_nsc;
-	private double payable_mf;
-	private double payable_tuition_fees;
-	private double payable_stamp_duty;
-	private double payable_house_loan;
-	private double payable_fix_deposite;
-	private double payable_other;
-	private double payable_a_total_d;
-	private double payable_d_total_d;
 	private double a_NPS;
 	private double d_NPS;
 	private double a_RGESS;
 	private double d_RGESS;
 	private double total_NPS_RGESS;
 	private double total_e;
-	private double payable_total_e;
 	private double a_self;
 	private double d_self;
 	private String father_birthdate;
@@ -109,6 +102,7 @@ public class TDSHrHistoryBean implements Serializable {
 	private double d_health_checkup;
 	private double a_mediclaim;
 	private double d_mediclaim;
+	private String cash_cheque;
 	private double a_cash_amount;
 	private double d_cash_amount;
 	private double a_cheque_amount;
@@ -124,12 +118,6 @@ public class TDSHrHistoryBean implements Serializable {
 	private double total_tax;
 	private double edu_cess;
 	private double total_h;
-	private double payable_total_f;
-	private double payable_tax;
-	private double payable_tax_remit;
-	private double payable_total_tax;
-	private double payable_edu_cess;
-	private double payable_total_h;
 	private double april;
 	private double may;
 	private double june;
@@ -153,31 +141,28 @@ public class TDSHrHistoryBean implements Serializable {
 	}
 	
 	
+	
 	public TDSHrHistoryBean(String status, String submission_date, String period, double annual_gross_salary,
 			double bonus, double leaveCount, double incentive, double previous_employeed_salary, double performance_pay,
 			double full_final_leave, double full_final_bonus, double total_a, double conveyance, double d_conveyance,
 			String metro_non_metro, double a_total_basic, double d_non_metro_total_basic, double d_metro_total_basic,
 			double a_rent_slip, double d_non_metro_rent_slip, double d_metro_rent_slip, double a_hra,
 			double d_non_metro_hra, double d_metro_hra, double hra_non_metro_deduction, double hra_metro_deduction,
-			double house_rant, String landlord_name, String landlord_pan_no, double a_medical,
-			double provided_medical_bills, double d_medical, double meal_card, double lta_during_year,
-			double actual_expenditure_lta, double d_lta, double ptax, int no_of_child, double d_education_allw,
-			double uni_allw_during_year, double actual_expenditure_uni_allw, double d_uni_allw, double total_hra,
-			double total_b, double other_income, double a_house_loan, double d_house_loan, String bank_name,
-			String bank_pan_no, String bank_address, double total_c, double life_insurance, double ePF, double pPF,
-			double nSC, double mF, double tuition_fees, double stamp_duty, double house_loan_principal,
-			double tax_saver_deposite, String other_document, double other, double a_total_d, double d_total_d,
-			double payable_lic, double payable_epf, double payable_ppf, double payable_nsc, double payable_mf,
-			double payable_tuition_fees, double payable_stamp_duty, double payable_house_loan,
-			double payable_fix_deposite, double payable_other, double payable_a_total_d, double payable_d_total_d,
-			double a_NPS, double d_NPS, double a_RGESS, double d_RGESS, double total_NPS_RGESS, double total_e,
-			double payable_total_e, double a_self, double d_self, String father_birthdate, double a_parents,
-			double d_parents, double a_health_checkup, double d_health_checkup, double a_mediclaim, double d_mediclaim,
-			double a_cash_amount, double d_cash_amount, double a_cheque_amount, double d_cheque_amount,
-			double donation_80g, double a_donation_80GGC, double d_donation_80GGC, double education_loan,
-			double total_80egd, double total_f, double tax, double tax_remit, double total_tax, double edu_cess,
-			double total_h, double payable_total_f, double payable_tax, double payable_tax_remit,
-			double payable_total_tax, double payable_edu_cess, double payable_total_h, double april, double may,
+			double house_rant, String landlord_name, String landlord_pan_no, double a_medical, double provided_medical_bills, double d_medical,
+			String monthly_yearly, double yearly_mealcard, String monthly_start_date, String monthly_end_date, int days,
+			double monthly_mealcard, double meal_card, double lta_during_year, double actual_expenditure_lta,
+			double d_lta, double ptax, int no_of_child, double d_education_allw, double uni_allw_during_year,
+			double actual_expenditure_uni_allw, double d_uni_allw, double total_hra, double total_b,
+			double other_income, double a_house_loan, double d_house_loan, String bank_name, String bank_pan_no,
+			String bank_address, double total_c, double life_insurance, double ePF, double pPF, double nSC, double mF,
+			double tuition_fees, double stamp_duty, double house_loan_principal, double tax_saver_deposite,
+			String other_document, double other,  double a_total_d, double d_total_d, double a_NPS, double d_NPS, double a_RGESS,
+			double d_RGESS, double total_NPS_RGESS, double total_e, double a_self, double d_self,
+			String father_birthdate, double a_parents, double d_parents, double a_health_checkup,
+			double d_health_checkup, double a_mediclaim, double d_mediclaim, String cash_cheque, double a_cash_amount,
+			double d_cash_amount, double a_cheque_amount, double d_cheque_amount, double donation_80g,
+			double a_donation_80GGC, double d_donation_80GGC, double education_loan, double total_80egd, double total_f,
+			double tax, double tax_remit, double total_tax, double edu_cess, double total_h, double april, double may,
 			double june, double july, double august, double september, double october, double november, double december,
 			double january, double february, double march, double tax_paid, double tax_payable, TDSHrBean tdsHrBean,
 			EmployeeBean employeeBean) {
@@ -214,6 +199,12 @@ public class TDSHrHistoryBean implements Serializable {
 		this.a_medical = a_medical;
 		this.provided_medical_bills = provided_medical_bills;
 		this.d_medical = d_medical;
+		this.monthly_yearly = monthly_yearly;
+		this.yearly_mealcard = yearly_mealcard;
+		this.monthly_start_date = monthly_start_date;
+		this.monthly_end_date = monthly_end_date;
+		this.days = days;
+		this.monthly_mealcard = monthly_mealcard;
 		this.meal_card = meal_card;
 		this.lta_during_year = lta_during_year;
 		this.actual_expenditure_lta = actual_expenditure_lta;
@@ -234,10 +225,10 @@ public class TDSHrHistoryBean implements Serializable {
 		this.bank_address = bank_address;
 		this.total_c = total_c;
 		this.life_insurance = life_insurance;
-		EPF = ePF;
-		PPF = pPF;
-		NSC = nSC;
-		MF = mF;
+		this.EPF = ePF;
+		this.PPF = pPF;
+		this.NSC = nSC;
+		this.MF = mF;
 		this.tuition_fees = tuition_fees;
 		this.stamp_duty = stamp_duty;
 		this.house_loan_principal = house_loan_principal;
@@ -246,25 +237,12 @@ public class TDSHrHistoryBean implements Serializable {
 		this.other = other;
 		this.a_total_d = a_total_d;
 		this.d_total_d = d_total_d;
-		this.payable_lic = payable_lic;
-		this.payable_epf = payable_epf;
-		this.payable_ppf = payable_ppf;
-		this.payable_nsc = payable_nsc;
-		this.payable_mf = payable_mf;
-		this.payable_tuition_fees = payable_tuition_fees;
-		this.payable_stamp_duty = payable_stamp_duty;
-		this.payable_house_loan = payable_house_loan;
-		this.payable_fix_deposite = payable_fix_deposite;
-		this.payable_other = payable_other;
-		this.payable_a_total_d = payable_a_total_d;
-		this.payable_d_total_d = payable_d_total_d;
 		this.a_NPS = a_NPS;
 		this.d_NPS = d_NPS;
 		this.a_RGESS = a_RGESS;
 		this.d_RGESS = d_RGESS;
 		this.total_NPS_RGESS = total_NPS_RGESS;
 		this.total_e = total_e;
-		this.payable_total_e = payable_total_e;
 		this.a_self = a_self;
 		this.d_self = d_self;
 		this.father_birthdate = father_birthdate;
@@ -274,27 +252,22 @@ public class TDSHrHistoryBean implements Serializable {
 		this.d_health_checkup = d_health_checkup;
 		this.a_mediclaim = a_mediclaim;
 		this.d_mediclaim = d_mediclaim;
+		this.cash_cheque = cash_cheque;
 		this.a_cash_amount = a_cash_amount;
 		this.d_cash_amount = d_cash_amount;
 		this.a_cheque_amount = a_cheque_amount;
 		this.d_cheque_amount = d_cheque_amount;
-		donation_80G = donation_80g;
+		this.donation_80G = donation_80g;
 		this.a_donation_80GGC = a_donation_80GGC;
 		this.d_donation_80GGC = d_donation_80GGC;
 		this.education_loan = education_loan;
-		total_80EGD = total_80egd;
+		this.total_80EGD = total_80egd;
 		this.total_f = total_f;
 		this.tax = tax;
 		this.tax_remit = tax_remit;
 		this.total_tax = total_tax;
 		this.edu_cess = edu_cess;
 		this.total_h = total_h;
-		this.payable_total_f = payable_total_f;
-		this.payable_tax = payable_tax;
-		this.payable_tax_remit = payable_tax_remit;
-		this.payable_total_tax = payable_total_tax;
-		this.payable_edu_cess = payable_edu_cess;
-		this.payable_total_h = payable_total_h;
 		this.april = april;
 		this.may = may;
 		this.june = june;
@@ -312,6 +285,7 @@ public class TDSHrHistoryBean implements Serializable {
 		this.tdsHrBean = tdsHrBean;
 		this.employeeBean = employeeBean;
 	}
+
 
 
 	@Id
@@ -514,6 +488,42 @@ public class TDSHrHistoryBean implements Serializable {
 	}
 	public void setD_medical(double d_medical) {
 		this.d_medical = d_medical;
+	}
+	public String getMonthly_yearly() {
+		return monthly_yearly;
+	}
+	public void setMonthly_yearly(String monthly_yearly) {
+		this.monthly_yearly = monthly_yearly;
+	}
+	public double getYearly_mealcard() {
+		return yearly_mealcard;
+	}
+	public void setYearly_mealcard(double yearly_mealcard) {
+		this.yearly_mealcard = yearly_mealcard;
+	}
+	public String getMonthly_start_date() {
+		return monthly_start_date;
+	}
+	public void setMonthly_start_date(String monthly_start_date) {
+		this.monthly_start_date = monthly_start_date;
+	}
+	public String getMonthly_end_date() {
+		return monthly_end_date;
+	}
+	public void setMonthly_end_date(String monthly_end_date) {
+		this.monthly_end_date = monthly_end_date;
+	}
+	public int getDays() {
+		return days;
+	}
+	public void setDays(int days) {
+		this.days = days;
+	}
+	public double getMonthly_mealcard() {
+		return monthly_mealcard;
+	}
+	public void setMonthly_mealcard(double monthly_mealcard) {
+		this.monthly_mealcard = monthly_mealcard;
 	}
 	public double getMeal_card() {
 		return meal_card;
@@ -797,6 +807,12 @@ public class TDSHrHistoryBean implements Serializable {
 	public void setD_mediclaim(double d_mediclaim) {
 		this.d_mediclaim = d_mediclaim;
 	}
+	public String getCash_cheque() {
+		return cash_cheque;
+	}
+	public void setCash_cheque(String cash_cheque) {
+		this.cash_cheque = cash_cheque;
+	}
 	public double getA_cash_amount() {
 		return a_cash_amount;
 	}
@@ -972,196 +988,6 @@ public class TDSHrHistoryBean implements Serializable {
 		this.tax_payable = tax_payable;
 	}
 	
-	public double getPayable_lic() {
-		return payable_lic;
-	}
-
-
-	public void setPayable_lic(double payable_lic) {
-		this.payable_lic = payable_lic;
-	}
-
-
-	public double getPayable_epf() {
-		return payable_epf;
-	}
-
-
-	public void setPayable_epf(double payable_epf) {
-		this.payable_epf = payable_epf;
-	}
-
-
-	public double getPayable_ppf() {
-		return payable_ppf;
-	}
-
-
-	public void setPayable_ppf(double payable_ppf) {
-		this.payable_ppf = payable_ppf;
-	}
-
-
-	public double getPayable_nsc() {
-		return payable_nsc;
-	}
-
-
-	public void setPayable_nsc(double payable_nsc) {
-		this.payable_nsc = payable_nsc;
-	}
-
-
-	public double getPayable_mf() {
-		return payable_mf;
-	}
-
-
-	public void setPayable_mf(double payable_mf) {
-		this.payable_mf = payable_mf;
-	}
-
-
-	public double getPayable_tuition_fees() {
-		return payable_tuition_fees;
-	}
-
-
-	public void setPayable_tuition_fees(double payable_tuition_fees) {
-		this.payable_tuition_fees = payable_tuition_fees;
-	}
-
-
-	public double getPayable_stamp_duty() {
-		return payable_stamp_duty;
-	}
-
-
-	public void setPayable_stamp_duty(double payable_stamp_duty) {
-		this.payable_stamp_duty = payable_stamp_duty;
-	}
-
-
-	public double getPayable_house_loan() {
-		return payable_house_loan;
-	}
-
-
-	public void setPayable_house_loan(double payable_house_loan) {
-		this.payable_house_loan = payable_house_loan;
-	}
-
-
-	public double getPayable_fix_deposite() {
-		return payable_fix_deposite;
-	}
-
-
-	public void setPayable_fix_deposite(double payable_fix_deposite) {
-		this.payable_fix_deposite = payable_fix_deposite;
-	}
-
-
-	public double getPayable_other() {
-		return payable_other;
-	}
-
-
-	public void setPayable_other(double payable_other) {
-		this.payable_other = payable_other;
-	}
-
-
-	public double getPayable_a_total_d() {
-		return payable_a_total_d;
-	}
-
-
-	public void setPayable_a_total_d(double payable_a_total_d) {
-		this.payable_a_total_d = payable_a_total_d;
-	}
-
-
-	public double getPayable_d_total_d() {
-		return payable_d_total_d;
-	}
-
-
-	public void setPayable_d_total_d(double payable_d_total_d) {
-		this.payable_d_total_d = payable_d_total_d;
-	}
-
-
-	public double getPayable_total_e() {
-		return payable_total_e;
-	}
-
-
-	public void setPayable_total_e(double payable_total_e) {
-		this.payable_total_e = payable_total_e;
-	}
-
-
-	public double getPayable_total_f() {
-		return payable_total_f;
-	}
-
-
-	public void setPayable_total_f(double payable_total_f) {
-		this.payable_total_f = payable_total_f;
-	}
-
-
-	public double getPayable_tax() {
-		return payable_tax;
-	}
-
-
-	public void setPayable_tax(double payable_tax) {
-		this.payable_tax = payable_tax;
-	}
-
-
-	public double getPayable_tax_remit() {
-		return payable_tax_remit;
-	}
-
-
-	public void setPayable_tax_remit(double payable_tax_remit) {
-		this.payable_tax_remit = payable_tax_remit;
-	}
-
-
-	public double getPayable_total_tax() {
-		return payable_total_tax;
-	}
-
-
-	public void setPayable_total_tax(double payable_total_tax) {
-		this.payable_total_tax = payable_total_tax;
-	}
-
-
-	public double getPayable_edu_cess() {
-		return payable_edu_cess;
-	}
-
-
-	public void setPayable_edu_cess(double payable_edu_cess) {
-		this.payable_edu_cess = payable_edu_cess;
-	}
-
-
-	public double getPayable_total_h() {
-		return payable_total_h;
-	}
-
-
-	public void setPayable_total_h(double payable_total_h) {
-		this.payable_total_h = payable_total_h;
-	}
-
-
 	@ManyToOne
 	@JoinColumn(name="tds_hr_id")
 	public TDSHrBean getTdsHrBean() {

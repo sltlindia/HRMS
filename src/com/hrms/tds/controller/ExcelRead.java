@@ -36,98 +36,218 @@ public class ExcelRead {
 		for(int i = 1; i<=sheet.getLastRowNum();i++)
 		{
 			row = (Row) sheet.getRow(i);
-			String employeeCode = "-";
-			int employee_code = 0;
-			String employeeName = "-";
-			String companyName = "-";
-			double basicSalary = 0.0;
-			double hra = 0.0;
-			double conveyance = 0.0;
-			double medical = 0.0;
-			double uniformAllw = 0.0;
-			double educationAllw = 0.0;
-			double annual_basicSalary = 0.0;
-			double annual_hra = 0.0;
-			double annual_conveyance = 0.0;
-			double annual_medical = 0.0;
-			double annual_uniformAllw = 0.0;
-			double annual_educationAllw = 0.0;
 			
-			try {
+			String employeeCode;
+			int employee_code = 0;
+			if(row.getCell(0) == null) {
+				employeeCode = "0";
+			}
+			else
+			{
 				employeeCode = new DataFormatter().formatCellValue(row.getCell(0));
 				employee_code = Integer.parseInt(employeeCode);
 				System.out.print(employeeCode + "\t");
-			} catch (NullPointerException e) {} catch (NumberFormatException e) {}
+			}
 			
-			try {
+			String employeeName;
+			if(row.getCell(1) == null) {
+				employeeName = "-";
+			}
+			else
+			{
 				employeeName = row.getCell(1).toString();
 				System.out.print(employeeName + "\t");
-			} catch (NullPointerException e) {} catch (NumberFormatException e) {}
+			}
 			
-			try {
+			String companyName;
+			if(row.getCell(2) == null) {
+				companyName = "-";
+			}
+			else
+			{
 				companyName = row.getCell(2).toString();
 				System.out.print(companyName + "\t");
-			} catch (NullPointerException e) {} catch (NumberFormatException e) {}
+			}
 			
-			try {
+			double basicSalary;
+			if(row.getCell(3) == null) {
+				basicSalary = 0.0;
+			}
+			else
+			{
 				basicSalary = Double.parseDouble(row.getCell(3).toString());
 				System.out.print(basicSalary + "\t");
-			} catch (NullPointerException e) {} catch (NumberFormatException e) {}
+			}
 			
-			try {
-				annual_basicSalary = Double.parseDouble(row.getCell(4).toString());
-				System.out.print(annual_basicSalary + "\t");
-			} catch (NullPointerException e) {} catch (NumberFormatException e) {}
-			
-			try {
-				hra = Double.parseDouble(row.getCell(5).toString());
+			double hra;
+			if(row.getCell(4) == null) {
+				hra = 0.0;
+			}
+			else
+			{
+				hra = Double.parseDouble(row.getCell(4).toString());
 				System.out.print(hra + "\t");
-			} catch (NullPointerException e) {} catch (NumberFormatException e) {}
+			}
 			
-			try {
-				annual_hra = Double.parseDouble(row.getCell(6).toString());
-				System.out.print(annual_hra + "\t");
-			} catch (NullPointerException e) {} catch (NumberFormatException e) {}
-			
-			try {
-				conveyance = Double.parseDouble(row.getCell(7).toString());
+			double conveyance;
+			if(row.getCell(5) == null) {
+				conveyance = 0.0;
+			}
+			else
+			{
+				conveyance = Double.parseDouble(row.getCell(5).toString());
 				System.out.print(conveyance + "\t");
-			} catch (NullPointerException e) {} catch (NumberFormatException e) {}
+			}
 			
-			try {
-				annual_conveyance = Double.parseDouble(row.getCell(8).toString());
-				System.out.print(annual_conveyance + "\t");
-			} catch (NullPointerException e) {} catch (NumberFormatException e) {}
+			double ltc;
+			if(row.getCell(6) == null) {
+				ltc = 0.0;
+			}
+			else
+			{
+				ltc = Double.parseDouble(row.getCell(6).toString());
+				System.out.print(ltc + "\t");
+			}
 			
-			try {
-				medical = Double.parseDouble(row.getCell(9).toString());
+			double medical;
+			if(row.getCell(7) == null) {
+				medical = 0.0;
+			}
+			else
+			{
+				medical = Double.parseDouble(row.getCell(7).toString());
 				System.out.print(medical + "\t");
-			} catch (NullPointerException e) {} catch (NumberFormatException e) {}
+			}
 			
-			try {
-				annual_medical = Double.parseDouble(row.getCell(10).toString());
-				System.out.print(annual_medical + "\t");
-			} catch (NullPointerException e) {} catch (NumberFormatException e) {}
-			
-			try {
-				educationAllw = Double.parseDouble(row.getCell(11).toString());
-				System.out.print(educationAllw + "\t");
-			} catch (NullPointerException e) {} catch (NumberFormatException e) {}
-			
-			try {
-				annual_educationAllw = Double.parseDouble(row.getCell(12).toString());
-				System.out.print(annual_educationAllw + "\t");
-			} catch (NullPointerException e) {} catch (NumberFormatException e) {}
-			
-			try {
-				uniformAllw = Double.parseDouble(row.getCell(13).toString());
+			double uniformAllw;
+			if(row.getCell(8) == null) {
+				uniformAllw = 0.0;
+			}
+			else
+			{
+				uniformAllw = Double.parseDouble(row.getCell(8).toString());
 				System.out.print(uniformAllw + "\t");
-			} catch (NullPointerException e) {} catch (NumberFormatException e) {}
+			}
 			
-			try {
-				annual_uniformAllw = Double.parseDouble(row.getCell(14).toString());
-				System.out.print(basicSalary + "\t");
-			} catch (NullPointerException e) {} catch (NumberFormatException e) {}
+			double educationAllw;
+			if(row.getCell(9) == null) {
+				educationAllw = 0.0;
+			}
+			else
+			{
+				educationAllw = Double.parseDouble(row.getCell(9).toString());
+				System.out.print(educationAllw + "\t");
+			}
+			
+			double otherAllw;
+			if(row.getCell(10) == null) {
+				otherAllw = 0.0;
+			}
+			else
+			{
+				otherAllw = Double.parseDouble(row.getCell(10).toString());
+				System.out.print(otherAllw + "\t");
+			}
+			
+			double adhocAllw;
+			if(row.getCell(11) == null) {
+				adhocAllw = 0.0;
+			}
+			else
+			{
+				adhocAllw = Double.parseDouble(row.getCell(11).toString());
+				System.out.print(adhocAllw + "\t");
+			}
+			
+			double incentive;
+			if(row.getCell(12) == null) {
+				incentive = 0.0;
+			}
+			else
+			{
+				incentive = Double.parseDouble(row.getCell(12).toString());
+				System.out.print(incentive + "\t");
+			}
+			
+			double salary;
+			if(row.getCell(13) == null) {
+				salary = 0.0;
+			}
+			else
+			{
+				salary = Double.parseDouble(row.getCell(13).toString());
+				System.out.print(salary + "\t");
+			}
+			
+			double previousSalary;
+			if(row.getCell(14) == null) {
+				previousSalary = 0.0;
+			}
+			else
+			{
+				previousSalary = Double.parseDouble(row.getCell(14).toString());
+				System.out.print(previousSalary + "\t");
+			}
+			
+			double performancePay;
+			if(row.getCell(15) == null) {
+				performancePay = 0.0;
+			}
+			else
+			{
+				performancePay = Double.parseDouble(row.getCell(15).toString());
+				System.out.print(performancePay + "\t");
+			}
+			
+			double ptax;
+			if(row.getCell(16) == null) {
+				ptax = 0.0;
+			}
+			else
+			{
+				ptax = Double.parseDouble(row.getCell(16).toString());
+				System.out.print(ptax + "\t");
+			}
+			
+			double pf;
+			if(row.getCell(17) == null) {
+				pf = 0.0;
+			}
+			else
+			{
+				pf = Double.parseDouble(row.getCell(17).toString());
+				System.out.print(pf + "\t");
+			}
+			
+			double leave;
+			if(row.getCell(18) == null) {
+				leave = 0.0;
+			}
+			else
+			{
+				leave = Double.parseDouble(row.getCell(18).toString());
+				System.out.print(leave + "\t");
+			}
+			
+			String date;
+			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+			SimpleDateFormat formater = new SimpleDateFormat("dd-MMM-yyyy");
+			if(row.getCell(19) == null) {
+				date = "";
+			}
+			else
+			{
+				date = row.getCell(19).toString();
+				try {
+					Date d1 = formater.parse(date);
+					date = format.format(d1);
+				} catch (ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				System.out.println(date + "\t");
+			}
 			
 			TDSInsertDAO tdsInsertDAO = new TDSInsertDAO();
 			TDSListDAO tdsListDAO = new TDSListDAO();
@@ -135,15 +255,17 @@ public class ExcelRead {
 			
 			List<TDSPayrollSalaryDataBean> salaryList = tdsListDAO.getTDSPayrollSalaryDataByEmpCode(employee_code, companyName);
 			System.err.println(salaryList.size());
+			System.out.println(date);
+			System.out.println("Akash:"+leave);
 			
 			System.out.println("------------------------------------------------------------------");
 			
 			if(salaryList.size() != 0) {
 				System.out.println("Update");
-				updateDAO.tdsPayrollSalaryDataUpdate(employee_code, companyName, basicSalary, hra, conveyance, medical, educationAllw, uniformAllw);
+				updateDAO.tdsPayrollSalaryDataUpdate(employee_code, companyName, basicSalary, incentive, previousSalary, performancePay, conveyance, hra, medical, ltc, ptax, pf, uniformAllw, educationAllw, otherAllw, adhocAllw, salary, leave);
 			}else {
 				System.out.println("insert");
-				TDSPayrollSalaryDataBean tdsPayrollSalaryDataBean = new TDSPayrollSalaryDataBean(employee_code, employeeName, companyName, basicSalary, annual_basicSalary, conveyance, annual_conveyance, hra, annual_hra, medical, annual_medical, uniformAllw, annual_uniformAllw, educationAllw, annual_educationAllw, monthBean, yearBean);
+				TDSPayrollSalaryDataBean tdsPayrollSalaryDataBean = new TDSPayrollSalaryDataBean(employee_code, employeeName, companyName, date, basicSalary, incentive, previousSalary, performancePay, conveyance, hra, medical, ltc, ptax, pf, uniformAllw, educationAllw, otherAllw, adhocAllw,salary, leave);
 				boolean result = tdsInsertDAO.tdsPayrollSalaryDataInsert(tdsPayrollSalaryDataBean);
 			
 			}
@@ -153,7 +275,7 @@ public class ExcelRead {
 			Date d = new Date();
 			current_date = YYYYMMDD.format(d);
 			
-			TDSPayrollBean tdsPayroll = new TDSPayrollBean(employee_code, companyName, basicSalary, annual_basicSalary, conveyance, annual_conveyance, hra, annual_hra, medical, annual_medical, uniformAllw, annual_uniformAllw, educationAllw, annual_educationAllw, monthBean, yearBean);
+			TDSPayrollBean tdsPayroll = new TDSPayrollBean(companyName, employee_code, current_date, basicSalary, incentive, previousSalary, performancePay, conveyance, hra, medical, ltc, ptax, pf, uniformAllw, educationAllw, otherAllw, adhocAllw, salary, leave, monthBean, yearBean);
 			boolean tdsPayroll1 = tdsInsertDAO.tdsPayrollInsert(tdsPayroll);
 			
 		}

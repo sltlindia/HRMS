@@ -28,7 +28,7 @@ import com.hrms.probation.bean.ProbationTopManagementApprovalBean;
 public class AllListProbationDAO {
 
 	//List Method for getting attributes from probation_attributes_direct_tbl
-	/*public List<AttributeBean> getListOfAttribute() {
+	public List<AttributeBean> getListOfAttribute() {
 		List<AttributeBean> listOfAttribute = new ArrayList<AttributeBean>();
 		Session session = HibernateUtil.openSession();
 		Transaction tx = null;
@@ -50,7 +50,7 @@ public class AllListProbationDAO {
 		return listOfAttribute;
 
 	}
-	*/
+	
 	//List Method for getting attributes from probation_attributes_indirect_tbl
 	public List<AttributeM2Bean> getListOfAttributeM2() {
 		List<AttributeM2Bean> listOfAttribute = new ArrayList<AttributeM2Bean>();
@@ -619,7 +619,7 @@ public class AllListProbationDAO {
 			tx = session.getTransaction();
 			tx.begin();
 			listOfscore = session
-					.createQuery("FROM  where roleBean.role_id in ('2','3','9') and employeeStatusBean = 1")
+					.createQuery("FROM EmployeeBean where roleBean.role_id in ('2','3','9') and employeeStatusBean = 1")
 					.list();
 			tx.commit();
 		} catch (Exception e) {

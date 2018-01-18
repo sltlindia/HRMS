@@ -338,7 +338,7 @@
 					        <div class="card-header card-inverse" style="background-color: #d2d9dc;padding: 0.5rem 0rem 1rem 0rem;height: 40px; border-left: 1px solid #607D8B;border-right: 1px solid #607D8B;  
 					        						   border-bottom: 1px solid #607D8B; border-top: 1px solid #607D8B;">
 					            <div class="col-sm-6">	
-				               		<h4 class="card-title" id="horz-layout-basic" style="color: #796262;">Total Average</h4>
+				               		<h4 class="card-title" id="horz-layout-basic" style="color: #000000;">Total Average</h4>
 				                </div>
 				            </div>
 				               <div class="card-body collapse in">
@@ -372,7 +372,7 @@
 					        <div class="card-header card-inverse" style="background-color: #d2d9dc;padding: 0.5rem 0rem 1rem 0rem;height: 40px; border-left: 1px solid #607D8B;border-right: 1px solid #607D8B;  
 					        						   border-bottom: 1px solid #607D8B; border-top: 1px solid #607D8B;">
 					            <div class="col-sm-6">	
-				               		<h4 class="card-title" id="horz-layout-basic" style="color: #796262;">Tracking History</h4>
+				               		<h4 class="card-title" id="horz-layout-basic" style="color: #000000;">Tracking History</h4>
 				                </div>
 				            </div>
 				               <div class="card-body collapse in">
@@ -467,7 +467,7 @@
 					        <div class="card-header card-inverse" style="background-color: #d2d9dc;padding: 0.5rem 0rem 1rem 0rem;height: 40px; border-left: 1px solid #607D8B;border-right: 1px solid #607D8B;  
 					        						   border-bottom: 1px solid #607D8B; border-top: 1px solid #607D8B;">
 					            <div class="col-sm-6">	
-				               		<h4 class="card-title" id="horz-layout-basic" style="color: #796262;">Tracking History</h4>
+				               		<h4 class="card-title" id="horz-layout-basic" style="color: #000000;">Tracking History</h4>
 				                </div>
 				            </div>
 				               <div class="card-body collapse in">

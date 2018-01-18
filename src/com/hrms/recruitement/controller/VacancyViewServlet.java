@@ -21,6 +21,8 @@ public class VacancyViewServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		int v_id = Integer.parseInt(request.getParameter("v_id"));
 		System.out.println("v_id:"+v_id);
+		
+		
 		AllRecruitmentListDAO AllRecruitmentListDAO = new AllRecruitmentListDAO();
 		List<VacancyFormBean> listofVacancy = AllRecruitmentListDAO.getListOfVacancy(v_id);
 		List<Object[]> listofBenefits = AllRecruitmentListDAO.getListOfBenefits(v_id);

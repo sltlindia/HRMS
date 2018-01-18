@@ -168,7 +168,7 @@ Jsp for displaying data at hr side  -->
 									
 											<a
 										href="probationListByIdIndirectApproval.jsp?employee_master_id=<%=emp_id%>"><i
-											class="icon-compose" data-toggle="tooltip"
+											class="icon-edit2" data-toggle="tooltip"
 											data-placement="top" title="Show View"></i></a>
 											</td>
 								</tr>
@@ -314,7 +314,7 @@ Jsp for displaying data at hr side  -->
 												<%if(maxValue == extended){%>
 											 <a
 										href="probationListByIdIndirectApprovalView.jsp?employee_master_id=<%=emp_id%>"><i
-											class="icon-eye" data-toggle="tooltip"
+											class="icon-eye4" data-toggle="tooltip"
 											data-placement="top" title="Show View"></i></a>
 											<%}else{
 												%>
@@ -368,7 +368,7 @@ Jsp for displaying data at hr side  -->
 									<td>
 											<a
 										href="probationListByIdIndirectApprovalView.jsp?employee_master_id=<%=emp_id%>"><i
-											class="icon-eye" data-toggle="tooltip"
+											class="icon-eye4" data-toggle="tooltip"
 											data-placement="top" title="Show View"></i></a>
 											</td>
 								</tr>
@@ -385,7 +385,7 @@ Jsp for displaying data at hr side  -->
 									<h4 class="panel-title">
 									&nbsp;List of Terminated employees</h4>
 								</div>
-							<table class="table table-striped table-bordered table-hover"
+								<table class="table table-striped table-bordered table-hover"
 								id="dataTables-example">
 								<tr>
 									<th>Employee Name</th>
@@ -479,7 +479,7 @@ Jsp for displaying data at hr side  -->
 										 if(maxValue == extended){ %>
 											 <td><a
 										href="probationListByIdIndirectApprovalView.jsp?employee_master_id=<%=emp_id%>"><i
-											class="icon-eye" data-toggle="tooltip"
+											class="icon-eye4" data-toggle="tooltip"
 											data-placement="top" title="Show View"></i></a>
 											</td>
 											<%} else{ %>
@@ -490,7 +490,7 @@ Jsp for displaying data at hr side  -->
 									 <td>
 											 <a
 										href="probationListByIdIndirectApprovalView.jsp?employee_master_id=<%=emp_id%>"><i
-											class="icon-eye" data-toggle="tooltip"
+											class="icon-eye4" data-toggle="tooltip"
 											data-placement="top" title="Show View"></i></a>
 											</td>
 											<%}else{ %>
@@ -545,9 +545,10 @@ Jsp for displaying data at hr side  -->
 							</div>
 							</div>
 						</div>
-					</div>
+					
 					<br>
-					<font size="3px;" color="#337ab7"><b>Legends :&nbsp;</b></font><b><i class="icon-eye" style="color:#337ab7; size: 100px;"></i></b> <b> : View Employee's Review </b> &nbsp;&nbsp;&nbsp;<i class="icon-ios-plus" style="color:#337ab7;"></i><b> : Add Review</b> &nbsp;&nbsp;&nbsp;<i class=" icon-compose" style="color:#337ab7;"></i><b> : Update Review</b> &nbsp;&nbsp;&nbsp;
+					<font size="3px;" color="#337ab7"><b>Legends :&nbsp;</b></font><b><i class="icon-eye4" style="color:#337ab7; size: 100px;"></i></b> <b> : View Employee's Review </b> &nbsp;&nbsp;&nbsp;<i class="icon-plus-circled" style="color:#337ab7;"></i><b> : Add Review</b> &nbsp;&nbsp;&nbsp;<i class=" icon-edit2" style="color:#337ab7;"></i><b> : Update Review</b> &nbsp;&nbsp;&nbsp;
+				</div>
 				</div>
 			</div>
 			</div>

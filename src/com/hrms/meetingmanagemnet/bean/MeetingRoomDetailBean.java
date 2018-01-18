@@ -17,6 +17,7 @@ public class MeetingRoomDetailBean implements Serializable{
 	private String facility_name;
 	private int capacity;
 	private String resources;
+	private int active;
 	
 	public MeetingRoomDetailBean() {
 		// TODO Auto-generated constructor stub
@@ -55,5 +56,17 @@ public class MeetingRoomDetailBean implements Serializable{
 	public void setResources(String resources) {
 		this.resources = resources;
 	}
+
+	public int getActive() {
+		return active;
+	}
+
+	public void setActive(int active) {
+		this.active = active;
+	}
+	
+	
+	
+	
 	
 }

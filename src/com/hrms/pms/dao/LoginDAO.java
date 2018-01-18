@@ -704,4 +704,29 @@ public class LoginDAO {
 	}
 	 
 	 
+	 
+	 public List<EmployeeBean> getListOfManagerByManagerID(int managerid) {
+			List<EmployeeBean> listofEmployee = new ArrayList<EmployeeBean>();
+			Session session = HibernateUtil.openSession();
+			Transaction tx = null;
+			try {
+				tx = session.getTransaction();
+				tx.begin();
+				listofEmployee = session.createQuery(
+						"from EmployeeBean e where  manager_id != 99 and employeeStatusBean != 3 and under_manager_id='"+managerid+"'")
+						.list();
+				tx.commit();
+			} catch (Exception e) {
+				if (tx != null) {
+					tx.rollback();
+				}
+				e.printStackTrace();
+			} finally {
+				session.close();
+			}
+			return listofEmployee;
+		}
+	 
+	 
+	 
 }

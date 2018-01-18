@@ -26,13 +26,11 @@ public class ProblemIndentificationUpdateServlet extends HttpServlet {
 
 		String problem = request.getParameter("description");
 		String category = request.getParameter("category");
+		String parseDate = request.getParameter("date");
 		int emp_id = Integer.parseInt(request.getParameter("emp_id"));
 		int p_id = Integer.parseInt(request.getParameter("p_id"));
 		
 		
-		Date date = new Date();
-		String parseDate = new SimpleDateFormat("yyyy-MM-dd").format(date);
-		System.out.println(parseDate);
 		
 		EmployeeBean employeeBean = new EmployeeBean();
 		employeeBean.setEmployee_master_id(emp_id);

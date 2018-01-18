@@ -22,8 +22,6 @@ public class CompanyListBean implements Serializable{
 	public CompanyListBean() {
 		// TODO Auto-generated constructor stub
 	}
-	
-	
 
 	@Id
 	@Column(name="company_list_id")

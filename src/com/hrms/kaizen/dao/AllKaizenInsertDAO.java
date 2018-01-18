@@ -14,6 +14,7 @@ import com.hrms.kaizen.bean.KaizenManagerBean;
 import com.hrms.kaizen.bean.KaizenManagerScoreBean;
 import com.hrms.kaizen.bean.KaizenMemberBean;
 import com.hrms.kaizen.bean.KaizenProblemIdentificationBean;
+import com.hrms.kaizen.bean.KaizenReactivationRemarkBean;
 import com.hrms.kaizen.bean.kaizenRCABean;
 import com.hrms.pms.util.HibernateUtil;
 
@@ -243,6 +244,30 @@ public class AllKaizenInsertDAO {
 			 tx = session.getTransaction();
 			 tx.begin();
 			 session.save(kaizenRCABean);
+			 tx.commit();
+			
+		 } catch (Exception e) {
+			 if (tx != null) {
+				 tx.rollback();
+			 }
+			 e.printStackTrace();
+		 } finally {
+			 session.close();
+		 }	
+		 return result;
+	}
+	
+	
+	public boolean kaizenReactivatkionInsert(KaizenReactivationRemarkBean kaizenReactivationRemarkBean){
+		 Session session = HibernateUtil.openSession();
+		 Transaction tx = null;
+		 int id = 0;
+		 boolean result = false;
+		 
+		 try {
+			 tx = session.getTransaction();
+			 tx.begin();
+			 session.save(kaizenReactivationRemarkBean);
 			 tx.commit();
 			
 		 } catch (Exception e) {

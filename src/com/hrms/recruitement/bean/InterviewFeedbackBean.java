@@ -29,27 +29,34 @@ public class InterviewFeedbackBean implements Serializable
 	private String start_time;
 	private String end_time;
 	private String comments;
-	private String technical_professional_knowledge;
 	private String work_experience;
-	private String appearance;
-	private String manners;
-	private String overall;
+	private String relevance_of_education;
+	private String communication_skills;
+	private String interest_in_position;
+	private String presentation;
 	private String decision;
+	private String proceed_for_next_round;
 	private String reject_reason;
 	private String joining_in_days;
 	private String salary;
 	private String probation_period;
-	private String comment_technical_professional_knowledge;
-	private String comment_appearance;
-	private String comment_manners;
-	private String comment_overall;
+	private String comment_relevance_of_education;
+	private String comment_communication_skills;
+	private String comment_interest_in_position;
+	private String comment_presentation;
 	private String submission_date;
-	
-
+	private String problem_solving_skills;
+	private String computer_skills;
+	private String job_stability;
+	private String total;
+	private String comment_problem_solving_skills;
+	private String comment_computer_skills;
+	private String comment_job_stability;
+	private String comment_total;
+	private String remakforshortandhold;
 	private RoleBean roleBean;
 	private JobLocationBean jobLocationBean;
 	private DepartmentBean departmentBean;
-	private InterviewedByBean interviewedByBean;
 	private VacancyFormBean vacancyFormBean;
 	private ResumeDataBean resumeDataBean;
 	private EmployeeBean employeeBean;
@@ -62,98 +69,214 @@ public class InterviewFeedbackBean implements Serializable
 	
 	
 	public InterviewFeedbackBean(String interview_date,
-			String start_time, String end_time, String comments, String technical_professional_knowledge,
-			String work_experience, String appearance, String manners, String overall, String decision,
-			JobLocationBean jobLocationBean, EmployeeBean employeeBean,VacancyFormBean vacancyFormBean, String comment_technical_professional_knowledge,
-			String comment_appearance,String comment_manners,String comment_overall, String submissoin_date,ResumeDataBean resumeDataBean) {
+			String start_time, String end_time, String comments, String relevance_of_education,
+			String work_experience, String communication_skills, String interest_in_position, String presentation, String problem_solving_skills,
+			String computer_skills, String job_stability, String total, String decision,
+			JobLocationBean jobLocationBean, EmployeeBean employeeBean,VacancyFormBean vacancyFormBean, String comment_relevance_of_education,
+			String comment_communication_skills,String comment_interest_in_position, String comment_presentation, String comment_problem_solving_skills,
+			String comment_computer_skills, String comment_job_stability, String comment_total, String submissoin_date,ResumeDataBean resumeDataBean) {
 		
 		this.interview_date = interview_date;
 		this.start_time = start_time;
 		this.end_time = end_time;
 		this.comments = comments;
-		this.technical_professional_knowledge = technical_professional_knowledge;
+		this.relevance_of_education = relevance_of_education;
 		this.work_experience = work_experience;
-		this.appearance = appearance;
-		this.manners = manners;
-		this.overall = overall;
+		this.communication_skills = communication_skills;
+		this.interest_in_position = interest_in_position;
+		this.presentation = presentation;
+		this.problem_solving_skills = problem_solving_skills;
+		this.computer_skills = computer_skills;
+		this.job_stability = job_stability;
+		this.total = total;
 		this.decision = decision;
 		this.jobLocationBean = jobLocationBean;
 		this.employeeBean = employeeBean;
 		this.vacancyFormBean = vacancyFormBean;
-		this.comment_technical_professional_knowledge = comment_technical_professional_knowledge;
-		this.comment_appearance = comment_appearance;
-		this.comment_manners = comment_manners;
-		this.comment_overall = comment_overall;
+		this.comment_relevance_of_education = comment_relevance_of_education;
+		this.comment_communication_skills = comment_communication_skills;
+		this.comment_interest_in_position = comment_interest_in_position;
+		this.comment_presentation = comment_presentation;
+		this.comment_problem_solving_skills = comment_problem_solving_skills;
+		this.comment_computer_skills = comment_computer_skills;
+		this.comment_job_stability = comment_job_stability;
+		this.comment_total = comment_total;
 		this.submission_date = submissoin_date;
 		this.resumeDataBean = resumeDataBean;
 	
 	}
 	
-	
 	public InterviewFeedbackBean(String interview_date,
-			String start_time, String end_time, String comments, String technical_professional_knowledge,
-			String work_experience, String appearance, String manners, String overall, String decision,
-			String reject_reason, JobLocationBean jobLocationBean, EmployeeBean employeeBean,VacancyFormBean vacancyFormBean, String comment_technical_professional_knowledge,
-			String comment_appearance,String comment_manners,String comment_overall, String submissoin_date,ResumeDataBean resumeDataBean)
-	{
+			String start_time, String end_time, String comments, String relevance_of_education,
+			String work_experience, String communication_skills, String interest_in_position, String presentation, String problem_solving_skills,
+			String computer_skills, String job_stability, String total, String decision,
+			JobLocationBean jobLocationBean, EmployeeBean employeeBean,VacancyFormBean vacancyFormBean, String comment_relevance_of_education,
+			String comment_communication_skills,String comment_interest_in_position, String comment_presentation, String comment_problem_solving_skills,
+			String comment_computer_skills, String comment_job_stability, String comment_total, String submissoin_date,String remakforshortandhold , ResumeDataBean resumeDataBean) {
 		
 		this.interview_date = interview_date;
 		this.start_time = start_time;
 		this.end_time = end_time;
 		this.comments = comments;
-		this.technical_professional_knowledge = technical_professional_knowledge;
+		this.relevance_of_education = relevance_of_education;
 		this.work_experience = work_experience;
-		this.appearance = appearance;
-		this.manners = manners;
-		this.overall = overall;
+		this.communication_skills = communication_skills;
+		this.interest_in_position = interest_in_position;
+		this.presentation = presentation;
+		this.problem_solving_skills = problem_solving_skills;
+		this.computer_skills = computer_skills;
+		this.job_stability = job_stability;
+		this.total = total;
+		this.decision = decision;
+		this.jobLocationBean = jobLocationBean;
+		this.employeeBean = employeeBean;
+		this.vacancyFormBean = vacancyFormBean;
+		this.comment_relevance_of_education = comment_relevance_of_education;
+		this.comment_communication_skills = comment_communication_skills;
+		this.comment_interest_in_position = comment_interest_in_position;
+		this.comment_presentation = comment_presentation;
+		this.comment_problem_solving_skills = comment_problem_solving_skills;
+		this.comment_computer_skills = comment_computer_skills;
+		this.comment_job_stability = comment_job_stability;
+		this.comment_total = comment_total;
+		this.submission_date = submissoin_date;
+		this.remakforshortandhold = remakforshortandhold;
+		this.resumeDataBean = resumeDataBean;
+	
+	}
+	
+	
+
+	public InterviewFeedbackBean(String interview_date, String start_time, String end_time, String comments,
+			String work_experience, String relevance_of_education, String communication_skills,
+			String interest_in_position, String presentation, String decision, String reject_reason,
+			String comment_relevance_of_education, String comment_communication_skills,
+			String comment_interest_in_position, String comment_presentation, String submission_date,
+			String problem_solving_skills, String computer_skills, String job_stability, String total,
+			String comment_problem_solving_skills, String comment_computer_skills, String comment_job_stability,
+			String comment_total, JobLocationBean jobLocationBean, VacancyFormBean vacancyFormBean,
+			ResumeDataBean resumeDataBean, EmployeeBean employeeBean) {
+		
+		this.interview_date = interview_date;
+		this.start_time = start_time;
+		this.end_time = end_time;
+		this.comments = comments;
+		this.work_experience = work_experience;
+		this.relevance_of_education = relevance_of_education;
+		this.communication_skills = communication_skills;
+		this.interest_in_position = interest_in_position;
+		this.presentation = presentation;
 		this.decision = decision;
 		this.reject_reason = reject_reason;
+		this.comment_relevance_of_education = comment_relevance_of_education;
+		this.comment_communication_skills = comment_communication_skills;
+		this.comment_interest_in_position = comment_interest_in_position;
+		this.comment_presentation = comment_presentation;
+		this.submission_date = submission_date;
+		this.problem_solving_skills = problem_solving_skills;
+		this.computer_skills = computer_skills;
+		this.job_stability = job_stability;
+		this.total = total;
+		this.comment_problem_solving_skills = comment_problem_solving_skills;
+		this.comment_computer_skills = comment_computer_skills;
+		this.comment_job_stability = comment_job_stability;
+		this.comment_total = comment_total;
 		this.jobLocationBean = jobLocationBean;
-		this.employeeBean = employeeBean;
 		this.vacancyFormBean = vacancyFormBean;
-		this.comment_technical_professional_knowledge = comment_technical_professional_knowledge;
-		this.comment_appearance = comment_appearance;
-		this.comment_manners = comment_manners;
-		this.comment_overall = comment_overall;
-		this.submission_date = submissoin_date;
 		this.resumeDataBean = resumeDataBean;
+		this.employeeBean = employeeBean;
 	}
 
 
-	public InterviewFeedbackBean(String interview_date,
-			String start_time, String end_time, String comments, String technical_professional_knowledge,
-			String work_experience, String appearance, String manners, String overall, String decision,
-			String joining_in_days, String salary, String probation_period,
-			JobLocationBean jobLocationBean, DepartmentBean departmentBean, EmployeeBean employeeBean,VacancyFormBean vacancyFormBean, 
-			String comment_technical_professional_knowledge,
-			String comment_appearance,String comment_manners,String comment_overall, String submissoin_date,ResumeDataBean resumeDataBean,RoleBean roleBean) {
+
+
+	public InterviewFeedbackBean(String interview_date, String start_time, String end_time, String comments,
+			String work_experience, String relevance_of_education, String communication_skills,
+			String interest_in_position, String presentation, String decision, String joining_in_days, String salary,
+			String probation_period, String comment_relevance_of_education, String comment_communication_skills,
+			String comment_interest_in_position, String comment_presentation, String submission_date,
+			String problem_solving_skills, String computer_skills, String job_stability, String total,
+			String comment_problem_solving_skills, String comment_computer_skills, String comment_job_stability,
+			String comment_total, RoleBean roleBean, JobLocationBean jobLocationBean, DepartmentBean departmentBean,
+			ResumeDataBean resumeDataBean, EmployeeBean employeeBean, VacancyFormBean vacancyFormBean) {
 		
 		this.interview_date = interview_date;
 		this.start_time = start_time;
 		this.end_time = end_time;
 		this.comments = comments;
-		this.technical_professional_knowledge = technical_professional_knowledge;
 		this.work_experience = work_experience;
-		this.appearance = appearance;
-		this.manners = manners;
-		this.overall = overall;
+		this.relevance_of_education = relevance_of_education;
+		this.communication_skills = communication_skills;
+		this.interest_in_position = interest_in_position;
+		this.presentation = presentation;
 		this.decision = decision;
 		this.joining_in_days = joining_in_days;
 		this.salary = salary;
 		this.probation_period = probation_period;
+		this.comment_relevance_of_education = comment_relevance_of_education;
+		this.comment_communication_skills = comment_communication_skills;
+		this.comment_interest_in_position = comment_interest_in_position;
+		this.comment_presentation = comment_presentation;
+		this.submission_date = submission_date;
+		this.problem_solving_skills = problem_solving_skills;
+		this.computer_skills = computer_skills;
+		this.job_stability = job_stability;
+		this.total = total;
+		this.comment_problem_solving_skills = comment_problem_solving_skills;
+		this.comment_computer_skills = comment_computer_skills;
+		this.comment_job_stability = comment_job_stability;
+		this.comment_total = comment_total;
+		this.roleBean = roleBean;
 		this.jobLocationBean = jobLocationBean;
 		this.departmentBean = departmentBean;
+		this.resumeDataBean = resumeDataBean;
 		this.employeeBean = employeeBean;
 		this.vacancyFormBean = vacancyFormBean;
-		this.comment_technical_professional_knowledge = comment_technical_professional_knowledge;
-		this.comment_appearance = comment_appearance;
-		this.comment_manners = comment_manners;
-		this.comment_overall = comment_overall;
-		this.submission_date = submissoin_date;
-		this.resumeDataBean = resumeDataBean;
-		this.roleBean = roleBean;
-		
 	}
+
+
+
+
+	public InterviewFeedbackBean(String interview_date, String start_time, String end_time, String comments,
+			String work_experience, String relevance_of_education, String communication_skills,
+			String interest_in_position, String presentation, String decision,String proceed_for_next_round, String comment_relevance_of_education,
+			String comment_communication_skills, String comment_interest_in_position, String comment_presentation,
+			String submission_date, String problem_solving_skills, String computer_skills, String job_stability,
+			String total, String comment_problem_solving_skills, String comment_computer_skills,
+			String comment_job_stability, String comment_total, VacancyFormBean vacancyFormBean,
+			ResumeDataBean resumeDataBean, EmployeeBean employeeBean) {
+		super();
+		this.interview_date = interview_date;
+		this.start_time = start_time;
+		this.end_time = end_time;
+		this.comments = comments;
+		this.work_experience = work_experience;
+		this.relevance_of_education = relevance_of_education;
+		this.communication_skills = communication_skills;
+		this.interest_in_position = interest_in_position;
+		this.presentation = presentation;
+		this.decision = decision;
+		this.proceed_for_next_round = proceed_for_next_round;
+		this.comment_relevance_of_education = comment_relevance_of_education;
+		this.comment_communication_skills = comment_communication_skills;
+		this.comment_interest_in_position = comment_interest_in_position;
+		this.comment_presentation = comment_presentation;
+		this.submission_date = submission_date;
+		this.problem_solving_skills = problem_solving_skills;
+		this.computer_skills = computer_skills;
+		this.job_stability = job_stability;
+		this.total = total;
+		this.comment_problem_solving_skills = comment_problem_solving_skills;
+		this.comment_computer_skills = comment_computer_skills;
+		this.comment_job_stability = comment_job_stability;
+		this.comment_total = comment_total;
+		this.vacancyFormBean = vacancyFormBean;
+		this.resumeDataBean = resumeDataBean;
+		this.employeeBean = employeeBean;
+	}
+
+
+
 
 	@Id
 	@Column(name = "interview_feedback_id")
@@ -200,13 +323,7 @@ public class InterviewFeedbackBean implements Serializable
 		this.comments = comments;
 	}
 	
-	public String getTechnical_professional_knowledge() {
-		return technical_professional_knowledge;
-	}
 	
-	public void setTechnical_professional_knowledge(String technical_professional_knowledge) {
-		this.technical_professional_knowledge = technical_professional_knowledge;
-	}
 	
 	public String getWork_experience() {
 		return work_experience;
@@ -216,29 +333,7 @@ public class InterviewFeedbackBean implements Serializable
 		this.work_experience = work_experience;
 	}
 	
-	public String getAppearance() {
-		return appearance;
-	}
 	
-	public void setAppearance(String appearance) {
-		this.appearance = appearance;
-	}
-	
-	public String getManners() {
-		return manners;
-	}
-	
-	public void setManners(String manners) {
-		this.manners = manners;
-	}
-	
-	public String getOverall() {
-		return overall;
-	}
-	
-	public void setOverall(String overall) {
-		this.overall = overall;
-	}
 	
 	public String getDecision() {
 		return decision;
@@ -285,59 +380,231 @@ public class InterviewFeedbackBean implements Serializable
 	
 	
 
-	public String getComment_technical_professional_knowledge() {
-		return comment_technical_professional_knowledge;
+	
+
+
+
+
+	public String getRelevance_of_education() {
+		return relevance_of_education;
 	}
 
 
 
 
-	public void setComment_technical_professional_knowledge(String comment_technical_professional_knowledge) {
-		this.comment_technical_professional_knowledge = comment_technical_professional_knowledge;
+	public void setRelevance_of_education(String relevance_of_education) {
+		this.relevance_of_education = relevance_of_education;
 	}
 
 
 
 
-	public String getComment_appearance() {
-		return comment_appearance;
+	public String getCommunication_skills() {
+		return communication_skills;
 	}
 
 
 
 
-	public void setComment_appearance(String comment_appearance) {
-		this.comment_appearance = comment_appearance;
+	public void setCommunication_skills(String communication_skills) {
+		this.communication_skills = communication_skills;
 	}
 
 
 
 
-	public String getComment_manners() {
-		return comment_manners;
+	public String getInterest_in_position() {
+		return interest_in_position;
 	}
 
 
 
 
-	public void setComment_manners(String comment_manners) {
-		this.comment_manners = comment_manners;
+	public void setInterest_in_position(String interest_in_position) {
+		this.interest_in_position = interest_in_position;
 	}
 
 
 
 
-	public String getComment_overall() {
-		return comment_overall;
+	public String getPresentation() {
+		return presentation;
 	}
 
 
 
 
-	public void setComment_overall(String comment_overall) {
-		this.comment_overall = comment_overall;
+	public void setPresentation(String presentation) {
+		this.presentation = presentation;
 	}
 
+
+
+
+	public String getComment_relevance_of_education() {
+		return comment_relevance_of_education;
+	}
+
+
+
+
+	public void setComment_relevance_of_education(String comment_relevance_of_education) {
+		this.comment_relevance_of_education = comment_relevance_of_education;
+	}
+
+
+
+
+	public String getComment_communication_skills() {
+		return comment_communication_skills;
+	}
+
+
+
+
+	public void setComment_communication_skills(String comment_communication_skills) {
+		this.comment_communication_skills = comment_communication_skills;
+	}
+
+
+
+
+	public String getComment_interest_in_position() {
+		return comment_interest_in_position;
+	}
+
+
+
+
+	public void setComment_interest_in_position(String comment_interest_in_position) {
+		this.comment_interest_in_position = comment_interest_in_position;
+	}
+
+
+
+
+	public String getComment_presentation() {
+		return comment_presentation;
+	}
+
+
+
+
+	public void setComment_presentation(String comment_presentation) {
+		this.comment_presentation = comment_presentation;
+	}
+
+
+
+
+	public String getProblem_solving_skills() {
+		return problem_solving_skills;
+	}
+
+
+
+
+	public void setProblem_solving_skills(String problem_solving_skills) {
+		this.problem_solving_skills = problem_solving_skills;
+	}
+
+
+
+
+	public String getComputer_skills() {
+		return computer_skills;
+	}
+
+
+
+
+	public void setComputer_skills(String computer_skills) {
+		this.computer_skills = computer_skills;
+	}
+
+
+
+
+	public String getJob_stability() {
+		return job_stability;
+	}
+
+
+
+
+	public void setJob_stability(String job_stability) {
+		this.job_stability = job_stability;
+	}
+
+
+
+
+	public String getTotal() {
+		return total;
+	}
+
+
+
+
+	public void setTotal(String total) {
+		this.total = total;
+	}
+
+
+
+
+	public String getComment_problem_solving_skills() {
+		return comment_problem_solving_skills;
+	}
+
+
+
+
+	public void setComment_problem_solving_skills(String comment_problem_solving_skills) {
+		this.comment_problem_solving_skills = comment_problem_solving_skills;
+	}
+
+
+
+
+	public String getComment_computer_skills() {
+		return comment_computer_skills;
+	}
+
+
+
+
+	public void setComment_computer_skills(String comment_computer_skills) {
+		this.comment_computer_skills = comment_computer_skills;
+	}
+
+
+
+
+	public String getComment_job_stability() {
+		return comment_job_stability;
+	}
+
+
+
+
+	public void setComment_job_stability(String comment_job_stability) {
+		this.comment_job_stability = comment_job_stability;
+	}
+
+
+
+
+	public String getComment_total() {
+		return comment_total;
+	}
+
+
+
+
+	public void setComment_total(String comment_total) {
+		this.comment_total = comment_total;
+	}
 
 
 
@@ -350,6 +617,20 @@ public class InterviewFeedbackBean implements Serializable
 
 	public void setSubmission_date(String submission_date) {
 		this.submission_date = submission_date;
+	}
+
+
+
+
+	public String getProceed_for_next_round() {
+		return proceed_for_next_round;
+	}
+
+
+
+
+	public void setProceed_for_next_round(String proceed_for_next_round) {
+		this.proceed_for_next_round = proceed_for_next_round;
 	}
 
 
@@ -437,6 +718,20 @@ public class InterviewFeedbackBean implements Serializable
 
 	public void setRoleBean(RoleBean roleBean) {
 		this.roleBean = roleBean;
+	}
+
+
+
+
+	public String getRemakforshortandhold() {
+		return remakforshortandhold;
+	}
+
+
+
+
+	public void setRemakforshortandhold(String remakforshortandhold) {
+		this.remakforshortandhold = remakforshortandhold;
 	}
 	
 	

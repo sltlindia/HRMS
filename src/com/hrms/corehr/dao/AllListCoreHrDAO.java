@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Query;
-import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -13,7 +12,6 @@ import com.hrms.corehr.bean.CompanyAdressBean;
 import com.hrms.corehr.bean.ExtentionNumberBean;
 import com.hrms.corehr.bean.InterviewTrackerDesignationBean;
 import com.hrms.corehr.bean.SubDepartmentBean;
-import com.hrms.lms.bean.LeaveBean;
 import com.hrms.pms.bean.EmployeeBean;
 import com.hrms.pms.bean.TaskMasterBean;
 import com.hrms.pms.util.HibernateUtil;
@@ -256,58 +254,4 @@ public class AllListCoreHrDAO {
 	return listOfCompanyAdd;
 	}
 	
-
-	//Store Procedure For CUG List 
-			@SuppressWarnings("unchecked")
-			public List<CUGBean> SPgetListOfCugNo() {
-
-				List<CUGBean> listOfCUGNo = new ArrayList<CUGBean>();
-				Session session = HibernateUtil.openSession();
-				Transaction tx = null;
-				try {
-					tx = session.getTransaction();
-					tx.begin();
-					
-					SQLQuery query = (SQLQuery) session.createSQLQuery("CALL listOfCugNo()")
-		                    .addEntity(CUGBean.class);
-					listOfCUGNo = query.list();
-					tx.commit();
-				} catch (Exception e) {
-					if (tx != null) {
-						tx.rollback();
-					}
-					e.printStackTrace();
-				} finally {
-					session.close();
-				}
-				return listOfCUGNo;
-			}
-			
-			
-			//Store Procedure For CUG List 
-			@SuppressWarnings("unchecked")
-			public List<EmployeeBean> SPgetListOfCugNoFromEmployee() {
-
-				List<EmployeeBean> listOfCUGNo = new ArrayList<EmployeeBean>();
-				Session session = HibernateUtil.openSession();
-				Transaction tx = null;
-				try {
-					tx = session.getTransaction();
-					tx.begin();
-					
-					SQLQuery query = (SQLQuery) session.createSQLQuery("CALL listOfCugNoFromEmployee()")
-		                    .addEntity(EmployeeBean.class);
-					listOfCUGNo = query.list();
-					tx.commit();
-				} catch (Exception e) {
-					if (tx != null) {
-						tx.rollback();
-					}
-					e.printStackTrace();
-				} finally {
-					session.close();
-				}
-				return listOfCUGNo;
-			}
-
 }

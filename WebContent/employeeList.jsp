@@ -69,7 +69,28 @@ if(request.getParameter("dept_id") != null){
 	dept_id = Integer.parseInt(request.getParameter("dept_id"));
 }
 %>
+<div class="app-content container center-layout mt-2">
 	
+	<div class="content-wrapper">
+      	<div class="content-body">
+			<section id="horizontal-form-layouts">
+				
+				<!-- /.col-lg-12 -->
+			
+			<br>
+						<div class="row">
+				    <div class="col-md-12">
+				        <div class="card">
+				        	 <div class="card-header">
+				        <div class="card box-shadow-0" data-appear="appear">
+					        <div class="card-header card-inverse" style="background-color: #90A4AE;padding: 0.5rem 0rem 1rem 0rem;height: 50px;">
+					            <div class="col-sm-6">	
+				               		<h4 class="card-title" id="horz-layout-basic">&nbsp;Department Wise Employee List</h4>
+				               		
+				                </div>
+				            </div>
+				               <div class="card-body collapse in">
+					                <div class="card-block border-bottom-blue-grey" style="border-left: 2px solid #607D8B;border-right: 2px solid #607D8B;">	
 
     <!-- navbar-fixed-top-->
     
@@ -77,10 +98,10 @@ if(request.getParameter("dept_id") != null){
 
     <!-- ////////////////////////////////////////////////////////////////////////////-->
 
-    <div class="app-content container center-layout mt-2">
+    <!-- <div class="app-content container center-layout mt-2">
       <div class="content-wrapper">
-        <div class="content-body"><!-- DOM - jQuery events table -->
-<!-- File export table -->
+        <div class="content-body">DOM - jQuery events table
+File export table
 <section id="file-export">
     <div class="row">
         <div class="col-xs-12">
@@ -96,7 +117,7 @@ if(request.getParameter("dept_id") != null){
                             <li><a data-action="reload"><i class="icon-reload"></i></a></li>
                         </ul>
                     </div>
-                </div>
+                </div> -->
                         
 <div class="panel-body">
 <%if( manager_id == 4 || manager_id == 117 || under_manager_id == 4 || under_manager_id == 117){ %>
@@ -131,8 +152,6 @@ if(request.getParameter("dept_id") != null){
 </form>
 <%} %>
                <!-- /.panel-heading -->
-                <div class="card-body collapse in">
-	  <div class="card-block border-bottom-blue-grey" style="border-left: 2px solid #607D8B;border-right: 2px solid #607D8B;">
                         <div class="table-responsive">
                                 <table class="table table-striped table-bordered file-export">
                                     <thead>
@@ -196,7 +215,12 @@ if(request.getParameter("dept_id") != null){
 									%>
                                     
                                         <tr class="emp<%=e.getEmployee_master_id()%>">
-										<td><%=i+1 %></td>                                        
+                                        <th style="padding: 3px;"><a id=""
+																	style="color: black; text-decoration: none; cursor: pointer;"
+																	onclick="showData(this.id)"><i
+																		class="icon-android-add-circle"></i> </a></th>
+																		
+										<td><%=i+1 %>&nbsp;&nbsp;<i class="icon-plus-circled" data-toggle="tooltip" data-placement="top" title="" style="color: #3BAFDA"></i></td>                                        
                                         <td><%=e.getFirstname()+" "+e.getMiddlename() +" "+ e.getLastname() %></td> 
                                        	<td><%=e.getEmployee_code() %></td>
                                        	 <td><%=e.getCompanyListBean().getCompany_name()%></td>
@@ -268,13 +292,13 @@ if(request.getParameter("dept_id") != null){
 	
                                 </table>
                                 </div>
-                                </div>
-                                </div>
                                 
                             </div>
                           </div>  
                         </div>    
 				</div>
+</div>
+</div>
 </div>
 </div>
 </section>

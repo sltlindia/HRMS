@@ -50,6 +50,9 @@ public class ResumeShareInsertServlet extends HttpServlet {
 			String first_date_time = "No Date & Time Set";
 			String second_date_time = "No Date & Time Set";
 			String third_date_time = "No Date & Time Set";
+			String first_interview_type = "no type set";
+			String second_interview_type = "no type set";
+			String third_interview_type = "no type set";
 			String show_view = "0";
 
 			ResumeDataBean resumeDataBean = new ResumeDataBean();
@@ -105,22 +108,20 @@ public class ResumeShareInsertServlet extends HttpServlet {
 								employeeBean.setEmployee_master_id(emp_id);
 								resumeDataBean.setResume_data_id(resume_data_id);
 								ResumeShareBean resumeShareBean = new ResumeShareBean(resumeDataBean, employeeBean,
-										status, reason, shared_date, reply_date, first_date_time,
-										second_date_time, third_date_time, show_view);
+										status, reason, shared_date, reply_date, first_date_time, second_date_time,
+										third_date_time, show_view, first_interview_type, second_interview_type, third_interview_type);
 								boolean result1 = allInsertDAO.resumeShareInsert(resumeShareBean);
 
 								AllUpdateDAO allUpdateDAO = new AllUpdateDAO();
-								boolean result2 = allUpdateDAO.resumeStatusUpdate(resume_status, resume_data_id);
-
-								if (result1 == true && result2 == true) {
-									response.sendRedirect("allResumeList.jsp");
-								}
-
-								else {
-									response.sendRedirect("allResumeList.jsp");
-								}
+								boolean result2 = allUpdateDAO.resumeShareUpdate(resume_status, resume_data_id);
 
 							}
+						}
+						
+						
+						if(fieldName.equalsIgnoreCase("redirect"))
+						{
+							response.sendRedirect("allResumeList.jsp");
 						}
 
 					}

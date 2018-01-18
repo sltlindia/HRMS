@@ -72,6 +72,10 @@
     <param-value>d:\\hrms\\upload\\goalAttachment</param-value>
   </context-param>
   <context-param>
+    <param-name>Software-upload</param-name>
+    <param-value>d:\\hrms\\upload\\software-upload</param-value>
+  </context-param>
+  <context-param>
     <param-name>blank-upload</param-name>
     <param-value>d:\\hrms\\upload\\blank-upload</param-value>
   </context-param>
@@ -4509,41 +4513,6 @@
     <display-name>TDSSalaryDataInsertServlet</display-name>
     <servlet-name>TDSSalaryDataInsertServlet</servlet-name>
     <servlet-class>com.hrms.tds.controller.TDSSalaryDataInsertServlet</servlet-class>
-<<<<<<< HEAD
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>TDSSalaryDataInsertServlet</servlet-name>
-    <url-pattern>/tdsSalaryDataInsert</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>UpdatePayrollMasterDataServlet</display-name>
-    <servlet-name>UpdatePayrollMasterDataServlet</servlet-name>
-    <servlet-class>com.hrms.tds.controller.UpdatePayrollMasterDataServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>UpdatePayrollMasterDataServlet</servlet-name>
-    <url-pattern>/updatePayrollMasterData</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>UpdatePayrollBasicDataServlet</display-name>
-    <servlet-name>UpdatePayrollBasicDataServlet</servlet-name>
-    <servlet-class>com.hrms.tds.controller.UpdatePayrollBasicDataServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>UpdatePayrollBasicDataServlet</servlet-name>
-    <url-pattern>/updatePayrollBasicData</url-pattern>
-  </servlet-mapping>
-  
-  
-  <servlet>
-    <description></description>
-    <display-name>MeetingDataServlet</display-name>
-    <servlet-name>MeetingDataServlet</servlet-name>
-    <servlet-class>com.hrms.meetingmanagemnet.controller.MeetingDataServlet</servlet-class>
-=======
->>>>>>> b45d2dde3c859d9854df13431529b0a87ab18fe8
   </servlet>
   <servlet-mapping>
     <servlet-name>TDSSalaryDataInsertServlet</servlet-name>
@@ -4758,5 +4727,95 @@
   <servlet-mapping>
     <servlet-name>MultileaveapprovedServlet</servlet-name>
     <url-pattern>/Multileaveapproved</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>SoftwareComplaintInsertServlet</display-name>
+    <servlet-name>SoftwareComplaintInsertServlet</servlet-name>
+    <servlet-class>com.hrms.selfservice.controller.SoftwareComplaintInsertServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SoftwareComplaintInsertServlet</servlet-name>
+    <url-pattern>/softwareComplaintInsert</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>SoftwareComplaintDeleteServlet</display-name>
+    <servlet-name>SoftwareComplaintDeleteServlet</servlet-name>
+    <servlet-class>com.hrms.selfservice.controller.SoftwareComplaintDeleteServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SoftwareComplaintDeleteServlet</servlet-name>
+    <url-pattern>/softwareComplaintDelete</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>SoftwareComplaintReplyInsertServlet</display-name>
+    <servlet-name>SoftwareComplaintReplyInsertServlet</servlet-name>
+    <servlet-class>com.hrms.selfservice.controller.SoftwareComplaintReplyInsertServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SoftwareComplaintReplyInsertServlet</servlet-name>
+    <url-pattern>/softwareComplaintReplyInsert</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>UpdateReplySoftwareServlet</display-name>
+    <servlet-name>UpdateReplySoftwareServlet</servlet-name>
+    <servlet-class>com.hrms.selfservice.controller.UpdateReplySoftwareServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UpdateReplySoftwareServlet</servlet-name>
+    <url-pattern>/updateReplySoftware</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>SoftwareComplaintHideServlet</display-name>
+    <servlet-name>SoftwareComplaintHideServlet</servlet-name>
+    <servlet-class>com.hrms.selfservice.controller.SoftwareComplaintHideServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SoftwareComplaintHideServlet</servlet-name>
+    <url-pattern>/softwareComplaintHide</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>SoftwareComplaintUpdateServlet</display-name>
+    <servlet-name>SoftwareComplaintUpdateServlet</servlet-name>
+    <servlet-class>com.hrms.selfservice.controller.SoftwareComplaintUpdateServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SoftwareComplaintUpdateServlet</servlet-name>
+    <url-pattern>/softwareComplaintUpdate</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>SoftwareNatureInsertServlet</display-name>
+    <servlet-name>SoftwareNatureInsertServlet</servlet-name>
+    <servlet-class>com.hrms.selfservice.controller.SoftwareNatureInsertServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SoftwareNatureInsertServlet</servlet-name>
+    <url-pattern>/SoftwareNatureInsert</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>SoftwareNatureEditServlet</display-name>
+    <servlet-name>SoftwareNatureEditServlet</servlet-name>
+    <servlet-class>com.hrms.selfservice.controller.SoftwareNatureEditServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SoftwareNatureEditServlet</servlet-name>
+    <url-pattern>/SoftwareNatureEdit</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>SoftwareNatureListServlet</display-name>
+    <servlet-name>SoftwareNatureListServlet</servlet-name>
+    <servlet-class>com.hrms.selfservice.controller.SoftwareNatureListServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SoftwareNatureListServlet</servlet-name>
+    <url-pattern>/SoftwareNatureList</url-pattern>
   </servlet-mapping>
 </web-app>

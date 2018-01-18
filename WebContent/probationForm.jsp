@@ -181,7 +181,7 @@ if(probation != null){
 						Probation Assessment
 						<%=current_year%></h1>
 				</div>
-				<!-- /.col-lg-12 -->
+				<!-- col-lg-12 -->
 			</div>
 			<br>
 			<div class="row">
@@ -199,7 +199,7 @@ if(probation != null){
 
 						<%
 							int manager_id = user.getManagerBean().getManager_id();
-							/* int employee_master_id2 = 0; */
+							/* int employee_master_id = 0;  */
 							if (request.getParameter("employee_master_id") != null) {
 								employee_master_id = Integer.parseInt(request.getParameter("employee_master_id"));
 							}
@@ -1591,7 +1591,6 @@ if(probation != null){
 			$("#test").html(finalViewOfCumulative+'+'+sumOfTwoMonth.toFixed(2)/2+'='+finalSum+'/'+<%=listOfTwiseMonthAverage.size() + 1%> +'='+fSum.toFixed(2));
 			$("#test1").html('('+((fSum*100)/<%=((listOfAttribute.size()) * 5)%>).toFixed(2)+'%)');
 			$(".descsion").html(descsion);
-			
 			
 			/* $("#finalOutputDisplay").html(finalOutputDisplay); */
 			<%}%>

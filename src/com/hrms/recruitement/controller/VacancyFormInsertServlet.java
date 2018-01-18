@@ -29,6 +29,7 @@ import com.hrms.recruitement.bean.InterviewerPanelBean;
 import com.hrms.recruitement.bean.JobLocationBean;
 import com.hrms.recruitement.bean.PostGraduateQualificationBean;
 import com.hrms.recruitement.bean.PostGraduateSpecificationBean;
+import com.hrms.recruitement.bean.ResumeDataBean;
 import com.hrms.recruitement.bean.StateBean;
 import com.hrms.recruitement.bean.UnderGraduateQualificationBean;
 import com.hrms.recruitement.bean.UnderGraduateSpecificationBean;
@@ -40,6 +41,7 @@ import com.hrms.recruitement.bean.VacancyBenefitsBean;
 import com.hrms.recruitement.bean.VacancyFormBean;
 import com.hrms.recruitement.dao.AllInsertDAO;
 import com.hrms.recruitement.dao.AllRecruitmentListDAO;
+import com.hrms.recruitement.dao.DepartmentDAO;
 import com.hrms.recruitement.dao.VacancyFormDAO;
 
 public class VacancyFormInsertServlet extends HttpServlet {
@@ -100,6 +102,8 @@ public class VacancyFormInsertServlet extends HttpServlet {
 			int post_graduate_qualification_id = 0;
 			int post_graduate_specification_id = 0;
 			int show_view = 0;
+			String company_branch = null;
+			String key_skills = null;
 
 			int benefits = 0;
 			JobLocationBean jobLocationBean = new JobLocationBean();
@@ -132,6 +136,7 @@ public class VacancyFormInsertServlet extends HttpServlet {
 							vacancy_type = fieldValue;
 							System.out.println("vacancyType :" + vacancy_type);
 						}
+						
 
 						if (fieldName.equalsIgnoreCase("replacementOf")) {
 							replacement_of = fieldValue;
@@ -236,6 +241,12 @@ public class VacancyFormInsertServlet extends HttpServlet {
 							reason_for_hire = fieldValue;
 							System.out.println("reasonForHire:" + reason_for_hire);
 						}
+						
+						
+						if (fieldName.equalsIgnoreCase("companyLocation")) {
+							company_branch = fieldValue;
+							System.out.println("reasonForHire:" + reason_for_hire);
+						}
 
 						if (fieldName.equalsIgnoreCase("roleObjective")) {
 							role_objective = fieldValue;
@@ -262,6 +273,11 @@ public class VacancyFormInsertServlet extends HttpServlet {
 						if (fieldName.equalsIgnoreCase("salaryRange")) {
 							salary_range = fieldValue;
 							System.out.println("salaryRange:" + salary_range);
+						}
+						
+						if (fieldName.equalsIgnoreCase("keySkills")) {
+							key_skills = fieldValue;
+							System.out.println("key_skills :" + key_skills);
 						}
 
 						if (fieldName.equalsIgnoreCase("roleDescription")) {
@@ -331,7 +347,7 @@ public class VacancyFormInsertServlet extends HttpServlet {
 									bill_limit, departmentBean, managerBean, employeeBean, stateBean, cityBean,
 									underGraduateQualificationBean, underGraduateSpecificationBean,
 									postGraduateQualificationBean, postGraduateSpecificationBean, country,
-									role_description);
+									role_description, company_branch, key_skills);
 
 							boolean result = vacancyFormDAO.vacancyInsert(vacancyFormBean);
 
@@ -364,8 +380,7 @@ public class VacancyFormInsertServlet extends HttpServlet {
 							System.out.println("lastName:" + lastName);
 
 							LoginDAO loginDAO = new LoginDAO();
-							EmployeeBean employeeBean1 = loginDAO.getUserByUserCodeAndName(emp_code, firstName,
-									lastName);
+							EmployeeBean employeeBean1 = loginDAO.getUserByUserCodeAndName(emp_code, firstName,lastName);
 
 							int emp_id = employeeBean1.getEmployee_master_id();
 
@@ -397,17 +412,17 @@ public class VacancyFormInsertServlet extends HttpServlet {
 						boolean result2 = vacancyFormDAO.vacancyUpdateBillLimit(bill_limit, v_id);
 					}
 
-					if (fieldName.equalsIgnoreCase("vacancyApproval")) {
-
-						int arvind_sir = 5;
+					if (fieldName.equalsIgnoreCase("vacancyApproval")) 
+					{
+						int hr_number = 2;
+						int hod = 0;
+						
+						
+						/*int arvind_sir = 5;
 						int maulik_sir = 6;
 						int mayank_sir = 7;
 						int dinesh_sir = 975;
-						
-						
-						int hr_number = 2;
-						int hod = 0;
-						int top_management =1;
+						int top_management =1;*/
 
 						AllInsertDAO allInsertDAO = new AllInsertDAO();
 						vacancyFormBean2.setVacancy_id(v_id);
@@ -426,7 +441,7 @@ public class VacancyFormInsertServlet extends HttpServlet {
 						VacancyApprovalBean vacancyApprovalBean2 = new VacancyApprovalBean(vacancyFormBean2,
 								employeeBean5, approval_datetime, approval_status, hod, show_view);
 						boolean result4 = allInsertDAO.vacancyApprovalInsert(vacancyApprovalBean2);
-						
+						System.out.println("resul4"+result4);
 						
 						employeeBean2.setEmployee_master_id(hr_id);
 					
@@ -435,20 +450,29 @@ public class VacancyFormInsertServlet extends HttpServlet {
 
 						
 						boolean result3 = allInsertDAO.vacancyApprovalInsert(vacancyApprovalBean);
- 						
+						//int maulik_sir = 6;
+						//EmployeeBean e = new EmployeeBean();
+						/*e.setEmployee_master_id(maulik_sir);
+						employeeBean5.setEmployee_master_id(maulik_sir);
+						
+						VacancyApprovalBean vacancyApprovalBean3 = new VacancyApprovalBean(vacancyFormBean2,
+								e, approval_datetime, approval_status, hod, show_view);
+						boolean result5 = allInsertDAO.vacancyApprovalInsert(vacancyApprovalBean2);
+						*/
+						
 						
 						System.out.println("ID " + manager);
 						
 
-						EmployeeBean employeeBean4 = new EmployeeBean();
+						//EmployeeBean employeeBean4 = new EmployeeBean();
 
-						if (department_id == 1 || department_id == 6 || department_id == 7 || department_id == 8
+						/*if (department_id == 1 || department_id == 6 || department_id == 7 || department_id == 8
 								|| department_id == 10 || department_id == 11) {
 							employeeBean4.setEmployee_master_id(arvind_sir);
 							if(e_id != 5){
 							VacancyApprovalBean vacancyApprovalBean3 = new VacancyApprovalBean(vacancyFormBean2,
 									employeeBean4, approval_datetime, approval_status, top_management, show_view);
-							boolean result = allInsertDAO.vacancyApprovalInsert(vacancyApprovalBean3);
+							//boolean result = allInsertDAO.vacancyApprovalInsert(vacancyApprovalBean3);
 						}
 
 						} else if (department_id == 9 || department_id == 32) {
@@ -456,7 +480,7 @@ public class VacancyFormInsertServlet extends HttpServlet {
 							if(e_id != 7){
 							VacancyApprovalBean vacancyApprovalBean3 = new VacancyApprovalBean(vacancyFormBean2,
 									employeeBean4, approval_datetime, approval_status, top_management, show_view);
-							boolean result = allInsertDAO.vacancyApprovalInsert(vacancyApprovalBean3);
+							//boolean result = allInsertDAO.vacancyApprovalInsert(vacancyApprovalBean3);
 							}
 
 						} else if (department_id == 35 || department_id == 36 || department_id == 37
@@ -465,7 +489,7 @@ public class VacancyFormInsertServlet extends HttpServlet {
 							if(e_id != 975){
 							VacancyApprovalBean vacancyApprovalBean3 = new VacancyApprovalBean(vacancyFormBean2,
 									employeeBean4, approval_datetime, approval_status, top_management, show_view);
-							boolean result = allInsertDAO.vacancyApprovalInsert(vacancyApprovalBean3);
+							//boolean result = allInsertDAO.vacancyApprovalInsert(vacancyApprovalBean3);
 							}
 
 						} else {
@@ -473,9 +497,9 @@ public class VacancyFormInsertServlet extends HttpServlet {
 							employeeBean4.setEmployee_master_id(maulik_sir);
 							VacancyApprovalBean vacancyApprovalBean3 = new VacancyApprovalBean(vacancyFormBean2,
 									employeeBean4, approval_datetime, approval_status, top_management, show_view);
-							boolean result = allInsertDAO.vacancyApprovalInsert(vacancyApprovalBean3);
+							//boolean result = allInsertDAO.vacancyApprovalInsert(vacancyApprovalBean3);
 							}
-						}
+						}*/
 					}
 					/*
 					 * if (fieldName.equalsIgnoreCase("approval")) { String
@@ -517,17 +541,62 @@ public class VacancyFormInsertServlet extends HttpServlet {
 					 * System.out.println("reqSkill:" + value1); }
 					 */
 
-					if (fieldName.equalsIgnoreCase("demo")) {
-						session.setAttribute("v_id", v_id);
+					
+					
+					
+					if (fieldName.equalsIgnoreCase("demo"))
+					{
+						
+						int e = 6;
+						AllInsertDAO allInsertDAO = new AllInsertDAO();
+						boolean result1 = allInsertDAO.interviewedbyInsert(v_id, e);
+						
+						String arrayEmail[] = {"sachin.patel121995@gmail.com" , "er01021995@gmail.com"};
+						String title = title_of_position;
+						String department_name = null;
+						DepartmentDAO departmentDAO = new DepartmentDAO();
+						List<DepartmentBean> listOfDepartment = departmentDAO.getListOfDepartmentById(department_id);
+						for(DepartmentBean departmentBean2 : listOfDepartment)
+						{
+							department_name = departmentBean2.getDepartment_name();
+						}
+						String dept = department_name;
+						
+						new Thread(new Runnable() {
+						    @Override
+						    public void run() {
+						    	
+						    	
+						    	String sub = " Vacancy Notification";
+						    	String desc = "Vacancy for the position "+title;
+						    	String desc1 = "is created by "+user.getFirstname()+" "+user.getLastname() +" for "+dept+" Department.";
+						    	String desc3 = "You can Hold or Suggest changes in vacancy "+title+" for that kindly login to SLTL HRMS.";
+						    	Mailer.send2(sub, desc , desc1, desc3 ,arrayEmail);
+						    	
+						    }
+						}).start();
+						
+						
+						AllRecruitmentListDAO AllRecruitmentListDAO = new AllRecruitmentListDAO();
+						List<ResumeDataBean> searchengine = AllRecruitmentListDAO.getListOfResumeDataSearchEngine(key_skills);
+						request.setAttribute("searchengine", searchengine);
+						request.setAttribute("skill", key_skills);
+						request.setAttribute("vacancy_id", v_id);
+						
+						request.getRequestDispatcher("resumeDataSearchEngineWithData.jsp").forward(request, response);
+						
+						/*session.setAttribute("v_id", v_id);
 						if (hr.equalsIgnoreCase("12")) {
 							request.setAttribute("success", "Your Vacancy Successfully Submitted...");
 							request.getRequestDispatcher("vacancylist.jsp").forward(request, response);
 						} else {
 							request.setAttribute("success", "Your Vacancy Successfully Submitted...");
 							request.getRequestDispatcher("vacancyListForManager.jsp").forward(request, response);
-						}
+						}*/
 					}
 
+					
+					
 				}
 
 			} catch (Exception E) {

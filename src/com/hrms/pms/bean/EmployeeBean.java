@@ -669,13 +669,7 @@ public class EmployeeBean implements Serializable {
 		this.diploma_course = diploma_course;
 	}
 	
-	public String getMealcard() {
-		return mealcard;
-	}
-
-	public void setMealcard(String mealcard) {
-		this.mealcard = mealcard;
-	}
+	
 
 	public String getSpecial_interest() {
 		return special_interest;
@@ -693,7 +687,13 @@ public class EmployeeBean implements Serializable {
 		this.ifsc_code = ifsc_code;
 	}
 
-	
+	public String getMealcard() {
+		return mealcard;
+	}
+
+	public void setMealcard(String mealcard) {
+		this.mealcard = mealcard;
+	}
 	 
 	
 }

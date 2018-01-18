@@ -15,6 +15,7 @@ import com.hrms.selfservice.bean.ComplaintVerifiedByBean;
 import com.hrms.selfservice.bean.DownloadBean;
 import com.hrms.selfservice.bean.MarqueeBean;
 import com.hrms.selfservice.bean.SelfServiceQuerybean;
+import com.hrms.selfservice.bean.SoftwareComplaintBean;
 
 public class AllDeleteSelfServiceDAO {
 	
@@ -228,7 +229,28 @@ public class AllDeleteSelfServiceDAO {
 		 }	
 		 return result;
 	}	
-
+	public boolean softwareComplaintDelete(int complaint_id){
+		boolean result = false;
+		 Session session = HibernateUtil.openSession();
+		 Transaction tx = null;	
+		 try {
+			 tx = session.getTransaction();
+			 tx.begin();
+			 SoftwareComplaintBean softwareComplaintBean = new SoftwareComplaintBean();  
+			 softwareComplaintBean.setSoftware_complaint_id(complaint_id);
+			 session.delete(softwareComplaintBean);
+			 tx.commit();
+			 result = true;
+		 } catch (Exception e) {
+			 if (tx != null) {
+				 tx.rollback();
+			 }
+			 e.printStackTrace();
+		 } finally {
+			 session.close();
+		 }	
+		 return result;
+	}	
 	
 	
 	
@@ -296,6 +318,28 @@ public class AllDeleteSelfServiceDAO {
 			 ComplaintBean complaintBean = new ComplaintBean();
 			 complaintBean.setComplaint_id(complaint_id);
 			 session.delete(complaintBean);
+			 tx.commit();
+			 result = true;
+		 } catch (Exception e) {
+			 if (tx != null) {
+				 tx.rollback();
+			 }
+			 e.printStackTrace();
+		 } finally {
+			 session.close();
+		 }	
+		 return result;
+	}
+	public boolean softwareComplaintHide(int complaint_id){
+		boolean result = false;
+		 Session session = HibernateUtil.openSession();
+		 Transaction tx = null;	
+		 try {
+			 tx = session.getTransaction();
+			 tx.begin();
+			 SoftwareComplaintBean softwareComplaintBean = new SoftwareComplaintBean();
+			 softwareComplaintBean.setSoftware_complaint_id(complaint_id);
+			 session.delete(softwareComplaintBean);
 			 tx.commit();
 			 result = true;
 		 } catch (Exception e) {

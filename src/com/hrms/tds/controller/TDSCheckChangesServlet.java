@@ -13,7 +13,6 @@ import javax.servlet.http.HttpSession;
 import com.hrms.pms.bean.EmployeeBean;
 import com.hrms.tds.bean.TDSBean;
 import com.hrms.tds.bean.TDSPayrollBean;
-import com.hrms.tds.bean.TDSPayrollMasterDataBean;
 import com.hrms.tds.bean.TDSPayrollSalaryDataBean;
 import com.hrms.tds.bean.TDSTotalBBean;
 import com.hrms.tds.dao.PayrollList;
@@ -38,7 +37,7 @@ public class TDSCheckChangesServlet extends HttpServlet {
 			String payroll_company_name = null;
 	  		if(hrms_company_name.equals("SL"))
 	  		{
-	  			payroll_company_name = "SLTL";
+	  			payroll_company_name = "SLT";
 	  		}
 	  		else if(hrms_company_name.equals("SE"))
 	  		{
@@ -68,8 +67,7 @@ public class TDSCheckChangesServlet extends HttpServlet {
 		System.out.println("Employee Code :"+emp_code);
 		
 		PayrollList payrollList = new PayrollList();
-		List<TDSPayrollMasterDataBean> lastRecordOfMasterData  = payrollList.getLastRecordOfMasterData(emp_code,payroll_company_name);
-  		System.err.println("SIZE===========>"+lastRecordOfMasterData.size());
+  		List<TDSPayrollSalaryDataBean> payrollBean = tdslistDAO.getTDSPayrollSalaryDataByEmpCode(emp_code, payroll_company_name);
       	
   		double basicSalary = 0.0;
   		double medical = 0.0 ;
@@ -84,7 +82,6 @@ public class TDSCheckChangesServlet extends HttpServlet {
   		double ptax = 0.0 ;
   		double prvSalary = 0.0 ;
   		double pf = 0.0;
-  		double mealCard = 0.0;
   		String joiningDate = null ;
   		double gross_salary = 0.0 ;
   		double annual_gross_salary = 0.0 ;
@@ -92,29 +89,6 @@ public class TDSCheckChangesServlet extends HttpServlet {
   		double leave = 0.0 ;
   		double performancePay = 0.0 ;
   		double Incentive = 0.0;
-  		double fullFinalBonus = 0.0;
-  		double fullFinalLeave = 0.0;
-  		double interest = 0.0;
-  		String pan_no = null;
-  		
-  		double dueBasicSalary = 0.0;
-  		double dueMedical = 0.0 ;
-  		double dueConveyance = 0.0 ;
-  		double dueActualHRA = 0.0 ;
-  		double dueUniAllw = 0.0 ;
-  		double dueEduAllw = 0.0 ;
-  		double april = 0.0;
-  		double may = 0.0;
-		double june = 0.0;
-		double july = 0.0;
-		double august = 0.0;
-		double september = 0.0;
-		double october = 0.0;
-		double november = 0.0;
-		double december = 0.0;
-		double january = 0.0;
-		double february = 0.0;
-		double march = 0.0;
   		
   		double lastBasicSalary = 0.0;
   		double lastMedical = 0.0 ;
@@ -122,6 +96,11 @@ public class TDSCheckChangesServlet extends HttpServlet {
   		double lastActualHRA = 0.0 ;
   		double lastUniAllw = 0.0 ;
   		double lastEduAllw = 0.0 ;
+  		double lastOtherAllw = 0.0 ;
+  		double lastAdhocAllw = 0.0 ;
+  		double lastLtc = 0.0 ;
+  		double lastPerformancePay = 0.0 ;
+  		double lastSalary = 0.0;
   		
   		double a_conveyance = 0.0;
   		double d_conveyance = 0.0;
@@ -137,6 +116,10 @@ public class TDSCheckChangesServlet extends HttpServlet {
   		double actual_lta = 0.0;
   		double uni_allw_during_year = 0.0;
   		
+  		for(TDSPayrollSalaryDataBean bean : payrollBean){
+  			joiningDate = bean.getDate();
+  		}
+		
 		Calendar calCurrDate = Calendar.getInstance();
 		int currentMonth = calCurrDate.get(Calendar.MONTH)+1;
 		System.err.println("current month :"+currentMonth);
@@ -153,60 +136,55 @@ public class TDSCheckChangesServlet extends HttpServlet {
       	}
   		
   		
-  		for(TDSPayrollMasterDataBean masterDataBean : lastRecordOfMasterData){
-  			annual_gross_salary = masterDataBean.getSalary();
-  			bonus = masterDataBean.getBonus();
-  			leave = masterDataBean.getLeave_count();
-  			interest = masterDataBean.getInterest();
-  			fullFinalBonus = masterDataBean.getFull_final_bonus();
-  			fullFinalLeave = masterDataBean.getFull_final_leave();
-  			Incentive = masterDataBean.getIncentive();
-  			prvSalary = masterDataBean.getPrevious_salary();
-  			performancePay = masterDataBean.getPerformance();
-  			ptax = masterDataBean.getPtax();
-  			pf = masterDataBean.getEpf();
-  			mealCard = masterDataBean.getMealcard();
-  			joiningDate = masterDataBean.getJoining_date();
-  			pan_no = masterDataBean.getPan_no();
-  			ltc = masterDataBean.getLta();
-  			april = masterDataBean.getApril();
-  			may = masterDataBean.getMay();
-  			june = masterDataBean.getJune();
-  			july = masterDataBean.getJuly();
-  			august = masterDataBean.getAugust();
-  			september = masterDataBean.getSeptember();
-  			october = masterDataBean.getOctober();
-  			november = masterDataBean.getNovember();
-  			december = masterDataBean.getDecember();
-  			january = masterDataBean.getJanuary();
-  			february = masterDataBean.getFebruary();
-  			march = masterDataBean.getMarch();
-  		}
-  		double tax_paid = april + may + june + july + august + september + october + november + december + january + february + march;
   		
-  		/*List<TDSPayrollBean> listOfData  = payrollList.getListOfDataByEmpCode(emp_code,payroll_company_name);
-  		System.err.println("Monthly SIZE===========>"+listOfData.size());
-  		for(TDSPayrollBean tdsPayrollBean : listOfData)
-  		{
-  			dueBasicSalary = dueBasicSalary + (tdsPayrollBean.getBasic_salary());
-  			dueConveyance = dueConveyance + (tdsPayrollBean.getConveyance());
-  			dueActualHRA = dueActualHRA + (tdsPayrollBean.getHra());
-  			dueMedical = dueMedical + (tdsPayrollBean.getMedical());
-  			dueEduAllw = dueEduAllw + (tdsPayrollBean.getEdu_allw());
-  			dueUniAllw = dueUniAllw + (tdsPayrollBean.getUni_allw());
-  		}*/
+  		double dueMonthBasicSalary = payrollList.getDueMonthBasicSalary(emp_code, payroll_company_name);
+  		double dueMonthHRA = payrollList.getDueMonthHRA(emp_code, payroll_company_name);
+  		double dueMonthConveyance = payrollList.getDueMonthConveyance(emp_code, payroll_company_name);
+  		double dueMonthLTC = payrollList.getDueMonthLTC(emp_code, payroll_company_name);
+  		double dueMonthMedical = payrollList.getDueMonthMedical(emp_code, payroll_company_name);
+  		double dueMonthUniAllw = payrollList.getDueMonthUniAllw(emp_code, payroll_company_name);
+  		double dueMonthEduAllw = payrollList.getDueMonthEduAllw(emp_code, payroll_company_name);
+  		double dueMonthOtherAllw = payrollList.getDueMonthOtherAllw(emp_code, payroll_company_name);
+  		double dueMonthAdhocAllw = payrollList.getDueMonthAdhocAllw(emp_code, payroll_company_name);
+  		double dueMonthIncentive = payrollList.getdueMonthIncentive(emp_code, payroll_company_name);
+  		double dueMonthSalary = payrollList.getDueMonthSalary(emp_code, payroll_company_name);
+  		double dueMonthPTAX = payrollList.getDueMonthPTAX(emp_code, payroll_company_name);
+  		double dueMonthPF = payrollList.getDueMonthPF(emp_code, payroll_company_name);
+  		double dueMonthPreviousSalary = payrollList.getdueMonthPreviousSalary(emp_code, payroll_company_name);
+  		double dueMonthPerformancePay = payrollList.getdueMonthPerformancePay(emp_code, payroll_company_name);
+  		
+  		/*double maxBasicSalary = payrollList.getMaxBasicSalary(emp_code, payroll_company_name);
+  		double maxHRA = payrollList.getMaxHRA(emp_code, payroll_company_name);
+  		double maxConveyance = payrollList.getMaxConveyance(emp_code, payroll_company_name);
+  		double maxLTC = payrollList.getMaxLTC(emp_code, payroll_company_name);
+  		double maxMedical = payrollList.getMaxMedical(emp_code, payroll_company_name);
+  		double maxUniAllw = payrollList.getMaxUniAllw(emp_code, payroll_company_name);
+  		double maxEduAllw = payrollList.getMaxEduAllw(emp_code, payroll_company_name);
+  		double maxOtherAllw = payrollList.getMaxOtherAllw(emp_code, payroll_company_name);
+  		double maxAdhocAllw = payrollList.getMaxAdhocAllw(emp_code, payroll_company_name);
+  		//double maxIncentive = payrollList.getMaxIncentive(emp_code, payroll_company_name);
+  		double maxSalary = payrollList.getMaxSalary(emp_code, payroll_company_name);
+  		//double maxPTAX = payrollList.getDueMonthPTAX(emp_code, payroll_company_name);
+  		//double maxPF = payrollList.getDueMonthPF(emp_code, payroll_company_name);
+  		//double maxPreviousSalary = payrollList.getMaxPreviousSalary(emp_code, payroll_company_name);
+  		double maxPerformancePay = payrollList.getMaxPerformancePay(emp_code, payroll_company_name);*/
   		
   		
   		List<TDSPayrollBean> lastrecord  = payrollList.getLastBasicSalary(emp_code,payroll_company_name);
-  		System.err.println("LAst Basic Salary=====> :"+lastrecord);
+  		System.err.println("LAst Basic Salary :"+lastrecord);
   		
   		for(TDSPayrollBean tdsPayrollBean : lastrecord){
-  			basicSalary = tdsPayrollBean.getAnnual_basic_salary();
-  			actualHRA = tdsPayrollBean.getAnnual_hra();
-  			conveyance = tdsPayrollBean.getAnnual_conveyance();
-  			medical = tdsPayrollBean.getAnnual_medical();
-  			uniAllw = tdsPayrollBean.getAnnual_uni_allw();
-  			eduAllw = tdsPayrollBean.getAnnual_edu_allw();
+  			lastBasicSalary = tdsPayrollBean.getBasic_salary();
+  			lastMedical = tdsPayrollBean.getMedical();
+  			lastConveyance = tdsPayrollBean.getConveyance();
+  			lastActualHRA = tdsPayrollBean.getHra();
+  			lastUniAllw = tdsPayrollBean.getUni_allw();
+  			lastEduAllw = tdsPayrollBean.getEdu_allw();
+  			lastOtherAllw = tdsPayrollBean.getOther_allw();
+  			lastAdhocAllw = tdsPayrollBean.getAdhoc_allw();
+  			lastLtc = tdsPayrollBean.getLtc();
+  			lastPerformancePay = tdsPayrollBean.getPerformance_pay();
+  			lastSalary = tdsPayrollBean.getSalary();
   		}
   		
       	/*basicSalary = dueMonthBasicSalary + (maxBasicSalary * total_month);
@@ -225,12 +203,23 @@ public class TDSCheckChangesServlet extends HttpServlet {
       	ptax = dueMonthPTAX;
       	pf = dueMonthPF;*/
       	
-      	/*basicSalary = dueBasicSalary + (lastBasicSalary * total_month);
-      	actualHRA = dueActualHRA + (lastActualHRA * total_month);
-      	conveyance = dueConveyance + (lastConveyance * total_month);
-      	medical = dueMedical + (lastMedical * total_month);
-      	uniAllw = dueUniAllw + (lastUniAllw * total_month);
-      	eduAllw = dueEduAllw + (lastEduAllw * total_month);*/
+      	basicSalary = dueMonthBasicSalary + (lastBasicSalary * total_month);
+      	actualHRA = dueMonthHRA + (lastActualHRA * total_month);
+      	conveyance = dueMonthConveyance + (lastConveyance * total_month);
+      	ltc = dueMonthLTC + (lastLtc * total_month);
+      	medical = dueMonthMedical + (lastMedical * total_month);
+      	uniAllw = dueMonthUniAllw + (lastUniAllw * total_month);
+      	eduAllw = dueMonthEduAllw + (lastEduAllw * total_month);
+      	otherAllw = dueMonthOtherAllw + (lastOtherAllw * total_month);
+      	adhocAllw = dueMonthAdhocAllw + (lastAdhocAllw * total_month);
+      	incentive = dueMonthIncentive;
+      	annual_gross_salary = dueMonthSalary + (lastSalary * total_month);
+      	prvSalary = dueMonthPreviousSalary;
+      	performancePay = dueMonthPerformancePay + (lastPerformancePay * total_month);
+      	ptax = dueMonthPTAX;
+      	pf = dueMonthPF;
+      	//leave = dueMonthLeave;
+      	gross_salary = lastSalary;
 
       	double totalA = annual_gross_salary + prvSalary + performancePay + bonus + leave + Incentive ;
       	
@@ -307,11 +296,10 @@ public class TDSCheckChangesServlet extends HttpServlet {
       		
 			
 			TDSUpdateDAO tdsUpdateDAO = new TDSUpdateDAO();
-			tdsUpdateDAO.tdsTotalAUpdate(tds_id, annual_gross_salary, bonus, leave, Incentive, prvSalary, performancePay, totalA);
+			tdsUpdateDAO.tdsTotalAUpdate(tds_id, annual_gross_salary, bonus, gross_salary, incentive, prvSalary, performancePay, totalA);
 			/*tdsUpdateDAO.tdsTotalBUpdate(tds_id, a_conveyance, d_conveyance, annual_basic_salary, d_non_metro_total_basic, d_metro_total_basic, annual_hra, d_non_metro_hra, d_metro_hra, a_medical, d_medical, lta_during_year, d_lta, annual_ptax, annual_uni_allw_during_year, d_uni_allw );*/
-			tdsUpdateDAO.tdsTotalBUpdate(tds_id, a_conveyance, d_conveyance, basicSalary, d_non_metro_total_basic, d_metro_total_basic, actualHRA, d_non_metro_hra, d_metro_hra, a_medical, d_medical, ltc, d_lta, ptax, uniAllw, d_uni_allw, mealCard );
+			tdsUpdateDAO.tdsTotalBUpdate(tds_id, a_conveyance, d_conveyance, basicSalary, d_non_metro_total_basic, d_metro_total_basic, actualHRA, d_non_metro_hra, d_metro_hra, a_medical, d_medical, ltc, d_lta, ptax, uniAllw, d_uni_allw );
 			tdsUpdateDAO.tdsTotalDUpdate(tds_id, pf);
-			tdsUpdateDAO.tdsTotalFUpdate(tds_id, april, may, june, july, august, september, october, november, december, january, february, march, tax_paid);
 			
 			session.setAttribute("tds_id", tds_id);
 			session.setAttribute("annual_education_allw", annual_education_allw);

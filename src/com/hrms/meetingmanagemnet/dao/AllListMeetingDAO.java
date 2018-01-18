@@ -8,7 +8,9 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import com.hrms.meetingmanagemnet.bean.MeetingAttachmentBean;
 import com.hrms.meetingmanagemnet.bean.MeetingBookingDetailBean;
+import com.hrms.meetingmanagemnet.bean.MeetingMOMBean;
 import com.hrms.meetingmanagemnet.bean.MeetingRoomDetailBean;
 import com.hrms.meetingmanagemnet.controller.FacilityDetailServlet;
 import com.hrms.pms.bean.ManagerBean;
@@ -28,13 +30,13 @@ public class AllListMeetingDAO{
             tx.begin();
             
             if(noOfParticipant <=6) {
-            	listOfRoom = session.createQuery("FROM MeetingRoomDetailBean where capacity < 9").list();  
+            	listOfRoom = session.createQuery("FROM MeetingRoomDetailBean where capacity < 9 and active=1").list();  
         	}else if(noOfParticipant >6 && noOfParticipant<9) {
-        		listOfRoom = session.createQuery("FROM MeetingRoomDetailBean where capacity > 6 and capacity < 15").list(); 
+        		listOfRoom = session.createQuery("FROM MeetingRoomDetailBean where capacity > 6 and capacity < 15 and active=1").list(); 
         	}else if(noOfParticipant > 8 && noOfParticipant<15) {
-        		listOfRoom = session.createQuery("FROM MeetingRoomDetailBean where capacity > 8").list();
+        		listOfRoom = session.createQuery("FROM MeetingRoomDetailBean where capacity > 8 and active=1").list();
         	}else  {
-        		listOfRoom = session.createQuery("FROM MeetingRoomDetailBean where capacity > 14").list();
+        		listOfRoom = session.createQuery("FROM MeetingRoomDetailBean where capacity > 14 and active=1").list();
         	}
             
             tx.commit();
@@ -360,6 +362,55 @@ public class AllListMeetingDAO{
 
 	}
 	
+	
+	
+	public MeetingMOMBean getMeetingMOM(int bookID)
+	{
+        Session session = HibernateUtil.openSession();
+        Transaction tx = null;  
+        MeetingMOMBean meetingMOMBean = null;
+        try {
+            tx = session.getTransaction();
+            tx.begin();
+            Query query= session.createQuery("FROM MeetingMOMBean WHERE  meetingBookingDetailBean='"+bookID+"'");
+            meetingMOMBean = (MeetingMOMBean)query.uniqueResult();
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return meetingMOMBean;
+        
+	}
+	
+	
+	public List<MeetingAttachmentBean> getAttachmentById(int bookId)
+	{
+        List<MeetingAttachmentBean> listOfAttachment = new ArrayList<MeetingAttachmentBean>();
+        Session session = HibernateUtil.openSession();
+        Transaction tx = null;        
+        try {
+            tx = session.getTransaction();
+            tx.begin();
+            
+            listOfAttachment = session.createQuery("FROM MeetingAttachmentBean where meetingBookingDetailBean='"+bookId+"'").list(); 
+            
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return listOfAttachment;
+        
+	}
 	
 	
 }

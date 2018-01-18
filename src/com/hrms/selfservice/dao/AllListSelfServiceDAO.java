@@ -27,6 +27,9 @@ import com.hrms.selfservice.bean.ProblemNatureReplyBean;
 import com.hrms.selfservice.bean.RoleCategoryBean;
 import com.hrms.selfservice.bean.SelfServiceQuerybean;
 import com.hrms.selfservice.bean.SelfServiceTypeBean;
+import com.hrms.selfservice.bean.SoftwareComplaintBean;
+import com.hrms.selfservice.bean.SoftwareNatureBean;
+import com.hrms.selfservice.bean.VideoBean;
 
 public class AllListSelfServiceDAO {
 
@@ -605,6 +608,27 @@ public class AllListSelfServiceDAO {
 
 	}
 
+	public List<SoftwareNatureBean> getListOfSoftwareProblem() {
+		List<SoftwareNatureBean> listOfProblem = new ArrayList<SoftwareNatureBean>();
+		Session session = HibernateUtil.openSession();
+		Transaction tx = null;
+		try {
+			tx = session.getTransaction();
+			tx.begin();
+			listOfProblem = session.createQuery("FROM SoftwareNatureBean order by software_nature_name ASC").list();
+			tx.commit();
+		} catch (Exception e) {
+			if (tx != null) {
+				tx.rollback();
+			}
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return listOfProblem;
+
+	}
+	
 	public List<ComplaintBean> getcomplaintByEmployeeId(int emp_id) {
 		List<ComplaintBean> listOfComp = new ArrayList<ComplaintBean>();
 		Session session = HibernateUtil.openSession();
@@ -626,7 +650,27 @@ public class AllListSelfServiceDAO {
 		}
 		return listOfComp;
 	}
-
+	public List<SoftwareComplaintBean> getsoftwareComplaintByEmployeeId(int emp_id) {
+		List<SoftwareComplaintBean> listOfComp = new ArrayList<SoftwareComplaintBean>();
+		Session session = HibernateUtil.openSession();
+		Transaction tx = null;
+		try {
+			tx = session.getTransaction();
+			tx.begin();
+			String hql = "from SoftwareComplaintBean where employee_master_id = '" + emp_id + "'";
+			Query query = session.createQuery(hql);
+			listOfComp = query.list();
+			tx.commit();
+		} catch (Exception e) {
+			if (tx != null) {
+				tx.rollback();
+			}
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return listOfComp;
+	}
 	public List<ComplaintBean> getcomplaintByComplaintId(int complaint_id) {
 		List<ComplaintBean> listOfComp = new ArrayList<ComplaintBean>();
 		Session session = HibernateUtil.openSession();
@@ -649,6 +693,28 @@ public class AllListSelfServiceDAO {
 		return listOfComp;
 	}
 
+	public List<SoftwareComplaintBean> getcomplaintSoftwareByComplaintId(int complaint_id) {
+		List<SoftwareComplaintBean> listOfComp = new ArrayList<SoftwareComplaintBean>();
+		Session session = HibernateUtil.openSession();
+		Transaction tx = null;
+		try {
+			tx = session.getTransaction();
+			tx.begin();
+			String hql = "from SoftwareComplaintBean where software_complaint_id = '" + complaint_id + "'";
+			Query query = session.createQuery(hql);
+			listOfComp = query.list();
+			tx.commit();
+		} catch (Exception e) {
+			if (tx != null) {
+				tx.rollback();
+			}
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return listOfComp;
+	}
+
 	public List<ComplaintBean> getcomplaintList() {
 		List<ComplaintBean> listOfComp = new ArrayList<ComplaintBean>();
 		Session session = HibernateUtil.openSession();
@@ -657,6 +723,50 @@ public class AllListSelfServiceDAO {
 			tx = session.getTransaction();
 			tx.begin();
 			String hql = "from ComplaintBean where status = 'pending'";
+			Query query = session.createQuery(hql);
+			listOfComp = query.list();
+			tx.commit();
+		} catch (Exception e) {
+			if (tx != null) {
+				tx.rollback();
+			}
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return listOfComp;
+	}
+	
+	public List<SoftwareComplaintBean> getsoftwareComplaintList() {
+		List<SoftwareComplaintBean> listOfComp = new ArrayList<SoftwareComplaintBean>();
+		Session session = HibernateUtil.openSession();
+		Transaction tx = null;
+		try {
+			tx = session.getTransaction();
+			tx.begin();
+			String hql = "from SoftwareComplaintBean where status = 'pending'";
+			Query query = session.createQuery(hql);
+			listOfComp = query.list();
+			tx.commit();
+		} catch (Exception e) {
+			if (tx != null) {
+				tx.rollback();
+			}
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return listOfComp;
+	}
+	
+	public List<SoftwareComplaintBean> getsoftwareComplaintListHRMS() {
+		List<SoftwareComplaintBean> listOfComp = new ArrayList<SoftwareComplaintBean>();
+		Session session = HibernateUtil.openSession();
+		Transaction tx = null;
+		try {
+			tx = session.getTransaction();
+			tx.begin();
+			String hql = "from SoftwareComplaintBean where status = 'pending' and softwareNatureBean.software_nature_name = 'HRMS'";
 			Query query = session.createQuery(hql);
 			listOfComp = query.list();
 			tx.commit();
@@ -846,6 +956,66 @@ public class AllListSelfServiceDAO {
 				hql = "from ComplaintBean where status = 'completed' and date like '%-0" + month_id + "-%'";
 			} else {
 				hql = "from ComplaintBean where status = 'completed' and date like '%-" + month_id + "-%'";
+			}
+
+			Query query = session.createQuery(hql);
+			listOfComp = query.list();
+			tx.commit();
+		} catch (Exception e) {
+			if (tx != null) {
+				tx.rollback();
+			}
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return listOfComp;
+	}
+
+	
+	public List<SoftwareComplaintBean> getcomplaintListHRMS(int month_id) {
+		List<SoftwareComplaintBean> listOfComp = new ArrayList<SoftwareComplaintBean>();
+		Session session = HibernateUtil.openSession();
+		Transaction tx = null;
+		try {
+			tx = session.getTransaction();
+			tx.begin();
+
+			String hql = null;
+
+			if (month_id < 10) {
+				hql = "from SoftwareComplaintBean where status = 'completed' and softwareNatureBean.software_nature_name = 'HRMS' and date like '%-0" + month_id + "-%' ";
+			} else {
+				hql = "from SoftwareComplaintBean where status = 'completed' and softwareNatureBean.software_nature_name = 'HRMS' and date like '%-" + month_id + "-%'";
+			}
+
+			Query query = session.createQuery(hql);
+			listOfComp = query.list();
+			tx.commit();
+		} catch (Exception e) {
+			if (tx != null) {
+				tx.rollback();
+			}
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return listOfComp;
+	}
+	public List<SoftwareComplaintBean> getcomplaintListERP(int month_id) {
+		List<SoftwareComplaintBean> listOfComp = new ArrayList<SoftwareComplaintBean>();
+		Session session = HibernateUtil.openSession();
+		Transaction tx = null;
+		try {
+			tx = session.getTransaction();
+			tx.begin();
+
+			String hql = null;
+
+			if (month_id < 10) {
+				hql = "from SoftwareComplaintBean where status = 'completed' and date like '%-0" + month_id + "-%' ";
+			} else {
+				hql = "from SoftwareComplaintBean where status = 'completed' and date like '%-" + month_id + "-%'";
 			}
 
 			Query query = session.createQuery(hql);
@@ -1244,6 +1414,28 @@ public class AllListSelfServiceDAO {
         }
         return selfServiceQuerybean;
     }
+	
+	
+	public List<VideoBean> getListOfAllVideos(){
+	    List<VideoBean> listOfSelfServiceQuery = new ArrayList<VideoBean>();
+	    Session session = HibernateUtil.openSession();
+	    Transaction tx = null;        
+	    try {
+	        tx = session.getTransaction();
+	        tx.begin();
+	        listOfSelfServiceQuery = session.createQuery("FROM VideoBean").list();
+	        tx.commit();
+	    } catch (Exception e) {
+	        if (tx != null) {
+	            tx.rollback();
+	        }
+	        e.printStackTrace();
+	    } finally {
+	        session.close();
+	    }
+	    return listOfSelfServiceQuery;
+	    
+	}
 	
 
 }

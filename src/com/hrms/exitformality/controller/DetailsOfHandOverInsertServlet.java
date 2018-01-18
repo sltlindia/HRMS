@@ -122,8 +122,22 @@ public class DetailsOfHandOverInsertServlet extends HttpServlet {
 							
 							
 							if (fieldName.equalsIgnoreCase("handOverToName")) {
-								handOverToName = Integer.parseInt(fieldValue);
+								String value = fieldValue;
 								
+								String[] split = value.split(",");
+								int emp_code = Integer.parseInt(split[0]);
+								String name = split[1];
+								int other_manager_id = 0;
+								
+								String[] splitName = name.split(" ");
+								String firstName = splitName[0];
+								String lastName = splitName[1];
+								
+								
+								LoginDAO loginDAO = new LoginDAO();
+								EmployeeBean employeeBean1 = loginDAO.getUserByUserCodeAndName(emp_code, firstName, lastName);
+								
+								 handOverToName = employeeBean1.getEmployee_master_id();
 								
 								System.out.println("handOverToName:"+handOverToName);
 								

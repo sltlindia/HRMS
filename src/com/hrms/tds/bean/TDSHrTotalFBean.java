@@ -25,6 +25,7 @@ public class TDSHrTotalFBean implements Serializable{
 	private double d_health_checkup;
 	private double a_mediclaim;
 	private double d_mediclaim;
+	private String cash_cheque;
 	private double a_cash_amount;
 	private double d_cash_amount;
 	private double a_cheque_amount;
@@ -68,7 +69,7 @@ public class TDSHrTotalFBean implements Serializable{
 
 	public TDSHrTotalFBean(double a_self, double d_self, String father_birthdate, double a_parents, double d_parents,
 			double a_health_checkup, double d_health_checkup, double a_mediclaim, double d_mediclaim,
-			double a_cash_amount, double d_cash_amount, double a_cheque_amount,
+			String cash_cheque, double a_cash_amount, double d_cash_amount, double a_cheque_amount,
 			double d_cheque_amount, double donation_80g, double a_donation_80GGC, double d_donation_80GGC,
 			double education_loan, double total_80egd, double total_f, double tax, double tax_remit, double total_tax,
 			double edu_cess, double total_h, double payable_total_f, double payable_tax, double payable_tax_remit,
@@ -86,6 +87,7 @@ public class TDSHrTotalFBean implements Serializable{
 		this.d_health_checkup = d_health_checkup;
 		this.a_mediclaim = a_mediclaim;
 		this.d_mediclaim = d_mediclaim;
+		this.cash_cheque = cash_cheque;
 		this.a_cash_amount = a_cash_amount;
 		this.d_cash_amount = d_cash_amount;
 		this.a_cheque_amount = a_cheque_amount;
@@ -128,7 +130,7 @@ public class TDSHrTotalFBean implements Serializable{
 
 	public TDSHrTotalFBean(int tds_hr_totalf_id, double a_self, double d_self, String father_birthdate,
 			double a_parents, double d_parents, double a_health_checkup, double d_health_checkup, double a_mediclaim,
-			double d_mediclaim, double a_cash_amount, double d_cash_amount, double a_cheque_amount,
+			double d_mediclaim, String cash_cheque, double a_cash_amount, double d_cash_amount, double a_cheque_amount,
 			double d_cheque_amount, double donation_80g, double a_donation_80GGC, double d_donation_80GGC,
 			double education_loan, double total_80egd, double total_f, double tax, double tax_remit, double total_tax,
 			double edu_cess, double total_h, double payable_total_f, double payable_tax, double payable_tax_remit,
@@ -147,6 +149,7 @@ public class TDSHrTotalFBean implements Serializable{
 		this.d_health_checkup = d_health_checkup;
 		this.a_mediclaim = a_mediclaim;
 		this.d_mediclaim = d_mediclaim;
+		this.cash_cheque = cash_cheque;
 		this.a_cash_amount = a_cash_amount;
 		this.d_cash_amount = d_cash_amount;
 		this.a_cheque_amount = a_cheque_amount;
@@ -268,6 +271,14 @@ public class TDSHrTotalFBean implements Serializable{
 
 	public void setD_mediclaim(double d_mediclaim) {
 		this.d_mediclaim = d_mediclaim;
+	}
+
+	public String getCash_cheque() {
+		return cash_cheque;
+	}
+
+	public void setCash_cheque(String cash_cheque) {
+		this.cash_cheque = cash_cheque;
 	}
 
 	public double getA_cash_amount() {

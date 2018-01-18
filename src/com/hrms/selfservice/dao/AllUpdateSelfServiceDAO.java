@@ -9,6 +9,7 @@ import com.hrms.selfservice.bean.ComplaintBean;
 import com.hrms.selfservice.bean.MarqueeBean;
 import com.hrms.selfservice.bean.ProblemNatureBean;
 import com.hrms.selfservice.bean.SelfServiceTypeBean;
+import com.hrms.selfservice.bean.SoftwareNatureBean;
 
 public class AllUpdateSelfServiceDAO {
 
@@ -161,6 +162,33 @@ public class AllUpdateSelfServiceDAO {
 		 return true;
 	}
 	
+	public boolean replySoftwareUpdate(String correction,String date_of_resolve,String remarks,String status,int complaint_id){
+		 Session session = HibernateUtil.openSession();
+		 Transaction tx = null;	
+		 try {
+			 tx = session.getTransaction();
+			 tx.begin();
+			 Query query = session.createQuery("update SoftwareComplaintBean set correction = :b ,date_of_resolve = :c,remarks = :d,status = :e where software_complaint_id = :a ");
+			 query.setInteger("a", complaint_id);
+			 query.setString("b", correction);
+			 query.setString("c", date_of_resolve);
+			 query.setString("d", remarks);
+			 query.setString("e", status);
+			 
+			 int result = query.executeUpdate();
+			 System.out.println("result :"+result);
+			 tx.commit();
+		 } catch (Exception e) {
+			 if (tx != null) {
+				 tx.rollback();
+			 }
+			 e.printStackTrace();
+		 } finally {
+			 session.close();
+		 }	
+		 return true;
+	}
+	
 	public boolean replyUpdateManager(int problem_nature_id, String description,String location,String extension,String correction,String remarks,int complaint_id,String date_of_submission,String correction_date){
 		 Session session = HibernateUtil.openSession();
 		 Transaction tx = null;	
@@ -168,6 +196,36 @@ public class AllUpdateSelfServiceDAO {
 			 tx = session.getTransaction();
 			 tx.begin();
 			 Query query = session.createQuery("update ComplaintBean set problem_nature_id = :a,description = :c ,location = :d ,remarks = :e ,extension = :f ,correction = :h,date = :sd, date_of_resolve = :crd  where complaint_id = :cid");
+			 query.setInteger("cid", complaint_id);
+			 query.setInteger("a", problem_nature_id);
+			 query.setString("c", description);
+			 query.setString("d", location);
+			 query.setString("e", remarks);
+			 query.setString("f", extension);
+			 query.setString("h", correction);
+			 query.setString("sd", date_of_submission);
+			 query.setString("crd", correction_date);
+			 
+			 int result = query.executeUpdate();
+			 System.out.println("result :"+result);
+			 tx.commit();
+		 } catch (Exception e) {
+			 if (tx != null) {
+				 tx.rollback();
+			 }
+			 e.printStackTrace();
+		 } finally {
+			 session.close();
+		 }	
+		 return true;
+	}
+	public boolean replyUpdateSoftwareManager(int problem_nature_id, String description,String location,String extension,String correction,String remarks,int complaint_id,String date_of_submission,String correction_date){
+		 Session session = HibernateUtil.openSession();
+		 Transaction tx = null;	
+		 try {
+			 tx = session.getTransaction();
+			 tx.begin();
+			 Query query = session.createQuery("update SoftwareComplaintBean set software_nature_id = :a,description = :c ,location = :d ,remarks = :e ,extension = :f ,correction = :h,date = :sd, date_of_resolve = :crd  where software_complaint_id = :cid");
 			 query.setInteger("cid", complaint_id);
 			 query.setInteger("a", problem_nature_id);
 			 query.setString("c", description);
@@ -238,5 +296,24 @@ public class AllUpdateSelfServiceDAO {
 		 return true;
 	}
 
+	public boolean softwareNatureUpdate(SoftwareNatureBean softwareNatureBean){
+		 Session session = HibernateUtil.openSession();
+		int id =0;
+		 Transaction tx = null;	
+		 try {
+			 tx = session.getTransaction();
+			 tx.begin();
+			 session.update(softwareNatureBean);
+			 tx.commit();
+		 } catch (Exception e) {
+			 if (tx != null) {
+				 tx.rollback();
+			 }
+			 e.printStackTrace();
+		 } finally {
+			 session.close();
+		 }	
+		 return true;
+	}
 	
 }

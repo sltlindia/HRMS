@@ -234,7 +234,8 @@ public class VacancyFormUpdateServlet extends HttpServlet {
 							System.out.println("v_id:" + v_id);
 						}
 
-						if (fieldName.equalsIgnoreCase("remarksForReject")) {
+						if (fieldName.equalsIgnoreCase("remarksForReject"))
+						{
 							reason = fieldValue;
 							System.out.println("remarks:" + reason);
 
@@ -249,10 +250,10 @@ public class VacancyFormUpdateServlet extends HttpServlet {
 							
 							if(result == true)
 							{
-								if(user.getRoleBean().getRole_authority().equalsIgnoreCase("M6"))
+								if(user.getManagerBean().getManager_id() == 1 || user.getManagerBean().getManager_id() == 2 || user.getManagerBean().getManager_id() == 3 || user.getManagerBean().getManager_id() == 31)
 								{
 									response.sendRedirect("sltlAdmin.jsp");
-								} else if(user.getRoleBean().getRole_authority().equalsIgnoreCase("M5"))
+								} else if(user.getManagerBean().getManager_id() == 4)
 								{
 									response.sendRedirect("hrHome.jsp");
 								} else

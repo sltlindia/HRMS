@@ -133,5 +133,4 @@ public class AllInsertVtsDAO implements Serializable {
 		 }	
 		 return true;
 	}
-	
 }
