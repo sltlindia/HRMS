@@ -40,7 +40,7 @@ public class MasterExcelRead {
 			String company_name = "-";
 			String employee_name = "-";
 			String pan_no = "-";
-			String date_of_birth = "-";
+			String date_of_birth = "";
 			String designation = "-";
 			String gender = "-";
 			String joining_date = "-";
@@ -136,13 +136,19 @@ public class MasterExcelRead {
 				System.out.print(pan_no + "\t");
 			} catch (NullPointerException e) {} catch (NumberFormatException e) {}
 			
+			if(row.getCell(5).toString() == null)
+			{
+			}
+			else {
+			
 			try {
 				date_of_birth = row.getCell(5).toString();
 				System.err.print(date_of_birth + "\t");
 				Date d1 = formater.parse(date_of_birth);
 				date_of_birth = format.format(d1);
 				System.out.print(date_of_birth + "\t");
-			} catch (NullPointerException e) {} catch (NumberFormatException e) {}
+			} catch (NullPointerException e) {} catch (NumberFormatException e) {} catch(ParseException e) {}
+			}
 			
 			try {
 				designation = row.getCell(6).toString();
@@ -159,21 +165,21 @@ public class MasterExcelRead {
 				Date d2 = formater.parse(joining_date);
 				joining_date = format.format(d2);
 				System.out.print(joining_date + "\t");
-			} catch (NullPointerException e) {} catch (NumberFormatException e) {}
+			} catch (NullPointerException e) {} catch (NumberFormatException e) {} catch(ParseException e) {}
 			
 			try {
 				from_date = row.getCell(9).toString();
 				Date d3 = formater.parse(from_date);
 				from_date = format.format(d3);
 				System.out.print(from_date + "\t");
-			} catch (NullPointerException e) {} catch (NumberFormatException e) {}
+			} catch (NullPointerException e) {} catch (NumberFormatException e) {} catch(ParseException e) {}
 			
 			try {
 				to_date = row.getCell(10).toString();
 				Date d4 = formater.parse(to_date);
 				to_date = format.format(d4);
 				System.out.print(to_date + "\t");
-			} catch (NullPointerException e) {} catch (NumberFormatException e) {}
+			} catch (NullPointerException e) {} catch (NumberFormatException e) {} catch(ParseException e) {}
 			
 			try {
 				resign_date = row.getCell(11).toString();
@@ -492,7 +498,7 @@ public class MasterExcelRead {
 				october = Double.parseDouble(row.getCell(74).toString());
 				System.out.print(october + "\t");
 			} catch (NullPointerException e) {} catch (NumberFormatException e) {}
-			
+				
 			try {
 				november = Double.parseDouble(row.getCell(75).toString());
 				System.out.print(november + "\t");

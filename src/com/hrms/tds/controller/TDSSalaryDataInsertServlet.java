@@ -10,6 +10,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileItemFactory;
@@ -43,6 +44,7 @@ public class TDSSalaryDataInsertServlet extends HttpServlet {
 			int month_id = 0;
 			int year_id = 0;
 			String year = null;
+			String documentType = null;
 			MonthBean monthBean = null;
 			YearBean yearBean = null;
 
@@ -68,6 +70,11 @@ public class TDSSalaryDataInsertServlet extends HttpServlet {
 							System.err.println("YEAR :"+year);
 							yearBean = new YearBean();
 							yearBean.setYear_id(year_id);
+						}
+						
+						if(fieldName.equalsIgnoreCase("documentType")) {
+							documentType = fieldValue;
+							System.err.println("Type :"+documentType);
 						}
 						
 					
@@ -107,13 +114,26 @@ public class TDSSalaryDataInsertServlet extends HttpServlet {
 								System.out.println("Document uploaded");
 								request.setAttribute("uploadAttachment", file.getName());
 								
-								//request.getRequestDispatcher("employeeCSVUpload").forward(request, response);
+								if(documentType.equalsIgnoreCase("Master Data"))
+								{
+									System.err.println("------------- in master data-------------------");
+									MasterExcelRead masterExcelRead = new MasterExcelRead();
+									masterExcelRead.readMasterData(uploadAttachment,monthBean,yearBean);
+								}
+								else if(documentType.equalsIgnoreCase("Monthly Data"))
+								{
+									System.err.println("------------- in monthly data-------------------");
+									ExcelRead excelRead = new ExcelRead();
+									excelRead.readData(uploadAttachment,monthBean,yearBean);
+								}
 								
-								ExcelRead excelRead = new ExcelRead();
-								excelRead.readData(uploadAttachment,monthBean,yearBean);
 							}
-						
+							
+							HttpSession session = request.getSession();
+							session.setAttribute("success", "Salary Data Successfully Uploaded");
 							response.sendRedirect("TDSSalaryDataUpload.jsp");
+							//request.getRequestDispatcher("TDSSalaryDataUpload.jsp").forward(request, response);
+							
 						}
 							
 						

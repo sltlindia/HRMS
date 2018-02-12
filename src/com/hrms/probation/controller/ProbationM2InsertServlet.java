@@ -67,8 +67,8 @@ public class ProbationM2InsertServlet extends HttpServlet {
 				LoginDAO loginDAO = new LoginDAO();
 				EmployeeBean employeeBean1 = loginDAO.getEmailId(under_manager_Of_reviewing);
 				
-				String role_authority = employeeBean1.getRoleBean().getRole_authority();
-				
+				/*String role_authority = employeeBean1.getRoleBean().getRole_authority();*/
+				int role_id = employeeBean1.getRoleBean().getRole_id();
 				double attribute_m2_score = 0;
 				String comments_month_wise = null;
 				String continue_for_next_month = null;
@@ -192,7 +192,7 @@ public class ProbationM2InsertServlet extends HttpServlet {
 									if(termination_letter.equalsIgnoreCase("terminationYes") && maxValue != (to_be_extended+6)){
 										String manager_status = "pending";
 										
-										if(role_authority.equalsIgnoreCase("D1") || role_authority.equalsIgnoreCase("D2") || role_authority.equalsIgnoreCase("D3") || role_authority.equalsIgnoreCase("D4")){
+										if(role_id == 2 ||role_id == 3  || role_id == 9){
 											manager_status = "hrPending";
 										}
 										

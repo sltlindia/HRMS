@@ -361,19 +361,13 @@ SimpleDateFormat ddmmyyyy = new SimpleDateFormat("dd-MM-yyyy"); %>
 														</table>
 
 													</div>
-													<!-- /.modal-content -->
 												</div>
 												</div>
-												<!-- /.modal-dialog -->
 											</div>
 										</div>
 									</div>					
-					
-					
 								</div>
-						<!-- /.panel -->
 					</div>
-					<!-- /.col-lg-12 -->
 				</div>
 				</div>
 				</div>

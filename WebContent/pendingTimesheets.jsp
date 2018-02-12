@@ -126,7 +126,7 @@ return valid;
 			<div class="row">
 				<div class="col-lg-12">
 					<div class="panel panel-primary">
-						<div class="panel-heading"><span class="icon icon-ios-calendar"></span> &nbsp;&nbsp;<b>Pending Timesheets</b></div>
+						<div class="panel-heading"><span class="icon-ios-calendar"></span> &nbsp;&nbsp;<b>Pending Timesheets</b></div>
 						<br>
 						<div class="panel-body">
 				<form method="post" action="statusUpdate" onsubmit="return validate_form();">
@@ -138,7 +138,7 @@ return valid;
                         <!-- /.panel-heading -->
                         <div class="panel-body">
                             <div class="table-responsive">
-                                <table class="table table-striped table-bordered table-hover zero-configuration">
+                                <table class="table table-striped table-bordered table-hover">
 										<%AllTimesheetListDAO allListDAO = new AllTimesheetListDAO();
 															request.getAttribute("date");
 															List<Object[]> pendingTimesheet = (ArrayList)request.getAttribute("pendingTimesheet");
@@ -229,9 +229,9 @@ return valid;
 																<td><%=workSum%></td>
 																<td><%=timeSheetBean.getTask_time_status() %></td>
 																<td><%=timeSheetBean.getApproval_status() %></td>
-																<td><a href="pendingTimeSheetDetail?employee_master_id=<%=employeeBean.getEmployee_master_id()%>&date=<%=timeSheetBean.getDate()%>&buttonShow=show"><button class="btn btn-xs"
-																style="background-color: #3BAFDA" data-toggle="tooltip"
-																data-placement="top" title="View Details"><i class="icon icon-eye4"></i> View</button></a></td>
+																<td><a href="pendingTimeSheetDetail?employee_master_id=<%=employeeBean.getEmployee_master_id()%>&date=<%=timeSheetBean.getDate()%>&buttonShow=show">
+																<i class="icon-eye4" style="color: #2196f3" data-toggle="tooltip"
+																data-placement="top" title="View Details"></i></a></td>
 																</tr>
 																<%
 															}%>
@@ -277,9 +277,9 @@ return valid;
 																<td><%=workSum%></td>
 																<td><%=t.getTask_time_status() %></td>
 																<td><%=t.getApproval_status() %></td>
-																<td><a href="pendingTimeSheetDetail?employee_master_id=<%=t.getEmployeeBean().getEmployee_master_id()%>&date=<%=t.getDate()%>&buttonShow=show"><button class="btn btn-xs"
-																style="background-color: #3BAFDA" data-toggle="tooltip"
-																data-placement="top" title="View Details"><i class="icon icon-eye4"></i> View</button></a></td>
+																<td><a href="pendingTimeSheetDetail?employee_master_id=<%=t.getEmployeeBean().getEmployee_master_id()%>&date=<%=t.getDate()%>&buttonShow=show">
+																<i class="icon-eye4" style="color: #2196f3" data-toggle="tooltip"
+																data-placement="top" title="View Details"></i></a></td>
 																</tr>
 																<%}
 															%>
@@ -317,19 +317,18 @@ return valid;
 															  else{%>
                               <td>No more timesheet(s) for approval </td>
                               <% }%>
-                            <!-- /.table-responsive -->
                 		        
-				        	<font size="3px;"><b>Legends :&nbsp;</b></font> <i class="icon icon-eye4"></i><b> : View Detail </b> &nbsp;&nbsp;&nbsp;                
+				        	<font size="3px;"><b>Legends :&nbsp;</b></font> <i class="icon-eye4" style="color: #2196f3"></i><b> : View Detail </b> &nbsp;&nbsp;&nbsp;                
                         </div>
-                        <!-- /.panel-body -->
+                        
                     </div>
-                    <!-- /.panel -->
+                    
                 </div>
                 </div>
                 </div>
-                <!-- /.col-lg-12 --> 
                             </div>
                             </form>
+                            <br>
                             </div>
                             </div>
                             </div>

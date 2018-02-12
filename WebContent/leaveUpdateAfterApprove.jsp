@@ -26,7 +26,7 @@
     <meta name="description" content="Robust admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
     <meta name="keywords" content="admin template, robust admin template, dashboard template, flat admin template, responsive admin template, web app">
     <meta name="author" content="PIXINVENT">
-    <title>Sweet Alerts - Robust Bootstrap Admin Template</title>
+    <title>Leave Update After Approve</title>
     <link rel="apple-touch-icon" sizes="60x60" href="app-assets/images/ico/apple-icon-60.png">
     <link rel="apple-touch-icon" sizes="76x76" href="app-assets/images/ico/apple-icon-76.png">
     <link rel="apple-touch-icon" sizes="120x120" href="app-assets/images/ico/apple-icon-120.png">
@@ -206,7 +206,6 @@ for(LeaveBean leaveBean : listOfLeave)
 			<div class="content-body">
 				<section id="horizontal-form-layouts">
 				<div class="card">
-					<div class="card-body collapse in">
 						<div class="card-block">
 							<div class="form-body">
 			<div class="row">
@@ -214,11 +213,13 @@ for(LeaveBean leaveBean : listOfLeave)
 					<h3 class="page-header"> My Leave</h3>	
 				</div>
 			</div>
+			<br>
 			<div class="row">
-				<div class="col-lg-12">
-					<div class="panel panel-primary">
-						<div class="panel-heading">
-							<h4 align="left">
+				    <div class="col-md-12">
+				        <div class="card box-shadow-0" data-appear="appear">
+					        <div class="card-header card-inverse" style="background-color: #90A4AE;padding: 0.5rem 0rem 1rem 0rem;height: 50px;">
+					            <div class="col-sm-6">
+				               		<h4 class="card-title" id="horz-layout-basic" align="left">
 								Date :
 								<% DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
 									Date today = Calendar.getInstance().getTime();  
@@ -242,7 +243,10 @@ for(LeaveBean leaveBean : listOfLeave)
 							%>
 							 <%= d %> </h4>
 
-						</div>
+						  </div>
+				            </div>
+				               <div class="card-body collapse in">
+					                <div class="card-block border-bottom-blue-grey" style="border-left: 2px solid #607D8B;border-right: 2px solid #607D8B;">
 													
 						<div class="panel-body">
 							
@@ -465,26 +469,19 @@ for(LeaveBean leaveBean : listOfLeave)
 								</table>
 							</form>
 						</div>
-						<!-- /.panel-body -->
 					</div>
-					<!-- /.panel -->
 				</div>
-				<!-- /.col-lg-12 -->
 			</div>
-			<!-- /.row -->
-		</div>
-	</div>
-
+	
+</div>
+</div>
+</div>
 </div>
 </div>
 </section>
 </div>
 </div>
 </div>
-<!--Date Picker  -->
-
-<!--  -->
-
 <script type="text/javascript">
   
 $(document).ready(function()
@@ -948,52 +945,25 @@ $(document).ready(function()
 
 
  <%@include file="footer.html"%>
-<!-- BEGIN VENDOR JS-->
-	<!-- build:js app-assets/js/vendors.min.js-->
-	<script src="app-assets/js/core/libraries/jquery.min.js"
-		type="text/javascript"></script>
-	<script src="app-assets/vendors/js/ui/tether.min.js"
-		type="text/javascript"></script>
-	<script src="app-assets/js/core/libraries/bootstrap.min.js"
-		type="text/javascript"></script>
-	<script src="app-assets/vendors/js/ui/perfect-scrollbar.jquery.min.js"
-		type="text/javascript"></script>
-	<script src="app-assets/vendors/js/ui/unison.min.js"
-		type="text/javascript"></script>
-	<script src="app-assets/vendors/js/ui/blockUI.min.js"
-		type="text/javascript"></script>
-	<script src="app-assets/vendors/js/ui/jquery.matchHeight-min.js"
-		type="text/javascript"></script>
-	<script src="app-assets/vendors/js/ui/jquery-sliding-menu.js"
-		type="text/javascript"></script>
-	<script src="app-assets/vendors/js/sliders/slick/slick.min.js"
-		type="text/javascript"></script>
-	<script src="app-assets/vendors/js/ui/screenfull.min.js"
-		type="text/javascript"></script>
-	<script src="app-assets/vendors/js/extensions/pace.min.js"
-		type="text/javascript"></script>
-	<!-- /build-->
-	<!-- BEGIN VENDOR JS-->
-	<!-- BEGIN PAGE VENDOR JS-->
-	<script type="text/javascript"
-		src="app-assets/vendors/js/ui/jquery.sticky.js"></script>
-	<script src="app-assets/vendors/js/extensions/moment.min.js"
-		type="text/javascript"></script>
-	<script src="app-assets/vendors/js/extensions/underscore-min.js"
-		type="text/javascript"></script>
-	<script src="app-assets/vendors/js/extensions/clndr.min.js"
-		type="text/javascript"></script>
-	<script src="app-assets/vendors/js/extensions/unslider-min.js"
-		type="text/javascript"></script>
-	<!-- END PAGE VENDOR JS-->
-	<!-- BEGIN ROBUST JS-->
-	<!-- build:js app-assets/js/app.min.js-->
+	<script src="app-assets/js/core/libraries/jquery.min.js" type="text/javascript"></script>
+	<script src="app-assets/vendors/js/ui/tether.min.js" type="text/javascript"></script>
+	<script src="app-assets/js/core/libraries/bootstrap.min.js" type="text/javascript"></script>
+	<script src="app-assets/vendors/js/ui/perfect-scrollbar.jquery.min.js" type="text/javascript"></script>
+	<script src="app-assets/vendors/js/ui/unison.min.js" type="text/javascript"></script>
+	<script src="app-assets/vendors/js/ui/blockUI.min.js" type="text/javascript"></script>
+	<script src="app-assets/vendors/js/ui/jquery.matchHeight-min.js" type="text/javascript"></script>
+	<script src="app-assets/vendors/js/ui/jquery-sliding-menu.js" type="text/javascript"></script>
+	<script src="app-assets/vendors/js/sliders/slick/slick.min.js" type="text/javascript"></script>
+	<script src="app-assets/vendors/js/ui/screenfull.min.js" type="text/javascript"></script>
+	<script src="app-assets/vendors/js/extensions/pace.min.js" type="text/javascript"></script>
+	<script src="app-assets/vendors/js/ui/jquery.sticky.js" type="text/javascript"></script>
+	<script src="app-assets/vendors/js/extensions/moment.min.js" type="text/javascript"></script>
+	<script src="app-assets/vendors/js/extensions/underscore-min.js" type="text/javascript"></script>
+	<script src="app-assets/vendors/js/extensions/clndr.min.js" type="text/javascript"></script>
+	<script src="app-assets/vendors/js/extensions/unslider-min.js" type="text/javascript"></script>
 	<script src="app-assets/js/core/app-menu.min.js" type="text/javascript"></script>
 	<script src="app-assets/js/core/app.min.js" type="text/javascript"></script>
-	<script src="app-assets/js/scripts/ui/fullscreenSearch.min.js"
-		type="text/javascript"></script>
-	<!-- /build-->
-	<!-- END ROBUST JS-->
+	<script src="app-assets/js/scripts/ui/fullscreenSearch.min.js" type="text/javascript"></script>
 		<script>
 	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),

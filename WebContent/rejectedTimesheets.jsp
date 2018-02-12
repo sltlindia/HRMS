@@ -160,7 +160,7 @@
 																	href="pendingTimeSheetDetail?employee_master_id=<%=employeeBean.getEmployee_master_id()%>&date=<%=timeSheetBean.getDate()%>"><button class="btn btn-xs"
 																style="background-color: #3BAFDA" data-toggle="tooltip"
 																data-placement="top" title="View Details">
-																			<i class="icon icon-eye4"></i> View
+																			<i class="icon-eye4" style="color: #2196f3"></i> View
 																		</button></a></td>
 															</tr>
 															<%
@@ -196,7 +196,7 @@
 																	href="pendingTimeSheetDetail?employee_master_id=<%=t.getEmployeeBean().getEmployee_master_id()%>&date=<%=t.getDate()%>"><button class="btn btn-xs"
 																style="background-color: #3BAFDA" data-toggle="tooltip"
 																data-placement="top" title="View Detail">
-																			<i class="icon icon-eye4"></i> View
+																			<i class="icon-eye4" style="color: #2196f3"></i> View
 																		</button></a></td>
 															</tr>
 															<%
@@ -209,7 +209,7 @@
 													<!-- /.table -->
 
 													<font size="3px;"><b>Legends :&nbsp;</b></font> <i
-														class="icon icon-eye4"></i><b> : View
+														class="icon-eye4" style="color: #2196f3"></i><b> : View
 														Detail </b> &nbsp;&nbsp;&nbsp;
 												</div>
 												<!-- /.dataTable_wrapper -->
@@ -234,56 +234,43 @@
 	</div>
 
 	<%@include file="footer.html"%>
-	<!-- BEGIN VENDOR JS-->
-	<!-- build:js app-assets/js/vendors.min.js-->
-	<script src="app-assets/js/core/libraries/jquery.min.js"
-		type="text/javascript"></script>
-	<script src="app-assets/vendors/js/ui/tether.min.js"
-		type="text/javascript"></script>
-	<script src="app-assets/js/core/libraries/bootstrap.min.js"
-		type="text/javascript"></script>
-	<script src="app-assets/vendors/js/ui/perfect-scrollbar.jquery.min.js"
-		type="text/javascript"></script>
-	<script src="app-assets/vendors/js/ui/unison.min.js"
-		type="text/javascript"></script>
-	<script src="app-assets/vendors/js/ui/blockUI.min.js"
-		type="text/javascript"></script>
-	<script src="app-assets/vendors/js/ui/jquery.matchHeight-min.js"
-		type="text/javascript"></script>
-	<script src="app-assets/vendors/js/ui/jquery-sliding-menu.js"
-		type="text/javascript"></script>
-	<script src="app-assets/vendors/js/sliders/slick/slick.min.js"
-		type="text/javascript"></script>
-	<script src="app-assets/vendors/js/ui/screenfull.min.js"
-		type="text/javascript"></script>
-	<script src="app-assets/vendors/js/extensions/pace.min.js"
-		type="text/javascript"></script>
-	<!-- /build-->
-	<!-- BEGIN VENDOR JS-->
-	<!-- BEGIN PAGE VENDOR JS-->
-	<script type="text/javascript"
-		src="app-assets/vendors/js/ui/jquery.sticky.js"></script>
-	<script src="app-assets/vendors/js/extensions/sweetalert.min.js"
-		type="text/javascript"></script>
-	<!-- END PAGE VENDOR JS-->
-	<!-- BEGIN ROBUST JS-->
-	<!-- build:js app-assets/js/app.min.js-->
-	<script src="app-assets/js/core/app-menu.min.js" type="text/javascript"></script>
-	<script src="app-assets/js/core/app.min.js" type="text/javascript"></script>
-	<script src="app-assets/js/scripts/ui/fullscreenSearch.min.js"
-		type="text/javascript"></script>
-	<!-- /build-->
-	<!-- END ROBUST JS-->
-	  <!-- BEGIN PAGE VENDOR JS-->
-    <script src="app-assets/vendors/js/tables/jquery.dataTables.min.js" type="text/javascript"></script>
-    <script src="app-assets/vendors/js/tables/datatable/dataTables.bootstrap4.min.js" type="text/javascript"></script>
-    <script src="app-assets/vendors/js/tables/datatable/dataTables.buttons.min.js" type="text/javascript"></script>
+    <!-- BEGIN VENDOR JS-->
+    <!-- build:js app-assets/js/vendors.min.js-->
+    <script src="app-assets/js/core/libraries/jquery.min.js" type="text/javascript"></script>
+    <script src="app-assets/vendors/js/ui/tether.min.js" type="text/javascript"></script>
+    <script src="app-assets/js/core/libraries/bootstrap.min.js" type="text/javascript"></script>
+    <script src="app-assets/vendors/js/ui/perfect-scrollbar.jquery.min.js" type="text/javascript"></script>
+    <script src="app-assets/vendors/js/ui/unison.min.js" type="text/javascript"></script>
+    <script src="app-assets/vendors/js/ui/blockUI.min.js" type="text/javascript"></script>
+    <script src="app-assets/vendors/js/ui/jquery.matchHeight-min.js" type="text/javascript"></script>
+    <script src="app-assets/vendors/js/ui/jquery-sliding-menu.js" type="text/javascript"></script>
+    <script src="app-assets/vendors/js/sliders/slick/slick.min.js" type="text/javascript"></script>
+    <script src="app-assets/vendors/js/ui/screenfull.min.js" type="text/javascript"></script>
+    <script src="app-assets/vendors/js/extensions/pace.min.js" type="text/javascript"></script>
+    <!-- /build-->
+    <!-- BEGIN VENDOR JS-->
+    <!-- BEGIN PAGE VENDOR JS-->
+    <script type="text/javascript" src="app-assets/vendors/js/ui/jquery.sticky.js"></script>
+    <script src="app-assets/vendors/js/extensions/sweetalert.min.js" type="text/javascript"></script>
     <!-- END PAGE VENDOR JS-->
-	
-	
-	<!-- BEGIN PAGE LEVEL JS-->
-    <script src="app-assets/js/scripts/tables/datatables/datatable-basic.min.js" type="text/javascript"></script>
-    <!-- END PAGE LEVEL JS-->
+    <!-- BEGIN ROBUST JS-->
+    <!-- build:js app-assets/js/app.min.js-->
+    <script src="app-assets/js/core/app-menu.min.js" type="text/javascript"></script>
+    <script src="app-assets/js/core/app.min.js" type="text/javascript"></script>
+    <script src="app-assets/js/scripts/ui/fullscreenSearch.min.js" type="text/javascript"></script>
+    <!-- /build-->
+    <!-- END ROBUST JS-->
+  	<script>
+	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	  })(window,document,'script','www.google-analytics.com/analytics.js','ga');
+
+	  ga('create', 'UA-96096445-1', 'auto');
+	  ga('send', 'pageview');
+
+	</script>
+
 	<script>
 		(function(i, s, o, g, r, a, m) {
 			i['GoogleAnalyticsObject'] = r;

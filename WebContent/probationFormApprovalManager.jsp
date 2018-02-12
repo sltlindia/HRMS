@@ -346,7 +346,12 @@ if(probation != null){
 											}}
 										
 										else {
-									%>
+									
+									
+									if(listOfTermination.size() != 0){%>
+												<td>Termination Approval Pending</td>
+												<td></td>
+											<%}else{%>
 									<td>Review to be filled</td>
 									<td><a
 										href="probationOpenInfopage?employee_master_id=<%=p.getEmployee_master_id()%>"><i
@@ -356,7 +361,7 @@ if(probation != null){
 										}
 									%>
 									<%
-										}
+										}}
 									%>
 								</tr>
 								<%

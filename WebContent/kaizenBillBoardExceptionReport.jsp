@@ -50,6 +50,8 @@
     <!-- END Page Level CSS-->
     <!-- BEGIN Custom CSS-->
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <script src="app-assets/js/core/libraries/jquery.min.js"
+		type="text/javascript"></script>
     <!-- END Custom CSS-->
     <%@include file="header.jsp" %>
   </head>
@@ -78,14 +80,24 @@ listOfCommittie.add(62);
 					<div class="card-body collapse in">
 						<div class="card-block">
 							<div class="form-body">
+								<div class="row">
+									<div class="col-lg-12">
+										<h1 class="page-header">CI List</h1>
+									</div>
+								</div>
+
 			<div class="row">
 				<div class="col-lg-12">
-					<h1 class="page-header">CI List</h1>
-				</div>
-				<!-- /.col-lg-12 -->
-			</div>
-			
-			 <div class="row">
+					<div class="card">
+				        	<div class="card-header">
+				        	<div class="card box-shadow-0" data-appear="appear">
+					                <div class="card-header card-inverse" style="background-color: #90A4AE;padding: 0.5rem 0rem 1rem 0rem;height: 50px;">
+					                <div class="col-sm-6">
+					                 <h5 class="card-title">CI Exception List</h5>
+												</div>
+
+											</div>
+			<!--  <div class="row">
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
@@ -95,10 +107,10 @@ listOfCommittie.add(62);
                         	</div>
                         </div>
                            
-                        </div>
-                        <!-- /.panel-heading -->
-                        <div class="panel-body">
-                            <div class="dataTable_wrapper">
+                        </div> -->
+                        <div class="card-body collapse in">
+					       <div class="card-block border-bottom-blue-grey" style="border-left: 2px solid #607D8B;border-right: 2px solid #607D8B;">
+					           <div class="table-responsive">
                                 <table class="table table-striped table-bordered table-hover">
                                       <thead>
                                       <%for(YearBean yearBean : listOfYear){
@@ -268,7 +280,9 @@ listOfCommittie.add(62);
                                     </thead>
                                 </table>
                             </div>
-
+                            </div>
+                            </div>
+                            </div>
                 </div>
                 </div>
                 </div>

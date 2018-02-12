@@ -20,22 +20,15 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
-<meta name="description"
-	content="Robust admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
-<meta name="keywords"
-	content="admin template, robust admin template, dashboard template, flat admin template, responsive admin template, web app">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+<meta name="description" content="Robust admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
+<meta name="keywords" content="admin template, robust admin template, dashboard template, flat admin template, responsive admin template, web app">
 <meta name="author" content="PIXINVENT">
-<link rel="shortcut icon" sizes="152x152"
-	href="app-assets/images/ico/titleIcon.png">
+<link rel="shortcut icon" sizes="152x152" href="app-assets/images/ico/titleIcon.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-touch-fullscreen" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
-<!-- BEGIN VENDOR CSS-->
-<link rel="stylesheet" type="text/css"
-	href="app-assets/css/bootstrap.min.css">
-<!-- font icons-->
+<link rel="stylesheet" type="text/css" href="app-assets/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css"
 	href="app-assets/fonts/icomoon.css">
 <link rel="stylesheet" type="text/css"
@@ -202,7 +195,8 @@ function deleteCO(id) {
 				
 										<div class="card-body collapse in">
 	 									  <div class="card-block border-bottom-blue-grey" style="border-left: 2px solid #607D8B;border-right: 2px solid #607D8B;">
-												<ul class="nav nav-tabs">
+												
+												<ul class="nav nav-tabs nav-linetriangle no-hover-bg">
 													<%
 														if (openStatus.equalsIgnoreCase("leave")) {
 													%>
@@ -258,6 +252,7 @@ function deleteCO(id) {
 														}
 													%>
 												</ul>
+												<hr>
 												<div class="tab-content px-1 pt-1">
 													<%
 														if (openStatus.equalsIgnoreCase("leave")) {
@@ -455,12 +450,12 @@ function deleteCO(id) {
 																											<a
 																												href="Myleave?leave_id=<%=leaveBean.getLeave_id()%>&status=<%=leaveBean.getStatus()%>"><i
 																												class="icon icon-edit2"
-																												data-toggle="tooltip" data-placement="top"
+																												data-toggle="popover" data-placement="top"
 																												title="Update Leave"></i></a>
 																										</p>
 																										<p>
 																											<i class="icon icon-trash"
-																												data-toggle="tooltip"
+																												data-toggle="popover"
 																												id="<%=leaveBean.getStatus()%>"
 																												data-placement="top" title="Cancel Leave"
 																												style="color: red; cursor: pointer;"
@@ -475,7 +470,7 @@ function deleteCO(id) {
 																										%>
 																										<p>
 																											<i class="icon icon-trash"
-																												data-toggle="tooltip"
+																												data-toggle="popover"
 																												id="<%=leaveBean.getStatus()%>"
 																												data-placement="top" title="Cancel Leave"
 																												style="color: red; cursor: pointer;"
@@ -485,7 +480,7 @@ function deleteCO(id) {
 																											<a
 																												href="Myleave?leave_id=<%=leaveBean.getLeave_id()%>&status=<%=leaveBean.getStatus()%>"><i
 																												class="icon icon-edit2"
-																												data-toggle="tooltip" data-placement="top"
+																												data-toggle="popover" data-placement="top"
 																												title="Update Leave"></i></a>
 																										</p>
 																										<%
@@ -496,7 +491,7 @@ function deleteCO(id) {
 																											<a href="" data-toggle="modal"
 																												data-target="#myModal<%=leaveBean.getLeave_id()%>"><i
 																												class="icon icon-trash"
-																												data-toggle="tooltip"
+																												data-toggle="popover"
 																												id="<%=leaveBean.getStatus()%>"
 																												data-placement="top" title="Cancel Leave"
 																												style="color: red;"></i></a>
@@ -505,7 +500,7 @@ function deleteCO(id) {
 																											<a
 																												href="Myleave?leave_id=<%=leaveBean.getLeave_id()%>&status=<%=leaveBean.getStatus()%>&action=afterApprove"><i
 																												class="icon icon-edit2"
-																												data-toggle="tooltip" data-placement="top"
+																												data-toggle="popover" data-placement="top"
 																												title="Update Leave"></i></a>
 																										</p>
 																										<%
@@ -681,10 +676,9 @@ function deleteCO(id) {
 																											if (c.getStatus().equalsIgnoreCase("pending") || c.getStatus().equalsIgnoreCase("rejected")) {
 																										%> <a
 																										href="LeaveCOEmployeeShow?CO_ID=<%=c.getCO_ID()%>&status=Pending"><i
-																											class="glyphicon glyphicon-edit"></i></a> <i
-																										class="glyphicon glyphicon-trash"
-																										onclick="deleteCO(<%=c.getCO_ID()%>);"
-																										style="color: red; cursor: pointer;"></i> <%
+																											class="icon icon-edit2" data-toggle="popover"></i></a> <i
+																										class="icon icon-trash" onclick="deleteCO(<%=c.getCO_ID()%>);"
+																										style="color: red; cursor: pointer;" data-toggle="popover"></i> <%
  	}
  %>
 																									</td>
@@ -788,14 +782,12 @@ function deleteCO(id) {
 																												if (od.getDescription() == "") {
 																											%> ----- <%
 																												} else {
-																											%> <i class="fa fa-info-circle"
+																											%> <i class="icon-information-circled"
 																											data-container="body" data-toggle="popover"
-																											data-placement="right" title="Description"
+																											data-placement="top" title="Description"
 																											data-content="<%=od.getDescription()%>">
 																												<i></i>
-																										</i> <%
- 	}
- %>
+																										</i> <%}%>
 																										</td>
 																										<%-- <td>
 													<% if(od.getOD_EndTime() == ""){%>
@@ -824,8 +816,11 @@ function deleteCO(id) {
 																												if (od.getStatus().equalsIgnoreCase("pending")) {
 																											%> <a
 																											href="LeaveODEmployeeShow?OD_ID=<%=od.getOD_ID()%>&status=Pending"><i
-																												class="glyphicon glyphicon-edit"></i></a> <i
-																											class="glyphicon glyphicon-trash"
+																												class="icon icon-edit2" data-toggle="popover"
+																											data-placement="top" title="Edit"></i></a> 
+																											
+																											<i class="icon icon-trash" data-toggle="popover"
+																											data-placement="top" title="Delete"
 																											onclick="deleteOD(<%=od.getOD_ID()%>);"
 																											style="color: red; cursor: pointer;"></i> <%
  	}

@@ -1570,7 +1570,22 @@ boolean cash = false;
 </script>
 </head>
 <body data-open="hover" data-menu="horizontal-menu" data-col="2-columns" class="horizontal-layout horizontal-menu 2-columns ">
-
+<% SimpleDateFormat formatNowYear = new SimpleDateFormat("yyyy");
+						Date cfdate = new Date();
+						int month = cfdate.getMonth();
+						String end_year = formatNowYear.format(cfdate);
+						//System.out.println("Year"+end_year);
+						int current_year = 0;
+                     	int final_year = 0;
+						if(month>2){
+							 current_year = Integer.parseInt(end_year) ;
+							 final_year = (current_year + 1);
+                    	}else{
+                    		 current_year = (Integer.parseInt(end_year) - 1);
+							 final_year = Integer.parseInt(end_year);
+                    	}
+						String period = String.valueOf(current_year)+"-"+String.valueOf(final_year);
+					%>
 		<% int id = Integer.parseInt(request.getParameter("tds_hr_id"));
 			int employee_id = 0;
 			int tds_id = 0;
@@ -1591,7 +1606,7 @@ boolean cash = false;
         	TDSHrTotalFBean tf = tdsListDAO.detailsOfTDSHrTotal_F(tds_hr_id);
         	
         	employee_id = t.getEmployeeBean().getEmployee_master_id();
-        	TDSBean tds = tdsListDAO.detailsOfTDSIdForDocument(employee_id);
+        	TDSBean tds = tdsListDAO.detailsOfTDSIdForDocument(employee_id,period);
         	tds_id = tds.getTds_id();
         	System.err.println("TDS ID :"+tds_id);
         	
@@ -1806,21 +1821,7 @@ boolean cash = false;
 								</td>
 							</tr> --%>
 					
-					<% SimpleDateFormat formatNowYear = new SimpleDateFormat("yyyy");
-						Date cfdate = new Date();
-						int month = cfdate.getMonth();
-						String end_year = formatNowYear.format(cfdate);
-						//System.out.println("Year"+end_year);
-						int current_year = 0;
-                     	int final_year = 0;
-						if(month>2){
-							 current_year = Integer.parseInt(end_year) ;
-							 final_year = (current_year + 1);
-                    	}else{
-                    		 current_year = (Integer.parseInt(end_year) - 1);
-							 final_year = Integer.parseInt(end_year);
-                    	}
-					%>
+					
 						<div class="card box-shadow-0" data-appear="appear" data-animation="fadeInLeft">
 			                <div class="card-header card-inverse" style="background-color: #90A4AE;">
 			                    <h5 class="card-title">

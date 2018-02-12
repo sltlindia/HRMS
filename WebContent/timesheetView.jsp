@@ -21,7 +21,7 @@
     <meta name="description" content="Robust admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
     <meta name="keywords" content="admin template, robust admin template, dashboard template, flat admin template, responsive admin template, web app">
     <meta name="author" content="PIXINVENT">
-    <title>Sweet Alerts - Robust Bootstrap Admin Template</title>
+    <title>Time-Sheet View</title>
     <link rel="apple-touch-icon" sizes="60x60" href="app-assets/images/ico/apple-icon-60.png">
     <link rel="apple-touch-icon" sizes="76x76" href="app-assets/images/ico/apple-icon-76.png">
     <link rel="apple-touch-icon" sizes="120x120" href="app-assets/images/ico/apple-icon-120.png">
@@ -76,7 +76,7 @@
 				<div class="col-lg-12">
 					<div class="panel panel-primary">
 						<div class="panel-heading">TIME-SHEET</div>
-<div class="row">
+												<div class="row">
 											<div class="col-lg-12">
 												<div class="panel panel-default">
 													<!-- /.panel-heading -->
@@ -220,9 +220,8 @@
 											</div>
 											</div>
 											</div>
-											<%@include file="footer.html"%>
-    <!-- BEGIN VENDOR JS-->
-    <!-- build:js app-assets/js/vendors.min.js-->
+											
+	<%@include file="footer.html"%>
     <script src="app-assets/js/core/libraries/jquery.min.js" type="text/javascript"></script>
     <script src="app-assets/vendors/js/ui/tether.min.js" type="text/javascript"></script>
     <script src="app-assets/js/core/libraries/bootstrap.min.js" type="text/javascript"></script>

@@ -20,9 +20,9 @@
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
- <script type='text/javascript' src='/HRMS/dwr/interface/AjaxDataDAO.js'></script>
+ <!-- <script type='text/javascript' src='/HRMS/dwr/interface/AjaxDataDAO.js'></script>
   <script type='text/javascript' src='/HRMS/dwr/engine.js'></script>
- <script type='text/javascript' src='/HRMS/dwr/util.js'></script>
+ <script type='text/javascript' src='/HRMS/dwr/util.js'></script> -->
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -40,30 +40,21 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-touch-fullscreen" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
-    <!-- BEGIN VENDOR CSS-->
     <link rel="stylesheet" type="text/css" href="app-assets/css/bootstrap.min.css">
-    <!-- font icons-->
     <link rel="stylesheet" type="text/css" href="app-assets/fonts/icomoon.css">
     <link rel="stylesheet" type="text/css" href="app-assets/fonts/flag-icon-css/css/flag-icon.min.css">
     <link rel="stylesheet" type="text/css" href="app-assets/vendors/css/sliders/slick/slick.css">
     <link rel="stylesheet" type="text/css" href="app-assets/vendors/css/extensions/pace.css">
     <link rel="stylesheet" type="text/css" href="app-assets/vendors/css/extensions/sweetalert.css">
-    <!-- END VENDOR CSS-->
-    <!-- BEGIN ROBUST CSS-->
     <link rel="stylesheet" type="text/css" href="app-assets/css/bootstrap-extended.min.css">
     <link rel="stylesheet" type="text/css" href="app-assets/css/app.min.css">
     <link rel="stylesheet" type="text/css" href="app-assets/css/colors.min.css">
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
     <link rel="stylesheet" type="text/css"
 	href="app-assets/vendors/css/tables/datatable/dataTables.bootstrap4.min.css">
-    <!-- END ROBUST CSS-->
-    <!-- BEGIN Page Level CSS-->
     <link rel="stylesheet" type="text/css" href="app-assets/css/core/menu/menu-types/horizontal-menu.min.css">
     <link rel="stylesheet" type="text/css" href="app-assets/css/core/menu/menu-types/vertical-overlay-menu.min.css">
-    <!-- END Page Level CSS-->
-    <!-- BEGIN Custom CSS-->
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-    <!-- END Custom CSS-->
     <%@include file="header.jsp" %>
   </head>
 <script type="text/javascript">
@@ -398,21 +389,22 @@ function checkhrs2() {
 	%>
 	
 	<input type="hidden" name="emp_id" id="emp_id" value="<%=employee_master_id%>">
-		<div class="app-content container center-layout mt-2">
-		<div class="content-wrapper">
-			<div class="content-body">
-				<section id="horizontal-form-layouts">
-				<div class="card">
-					<div class="card-body collapse in">
-						<div class="card-block">
-							<div class="form-body">
-			<div class="row">
-				<div class="col-lg-12">
-					<h1 class="page-header">Time-Sheet Management</h1>
-				</div>
-				<!-- /.col-lg-12 -->
-			</div>
-			
+	<div class="app-content container center-layout mt-2">
+      <div class="content-wrapper">
+        <div class="content-body"><!-- DOM - jQuery events table -->
+			<section id="file-export">
+    			<div class="row">
+        			<div class="col-xs-12">
+            			<div class="card">
+                			<div class="card-header">
+                    			<div class="card box-shadow-0" data-appear="appear">
+					        		<div class="card-header card-inverse" style="background-color: #90A4AE;padding: 0.5rem 0rem 1rem 0rem;height: 50px;">
+					            		<div class="col-sm-6">
+				               				<h4 class="card-title" id="horz-layout-basic">Time-Sheet Management</h4>
+				                		</div>
+				            		</div>
+				<div class="card-body collapse in">
+	  <div class="card-block border-bottom-blue-grey" style="border-left: 2px solid #607D8B;border-right: 2px solid #607D8B;">
 			<%if(request.getAttribute("success") !=null) {%>
 		 		<div class="panel-body" id="panelbody">
                             <div class="alert alert-dismissable alert-success ">
@@ -429,23 +421,21 @@ function checkhrs2() {
                             </div>
           		</div>  
           		<%} %>
-			<!-- /.row -->
-			<div class="row">
-				<div class="col-lg-12">
-					<div class="panel panel-primary">
-						<div class="panel-heading">
-							<div class="row">
-								<div class="col-lg-6">
-									<span class="icon-ios-calendar"></span> &nbsp;&nbsp;<b>MY TIME-SHEET</b>
-								</div>
-								<div class="col-lg-6" align="right">
-									<a href="timesheet.jsp?date=<%=date%>"><button class="btn btn-xs"
-																style="background-color: #3BAFDA" data-toggle="tooltip"
-																data-placement="top" title="Back">
-									<span class="icon icon-reply"></span>&nbsp;&nbsp;<b>Back To Home</b></button></a>
-								</div>
-							</div>
-						</div>
+          	
+								<div class="row">
+									<div class="col-lg-12">
+										<div class="panel panel-primary">
+											<div class="panel-heading">
+												<div class="row">
+													<div class="col-lg-6">
+														<span class="icon-ios-calendar"></span> &nbsp;&nbsp;<b>All
+															TIME-SHEET</b>
+													</div>
+        
+													
+												</div>
+											</div>
+						<br>
 						<div class="panel-body">
 						<form action="duplicatTimesheetCheck" id="addTimesheet" method="post">
 						<input type="hidden" name="insert">
@@ -473,7 +463,6 @@ function checkhrs2() {
 								<div class="col-md-4">
 									<select class="form-control" name="project_id" id="addTimesheet" onchange="autoSubmit(this.id);">
 										<option value="">---Select Project Name---</option>
-										
 										
 										<%
 																List<ProjectManagerListBean> listOfAssignProject = (ArrayList) allListDAO.listOfProjectWithActiveStatus(employee_master_id);
@@ -570,13 +559,7 @@ function checkhrs2() {
 										<%=p.getProjectMasterBean().getProject_master_name()%></option>
 										<%} %>
 										<%} }%>
-										
-										
-										
-										
-										
-										
-										
+									
 										
 										<%if(project_id == 0){ %>
 										<option value="0" selected="selected">Unplan Project</option>
@@ -591,9 +574,17 @@ function checkhrs2() {
 										<%} %>
 									</select>
 								</div>
+										<div class="col-md-3" align="right">
+													<a href="timesheet.jsp"><button class="btn btn-primary"
+																style="background-color: #3BAFDA" data-toggle="tooltip"
+																data-placement="top" title="Back">
+									<span class="icon icon-reply"></span>&nbsp;&nbsp;<b>Back To Home</b></button></a>
+														
+													</div>
 						</form>
 							</div>
 						</div>
+						<br>
 						<%if(project_id == 0 || project_id == 1){ %>
 							<form action="unplanProjectInsert" id="employeeTimeSheetInsert"  method="post" enctype="multipart/form-data">
 						<%}else{ %>
@@ -605,14 +596,13 @@ function checkhrs2() {
 						<input type="hidden" name="project_master_id" id="project_id" value="<%=project_id%>">
 						<input type="hidden" name="client_master_id" value="<%=client_master_id%>">
 						<input type="hidden" name="data" id="data" value="">
-						
 						<div class="row">
 						<div class="col-lg-12">
 						<div class="panel-body">
 								<div class="table-responsive">
 								<p align="right"><b>Total Work hours : <font color="red"><%=w%> hour(s)</font></b></p>
 								<%if(project_id != 0 && project_id != 1 ){ %>
-									<table class="table table-bordered zero-configuration">
+									<table class="table table-striped table-bordered table-hover" id="dataTables">
 										<thead>
 											<tr bgcolor="#C6C3C2">
 												<th name="taskName">Task
@@ -720,8 +710,8 @@ function checkhrs2() {
 											
 										</div>
 													
-										<div class="col-md-1" style="padding-left: 5px; padding-right: 0px;">
-											<a style="cursor: pointer;" onclick="disable()"><i class="icon icon-plus-circled"  id="hideButton" style="padding-top: 8px;"></i></a>
+										<div class="col-md-1" style="padding-left: 15px; padding-right: 0px;">
+											<a style="cursor: pointer;" onclick="disable()"><i class="icon-plus-circled"  id="hideButton" style="padding-top: 8px;"></i></a>
 										</div>
 										
 										<br><br>
@@ -762,7 +752,7 @@ function checkhrs2() {
 										
 									</table>
 					<%}else if(project_id == 0){ %>
-								<table class="table table-bordered zero-configuration">
+								<table class="table table-striped table-bordered table-hover" id="dataTables">
 										<thead>
 											<tr bgcolor="#C6C3C2">
 												<th name="taskName">Project
@@ -804,7 +794,7 @@ function checkhrs2() {
 								
 								<%}else if(project_id == 1){ %>
 												
-									<table class="table table-bordered zero-configuration">
+									<table class="table table-striped table-bordered table-hover" id="dataTables">
 										<thead>
 											<tr bgcolor="#C6C3C2">
 												<th name="taskName">Project
@@ -840,8 +830,8 @@ function checkhrs2() {
 														<option value="0">---Select Task---</option>
 													</select>
 													</div>
-													<div class="col-md-1" style="padding-left: 5px; padding-right: 0px;">
-													<a style="cursor: pointer;" onclick="showTextBox()"><i class="icon icon-plus-circled"  id="hideButton" style="padding-top: 8px;"></i></a>
+													<div class="col-md-1" style="padding-left: 15px; padding-right: 0px;">
+													<a style="cursor: pointer;" onclick="showTextBox()"><i class="icon-plus-circled"  id="hideButton" style="padding-top: 8px;"></i></a>
 													</div>
 													<br>
 													<br>
@@ -883,9 +873,6 @@ function checkhrs2() {
 								<%} %>
 								
 								</div>
-								
-							<!-- /.table-responsive -->
-							<!-- /.panel-body -->
 						</div>
 						</div>
 						</div>
@@ -914,11 +901,12 @@ function checkhrs2() {
 											e1.printStackTrace();
 										}	 %>
 										<div class="panel-heading" align="left"><span class="icon icon-ios-calendar"></span> &nbsp;&nbsp;<b>Overall Timesheet for Date : <%=d1%></b></div>
+										<br>
 										<div class="panel-body">
 											<div class="dataTable_wrapper">
-											<table class="table table-bordered zero-configuration">
+											<table class="table table-striped table-bordered table-hover" id="dataTables">
 
-											<tr bgcolor="#C6C3C2">
+											<tr>
 												<th>Project Name</th>
 												<th>Task Name</th>
 												<th>Worked Hours</th>
@@ -1018,18 +1006,21 @@ function checkhrs2() {
 									
 							<br>	
 								</form>			
-											
-								</div>
+							</form>
 							</div>
 							</div>
-					</div>
-				<!-- /#page-wrapper -->
-	</div>
-	</div>
-	</section>
-	</div>
-	</div>
-	</div>
+							</div>
+							</div>
+							</div>
+							</div>
+							</div>
+							</div>
+							</div>
+							</section>
+							</div>
+							</div>
+							</div>
+
 <%@include file="footer.html"%>
     <!-- BEGIN VENDOR JS-->
     <!-- build:js app-assets/js/vendors.min.js-->
@@ -1077,6 +1068,13 @@ function checkhrs2() {
 	<!-- BEGIN PAGE LEVEL JS-->
     <script src="app-assets/js/scripts/tables/datatables/datatable-basic.min.js" type="text/javascript"></script>
     <!-- END PAGE LEVEL JS-->
+    <script>
+		$(document).ready(function() {
+			$('#dataTables-example').DataTable({
+				responsive : true
+			});
+		});
+	</script>
 	<script>
 		// tooltip demo
 		$('.tooltip-demo').tooltip({

@@ -324,30 +324,6 @@ public class AllListDAO
         
 	}
 	
-	public LeaveBalanceBean getleaveListbyEMP(int emp_id)
-	{
-        Session session = HibernateUtil.openSession();
-        Transaction tx = null;  
-        LeaveBalanceBean leaveBalanceBean = null;
-        try {
-            tx = session.getTransaction();
-            tx.begin();
-            Query query= session.createQuery("FROM LeaveBalanceBean WHERE employee_master_id='"+ emp_id +"'");
-            leaveBalanceBean = (LeaveBalanceBean)query.uniqueResult();
-            tx.commit();
-        } catch (Exception e) {
-            if (tx != null) {
-                tx.rollback();
-            }
-            e.printStackTrace();
-        } finally {
-            session.close();
-        }
-        return leaveBalanceBean;
-        
-	}
-	
-	
 	public LeaveBalanceBean getleaveListbyEMPCode(int emp_code)
 	{
         Session session = HibernateUtil.openSession();

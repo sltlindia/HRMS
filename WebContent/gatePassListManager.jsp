@@ -243,7 +243,7 @@
 															<h4>
 																<b>Legends :&nbsp;</b>
 															</h4>
-															<i class="fa fa-check" style="color: #337ab7;"></i><b>
+															<i class="icon-checkmark" style="color: #337ab7;"></i><b>
 																: Approve </b>&nbsp;&nbsp;&nbsp;&nbsp;<i class="icon-close"
 																style="color: red;"></i><b> : Reject </b>&nbsp;&nbsp;&nbsp;&nbsp;<i
 																class="icon icon-eye4"

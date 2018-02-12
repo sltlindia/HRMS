@@ -17,29 +17,44 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
-<meta name="description"
-	content="Robust admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
-<meta name="keywords"
-	content="admin template, robust admin template, dashboard template, flat admin template, responsive admin template, web app">
-<meta name="author" content="PIXINVENT">
-<link rel="shortcut icon" sizes="152x152"
-	href="app-assets/images/ico/titleIcon.png">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-touch-fullscreen" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="default">
-<title>CO Details</title>
-<link rel="stylesheet"
-	href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.css" />
-<script
-	src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<script
-	src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
-
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <meta name="description" content="Robust admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
+    <meta name="keywords" content="admin template, robust admin template, dashboard template, flat admin template, responsive admin template, web app">
+    <meta name="author" content="PIXINVENT">
+   <title>Leave CO Manager Show</title>
+    <link rel="apple-touch-icon" sizes="60x60" href="app-assets/images/ico/apple-icon-60.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="app-assets/images/ico/apple-icon-76.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="app-assets/images/ico/apple-icon-120.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="app-assets/images/ico/apple-icon-152.png">
+    <link rel="shortcut icon" type="image/x-icon" href="https://pixinvent.com/bootstrap-admin-template/robust/app-assets/images/ico/favicon.ico">
+    <link rel="shortcut icon" type="image/png" href="app-assets/images/ico/favicon-32.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-touch-fullscreen" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <link rel="stylesheet" type="text/css" href="app-assets/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="app-assets/fonts/icomoon.css">
+    <link rel="stylesheet" type="text/css" href="app-assets/fonts/flag-icon-css/css/flag-icon.min.css">
+    <link rel="stylesheet" type="text/css" href="app-assets/vendors/css/sliders/slick/slick.css">
+    <link rel="stylesheet" type="text/css" href="app-assets/vendors/css/extensions/pace.css">
+    <link rel="stylesheet" type="text/css" href="app-assets/vendors/css/extensions/sweetalert.css">
+    <link rel="stylesheet" type="text/css" href="app-assets/vendors/css/tables/datatable/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" type="text/css" href="app-assets/css/bootstrap-extended.min.css">
+    <link rel="stylesheet" type="text/css" href="app-assets/css/app.min.css">
+    <link rel="stylesheet" type="text/css" href="app-assets/css/colors.min.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <link rel="stylesheet" type="text/css" href="app-assets/css/core/menu/menu-types/horizontal-menu.min.css">
+    <link rel="stylesheet" type="text/css" href="app-assets/css/core/menu/menu-types/vertical-overlay-menu.min.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <script src="app-assets/js/core/libraries/jquery.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="fusioncharts/js/fusioncharts.js"></script>
+	<script type="text/javascript" src="fusioncharts/js/themes/fusioncharts.theme.fint.js"></script>
+	
+<link href="offlinetimepicker/jquerysctipttop.css" rel="stylesheet" type="text/css">
+<link href="offlinetimepicker/mdtimepicker.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="sweetalert/sweetalert.css">
+<link href="offlineDatePicker/12jquery-ui.css" rel="stylesheet">
 <script type="text/javascript">
 	function replica() {
 		/* alert("akash"); */
@@ -80,46 +95,7 @@
 </script>
 <%@include file="header.jsp"%>
 </head>
-<!-- BEGIN VENDOR CSS-->
-<link rel="stylesheet" type="text/css"
-	href="app-assets/css/bootstrap.min.css">
-<!-- font icons-->
-<link rel="stylesheet" type="text/css"
-	href="app-assets/fonts/icomoon.css">
-<link rel="stylesheet" type="text/css"
-	href="app-assets/fonts/flag-icon-css/css/flag-icon.min.css">
-<link rel="stylesheet" type="text/css"
-	href="app-assets/vendors/css/sliders/slick/slick.css">
-<link rel="stylesheet" type="text/css"
-	href="app-assets/vendors/css/extensions/pace.css">
-<link rel="stylesheet" type="text/css"
-	href="app-assets/vendors/css/pickers/daterange/daterangepicker.css">
-<link rel="stylesheet" type="text/css"
-	href="app-assets/vendors/css/pickers/datetime/bootstrap-datetimepicker.css">
-<link rel="stylesheet" type="text/css"
-	href="app-assets/vendors/css/pickers/pickadate/pickadate.css">
-<!-- END VENDOR CSS-->
-<!-- BEGIN ROBUST CSS-->
-<link rel="stylesheet" type="text/css"
-	href="app-assets/css/bootstrap-extended.min.css">
-<link rel="stylesheet" type="text/css" href="app-assets/css/app.min.css">
-<link rel="stylesheet" type="text/css"
-	href="app-assets/css/colors.min.css">
-<link rel="stylesheet" type="text/css" href="assets/css/style.css">
-<!-- END ROBUST CSS-->
-<!-- BEGIN Page Level CSS-->
-<link rel="stylesheet" type="text/css"
-	href="app-assets/css/core/menu/menu-types/horizontal-menu.min.css">
-<link rel="stylesheet" type="text/css"
-	href="app-assets/css/core/menu/menu-types/vertical-overlay-menu.min.css">
-<link rel="stylesheet" type="text/css"
-	href="app-assets/css/plugins/pickers/daterange/daterange.min.css">
-<!-- END Page Level CSS-->
-<!-- BEGIN Custom CSS-->
-<link rel="stylesheet" type="text/css" href="assets/css/style.css">
-<!-- END Custom CSS-->
-<body data-open="hover" data-menu="horizontal-menu" data-col="2-columns"
-	class="horizontal-layout horizontal-menu 2-columns">
+<body data-open="hover" data-menu="horizontal-menu" data-col="2-columns" class="horizontal-layout horizontal-menu 2-columns">
 	<%
 		int CO_ID = Integer.parseInt(request.getParameter("CO_ID"));
 		AllListDAO allListDAO = new AllListDAO();
@@ -203,14 +179,14 @@
 					<div class="card-body collapse in">
 						<div class="card-block">
 							<div class="form-body">
-								<div class="row">
-									<div class="col-lg-12">
-										<h3 class="page-header" align="Center">
-											Compensatory Off Form <br> F-HRD-17
-										</h3>
+			<div class="row">
+				<div class="col-lg-12">
+					<h3 class="page-header" align="Center">Compensatory Off Form <br>
+										F-HRD-17</h3>
+					
+				</div>
+			</div>
 
-									</div>
-								</div>
 								<%
 									if (request.getAttribute("LeaveExist") != null) {
 								%>
@@ -245,12 +221,12 @@
 									}
 								%>
 								<!-- /.row -->
-								<div class="row">
-									<div class="col-lg-12">
-										<div class="panel panel-primary">
-											<div class="panel-heading">
-												<h4 align="left">
-													<div class="row">
+					<div class="row">
+				    <div class="col-md-12">
+				        <div class="card box-shadow-0" data-appear="appear">
+					        <div class="card-header card-inverse" style="background-color: #90A4AE;padding: 0.5rem 0rem 1rem 0rem;height: 50px;">
+					            <div class="col-sm-6">
+				               		<h4 class="card-title" id="horz-layout-basic" align="left">
 
 														<%
 															DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
@@ -297,11 +273,12 @@
 														</div>
 														<%
 															}
-														%>
+														%></h4>
 
-													</div>
-												</h4>
-											</div>
+														</div>
+				            </div>
+				               <div class="card-body collapse in">
+					                <div class="card-block border-bottom-blue-grey" style="border-left: 2px solid #607D8B;border-right: 2px solid #607D8B;">
 
 
 											<div class="panel-body">
@@ -334,7 +311,7 @@
 														<tbody>
 															<tr>
 																<th><label style="width: 200px">Please
-																		briefly describe the need of working on holiday</label></th>
+																		briefly describe the need of<br> working on holiday</label></th>
 																<td>:</td>
 																<td colspan="2"><input type="hidden" id="describe"
 																	value="<%=coBean.getDecripction()%>" name="describe"><%=coBean.getDecripction()%>
@@ -481,8 +458,10 @@
 									</div>
 								</div>
 							</div>
-						</div>
+							</div>
 					</div>
+				</div>
+				</div>
 				</div>
 				</section>
 			</div>

@@ -120,7 +120,8 @@
 											<td><%=d %></td>
 												<td><%=dayBean.getDay()%></td>
 												<td><%=employeeBean.getFirstname()%> <%=employeeBean.getLastname() %></td>
-												<td><a href="pendingTimeSheetDetail?employee_master_id=<%=employeeBean.getEmployee_master_id()%>&date=<%=timeSheetBean.getDate()%>"><button class="btn btn-xs" style="background-color: #3BAFDA" data-toggle="tooltip" data-placement="top" title="View Details"><i class="icon icon-eye4"></i> View</button></a></td>
+												<td><a href="pendingTimeSheetDetail?employee_master_id=<%=employeeBean.getEmployee_master_id()%>&date=<%=timeSheetBean.getDate()%>">
+												<i class="icon-eye4"style="color: #2196f3" data-toggle="tooltip" data-placement="top" title="View Details"></i></a></td>
 											</tr>
 											<%
 													}
@@ -151,26 +152,20 @@
                                         					<td><%=d%></td>
 																<td><%=t.getDayBean().getDay()%></td>
                                         						<td><%=t.getEmployeeBean().getFirstname()%> <%=t.getEmployeeBean().getLastname()%></td>
-																<td><a href="pendingTimeSheetDetail?employee_master_id=<%=t.getEmployeeBean().getEmployee_master_id()%>&date=<%=t.getDate()%>"><button class="btn btn-xs" style="background-color: #3BAFDA" data-toggle="tooltip" data-placement="top" title="View Details"><i class="icon icon-eye4"></i> View</button></a></td>
+																<td><a href="pendingTimeSheetDetail?employee_master_id=<%=t.getEmployeeBean().getEmployee_master_id()%>&date=<%=t.getDate()%>">
+																<i class="icon-eye4" style="color: #2196f3" data-toggle="tooltip" data-placement="top" title="View Details"></a></td>
 																</tr>
 																<%}
 															}%>
 										</tbody>
-										<!-- /.tbody -->
 									</table>
-									<!-- /.table -->
 									</div>
-									<font size="3px;"><b>Legends :&nbsp;</b></font> <i class="icon icon-eye4"></i><b> : View Detail </b> &nbsp;&nbsp;&nbsp;
+									<font size="3px;"><b>Legends :&nbsp;</b></font> <i class="icon-eye4" style="color: #2196f3"></i><b> : View Detail </b> &nbsp;&nbsp;&nbsp;
 								</div>
-								<!-- /.dataTable_wrapper -->
 							</div>
-							<!-- /.panel-body -->
 						</div>
-						<!-- /.panel panel-primary -->
 					</div>
-					<!-- /.col-lg-12 -->
 				</div>
-				<!-- /.row -->
 				</div>
 		</div>
 		</div>		

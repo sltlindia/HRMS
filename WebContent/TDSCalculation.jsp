@@ -2085,7 +2085,8 @@ ArrayList<String> holidayDate = new ArrayList<String>();
 																		</th>
 																		<th>
 																				<!-- Button trigger modal -->
-																				<center><a href="" data-toggle="modal" data-target="#myModa3"><i class="icon-android-add-circle" title="CLICK HERE" style="color: black;font-size: 15px;"></i></a></center>
+																				<center><i class="icon-bell4" style="color: red;font-size: 13px;" data-placement="left" data-toggle="tooltip" title="For Metro City 50% of Basic Salary , For Non-Metro City 40% of Basic Salary"></i>
+																					<a href="" data-toggle="modal" data-target="#myModa3"><i class="icon-android-add-circle" title="CLICK HERE" style="color: black;font-size: 15px;"></i></a></center>
 																				<!-- Modal -->
 																				<div class="modal fade" id="myModa3" tabindex="-1"
 																					role="dialog" aria-labelledby="myModalLabel"
@@ -3056,7 +3057,7 @@ ArrayList<String> holidayDate = new ArrayList<String>();
 																		</th>
 																		<th width="50px;">
 																				<!-- Button trigger modal -->
-																				<center><i class="glyphicon glyphicon-info-sign" style="color: black;font-size: 13px;" tabindex="0" data-placement="left" data-toggle="popover" data-trigger="hover" data-content="Max. investment Rs.50000/- & maximum exemption 100 % of maxi. Investment amt."></i>
+																				<center><i class="icon-bell4" style="color: red;font-size: 13px;" data-placement="left" data-toggle="tooltip" title="Max. investment Rs.50000/- & maximum exemption 100 % of maxi. Investment amt."></i>
 																				<a href="" data-toggle="modal" data-target="#myModal9">
 																				<i class="icon-android-add-circle" title="CLICK HERE" style="color: black;font-size: 15px;"></i></a></center>
 																				<!-- Modal -->
@@ -3117,7 +3118,7 @@ ArrayList<String> holidayDate = new ArrayList<String>();
 																			</center></th>
 																		<th style="padding-top: 15px;">
 																				<!-- Button trigger modal -->
-																				<center><i class="glyphicon glyphicon-info-sign" style="color: black;font-size: 13px;" tabindex="0" data-placement="left" data-toggle="popover" data-trigger="hover" data-content="Max. investment Rs.50000/- & maximum exemption 50 % of maxi. Investment amt. i.e.  Rs. 25,000/-"></i>
+																				<center><i class="icon-bell4" style="color: red;font-size: 13px;" data-placement="left" data-toggle="tooltip" title="Max. investment Rs.50000/- & maximum exemption 50 % of maxi. Investment amt. i.e.  Rs. 25,000/-"></i>
 																				<a href="" data-toggle="modal" data-target="#myModal10">
 																				<i class="icon-android-add-circle" title="CLICK HERE" style="color: black;font-size: 15px;"></i></a></center>
 																				<!-- Modal -->
@@ -3242,7 +3243,8 @@ ArrayList<String> holidayDate = new ArrayList<String>();
 																			</center></th>
 																		<th width="50px;">
 																				<!-- Button trigger modal -->
-																				<center><a href="" data-toggle="modal" data-target="#myModal12"><i class="icon-android-add-circle" title="CLICK HERE" style="color: black;font-size: 15px;"></i></a></center>
+																				<center><i class="icon-bell4" style="color: red;font-size: 13px;" data-placement="left" data-toggle="tooltip" title="(1) Max Rs 25000/- and Extra Rs 5000 For Health Check up only. (2) Rs 30000 extra benefits for Parents whether Dependent or not (Only Cheque payment)"></i>
+																					<a href="" data-toggle="modal" data-target="#myModal12"><i class="icon-android-add-circle" title="CLICK HERE" style="color: black;font-size: 15px;"></i></a></center>
 																				<!-- Modal -->
 																				<div class="modal fade" id="myModal12" tabindex="-1"
 																					role="dialog" aria-labelledby="myModalLabel"
@@ -3354,7 +3356,8 @@ ArrayList<String> holidayDate = new ArrayList<String>();
 																			</center></th>
 																		<th style="padding-top: 15px;">
 																			<!-- Button trigger modal -->
-																			<center><a href="" data-toggle="modal" data-target="#myModal13"><i class="icon-android-add-circle" title="CLICK HERE" style="color: black;font-size: 15px;"></i></a></center>
+																			<center><i class="icon-bell4" style="color: red;font-size: 13px;" data-placement="left" data-toggle="tooltip" title="Cash :Max Rs 2000/- & Cheque not more than 10% of Taxable Income"></i>
+																				<a href="" data-toggle="modal" data-target="#myModal13"><i class="icon-android-add-circle" title="CLICK HERE" style="color: black;font-size: 15px;"></i></a></center>
 																			<!-- Modal -->
 																			<div class="modal fade" id="myModal13" tabindex="-1"
 																				role="dialog" aria-labelledby="myModalLabel"
@@ -3475,7 +3478,8 @@ ArrayList<String> holidayDate = new ArrayList<String>();
 																			</center></th>
 																		<th style="padding-top: 15px;">
 																			<!-- Button trigger modal -->
-																			<center><a href="" data-toggle="modal" data-target="#myModal14"><i class="icon-android-add-circle" title="CLICK HERE" style="color: black;font-size: 15px;"></i></a></center>
+																			<center><i class="icon-bell4" style="color: red;font-size: 13px;" data-placement="left" data-toggle="tooltip" title="(A)Deduction to any political party or an electoral trust registered under section 29A of the Representation of the People Act.. done by any way other than cash. (B)Allows deductions for donations made towards scientific research or rural development & is allowed to all assessees except those who have income (or loss) from business and/or profession."></i>
+																				<a href="" data-toggle="modal" data-target="#myModal14"><i class="icon-android-add-circle" title="CLICK HERE" style="color: black;font-size: 15px;"></i></a></center>
 																			<!-- Modal -->
 																			<div class="modal fade" id="myModal14" tabindex="-1"
 																				role="dialog" aria-labelledby="myModalLabel"

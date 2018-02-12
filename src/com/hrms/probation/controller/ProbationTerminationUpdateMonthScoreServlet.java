@@ -75,8 +75,8 @@ private static final long serialVersionUID = 1L;
 		LoginDAO loginDAO = new LoginDAO();
 		EmployeeBean employeeBean1 = loginDAO.getEmailId(under_manager_Of_reviewing);
 		
-		String role_authority = employeeBean1.getRoleBean().getRole_authority();
-		
+		/*String role_authority = employeeBean1.getRoleBean().getRole_authority();*/
+		int role_id = employeeBean1.getRoleBean().getRole_id();
 		
 		String termination_remarks = null;
 		EmployeeBean employeeBean = new EmployeeBean();
@@ -157,7 +157,7 @@ private static final long serialVersionUID = 1L;
 						allUpdateProbationDAO.probationm2ScoreUpdateByProbationId(continue_for_next_month,warning_letter,termination_letter,employee_master_id,month_id,year_id);
 						manager_status = "pending";
 						
-						if(role_authority.equalsIgnoreCase("D1") || role_authority.equalsIgnoreCase("D2") || role_authority.equalsIgnoreCase("D3") || role_authority.equalsIgnoreCase("D4")){
+						if(role_id == 2 ||role_id == 3  || role_id == 9){
 							manager_status = "hrPending";
 						}
 						

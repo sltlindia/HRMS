@@ -4518,6 +4518,28 @@
     <servlet-name>TDSSalaryDataInsertServlet</servlet-name>
     <url-pattern>/tdsSalaryDataInsert</url-pattern>
   </servlet-mapping>
+
+  <servlet>
+    <description></description>
+    <display-name>UpdatePayrollMasterDataServlet</display-name>
+    <servlet-name>UpdatePayrollMasterDataServlet</servlet-name>
+    <servlet-class>com.hrms.tds.controller.UpdatePayrollMasterDataServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UpdatePayrollMasterDataServlet</servlet-name>
+    <url-pattern>/updatePayrollMasterData</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>UpdatePayrollBasicDataServlet</display-name>
+    <servlet-name>UpdatePayrollBasicDataServlet</servlet-name>
+    <servlet-class>com.hrms.tds.controller.UpdatePayrollBasicDataServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UpdatePayrollBasicDataServlet</servlet-name>
+    <url-pattern>/updatePayrollBasicData</url-pattern>
+  </servlet-mapping>
+ 
   <servlet>
     <description></description>
     <display-name>DataInsertIntoGateInwardServlet</display-name>

@@ -20,7 +20,7 @@
     <meta name="description" content="Robust admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
     <meta name="keywords" content="admin template, robust admin template, dashboard template, flat admin template, responsive admin template, web app">
     <meta name="author" content="PIXINVENT">
-    <title>Sweet Alerts - Robust Bootstrap Admin Template</title>
+    <title>View All Pending Time-Sheet</title>
     <link rel="apple-touch-icon" sizes="60x60" href="app-assets/images/ico/apple-icon-60.png">
     <link rel="apple-touch-icon" sizes="76x76" href="app-assets/images/ico/apple-icon-76.png">
     <link rel="apple-touch-icon" sizes="120x120" href="app-assets/images/ico/apple-icon-120.png">
@@ -148,28 +148,41 @@ String rejection_reason = "";
 											}
 %>	
 	<div class="app-content container center-layout mt-2">
-		<div class="content-wrapper">
-			<div class="content-body">
-				<section id="horizontal-form-layouts">
-				<div class="card">
-					<div class="card-body collapse in">
-						<div class="card-block">
-							<div class="form-body">
-			<div class="row">
-				<div class="col-lg-12">
-					<h1 class="page-header">Time-Sheet Management</h1>
-				</div>
+	<div class="content-wrapper">
+      	<div class="content-body">
+			<section id="horizontal-form-layouts">
+				<div class="row"> 
+			        <div class="col-xs-12">
+			            <h1>Time-Sheet Management</h1>
+			        </div>
+			    </div>
 				<!-- /.col-lg-12 -->
-			</div>
-			<hr>
-			<div class="row">
+			
+			<br>
+			 	<div class="app-content container center-layout mt-2">
+      <div class="content-wrapper">
+        <div class="content-body">
+			<section id="file-export">
+    			<div class="row">
+        			<div class="col-xs-12">
+            			<div class="card">
+                			<div class="card-header">
+                    			<div class="card box-shadow-0" data-appear="appear">
+					        		<div class="card-header card-inverse" style="background-color: #90A4AE;padding: 0.5rem 0rem 1rem 0rem;height: 50px;">
+					            		<div class="col-sm-6">
+				               				<h4 class="card-title" id="horz-layout-basic"><span class="icon-ios-calendar"></span>Timesheet for Date : <%=d %></h4>
+				                		</div>
+				            		</div>
+				<div class="card-body collapse in">
+	  <div class="card-block border-bottom-blue-grey" style="border-left: 2px solid #607D8B;border-right: 2px solid #607D8B;">
+			<%-- <div class="row">
 				<div class="col-lg-12">
 					<div class="panel panel-primary">
 						<div class="panel-heading">
 						<div class="row">
 								<div class="col-lg-6">
 									<span class="icon icon-ios-calendar"></span> &nbsp;&nbsp;<b>Timesheet for Date : <%=d %></b>
-								</div>
+								</div> --%>
 								<div class="col-lg-6" align="right">
 									<%if(status.equalsIgnoreCase("pending") || status.equalsIgnoreCase("updated")){%>
 										<a href="pendingTimeSheetList">
@@ -178,13 +191,9 @@ String rejection_reason = "";
 									<%}else if(status.equalsIgnoreCase("rejected")){%>
 										<a href="rejectedTimeSheet">
 									<%} %>
-									<button class="btn btn-xs"
-																style="background-color: #3BAFDA" data-toggle="tooltip"
-																data-placement="top" title="Back">
-									<span class="icon icon-reply"></span>&nbsp;&nbsp;Back</button></a>
+									</a>
 								</div>
-							</div>
-						</div>
+							
 						<!-- /.panel-heading -->
 						<form method="post" action="statusUpdate">
 				<input type="hidden" name="action" id="action" value="">
@@ -200,10 +209,15 @@ String rejection_reason = "";
 							
 								<h5><div class="col-md-3"><b>Date</b> : <%=d %></div>
 								<div class="col-md-2"><b>Day</b> : <%=day %></div>
-								<div class="col-md-5"><b>Employee Name</b> : <%=name %></div></h5>	
+								<div class="col-md-6"><b>Employee Name</b> : <%=name %></div></h5>	
+								<button class="btn btn-primary"
+																style="background-color: #3BAFDA" data-toggle="tooltip"
+																data-placement="top" title="Back">
+									<span class="icon icon-reply"></span>&nbsp;&nbsp;Back</button>
 								</div>
 								</div>
 							</div>	
+							
 							<div class="table table-responsive">
 								<table class="table table-striped table-bordered table-hover">
 
@@ -440,40 +454,34 @@ String rejection_reason = "";
 			</div>
 		</div>
 	</div>
+	</div>
+	</div>
+	</section>
+	</div>
 	 </div>
                          </div>
                          </section>
                          </div>
                          </div>
                          </div>  
-			<%@include file="footer.html"%>
-    <!-- BEGIN VENDOR JS-->
-    <!-- build:js app-assets/js/vendors.min.js-->
-    <script src="app-assets/js/core/libraries/jquery.min.js" type="text/javascript"></script>
-    <script src="app-assets/vendors/js/ui/tether.min.js" type="text/javascript"></script>
-    <script src="app-assets/js/core/libraries/bootstrap.min.js" type="text/javascript"></script>
-    <script src="app-assets/vendors/js/ui/perfect-scrollbar.jquery.min.js" type="text/javascript"></script>
-    <script src="app-assets/vendors/js/ui/unison.min.js" type="text/javascript"></script>
-    <script src="app-assets/vendors/js/ui/blockUI.min.js" type="text/javascript"></script>
-    <script src="app-assets/vendors/js/ui/jquery.matchHeight-min.js" type="text/javascript"></script>
-    <script src="app-assets/vendors/js/ui/jquery-sliding-menu.js" type="text/javascript"></script>
-    <script src="app-assets/vendors/js/sliders/slick/slick.min.js" type="text/javascript"></script>
-    <script src="app-assets/vendors/js/ui/screenfull.min.js" type="text/javascript"></script>
-    <script src="app-assets/vendors/js/extensions/pace.min.js" type="text/javascript"></script>
-    <!-- /build-->
-    <!-- BEGIN VENDOR JS-->
-    <!-- BEGIN PAGE VENDOR JS-->
-    <script type="text/javascript" src="app-assets/vendors/js/ui/jquery.sticky.js"></script>
-    <script src="app-assets/vendors/js/extensions/sweetalert.min.js" type="text/javascript"></script>
-    <!-- END PAGE VENDOR JS-->
-    <!-- BEGIN ROBUST JS-->
-    <!-- build:js app-assets/js/app.min.js-->
-    <script src="app-assets/js/core/app-menu.min.js" type="text/javascript"></script>
-    <script src="app-assets/js/core/app.min.js" type="text/javascript"></script>
-    <script src="app-assets/js/scripts/ui/fullscreenSearch.min.js" type="text/javascript"></script>
-    <!-- /build-->
-    <!-- END ROBUST JS-->
-  	<script>
+		<%@include file="footer.html"%>
+	<script src="app-assets/js/core/libraries/jquery.min.js" type="text/javascript"></script>
+	<script src="app-assets/vendors/js/ui/tether.min.js" type="text/javascript"></script>
+	<script src="app-assets/js/core/libraries/bootstrap.min.js" type="text/javascript"></script>
+	<script src="app-assets/vendors/js/ui/perfect-scrollbar.jquery.min.js" type="text/javascript"></script>
+	<script src="app-assets/vendors/js/ui/unison.min.js" type="text/javascript"></script>
+	<script src="app-assets/vendors/js/ui/blockUI.min.js" type="text/javascript"></script>
+	<script src="app-assets/vendors/js/ui/jquery.matchHeight-min.js" type="text/javascript"></script>
+	<script src="app-assets/vendors/js/ui/jquery-sliding-menu.js" type="text/javascript"></script>
+	<script src="app-assets/vendors/js/sliders/slick/slick.min.js" type="text/javascript"></script>
+	<script src="app-assets/vendors/js/ui/screenfull.min.js" type="text/javascript"></script>
+	<script src="app-assets/vendors/js/extensions/pace.min.js" type="text/javascript"></script>
+	<script src="app-assets/vendors/js/ui/jquery.sticky.js" type="text/javascript"></script>
+	<script src="app-assets/vendors/js/extensions/sweetalert.min.js" type="text/javascript"></script>
+	<script src="app-assets/js/core/app-menu.min.js" type="text/javascript"></script>
+	<script src="app-assets/js/core/app.min.js" type="text/javascript"></script>
+	<script src="app-assets/js/scripts/ui/fullscreenSearch.min.js" type="text/javascript"></script>
+	<script>
 	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
@@ -483,5 +491,10 @@ String rejection_reason = "";
 	  ga('send', 'pageview');
 
 	</script>
+	<script src="app-assets/vendors/js/tables/jquery.dataTables.min.js" type="text/javascript"></script>
+	<script src="app-assets/vendors/js/tables/datatable/dataTables.bootstrap4.min.js" type="text/javascript"></script>
+	<script src="app-assets/vendors/js/tables/datatable/dataTables.buttons.min.js" type="text/javascript"></script>
+	<script src="app-assets/js/scripts/tables/datatables/datatable-basic.min.js" type="text/javascript"></script>
+	<script src="app-assets/js/scripts/navs/navs.min.js" type="text/javascript"></script>
 	  </body>
 </html>

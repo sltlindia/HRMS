@@ -294,6 +294,7 @@ for indirect employees
 					             <h5 class="card-title" id="horz-layout-basic"><b><font size="2px">Please rate on scale of 1 to 5<br>5 = Excellent,4 = Exceeds Expectations,3 = Fully Achieves Expectations,2 = Met some but not all expectations,1 = Unsatisfactory.</font></b></h5>
 				                </div>
 				            </div>
+				            		 <div class="card-body collapse in">
 					               	 <div class="card-block border-bottom-blue-grey" style="border-left: 2px solid #607D8B;border-right: 2px solid #607D8B;">
 
 						<input type="hidden" name="employee_master_id" value="<%=emp_id%>">
@@ -1273,6 +1274,7 @@ if (authority.equals("W1") || authority.equals("W2") || authority.equals("W3")
 								</form>
 								</form>
 								</form>
+								</div>
 								</div>
 								</div>
 						</div>

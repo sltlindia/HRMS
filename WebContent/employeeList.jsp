@@ -217,10 +217,10 @@ File export table
                                         <tr class="emp<%=e.getEmployee_master_id()%>">
                                         <th style="padding: 3px;"><a id=""
 																	style="color: black; text-decoration: none; cursor: pointer;"
-																	onclick="showData(this.id)"><i
-																		class="icon-android-add-circle"></i> </a></th>
+																	onclick="showData(this.id)">&nbsp;<i
+																		class="icon-plus-circled"></i></a></th>
 																		
-										<td><%=i+1 %>&nbsp;&nbsp;<i class="icon-plus-circled" data-toggle="tooltip" data-placement="top" title="" style="color: #3BAFDA"></i></td>                                        
+										<td><%=i+1 %>&nbsp;&nbsp;<i class="" data-toggle="tooltip" data-placement="top" title="" style="color: #3BAFDA"></i></td>                                        
                                         <td><%=e.getFirstname()+" "+e.getMiddlename() +" "+ e.getLastname() %></td> 
                                        	<td><%=e.getEmployee_code() %></td>
                                        	 <td><%=e.getCompanyListBean().getCompany_name()%></td>
@@ -240,7 +240,7 @@ File export table
                                        	 <%if( manager_id == 4 || manager_id == 117 || under_manager_id == 4 || under_manager_id == 117){ %>
                                      	<a href="employeeUpdate.jsp?employee_master_id=<%=e.getEmployee_master_id()%>"><i class="icon-edit2" data-toggle="tooltip" data-placement="top" title="Show View" style="color: #3BAFDA"></i></a>
 										<i class="ficon icon-trash-o" data-toggle="tooltip" data-placement="top" title="Delete Employee" style="color: red;cursor: pointer;" onclick="deleteEmp(<%=e.getEmployee_master_id()%>)"></i>
-                                        <%} %>
+      									 <%} %>
                                         </td>
                                        	<td class="hidden"><%=e.getGrade_code() %></td>
                                         <td class="hidden"><%=e.getBirth_date() %></td>
@@ -289,10 +289,8 @@ File export table
                                         </tr>
                                         <%} %>
                                     </tbody>
-	
                                 </table>
                                 </div>
-                                
                             </div>
                           </div>  
                         </div>    

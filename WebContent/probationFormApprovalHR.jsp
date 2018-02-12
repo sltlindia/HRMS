@@ -135,7 +135,9 @@ Jsp for displaying data at hr side  -->
 								<%
 									AllListProbationDAO allListProbationDAO = new AllListProbationDAO();
 									List<ProbationAssessmentManagerBean> listOfEmployee = allListProbationDAO.getListOfAllReviewsPending();
+									if(listOfEmployee.size() != 0){
 									for (ProbationAssessmentManagerBean pa : listOfEmployee) {
+										System.out.println("in first for");										
 										String employee_name = pa.getEmployeeBean().getFirstname() + " " + pa.getEmployeeBean().getLastname();
 										int emp_id = pa.getEmployeeBean().getEmployee_master_id();
 										int probationManagerId = pa.getProbation_assessment_manager_id();
@@ -167,14 +169,14 @@ Jsp for displaying data at hr side  -->
 									<td>
 									
 											<a
-										href="probationListByIdIndirectApproval.jsp?employee_master_id=<%=emp_id%>"><i
+										href="probationListByIdIndirectApproval.jsp?employee_master_id1=<%=emp_id%>"><i
 											class="icon-edit2" data-toggle="tooltip"
 											data-placement="top" title="Show View"></i></a>
 											</td>
 								</tr>
 								<%
 										
-									}
+									}}
 										
 								%>
 							</table>
@@ -295,7 +297,6 @@ Jsp for displaying data at hr side  -->
 													int id = pa.getReviewing_manager_id();
 													EmployeeBean employeeBean2 = loginDAO2.getEmailIdEmployee(reviewing_manager_id);
 											%>
-
 											<tr>
 												<td><%=pa.getEmployeeBean().getFirstname() + " " + pa.getEmployeeBean().getLastname()%></td>
 												<td><%=employeeBean2.getFirstname() +" "+ employeeBean2.getLastname()%></td>
@@ -313,7 +314,7 @@ Jsp for displaying data at hr side  -->
 												<td><center>
 												<%if(maxValue == extended){%>
 											 <a
-										href="probationListByIdIndirectApprovalView.jsp?employee_master_id=<%=emp_id%>"><i
+										href="probationListByIdIndirectApprovalView.jsp?employee_master_id1=<%=emp_id%>"><i
 											class="icon-eye4" data-toggle="tooltip"
 											data-placement="top" title="Show View"></i></a>
 											<%}else{
@@ -327,7 +328,7 @@ Jsp for displaying data at hr side  -->
 										<%
 											}
 										%>
-</tbody>
+										</tbody>
 									</table>
 									</div>
 							</div>
@@ -347,7 +348,7 @@ Jsp for displaying data at hr side  -->
 									<th>Total Extended Period</th>
 									<th>Action</th>
 								</tr>
-								<%
+							<%
 									List<ProbationAssessmentM2Bean> listOfEmployeess = allListProbationDAO.getListOfWarningEmployeeAll();
 									for (ProbationAssessmentM2Bean pa : listOfEmployeess) {
 										String employee_name = pa.getEmployeeBean().getFirstname() + " " + pa.getEmployeeBean().getLastname();
@@ -368,7 +369,7 @@ Jsp for displaying data at hr side  -->
 									<td>
 											<a
 										href="probationListByIdIndirectApprovalView.jsp?employee_master_id=<%=emp_id%>"><i
-											class="icon-eye4" data-toggle="tooltip"
+											class="glyphicon glyphicon-eye-open" data-toggle="tooltip"
 											data-placement="top" title="Show View"></i></a>
 											</td>
 								</tr>
@@ -402,16 +403,18 @@ Jsp for displaying data at hr side  -->
 										String authority = pa.getEmployeeBean().getRoleBean().getRole_authority();
 										
 										ProbationAssessmentManagerBean passessmentManagerBean = allListProbationDAO.getListOfProbationByEmpId(emp_id);
-										String to_be_extended = passessmentManagerBean.getTo_be_extended();
+										String to_be_extended = null;
 										int extended = 6;
 										String print_status = null;
 										String print_status_hr = null;
 										String print_status_top = null;
+										if(passessmentManagerBean != null){
 										int probationmanager_id = passessmentManagerBean.getProbation_assessment_manager_id();
 										String status = null;
 										List<ProbationExtendBean> listForExtend = allListProbationDAO.getProbationExtend(probationmanager_id);
 										for(ProbationExtendBean p : listForExtend){
 											status  = p.getStatus();
+											 to_be_extended = passessmentManagerBean.getTo_be_extended();
 											
 										}
 										List<ProbationAssessmentManagerBean> listOfExtended1 = allListProbationDAO.getListOfScoreByEmpId(emp_id);
@@ -425,6 +428,8 @@ Jsp for displaying data at hr side  -->
 												
 											}
 										}
+										}
+										
 										
 										long maxValue = 0;
 										if (authority.equals("W1") || authority.equals("W2") || authority.equals("W3") || authority.equals("T1")
@@ -435,6 +440,7 @@ Jsp for displaying data at hr side  -->
 											maxValue = allListProbationDAO.getCountForM2(emp_id);
 										}
 										int reviewing_manager_id = pa.getReviewing_manager_id();
+										if(passessmentManagerBean != null){
 										if(passessmentManagerBean.getManager_approval().equalsIgnoreCase("pending")){
 											print_status = "Pending";
 										}
@@ -466,6 +472,7 @@ Jsp for displaying data at hr side  -->
 										else{
 											print_status_top = "Rejected";
 										}
+										
 								%>
 
 								<tr>
@@ -479,7 +486,7 @@ Jsp for displaying data at hr side  -->
 										 if(maxValue == extended){ %>
 											 <td><a
 										href="probationListByIdIndirectApprovalView.jsp?employee_master_id=<%=emp_id%>"><i
-											class="icon-eye4" data-toggle="tooltip"
+											class="glyphicon glyphicon-eye-open" data-toggle="tooltip"
 											data-placement="top" title="Show View"></i></a>
 											</td>
 											<%} else{ %>
@@ -490,7 +497,7 @@ Jsp for displaying data at hr side  -->
 									 <td>
 											 <a
 										href="probationListByIdIndirectApprovalView.jsp?employee_master_id=<%=emp_id%>"><i
-											class="icon-eye4" data-toggle="tooltip"
+											class="glyphicon glyphicon-eye-open" data-toggle="tooltip"
 											data-placement="top" title="Show View"></i></a>
 											</td>
 											<%}else{ %>
@@ -537,6 +544,8 @@ Jsp for displaying data at hr side  -->
 														</div>
 														<!-- /.modal-dialog -->
 													</div>
+								<%} %>
+								
 								<%
 									}
 								%>

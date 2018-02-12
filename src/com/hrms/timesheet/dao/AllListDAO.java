@@ -656,30 +656,6 @@ public class AllListDAO {
 		return listOfTimeSheet;
 	}
 
-	public List<Object[]> employeeReport(int employee_master_id) {
-		List<Object[]> listOfEmployeeReport = new ArrayList<Object[]>();
-		Session session = HibernateUtil.openSession();
-		Transaction tx = null;
-		try {
-			tx = session.getTransaction();
-			tx.begin();
-			String hql = "from TimeSheetBean t inner join t.employeeBean e join t.projectMasterBean p join t.clientMasterBean c join t.taskMasterBean t1 where e.employee_master_id ="
-					+ employee_master_id
-					+ " and (task_time_status='submit' or task_time_status= 'updated') group by p.project_master_id";
-			Query query = session.createQuery(hql);
-			listOfEmployeeReport = query.list();
-			System.out.println(listOfEmployeeReport.size());
-			tx.commit();
-		} catch (Exception e) {
-			if (tx != null) {
-				tx.rollback();
-			}
-			e.printStackTrace();
-		} finally {
-			session.close();
-		}
-		return listOfEmployeeReport;
-	}
 
 	public List<Object[]> employeeReport1(int employee_master_id, int project_id) {
 		List<Object[]> listOfEmployeeReport = new ArrayList<Object[]>();
@@ -736,28 +712,6 @@ public class AllListDAO {
 		return listOfProjectReport;
 	}
 
-	public List<EmployeeBean> underManagerList(int manager_id) {
-		List<EmployeeBean> listOfEmployee = new ArrayList<EmployeeBean>();
-		Session session = HibernateUtil.openSession();
-		Transaction tx = null;
-		try {
-			tx = session.getTransaction();
-			tx.begin();
-			String hql = "from EmployeeBean where under_manager_id =" + manager_id + "";
-			Query query = session.createQuery(hql);
-			listOfEmployee = query.list();
-			System.out.println(listOfEmployee.size());
-			tx.commit();
-		} catch (Exception e) {
-			if (tx != null) {
-				tx.rollback();
-			}
-			e.printStackTrace();
-		} finally {
-			session.close();
-		}
-		return listOfEmployee;
-	}
 	
 	
 	
@@ -975,28 +929,7 @@ public class AllListDAO {
 		return listOfTimeSheet;
 	}
 
-	public List<EmployeeBean> getListOfEmployeeForProject(int manager_id) {
-		List<EmployeeBean> listOfEmployee = new ArrayList<EmployeeBean>();
-		Session session = HibernateUtil.openSession();
-		Transaction tx = null;
-		try {
-			tx = session.getTransaction();
-			tx.begin();
-			listOfEmployee = session.createQuery("FROM EmployeeBean WHERE under_manager_id='" + manager_id + "'")
-					.list();
-			System.out.println(listOfEmployee.size());
-			tx.commit();
-		} catch (Exception e) {
-			if (tx != null) {
-				tx.rollback();
-			}
-			e.printStackTrace();
-		} finally {
-			session.close();
-		}
-		return listOfEmployee;
-
-	}
+	
 
 	public List<ProjectMasterBean> getListOfProjectMaster(int manager_id) {
 		List<ProjectMasterBean> listOfProject = new ArrayList<ProjectMasterBean>();
@@ -1021,30 +954,7 @@ public class AllListDAO {
 
 	}
 
-	public List<ProjectMasterBean> getListOfUnderProjectMaster(int emp_manager_id) {
-		List<ProjectMasterBean> listOfProject = new ArrayList<ProjectMasterBean>();
-		Session session = HibernateUtil.openSession();
-		Transaction tx = null;
-		try {
-			tx = session.getTransaction();
-			tx.begin();
-			listOfProject = session
-					.createQuery(
-							"FROM ProjectMasterBean where managerBean=" + emp_manager_id + " and projectStatusBean =3")
-					.list();
-			tx.commit();
-		} catch (Exception e) {
-			if (tx != null) {
-				tx.rollback();
-			}
-			e.printStackTrace();
-		} finally {
-			session.close();
-		}
-		return listOfProject;
-
-	}
-
+	
 	public List<Object[]> getPerOfAllocationByProjectId(int employee_id, int project_id) {
 		List<Object[]> listOfAllocationProject = new ArrayList<Object[]>();
 		Session session = HibernateUtil.openSession();

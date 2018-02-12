@@ -1578,28 +1578,27 @@ public class AllListProbationDAO {
 			
 	}	
 	//List Method for getting All data from probation_topmanagement_approval_tbl by probation_manager_id
-		public List<ProbationAssessmentTerminationBean> getAllListOfTerminatedEmployeesPending(int employee_master_id){
-		 List<ProbationAssessmentTerminationBean> listOfAppraisal = new ArrayList<ProbationAssessmentTerminationBean>();
-	    Session session = HibernateUtil.openSession();
-	    Transaction tx = null;        
-	    try {
-	        tx = session.getTransaction();
-	        tx.begin();
-	        String hql = "from ProbationAssessmentTerminationBean where employee_master_id ='"+employee_master_id+"' and manager_status = 'pending'";
-			 Query query = session.createQuery(hql);
-			 listOfAppraisal = query.list();
-	        tx.commit();
-	    } catch (Exception e) {
-	        if (tx != null) {
-	            tx.rollback();
-	        }
-	        e.printStackTrace();
-	    } finally {
-	        session.close();
-	    }
-	    return listOfAppraisal;
-			
-	}
+			public List<ProbationAssessmentTerminationBean> getAllListOfTerminatedEmployeesPending(int employee_master_id){
+			 List<ProbationAssessmentTerminationBean> listOfAppraisal = new ArrayList<ProbationAssessmentTerminationBean>();
+		    Session session = HibernateUtil.openSession();
+		    Transaction tx = null;        
+		    try {
+		        tx = session.getTransaction();
+		        tx.begin();
+		        String hql = "from ProbationAssessmentTerminationBean where employee_master_id ='"+employee_master_id+"' and (manager_status = 'pending' or  manager_status = 'hrPending')";
+				 Query query = session.createQuery(hql);
+				 listOfAppraisal = query.list();
+		        tx.commit();
+		    } catch (Exception e) {
+		        if (tx != null) {
+		            tx.rollback();
+		        }
+		        e.printStackTrace();
+		    } finally {
+		        session.close();
+		    }
+		    return listOfAppraisal;
+			}
 	
 	//List Method for getting All data from probation_assessment_termination_tbl by manager_id for displaying data both manager side
 	public List<ProbationAssessmentTerminationBean> getAllListOfTerminatedEmployeesForManager(int manager_id){

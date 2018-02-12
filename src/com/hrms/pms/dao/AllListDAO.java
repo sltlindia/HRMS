@@ -8,6 +8,7 @@ import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import com.hrms.lms.bean.LeaveBalanceBean;
 import com.hrms.pms.bean.AllocationNotificationBean;
 import com.hrms.pms.bean.Appraisal5sBean;
 import com.hrms.pms.bean.AppraisalBean;
@@ -7171,5 +7172,143 @@ public class AllListDAO {
 						}
 						return listOfAppraisal;
 					}
-				
+					public List<EmployeeBean> underHrList() {
+						List<EmployeeBean> listOfEmployee = new ArrayList<EmployeeBean>();
+						Session session = HibernateUtil.openSession();
+						Transaction tx = null;
+						try {
+							tx = session.getTransaction();
+							tx.begin();
+							String hql = "from EmployeeBean where (role_id != 2 and role_id !=3 and role_id !=9 and manager_id != 4)";
+							Query query = session.createQuery(hql);
+							listOfEmployee = query.list();
+							System.out.println(listOfEmployee.size());
+							tx.commit();
+						} catch (Exception e) {
+							if (tx != null) {
+								tx.rollback();
+							}
+							e.printStackTrace();
+						} finally {
+							session.close();
+						}
+						return listOfEmployee;
+					}
+
+					
+					public List<EmployeeBean> getListOfEmployeeForProject(int manager_id) {
+						List<EmployeeBean> listOfEmployee = new ArrayList<EmployeeBean>();
+						Session session = HibernateUtil.openSession();
+						Transaction tx = null;
+						try {
+							tx = session.getTransaction();
+							tx.begin();
+							listOfEmployee = session.createQuery("FROM EmployeeBean WHERE under_manager_id='" + manager_id + "'")
+									.list();
+							System.out.println(listOfEmployee.size());
+							tx.commit();
+						} catch (Exception e) {
+							if (tx != null) {
+								tx.rollback();
+							}
+							e.printStackTrace();
+						} finally {
+							session.close();
+						}
+						return listOfEmployee;
+
+					}
+					
+					public List<ProjectMasterBean> getListOfUnderProjectMaster(int emp_manager_id) {
+						List<ProjectMasterBean> listOfProject = new ArrayList<ProjectMasterBean>();
+						Session session = HibernateUtil.openSession();
+						Transaction tx = null;
+						try {
+							tx = session.getTransaction();
+							tx.begin();
+							listOfProject = session
+									.createQuery(
+											"FROM ProjectMasterBean where managerBean=" + emp_manager_id + " and projectStatusBean =3")
+									.list();
+							tx.commit();
+						} catch (Exception e) {
+							if (tx != null) {
+								tx.rollback();
+							}
+							e.printStackTrace();
+						} finally {
+							session.close();
+						}
+						return listOfProject;
+
+					}
+					
+					public List<EmployeeBean> underManagerList(int manager_id) {
+						List<EmployeeBean> listOfEmployee = new ArrayList<EmployeeBean>();
+						Session session = HibernateUtil.openSession();
+						Transaction tx = null;
+						try {
+							tx = session.getTransaction();
+							tx.begin();
+							String hql = "from EmployeeBean where under_manager_id =" + manager_id + "";
+							Query query = session.createQuery(hql);
+							listOfEmployee = query.list();
+							System.out.println(listOfEmployee.size());
+							tx.commit();
+						} catch (Exception e) {
+							if (tx != null) {
+								tx.rollback();
+							}
+							e.printStackTrace();
+						} finally {
+							session.close();
+						}
+						return listOfEmployee;
+					}
+					public List<Object[]> employeeReport(int employee_master_id) {
+						List<Object[]> listOfEmployeeReport = new ArrayList<Object[]>();
+						Session session = HibernateUtil.openSession();
+						Transaction tx = null;
+						try {
+							tx = session.getTransaction();
+							tx.begin();
+							String hql = "from TimeSheetBean t inner join t.employeeBean e join t.projectMasterBean p join t.clientMasterBean c join t.taskMasterBean t1 where e.employee_master_id ="
+									+ employee_master_id
+									+ " and (task_time_status='submit' or task_time_status= 'updated') group by p.project_master_id";
+							Query query = session.createQuery(hql);
+							listOfEmployeeReport = query.list();
+							System.out.println(listOfEmployeeReport.size());
+							tx.commit();
+						} catch (Exception e) {
+							if (tx != null) {
+								tx.rollback();
+							}
+							e.printStackTrace();
+						} finally {
+							session.close();
+						}
+						return listOfEmployeeReport;
+					}
+					public LeaveBalanceBean getleaveListbyEMP(int emp_id)
+					{
+				        Session session = HibernateUtil.openSession();
+				        Transaction tx = null;  
+				        LeaveBalanceBean leaveBalanceBean = null;
+				        try {
+				            tx = session.getTransaction();
+				            tx.begin();
+				            Query query= session.createQuery("FROM LeaveBalanceBean WHERE employee_master_id='"+ emp_id +"'");
+				            leaveBalanceBean = (LeaveBalanceBean)query.uniqueResult();
+				            tx.commit();
+				        } catch (Exception e) {
+				            if (tx != null) {
+				                tx.rollback();
+				            }
+				            e.printStackTrace();
+				        } finally {
+				            session.close();
+				        }
+				        return leaveBalanceBean;
+				        
+					}	
 }

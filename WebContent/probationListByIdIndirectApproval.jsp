@@ -121,7 +121,7 @@ for indirect employees
 	});
 </script>
 </head>
-<body data-open="hover" data-menu="horizontal-menu" data-col="2-columns" class="horizontal-layout horizontal-menu 2-columns " onload="startTimer()">
+<body onload="startTimer()" data-open="hover" data-menu="horizontal-menu" data-col="2-columns" class="horizontal-layout horizontal-menu 2-columns ">
 	<div class="app-content container center-layout mt-2">
 		<div class="content-wrapper">
 			<div class="content-body">
@@ -1362,7 +1362,47 @@ if (authority.equals("W1") || authority.equals("W2") || authority.equals("W3")
 									<%
 										if (manager_id == 4 || manager_id == 114) {
 									%>
-									<div class="col-lg-12">
+									<div class="col-sm-6">
+									<label style="color: red">Click here for approval of Top Management
+												</label>
+												<label class="radio-inline radio-styled">
+													<input type="radio" id="1" name="top_management_approval" value="yes" onchange="check()" checked><span>Yes</span>
+												</label>
+												<label class="radio-inline radio-styled">
+													<input type="radio" id="2" name="top_management_approval" value="no" onchange="check()" ><span>No</span>
+												</label>
+											</div>
+											<br>
+											<div class="col-lg-12">
+											<div  id="radiobutton1"  class="form-group control-width-normal">
+												<div id="employeeList">
+												<div class="col-lg-4">
+											<label>&nbsp;&nbsp;Select authority from dropdown</label>&nbsp;&nbsp;
+											</div>
+											<div class="col-lg-8">
+											<%
+												List<EmployeeBean> listOfTopManagement = allListProbationDAO.getlistOfTopManagement();
+											%>
+											<select class="form-control" name="employee_master_id1"
+												id="employee_master_id1">
+												<option value="">---Select Employee---</option>
+												<%
+													for (EmployeeBean e : listOfTopManagement) {
+												%>
+												<option value="<%=e.getEmployee_master_id()%>"><%=e.getSalutation()%><%=e.getFirstname() + " " + e.getLastname()%>&nbsp;&nbsp;&nbsp;&nbsp;(<%=e.getRoleBean().getRole_type()%>)
+												</option>
+												<%
+													}
+												%>
+											
+
+											</select> <br>
+												</div>
+									</div>
+											</div><!--end .form-group -->
+											</div>
+											
+									<!-- <div class="col-lg-12">
 										<div class="form-group">
 											<label style="color: red">&nbsp;&nbsp;Click here for approval of Top Management
 												</label>&nbsp;&nbsp; <label class="radio-inline"><input
@@ -1373,8 +1413,8 @@ if (authority.equals("W1") || authority.equals("W2") || authority.equals("W3")
 												id="top_management_approvalNo" value="no" checked>No
 											</label>
 										</div>
-									</div>
-									<div id="employeeList">
+									</div> -->
+									<%-- <div id="employeeList">
 										<div class="col-lg-4">
 											<label>&nbsp;&nbsp;Select authority from dropdown</label>&nbsp;&nbsp;
 										</div>
@@ -1393,27 +1433,27 @@ if (authority.equals("W1") || authority.equals("W2") || authority.equals("W3")
 												<%
 													}
 												%>
+											
 
 											</select> <br>
-											<center>
-												<button type="submit" class="btn btn-primary" id="action"
-															onclick="save(1)">Approve</button>
-												<button type="button" class="btn btn-danger" id="action"
-															data-toggle="modal" data-target="#myModal">Reject</button>
-											</center>
-										</div>
-									</div>
+												</div>
+									</div> --%>
 									<%
 										}
 									%>
-
-								</form>
+											
+								
 
 								<br>
-								</form>
-								</form>
 								</div>
-								</div>
+								<center>
+										<button type="submit" class="btn btn-primary" id="action"
+											onclick="save(1)">Approve</button>
+										<button type="button" class="btn btn-danger" id="action"
+											data-toggle="modal" data-target="#myModal">Reject</button>
+									</center>
+
+								</form>
 								</div>
 								</div>
 								</div>
@@ -1480,5 +1520,33 @@ if (authority.equals("W1") || authority.equals("W2") || authority.equals("W3")
 		// popover demo
 		$("[data-toggle=popover]").popover()
 	</script>
+	<script type="text/javascript">
+
+
+		function check()
+		{
+				 var radios = document.getElementsByName("top_management_approval"); 
+
+				 for( i = 0; i < 2; i++ )
+					{
+						if( radios[i].checked)
+						{
+							if((radios[i].id == 1))
+							{
+								
+								$('#radiobutton1').fadeIn('slow');
+								
+							}
+							else if((radios[i].id == 2))
+							{
+								
+								$('#radiobutton1').fadeOut('slow');
+							}
+						}
+					}
+		}
+			
+
+		</script>
 </body>
 </html>

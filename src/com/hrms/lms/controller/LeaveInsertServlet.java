@@ -2873,8 +2873,8 @@ public class LeaveInsertServlet extends HttpServlet {
 								    
 								    	System.out.println("test");
 								    	
-								    	Mailer.send(to, sub, leavefrom, leaveto, days, emp_code,mobileNo,alert1,lId,name,imprtantMsg);
-								    	boolean result = allUpdateDAO.LeaveMailUpdate(lId,mail_view);
+								    	/*Mailer.send(to, sub, leavefrom, leaveto, days, emp_code,mobileNo,alert1,lId,name,imprtantMsg);
+								    	boolean result = allUpdateDAO.LeaveMailUpdate(lId,mail_view);*/
 								    	
 								    }
 								}).start();

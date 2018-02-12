@@ -272,7 +272,7 @@
         <mapping class="com.hrms.lms.bean.GateLoationBean"/>
 		<mapping class="com.hrms.lms.bean.IntervieweeBean"/>
 		<mapping class="com.hrms.lms.bean.LeaveBalanceYearWiseBean"/>
-
+		<mapping class="com.hrms.lms.bean.NopunchBean"/>
 
 
 		<!-- riskmanagement bean -->
@@ -446,7 +446,7 @@
 		<mapping class="com.hrms.tds.bean.TDSPayrollSalaryDataBean" />
 		
 		
-			
+		
 		<!--  Probation Module -->
 		<mapping class="com.hrms.probation.bean.AttributeBean"/>
 		<mapping class="com.hrms.probation.bean.AttributeM2Bean"/>
