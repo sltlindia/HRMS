@@ -55,6 +55,11 @@
     <link rel="stylesheet" type="text/css" href="app-assets/css/core/menu/menu-types/horizontal-menu.min.css">
     <link rel="stylesheet" type="text/css" href="app-assets/css/core/menu/menu-types/vertical-overlay-menu.min.css">
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+	
+<link href="offlinetimepicker/jquerysctipttop.css" rel="stylesheet" type="text/css">
+<link href="offlinetimepicker/mdtimepicker.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="sweetalert/sweetalert.css">
+<link href="offlineDatePicker/12jquery-ui.css" rel="stylesheet">
     <%@include file="header.jsp" %>
   </head>
 <script type="text/javascript">
@@ -1063,7 +1068,12 @@ function checkhrs2() {
     <script src="app-assets/vendors/js/tables/datatable/dataTables.bootstrap4.min.js" type="text/javascript"></script>
     <script src="app-assets/vendors/js/tables/datatable/dataTables.buttons.min.js" type="text/javascript"></script>
     <!-- END PAGE VENDOR JS-->
-	
+	<script src="bower_components/jquery/dist/jquery.min.js"></script>  
+<script type="text/javascript" src="offlineDatePicker/jquery.min.js"></script>
+<script type="text/javascript" src="offlineDatePicker/jquery-ui.min.js"></script>
+<script src="offlinetimepicker/mdtimepicker.js"></script>
+  <script src="sweetalert/sweet-alerts.min.js" type="text/javascript"></script>
+<script src="sweetalert/sweetalert.min.js" type="text/javascript"></script>
 	
 	<!-- BEGIN PAGE LEVEL JS-->
     <script src="app-assets/js/scripts/tables/datatables/datatable-basic.min.js" type="text/javascript"></script>

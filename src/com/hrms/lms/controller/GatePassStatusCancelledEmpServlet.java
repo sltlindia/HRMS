@@ -47,13 +47,15 @@ public class GatePassStatusCancelledEmpServlet extends HttpServlet {
 				if(status.equalsIgnoreCase("Cancelled"))
 					{
 						request.setAttribute("Success", "Gate Pass Cancelled Successfully...");
-						request.getRequestDispatcher("gatePassListEmployee.jsp").forward(request, response);
+						/*request.getRequestDispatcher("gatePassListEmployee.jsp").forward(request, response);*/
+						response.sendRedirect("gatePassListEmployee.jsp");
 					}
 			}
 		}else
 		{
 			request.setAttribute("sessionExpired", "Your session is expired...Please login again...");
-			request.getRequestDispatcher("login.jsp").forward(request, response);
+			/*request.getRequestDispatcher("login.jsp").forward(request, response);*/
+			response.sendRedirect("login.jsp");
 		}
 	}
 

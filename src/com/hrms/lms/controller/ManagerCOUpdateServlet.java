@@ -216,19 +216,23 @@ public class ManagerCOUpdateServlet extends HttpServlet {
 										String authority = user.getRoleBean().getRole_authority();
 										
 										if(specialCO.equalsIgnoreCase("specialCO")){
-											request.getRequestDispatcher("specialHRLeave.jsp").forward(request, response);
+											/*request.getRequestDispatcher("specialHRLeave.jsp").forward(request, response);*/
+											response.sendRedirect("specialHRLeave.jsp");
 										}else{
 										if(hrApproval.equalsIgnoreCase("co")){
 											request.setAttribute("success", "CO approved Successfully");
 											request.setAttribute("hrApproval",hrApproval);
-											request.getRequestDispatcher("pendingLeaveHrSide.jsp").forward(request, response);
+											/*request.getRequestDispatcher("pendingLeaveHrSide.jsp").forward(request, response);*/
+											response.sendRedirect("pendingLeaveHrSide.jsp");
 										}else{
 											request.setAttribute("LeaveapprovedSuccessfully", "CO approved Successfully");
 											if(user.getManagerBean().getManager_id() != 99){
-												request.getRequestDispatcher("empHome.jsp").forward(request, response);
+												/*request.getRequestDispatcher("empHome.jsp").forward(request, response);*/
+												response.sendRedirect("empHome.jsp");
 											}
 											else{
-												request.getRequestDispatcher("leaveListManager.jsp").forward(request, response);
+												/*request.getRequestDispatcher("leaveListManager.jsp").forward(request, response);*/
+												response.sendRedirect("leaveListManager.jsp");
 											}
 										}
 									}
@@ -254,23 +258,28 @@ public class ManagerCOUpdateServlet extends HttpServlet {
 										request.setAttribute("LeaveapprovedSuccessfully", "CO approved Successfully");
 										String authority = user.getRoleBean().getRole_authority();
 										if(specialCO.equalsIgnoreCase("specialCO")){
-											request.getRequestDispatcher("specialHRLeave.jsp").forward(request, response);
+											/*request.getRequestDispatcher("specialHRLeave.jsp").forward(request, response);*/
+											response.sendRedirect("specialHRLeave.jsp");
 										}else{
 										if(hrApproval.equalsIgnoreCase("co")){
 											request.setAttribute("success", "CO approved Successfully");
 											request.setAttribute("hrApproval",hrApproval);
-											request.getRequestDispatcher("pendingLeaveHrSide.jsp").forward(request, response);
+											/*request.getRequestDispatcher("pendingLeaveHrSide.jsp").forward(request, response);*/
+											response.sendRedirect("pendingLeaveHrSide.jsp");
 										}else{
 											request.setAttribute("LeaveapprovedSuccessfully", "CO approved Successfully");
 											if(user.getManagerBean().getManager_id() == 99){
 												if(under_manager_id == 4 || under_manager_id == 117){
-													request.getRequestDispatcher("hrHome.jsp").forward(request, response);
+													/*request.getRequestDispatcher("hrHome.jsp").forward(request, response);*/
+													response.sendRedirect("hrHome.jsp");
 												}else{
-													request.getRequestDispatcher("empHome.jsp").forward(request, response);
+													/*request.getRequestDispatcher("empHome.jsp").forward(request, response);*/
+													response.sendRedirect("empHome.jsp");
 															}
 											}
 											else{
-												request.getRequestDispatcher("leaveListManager.jsp").forward(request, response);
+												/*request.getRequestDispatcher("leaveListManager.jsp").forward(request, response);*/
+												response.sendRedirect("leaveListManager.jsp");
 											}
 										}
 									}
@@ -292,23 +301,28 @@ public class ManagerCOUpdateServlet extends HttpServlet {
 										String authority = user.getRoleBean().getRole_authority();
 										
 										if(specialCO.equalsIgnoreCase("specialCO")){
-											request.getRequestDispatcher("specialHRLeave.jsp").forward(request, response);
+											/*request.getRequestDispatcher("specialHRLeave.jsp").forward(request, response);*/
+											response.sendRedirect("specialHRLeave.jsp");
 										}else{
 										if(hrApproval.equalsIgnoreCase("co")){
 											request.setAttribute("success", "CO approved Successfully");
 											request.setAttribute("hrApproval",hrApproval);
-											request.getRequestDispatcher("pendingLeaveHrSide.jsp").forward(request, response);
+											/*request.getRequestDispatcher("pendingLeaveHrSide.jsp").forward(request, response);*/
+											response.sendRedirect("pendingLeaveHrSide.jsp");
 										}else{
 											request.setAttribute("LeaveapprovedSuccessfully", "CO approved Successfully");
 											if(user.getManagerBean().getManager_id() == 99){
 												if(under_manager_id == 4 || under_manager_id == 117){
-													request.getRequestDispatcher("hrHome.jsp").forward(request, response);
+													/*request.getRequestDispatcher("hrHome.jsp").forward(request, response);*/
+													response.sendRedirect("hrHome.jsp");
 												}else{
-													request.getRequestDispatcher("empHome.jsp").forward(request, response);
+													/*request.getRequestDispatcher("empHome.jsp").forward(request, response);*/
+													response.sendRedirect("empHome.jsp");
 															}
 														}
 											else{
-												request.getRequestDispatcher("leaveListManager.jsp").forward(request, response);
+												/*request.getRequestDispatcher("leaveListManager.jsp").forward(request, response);*/
+												response.sendRedirect("leaveListManager.jsp");
 											}
 										}
 									}
@@ -327,23 +341,28 @@ public class ManagerCOUpdateServlet extends HttpServlet {
 									
 									String authority = user.getRoleBean().getRole_authority();
 									if(specialCO.equalsIgnoreCase("specialCO")){
-										request.getRequestDispatcher("specialHRLeave.jsp").forward(request, response);
+										/*request.getRequestDispatcher("specialHRLeave.jsp").forward(request, response);*/
+										response.sendRedirect("specialHRLeave.jsp");
 									}else{
 									if(hrApproval.equalsIgnoreCase("co")){
 										request.setAttribute("success", "CO approved Successfully");
 										request.setAttribute("hrApproval",hrApproval);
-										request.getRequestDispatcher("pendingLeaveHrSide.jsp").forward(request, response);
+										/*request.getRequestDispatcher("pendingLeaveHrSide.jsp").forward(request, response);*/
+										response.sendRedirect("pendingLeaveHrSide.jsp");
 									}else{
 										request.setAttribute("LeaveapprovedSuccessfully", "CO approved Successfully");
 										if(user.getManagerBean().getManager_id() == 99){
 												if(under_manager_id == 4 || under_manager_id == 117){
-													request.getRequestDispatcher("hrHome.jsp").forward(request, response);
+													/*request.getRequestDispatcher("hrHome.jsp").forward(request, response);*/
+													response.sendRedirect("hrHome.jsp");
 												}else{
-													request.getRequestDispatcher("empHome.jsp").forward(request, response);
+													/*request.getRequestDispatcher("empHome.jsp").forward(request, response);*/
+													response.sendRedirect("empHome.jsp");
 															}
 														}
 										else{
-											request.getRequestDispatcher("leaveListManager.jsp").forward(request, response);
+											/*request.getRequestDispatcher("leaveListManager.jsp").forward(request, response);*/
+											response.sendRedirect("leaveListManager.jsp");
 										}
 									}
 								}

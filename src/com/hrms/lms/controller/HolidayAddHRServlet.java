@@ -69,13 +69,15 @@ public class HolidayAddHRServlet extends HttpServlet {
 			if(result == true)
 			{
 				request.setAttribute("LeaveSuccessfully", "Holiday Insert Successfully");
-				request.getRequestDispatcher("leaveHolidayAddHR.jsp").forward(request, response);
+				/*request.getRequestDispatcher("leaveHolidayAddHR.jsp").forward(request, response);*/
+				response.sendRedirect("leaveHolidayAddHR.jsp");
 			}
 		}
 		else
 		{
 			request.setAttribute("LeaveExist", "Holiday Already Exists");
-			request.getRequestDispatcher("leaveHolidayAddHR.jsp").forward(request, response);
+			/*request.getRequestDispatcher("leaveHolidayAddHR.jsp").forward(request, response);*/
+			response.sendRedirect("leaveHolidayAddHR.jsp");
 		}
 		
 		

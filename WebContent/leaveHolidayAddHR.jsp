@@ -9,61 +9,36 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
-<meta name="description"
-	content="Robust admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
-<meta name="keywords"
-	content="admin template, robust admin template, dashboard template, flat admin template, responsive admin template, web app">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+<meta name="description" content="Robust admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
+<meta name="keywords" content="admin template, robust admin template, dashboard template, flat admin template, responsive admin template, web app">
 <meta name="author" content="PIXINVENT">
-<title>CUG List</title>
-<link rel="shortcut icon" sizes="152x152"
-	href="app-assets/images/ico/titleIcon.png">
+<title>Leave Holiday List</title>
+<link rel="shortcut icon" sizes="152x152" href="app-assets/images/ico/titleIcon.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-touch-fullscreen" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
-<!-- BEGIN VENDOR CSS-->
-<link rel="stylesheet" type="text/css"
-	href="app-assets/css/bootstrap.min.css">
-<!-- font icons-->
-<link rel="stylesheet" type="text/css"
-	href="app-assets/fonts/icomoon.css">
-<link rel="stylesheet" type="text/css"
-	href="app-assets/fonts/flag-icon-css/css/flag-icon.min.css">
-<link rel="stylesheet" type="text/css"
-	href="app-assets/vendors/css/sliders/slick/slick.css">
-<link rel="stylesheet" type="text/css"
-	href="app-assets/vendors/css/extensions/pace.css">
-<link rel="stylesheet" type="text/css"
-	href="app-assets/vendors/css/tables/datatable/dataTables.bootstrap4.min.css">
-<!-- END VENDOR CSS-->
-<!-- BEGIN ROBUST CSS-->
-<link rel="stylesheet" type="text/css"
-	href="app-assets/css/bootstrap-extended.min.css">
+<link rel="stylesheet" type="text/css" href="app-assets/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="app-assets/fonts/icomoon.css">
+<link rel="stylesheet" type="text/css" href="app-assets/fonts/flag-icon-css/css/flag-icon.min.css">
+<link rel="stylesheet" type="text/css" href="app-assets/vendors/css/sliders/slick/slick.css">
+<link rel="stylesheet" type="text/css" href="app-assets/vendors/css/extensions/pace.css">
+<link rel="stylesheet" type="text/css" href="app-assets/vendors/css/pickers/daterange/daterangepicker.css">
+<link rel="stylesheet" type="text/css" href="app-assets/vendors/css/pickers/datetime/bootstrap-datetimepicker.css">
+<link rel="stylesheet" type="text/css" href="app-assets/vendors/css/pickers/pickadate/pickadate.css">
+<link rel="stylesheet" type="text/css" href="app-assets/css/bootstrap-extended.min.css">
 <link rel="stylesheet" type="text/css" href="app-assets/css/app.min.css">
-<link rel="stylesheet" type="text/css"
-	href="app-assets/css/colors.min.css">
+<link rel="stylesheet" type="text/css" href="app-assets/css/colors.min.css">
 <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-<!-- END ROBUST CSS-->
-<!-- BEGIN Page Level CSS-->
-<link rel="stylesheet" type="text/css"
-	href="app-assets/css/core/menu/menu-types/horizontal-menu.min.css">
-<link rel="stylesheet" type="text/css"
-	href="app-assets/css/core/menu/menu-types/vertical-overlay-menu.min.css">
-<!-- END Page Level CSS-->
-<!-- BEGIN Custom CSS-->
+<link rel="stylesheet" type="text/css" href="app-assets/css/core/menu/menu-types/horizontal-menu.min.css">
+<link rel="stylesheet" type="text/css" href="app-assets/css/core/menu/menu-types/vertical-overlay-menu.min.css">
+<link rel="stylesheet" type="text/css" href="app-assets/css/plugins/pickers/daterange/daterange.min.css">
 <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-<link rel="stylesheet"
-	href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.css" />
-<link rel="stylesheet"
-	href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.css" />
-<script
-	src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<script
-	src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
-
+<%@include file="header.jsp"%>
+<link href="offlineDatePicker/12jquery-ui.css" rel="stylesheet">
 <script type="text/javascript">
 var datefield=document.createElement("input")
 datefield.setAttribute("type", "text")
@@ -127,7 +102,6 @@ if (datefield.type!="date"){ //if browser doesn't support input type="date", ini
 		</script>
 
 </head>
-<%@include file="header.jsp"%>
 <body data-open="hover" data-menu="horizontal-menu" data-col="2-columns"
 	class="horizontal-layout horizontal-menu 2-columns"
 	onload="startTimer()">
@@ -177,11 +151,18 @@ if (datefield.type!="date"){ //if browser doesn't support input type="date", ini
 								<%
 									}
 								%>
-								<div class="row">
-									<div class="col-lg-12">
-										<div class="panel panel-primary">
-											<div class="panel-heading">Holiday Reports</div>
-											<!-- /.panel-heading -->
+						<br>
+	
+		<div class="row">
+				    <div class="col-md-12">
+				        <div class="card box-shadow-0" data-appear="appear">
+					        <div class="card-header card-inverse" style="background-color: #90A4AE;padding: 0.5rem 0rem 1rem 0rem;height: 50px;">
+					            <div class="col-sm-6">
+				               		<h4 class="card-title" id="horz-layout-basic">Holiday Report</h4>
+				                </div>
+				            </div>
+			 <div class="card-body collapse in">
+				<div class="card-block border-bottom-blue-grey" style="border-left: 2px solid #607D8B;border-right: 2px solid #607D8B;">
 											<div class="panel-body">
 												<div class="dataTable_wrapper">
 													<table
@@ -225,13 +206,15 @@ if (datefield.type!="date"){ //if browser doesn't support input type="date", ini
 																	<button type="button" class="btn btn-default"
 																		data-toggle="modal"
 																		data-target="#myModal<%=h.getHoliday_id()%>">
-																		<i class="fa fa-plus-circle"></i> Update
+																		<i class="icon-android-add-circle"></i> Update
 																	</button> &nbsp;&nbsp;&nbsp;<i id="holidayid"
-																	class=" glyphicon glyphicon-trash"
+																	class=" icon-trash-a"
 																	onclick="myFunction(<%=h.getHoliday_id()%>)"></i></a>
 																</td>
 
-																<div class="modal fade"
+
+
+																<div class="modal fade text-xs-left"
 																	id="myModal<%=h.getHoliday_id()%>" tabindex="-1"
 																	role="dialog" aria-labelledby="myModalLabel"
 																	aria-hidden="true">
@@ -246,17 +229,19 @@ if (datefield.type!="date"){ //if browser doesn't support input type="date", ini
 																			</div>
 																			<div class="modal-body">
 																				<form action="HolidayUpdatesHR" method="POST">
-																					<div class="table-responsive"></div>
 																					<input type="hidden" name="holidayID"
 																						value="<%=h.getHoliday_id()%>"> <B>
 																						Holiday Date : </B> <br> <input type="date"
 																						id="datepicker1" width="155" name="fromDate"
 																						required value="<%=h.getHoliday_date()%>"
-																						class="form-control"><br> <B>
-																						Holiday Name : </B> <input type="text"
-																						name="holidayname" required
-																						value="<%=h.getHoliday_name()%>"
 																						class="form-control"><br>
+																						
+																						 <B>
+																						Holiday Name : </B> <textarea class="form-control" name="holidayname"  type="text"  required
+																						value="<%=h.getHoliday_name()%>"
+																						placeholder="Max 500 words"><%=h.getHoliday_name()%></textarea>
+																						<br>
+																						
 																			</div>
 																			<div class="modal-footer">
 																				<button type="button" class="btn btn-danger"
@@ -280,10 +265,19 @@ if (datefield.type!="date"){ //if browser doesn't support input type="date", ini
 													</table>
 												</div>
 
-												<div class="panel-group" id="accordion">
-													<div class="panel panel-default">
-														<div class="panel-heading">Holidays Add</div>
-														<div id="collapseOne" class="panel-collapse collapse in">
+<div class="row">
+				    <div class="col-md-12">
+				        <div class="card box-shadow-0" data-appear="appear">
+					        <div class="card-header card-inverse" style="background-color: #d2d9dc;padding: 0.5rem 0rem 1rem 0rem;height: 40px; border-left: 1px solid #607D8B;border-right: 1px solid #607D8B;  
+					        						   border-bottom: 1px solid #607D8B; border-top: 1px solid #607D8B;">
+					            <div class="col-sm-6">	
+				               		<h4 class="card-title" id="horz-layout-basic" style="color: #000000;">Holidays Add</h4>
+				                </div>
+				            </div>
+				               <div class="card-body collapse in">
+					                <div class="card-block" style="border-left: 1px solid #607D8B;border-right: 1px solid #607D8B;
+					                					border-bottom: 1px solid #607D8B;">
+					                					
 															<div class="panel-body">
 
 																<div class="table-responsive">
@@ -322,7 +316,10 @@ if (datefield.type!="date"){ //if browser doesn't support input type="date", ini
 										</div>
 									</div>
 								</div>
-
+</div>
+</div>
+							</div>
+							</div>
 							</div>
 						</div>
 					</div>
@@ -331,82 +328,29 @@ if (datefield.type!="date"){ //if browser doesn't support input type="date", ini
 			</div>
 		</div>
 	</div>
-	<%@include file="footer.html"%>
-	<script
-		src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-	<script
-		src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
-
-	<!-- BEGIN VENDOR JS-->
-	<!-- build:js app-assets/js/vendors.min.js-->
-	<script src="app-assets/js/core/libraries/jquery.min.js"
-		type="text/javascript"></script>
-	<script src="app-assets/vendors/js/ui/tether.min.js"
-		type="text/javascript"></script>
-	<script src="app-assets/js/core/libraries/bootstrap.min.js"
-		type="text/javascript"></script>
-	<script src="app-assets/vendors/js/ui/perfect-scrollbar.jquery.min.js"
-		type="text/javascript"></script>
-	<script src="app-assets/vendors/js/ui/unison.min.js"
-		type="text/javascript"></script>
-	<script src="app-assets/vendors/js/ui/blockUI.min.js"
-		type="text/javascript"></script>
-	<script src="app-assets/vendors/js/ui/jquery.matchHeight-min.js"
-		type="text/javascript"></script>
-	<script src="app-assets/vendors/js/ui/jquery-sliding-menu.js"
-		type="text/javascript"></script>
-	<script src="app-assets/vendors/js/sliders/slick/slick.min.js"
-		type="text/javascript"></script>
-	<script src="app-assets/vendors/js/ui/screenfull.min.js"
-		type="text/javascript"></script>
-	<script src="app-assets/vendors/js/extensions/pace.min.js"
-		type="text/javascript"></script>
-	<!-- /build-->
-	<!-- BEGIN VENDOR JS-->
-	<!-- BEGIN PAGE VENDOR JS-->
-	<script type="text/javascript"
-		src="app-assets/vendors/js/ui/jquery.sticky.js"></script>
-	<script src="app-assets/vendors/js/extensions/moment.min.js"
-		type="text/javascript"></script>
-	<script src="app-assets/vendors/js/extensions/underscore-min.js"
-		type="text/javascript"></script>
-	<script src="app-assets/vendors/js/extensions/clndr.min.js"
-		type="text/javascript"></script>
-	<script src="app-assets/vendors/js/extensions/unslider-min.js"
-		type="text/javascript"></script>
-	<!-- END PAGE VENDOR JS-->
-	<!-- BEGIN ROBUST JS-->
-	<!-- build:js app-assets/js/app.min.js-->
+	 <%@include file="footer.html"%>
+	<script src="app-assets/js/core/libraries/jquery.min.js" type="text/javascript"></script>
+	<script src="app-assets/vendors/js/ui/tether.min.js" type="text/javascript"></script>
+	<script src="app-assets/js/core/libraries/bootstrap.min.js" type="text/javascript"></script>
+	<script src="app-assets/vendors/js/ui/perfect-scrollbar.jquery.min.js" type="text/javascript"></script>
+	<script src="app-assets/vendors/js/ui/unison.min.js" type="text/javascript"></script>
+	<script src="app-assets/vendors/js/ui/blockUI.min.js" type="text/javascript"></script>
+	<script src="app-assets/vendors/js/ui/jquery.matchHeight-min.js" type="text/javascript"></script>
+	<script src="app-assets/vendors/js/ui/jquery-sliding-menu.js" type="text/javascript"></script>
+	<script src="app-assets/vendors/js/sliders/slick/slick.min.js" type="text/javascript"></script>
+	<script src="app-assets/vendors/js/ui/screenfull.min.js" type="text/javascript"></script>
+	<script src="app-assets/vendors/js/extensions/pace.min.js" type="text/javascript"></script>
+	<script src="app-assets/vendors/js/ui/jquery.sticky.js" type="text/javascript"></script>
+	<script src="app-assets/vendors/js/extensions/moment.min.js" type="text/javascript"></script>
+	<script src="app-assets/vendors/js/extensions/underscore-min.js" type="text/javascript"></script>
+	<script src="app-assets/vendors/js/extensions/clndr.min.js" type="text/javascript"></script>
+	<script src="app-assets/vendors/js/extensions/unslider-min.js" type="text/javascript"></script>
 	<script src="app-assets/js/core/app-menu.min.js" type="text/javascript"></script>
 	<script src="app-assets/js/core/app.min.js" type="text/javascript"></script>
-	<script src="app-assets/js/scripts/ui/fullscreenSearch.min.js"
-		type="text/javascript"></script>
-	<!-- /build-->
-	<!-- END ROBUST JS-->
-	<!-- Page-Level Demo Scripts - Tables - Use for reference -->
-	
-	  <!-- BEGIN PAGE VENDOR JS-->
-    <script type="text/javascript" src="app-assets/vendors/js/ui/jquery.sticky.js"></script>
-    <script src="app-assets/vendors/js/tables/jquery.dataTables.min.js" type="text/javascript"></script>
-    <script src="app-assets/vendors/js/tables/datatable/dataTables.bootstrap4.min.js" type="text/javascript"></script>
-    <script src="app-assets/vendors/js/tables/datatable/dataTables.buttons.min.js" type="text/javascript"></script>
-    <script src="app-assets/vendors/js/tables/buttons.flash.min.js" type="text/javascript"></script>
-    <script src="app-assets/vendors/js/tables/jszip.min.js" type="text/javascript"></script>
-    <script src="app-assets/vendors/js/tables/pdfmake.min.js" type="text/javascript"></script>
-    <script src="app-assets/vendors/js/tables/vfs_fonts.js" type="text/javascript"></script>
-    <script src="app-assets/vendors/js/tables/buttons.html5.min.js" type="text/javascript"></script>
-    <script src="app-assets/vendors/js/tables/buttons.print.min.js" type="text/javascript"></script>
-    <!-- END PAGE VENDOR JS-->
-    
-      <!-- BEGIN PAGE VENDOR JS-->
-    <script src="app-assets/vendors/js/tables/jquery.dataTables.min.js" type="text/javascript"></script>
-    <script src="app-assets/vendors/js/tables/datatable/dataTables.bootstrap4.min.js" type="text/javascript"></script>
-    <script src="app-assets/vendors/js/tables/datatable/dataTables.buttons.min.js" type="text/javascript"></script>
-    <!-- END PAGE VENDOR JS-->
-    
-    <!-- BEGIN PAGE LEVEL JS-->
-    <script src="app-assets/js/scripts/tables/datatables/datatable-basic.min.js" type="text/javascript"></script>
-    <!-- END PAGE LEVEL JS-->
+	<script src="app-assets/js/scripts/ui/fullscreenSearch.min.js" type="text/javascript"></script>
+	<script type="text/javascript" src="offlineDatePicker/jquery.min.js"></script>
+	<script type="text/javascript" src="offlineDatePicker/jquery-ui.min.js"></script>
+	<!-- <script src="bower_components/jquery/dist/jquery.min.js"></script> -->
 	<script>
 	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),

@@ -387,7 +387,43 @@ int employee_master_id1 = user.getEmployee_master_id();
 				        <div class="card box-shadow-0" data-appear="appear">
 					        <div class="card-header card-inverse" style="background-color: #90A4AE;padding: 0.5rem 0rem 1rem 0rem;height: 50px;">
 					            <div class="col-sm-6">
-				               		<h4 class="card-title" id="horz-layout-basic" align="left">
+				               		<h4 class="card-title" id="horz-layout-basic">Leave / CO / OD Form</h4>
+				                </div>
+				            </div>
+				               <div class="card-body collapse in">
+					                <div class="card-block border-bottom-blue-grey" style="border-left: 2px solid #607D8B;border-right: 2px solid #607D8B;">
+	
+                        <div class="panel-body">
+                        
+                        
+                        <table class="table" style="margin-bottom: 0px;">
+                        <thead>
+	                        <tr>
+								<td width="100px"><label>Select Form</label></td>
+								<td width="10px">:</td>
+								<td width="200px;">
+									<select class="form-control" name="leavetypeselect" id="leavetypeselect" onchange="redirect(this.value);" required>
+										<option value="applyleave.jsp">   Leave    </option>
+										<option value="leaveCO.jsp">   	 CO       </option>
+										<option value="leaveOD.jsp" selected="selected">      OD       </option>
+									</select>
+								</td>
+								<td></td>
+								<td></td>
+							</tr>
+                        </thead>
+                        </table>
+                        </div>
+                    </div>
+                </div>
+			</div>
+			<div class="row">
+				    <div class="col-md-12">
+				        <div class="card box-shadow-0" data-appear="appear">
+					        <div class="card-header card-inverse" style="background-color: #d2d9dc;padding: 0.5rem 0rem 1rem 0rem;height: 40px; border-left: 1px solid #607D8B;border-right: 1px solid #607D8B;  
+					        						   border-bottom: 1px solid #607D8B; border-top: 1px solid #607D8B;">
+					            <div class="col-sm-6">	
+				               		<h4 class="card-title" id="horz-layout-basic" style="color: #000000; align="left"">
 								Date :
 								<%DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
 							Date today = Calendar.getInstance().getTime();  
@@ -415,7 +451,8 @@ int employee_master_id1 = user.getEmployee_master_id();
 						  </div>
 				            </div>
 				               <div class="card-body collapse in">
-					                <div class="card-block border-bottom-blue-grey" style="border-left: 2px solid #607D8B;border-right: 2px solid #607D8B;">
+					                <div class="card-block" style="border-left: 1px solid #607D8B;border-right: 1px solid #607D8B;
+					                					border-bottom: 1px solid #607D8B;">
 						
 						
 						<div class="panel-body">
@@ -512,6 +549,8 @@ int employee_master_id1 = user.getEmployee_master_id();
 							<tbody>
 							</table>
 							</form>
+							</div>
+							</div>
 							</div>
 							</div>
 							</div>

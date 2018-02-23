@@ -53,11 +53,13 @@ public class LeaveODManagerShowServlet extends HttpServlet {
 		if(request.getParameter("OD_ID") != null)
 		{
 			request.getRequestDispatcher("LeaveODManagerShow.jsp").forward(request, response);
+			/*response.sendRedirect("LeaveODManagerShow.jsp");*/
 		}
 		else
 		{
 			request.setAttribute("OD_ID", OD_ID);
 			request.getRequestDispatcher("LeaveSpecialODPending.jsp").forward(request, response);
+			/*response.sendRedirect("LeaveSpecialODPending.jsp");*/
 		}
 	}
 }

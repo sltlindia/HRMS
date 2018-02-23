@@ -46,7 +46,8 @@ public class HolidayUpdatesHRServlet extends HttpServlet {
 		if(result == true)
 		{
 			request.setAttribute("LeaveSuccessfully", "Holiday Updates  Successfully");
-			request.getRequestDispatcher("leaveHolidayAddHR.jsp").forward(request, response);
+			/*request.getRequestDispatcher("leaveHolidayAddHR.jsp").forward(request, response);*/
+			response.sendRedirect("leaveHolidayAddHR.jsp");
 		}
 		
 		

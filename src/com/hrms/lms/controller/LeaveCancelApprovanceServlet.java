@@ -107,17 +107,21 @@ public class LeaveCancelApprovanceServlet extends HttpServlet {
 		if(manager_id != 99){
 		
 		if(manager_id == 1 || manager_id == 2 || manager_id == 3){
-			request.getRequestDispatcher("sltlAdmin.jsp").forward(request, response);
+			/*request.getRequestDispatcher("sltlAdmin.jsp").forward(request, response);*/
+			response.sendRedirect("sltlAdmin.jsp");
 	}else if(manager_id == 4 || manager_id == 117 || under_manager_id == 4 || under_manager_id == 117){
 		request.getRequestDispatcher("hrHome.jsp").forward(request, response);
 		}else{
-			request.getRequestDispatcher("managerHome.jsp").forward(request, response);
+			/*request.getRequestDispatcher("managerHome.jsp").forward(request, response);*/
+			response.sendRedirect("managerHome.jsp");
 		}	
 	}else{
 		if(under_manager_id == 4 || under_manager_id == 117){
-			request.getRequestDispatcher("hrHome.jsp").forward(request, response);
+			/*request.getRequestDispatcher("hrHome.jsp").forward(request, response);*/
+			response.sendRedirect("hrHome.jsp");
 		}else{
-			request.getRequestDispatcher("empHome.jsp").forward(request, response);
+			/*request.getRequestDispatcher("empHome.jsp").forward(request, response);*/
+			response.sendRedirect("empHome.jsp");
 					}
 				}
 				
@@ -139,22 +143,27 @@ public class LeaveCancelApprovanceServlet extends HttpServlet {
 	if(manager_id == 1 || manager_id == 2 || manager_id == 3){
 		request.getRequestDispatcher("sltlAdmin.jsp").forward(request, response);
 }else if(manager_id == 4 || manager_id == 117 || under_manager_id == 4 || under_manager_id == 117){
-	request.getRequestDispatcher("hrHome.jsp").forward(request, response);
+	/*request.getRequestDispatcher("hrHome.jsp").forward(request, response);*/
+	response.sendRedirect("hrHome.jsp");
 	}else{
-		request.getRequestDispatcher("managerHome.jsp").forward(request, response);
+		/*request.getRequestDispatcher("managerHome.jsp").forward(request, response);*/
+		response.sendRedirect("managerHome.jsp");
 	}	
 }else{
 	if(under_manager_id == 4 || under_manager_id == 117){
-		request.getRequestDispatcher("hrHome.jsp").forward(request, response);
+		/*request.getRequestDispatcher("hrHome.jsp").forward(request, response);*/
+		response.sendRedirect("hrHome.jsp");
 	}else{
-		request.getRequestDispatcher("empHome.jsp").forward(request, response);
+		/*request.getRequestDispatcher("empHome.jsp").forward(request, response);*/
+		response.sendRedirect("empHome.jsp");
 				}
 			}
 		}
 		else
 		{
 			request.setAttribute("sessionExpired", "Your session is expired...Please login again...");
-			request.getRequestDispatcher("login.jsp").forward(request, response);
+			/*request.getRequestDispatcher("login.jsp").forward(request, response);*/
+			response.sendRedirect("login.jsp");
 		}
 	}
 }

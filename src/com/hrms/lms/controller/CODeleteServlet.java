@@ -20,7 +20,8 @@ public class CODeleteServlet extends HttpServlet {
 		boolean result = allUpdateDAO.COCancelEmployee(co_id);
 		
 		request.setAttribute("delete", "CO Cancelled Successfully....");
-		request.getRequestDispatcher("leavesuccess.jsp").forward(request, response);
+		/*request.getRequestDispatcher("leavesuccess.jsp").forward(request, response);*/
+		response.sendRedirect("leavesuccess.jsp");
 	}
 
 }

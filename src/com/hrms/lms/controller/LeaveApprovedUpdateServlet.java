@@ -333,7 +333,8 @@ public class LeaveApprovedUpdateServlet extends HttpServlet {
 	if(request.getParameter("action").equalsIgnoreCase("hrSide")){
 		response.sendRedirect("pendingLeaveHrSide.jsp");
 	}else{
-		request.getRequestDispatcher("leavesuccess.jsp").forward(request, response);
+		/*request.getRequestDispatcher("leavesuccess.jsp").forward(request, response);*/
+		response.sendRedirect("leavesuccess.jsp");
 	}
 	
 	

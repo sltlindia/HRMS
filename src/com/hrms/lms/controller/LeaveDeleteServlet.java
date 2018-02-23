@@ -99,7 +99,8 @@ public class LeaveDeleteServlet extends HttpServlet {
 					if(request.getParameter("action") != null){
 						request.getRequestDispatcher("pendingLeaveHrSide.jsp").forward(request, response);
 					}else{
-					request.getRequestDispatcher("leavesuccess.jsp").forward(request, response);
+					/*request.getRequestDispatcher("leavesuccess.jsp").forward(request, response);*/
+						response.sendRedirect("leavesuccess.jsp");
 					}
 				}
 			
@@ -108,13 +109,15 @@ public class LeaveDeleteServlet extends HttpServlet {
 			{
 				status = "Cancelled";
 				boolean result = allUpdateDAO.LeaveCancelled(status, leave_id);
-				request.getRequestDispatcher("leavesuccess.jsp").forward(request, response);
+				/*request.getRequestDispatcher("leavesuccess.jsp").forward(request, response);*/
+				response.sendRedirect("leavesuccess.jsp");
 			}
 		}
 		else
 		{
 			request.setAttribute("sessionExpired", "Your session is expired...Please login again...");
-			request.getRequestDispatcher("login.jsp").forward(request, response);
+			/*request.getRequestDispatcher("login.jsp").forward(request, response);*/
+			response.sendRedirect("login.jsp");
 		}
 	}
 }

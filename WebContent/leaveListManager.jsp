@@ -429,7 +429,7 @@
 	  		<div class="card-block border-bottom-blue-grey" style="border-left: 2px solid #607D8B;border-right: 2px solid #607D8B;">
 						<div class="card-body">
 							<div class="card-block">
-								<ul class="nav nav-tabs">
+								<ul class="nav nav-tabs nav-linetriangle no-hover-bg">
 									<%
 										AllLMSListDAO allLMSListDAO = new AllLMSListDAO();
 										List<LeaveBean> listOfEmployee = null;

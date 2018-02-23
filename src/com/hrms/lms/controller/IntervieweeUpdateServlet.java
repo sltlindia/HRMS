@@ -35,7 +35,8 @@ public class IntervieweeUpdateServlet extends HttpServlet {
 			Date date1 = new Date();
 			String interviewee_out_time = sdf1.format(date1);
 			boolean result = allUpdateDAO.intervieweeOutTimeUpdate(interviewee_id, interviewee_out_time);
-			request.getRequestDispatcher("addInterviewee.jsp").forward(request, response);
+			/*request.getRequestDispatcher("addInterviewee.jsp").forward(request, response);*/
+			response.sendRedirect("addInterviewee.jsp");
 			
 		}else{
 			String interviewee_name = request.getParameter("name");
@@ -76,13 +77,15 @@ public class IntervieweeUpdateServlet extends HttpServlet {
 			IntervieweeBean intervieweeBean = new IntervieweeBean(interviewee_id, interviewee_name, designation, interview_date, interviewee_location, interviewer_name, interviewer_feedback, remark, employeeBean, interviewee_in_time, interviewee_out_time, date_of_birth, email_id, mobile_number, location);
 			boolean result = allUpdateDAO.updateIntervieweeInfo(intervieweeBean);
 			
-			request.getRequestDispatcher("intervieweeList.jsp").forward(request, response);
+			/*request.getRequestDispatcher("intervieweeList.jsp").forward(request, response);*/
+			response.sendRedirect("intervieweeList.jsp");
 		}
 		
 		}else
 		{
 			request.setAttribute("sessionExpired", "Your session is expired...Please login again...");
-			request.getRequestDispatcher("login.jsp").forward(request, response);
+			/*request.getRequestDispatcher("login.jsp").forward(request, response);*/
+			response.sendRedirect("login.jsp");
 		}	
 		
 	}

@@ -15,7 +15,7 @@
     <meta name="description" content="Robust admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
     <meta name="keywords" content="admin template, robust admin template, dashboard template, flat admin template, responsive admin template, web app">
     <meta name="author" content="PIXINVENT">
-    <title>Sweet Alerts - Robust Bootstrap Admin Template</title>
+    <title>Complaint Update</title>
     <link rel="apple-touch-icon" sizes="60x60" href="app-assets/images/ico/apple-icon-60.png">
     <link rel="apple-touch-icon" sizes="76x76" href="app-assets/images/ico/apple-icon-76.png">
     <link rel="apple-touch-icon" sizes="120x120" href="app-assets/images/ico/apple-icon-120.png">
@@ -95,8 +95,8 @@ int complaint_id = Integer.parseInt(request.getParameter("complaint_id"));
                         </div>
                         	<div id="collapseOne" class="panel-collapse collapse in">
                         <div class="panel-body">
-                            <ul class="nav nav-tabs">
-                                <li class="active"><a href="#complaint" data-toggle="tab">F-IT-01_Complain Register_2017_FINAL</a>
+                            <ul class="nav nav-tabs nav-top-border no-hover-bg">
+                                <li class="nav-link active"><a href="#complaint" data-toggle="tab">F-IT-01_Complain Register_2017_FINAL</a>
                                 </li>
                              
                               </ul>

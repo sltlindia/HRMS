@@ -2880,9 +2880,11 @@ public class LeaveInsertServlet extends HttpServlet {
 								}).start();
 
 
-							 request.getRequestDispatcher("leavesuccess.jsp").forward(request, response);	
+							 /*request.getRequestDispatcher("leavesuccess.jsp").forward(request, response);*/
+							response.sendRedirect("leavesuccess.jsp");
 						}else{
-							request.getRequestDispatcher("leavesuccess.jsp").forward(request, response);	
+							/*request.getRequestDispatcher("leavesuccess.jsp").forward(request, response);*/
+							response.sendRedirect("leavesuccess.jsp");
 						}
 						}
 					}

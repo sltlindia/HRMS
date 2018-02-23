@@ -136,7 +136,8 @@ public class ComplaintInsertServlet extends HttpServlet {
 			
 			
 			
-			request.getRequestDispatcher("complaint.jsp").forward(request, response);
+			/*request.getRequestDispatcher("complaint.jsp").forward(request, response);*/
+			response.sendRedirect("complaint.jsp");
 	}
 
 }

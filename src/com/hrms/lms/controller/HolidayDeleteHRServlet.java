@@ -39,7 +39,8 @@ public class HolidayDeleteHRServlet extends HttpServlet {
 		if(result == true)
 		{	
 			request.setAttribute("LeaveExist", "Holiday Delete Successfully");
-			request.getRequestDispatcher("leaveHolidayAddHR.jsp").forward(request, response);
+			/*request.getRequestDispatcher("leaveHolidayAddHR.jsp").forward(request, response);*/
+			response.sendRedirect("leaveHolidayAddHR.jsp");
 		}
 		
 	}

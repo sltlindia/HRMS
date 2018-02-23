@@ -202,6 +202,9 @@
 
 					<li class="nav-item hidden-sm-down"><a href="#"
 						class="nav-link nav-link-expand"><i class="ficon icon-expand2"></i></a></li>
+						<li class="nav-item hidden-sm-down"> <img alt="logo"
+					src="img/SLTL.gif" height="60px" width="200px" align="middle">
+					</li>
 				</ul>
 				<ul class="nav navbar-nav float-xs-right">
 				
@@ -486,10 +489,10 @@
 							</a> <%} %>
 
 							</li>
-							<li class="dropdown-menu-footer"><a
+							<!-- <li class="dropdown-menu-footer"><a
 								href="javascript:void(0)"
 								class="dropdown-item text-muted text-xs-center">Read all
-									messages</a></li>
+									messages</a></li> -->
 						</ul></li>
 
 
@@ -658,11 +661,11 @@
 							
 							
 							</li>
-							<li class="dropdown-menu-footer"><a
+							<!-- <li class="dropdown-menu-footer"><a
 								href="javascript:void(0)"
 								class="dropdown-item text-muted text-xs-center">Read all
-									messages</a></li>
-						</ul></li>
+									messages</a></li> -->
+						</ul>
 					
 					<!-- Self service notification -->
 					
@@ -1072,10 +1075,10 @@
 									
 									}%>
 							</li>
-							<li class="dropdown-menu-footer"><a
+							<!-- <li class="dropdown-menu-footer"><a
 								href="javascript:void(0)"
 								class="dropdown-item text-muted text-xs-center">Read all
-									messages</a></li>
+									messages</a></li> -->
 						</ul></li>
 						
 			<%	if(manager_id == 4 || manager_id == 117 || under_manager_id == 4 || under_manager_id == 117){  
@@ -1096,7 +1099,7 @@
                       </div>
                    </a>
                    </li>
-                  <li class="dropdown-menu-footer"><a href="javascript:void(0)" class="dropdown-item text-muted text-xs-center">Read all messages</a></li>
+                  <!-- <li class="dropdown-menu-footer"><a href="javascript:void(0)" class="dropdown-item text-muted text-xs-center">Read all messages</a></li> -->
                 </ul>
               </li>
 				<%} %>
@@ -1793,6 +1796,20 @@
 							</ul>
 						</li>
 
+<!-- <li data-menu="dropdown-submenu" class="dropdown dropdown-submenu"><a
+							href="#" data-toggle="dropdown"
+							class="dropdown-item dropdown-toggle">Company Details</a>
+							<ul class="dropdown-menu">
+								<li data-menu=""><a href="companyAddresses.jsp"
+									data-toggle="dropdown" class="dropdown-item">Company
+										Address</a></li>
+								<li data-menu=""><a href="cugList.jsp"
+									data-toggle="dropdown" class="dropdown-item">CUG No</a></li>
+								<li data-menu=""><a href="extentionNumber.jsp"
+									data-toggle="dropdown" class="dropdown-item">Extension No</a></li>
+							</ul></li>
+
+ -->
 						<li data-mega-col="col-md-6" class="col-md-6">
 							<h6 data-toggle="dropdown"
 								class="dropdown-menu-header text-uppercase">

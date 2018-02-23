@@ -1146,11 +1146,11 @@ public class MultileaveapprovedServlet extends HttpServlet {
 						{
 							request.setAttribute("success", "Leave Successfully Approved");
 							//request.getRequestDispatcher("pendingLeaveHrSide.jsp").forward(request, response);
-							response.sendRedirect("leaveListManager.jsp");
+							response.sendRedirect("pendingLeaveHrSide.jsp");
 						}
 						else if(request.getParameter("specialLeave") != null){
 							//request.getRequestDispatcher("specialHRLeave.jsp").forward(request, response);
-							response.sendRedirect("leaveListManager.jsp");
+							response.sendRedirect("specialHRLeave.jsp");
 						}else
 						{
 							//request.getRequestDispatcher("leaveListManager.jsp").forward(request, response);
@@ -1195,11 +1195,13 @@ public class MultileaveapprovedServlet extends HttpServlet {
 				 	if(request.getParameter("hrApproval") != null)
 				 	{
 					 	request.setAttribute("error", "Leave Rejected Successfully");
-						request.getRequestDispatcher("pendingLeaveHrSide.jsp").forward(request, response);
+						/*request.getRequestDispatcher("pendingLeaveHrSide.jsp").forward(request, response);*/
+					 	response.sendRedirect("pendingLeaveHrSide.jsp");
 					}
 				 	else
 					{
-						request.getRequestDispatcher("leaveListManager.jsp").forward(request, response);
+						/*request.getRequestDispatcher("leaveListManager.jsp").forward(request, response);*/
+				 		response.sendRedirect("leaveListManager.jsp");
 					}
 				}
 			}		

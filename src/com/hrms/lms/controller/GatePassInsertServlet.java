@@ -84,7 +84,8 @@ public class GatePassInsertServlet extends HttpServlet {
 		}else
 		{
 			request.setAttribute("sessionExpired", "Your session is expired...Please login again...");
-			request.getRequestDispatcher("login.jsp").forward(request, response);
+			/*request.getRequestDispatcher("login.jsp").forward(request, response);*/
+			response.sendRedirect("login.jsp");
 		}
 	}
 

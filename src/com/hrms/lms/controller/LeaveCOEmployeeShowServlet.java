@@ -59,7 +59,8 @@ public class LeaveCOEmployeeShowServlet extends HttpServlet {
 		AllLMSListDAO allListDAO = new AllLMSListDAO();
 		List<LeaveCOBean> listOfCO = allListDAO.getCOByCOId(CO_ID);
 		request.setAttribute("listOfCO", listOfCO);
-		request.getRequestDispatcher("LeaveCOEmployeeShow.jsp").forward(request, response);
+		/*request.getRequestDispatcher("LeaveCOEmployeeShow.jsp").forward(request, response);*/
+		response.sendRedirect("LeaveCOEmployeeShow.jsp");
 		
 	}
 }

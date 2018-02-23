@@ -152,17 +152,17 @@
 																	<table
 																		class="table table-striped table-bordered">
 																		<thead>
-																			<tr>
-																				<th rowspan="2" style="padding: 0px;">Month</th>
-																				<th colspan="4" style="padding: 0px;">Total CI</th>
-																				<th rowspan="2" style="padding: 0px;">Action</th>
+																			<tr align="center">
+																				<th rowspan="2" style="padding: 0px;">&nbsp;Month</th>
+																				<th colspan="4" style="padding: 0px;">&nbsp;Total CI</th>
+																				<th rowspan="2" style="padding: 0px;">&nbsp;Action</th>
 																			</tr>
 																		</thead>
 
 																		<tbody>
-																			<tr>
+																			<tr align="center">
 																				<th style="padding: 0px;"></th>
-                                    					  						<th style="padding: 0px;">On-Progress&emsp;<i class="icon-information-circled" style="color: black;font-size: 13px;" tabindex="0" data-placement="left" data-toggle="popover" data-trigger="hover" data-content="No of CI which are Approved but not completed"></i></th>
+                                    					  						<th style="padding: 0px;">&emsp;On-Progress&emsp;<i class="icon-information-circled" style="color: black;font-size: 13px;" tabindex="0" data-placement="left" data-toggle="popover" data-trigger="hover" data-content="No of CI which are Approved but not completed"></i></th>
 				                                    					  		<th style="padding: 0px;">&emsp;Completed&emsp;<i class="icon-information-circled" style="color: black;font-size: 13px;" tabindex="0" data-placement="left" data-toggle="popover" data-trigger="hover" data-content="No of CI which are Approved and completed"></i></th>
 				                                    					  		<th style="padding: 0px;">&emsp;Pending&emsp;<i class="icon-information-circled" style="color: black;font-size: 13px;" tabindex="0" data-placement="left" data-toggle="popover" data-trigger="hover" data-content="No of CI Pending for Approval"></i></th>
 				                                    					  		<th style="padding: 0px;">&emsp;Genuine&emsp;<i class="icon-information-circled" style="color: black;font-size: 13px;" tabindex="0" data-placement="left" data-toggle="popover" data-trigger="hover" data-content="No of CI which are approved by departmental HOD but pending for other HOD's Approval"></i></th>
@@ -193,17 +193,17 @@
 																			%>
 
 
-																			<tr>
-																				<th style="padding: 1px;"><%=monthBean.getMonth_name()%>,<%=year%></th>
-																				<th style="padding: 1px;"><%=lisOfApprovedOnProgressCI.size()%></th>
-																				<th style="padding: 1px;"><%=lisOfApprovedCompletedCI.size()%></th>
-																				<th style="padding: 1px;"><%=lisOfPendingForApprovalCI.size() + lisOfPendingForApprovalSumittedCI.size()%></th>
-																				<th style="padding: 1px;"><%=lisOfMainGenuineKaizen.size()%></th>
-																				<th style="padding: 1px;"><%=lisOfMainRejectedKaizen.size()%></th>
-																				<th style="padding: 1px;"><a
-																					href="kaizenList.jsp?year=<%=year%>&month=<%=monthBean.getMonth_id()%>&month_name=<%=monthBean.getMonth_name()%>"><button
-																							class="btn btn-default btn-xs">
-																							<i class="icon-eye6"></i> Show
+																			<tr align="center">
+																				<th style="padding: 1px;">&emsp;<%=monthBean.getMonth_name()%>,<%=year%></th>
+																				<th style="padding: 1px;">&emsp;<%=lisOfApprovedOnProgressCI.size()%></th>
+																				<th style="padding: 1px;">&emsp;<%=lisOfApprovedCompletedCI.size()%></th>
+																				<th style="padding: 1px;">&emsp;<%=lisOfPendingForApprovalCI.size() + lisOfPendingForApprovalSumittedCI.size()%></th>
+																				<th style="padding: 1px;">&emsp;<%=lisOfMainGenuineKaizen.size()%></th>
+																				<th style="padding: 1px;">&emsp;<%=lisOfMainRejectedKaizen.size()%></th>
+																				<th style="padding: 1px;">&emsp;<a
+																					href="kaizenList.jsp?year=<%=year%>&month=<%=monthBean.getMonth_id()%>&month_name=<%=monthBean.getMonth_name()%>">&emsp;<button
+																							class="btn btn-primary">
+																							<i class="icon-eye4"></i> Show
 																							All CI
 																						</button></a></th>
 																			</tr>
@@ -231,17 +231,17 @@
 																								emp_id, year1, monthBean.getMonth_id(), "genuine", "submitted");
 																			%>
 
-																			<tr>
-																				<th style="padding: 1px;"><%=monthBean.getMonth_name()%>,<%=year1%></th>
-																				<th style="padding: 1px;"><%=lisOfApprovedOnProgressCI.size()%></th>
-																				<th style="padding: 1px;"><%=lisOfApprovedCompletedCI.size()%></th>
-																				<th style="padding: 1px;"><%=lisOfPendingForApprovalCI.size() + lisOfPendingForApprovalSumittedCI.size()%></th>
-																				<th style="padding: 1px;"><%=lisOfMainGenuineKaizen.size()%></th>
-																				<th style="padding: 1px;"><%=lisOfMainRejectedKaizen.size()%></th>
-																				<th style="padding: 1px;"><a
-																					href="kaizenList.jsp?year=<%=year%>&month=<%=monthBean.getMonth_id()%>&month_name=<%=monthBean.getMonth_name()%>"><button
-																							class="btn btn-default btn-xs">
-																							<i class="icon-eye6"></i> Show
+																			<tr align="left">
+																				<th style="padding: 1px;">&emsp;<%=monthBean.getMonth_name()%>,<%=year1%></th>
+																				<th style="padding: 1px;">&emsp;<%=lisOfApprovedOnProgressCI.size()%></th>
+																				<th style="padding: 1px;">&emsp;<%=lisOfApprovedCompletedCI.size()%></th>
+																				<th style="padding: 1px;">&emsp;<%=lisOfPendingForApprovalCI.size() + lisOfPendingForApprovalSumittedCI.size()%></th>
+																				<th style="padding: 1px;">&emsp;<%=lisOfMainGenuineKaizen.size()%></th>
+																				<th style="padding: 1px;">&emsp;<%=lisOfMainRejectedKaizen.size()%></th>
+																				<th style="padding: 1px;">&emsp;<a
+																					href="kaizenList.jsp?year=<%=year%>&month=<%=monthBean.getMonth_id()%>&month_name=<%=monthBean.getMonth_name()%>">&emsp;<button
+																							class="btn btn-primary">
+																							<i class="icon-eye4"></i> Show
 																							All CI
 																						</button></a></th>
 																			</tr>

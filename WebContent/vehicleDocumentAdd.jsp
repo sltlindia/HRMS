@@ -149,16 +149,10 @@
 						</div>
 						</div>
 						</div>
-						
-
-						<!-- /.panel -->
 					</div>
-
-					<!-- /.col-lg-12 -->
 				</div>
 			</div>
 			</section>
-			<!-- /#wrapper -->
 		</div> 
 		</div>
 	</div>

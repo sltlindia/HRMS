@@ -51,7 +51,8 @@ public class LeaveODEmployeeShowServlet extends HttpServlet {
 		AllLMSListDAO allListDAO = new AllLMSListDAO();
 		List<LeaveODBean> listOfOD = allListDAO.getODByODId(OD_ID);
 		request.setAttribute("listOfOD", listOfOD);
-		request.getRequestDispatcher("LeaveODEmployeeShow.jsp").forward(request, response);
+		/*request.getRequestDispatcher("LeaveODEmployeeShow.jsp").forward(request, response);*/
+		response.sendRedirect("LeaveODEmployeeShow.jsp");
 	}
 
 }

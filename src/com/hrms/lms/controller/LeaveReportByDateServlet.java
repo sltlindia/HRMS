@@ -21,7 +21,8 @@ public class LeaveReportByDateServlet extends HttpServlet {
      List<LeaveBean> listOfEmployee = allLMSListDAO.getListOfEmployeeLeaveByDate(date);
      request.setAttribute("listOfEmployee", listOfEmployee);
      request.setAttribute("date", date);
-     request.getRequestDispatcher("leaveReportByDate.jsp").forward(request, response);
+     /*request.getRequestDispatcher("leaveReportByDate.jsp").forward(request, response);*/
+     response.sendRedirect("leaveReportByDate.jsp");
 	
 	}
 

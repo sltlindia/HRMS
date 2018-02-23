@@ -215,19 +215,23 @@ function checkInteger(id) {
 	
 											<div class="panel-body">
 											<br>
-												<div class="col-md-2"><b>Select Form:</b></div>
-												<div class="col-md-6">
-													<div class="form-group">
-														<select class="form-control" name="leavetypeselect"
-															id="leavetypeselect" onchange="redirect(this.value);"
-															required>
-															<option value="applyLeave.jsp" selected="selected">
-																Leave</option>
-															<option value="leaveCO.jsp">CO</option>
-															<option value="leaveOD.jsp">OD</option>
-														</select>
-													</div>
-												</div>
+						<table class="table" style="margin-bottom: 0px;">
+                        	<thead>
+	                        	<tr>
+								<td width="100px"><label>Select Form</label></td>
+								<td width="10px">:</td>
+								<td width="200px;">
+									<select class="form-control" name="leavetypeselect" id="leavetypeselect" onchange="redirect(this.value);" required>
+										<option value="applyleave.jsp"  selected="selected">   Leave    </option>
+										<option value="leaveCO.jsp">   	 CO       </option>
+										<option value="leaveOD.jsp">      OD       </option>
+									</select>
+								</td>
+								<td></td>
+								<td></td>
+								</tr>
+                        	</thead>
+                        </table>
 											</div>
 										</div>
 									</div>

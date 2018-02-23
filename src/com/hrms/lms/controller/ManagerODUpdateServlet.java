@@ -276,14 +276,17 @@ public class ManagerODUpdateServlet extends HttpServlet {
 									if(hrApproval.equalsIgnoreCase("od")){
 										request.setAttribute("success", "OD approved Successfully");
 										request.setAttribute("hrApproval",hrApproval);
-										request.getRequestDispatcher("pendingLeaveHrSide.jsp").forward(request, response);
+										/*request.getRequestDispatcher("pendingLeaveHrSide.jsp").forward(request, response);*/
+										response.sendRedirect("pendingLeaveHrSide.jsp");
 									}else{
 										request.setAttribute("LeaveapprovedSuccessfully", "OD approved Successfully");
 										if(user.getManagerBean().getManager_id() == 99){
-											request.getRequestDispatcher("empHome.jsp").forward(request, response);
+											/*request.getRequestDispatcher("empHome.jsp").forward(request, response);*/
+											response.sendRedirect("empHome.jsp");
 										}
 										else{
-											request.getRequestDispatcher("leaveListManager.jsp").forward(request, response);
+											/*request.getRequestDispatcher("leaveListManager.jsp").forward(request, response);*/
+											response.sendRedirect("leaveListManager.jsp");
 										}
 									
 									}
@@ -301,14 +304,17 @@ public class ManagerODUpdateServlet extends HttpServlet {
 									if(hrApproval.equalsIgnoreCase("od")){
 										request.setAttribute("error", "OD Rejected Successfully");
 										request.setAttribute("hrApproval",hrApproval);
-										request.getRequestDispatcher("pendingLeaveHrSide.jsp").forward(request, response);
+										/*request.getRequestDispatcher("pendingLeaveHrSide.jsp").forward(request, response);*/
+										response.sendRedirect("pendingLeaveHrSide.jsp");
 									}else{
 										request.setAttribute("LeaverejectedSuccessfully", "OD Rejected Successfully");
 										if(user.getManagerBean().getManager_id() == 99){
-											request.getRequestDispatcher("empHome.jsp").forward(request, response);
+											/*request.getRequestDispatcher("empHome.jsp").forward(request, response);*/
+											response.sendRedirect("empHome.jsp");
 										}
 										else{
-											request.getRequestDispatcher("leaveListManager.jsp").forward(request, response);
+											/*request.getRequestDispatcher("leaveListManager.jsp").forward(request, response);*/
+											response.sendRedirect("leaveListManager.jsp");
 										}
 									}
 								}

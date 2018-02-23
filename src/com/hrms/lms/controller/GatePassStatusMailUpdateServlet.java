@@ -62,12 +62,14 @@ public class GatePassStatusMailUpdateServlet extends HttpServlet {
 				if(status.equalsIgnoreCase("Approved"))
 				{
 					request.setAttribute("success", "Gate Pass Approved Successfully...");
-					request.getRequestDispatcher("emailSuccess.jsp").forward(request, response);
+					/*request.getRequestDispatcher("emailSuccess.jsp").forward(request, response);*/
+					response.sendRedirect("emailSuccess.jsp");
 				}
 				else
 				{
 					request.setAttribute("error", "Gate Pass Rejected Successfully...");
-					request.getRequestDispatcher("emailSuccess.jsp").forward(request, response);
+					/*request.getRequestDispatcher("emailSuccess.jsp").forward(request, response);*/
+					response.sendRedirect("emailSuccess.jsp");
 				}
 		}
 		}

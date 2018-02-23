@@ -83,20 +83,17 @@
 									</div>
 									<!-- /.col-lg-12 -->
 								</div>
-
+									<br>
 								<div class="row">
 									<div class="col-lg-12">
-					<div class="card">
-				        	<div class="card-header">
-				        	<div class="card box-shadow-0" data-appear="appear">
 					                <div class="card-header card-inverse" style="background-color: #90A4AE;padding: 0.5rem 0rem 1rem 0rem;height: 50px;">
 					                <div class="col-sm-6">
 					                 <h5 class="card-title">CI List</h5>
 												</div>
-
 											</div>
+										
                         <!-- /.panel-heading -->
-                       <div class="card-body collapse in">
+                       				<div class="card-body collapse in">
 					                    <div class="card-block border-bottom-blue-grey" style="border-left: 2px solid #607D8B;border-right: 2px solid #607D8B;">
 					                    <div class="table-responsive">
                                 <table class="table table-striped table-bordered table-hover">
@@ -114,7 +111,7 @@
                                         
                                         
                                         
-                                        <tr class="panel-group">
+                                        					<tr class="panel-group">
 																<th><a id="year<%=yearBean.getYear_id()%>"
 																	style="color: black; text-decoration: none; cursor: pointer;"
 																	onclick="showData(this.id)"><i
@@ -151,7 +148,7 @@
                                     					  </thead>
                                     					  
                                     					  <tbody>
-                                    					  	<tr>
+                                    					  	<tr align="center">
                                     					  		<th style="padding: 0px;"></th>
                                     					  		<th style="padding: 0px;">On-Progress&emsp;<i class="icon-information-circled" style="color: black;font-size: 13px;" tabindex="0" data-placement="left" data-toggle="popover" data-trigger="hover" data-content="No of CI which are Approved but not completed"></i></th>
                                     					  		<th style="padding: 0px;">&emsp;Completed&emsp;<i class="icon-information-circled" style="color: black;font-size: 13px;" tabindex="0" data-placement="left" data-toggle="popover" data-trigger="hover" data-content="No of CI which are Approved and completed"></i></th>
@@ -172,15 +169,15 @@
 																List<KaizenBean> lisOfMainRejectedKaizen = allKaizenListDAO.getListOfAllKaizenBymanagerIdWithRejected(manager_id,year,monthBean.getMonth_id());%>
 																
                                     					  
-                                    					  		<tr>
-                                    					  			<th style="padding: 1px;"><%=monthBean.getMonth_name()%>,<%=year%></th>
-                                    					  			<th style="padding: 1px;"><%=lisOfApprovedOnProgressCI.size()%></th>
-                                    					  			<th style="padding: 1px;"><%=lisOfApprovedCompletedCI.size()%></th>
-                                    					  			<th style="padding: 1px;"><%=lisOfPendingForApprovalCI.size()%></th>
-                                    					  			<th style="padding: 1px;"><%=lisOfMainRejectedKaizen.size()%></th>
-                                    					  			<th style="padding: 1px;">
-                                    					  			     <a href="kaizenManagerList.jsp?year=<%=year%>&month=<%=monthBean.getMonth_id()%>&month_name=<%=monthBean.getMonth_name()%>"><button class="btn btn-default btn-xs"><i class="glyphicon glyphicon-eye-open"></i> Show All CI</button></a>
-                                    					  			      <button class="btn btn-default btn-xs" onclick="window.open('kaizenManagerScore.jsp?year=<%=year%>&month=<%=monthBean.getMonth_id()%>&month_name=<%=monthBean.getMonth_name()%>','_blank')"> Give Score</button>
+                                    					  		<tr align="center">
+                                    					  			<th style="padding: 1px;" align="center">&emsp;<%=monthBean.getMonth_name()%>,<%=year%></th>
+                                    					  			<th style="padding: 1px;" align="center">&emsp;<%=lisOfApprovedOnProgressCI.size()%></th>
+                                    					  			<th style="padding: 1px;" align="center">&emsp;<%=lisOfApprovedCompletedCI.size()%></th>
+                                    					  			<th style="padding: 1px;" align="center">&emsp;<%=lisOfPendingForApprovalCI.size()%></th>
+                                    					  			<th style="padding: 1px;" align="center">&emsp;<%=lisOfMainRejectedKaizen.size()%></th>
+                                    					  			<th style="padding: 1px;" align="center">&emsp;
+                                    					  			     <a href="kaizenManagerList.jsp?year=<%=year%>&month=<%=monthBean.getMonth_id()%>&month_name=<%=monthBean.getMonth_name()%>">&emsp;<button class="btn btn-primary"><i class="icon-eye4"></i> Show All CI</button></a>
+                                    					  			      &emsp;<button class="btn btn-primary" onclick="window.open('kaizenManagerScore.jsp?year=<%=year%>&month=<%=monthBean.getMonth_id()%>&month_name=<%=monthBean.getMonth_name()%>','_blank')"> Give Score</button>
                                     					  			</th>
                                     					  		</tr>
                                     					  <%} %>
@@ -197,14 +194,14 @@
 																
                                     					  
                                     					  		<tr>
-                                    					  			<th style="padding: 1px;"><%=monthBean.getMonth_name()%>,<%=year1%></th>
-                                    					  			<th style="padding: 1px;"><%=lisOfApprovedOnProgressCI.size()%></th>
-                                    					  			<th style="padding: 1px;"><%=lisOfApprovedCompletedCI.size()%></th>
-                                    					  			<th style="padding: 1px;"><%=lisOfPendingForApprovalCI.size()%></th>
-                                    					  			<th style="padding: 1px;"><%=lisOfMainRejectedKaizen.size()%></th>
-                                    					  			<th style="padding: 1px;">
-                                    					  			     <a href="kaizenManagerList.jsp?year=<%=year%>&month=<%=monthBean.getMonth_id()%>&month_name=<%=monthBean.getMonth_name()%>"><button class="btn btn-default btn-xs"><i class="glyphicon glyphicon-eye-open"></i> Show All CI</button></a>
-                                    					  			      <button class="btn btn-default btn-xs" onclick="window.open('kaizenManagerScore.jsp?year=<%=year%>&month=<%=monthBean.getMonth_id()%>&month_name=<%=monthBean.getMonth_name()%>','_blank')"> Give Score</button>
+                                    					  			<th style="padding: 1px;" align="center">&emsp;<%=monthBean.getMonth_name()%>,<%=year1%></th>
+                                    					  			<th style="padding: 1px;" align="center">&emsp;<%=lisOfApprovedOnProgressCI.size()%></th>
+                                    					  			<th style="padding: 1px;" align="center">&emsp;<%=lisOfApprovedCompletedCI.size()%></th>
+                                    					  			<th style="padding: 1px;" align="center">&emsp;<%=lisOfPendingForApprovalCI.size()%></th>
+                                    					  			<th style="padding: 1px;" align="center">&emsp;<%=lisOfMainRejectedKaizen.size()%></th>
+                                    					  			<th style="padding: 1px;" align="center">&emsp;
+                                    					  			     <a href="kaizenManagerList.jsp?year=<%=year%>&month=<%=monthBean.getMonth_id()%>&month_name=<%=monthBean.getMonth_name()%>">&emsp;<button class="btn btn-primary"><i class="icon-eye4"></i> Show All CI</button></a>
+                                    					  			      &emsp;<button class="btn btn-primary" onclick="window.open('kaizenManagerScore.jsp?year=<%=year%>&month=<%=monthBean.getMonth_id()%>&month_name=<%=monthBean.getMonth_name()%>','_blank')"> Give Score</button>
                                     					  			</th>
                                     					  		</tr>
                                     					  <%} %>
@@ -218,9 +215,6 @@
                                         <%} %>
                                     </thead>
                                 </table>
-                            </div>
-                            </div>
-                            </div>
                             </div>
                             </div>
                             </div>

@@ -124,7 +124,8 @@ public class LeaveUpdateForApprovanceServlet extends HttpServlet {
 		    	
 	
 	request.setAttribute("LeaveSuccessfully", "Your leave successfully updated..");
-	request.getRequestDispatcher("leavesuccess.jsp").forward(request, response);
+	/*request.getRequestDispatcher("leavesuccess.jsp").forward(request, response);*/
+	response.sendRedirect("leavesuccess.jsp");
 	
 	
 	}

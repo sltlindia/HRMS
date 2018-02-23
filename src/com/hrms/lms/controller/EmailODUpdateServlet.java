@@ -162,13 +162,14 @@ public class EmailODUpdateServlet extends HttpServlet {
 								}	
 								
 								
-								boolean result = allUpdateDAO.ODApprovedStatus(Status, OD_ID);
+								boolean result = allUpdateDAO.ODApprovedStatus(status, apdate, OD_ID)(Status, OD_ID);
 								leaveHRBean = new LeaveHRBean(LeaveType, employeeBean, FromDate, ToDate, Approval_Date, code, leaveODBean);
 								allInsertDAO.leaveHRInsert(leaveHRBean);
 								if(result == true)
 								{
 									request.setAttribute("success", "OD Successfully Approved By You");
-									 request.getRequestDispatcher("emailSuccess.jsp").forward(request, response);
+									 /*request.getRequestDispatcher("emailSuccess.jsp").forward(request, response);*/
+									response.sendRedirect("emailSuccess.jsp");
 									
 									
 								}
@@ -181,7 +182,8 @@ public class EmailODUpdateServlet extends HttpServlet {
 								{
 									
 									request.setAttribute("error", "OD Successfully Rejected By You");
-									request.getRequestDispatcher("emailSuccess.jsp").forward(request, response);
+									/*request.getRequestDispatcher("emailSuccess.jsp").forward(request, response);*/
+									response.sendRedirect("emailSuccess.jsp");
 								}
 								
 							}

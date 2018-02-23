@@ -277,7 +277,6 @@ function deleteCO(id) {
 																	<div class="panel panel-default ">
 																		<div class="panel-body">
 																			<div class="dataTable_wrapper">
-																				<div class="table-responsive">
 																					<table
 																						class="table table-striped table-bordered table-hover file-export">
 																						<thead>
@@ -286,13 +285,10 @@ function deleteCO(id) {
 																								<th style="text-align: center">From Date</th>
 																								<th style="text-align: center">To Date</th>
 																								<th style="text-align: center">Total Day</th>
-																								<th style="text-align: center" colspan="2">Applied
-																									Leave Adjusted From</th>
-																								<th style="text-align: center" width="160px">Submission
-																									Date</th>
-																								<th style="text-align: center" width="160px">Approval/Rejected
-																									Date</th>
-																								<th style="text-align: center" width="160px">Status</th>
+																								<th style="text-align: center" colspan="2">Count</th>
+																								<th style="text-align: center" width="180px">Submission Date</th>
+																								<th style="text-align: center" width="160px">Approval/Rejected 	Date</th>
+																								<th style="text-align: center" width="110px">Status</th>
 																								<th style="text-align: center">Action</th>
 																							</tr>
 																						</thead>
@@ -454,7 +450,7 @@ function deleteCO(id) {
 																												title="Update Leave"></i></a>
 																										</p>
 																										<p>
-																											<i class="icon icon-trash"
+																											<i class="icon-trash-a"
 																												data-toggle="popover"
 																												id="<%=leaveBean.getStatus()%>"
 																												data-placement="top" title="Cancel Leave"
@@ -469,7 +465,7 @@ function deleteCO(id) {
 																											if (!date.after(result1)) {
 																										%>
 																										<p>
-																											<i class="icon icon-trash"
+																											<i class="icon-trash-a"
 																												data-toggle="popover"
 																												id="<%=leaveBean.getStatus()%>"
 																												data-placement="top" title="Cancel Leave"
@@ -490,7 +486,7 @@ function deleteCO(id) {
 																										<p>
 																											<a href="" data-toggle="modal"
 																												data-target="#myModal<%=leaveBean.getLeave_id()%>"><i
-																												class="icon icon-trash"
+																												class="icon-trash-a"
 																												data-toggle="popover"
 																												id="<%=leaveBean.getStatus()%>"
 																												data-placement="top" title="Cancel Leave"
@@ -552,13 +548,12 @@ function deleteCO(id) {
 																						%>
 
 																					</table>
-																				</div>
 																				<h5>
 																					<b>Legends :&nbsp;</b>
 																				</h5>
 																				<i class="icon icon-edit2" style="color: #337ab7;"></i><b>
 																					: Update Leave </b> &nbsp;&nbsp;&nbsp;<i
-																					class="icon icon-trash" style="color: red;"></i><b>
+																					class="icon-trash-a" style="color: red;"></i><b>
 																					: Cancel Leave </b> &nbsp;&nbsp;&nbsp;
 
 																			</div>
@@ -603,7 +598,6 @@ function deleteCO(id) {
 																		<div class="panel panel-default">
 																			<div class="panel-body">
 																				<div class="dataTable_wrapper">
-																					<div class="table-responsive">
 																						<table
 																							class="table table-striped table-bordered table-hover zero-configuration">
 																							<thead>
@@ -677,7 +671,7 @@ function deleteCO(id) {
 																										%> <a
 																										href="LeaveCOEmployeeShow?CO_ID=<%=c.getCO_ID()%>&status=Pending"><i
 																											class="icon icon-edit2" data-toggle="popover"></i></a> <i
-																										class="icon icon-trash" onclick="deleteCO(<%=c.getCO_ID()%>);"
+																										class="icon-trash-a" onclick="deleteCO(<%=c.getCO_ID()%>);"
 																										style="color: red; cursor: pointer;" data-toggle="popover"></i> <%
  	}
  %>
@@ -689,13 +683,12 @@ function deleteCO(id) {
 																								}
 																							%>
 																						</table>
-																					</div>
 																					<h5>
 																						<b>Legends :&nbsp;</b>
 																					</h5>
 																					<i class="icon icon-eye4" style="color: #337ab7;"></i><b>
 																						: View CO </b> &nbsp;&nbsp;&nbsp;<i
-																						class=" icon icon-trash" style="color: #337ab7;"></i><b>
+																						class=" icon-trash-a" style="color: red;"></i><b>
 																						: Cancel CO </b> &nbsp;&nbsp;&nbsp;
 
 																				</div>
@@ -728,7 +721,6 @@ function deleteCO(id) {
 																			<div class="panel panel-default">
 																				<div class="panel-body">
 																					<div class="dataTable_wrapper">
-																						<div class="table-responsive">
 																							<table
 																								class="table table-striped table-bordered table-hover"
 																								id="dataTables-example3">
@@ -782,12 +774,17 @@ function deleteCO(id) {
 																												if (od.getDescription() == "") {
 																											%> ----- <%
 																												} else {
-																											%> <i class="icon-information-circled"
+																											%>
+																											<%--  <i class="icon-information-circled"
 																											data-container="body" data-toggle="popover"
 																											data-placement="top" title="Description"
 																											data-content="<%=od.getDescription()%>">
 																												<i></i>
-																										</i> <%}%>
+																										</i> --%>
+																										
+																										<i class="icon-information-circled" data-container="body" data-toggle="popover" data-trigger="hover" data-placement="right" title="Description" data-content="<%=od.getDescription()%>"> <i></i> </i>
+																										
+																										 <%}%>
 																										</td>
 																										<%-- <td>
 													<% if(od.getOD_EndTime() == ""){%>
@@ -819,7 +816,7 @@ function deleteCO(id) {
 																												class="icon icon-edit2" data-toggle="popover"
 																											data-placement="top" title="Edit"></i></a> 
 																											
-																											<i class="icon icon-trash" data-toggle="popover"
+																											<i class="icon-trash-a" data-toggle="popover"
 																											data-placement="top" title="Delete"
 																											onclick="deleteOD(<%=od.getOD_ID()%>);"
 																											style="color: red; cursor: pointer;"></i> <%
@@ -833,16 +830,15 @@ function deleteCO(id) {
 																									}
 																								%>
 																							</table>
-																						</div>
 																						<h5>
 																							<b>Legends :&nbsp;</b>
 																						</h5>
 																						<i class="icon icon-eye4" style="color: #337ab7;"></i><b>
 																							: View OD </b> &nbsp;&nbsp;&nbsp;<i
-																							class="icon icon-trash" style="color: red;"></i><b>
+																							class="icon-trash-a" style="color: red;"></i><b>
 																							: Cancel OD </b> &nbsp;&nbsp;&nbsp;<i
-																							class="icon-android-list" style="color: #337ab7;"></i>
-																						: Description of OD
+																							class="icon-android-list" style="color: #337ab7;"></i><b>
+																						: Description of OD</b>
 
 																					</div>
 																				</div>
@@ -924,6 +920,14 @@ function deleteCO(id) {
 		type="text/javascript"></script>
 	<!-- END PAGE LEVEL JS-->
 	<!-- Page-Level Demo Scripts - Tables - Use for reference -->
+	<script type="text/javascript">
 	
+	 $('[data-toggle="popover"]').popover({
+		    /* container: 'body'
+		    	max-width: '600px'
+		   		 width: 'auto' */
+			});
+	
+	</script>
 </body>
 </html>

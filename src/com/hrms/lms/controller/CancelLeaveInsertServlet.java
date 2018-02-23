@@ -38,8 +38,8 @@ public class CancelLeaveInsertServlet extends HttpServlet {
 	boolean result = allInsertDAO.leaveCancelRequestInsert(leaveCancelRequestBean);
 	
 	request.setAttribute("success", "Your Leave is successfully gone to your manager for cancel...");
-	request.getRequestDispatcher("leavesuccess.jsp").forward(request, response);
-	
+	/*request.getRequestDispatcher("leavesuccess.jsp").forward(request, response);*/
+	response.sendRedirect("leavesuccess.jsp");
 	}
 
 }

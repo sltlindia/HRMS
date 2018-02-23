@@ -223,29 +223,6 @@ public class AllListDAO
         return leaveTypeBean;
     }
 	
-	
-	public List<LeaveBean> getLeaveByEmpId(int emp_id) {
-		
-		List<LeaveBean> listOfLeave = new ArrayList<LeaveBean>();
-	    Session session = HibernateUtil.openSession();
-	    Transaction tx = null;
-	    LeaveBean leaveBean = null;;
-	    try {
-	        tx = session.getTransaction();
-	        tx.begin();
-	        Query query = session.createQuery("from LeaveBean WHERE employee_master_id='"+ emp_id+"'");
-	        listOfLeave = query.list();
-	        tx.commit();
-	    } catch (Exception e) {
-	        if (tx != null) {
-	            tx.rollback();
-	        }
-	        e.printStackTrace();
-	    } finally {
-	        session.close();
-	    }
-	    return listOfLeave;
-	}
 
 	@SuppressWarnings("unchecked")
 	public List<LeaveBean> getLeavefromtodate(String Leave_From , String Leave_To, int emp_id ) {

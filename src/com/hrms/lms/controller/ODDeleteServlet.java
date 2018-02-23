@@ -19,7 +19,8 @@ public class ODDeleteServlet extends HttpServlet {
 		boolean result = allUpdateDAO.ODCancelEmployee(od_id);
 		
 		request.setAttribute("delete", "OD Cancelled Successfully....");
-		request.getRequestDispatcher("leavesuccess.jsp").forward(request, response);
+		/*request.getRequestDispatcher("leavesuccess.jsp").forward(request, response);*/
+		response.sendRedirect("leavesuccess.jsp");
 		
 	}
 

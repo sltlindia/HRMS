@@ -56,11 +56,13 @@ public class LeaveCOManagerShowServlet extends HttpServlet {
 		if(request.getParameter("CO_ID") != null)
 		{
 			request.getRequestDispatcher("LeaveCOManagerShow.jsp").forward(request, response);
+			/*response.sendRedirect("LeaveCOManagerShow.jsp");*/
 		}
 		else
 		{
 			request.setAttribute("CO_ID", CO_ID);
 			request.getRequestDispatcher("LeaveSpecialCOPending.jsp").forward(request, response);
+			/*response.sendRedirect("LeaveSpecialCOPending.jsp");*/
 		}
 		
 		

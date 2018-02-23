@@ -1185,28 +1185,6 @@ public class AllListDAO {
 		return listOfTimesheet;
 	}
 
-	public List<TimeSheetBean> getListOfAprovedTimesheetByEmployeeId(int task_id, int employee_id) {
-		List<TimeSheetBean> listOfTimesheet = new ArrayList<TimeSheetBean>();
-		Session session = HibernateUtil.openSession();
-		Transaction tx = null;
-		try {
-			tx = session.getTransaction();
-			tx.begin();
-			String hql = "from TimeSheetBean  where taskMasterBean='" + task_id + "' and employeeBean='" + employee_id
-					+ "' and approval_status ='approved'";
-			Query query = session.createQuery(hql);
-			listOfTimesheet = query.list();
-			tx.commit();
-		} catch (Exception e) {
-			if (tx != null) {
-				tx.rollback();
-			}
-			e.printStackTrace();
-		} finally {
-			session.close();
-		}
-		return listOfTimesheet;
-	}
 
 	public List<TimeSheetBean> getListOfRejectTimesheet(int task_id) {
 		List<TimeSheetBean> listOfTimesheet = new ArrayList<TimeSheetBean>();
@@ -1883,27 +1861,7 @@ public class AllListDAO {
 
 	}
 
-	public String getMinDate(int task_id) {
-		Session session = HibernateUtil.openSession();
-		Transaction tx = null;
-		String maxvalue = null;
-		try {
-			tx = session.getTransaction();
-			tx.begin();
-			Query query = session.createQuery("select min(t.date) from TimeSheetBean t where t.taskMasterBean='"
-					+ task_id + "' and t.approval_status ='approved'");
-			maxvalue = (String) query.uniqueResult();
-			tx.commit();
-		} catch (Exception e) {
-			if (tx != null) {
-				tx.rollback();
-			}
-			e.printStackTrace();
-		} finally {
-			session.close();
-		}
-		return maxvalue;
-	}
+	
 
 	public List<EmployeeBean> getListOfEmployee(int manager_id) {
 		List<EmployeeBean> listOfEmployee = new ArrayList<EmployeeBean>();
@@ -2676,5 +2634,7 @@ public class AllListDAO {
 		}
 		return listOfTask;
 	}
-
+	
+	
+	
 }

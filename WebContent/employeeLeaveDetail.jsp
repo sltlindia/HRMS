@@ -19,62 +19,48 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
-<meta name="description"
-	content="Robust admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
-<meta name="keywords"
-	content="admin template, robust admin template, dashboard template, flat admin template, responsive admin template, web app">
-<meta name="author" content="PIXINVENT">
-<title>Leave Status</title>
-<link rel="apple-touch-icon" sizes="60x60"
-	href="app-assets/images/ico/apple-icon-60.png">
-<link rel="apple-touch-icon" sizes="76x76"
-	href="app-assets/images/ico/apple-icon-76.png">
-<link rel="apple-touch-icon" sizes="120x120"
-	href="app-assets/images/ico/apple-icon-120.png">
-<link rel="apple-touch-icon" sizes="152x152"
-	href="app-assets/images/ico/apple-icon-152.png">
-<link rel="shortcut icon" type="image/x-icon"
-	href="https://pixinvent.com/bootstrap-admin-template/robust/app-assets/images/ico/favicon.ico">
-<link rel="shortcut icon" type="image/png"
-	href="app-assets/images/ico/favicon-32.png">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-touch-fullscreen" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="default">
-<!-- BEGIN VENDOR CSS-->
-<link rel="stylesheet" type="text/css"
-	href="app-assets/css/bootstrap.min.css">
-<!-- font icons-->
-<link rel="stylesheet" type="text/css"
-	href="app-assets/fonts/icomoon.css">
-<link rel="stylesheet" type="text/css"
-	href="app-assets/fonts/flag-icon-css/css/flag-icon.min.css">
-<link rel="stylesheet" type="text/css"
-	href="app-assets/vendors/css/sliders/slick/slick.css">
-<link rel="stylesheet" type="text/css"
-	href="app-assets/vendors/css/extensions/pace.css">
-<link rel="stylesheet" type="text/css"
-	href="app-assets/vendors/css/extensions/sweetalert.css">
-<!-- END VENDOR CSS-->
-<!-- BEGIN ROBUST CSS-->
-<link rel="stylesheet" type="text/css"
-	href="app-assets/css/bootstrap-extended.min.css">
-<link rel="stylesheet" type="text/css" href="app-assets/css/app.min.css">
-<link rel="stylesheet" type="text/css"
-	href="app-assets/css/colors.min.css">
-<link rel="stylesheet" type="text/css" href="assets/css/style.css">
-<!-- END ROBUST CSS-->
-<!-- BEGIN Page Level CSS-->
-<link rel="stylesheet" type="text/css"
-	href="app-assets/css/core/menu/menu-types/horizontal-menu.min.css">
-<link rel="stylesheet" type="text/css"
-	href="app-assets/css/core/menu/menu-types/vertical-overlay-menu.min.css">
-<!-- END Page Level CSS-->
-<!-- BEGIN Custom CSS-->
-<link rel="stylesheet" type="text/css" href="assets/css/style.css">
-<!-- END Custom CSS-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <meta name="description" content="Robust admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
+    <meta name="keywords" content="admin template, robust admin template, dashboard template, flat admin template, responsive admin template, web app">
+    <meta name="author" content="PIXINVENT">
+    <title>Pending Leave HrSide</title>
+    <link rel="apple-touch-icon" sizes="60x60" href="app-assets/images/ico/apple-icon-60.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="app-assets/images/ico/apple-icon-76.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="app-assets/images/ico/apple-icon-120.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="app-assets/images/ico/apple-icon-152.png">
+    <link rel="shortcut icon" type="image/x-icon" href="https://pixinvent.com/bootstrap-admin-template/robust/app-assets/images/ico/favicon.ico">
+    <link rel="shortcut icon" type="image/png" href="app-assets/images/ico/favicon-32.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-touch-fullscreen" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <!-- BEGIN VENDOR CSS-->
+    <link rel="stylesheet" type="text/css" href="app-assets/css/bootstrap.min.css">
+    <!-- font icons-->
+    <link rel="stylesheet" type="text/css" href="app-assets/fonts/icomoon.css">
+    <link rel="stylesheet" type="text/css" href="app-assets/fonts/flag-icon-css/css/flag-icon.min.css">
+    <link rel="stylesheet" type="text/css" href="app-assets/vendors/css/sliders/slick/slick.css">
+    <link rel="stylesheet" type="text/css" href="app-assets/vendors/css/extensions/pace.css">
+    <link rel="stylesheet" type="text/css" href="app-assets/vendors/css/extensions/sweetalert.css">
+    <link rel="stylesheet" type="text/css"
+	href="app-assets/vendors/css/tables/datatable/dataTables.bootstrap4.min.css">
+    <!-- END VENDOR CSS-->
+    <!-- BEGIN ROBUST CSS-->
+    <link rel="stylesheet" type="text/css" href="app-assets/css/bootstrap-extended.min.css">
+    <link rel="stylesheet" type="text/css" href="app-assets/css/app.min.css">
+    <link rel="stylesheet" type="text/css" href="app-assets/css/colors.min.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    
+    <!-- END ROBUST CSS-->
+    <!-- BEGIN Page Level CSS-->
+    <link rel="stylesheet" type="text/css" href="app-assets/css/core/menu/menu-types/horizontal-menu.min.css">
+    <link rel="stylesheet" type="text/css" href="app-assets/css/core/menu/menu-types/vertical-overlay-menu.min.css">
+    <!-- END Page Level CSS-->
+    <!-- BEGIN Custom CSS-->
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <script src="app-assets/js/core/libraries/jquery.min.js" type="text/javascript"></script>
+    <!-- END Custom CSS-->
+    <%@include file="header.jsp" %>
 </head>
 <style type="text/css">
 .txt {
@@ -82,7 +68,6 @@
 	line-height: 10vh;
 }
 </style>
-<%@include file="header.jsp"%>
 
 <script type="text/javascript">
 function deleteLeave(id,status) {
@@ -103,8 +88,7 @@ function deleteLeave(id,status) {
 
 </head>
 
-<body data-open="hover" data-menu="horizontal-menu" data-col="2-columns"
-	class="horizontal-layout horizontal-menu 2-columns ">
+<body data-open="hover" data-menu="horizontal-menu" data-col="2-columns" class="horizontal-layout horizontal-menu 2-columns ">
 	<%
 		int userId = 0;
 		String emp_name = "";
@@ -168,14 +152,18 @@ function deleteLeave(id,status) {
 								<%
 									}
 								%>
-
-
-								<div class="row">
-									<div class="col-lg-12">
-										<div class="panel panel-primary">
-											<div class="panel-heading">Leave / CO / OD Status</div>
-											<!-- /.panel-heading -->
-											<br>
+		<br>
+	<div class="row">
+				    <div class="col-md-12">
+				        <div class="card box-shadow-0" data-appear="appear">
+					        <div class="card-header card-inverse" style="background-color: #90A4AE;padding: 0.5rem 0rem 1rem 0rem;height: 50px;">
+					            <div class="col-sm-6">
+				               		<h4 class="card-title" id="horz-layout-basic">
+											Leave / CO / OD Status</h4>
+				                </div>
+				            </div>
+				               <div class="card-body collapse in">
+					                <div class="card-block border-bottom-blue-grey" style="border-left: 2px solid #607D8B;border-right: 2px solid #607D8B;">
 
 											<form action="employeeLeaveDetail.jsp">
 												<div class="row">
@@ -206,56 +194,54 @@ function deleteLeave(id,status) {
 
 											<div class="panel-body">
 												<!-- Nav tabs -->
-												<ul class="nav nav-tabs">
+												<ul class="nav nav-tabs nav-linetriangle no-hover-bg">
 													<%
 														if (openStatus.equalsIgnoreCase("leave")) {
-													%><li
-														class="active">
+													%><li class="nav-item">
 														<%
 															} else {
 														%>
 													
-													<li>
+													<li class="nav-item">
 														<%
 															}
-														%> <a href="#leave" data-toggle="tab">Leave</a>
+														%> <a class="nav-link active" href="#leave" data-toggle="tab">Leave</a>
 													</li>
 													<%
 														if (openStatus.equalsIgnoreCase("co")) {
-													%><li class="active">
+													%><li class="nav-item">
 														<%
 															} else {
 														%>
 													
-													<li>
+													<li class="nav-item">
 														<%
 															}
-														%><a href="#co" data-toggle="tab">CO</a>
+														%><a class="nav-link" href="#co" data-toggle="tab">CO</a>
 													</li>
 													<%
 														if (openStatus.equalsIgnoreCase("od")) {
-													%><li class="active">
+													%><li class="nav-item">
 														<%
 															} else {
 														%>
 													
-													<li>
+													<li class="nav-item"> 
 														<%
 															}
-														%><a href="#od" data-toggle="tab">OD</a>
+														%><a class="nav-link" href="#od" data-toggle="tab">OD</a>
 													</li>
 													<%
 														if (openStatus.equalsIgnoreCase("totalreport")) {
-													%><li
-														class="active">
+													%><li class="nav-item">
 														<%
 															} else {
 														%>
 													
-													<li>
+													<li class="nav-item">
 														<%
 															}
-														%><a href="#totalreport" data-toggle="tab">Total
+														%><a class="nav-link" href="#totalreport" data-toggle="tab">Total
 															Count</a>
 													</li>
 												</ul>
@@ -457,12 +443,12 @@ function deleteLeave(id,status) {
 																										<p>
 																											<a
 																												href="Myleave?leave_id=<%=leaveBean.getLeave_id()%>&status=<%=leaveBean.getStatus()%>"><i
-																												class=" glyphicon glyphicon-edit"
+																												class=" icon-edit2"
 																												data-toggle="tooltip" data-placement="top"
 																												title="Update Leave"></i></a>
 																										</p>
 																										<p>
-																											<i class="glyphicon glyphicon-trash"
+																											<i class="icon-trash-a"
 																												data-toggle="tooltip"
 																												id="<%=leaveBean.getStatus()%>"
 																												data-placement="top" title="Cancel Leave"
@@ -477,7 +463,7 @@ function deleteLeave(id,status) {
 																											if (!date.after(result1)) {
 																										%>
 																										<p>
-																											<i class="glyphicon glyphicon-trash"
+																											<i class="icon-trash-a"
 																												data-toggle="tooltip"
 																												id="<%=leaveBean.getStatus()%>"
 																												data-placement="top" title="Cancel Leave"
@@ -487,7 +473,7 @@ function deleteLeave(id,status) {
 																										<p>
 																											<a
 																												href="Myleave?leave_id=<%=leaveBean.getLeave_id()%>&status=<%=leaveBean.getStatus()%>"><i
-																												class=" glyphicon glyphicon-edit"
+																												class=" icon-edit2"
 																												data-toggle="tooltip" data-placement="top"
 																												title="Update Leave"></i></a>
 																										</p>
@@ -498,7 +484,7 @@ function deleteLeave(id,status) {
 																										<p>
 																											<a href="" data-toggle="modal"
 																												data-target="#myModal<%=leaveBean.getLeave_id()%>"><i
-																												class="glyphicon glyphicon-trash"
+																												class="icon-trash-a"
 																												data-toggle="tooltip"
 																												id="<%=leaveBean.getStatus()%>"
 																												data-placement="top" title="Cancel Leave"
@@ -507,7 +493,7 @@ function deleteLeave(id,status) {
 																										<p>
 																											<a
 																												href="Myleave?leave_id=<%=leaveBean.getLeave_id()%>&status=<%=leaveBean.getStatus()%>&action=afterApprove"><i
-																												class=" glyphicon glyphicon-edit"
+																												class=" icon-edit2"
 																												data-toggle="tooltip" data-placement="top"
 																												title="Update Leave"></i></a>
 																										</p>
@@ -564,10 +550,10 @@ function deleteLeave(id,status) {
 																				<h5>
 																					<b>Legends :&nbsp;</b>
 																				</h5>
-																				<i class="glyphicon glyphicon-edit"
+																				<i class="icon-edit2"
 																					style="color: #337ab7;"></i><b> : Update Leave
 																				</b> &nbsp;&nbsp;&nbsp;<i
-																					class=" glyphicon glyphicon-trash"
+																					class="icon-trash-a"
 																					style="color: red;"></i><b> : Cancel Leave </b>
 																				&nbsp;&nbsp;&nbsp;
 
@@ -679,8 +665,8 @@ function deleteLeave(id,status) {
 																										%>
 																										<a
 																										href="LeaveCOEmployeeShow?CO_ID=<%=c.getCO_ID()%>&status=Pending"><i
-																											class="glyphicon glyphicon-edit"></i></a> <i
-																										class="glyphicon glyphicon-trash"
+																											class="icon-edit2"></i></a> <i
+																										class="icon-trash-a"
 																										onclick="deleteCO(<%=c.getCO_ID()%>);"
 																										style="color: red;"></i> <%
  	}
@@ -697,11 +683,11 @@ function deleteLeave(id,status) {
 																					<h5>
 																						<b>Legends :&nbsp;</b>
 																					</h5>
-																					<i class="glyphicon glyphicon-eye-open"
+																					<i class="icon-eye4"
 																						style="color: #337ab7;"></i><b> : View CO </b>
 																					&nbsp;&nbsp;&nbsp;<i
-																						class=" glyphicon glyphicon-trash"
-																						style="color: #337ab7;"></i><b> : Cancel CO </b>
+																						class=" icon-trash-a"
+																						style="color: red;"></i><b> : Cancel CO </b>
 																					&nbsp;&nbsp;&nbsp;
 
 																				</div>
@@ -821,8 +807,8 @@ function deleteLeave(id,status) {
 																											%>
 																											<a
 																											href="LeaveODEmployeeShow?OD_ID=<%=od.getOD_ID()%>&status=Pending"><i
-																												class="glyphicon glyphicon-edit"></i></a> <i
-																											class="glyphicon glyphicon-trash"
+																												class="icon-edit2"></i></a> <i
+																											class="icon-trash-a"
 																											onclick="deleteOD(<%=od.getOD_ID()%>);"
 																											style="color: red;"></i> <%
  	}
@@ -839,11 +825,11 @@ function deleteLeave(id,status) {
 																						<h5>
 																							<b>Legends :&nbsp;</b>
 																						</h5>
-																						<i class="glyphicon glyphicon-eye-open"
+																						<i class="icon-eye4"
 																							style="color: #337ab7;"></i><b> : View OD </b>
 																						&nbsp;&nbsp;&nbsp;<i
-																							class=" glyphicon glyphicon-trash"
-																							style="color: #337ab7;"></i><b> : Cancel OD </b>
+																							class=" icon-trash-a"
+																							style="color: red;"></i><b> : Cancel OD </b>
 																						&nbsp;&nbsp;&nbsp;
 
 																					</div>

@@ -43,18 +43,21 @@ public class RoleInsertServlet extends HttpServlet {
 				request.setAttribute("success", "Role added successfully");
 				/*request.setAttribute("date", date);
 				request.setAttribute("openStatus", openStatus);*/
-				request.getRequestDispatcher("addDesignation.jsp").forward(request, response);
+				/*request.getRequestDispatcher("addDesignation.jsp").forward(request, response);*/
+				response.sendRedirect("addDesignation.jsp");
 			}
 	 	}else{
 				request.setAttribute("error", "Role Already Exist");
 				/*request.setAttribute("date", date);
 				request.setAttribute("openStatus", openStatus);*/
-				request.getRequestDispatcher("addDesignation.jsp").forward(request, response);
+				/*request.getRequestDispatcher("addDesignation.jsp").forward(request, response);*/
+				response.sendRedirect("addDesignation.jsp");
 		}
 		
 		}else{
 				request.setAttribute("sessionExpired", "Your session is expired...Please login again...");
-				request.getRequestDispatcher("login.jsp").forward(request, response);
+				/*request.getRequestDispatcher("login.jsp").forward(request, response);*/
+				response.sendRedirect("login.jsp");
 		}
 	
 	}

@@ -2886,7 +2886,8 @@ public class specialHRLeaveApprovalServlet extends HttpServlet {
 
 							 
 						}else{
-							request.getRequestDispatcher("specialHRLeave.jsp").forward(request, response);		
+							/*request.getRequestDispatcher("specialHRLeave.jsp").forward(request, response);*/
+							response.sendRedirect("specialHRLeave.jsp");
 						}			
 						}
 					}

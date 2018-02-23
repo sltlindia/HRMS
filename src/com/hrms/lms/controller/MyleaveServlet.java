@@ -42,14 +42,22 @@ public class MyleaveServlet extends HttpServlet {
 		AllLMSListDAO allListDAO = new AllLMSListDAO();
 		List<LeaveBean> listOfLeave = allListDAO.getLeaveByLeaveId(leave_id);
 		request.setAttribute("listOfLeave", listOfLeave);
-		if(request.getParameter("action") != null){
-				if(request.getParameter("action").equalsIgnoreCase("afterApprove")){
-					request.getRequestDispatcher("leaveUpdateAfterApprove.jsp").forward(request, response);
-				}else{
-					request.getRequestDispatcher("MyLeaveForHr.jsp").forward(request, response);
+		if(request.getParameter("action") != null)
+		{
+				if(request.getParameter("action").equalsIgnoreCase("afterApprove"))
+				{
+					/*request.getRequestDispatcher("leaveUpdateAfterApprove.jsp").forward(request, response);*/
+					response.sendRedirect("leaveUpdateAfterApprove.jsp");
 				}
-		}else{
-		request.getRequestDispatcher("Myleave.jsp").forward(request, response);
+				else
+				{
+					/*request.getRequestDispatcher("MyLeaveForHr.jsp").forward(request, response);*/
+					response.sendRedirect("MyLeaveForHr.jsp");
+				}
+		}
+		else{
+		/*request.getRequestDispatcher("Myleave.jsp").forward(request, response);*/
+			response.sendRedirect("Myleave.jsp");
 		}
 	}
 

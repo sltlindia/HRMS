@@ -91,7 +91,7 @@
 	
 										<div class="card-body collapse in">
 	  										<div class="card-block border-bottom-blue-grey" style="border-left: 2px solid #607D8B;border-right: 2px solid #607D8B;">
-												<ul class="nav nav-tabs">
+												<ul class="nav nav-tabs nav-linetriangle no-hover-bg">
 												<!-- Nav tabs -->
 													<li class="nav-item"><a class="nav-link active"
 														id="homeIcon-tab" data-toggle="tab" href="#pending"

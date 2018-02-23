@@ -85,13 +85,15 @@ public class SpecialHRGatePassApprovalServlet extends HttpServlet {
 				}).start();*/
 				
 				request.setAttribute("success", "Gate Pass Successfully Applied....");
-				request.getRequestDispatcher("specialHRLeave.jsp").forward(request, response);
+				/*request.getRequestDispatcher("specialHRLeave.jsp").forward(request, response);*/
+				response.sendRedirect("specialHRLeave.jsp");
 			}
 			
 		}else
 		{
 			request.setAttribute("sessionExpired", "Your session is expired...Please login again...");
-			request.getRequestDispatcher("login.jsp").forward(request, response);
+			/*request.getRequestDispatcher("login.jsp").forward(request, response);*/
+			response.sendRedirect("login.jsp");
 		}
 	}
 

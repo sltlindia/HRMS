@@ -102,7 +102,7 @@
 											<!-- /.panel-heading -->
 											<div class="panel-body">
 												<!-- Nav tabs -->
-												<ul class="nav nav-tabs">
+												<ul class="nav nav-tabs nav-linetriangle no-hover-bg">
 													<!-- Nav tabs -->
 													<li class="nav-item"><a class="nav-link active"
 														id="homeIcon-tab" data-toggle="tab" href="#pending"
@@ -143,7 +143,7 @@
 																				<th><center>Out Time</center></th>
 																				<th><center>From</center></th>
 																				<th><center>To</center></th>
-																				<th colspan="3"><center>Action</center></th>
+																				<th><center>Action</center></th>
 																			</tr>
 																		</thead>
 

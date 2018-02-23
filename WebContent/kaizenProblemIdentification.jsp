@@ -308,7 +308,7 @@
     
     function showData(id){
 		 $("."+id).slideToggle(2);
-	     $("i", "#"+id).toggleClass("fa-minus-circle fa-plus-circle");
+	     $("i", "#"+id).toggleClass("icon-android-remove-circle icon-android-add-circle");
 	}
     </script>
 

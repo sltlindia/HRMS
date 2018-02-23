@@ -80,15 +80,18 @@ public class IntervieweeInsertServlet extends HttpServlet {
 			if(result == true){
 				request.setAttribute("openStatus","interviewee");
 				request.setAttribute("success","Interviewee detail submitted successfully...");
-				request.getRequestDispatcher("addInterviewee.jsp").forward(request, response);;
+				/*request.getRequestDispatcher("addInterviewee.jsp").forward(request, response);;*/
+				response.sendRedirect("addInterviewee.jsp");
 			}else{
 				request.setAttribute("error","Interview detail not submitted...");
-				request.getRequestDispatcher("addInterviewee.jsp").forward(request, response);
+				/*request.getRequestDispatcher("addInterviewee.jsp").forward(request, response);*/
+				response.sendRedirect("addInterviewee.jsp");
 			}
 		}else
 		{
 			request.setAttribute("sessionExpired", "Your session is expired...Please login again...");
-			request.getRequestDispatcher("login.jsp").forward(request, response);
+			/*request.getRequestDispatcher("login.jsp").forward(request, response);*/
+			response.sendRedirect("login.jsp");
 		}	
 	}
 

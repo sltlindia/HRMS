@@ -31,13 +31,15 @@ public class LeaveBalanceEmployeeReportServlet extends HttpServlet {
 			
 			List<LeavecutBalance> listOfLeaveReport = allListDAO.getLeaveReport(emp_code);
 			request.setAttribute("listOfLeaveReport", listOfLeaveReport);
-			request.getRequestDispatcher("LeaveEmployeeBalanceReport.jsp").forward(request, response);
+			/*request.getRequestDispatcher("LeaveEmployeeBalanceReport.jsp").forward(request, response);*/
+			response.sendRedirect("LeaveEmployeeBalanceReport.jsp");
 		
 		}
 		else
 		{
 			request.setAttribute("sessionExpired", "Your session is expired...Please login again...");
-			request.getRequestDispatcher("login.jsp").forward(request, response);
+			/*request.getRequestDispatcher("login.jsp").forward(request, response);*/
+			response.sendRedirect("login.jsp");
 		}
 	
 	

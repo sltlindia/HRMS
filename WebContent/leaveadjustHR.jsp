@@ -25,9 +25,13 @@
     <meta name="description" content="Robust admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
     <meta name="keywords" content="admin template, robust admin template, dashboard template, flat admin template, responsive admin template, web app">
     <meta name="author" content="PIXINVENT">
-    <title>CUG List</title>
-    <link rel="shortcut icon" sizes="152x152"
-	href="app-assets/images/ico/titleIcon.png">
+    <title>Leave Adjust HR</title>
+    <link rel="apple-touch-icon" sizes="60x60" href="app-assets/images/ico/apple-icon-60.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="app-assets/images/ico/apple-icon-76.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="app-assets/images/ico/apple-icon-120.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="app-assets/images/ico/apple-icon-152.png">
+    <link rel="shortcut icon" type="image/x-icon" href="https://pixinvent.com/bootstrap-admin-template/robust/app-assets/images/ico/favicon.ico">
+    <link rel="shortcut icon" type="image/png" href="app-assets/images/ico/favicon-32.png">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-touch-fullscreen" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
@@ -38,13 +42,16 @@
     <link rel="stylesheet" type="text/css" href="app-assets/fonts/flag-icon-css/css/flag-icon.min.css">
     <link rel="stylesheet" type="text/css" href="app-assets/vendors/css/sliders/slick/slick.css">
     <link rel="stylesheet" type="text/css" href="app-assets/vendors/css/extensions/pace.css">
-    <link rel="stylesheet" type="text/css" href="app-assets/vendors/css/tables/datatable/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" type="text/css" href="app-assets/vendors/css/extensions/sweetalert.css">
+    <link rel="stylesheet" type="text/css"
+	href="app-assets/vendors/css/tables/datatable/dataTables.bootstrap4.min.css">
     <!-- END VENDOR CSS-->
     <!-- BEGIN ROBUST CSS-->
     <link rel="stylesheet" type="text/css" href="app-assets/css/bootstrap-extended.min.css">
     <link rel="stylesheet" type="text/css" href="app-assets/css/app.min.css">
     <link rel="stylesheet" type="text/css" href="app-assets/css/colors.min.css">
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    
     <!-- END ROBUST CSS-->
     <!-- BEGIN Page Level CSS-->
     <link rel="stylesheet" type="text/css" href="app-assets/css/core/menu/menu-types/horizontal-menu.min.css">
@@ -52,6 +59,11 @@
     <!-- END Page Level CSS-->
     <!-- BEGIN Custom CSS-->
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <script src="app-assets/js/core/libraries/jquery.min.js" type="text/javascript"></script>
+    <!-- END Custom CSS-->
+     <script type="text/javascript" src="fusioncharts/js/fusioncharts.js"></script>
+<script type="text/javascript" src="fusioncharts/js/themes/fusioncharts.theme.fint.js"></script>
+    <%@include file="header.jsp" %>
 <script type="text/javascript">
 	window.onload = function() {
 	}
@@ -86,9 +98,7 @@
 
 	}
 </script>
-<title>Leave Adjust Form</title>
 </head>
-<%@include file="header.jsp"%>
 <body data-open="hover" data-menu="horizontal-menu" data-col="2-columns"
 	class="horizontal-layout horizontal-menu 2-columns" onload="startTimer()">
 	<%
@@ -97,18 +107,15 @@
 		LeaveBalanceBean leaveBalanceBean = new LeaveBalanceBean();
 	%>
 	<div class="app-content container center-layout mt-2">
-		<div class="content-wrapper">
-			<div class="content-body">
-				<section id="horizontal-form-layouts">
-				<div class="card">
-					<div class="card-body collapse in">
-						<div class="card-block">
-							<div class="form-body">
-			<div class="row">
-				<div class="col-lg-12">
-					<h3 class="page-header">Leave Adjust Form</h3>
-				</div>
-			</div>
+	<div class="content-wrapper">
+      	<div class="content-body">
+			<section id="horizontal-form-layouts">
+				<div class="row"> 
+			        <div class="col-xs-12">
+			            <h1>Leave Adjust Form</h1>
+			        </div>
+			    </div>
+			<br>	
 			<%
 				if (request.getAttribute("LeaveExist") != null) {
 			%>
@@ -142,12 +149,14 @@
 			<%
 				}
 			%>
-			<!-- /.row -->
-			<div class="row">
-				<div class="col-lg-12">
-					<div class="panel panel-primary">
-						<div class="panel-heading">
-							<h4 align="left">
+				<div class="row">
+				    <div class="col-md-12">
+				        <div class="card">
+				        	 <div class="card-header">
+				        <div class="card box-shadow-0" data-appear="appear">
+					        <div class="card-header card-inverse" style="background-color: #90A4AE;padding: 0.5rem 0rem 1rem 0rem;height: 50px;">
+					            <div class="col-sm-6">	
+				               		<h4 class="card-title" id="horz-layout-basic" align="left">
 								Date :
 								<%
 								DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
@@ -174,6 +183,9 @@
 							%><%=d%></h4>
 
 						</div>
+				            </div>
+				               <div class="card-body collapse in">
+					                <div class="card-block border-bottom-blue-grey" style="border-left: 2px solid #607D8B;border-right: 2px solid #607D8B;">
 
 
 						<div class="panel-body">
@@ -187,12 +199,19 @@
 								%>
 
 
-								<div class="panel-group" id="accordion">
-									<div class="panel panel-default">
-										<div class="panel-heading">Employee Detail</div>
-										<div id="collapseOne" class="panel-collapse collapse in">
+							<div class="row">
+				    <div class="col-md-12">
+				        <div class="card box-shadow-0" data-appear="appear">
+					        <div class="card-header card-inverse" style="background-color: #d2d9dc;padding: 0.5rem 0rem 1rem 0rem;height: 40px; border-left: 1px solid #607D8B;border-right: 1px solid #607D8B;  
+					        						   border-bottom: 1px solid #607D8B; border-top: 1px solid #607D8B;">
+					            <div class="col-sm-6">	
+				               		<h4 class="card-title" id="horz-layout-basic" style="color: #000000;">Employee Detail</h4>
+				                </div>
+				            </div>
+				               <div class="card-body collapse in">
+					                <div class="card-block" style="border-left: 1px solid #607D8B;border-right: 1px solid #607D8B;
+					                					border-bottom: 1px solid #607D8B;">
 											<div class="panel-body">
-
 												<div class="table-responsive">
 													<table class="table table-stripped" border="0">
 														<thead>
@@ -290,6 +309,8 @@
 													</table>
 												</div>
 											</div>
+											</div>
+											</div>
 										</div>
 									</div>
 								</div>
@@ -298,11 +319,19 @@
 								<%
 									if (request.getAttribute("leaveBalanceBean") != null) {
 								%>
-								<div class="panel-group" id="accordion">
-									<div class="panel panel-default">
-										<div class="panel-heading">Addition Or Subtraction Of
-											Leave</div>
-										<div id="collapseOne" class="panel-collapse collapse in">
+							<div class="row">
+				    <div class="col-md-12">
+				        <div class="card box-shadow-0" data-appear="appear">
+					        <div class="card-header card-inverse" style="background-color: #d2d9dc;padding: 0.5rem 0rem 1rem 0rem;height: 40px; border-left: 1px solid #607D8B;border-right: 1px solid #607D8B;  
+					        						   border-bottom: 1px solid #607D8B; border-top: 1px solid #607D8B;">
+					            <div class="col-sm-6">	
+				               		<h4 class="card-title" id="horz-layout-basic" style="color: #000000;">Addition Or Subtraction Of
+											Leave</h4>
+				                </div>
+				            </div>
+				               <div class="card-body collapse in">
+					                <div class="card-block" style="border-left: 1px solid #607D8B;border-right: 1px solid #607D8B;
+					                					border-bottom: 1px solid #607D8B;">
 											<div class="panel-body">
 												<div class="table-responsive">
 													<table class="table table-stripped" border="0">
@@ -526,7 +555,8 @@
 															</tr>
 														</tbody>
 													</table>
-
+</div>
+</div>
 												</div>
 											</div>
 										</div>
@@ -538,10 +568,18 @@
 							%>
 
 
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									<b>Last Leave Adjust Details</b>
-								</div>
+							<div class="row">
+				    <div class="col-md-12">
+				        <div class="card box-shadow-0" data-appear="appear">
+					        <div class="card-header card-inverse" style="background-color: #d2d9dc;padding: 0.5rem 0rem 1rem 0rem;height: 40px; border-left: 1px solid #607D8B;border-right: 1px solid #607D8B;  
+					        						   border-bottom: 1px solid #607D8B; border-top: 1px solid #607D8B;">
+					            <div class="col-sm-6">	
+				               		<h4 class="card-title" id="horz-layout-basic" style="color: #000000;">Last Leave Adjust Details</h4>
+				                </div>
+				            </div>
+				               <div class="card-body collapse in">
+					                <div class="card-block" style="border-left: 1px solid #607D8B;border-right: 1px solid #607D8B;
+					                					border-bottom: 1px solid #607D8B;">
 								<div class="panel-body">
 
 									<div class="table-responsive">
@@ -651,12 +689,10 @@
 
 						</div>
 					</div>
-
-
-
-
-
-
+</div>
+</div>
+</div>
+</div>
 				</div>
 			</div>
 

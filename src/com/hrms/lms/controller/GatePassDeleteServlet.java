@@ -27,13 +27,15 @@ public class GatePassDeleteServlet extends HttpServlet {
 			
 			if(result == true){
 				request.setAttribute("delete", "Gate PAss Successfully Deleted...");
-				request.getRequestDispatcher("gatePassListSecurity.jsp").forward(request, response);
+				/*request.getRequestDispatcher("gatePassListSecurity.jsp").forward(request, response);*/
+				response.sendRedirect("gatePassListSecurity.jsp");
 			}
 			
 		}else
 		{
 			request.setAttribute("sessionExpired", "Your session is expired...Please login again...");
-			request.getRequestDispatcher("login.jsp").forward(request, response);
+			/*request.getRequestDispatcher("login.jsp").forward(request, response);*/
+			response.sendRedirect("login.jsp");
 		}
 	}
 

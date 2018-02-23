@@ -883,7 +883,8 @@ public class LeaveRejectedUpdateServlet extends HttpServlet {
 								if(update == true && cutbalance == true)
 								{
 									request.setAttribute("LeaveSuccessfully", "Leave Update Successfully");
-									 request.getRequestDispatcher("leavesuccess.jsp").forward(request, response);
+									 /*request.getRequestDispatcher("leavesuccess.jsp").forward(request, response);*/
+									response.sendRedirect("leavesuccess.jsp");
 								}
 						}
 					}

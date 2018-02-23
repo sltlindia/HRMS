@@ -23,7 +23,8 @@ public class LeaveReportServlet extends HttpServlet {
 		
 		List<LeavecutBalance> listOfLeaveReport = allListDAO.getLeaveReport(emp_code);
 		request.setAttribute("listOfLeaveReport", listOfLeaveReport);
-		request.getRequestDispatcher("LeaveBalanceReport.jsp").forward(request, response);
+		/*request.getRequestDispatcher("LeaveBalanceReport.jsp").forward(request, response);*/
+		response.sendRedirect("LeaveBalanceReport.jsp");
  		
 	}
 

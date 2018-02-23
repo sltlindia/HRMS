@@ -46,7 +46,8 @@ public class GatePassTimeUpdateServlet extends HttpServlet {
 				}else{
 					request.setAttribute("success", "Employee In successfully");
 				}
-				request.getRequestDispatcher("gatePassListSecurity.jsp").forward(request, response);
+				/*request.getRequestDispatcher("gatePassListSecurity.jsp").forward(request, response);*/
+					response.sendRedirect("gatePassListSecurity.jsp");
 
 			
 		}

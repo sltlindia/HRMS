@@ -288,14 +288,16 @@ public class LeaveOdServlet extends HttpServlet {
 									System.out.println("Insert Successfully");
 									request.setAttribute("openStatus", "od");
 									request.setAttribute("success", "OD Applied Successfully");
-									request.getRequestDispatcher("leavesuccess.jsp").forward(request, response);									
+									/*request.getRequestDispatcher("leavesuccess.jsp").forward(request, response);*/
+									response.sendRedirect("leavesuccess.jsp");
 								}
 							}
 							else
 							{
 								System.out.println("Leave From Date And To Date Already exit");
 								request.setAttribute("LeavefromtodateExist", "OD This Date Already Exists");
-								request.getRequestDispatcher("leaveOD.jsp").forward(request, response);
+								/*request.getRequestDispatcher("leaveOD.jsp").forward(request, response);*/
+								response.sendRedirect("leaveOD.jsp");
 							}
 							
 						}

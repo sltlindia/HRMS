@@ -173,7 +173,8 @@ public class SpecialHRODApprovalServlet extends HttpServlet {
 							{
 								System.out.println("Leave From Date And To Date Already exit");
 								request.setAttribute("LeavefromtodateExist", "OD This Date Already Exists");
-								request.getRequestDispatcher("specialHRLeave.jsp").forward(request, response);
+								/*request.getRequestDispatcher("specialHRLeave.jsp").forward(request, response);*/
+								response.sendRedirect("specialHRLeave.jsp");
 							}
 							
 						}

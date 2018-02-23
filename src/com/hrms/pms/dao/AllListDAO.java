@@ -9,6 +9,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import com.hrms.lms.bean.LeaveBalanceBean;
+import com.hrms.lms.bean.LeaveBean;
 import com.hrms.pms.bean.AllocationNotificationBean;
 import com.hrms.pms.bean.Appraisal5sBean;
 import com.hrms.pms.bean.AppraisalBean;
@@ -7196,53 +7197,8 @@ public class AllListDAO {
 					}
 
 					
-					public List<EmployeeBean> getListOfEmployeeForProject(int manager_id) {
-						List<EmployeeBean> listOfEmployee = new ArrayList<EmployeeBean>();
-						Session session = HibernateUtil.openSession();
-						Transaction tx = null;
-						try {
-							tx = session.getTransaction();
-							tx.begin();
-							listOfEmployee = session.createQuery("FROM EmployeeBean WHERE under_manager_id='" + manager_id + "'")
-									.list();
-							System.out.println(listOfEmployee.size());
-							tx.commit();
-						} catch (Exception e) {
-							if (tx != null) {
-								tx.rollback();
-							}
-							e.printStackTrace();
-						} finally {
-							session.close();
-						}
-						return listOfEmployee;
-
-					}
-					
-					public List<ProjectMasterBean> getListOfUnderProjectMaster(int emp_manager_id) {
-						List<ProjectMasterBean> listOfProject = new ArrayList<ProjectMasterBean>();
-						Session session = HibernateUtil.openSession();
-						Transaction tx = null;
-						try {
-							tx = session.getTransaction();
-							tx.begin();
-							listOfProject = session
-									.createQuery(
-											"FROM ProjectMasterBean where managerBean=" + emp_manager_id + " and projectStatusBean =3")
-									.list();
-							tx.commit();
-						} catch (Exception e) {
-							if (tx != null) {
-								tx.rollback();
-							}
-							e.printStackTrace();
-						} finally {
-							session.close();
-						}
-						return listOfProject;
-
-					}
-					
+				
+				
 					public List<EmployeeBean> underManagerList(int manager_id) {
 						List<EmployeeBean> listOfEmployee = new ArrayList<EmployeeBean>();
 						Session session = HibernateUtil.openSession();
@@ -7311,4 +7267,121 @@ public class AllListDAO {
 				        return leaveBalanceBean;
 				        
 					}	
+					
+					public List<LeaveBean> getLeaveByEmpId(int emp_id) {
+						
+						List<LeaveBean> listOfLeave = new ArrayList<LeaveBean>();
+					    Session session = HibernateUtil.openSession();
+					    Transaction tx = null;
+					    LeaveBean leaveBean = null;;
+					    try {
+					        tx = session.getTransaction();
+					        tx.begin();
+					        Query query = session.createQuery("from LeaveBean WHERE employee_master_id='"+ emp_id+"'");
+					        listOfLeave = query.list();
+					        tx.commit();
+					    } catch (Exception e) {
+					        if (tx != null) {
+					            tx.rollback();
+					        }
+					        e.printStackTrace();
+					    } finally {
+					        session.close();
+					    }
+					    return listOfLeave;
+					}
+					
+					public String getMinDate(int task_id) {
+						Session session = HibernateUtil.openSession();
+						Transaction tx = null;
+						String maxvalue = null;
+						try {
+							tx = session.getTransaction();
+							tx.begin();
+							Query query = session.createQuery("select min(t.date) from TimeSheetBean t where t.taskMasterBean='"
+									+ task_id + "' and t.approval_status ='approved'");
+							maxvalue = (String) query.uniqueResult();
+							tx.commit();
+						} catch (Exception e) {
+							if (tx != null) {
+								tx.rollback();
+							}
+							e.printStackTrace();
+						} finally {
+							session.close();
+						}
+						return maxvalue;
+					}
+					
+					public List<TimeSheetBean> getListOfAprovedTimesheetByEmployeeId(int task_id, int employee_id) {
+						List<TimeSheetBean> listOfTimesheet = new ArrayList<TimeSheetBean>();
+						Session session = HibernateUtil.openSession();
+						Transaction tx = null;
+						try {
+							tx = session.getTransaction();
+							tx.begin();
+							String hql = "from TimeSheetBean  where taskMasterBean='" + task_id + "' and employeeBean='" + employee_id
+									+ "' and approval_status ='approved'";
+							Query query = session.createQuery(hql);
+							listOfTimesheet = query.list();
+							tx.commit();
+						} catch (Exception e) {
+							if (tx != null) {
+								tx.rollback();
+							}
+							e.printStackTrace();
+						} finally {
+							session.close();
+						}
+						return listOfTimesheet;
+					}
+					
+					public List<EmployeeBean> getListOfEmployeeForProject(int manager_id) {
+						List<EmployeeBean> listOfEmployee = new ArrayList<EmployeeBean>();
+						Session session = HibernateUtil.openSession();
+						Transaction tx = null;
+						try {
+							tx = session.getTransaction();
+							tx.begin();
+							listOfEmployee = session.createQuery("FROM EmployeeBean WHERE under_manager_id='" + manager_id + "'")
+									.list();
+							System.out.println(listOfEmployee.size());
+							tx.commit();
+						} catch (Exception e) {
+							if (tx != null) {
+								tx.rollback();
+							}
+							e.printStackTrace();
+						} finally {
+							session.close();
+						}
+						return listOfEmployee;
+
+					}
+					public List<ProjectMasterBean> getListOfUnderProjectMaster(int emp_manager_id) {
+						List<ProjectMasterBean> listOfProject = new ArrayList<ProjectMasterBean>();
+						Session session = HibernateUtil.openSession();
+						Transaction tx = null;
+						try {
+							tx = session.getTransaction();
+							tx.begin();
+							listOfProject = session
+									.createQuery(
+											"FROM ProjectMasterBean where managerBean=" + emp_manager_id + " and projectStatusBean =3")
+									.list();
+							tx.commit();
+						} catch (Exception e) {
+							if (tx != null) {
+								tx.rollback();
+							}
+							e.printStackTrace();
+						} finally {
+							session.close();
+						}
+						return listOfProject;
+
+					}
+					
+					
+					
 }

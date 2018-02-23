@@ -54,6 +54,15 @@
     <link rel="stylesheet" type="text/css" href="app-assets/css/core/menu/menu-types/horizontal-menu.min.css">
     <link rel="stylesheet" type="text/css" href="app-assets/css/core/menu/menu-types/vertical-overlay-menu.min.css">
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+     <script src="app-assets/js/core/libraries/jquery.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="fusioncharts/js/fusioncharts.js"></script>
+	<script type="text/javascript" src="fusioncharts/js/themes/fusioncharts.theme.fint.js"></script>
+	
+<link href="offlinetimepicker/jquerysctipttop.css" rel="stylesheet" type="text/css">
+<link href="offlinetimepicker/mdtimepicker.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="sweetalert/sweetalert.css">
+<link href="offlineDatePicker/1jquery-ui.css" rel="stylesheet">
+    
 <%@include file="header.jsp"%>
 </head>
 
@@ -941,6 +950,12 @@ function validateForm() {
     <script src="app-assets/js/core/app-menu.min.js" type="text/javascript"></script>
     <script src="app-assets/js/core/app.min.js" type="text/javascript"></script>
     <script src="app-assets/js/scripts/ui/fullscreenSearch.min.js" type="text/javascript"></script>
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>  
+<script type="text/javascript" src="offlineDatePicker/jquery.min.js"></script>
+<script type="text/javascript" src="offlineDatePicker/jquery-ui.min.js"></script>
+<script src="offlinetimepicker/mdtimepicker.js"></script>
+  <script src="sweetalert/sweet-alerts.min.js" type="text/javascript"></script>
+<script src="sweetalert/sweetalert.min.js" type="text/javascript"></script>
     <!-- /build-->
     <!-- END ROBUST JS-->
   	<script>
@@ -953,6 +968,7 @@ function validateForm() {
 	  ga('send', 'pageview');
 
 	</script>
+	
 	<script>
 			
 			$(document).ready(function()

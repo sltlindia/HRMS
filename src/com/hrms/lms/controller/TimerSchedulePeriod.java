@@ -355,7 +355,7 @@ public class TimerSchedulePeriod extends TimerTask {
 			    	String purpose = leaveODBean.getDescription();
 			    	int emp_code = leaveODBean.getEmployeeBean().getEmployee_code();
 			    	
-			    	Mailer.ODPendingSend(to, sub, OD_start_date, OD_end_date, total_OD, emp_code, name, purpose,od_id);
+			    	Mailer.ODPendingSend(to, subject, OD_start_date, OD_end_date, total_OD, emp_code, name, purpose,od_id,msg);
 			    	System.out.println("Done : "+leaveODBean.getEmployeeBean().getFirstname()+" "+leaveODBean.getOD_StartDate()+" "+leaveODBean.getOD_EndDate());
 			    	boolean result = allUpdateDAO.ODMailUpdate(leaveODBean.getOD_ID(),mail_view);
 			    }

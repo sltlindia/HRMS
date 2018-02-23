@@ -196,7 +196,8 @@ public class EmailCOUpdateServlet extends HttpServlet {
 									if(result == true)
 									{
 										request.setAttribute("success", "CO Successfully Approved By You");
-										 request.getRequestDispatcher("emailSuccess.jsp").forward(request, response);
+										 /*request.getRequestDispatcher("emailSuccess.jsp").forward(request, response);*/
+										response.sendRedirect("emailSuccess.jsp");
 									}
 									
 								}
@@ -214,7 +215,8 @@ public class EmailCOUpdateServlet extends HttpServlet {
 									if(result == true)
 									{
 										request.setAttribute("success", "CO Successfully Approved By You");
-										request.getRequestDispatcher("emailSuccess.jsp").forward(request, response);
+										/*request.getRequestDispatcher("emailSuccess.jsp").forward(request, response);*/
+										response.sendRedirect("emailSuccess.jsp");
 									}
 								}
 								else if(totalhours > 4.0)
@@ -230,8 +232,8 @@ public class EmailCOUpdateServlet extends HttpServlet {
 									{
 										
 										request.setAttribute("success", "CO Successfully Approved By You");
-										 request.getRequestDispatcher("emailSuccess.jsp").forward(request, response);
-										
+										 /*request.getRequestDispatcher("emailSuccess.jsp").forward(request, response);*/
+										response.sendRedirect("emailSuccess.jsp");
 										
 										
 									}
@@ -245,7 +247,8 @@ public class EmailCOUpdateServlet extends HttpServlet {
 								{
 									
 									request.setAttribute("error", "CO Successfully Rejected By You");
-									request.getRequestDispatcher("emailSuccess.jsp").forward(request, response);
+									/*request.getRequestDispatcher("emailSuccess.jsp").forward(request, response);*/
+									response.sendRedirect("emailSuccess.jsp");
 								}
 								
 							}

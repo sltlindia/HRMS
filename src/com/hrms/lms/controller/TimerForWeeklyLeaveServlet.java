@@ -616,11 +616,7 @@ public class TimerForWeeklyLeaveServlet extends HttpServlet {
 				
 				
 			}
-			
-			
-			
-			
-			
+		
 		}
 	
 	

@@ -374,7 +374,8 @@ public class EmailLeaveUpdateServlet extends HttpServlet {
 					}
 					
 						 request.setAttribute("success", "Leave Successfully Approved By You");
-						 request.getRequestDispatcher("emailSuccess.jsp").forward(request, response);
+						 /*request.getRequestDispatcher("emailSuccess.jsp").forward(request, response);*/
+						 response.sendRedirect("emailSuccess.jsp");
 					
 				}	
 			}
@@ -413,7 +414,8 @@ public class EmailLeaveUpdateServlet extends HttpServlet {
 					    	
 
 				 		request.setAttribute("error", "Leave Successfully Rejected By You");
-						request.getRequestDispatcher("emailSuccess.jsp").forward(request, response);
+						/*request.getRequestDispatcher("emailSuccess.jsp").forward(request, response);*/
+				 		response.sendRedirect("emailSuccess.jsp");
 				
 			}
 		}

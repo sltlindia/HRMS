@@ -58,12 +58,14 @@ public class pendingLeaveServlet extends HttpServlet {
 		
 		if(request.getParameter("leave_id") != null)
 		{
-			request.getRequestDispatcher("pendingleave.jsp").forward(request, response);
+			/*request.getRequestDispatcher("pendingleave.jsp").forward(request, response);*/
+			response.sendRedirect("pendingleave.jsp");
 		}
 		else
 		{
 			request.setAttribute("leave_id", leave_id);
-			request.getRequestDispatcher("leaveSpecialPending.jsp").forward(request, response);
+			/*request.getRequestDispatcher("leaveSpecialPending.jsp").forward(request, response);*/
+			response.sendRedirect("leaveSpecialPending.jsp");
 		}	
 	}
 }

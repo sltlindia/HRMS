@@ -1,7 +1,7 @@
-<%@page import="java.util.ArrayList"%>
 <%@page import="com.hrms.recruitement.bean.CompanyListBean"%>
+<%@page import="com.hrms.pms.dao.AllListDAO"%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
-<%@page import="com.hrms.recruitement.dao.CompanyListDAO"%>
 <%@page import="com.hrms.pms.bean.EmployeeBean"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
@@ -171,8 +171,8 @@
                          
                          							<select class="select2-diacritics form-control" id="select2-diacritics" name="companyId" required>
 												<%
-													CompanyListDAO companyListDAO = new CompanyListDAO();
-														List<CompanyListBean> listOfCompanyList = (ArrayList) companyListDAO.getListOfCompanyList();
+												AllListDAO allListDAO = new AllListDAO();
+														List<CompanyListBean> listOfCompanyList = allListDAO.getListOfCompany();
 														for (CompanyListBean companyListBean : listOfCompanyList) {
 												%>
 												<option value="<%=companyListBean.getCompany_list_id()%>"><%=companyListBean.getCompany_name()%></option>

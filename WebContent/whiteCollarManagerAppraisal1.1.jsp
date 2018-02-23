@@ -101,7 +101,7 @@ List<AppraisalBean> appraisalBean = allListDAO.getappraisal(appraisal_id);
 				</div>
 				 --%>
 				<!-- /.col-lg-12 -->
-			</div>
+		
 			<!-- /.row -->
 			
 			
@@ -227,6 +227,7 @@ List<AppraisalBean> appraisalBean = allListDAO.getappraisal(appraisal_id);
 <br>
 					
 
+</div>
 </div>
 </div>
 </div>

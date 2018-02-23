@@ -167,7 +167,8 @@ public class EmployeeODUpdateServlet extends HttpServlet {
 							if(result == true)
 							{
 								request.setAttribute("LeaveapprovedSuccessfully", "OD Update Successfully");
-								request.getRequestDispatcher("viewODCOStatus.jsp").forward(request, response);
+								/*request.getRequestDispatcher("viewODCOStatus.jsp").forward(request, response);*/
+								response.sendRedirect("viewODCOStatus.jsp");
 							}
 							
 						}

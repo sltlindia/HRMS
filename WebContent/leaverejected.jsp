@@ -14,43 +14,27 @@
 <meta name="keywords"
 	content="admin template, robust admin template, dashboard template, flat admin template, responsive admin template, web app">
 <meta name="author" content="PIXINVENT">
-<title>Sweet Alerts - Robust Bootstrap Admin Template</title>
-<link rel="apple-touch-icon" sizes="60x60"
-	href="app-assets/images/ico/apple-icon-60.png">
-<link rel="apple-touch-icon" sizes="76x76"
-	href="app-assets/images/ico/apple-icon-76.png">
-<link rel="apple-touch-icon" sizes="120x120"
-	href="app-assets/images/ico/apple-icon-120.png">
-<link rel="apple-touch-icon" sizes="152x152"
-	href="app-assets/images/ico/apple-icon-152.png">
-<link rel="shortcut icon" type="image/x-icon"
-	href="https://pixinvent.com/bootstrap-admin-template/robust/app-assets/images/ico/favicon.ico">
-<link rel="shortcut icon" type="image/png"
-	href="app-assets/images/ico/favicon-32.png">
+<title>Leave Rejected</title>
+<link rel="apple-touch-icon" sizes="60x60" href="app-assets/images/ico/apple-icon-60.png">
+<link rel="apple-touch-icon" sizes="76x76" href="app-assets/images/ico/apple-icon-76.png">
+<link rel="apple-touch-icon" sizes="120x120" href="app-assets/images/ico/apple-icon-120.png">
+<link rel="apple-touch-icon" sizes="152x152" href="app-assets/images/ico/apple-icon-152.png">
+<link rel="shortcut icon" type="image/x-icon" href="https://pixinvent.com/bootstrap-admin-template/robust/app-assets/images/ico/favicon.ico">
+<link rel="shortcut icon" type="image/png" href="app-assets/images/ico/favicon-32.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-touch-fullscreen" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
-<!-- BEGIN VENDOR CSS-->
 <link rel="stylesheet" type="text/css"
 	href="app-assets/css/bootstrap.min.css">
 <!-- font icons-->
-<link rel="stylesheet" type="text/css"
-	href="app-assets/fonts/icomoon.css">
-<link rel="stylesheet" type="text/css"
-	href="app-assets/fonts/flag-icon-css/css/flag-icon.min.css">
-<link rel="stylesheet" type="text/css"
-	href="app-assets/vendors/css/sliders/slick/slick.css">
-<link rel="stylesheet" type="text/css"
-	href="app-assets/vendors/css/extensions/pace.css">
-<link rel="stylesheet" type="text/css"
-	href="app-assets/vendors/css/extensions/sweetalert.css">
-<!-- END VENDOR CSS-->
-<!-- BEGIN ROBUST CSS-->
-<link rel="stylesheet" type="text/css"
-	href="app-assets/css/bootstrap-extended.min.css">
+<link rel="stylesheet" type="text/css" href="app-assets/fonts/icomoon.css">
+<link rel="stylesheet" type="text/css" href="app-assets/fonts/flag-icon-css/css/flag-icon.min.css">
+<link rel="stylesheet" type="text/css" href="app-assets/vendors/css/sliders/slick/slick.css">
+<link rel="stylesheet" type="text/css" href="app-assets/vendors/css/extensions/pace.css">
+<link rel="stylesheet" type="text/css" href="app-assets/vendors/css/extensions/sweetalert.css">
+<link rel="stylesheet" type="text/css" href="app-assets/css/bootstrap-extended.min.css">
 <link rel="stylesheet" type="text/css" href="app-assets/css/app.min.css">
-<link rel="stylesheet" type="text/css"
-	href="app-assets/css/colors.min.css">
+<link rel="stylesheet" type="text/css" href="app-assets/css/colors.min.css">
 <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 <!-- END ROBUST CSS-->
 <!-- BEGIN Page Level CSS-->
@@ -96,12 +80,18 @@
 								<%
 									}
 								%>
-								<div class="col-lg-6">
-									<div class="panel panel-default">
-										<div class="panel-heading">
-											<i class="fa fa-bell fa-fw"></i> Notifications Panel
-										</div>
-										<!-- /.panel-heading -->
+								<div class="row">
+				    <div class="col-md-12">
+				        <div class="card box-shadow-0" data-appear="appear">
+					        <div class="card-header card-inverse" style="background-color: #d2d9dc;padding: 0.5rem 0rem 1rem 0rem;height: 40px; border-left: 1px solid #607D8B;border-right: 1px solid #607D8B;  
+					        						   border-bottom: 1px solid #607D8B; border-top: 1px solid #607D8B;">
+					            <div class="col-sm-6">	
+				               		<h4 class="card-title" id="horz-layout-basic" style="color: #000000;">  <i class="icon-ios-bell"></i> Notifications Panel</h4>
+				                </div>
+				            </div>
+				               <div class="card-body collapse in">
+					                <div class="card-block" style="border-left: 1px solid #607D8B;border-right: 1px solid #607D8B;
+					                					border-bottom: 1px solid #607D8B;">
 										<div class="panel-body">
 											<div class="list-group">
 
@@ -120,7 +110,7 @@
 													if (((l.getStatus().equalsIgnoreCase("rejected")))) {
 												%>
 												<a href="Myleave?leave_id=<%=l.getLeave_id()%>"
-													class="list-group-item"> <i class="fa fa-comment fa-fw"></i>
+													class="list-group-item"> <i class="icon-comment"></i>
 													<span class="pull-right text-muted small"><em><%=l.getEmployeeBean().getFirstname()%>
 															<%=l.getEmployeeBean().getLastname()%> Leave for <%=l.getLeave_From()%>
 															date To <%=l.getLeave_To()%> Date. Status(<%=l.getStatus()%>)</em>
@@ -135,8 +125,10 @@
 											</div>
 											<a href="#" class="list-group-item"> No more notification
 											</a>
-											<!-- /.panel .chat-panel -->
 										</div>
+									</div>
+									</div>
+									</div>
 									</div>
 								</div>
 							</div>

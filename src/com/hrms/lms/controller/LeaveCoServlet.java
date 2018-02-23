@@ -180,7 +180,8 @@ public class LeaveCoServlet extends HttpServlet {
 								{
 									System.out.println("Leave From Date And To Date Already exit");
 									request.setAttribute("NotEligible", "You Are Not Eligible For CO");
-									request.getRequestDispatcher("leaveCO.jsp").forward(request, response);
+									/*request.getRequestDispatcher("leaveCO.jsp").forward(request, response);*/
+									response.sendRedirect("leaveCO.jsp");
 								}
 								else
 								{
@@ -232,7 +233,8 @@ public class LeaveCoServlet extends HttpServlet {
 										request.setAttribute("openStatus", "co");
 										request.setAttribute("success", "CO Applied Successfully");
 										//response.sendRedirect("leavesuccess.jsp");
-										request.getRequestDispatcher("leavesuccess.jsp").forward(request, response);
+										/*request.getRequestDispatcher("leavesuccess.jsp").forward(request, response);*/
+										response.sendRedirect("leavesuccess.jsp");
 									}
 								}	
 							}
@@ -240,7 +242,8 @@ public class LeaveCoServlet extends HttpServlet {
 							{
 								System.out.println("Leave From Date And To Date Already exit");
 								request.setAttribute("LeavefromtodateExist", "CO This Date Already Exists");
-								request.getRequestDispatcher("leaveCO.jsp").forward(request, response);
+								/*request.getRequestDispatcher("leaveCO.jsp").forward(request, response);*/
+								response.sendRedirect("leaveCO.jsp");
 							}
 						/*}*/
 						/*else

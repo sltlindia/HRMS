@@ -5,7 +5,6 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.hrms.lms.bean.LeaveCOBean"%>
 <%@page import="java.util.List"%>
-<%@page import="com.hrms.lms.dao.AllListDAO"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.text.DateFormat"%>
 <%@page import="java.util.Date"%>

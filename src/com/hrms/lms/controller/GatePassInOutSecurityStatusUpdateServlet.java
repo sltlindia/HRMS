@@ -46,7 +46,8 @@ public class GatePassInOutSecurityStatusUpdateServlet extends HttpServlet {
 			if(status.equalsIgnoreCase("Out")){	
 				request.setAttribute("success", "Employee OUT Successfully");
 				request.setAttribute("openStatus", "out");
-				request.getRequestDispatcher("gatePassListSecurity.jsp").forward(request, response);
+				/*request.getRequestDispatcher("gatePassListSecurity.jsp").forward(request, response);*/
+				response.sendRedirect("gatePassListSecurity.jsp");
 			}else{
 				request.setAttribute("success", "Employee IN Successfully");
 				if(request.getParameter("gateEntry")!=null){
@@ -54,14 +55,16 @@ public class GatePassInOutSecurityStatusUpdateServlet extends HttpServlet {
 				}else{
 				request.setAttribute("openStatus", "out");
 				}
-				request.getRequestDispatcher("gatePassListSecurity.jsp").forward(request, response);
+				/*request.getRequestDispatcher("gatePassListSecurity.jsp").forward(request, response);*/
+				response.sendRedirect("gatePassListSecurity.jsp");
 			}
 
 			
 		}else
 		{
 			request.setAttribute("sessionExpired", "Your session is expired...Please login again...");
-			request.getRequestDispatcher("login.jsp").forward(request, response);
+			/*request.getRequestDispatcher("login.jsp").forward(request, response);*/
+			response.sendRedirect("login.jsp");
 		}
 	}
 

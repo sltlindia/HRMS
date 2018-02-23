@@ -529,7 +529,8 @@ public class LeaveUnplanInsertServlet extends HttpServlet {
 											{
 												System.out.println("Leave Apply Successfully");
 												request.setAttribute("LeaveSuccessfully", "Leave Apply Successfully");
-												request.getRequestDispatcher("applyLeave.jsp").forward(request, response);
+												/*request.getRequestDispatcher("applyleave.jsp").forward(request, response);*/
+												response.sendRedirect("applyleave.jsp");
 											}
 											
 									
@@ -756,7 +757,8 @@ public class LeaveUnplanInsertServlet extends HttpServlet {
 												{
 													System.out.println("Leave Apply Successfully");
 													request.setAttribute("LeaveSuccessfully", "Leave Apply Successfully");
-													request.getRequestDispatcher("applyLeave.jsp").forward(request, response);
+													/*request.getRequestDispatcher("applyleave.jsp").forward(request, response);*/
+													response.sendRedirect("applyleave.jsp");
 												}	
 										}
 									}
@@ -964,7 +966,8 @@ public class LeaveUnplanInsertServlet extends HttpServlet {
 													{
 														System.out.println("Leave Apply Successfully");
 														request.setAttribute("LeaveSuccessfully", "Leave Apply Successfully");
-														request.getRequestDispatcher("applyLeave.jsp").forward(request, response);
+														/*request.getRequestDispatcher("applyleave.jsp").forward(request, response);*/
+														response.sendRedirect("applyleave.jsp");
 													}
 												}
 											    else
@@ -1180,7 +1183,8 @@ public class LeaveUnplanInsertServlet extends HttpServlet {
 														{
 															System.out.println("Leave Apply Successfully");
 															request.setAttribute("LeaveSuccessfully", "Leave Apply Successfully");
-															request.getRequestDispatcher("applyLeave.jsp").forward(request, response);
+															/*request.getRequestDispatcher("applyleave.jsp").forward(request, response);*/
+															response.sendRedirect("applyleave.jsp");
 														}
 											    }
 										}
@@ -1416,7 +1420,8 @@ public class LeaveUnplanInsertServlet extends HttpServlet {
 												{
 													System.out.println("Leave Apply Successfully");
 													request.setAttribute("LeaveSuccessfully", "Leave Apply Successfully");
-													request.getRequestDispatcher("applyLeave.jsp").forward(request, response);
+													/*request.getRequestDispatcher("applyleave.jsp").forward(request, response);*/
+													response.sendRedirect("applyleave.jsp");
 												}
 											}
 											else
@@ -1435,7 +1440,8 @@ public class LeaveUnplanInsertServlet extends HttpServlet {
 													{
 														System.out.println("Leave All Ready exit");
 														request.setAttribute("LeaveExist", "Leave Already Exists");
-														request.getRequestDispatcher("applyLeave.jsp").forward(request, response);
+														/*request.getRequestDispatcher("applyleave.jsp").forward(request, response);*/
+														response.sendRedirect("applyleave.jsp");
 													}
 													else
 													{
@@ -1659,7 +1665,8 @@ public class LeaveUnplanInsertServlet extends HttpServlet {
 														if(result == true && result1 == true)
 														{
 																request.setAttribute("LeaveSuccessfully", "Leave Apply Successfully");
-																request.getRequestDispatcher("applyLeave.jsp").forward(request, response);
+																/*request.getRequestDispatcher("applyleave.jsp").forward(request, response);*/
+																response.sendRedirect("applyleave.jsp");
 														}
 													}
 												}
@@ -1668,7 +1675,8 @@ public class LeaveUnplanInsertServlet extends HttpServlet {
 											{
 												System.out.println("Leave From Date And To Date Already exit");
 												request.setAttribute("LeavefromtodateExist", "Leave From Date And To Date Already Exists");
-												request.getRequestDispatcher("applyLeave.jsp").forward(request, response);
+												/*request.getRequestDispatcher("applyleave.jsp").forward(request, response);*/
+												response.sendRedirect("applyleave.jsp");
 											}
 										}
 									}
@@ -1676,7 +1684,8 @@ public class LeaveUnplanInsertServlet extends HttpServlet {
 									{
 										System.out.println("Leave All Ready exit");
 										request.setAttribute("LeaveExist", "Leave Already Exists");
-										request.getRequestDispatcher("applyLeave.jsp").forward(request, response);
+										/*request.getRequestDispatcher("applyleave.jsp").forward(request, response);*/
+										response.sendRedirect("applyleave.jsp");
 									}
 								}
 							}

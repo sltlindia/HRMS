@@ -159,7 +159,8 @@ public class EmployeeCoUpdateServlet extends HttpServlet {
 							if(result == true)
 							{
 								request.setAttribute("LeaveapprovedSuccessfully", "CO Update Successfully");
-								request.getRequestDispatcher("viewODCOStatus.jsp").forward(request, response);
+								//request.getRequestDispatcher("leavesuccess.jsp").forward(request, response);
+								response.sendRedirect("leavesuccess.jsp");
 							}
 						
 						}

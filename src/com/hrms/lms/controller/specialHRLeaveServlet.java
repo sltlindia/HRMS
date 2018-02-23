@@ -78,16 +78,20 @@ public class specialHRLeaveServlet extends HttpServlet {
 		
 		if(leavetypeselect.equalsIgnoreCase("Leave")){
 			request.setAttribute("HR", "HRLeave");
-			request.getRequestDispatcher("applyLeave.jsp").forward(request, response);
+			/*request.getRequestDispatcher("applyLeave.jsp").forward(request, response);*/
+			response.sendRedirect("applyLeave.jsp");
 		}else if(leavetypeselect.equalsIgnoreCase("CO")){
 			request.setAttribute("HR", "HRCO");
-			request.getRequestDispatcher("specialHRLeave.jsp").forward(request, response);
+			/*request.getRequestDispatcher("specialHRLeave.jsp").forward(request, response);*/
+			response.sendRedirect("specialHRLeave.jsp");
 		}else if(leavetypeselect.equalsIgnoreCase("OD")){
 			request.setAttribute("HR", "HROD");
-			request.getRequestDispatcher("specialHRLeave.jsp").forward(request, response);
+			/*request.getRequestDispatcher("specialHRLeave.jsp").forward(request, response);*/
+			response.sendRedirect("specialHRLeave.jsp");
 		}else if(leavetypeselect.equalsIgnoreCase("GatePass")){
 			request.setAttribute("HR", "HRGatePass");
-			request.getRequestDispatcher("specialHRLeave.jsp").forward(request, response);
+			/*request.getRequestDispatcher("specialHRLeave.jsp").forward(request, response);*/
+			response.sendRedirect("specialHRLeave.jsp");
 		
 		}
 		

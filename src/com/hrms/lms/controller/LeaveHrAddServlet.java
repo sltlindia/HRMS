@@ -49,7 +49,8 @@ public class LeaveHrAddServlet extends HttpServlet {
 		}else{
 			request.setAttribute("LeaveExist", "No Employee is exist for this Employee code");
 		}
-		request.getRequestDispatcher("leaveadjustHR.jsp").forward(request, response);
+		/*request.getRequestDispatcher("leaveadjustHR.jsp").forward(request, response);*/
+		response.sendRedirect("leaveadjustHR.jsp");
 	}
 
 }

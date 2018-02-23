@@ -330,7 +330,7 @@ int employee_master_id1 = user.getEmployee_master_id();
 								<td width="10px">:</td>
 								<td width="200px;">
 									<select class="form-control" name="leavetypeselect" id="leavetypeselect" onchange="redirect(this.value);" required>
-										<option value="applyLeave.jsp">   Leave    </option>
+										<option value="applyleave.jsp">   Leave    </option>
 										<option value="leaveCO.jsp" selected="selected">   	 CO       </option>
 										<option value="leaveOD.jsp">      OD       </option>
 									</select>
@@ -340,12 +340,9 @@ int employee_master_id1 = user.getEmployee_master_id();
 							</tr>
                         </thead>
                         </table>
-                        
                         </div>
                     </div>
-                    <!-- /.panel -->
                 </div>
-                <!-- /.col-lg-12 -->
 			</div>
 			<%-- 
 			<%if(request.getAttribute("LeaveExist") !=null) {%>

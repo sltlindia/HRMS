@@ -43,18 +43,21 @@ public class GatePassStatusUpdateServlet extends HttpServlet {
 				if(status.equalsIgnoreCase("Approved"))
 				{
 					request.setAttribute("Success", "Gate Pass Approved Successfully...");
-					request.getRequestDispatcher("gatePassListManager.jsp").forward(request, response);
+					/*request.getRequestDispatcher("gatePassListManager.jsp").forward(request, response);*/
+					response.sendRedirect("gatePassListManager.jsp");
 				}
 				else
 				{
 					request.setAttribute("reject", "Gate Pass Rejected Successfully...");
-					request.getRequestDispatcher("gatePassListManager.jsp").forward(request, response);
+					/*request.getRequestDispatcher("gatePassListManager.jsp").forward(request, response);*/
+					response.sendRedirect("gatePassListManager.jsp");
 				}
 			}
 		}else
 		{
 			request.setAttribute("sessionExpired", "Your session is expired...Please login again...");
-			request.getRequestDispatcher("login.jsp").forward(request, response);
+			/*request.getRequestDispatcher("login.jsp").forward(request, response);*/
+			response.sendRedirect("login.jsp");
 		}
 	}
 }
